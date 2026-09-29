@@ -203,6 +203,35 @@ describe('UC-APP-09 — projection vers le sunburst (twin6ToMergeDocument)', () 
     expect(doc.domains[0].rapport_html).toContain('Rapport fictif 1.')
     expect(comps['1.01'].feedback).toContain('Raisonnement 1.')
     expect(comps['1.01'].feedback).toContain('Piste 1.')
+
+    // RG8, première clause, discriminée : un MÊME pôle a des passages sur deux
+    // feuilles ; chaque compétence n'est présente que sur la feuille où une de
+    // ses traces retenues renvoie (pieceId → pieces[].numero → pid).
+    const refDeux = {
+      poles: POLES,
+      competences: [...REFERENTIEL.competences, { code: '1.02', nom: 'Compétence fictive 1.02', pole: 1 }],
+    }
+    const pole1 = cartoPole(1)
+    pole1.passagesSaillants.push({ pid: 2, feuille: '2026-02-12', extraitVerbatim: 'Trace 1 bis.', contexte: 'projet', auteur: 'apprenant' })
+    pole1.competences.push({
+      code: '1.02',
+      courtCircuit: false,
+      // Deux pièces (une par feuille) mais UNE seule trace retenue, sur la pièce du pid 2.
+      pieces: [{ numero: 1, pid: 1, contexte: 'acte' }, { numero: 2, pid: 2, contexte: 'acte' }],
+      pedagogue: { conclusionAdversariale: { raisonnement: 'Raisonnement 1.02.', confianceFinale: 0.7 } },
+      verdict: { statut: 'présence établie', nombrePreuves: 1, nombreIndices: 0, confiance: 0.7, motif: 'Motif 1.02.', prescription: 'Piste 1.02.' },
+      tracesRetenues: [{ pieceId: 2, type: 'trace concrète', role: 'preuve décisive' }],
+    })
+    const doc2 = twin6ToMergeDocument([pole1, ...POLES.slice(1).map((p) => cartoPole(p.num))], KAIROS, refDeux, META)
+    const comps2 = Object.fromEntries(doc2.domains.flatMap((d) => d.competences).map((c) => [c.code, c]))
+    expect(doc2.feuilles.map((f) => f.iso)).toEqual(['2026-02-10', '2026-02-12'])
+    expect(comps2['1.01'].parFeuille.map((f) => f.date)).toEqual(['2026-02-10'])
+    expect(comps2['1.02'].parFeuille.map((f) => f.date)).toEqual(['2026-02-12'])
+    const pole1Doc = doc2.domains.find((d) => d.id === 'TÊTE — Penser & Comprendre')
+    expect(pole1Doc.parFeuille.map((f) => [f.date, f.etablies])).toEqual([
+      ['2026-02-10', 1],
+      ['2026-02-12', 1],
+    ])
   })
 
   it('UC-APP-09-U09 — ANOMALIE figée : un pôle sans aucune présence établie produit un domaine vide, refusé par le schéma cartographie-merge', () => {

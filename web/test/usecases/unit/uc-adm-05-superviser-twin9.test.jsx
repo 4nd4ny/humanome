@@ -4,13 +4,14 @@
 // Code sollicité appelé directement : la route #/admin/twin9 et son entrée de
 // navigation (admin seul), le client de supervision (web/src/api/twin9.js) et
 // le composant Twin9Section rendu isolément (construction du DIFF envoyé au
-// serveur, validation cliente, table des comptes).
+// serveur, validation cliente, table des comptes) et la garde d'AdminView.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
 import { navGroups } from '../../../src/nav.js'
-import { fetchMe, resetApiClient } from '../../../src/api/client.js'
-import { fetchComptes, fetchTwin9Config, saveTwin9Config } from '../../../src/api/twin9.js'
+import { ApiUnavailableError, fetchMe, resetApiClient } from '../../../src/api/client.js'
+import { fetchComptes, fetchTwin9Config, formatUsd, saveTwin9Config } from '../../../src/api/twin9.js'
+import AdminView from '../../../src/views/AdminView.jsx'
 import Twin9Section from '../../../src/views/admin/Twin9Section.jsx'
 import { jsonResponse } from '../support/twin.js'
 
@@ -113,7 +114,7 @@ describe('UC-ADM-05 — réglages : diff envoyé au serveur (Twin9Section isolé
     ])
   })
 
-  it('UC-ADM-05-U05 — validation cliente : contribution non numérique, identifiant de modèle vide, prix invalide → message, aucun PUT', async () => {
+  it('UC-ADM-05-U05 — validation cliente : contributions non numériques, montant de pack non numérique, identifiant de modèle vide, prix invalide → message, aucun PUT', async () => {
     const fetchFn = monter()
     await screen.findByRole('heading', { name: 'Réglages' })
 
@@ -122,6 +123,17 @@ describe('UC-ADM-05 — réglages : diff envoyé au serveur (Twin9Section isolé
     expect(screen.getByRole('alert').textContent).toBe('Marge invalide : nombre attendu.')
 
     fireEvent.change(screen.getByLabelText(/Contribution Twin9/), { target: { value: '1.3' } })
+    fireEvent.change(screen.getByLabelText(/Contribution Twin6/), { target: { value: '' } })
+    await enregistrer()
+    expect(screen.getByRole('alert').textContent).toBe('Marge Twin6 invalide : nombre attendu.')
+
+    fireEvent.change(screen.getByLabelText(/Contribution Twin6/), { target: { value: '1.1' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Ajouter un pack' }))
+    fireEvent.change(screen.getByLabelText('Libellé', { selector: '#twin9-pack-libelle-2' }), { target: { value: 'Pack sans montant' } })
+    await enregistrer()
+    expect(screen.getByRole('alert').textContent).toBe('Montant de pack invalide.')
+    fireEvent.click(screen.getByRole('button', { name: 'Supprimer le pack 3' }))
+
     fireEvent.click(screen.getByRole('button', { name: 'Ajouter un modèle' }))
     await enregistrer()
     expect(screen.getByRole('alert').textContent).toBe('Identifiant de modèle vide.')
@@ -152,7 +164,8 @@ describe('UC-ADM-05 — réglages : diff envoyé au serveur (Twin9Section isolé
 })
 
 describe('UC-ADM-05 — comptes (supervision)', () => {
-  it('UC-ADM-05-U07 — table des comptes en USD ; aucun compte → message dédié', async () => {
+  it('UC-ADM-05-U07 — table des comptes en USD (4 décimales sous le centime) ; aucun compte → message dédié', async () => {
+    expect(formatUsd(5_000)).toBe('0,0050 $')
     monter(CONFIG, [
       { user_id: 3, email: 'ecole@example.org', nom: 'École fictive', solde_microusd: 2_500_000, recharges_microusd: 10_000_000, consomme_microusd: 7_500_000, derniere_activite: '2026-07-12 14:30:00' },
     ])
@@ -163,5 +176,41 @@ describe('UC-ADM-05 — comptes (supervision)', () => {
 
     monter(CONFIG, [])
     expect(await screen.findByText('Aucun compte avec activité pour l’instant.')).toBeDefined()
+  })
+})
+
+describe('UC-ADM-05 — garde de la vue d’administration (AdminView isolée)', () => {
+  it('UC-ADM-05-U13 — AdminView : admin → section Twin9 ; non-admin → espace réservé, rien demandé ; copie statique → message dédié (RG1, E1, E4)', async () => {
+    const fetchFn = vi.fn(async (url, init = {}) => {
+      const key = `${init.method ?? 'GET'} ${url}`
+      if (key === 'GET api/twin9/admin/config') return jsonResponse(200, CONFIG)
+      if (key === 'GET api/twin9/admin/comptes') return jsonResponse(200, { comptes: [] })
+      return jsonResponse(404, { error: 'absent' })
+    })
+
+    render(<AdminView section="twin9" deps={{ fetchMeFn: async () => ({ user: { id: 1, roles: ['admin'] } }), fetchFn }} />)
+    expect(await screen.findByRole('heading', { name: 'Twin9 — supervision' })).toBeDefined()
+    expect(fetchFn.mock.calls.map(([url]) => url).sort()).toEqual(['api/twin9/admin/comptes', 'api/twin9/admin/config'])
+    cleanup()
+    fetchFn.mockClear()
+
+    render(<AdminView section="twin9" deps={{ fetchMeFn: async () => ({ user: { id: 2, roles: ['promptologue', 'apprenant'] } }), fetchFn }} />)
+    expect((await screen.findByTestId('admin-reserve')).textContent).toContain('réservé à l’administration de la plateforme')
+    expect(fetchFn).not.toHaveBeenCalled()
+    cleanup()
+
+    render(
+      <AdminView
+        section="twin9"
+        deps={{
+          fetchMeFn: async () => {
+            throw new ApiUnavailableError()
+          },
+          fetchFn,
+        }}
+      />,
+    )
+    expect((await screen.findByText(/Copie statique du site/)).textContent).toContain('l’administration a besoin de l’API')
+    expect(fetchFn).not.toHaveBeenCalled()
   })
 })

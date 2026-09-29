@@ -51,7 +51,7 @@ final class UcAdm05SuperviserTwin9Test extends TestCase
         return (new SettingsRepository(self::$pdo))->get(Twin9Config::SETTING_KEY);
     }
 
-    #[TestDox('UC-ADM-05-U08 — mise à jour PARTIELLE : fusion avec l’existant, persistance dans settings, clés inconnues refusées sans rien écrire')]
+    #[TestDox('UC-ADM-05-U08 — mise à jour PARTIELLE : fusion avec l’existant, persistance de la configuration COMPLÈTE (défauts figés) dans settings, clés inconnues refusées sans rien écrire')]
     public function testU08PartialUpdateIsMergedAndPersisted(): void
     {
         self::assertNull(self::stored(), 'aucun réglage stocké : défauts');
@@ -61,6 +61,10 @@ final class UcAdm05SuperviserTwin9Test extends TestCase
         self::assertSame(1.5, self::config()->marge());
         self::assertTrue(self::config()->clePersoOuverte());
         self::assertSame(1.5, self::stored()['marge']);
+        // La configuration effective COMPLÈTE est persistée, défauts compris : une
+        // évolution ultérieure de defaults() ne s'appliquera plus à ces clés.
+        self::assertEqualsCanonicalizing(array_keys(Twin9Config::defaults()), array_keys(self::stored()));
+        self::assertEquals(Twin9Config::defaults()['packs'], self::stored()['packs']);
 
         try {
             self::config()->update(['marge' => 2.0, 'surtaxe' => 3]);
@@ -83,10 +87,12 @@ final class UcAdm05SuperviserTwin9Test extends TestCase
             ['appels_par_minute' => 1],
             ['appels_par_minute' => 600],
             ['enabled' => false],
+            ['pipeline' => [1, 2]], // « objet » attendu, mais une liste JSON passe (\is_array)
             ['pipeline' => ['jury' => ['taille_aleatoire' => 4]]],
         ] as $ok) {
             self::config()->update($ok);
         }
+        $valide = self::stored();
 
         $ko = [
             [['marge' => 0.99], 'Marge hors bornes (entre 1 et 5)'],
@@ -115,6 +121,8 @@ final class UcAdm05SuperviserTwin9Test extends TestCase
             }
         }
         self::assertSame(600, self::config()->appelsParMinute(), 'dernier état valide conservé');
+        // Configuration ENTIÈRE inchangée par les refus (colonne JSON : assertEquals).
+        self::assertEquals($valide, self::stored());
     }
 
     #[TestDox('UC-ADM-05-U10 — ANOMALIE figée : un pack au-delà de 500 USD est refusé avec un message annonçant « entre 1 et 100 USD »')]

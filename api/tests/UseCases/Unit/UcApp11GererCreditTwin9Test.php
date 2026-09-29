@@ -73,13 +73,18 @@ final class UcApp11GererCreditTwin9Test extends TestCase
             ->execute([$date, $userId, $label]);
     }
 
-    #[TestDox('UC-APP-11-U06 — PayPal configuré par l’environnement : absent → null (recharge indisponible) ; sandbox par défaut, live sur demande')]
+    #[TestDox('UC-APP-11-U06 — PayPal configuré par l’environnement : identifiant OU secret absent → null (recharge indisponible) ; sandbox par défaut, live sur demande')]
     public function testU06PaypalFromEnv(): void
     {
         $http = new LlmFakeHttpClient();
         TestDb::setEnv('PAYPAL_CLIENT_ID', '');
         TestDb::setEnv('PAYPAL_SECRET', 'secret-fictif');
         self::assertNull(PayPalClient::fromEnv($http));
+        // Identifiant sans secret : non configuré côté client PayPal (cf. anomalie 2, vue publique).
+        TestDb::setEnv('PAYPAL_CLIENT_ID', 'client-fictif');
+        TestDb::setEnv('PAYPAL_SECRET', '');
+        self::assertNull(PayPalClient::fromEnv($http));
+        TestDb::setEnv('PAYPAL_SECRET', 'secret-fictif');
 
         TestDb::setEnv('PAYPAL_CLIENT_ID', 'client-fictif');
         TestDb::setEnv('PAYPAL_MODE', 'live');
@@ -114,6 +119,7 @@ final class UcApp11GererCreditTwin9Test extends TestCase
         self::assertSame(['currency_code' => 'USD', 'value' => '20.00'], $payload['purchase_units'][0]['amount']);
         self::assertSame('PAY_NOW', $payload['application_context']['user_action']);
         self::assertSame('NO_SHIPPING', $payload['application_context']['shipping_preference']);
+        self::assertSame('https://humanome.xyz/#/compte/credit?paypal=retour', $payload['application_context']['return_url']);
         self::assertSame('https://humanome.xyz/#/compte/credit?paypal=annule', $payload['application_context']['cancel_url']);
 
         TwinSupport::queuePaypalToken($http);
@@ -171,7 +177,9 @@ final class UcApp11GererCreditTwin9Test extends TestCase
             self::fail('jeton refusé accepté');
         } catch (Twin9Exception $e) {
             self::assertSame('Connexion à PayPal impossible (identifiants ?).', $e->getMessage());
-            self::assertStringNotContainsString('secret', $e->getMessage());
+            foreach (['client-fictif', 'secret-fictif', base64_encode('client-fictif:secret-fictif')] as $identifiant) {
+                self::assertStringNotContainsString($identifiant, $e->getMessage());
+            }
         }
     }
 
@@ -281,7 +289,7 @@ final class UcApp11GererCreditTwin9Test extends TestCase
         self::assertSame([], (new FactureService(self::$pdo))->facture($lea, 2027, 1)['lignes']);
     }
 
-    #[TestDox('UC-APP-11-U13 — suivi des dépenses : mois les plus récents d’abord, recharges / consommé net / appels')]
+    #[TestDox('UC-APP-11-U13 — suivi des dépenses : mois les plus récents d’abord, recharges / consommé net / appels ; anomalie figée : un ajustement administratif y compte en consommation NÉGATIVE')]
     public function testU13SpendTracking(): void
     {
         $lea = self::user();
@@ -300,6 +308,19 @@ final class UcApp11GererCreditTwin9Test extends TestCase
             ['mois' => '2026-07', 'recharges_microusd' => 10_000_000, 'consomme_microusd' => 30_000, 'appels' => 1],
         ], (new FactureService(self::$pdo))->depensesParMois($lea));
         self::assertCount(1, (new FactureService(self::$pdo))->depensesParMois($lea, 1));
+
+        // ANOMALIE figée (fiche, anomalie 1) : un geste commercial de +4 $ apparaît
+        // dans le suivi comme une consommation de −4 $, alors que la facture du
+        // même mois le range à part (ajustements) et n'y compte aucune consommation.
+        $credits->adjust($lea, 4_000_000, 'Geste commercial');
+        self::dater($lea, 'Geste commercial', '2026-09-15 12:00:00');
+        self::assertSame(
+            ['mois' => '2026-09', 'recharges_microusd' => 0, 'consomme_microusd' => -4_000_000, 'appels' => 0],
+            (new FactureService(self::$pdo))->depensesParMois($lea)[0],
+        );
+        $facture = (new FactureService(self::$pdo))->facture($lea, 2026, 9);
+        self::assertSame(0, $facture['total_consomme_microusd']);
+        self::assertSame(4_000_000, $facture['ajustements'][0]['montant_microusd']);
     }
 
     #[TestDox('UC-APP-11-U14 — offre de recharge : packs 10 à 500 USD par défaut ; « PayPal configuré » annoncé selon l’identifiant client')]
@@ -317,7 +338,7 @@ final class UcApp11GererCreditTwin9Test extends TestCase
         self::assertSame($config->packs(), $config->publicView()['packs']);
     }
 
-    #[TestDox('UC-APP-11-U15 — tentatives PayPal : 20 par minute et par compte et par route ; au-delà, nouvelle tentative dans 30 s')]
+    #[TestDox('UC-APP-11-U15 — RateLimiter (fenêtre fixe d’une minute, un seau par clé) : au-delà du plafond, bloqué et nouvelle tentative dans 30 s — la limite RÉELLE des routes (20) est vérifiée par F22')]
     public function testU15PaypalRateLimit(): void
     {
         self::$pdo->exec('DELETE FROM rate_limits');

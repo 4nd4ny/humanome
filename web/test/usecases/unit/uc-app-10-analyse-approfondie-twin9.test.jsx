@@ -5,14 +5,15 @@
 // (makeServerBackend) et son adaptation au contrat du moteur
 // (makeServerFactory, etageDeLabel), la logique pure du parcours
 // (run-helpers : devis, roster, journées), la persistance locale de reprise
-// (twin9-store), la persistance locale du résultat (carto-store, type twin9)
-// et le composant de résultats (assainissement du narratif, ADR-007).
+// (twin9-store), la persistance locale du résultat (carto-store, type twin9),
+// le composant de résultats (assainissement du narratif, export, ADR-007) et
+// la branche 402 de Twin9View rendue seule, moteur injecté.
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
 import { ApiError, ApiUnavailableError, resetApiClient } from '../../../src/api/client.js'
-import { fetchTwin9Meta, makeServerBackend } from '../../../src/api/twin9.js'
-import { etageDeLabel, makeServerFactory } from '../../../src/views/Twin9View.jsx'
+import { fetchTwin9Meta, formatUsd, makeServerBackend, referentielPourMoteur } from '../../../src/api/twin9.js'
+import Twin9View, { etageDeLabel, makeServerFactory } from '../../../src/views/Twin9View.jsx'
 import {
   ETAGE_TOKENS,
   PASSES_TAGGERS,
@@ -24,7 +25,7 @@ import {
 import { createMemoryTwin9Store } from '../../../src/views/twin9/twin9-store.js'
 import { createCartoStore, createMemoryAdapter } from '../../../src/lib/carto-store.js'
 import ResultatsTwin9 from '../../../src/views/twin9/ResultatsTwin9.jsx'
-import { htmlResponse, jsonResponse } from '../support/twin.js'
+import { htmlResponse, jsonResponse, metaTwin9 } from '../support/twin.js'
 
 afterEach(() => {
   cleanup()
@@ -143,12 +144,53 @@ describe('UC-APP-10 — backend serveur (POST api/twin9/appel)', () => {
     expect(onDebit).toHaveBeenCalledTimes(1)
   })
 
+  it('UC-APP-10-U36 — ANOMALIE figée : la fabrique envoie le MÊME modèle à tous les étages (Haiku sur le tribunal → refus serveur 422)', async () => {
+    const fetchFn = vi.fn(async () => appelOk())
+    const factory = makeServerFactory({
+      modele: 'claude-haiku-4-5-20251001',
+      facturation: 'platform',
+      onDebit: () => {},
+      makeBackend: (p) => makeServerBackend({ ...p, fetchFn }),
+    })
+    const backend = factory({ kind: 'claude-cli', model: 'fictif-tribunal' })
+    await backend.call('', { gabarit: 'tagger/1-tag-pole.md', variables: {}, label: 'tag_1_P1' })
+    await backend.call('', { gabarit: 'lourd/24-president.md', variables: { CODE: '1.01' }, label: 'president_1.01' })
+
+    // Comportement ACTUEL : le modèle choisi dans la vue part tel quel, quel que
+    // soit l'étage ; or l'offre par défaut limite Haiku à taggers/rapide (RG6).
+    expect(fetchFn.mock.calls.map(([, init]) => JSON.parse(init.body)).map((b) => [b.modele, b.etage])).toEqual([
+      ['claude-haiku-4-5-20251001', 'taggers'],
+      ['claude-haiku-4-5-20251001', 'tribunal'],
+    ])
+  })
+
   it('UC-APP-10-U16 — étiquette d’appel → étage de facturation (taggers / rapide / tribunal)', () => {
     expect(etageDeLabel('tag_2_P3')).toBe('taggers')
     for (const l of ['lecteur_j1', 'greffier_1.01', 'leger_1.01_p1', 'contre-lecture_1.01']) expect(etageDeLabel(l)).toBe('rapide')
     for (const l of ['condense_j1', 'arpenteur', 'retour_1', 'merge_kairos', 'accusation_1.01', 'jure_x', 'president_1.01', undefined]) {
       expect(etageDeLabel(l)).toBe('tribunal')
     }
+  })
+})
+
+describe('UC-APP-10 — montants et référentiel (api/twin9.js)', () => {
+  it('UC-APP-10-U38 — formatUsd (virgule, 4 décimales sous le centime) ; referentielPourMoteur (pôles + compétences aplaties portant leur pôle)', () => {
+    expect(formatUsd(5_000_000)).toBe('5,00 $')
+    expect(formatUsd(1234)).toBe('0,0012 $')
+    expect(formatUsd(0)).toBe('0,00 $')
+    expect(
+      referentielPourMoteur([
+        { num: 1, nom: 'TÊTE', competences: [{ code: '1.01', nom: 'Pensée critique', fiche_md: 'jamais transmis' }] },
+        { num: 2, nom: 'CŒUR', competences: [{ code: '2.01', nom: 'Écoute active' }] },
+      ]),
+    ).toEqual({
+      poles: [{ num: 1, nom: 'TÊTE' }, { num: 2, nom: 'CŒUR' }],
+      competences: [
+        { code: '1.01', nom: 'Pensée critique', pole: 1 },
+        { code: '2.01', nom: 'Écoute active', pole: 2 },
+      ],
+    })
+    expect(referentielPourMoteur(undefined)).toEqual({ poles: [], competences: [] })
   })
 })
 
@@ -261,5 +303,84 @@ describe('UC-APP-10 — résultats (composant isolé)', () => {
     fireEvent.click(screen.getByText('Enregistrer dans mes cartographies'))
     expect((await screen.findByRole('alert')).textContent).toContain('IndexedDB est indisponible')
     expect(screen.getByText('Enregistrer dans mes cartographies').disabled).toBe(false)
+  })
+
+  it('UC-APP-10-U37 — étape 8 : « Exporter » livre les octets canoniques sous carto_evolutive_<journal>.json ; « Enregistrer » envoie {type twin9, privée, titre daté, document natif}, puis confirme et se désactive', async () => {
+    const saveFn = vi.fn(async () => ({ id: 'c-1' }))
+    const onExport = vi.fn()
+    render(<ResultatsTwin9 carto={CARTO} cartoStr='{"octets":"canoniques"}' saveFn={saveFn} onExport={onExport} />)
+
+    fireEvent.click(screen.getByText('Exporter le JSON (carto_evolutive.json)'))
+    expect(onExport).toHaveBeenCalledWith('{"octets":"canoniques"}', 'carto_evolutive_twin9.json')
+
+    await act(async () => {
+      fireEvent.click(screen.getByText('Enregistrer dans mes cartographies'))
+    })
+    expect(saveFn).toHaveBeenCalledTimes(1)
+    expect(saveFn).toHaveBeenCalledWith({
+      type: 'twin9',
+      titre: 'Twin9 — twin9 (2026-04-06 → 2026-04-13)',
+      document: CARTO,
+      visibility: 'privee',
+    })
+    expect(screen.getByRole('status').textContent).toContain('Enregistrée dans « Mes cartographies » (ce navigateur uniquement)')
+    const bouton = screen.getByText('Enregistrée dans mes cartographies ✓')
+    expect(bouton.disabled).toBe(true)
+  })
+})
+
+describe('UC-APP-10 — branche 402 de la vue (moteur injecté)', () => {
+  it('UC-APP-10-U35 — Twin9View isolée : si le moteur REJETTE une ApiError 402, la vue se met en pause « Rechargez… » et « Reprendre » relance avec le MÊME état (branche aujourd’hui inatteignable avec le vrai moteur, anomalie 3)', async () => {
+    const etats = []
+    const runEngine = vi
+      .fn()
+      .mockResolvedValueOnce({ metrics: { par_etape: { tagging: { appels: 4 } } }, cartoEvolutive: {} })
+      .mockImplementationOnce(async (args) => {
+        etats.push(args.etat)
+        args.etat.journees = { j1: { empreinte: 'e1' } }
+        throw new ApiError('Solde insuffisant', 402)
+      })
+      .mockImplementationOnce(async (args) => {
+        etats.push(args.etat)
+        return {
+          etat: args.etat,
+          cartoEvolutive: {
+            journal_id: 'twin9',
+            periode: { debut: '2026-04-06', fin: '2026-04-06', n_journees: 1 },
+            kairos: { kairos: { apprenant: { syntheseCompleteMarkdown: '## Portrait\n\nSynthèse fictive après reprise.' } } },
+            profil_ipsatif: {},
+            competences: {},
+            statuts: {},
+          },
+        }
+      })
+    render(
+      <Twin9View
+        deps={{
+          fetchMeFn: async () => ({ user: { id: 7 } }),
+          fetchMetaFn: async () => metaTwin9(),
+          runEngine,
+          serialiser: (c) => JSON.stringify(c),
+          store: createMemoryTwin9Store(),
+        }}
+      />,
+    )
+    fireEvent.change(await screen.findByTestId('twin9-portfolio'), { target: { value: '### 2026-04-06\n\nUne journée fictive assez longue.' } })
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('twin9-estimer'))
+    })
+    await screen.findByTestId('twin9-devis')
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('twin9-lancer'))
+    })
+
+    expect((await screen.findByTestId('twin9-pause')).textContent).toContain('les journées déjà analysées ne seront pas refacturées')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Reprendre l’analyse' }))
+    })
+    await waitFor(() => expect(screen.getByText(/Synthèse fictive/)).toBeDefined())
+    expect(etats[1]).toBe(etats[0])
+    expect(etats[1].journees).toEqual({ j1: { empreinte: 'e1' } })
   })
 })

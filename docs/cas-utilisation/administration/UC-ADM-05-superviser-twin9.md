@@ -52,11 +52,15 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
 4. L'administrateur modifie la contribution Twin9 (par exemple 1,20 → 1,35) et
    clique « Enregistrer les réglages ». La vue calcule le **diff** (seules les
    clés de premier niveau modifiées), le vérifie sommairement et envoie
-   `PUT /api/twin9/admin/config {marge: 1.35}` avec le jeton CSRF.
+   `PUT /api/twin9/admin/config {marge: 1.35}` avec le jeton CSRF (vérifié par
+   `CsrfMiddleware` avant la route, E5).
 5. Le serveur refuse toute clé inconnue, fusionne le diff avec la configuration
-   effective, **revalide l'ensemble**, l'enregistre (réglage `twin9_config`) et
-   renvoie la nouvelle configuration ; la vue affiche « Réglages Twin9
-   enregistrés. » et se resynchronise.
+   effective (fusion de **premier niveau** : une clé envoyée remplace
+   entièrement sa valeur), **revalide l'ensemble**, enregistre la configuration
+   **complète**, défauts compris (réglage `twin9_config`), et renvoie la nouvelle
+   configuration ; la vue affiche « Réglages Twin9 enregistrés. » et se
+   resynchronise : la configuration renvoyée devient la référence du diff
+   suivant.
 6. L'effet est immédiat : `/api/twin9/meta` publie les nouveaux prix margés ; les
    appels Twin9 (et Twin6 pour `marge_twin6`) sont facturés au nouveau taux.
 7. La table des comptes liste les comptes ayant au moins un mouvement au
@@ -72,13 +76,18 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
   cas.
 - **A2 — Grille de packs** (étape 4) : ajout, modification ou suppression de
   packs (montant + libellé) ; l'offre publique et le montant des ordres PayPal
-  suivent (UC-APP-11).
+  suivent (UC-APP-11). Un pack est désigné par sa **position** (`pack_index`) :
+  une page apprenant chargée avant un changement de grille crée un ordre pour le
+  pack qui occupe désormais cet index (voir Limites).
 - **A3 — Offre de modèles** (étape 4) : ajout, suppression, prix catalogue
   [entrée, sortie] et étages couverts (taggers, rapide, tribunal) ; un modèle
   hors offre, ou proposé pour un autre étage, est refusé par `/api/twin9/appel`.
 - **A4 — Réglages hors formulaire** (API seulement) : l'interrupteur `enabled`
   (Twin9 indisponible → `503` côté apprenant), le rythme `appels_par_minute` et
-  les réglages du `pipeline` se modifient par le même `PUT` partiel.
+  les réglages du `pipeline` se modifient par le même `PUT` partiel. La fusion
+  étant de premier niveau, un `PUT {pipeline: {...}}` **remplace** tout l'objet
+  importé (seuils, jury, merge…) : les clés non renvoyées sont perdues (de même
+  pour `packs` et `modeles`).
 
 ## Scénarios d'erreur
 
@@ -86,16 +95,23 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
   réservé à l'administration de la plateforme » sans rien charger ; l'API
   répond `401` sans session et `403` à tout autre rôle (apprenant, promptologue,
   établissement) ; un refus n'ouvre évidemment pas la promotion.
-- **E2 — Mise à jour refusée par le serveur** (étape 5) : corps JSON non-objet →
-  `400` ; clé inconnue ou valeur hors bornes → `422` avec un message précis
+- **E2 — Mise à jour refusée par le serveur** (étape 5) : corps scalaire ou JSON
+  invalide → `400` ; un tableau JSON est traité comme un objet : `[]` (ou corps
+  vide) est accepté sans changement (`200`), une liste non vide donne `422
+  « Clé de configuration inconnue : 0 »` ; clé inconnue ou valeur hors bornes →
+  `422` avec un message précis
   (« Marge hors bornes (entre 1 et 5) », « Étages invalides … », « Rythme
   d'appels hors bornes … ») ; rien n'est modifié ; la vue affiche le message et
   garde la saisie.
 - **E3 — Saisie invalide détectée dans le navigateur** (étape 4) : contribution
-  non numérique, identifiant de modèle vide, prix ou montant non numérique →
-  message, aucun envoi.
+  Twin9 ou Twin6 non numérique, identifiant de modèle vide, prix ou montant de
+  pack non numérique → message, aucun envoi.
 - **E4 — Chargement impossible** (étape 2) : erreur serveur → « Chargement
-  impossible. » ; copie statique → message d'indisponibilité.
+  impossible. » ; copie statique → message d'indisponibilité d'`AdminView`
+  (« Copie statique du site… »), la section n'est pas montée.
+- **E5 — Jeton CSRF absent ou invalide** (étape 4) : une session admin sans
+  `X-CSRF-Token` valide → `403 {error: "Jeton CSRF absent ou invalide"}` ; rien
+  n'est modifié.
 
 ## Règles de gestion
 
@@ -111,10 +127,15 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
 - **RG5** — Promotion : booléen, fermée par défaut ; elle n'ouvre que la voie
   clé privée.
 - **RG6** — `enabled` booléen (faux tant que les gabarits ne sont pas importés) ;
-  `appels_par_minute` entier de 1 à 600 (30 par défaut) ; `pipeline` objet.
-- **RG7** — Mise à jour partielle : clés inconnues refusées, configuration
-  complète revalidée avant écriture ; à la lecture, les défauts complètent et
-  les clés stockées inconnues sont ignorées.
+  `appels_par_minute` entier de 1 à 600 (30 par défaut) ; `pipeline` objet (une
+  liste JSON passe aussi la validation, qui ne teste que `is_array`).
+- **RG7** — Mise à jour partielle : clés inconnues refusées, fusion de premier
+  niveau, configuration complète revalidée avant écriture. Toute mise à jour
+  (y compris l'import, qui appelle `update(['enabled' => true, …])`) persiste la
+  configuration **complète**, défauts compris : les défauts du code ne
+  complètent plus ensuite que les clés ajoutées après coup (la migration 014 a
+  dû corriger une marge ainsi figée). À la lecture, les clés stockées inconnues
+  sont ignorées.
 - **RG8** — Comptes : uniquement ceux qui ont au moins un événement au
   grand-livre ; compteurs et montants seulement.
 
@@ -135,6 +156,8 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
 | Front | `web/src/views/admin/Twin9Section.jsx` | Réglages (diff, validation cliente), table des comptes |
 | Front | `web/src/api/twin9.js` — `fetchTwin9Config`, `saveTwin9Config`, `fetchComptes`, `formatUsd` | Client de supervision |
 | API | `GET/PUT /api/twin9/admin/config`, `GET /api/twin9/admin/comptes` — `api/src/routes/twin9.php` | Routes de supervision (admin) |
+| API | `api/src/Middleware/RequireRole.php` — `any('admin')` | Garde admin (401 / 403, RG1, E1) — logique unitaire couverte par UC-ADM-01-U10 |
+| API | `api/src/Middleware/CsrfMiddleware.php` | Jeton CSRF des mutations (E5) — logique unitaire couverte par UC-CPT-02-U07 |
 | Domaine | `api/src/Twin9/Twin9Config.php` — `read`, `update`, `defaults`, `publicView` | Configuration effective, validation, vue publique |
 | Domaine | `api/src/Twin9/FactureService.php` — `comptes` | Table de supervision |
 | Domaine | `api/src/Packages/SettingsRepository.php` | Persistance |
@@ -149,11 +172,12 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
 | UC-ADM-05-U02 | client de supervision | GET config/comptes, PUT partiel avec CSRF | idem |
 | UC-ADM-05-U03 | `Twin9Section` (diff) | Rien modifié → aucun PUT ; contribution seule | idem |
 | UC-ADM-05-U04 | `Twin9Section` (diff) | Pack supprimé, étage ajouté en ordre canonique | idem |
-| UC-ADM-05-U05 | `Twin9Section` (validation) | Contribution, identifiant, prix invalides → aucun PUT (E3) | idem |
+| UC-ADM-05-U05 | `Twin9Section` (validation) | Contributions Twin9 / Twin6, montant de pack, identifiant, prix invalides → aucun PUT (E3) | idem |
 | UC-ADM-05-U06 | `Twin9Section` (diff) | **Anomalie 1 figée** : config relue de MySQL → packs et modèles renvoyés | idem |
-| UC-ADM-05-U07 | `Twin9Section` (comptes) | Montants en USD ; aucun compte → message | idem |
-| UC-ADM-05-U08 | `Twin9Config::update` | Fusion partielle, persistance, clé inconnue refusée sans écriture (RG7) | `api/tests/UseCases/Unit/UcAdm05SuperviserTwin9Test.php` |
-| UC-ADM-05-U09 | `Twin9Config::update` | Bornes de chaque réglage (RG2-RG6) | idem |
+| UC-ADM-05-U07 | `Twin9Section` (comptes), `formatUsd` | Montants en USD (4 décimales sous le centime) ; aucun compte → message | idem |
+| UC-ADM-05-U13 | `AdminView` | Admin → section Twin9 ; non-admin → espace réservé sans appel ; copie statique → message (RG1, E1, E4) | idem |
+| UC-ADM-05-U08 | `Twin9Config::update` | Fusion partielle, persistance de la configuration complète (défauts figés), clé inconnue refusée sans écriture (RG7) | `api/tests/UseCases/Unit/UcAdm05SuperviserTwin9Test.php` |
+| UC-ADM-05-U09 | `Twin9Config::update` | Bornes de chaque réglage (RG2-RG6), liste acceptée pour `pipeline` ; configuration entière inchangée après les refus | idem |
 | UC-ADM-05-U10 | `Twin9Config::update` | **Anomalie 2 figée** : message « 1 et 100 USD » pour une borne à 500 | idem |
 | UC-ADM-05-U11 | `Twin9Config::read`, `publicView` | Défauts, clés obsolètes ignorées, vue publique sans marge | idem |
 | UC-ADM-05-U12 | `FactureService::comptes` | Comptes actifs, cumuls, ordre ; **anomalie 3 figée** | idem |
@@ -162,22 +186,23 @@ L'administrateur ouvre « Administrer » → « Supervision Twin9 » (`#/admin/t
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-ADM-05-F01 | Nominal | IHM | `<App/>` : réglages et comptes, contribution modifiée → PUT partiel avec CSRF, confirmation | `web/test/usecases/functional/uc-adm-05-superviser-twin9.test.jsx` |
+| UC-ADM-05-F01 | Nominal | IHM | `<App/>` : réglages et comptes, contribution modifiée → PUT partiel avec CSRF, confirmation, resynchronisation (second enregistrement : « Aucune modification ») ; aucun appel aux gabarits | `web/test/usecases/functional/uc-adm-05-superviser-twin9.test.jsx` |
 | UC-ADM-05-F02 | A1 | IHM | Promotion ouverte → `{twin9_cle_perso_ouverte: true}` | idem |
 | UC-ADM-05-F03 | A2 | IHM | Pack ajouté → liste complète envoyée ; **anomalie 2 figée** (borne affichée) | idem |
 | UC-ADM-05-F04 | A3 | IHM | Étage retiré, prix modifié → `modeles` envoyé | idem |
 | UC-ADM-05-F05 | E1 | IHM | Promptologue : espace réservé, rien chargé | idem |
 | UC-ADM-05-F06 | E2 | IHM | 422 serveur : message affiché, saisie gardée | idem |
 | UC-ADM-05-F07 | E3 | IHM | Identifiant vide : message, aucun PUT | idem |
-| UC-ADM-05-F08 | E4 | IHM | Erreur de chargement : message, pas de formulaire | idem |
-| UC-ADM-05-F09 | Nominal | API | Contribution changée → prix `/meta` et coût réel de `/appel` suivent | `api/tests/UseCases/Functional/UcAdm05SuperviserTwin9Test.php` |
-| UC-ADM-05-F10 | A1 | API | Promotion ouverte puis fermée : voie clé privée 200 puis 403 | idem |
-| UC-ADM-05-F11 | A2 | API | Packs → `/meta` et montant de l'ordre PayPal ; index hors grille 422 | idem |
-| UC-ADM-05-F12 | A3, A4 | API | Offre par étage (422), interrupteur (503), rythme (429) | idem |
+| UC-ADM-05-F08 | E4 | IHM | Erreur de chargement : message, pas de formulaire ; copie statique : message, aucun appel de supervision | idem |
+| UC-ADM-05-F09 | Nominal | API | Contributions changées → prix `/meta`, coût réel de `/api/twin9/appel` (×1,5) et de `/api/twin6/appel` (×1,25) suivent | `api/tests/UseCases/Functional/UcAdm05SuperviserTwin9Test.php` |
+| UC-ADM-05-F10 | A1 | API | Promotion ouverte puis fermée : voie clé privée 200 puis 403 ; voie plateforme facturée pendant la promotion | idem |
+| UC-ADM-05-F11 | A2 | API | Packs → `/meta` et montant de l'ordre PayPal ; index hors grille 422 ; limite figée : pack désigné par sa position | idem |
+| UC-ADM-05-F12 | A3, A4 | API | Modèle hors offre et modèle proposé pour un autre étage (422), même modèle sur son étage (200), interrupteur (503), rythme (429) ; `pipeline` remplacé en entier | idem |
 | UC-ADM-05-F13 | Nominal (étape 7) | API | Table des comptes : actifs seulement, ordre, montants | idem |
 | UC-ADM-05-F14 | E1 | API | 401 visiteur ; 403 apprenant, promptologue, établissement | idem |
-| UC-ADM-05-F15 | E2 | API | 400 corps non-objet ; 422 par cas, rien modifié | idem |
+| UC-ADM-05-F15 | E2 | API | 400 corps scalaire ; `[1]` → 422, `[]` → 200 ; 422 par cas, configuration entière inchangée | idem |
 | UC-ADM-05-F16 | Anomalie 1 | API | Config relue : clés réordonnées par MySQL (cause) | idem |
+| UC-ADM-05-F17 | E5 | API | Session admin sans jeton CSRF ou jeton faux → 403, configuration inchangée | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -202,8 +227,10 @@ cd web && npx vitest run test/usecases/unit/uc-adm-05 test/usecases/functional/u
    été enregistrée une fois, **packs et modèles repartent à chaque
    enregistrement** même inchangés, « Aucune modification à enregistrer » ne
    s'affiche plus, et un enregistrement peut écraser la modification
-   concurrente d'un autre administrateur sur ces clés. Figé par UC-ADM-05-U06
-   (cause : UC-ADM-05-F16).
+   concurrente d'un autre administrateur sur ces clés. Comme toute mise à jour
+   persiste la configuration complète (RG7), l'import (qui active Twin9) suffit
+   à déclencher l'anomalie : en production, elle est permanente. Figé par
+   UC-ADM-05-U06 (cause : UC-ADM-05-F16).
 2. **Borne des packs annoncée à 100 USD.** Le serveur accepte jusqu'à 500 USD
    (et propose 200 et 500 par défaut), mais son message de refus dit « montant
    entre 1 et 100 USD » et le champ du formulaire affiche « 1 – 100 »
@@ -212,3 +239,19 @@ cd web && npx vitest run test/usecases/unit/uc-adm-05 test/usecases/functional/u
    compte comme consommé tout ce qui n'est pas une recharge : un remboursement
    PayPal (UC-APP-11 A3) y apparaît comme une dépense. Figé par UC-ADM-05-U12
    (même cause que l'anomalie 1 de UC-APP-11).
+4. **Mises à jour concurrentes perdues côté serveur.** `Twin9Config::update`
+   lit la configuration, fusionne puis réécrit **tout** le document, sans verrou
+   ni transaction. Deux `PUT` concurrents sur des clés **différentes** (deux
+   administrateurs, ou un import et un `PUT` admin) peuvent se perdre : A lit, B
+   lit, B écrit `packs`, A écrit `marge` avec les anciens packs — les packs de B
+   disparaissent, même avec un diff minimal. L'anomalie 1 n'est donc pas la
+   seule source d'écrasement. Non testable de façon fiable sans concurrence
+   réelle : documenté seulement.
+
+## Limites
+
+- Un pack est désigné par sa **position** (`pack_index`) et non par son
+  montant : si l'administrateur supprime ou réordonne des packs pendant qu'un
+  apprenant a déjà chargé l'offre, le clic de l'apprenant sur « 10 $ » crée un
+  ordre PayPal pour le pack qui occupe désormais cet index ; l'apprenant ne
+  découvre le montant réel que chez PayPal (figé par UC-ADM-05-F11).

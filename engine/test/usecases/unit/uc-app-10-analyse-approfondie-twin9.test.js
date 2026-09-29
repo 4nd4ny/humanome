@@ -104,7 +104,7 @@ describe('UC-APP-10 — devis et exécution (moteur mock)', () => {
     expect(Object.values(carto.statuts).reduce((s, n) => s + n, 0)).toBe(5)
   })
 
-  it('UC-APP-10-U02 — contrat des appels : chaque appel porte gabarit + variables d’état, jamais les fiches ; tout {$VAR} est fourni ou injectable serveur', async () => {
+  it('UC-APP-10-U02 — contrat des appels : chaque appel porte gabarit + variables d’état, jamais les fiches ; tout {$VAR} est fourni ou injectable serveur ; variables sérialisées scalaires ou listes plates (anomalie 5 figée)', async () => {
     const contrat = JSON.parse(
       readFileSync(fileURLToPath(new URL('../../../src/twin9/protocole-contrat.json', import.meta.url)), 'utf8'),
     )
@@ -115,7 +115,13 @@ describe('UC-APP-10 — devis et exécution (moteur mock)', () => {
       return {
         records: inner.records,
         async call(prompt, opts = {}) {
-          appels.push({ gabarit: opts.gabarit ?? null, vars: Object.keys(opts.variables ?? {}), label: opts.label })
+          appels.push({
+            gabarit: opts.gabarit ?? null,
+            vars: Object.keys(opts.variables ?? {}),
+            label: opts.label,
+            // Ce que makeServerBackend enverra réellement (JSON.stringify du corps).
+            json: JSON.parse(JSON.stringify(opts.variables ?? {})),
+          })
           return inner.call(prompt, opts)
         },
       }
@@ -151,6 +157,25 @@ describe('UC-APP-10 — devis et exécution (moteur mock)', () => {
     for (const cle of ['tagger/1-tag-pole', 'lourd/20-greffier', 'lourd/20b-juge-leger', 'merge/04-rapporteur', 'scan/01-arpenteur']) {
       expect(vus).toContain(cle)
     }
+
+    // RG9 : une fois sérialisée, chaque variable doit être un scalaire ou une
+    // liste plate de scalaires. ANOMALIE figée (fiche, anomalie 5) : deux
+    // variables de merge/03-competence-evolution partent en objets PyFloat
+    // sérialisés {"value": x} — le serveur les accepte (objet plat) et les rend
+    // en JSON dans le prompt au lieu du nombre.
+    const scalaire = (v) => v === null || typeof v !== 'object'
+    const nonPlates = new Set()
+    for (const { gabarit, json } of appels) {
+      for (const [nom, v] of Object.entries(json)) {
+        if (scalaire(v) || (Array.isArray(v) && v.every(scalaire))) continue
+        nonPlates.add(`${gabarit}:${nom}`)
+        expect(Object.keys(v)).toEqual(['value'])
+      }
+    }
+    expect([...nonPlates].sort()).toEqual([
+      'merge/03-competence-evolution.md:CONFIANCE_MOY',
+      'merge/03-competence-evolution.md:SCORE_CUMULE',
+    ])
   })
 
   it('UC-APP-10-U03 — run réel (mock=false) : TOUS les backends (collège, rapide, tribunal) sont construits par la fabrique injectée', async () => {
@@ -179,7 +204,7 @@ describe('UC-APP-10 — devis et exécution (moteur mock)', () => {
     await expect(run({ mock: false, salt: null })).rejects.toThrow('Backend inconnu : anthropic (choix : mock)')
   })
 
-  it('UC-APP-10-U05 — reprise : avec le même état persistant, les journées déjà analysées ne sont PAS rejouées', async () => {
+  it('UC-APP-10-U05 — reprise (RG12) : avec le même état persistant, les journées déjà analysées ne sont PAS rejouées', async () => {
     const etat = {}
     await run({ etat, options: { jours: 2 } })
     expect(Object.keys(etat.journees)).toHaveLength(2)
@@ -188,6 +213,53 @@ describe('UC-APP-10 — devis et exécution (moteur mock)', () => {
     expect(suite.metrics.n_journees_reprises_etat).toBe(2)
     expect(suite.metrics.par_etape.tagging.appels).toBe(3 * 3) // seule la 3e journée est lue
     expect(Object.keys(etat.journees)).toHaveLength(3)
+  })
+
+  it('UC-APP-10-U34 — ANOMALIE figée : une erreur d’appel serveur (402…) est AVALÉE par le moteur ; le run se termine, dégradé, et ses journées sont mémorisées comme faites', async () => {
+    // Fabrique qui imite /api/twin9/appel : 5 appels servis, puis 402 (solde épuisé).
+    let appels = 0
+    let refus = 0
+    const fabrique = (spec) => {
+      const inner = mockBackendFactory({ ...spec, kind: 'mock', salt: SALT })
+      return {
+        records: inner.records,
+        async call(prompt, opts) {
+          appels += 1
+          if (appels > 5) {
+            refus += 1
+            throw Object.assign(new Error('Solde insuffisant'), { status: 402 })
+          }
+          return inner.call(prompt, opts)
+        },
+      }
+    }
+    const etat = {}
+    // Comportement ACTUEL : la promesse est RÉSOLUE (aucune erreur ne remonte à la
+    // vue, dont la pause « Rechargez… » est donc inatteignable).
+    const res = await run({ mock: false, salt: null, backends: fabrique, etat })
+    expect(refus).toBeGreaterThan(0)
+    const carto = aplatir(res.cartoEvolutive)
+    expect(carto.statuts['présence établie'] ?? 0).toBe(0) // analyse vidée : aucune présence
+    // Les 3 journées dégradées sont mémorisées avec leur empreinte…
+    expect(Object.keys(etat.journees)).toHaveLength(3)
+
+    // …donc une « reprise » après recharge ne les rejoue PAS : seules la fusion et
+    // les relectures repartent (contraire de la promesse de E5).
+    let appelsReprise = 0
+    const saine = (spec) => {
+      const inner = mockBackendFactory({ ...spec, kind: 'mock', salt: SALT })
+      return {
+        records: inner.records,
+        async call(prompt, opts) {
+          appelsReprise += 1
+          return inner.call(prompt, opts)
+        },
+      }
+    }
+    const suite = await run({ mock: false, salt: null, backends: saine, etat })
+    expect(suite.metrics.n_journees_reprises_etat).toBe(3)
+    expect(suite.metrics.par_etape.tagging).toBeUndefined() // aucune journée relue
+    expect(appelsReprise).toBeLessThan(10)
   })
 })
 

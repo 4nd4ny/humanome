@@ -92,6 +92,9 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
             $body = self::json($response);
             // Contrat du provider proxy du moteur + contribution de l'appel.
             self::assertSame(['text', 'usage', 'model', 'stopReason', 'cout_microusd'], array_keys($body));
+            // Sortie amont relayée INTACTE (RG1 : aucun rendu, aucun filtre) et modèle facturé.
+            self::assertSame($pole <= 7 ? '{"poleNum":' . $pole . '}' : '{"kairos":{}}', $body['text']);
+            self::assertSame('claude-sonnet-5', $body['model']);
             self::assertSame(['inputTokens' => 1000, 'outputTokens' => 200], $body['usage']);
             self::assertSame('end_turn', $body['stopReason']);
             self::assertSame(6602, $body['cout_microusd'], '(1000×3 + 200×15) × 1,10, arrondi au µUSD supérieur');
@@ -150,7 +153,7 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
         self::assertSame(5_000_000, $this->solde());
     }
 
-    #[TestDox('UC-APP-09-F14 — E9 : requête invalide (400 corps, 413 > 2 Mo, 422 modèle/prompt/max_tokens) refusée avant tout débit')]
+    #[TestDox('UC-APP-09-F14 — E9 : requête invalide (400 JSON scalaire ou illisible, 413 > 2 Mo, 422 modèle/prompt/max_tokens, liste JSON ou corps vide) refusée avant tout débit')]
     public function testF14InvalidRequestsAreRefusedBeforeBilling(): void
     {
         $this->crediter(5_000_000);
@@ -160,10 +163,18 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
         self::assertSame(422, $this->appel(['max_tokens' => '8192'])->getStatusCode());
         self::assertSame(413, $this->appel(['prompt' => str_repeat('é', 1_000_001)])->getStatusCode());
 
-        // Corps JSON qui n'est pas un objet (chaîne) : 400.
+        // Corps JSON scalaire (chaîne) ou illisible : 400.
         $raw = TwinSupport::rawRequest('POST', '/api/twin6/appel', '"juste une chaine"', $this->apprenant['sid'], $this->apprenant['csrf']);
         self::assertSame(400, $raw->getStatusCode());
         self::assertSame('Corps JSON invalide : objet attendu', self::json($raw)['error']);
+        $illisible = TwinSupport::rawRequest('POST', '/api/twin6/appel', '{"model":', $this->apprenant['sid'], $this->apprenant['csrf']);
+        self::assertSame(400, $illisible->getStatusCode());
+        // Liste JSON ou corps vide : traités comme un objet sans champ → 422 (modèle absent), pas 400.
+        foreach (['[1,2]', ''] as $corps) {
+            $liste = TwinSupport::rawRequest('POST', '/api/twin6/appel', $corps, $this->apprenant['sid'], $this->apprenant['csrf']);
+            self::assertSame(422, $liste->getStatusCode(), 'corps ' . var_export($corps, true));
+            self::assertSame(['error' => 'Modèle non proposé'], self::json($liste));
+        }
 
         self::assertSame([], $this->http->requests);
         self::assertSame(5_000_000, $this->solde());
@@ -221,21 +232,35 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
         self::assertSame(2, \count(array_keys($labels, 'twin6/cartographie (remboursement échec)', true)));
     }
 
-    #[TestDox('UC-APP-09-F18 — A3 : max_tokens borné à [256, 16000] (alias maxTokens accepté) ; stop « max_tokens » relayé au moteur')]
+    #[TestDox('UC-APP-09-F18 — A3, E5 : max_tokens borné à [256, 16000] (alias maxTokens, 8 192 par défaut) ; stop « max_tokens » relayé ET facturé au coût réel')]
     public function testF18MaxTokensBoundsAndTruncationSignal(): void
     {
         $this->crediter(50_000_000);
         TwinSupport::queueAnthropic($this->http, '{}');
         TwinSupport::queueAnthropic($this->http, '{}');
+        TwinSupport::queueAnthropic($this->http, '{}');
         TwinSupport::queueAnthropic($this->http, '{"tronq', 10, 256, 'max_tokens');
 
-        $this->appel(['max_tokens' => 10]);
-        $this->appel(['max_tokens' => null, 'maxTokens' => 99_999]);
+        $couts = [];
+        $couts[] = self::json($this->appel(['max_tokens' => 10]))['cout_microusd'];
+        $couts[] = self::json($this->appel(['max_tokens' => null, 'maxTokens' => 99_999]))['cout_microusd'];
+        // Ni max_tokens ni maxTokens : défaut serveur 8 192.
+        $couts[] = self::json($this->as_($this->apprenant, 'POST', '/api/twin6/appel', [
+            'model' => 'claude-sonnet-5',
+            'prompt' => 'Scanne le pôle 2.',
+        ]))['cout_microusd'];
         $tronque = self::json($this->appel(['max_tokens' => 256]));
+        $couts[] = $tronque['cout_microusd'];
 
         self::assertSame(256, json_decode((string) $this->http->requests[0]['body'], true)['max_tokens']);
         self::assertSame(16000, json_decode((string) $this->http->requests[1]['body'], true)['max_tokens']);
+        self::assertSame(8192, json_decode((string) $this->http->requests[2]['body'], true)['max_tokens']);
         self::assertSame('max_tokens', $tronque['stopReason'], 'le moteur échoue explicitement sur ce signal');
+        self::assertSame('{"tronq', $tronque['text']);
+        // E5 : l'appel tronqué est un 200 côté serveur — facturé au coût réel
+        // ((10×3 + 256×15) × 1,10 = 4 257 µUSD), comme les appels aboutis avant lui.
+        self::assertSame(4257, $tronque['cout_microusd']);
+        self::assertSame(50_000_000 - array_sum($couts), $this->solde());
     }
 
     #[TestDox('UC-APP-09-F19 — RGPD : ni le grand-livre ni l’audit ne conservent le prompt ou la sortie (compteurs seulement)')]
@@ -243,7 +268,10 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
     {
         $this->crediter(5_000_000);
         TwinSupport::queueAnthropic($this->http, 'Sortie contenant « recoupé trois sources ».', 700, 90);
-        self::assertSame(200, $this->appel()->getStatusCode());
+        $response = $this->appel();
+        self::assertSame(200, $response->getStatusCode());
+        // La sortie est relayée NON filtrée à l'apprenant (RG1)…
+        self::assertSame('Sortie contenant « recoupé trois sources ».', self::json($response)['text']);
 
         $ledger = json_encode(self::$pdo->query('SELECT * FROM twin9_credit_events')->fetchAll(), JSON_UNESCAPED_UNICODE);
         $audit = json_encode(self::$pdo->query('SELECT * FROM audit_events')->fetchAll(), JSON_UNESCAPED_UNICODE);
@@ -252,5 +280,21 @@ final class UcApp09CartographieOuverteTwin6Test extends CartographeTestCase
             self::assertStringNotContainsString('Scanne le pôle', (string) $stored);
         }
         self::assertStringContainsString('"tokens_in":700', (string) $ledger);
+    }
+
+    #[TestDox('UC-APP-09-F20 — E12 : session valide mais jeton CSRF absent ou faux → 403, amont jamais appelé, rien débité')]
+    public function testF20CsrfTokenIsRequired(): void
+    {
+        $this->crediter(5_000_000);
+        $corps = ['model' => 'claude-sonnet-5', 'prompt' => 'Scanne le pôle 1.', 'max_tokens' => 8192];
+        foreach ([[], ['X-CSRF-Token' => 'jeton-faux']] as $entetes) {
+            $this->cookieSid = $this->apprenant['sid'];
+            $response = $this->request('POST', '/api/twin6/appel', $corps, $entetes);
+            self::assertSame(403, $response->getStatusCode());
+            self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($response));
+        }
+        self::assertSame([], $this->http->requests);
+        self::assertSame(5_000_000, $this->solde());
+        self::assertCount(1, (new CreditService(Db::get()))->events($this->apprenant['id']), 'seule la recharge');
     }
 }

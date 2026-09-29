@@ -93,6 +93,27 @@ final class UcApp10AnalyseApprofondieTwin9Test extends TestCase
         }
     }
 
+    #[TestDox('UC-APP-10-U39 — ProtocoleRepository::list : métadonnées seulement (nom, longueur en caractères, variables), triées par nom, JAMAIS le contenu')]
+    public function testU39ListReturnsMetadataOnly(): void
+    {
+        $repo = new ProtocoleRepository(self::$pdo);
+        $repo->put('tagger/1-tag-pole', TwinSupport::GABARIT_TAG, null);
+        $repo->put('lourd/20-greffier', TwinSupport::GABARIT_GREFFIER, null);
+
+        $liste = $repo->list();
+        self::assertSame(['lourd/20-greffier', 'tagger/1-tag-pole'], array_column($liste, 'name'));
+        foreach ($liste as $entree) {
+            self::assertSame(['name', 'longueur', 'variables', 'updated_at'], array_keys($entree));
+        }
+        self::assertSame(mb_strlen(TwinSupport::GABARIT_GREFFIER), $liste[0]['longueur'], 'CHAR_LENGTH (caractères, pas octets)');
+        self::assertNotSame(\strlen(TwinSupport::GABARIT_GREFFIER), $liste[0]['longueur']);
+        self::assertSame(['COMPETENCE_FICHE', 'POLE_FICHES', 'CODE', 'EXTRAIT'], $liste[0]['variables']);
+        self::assertSame(['POLE_NUM', 'TEXTE_JOURNEE'], $liste[1]['variables']);
+        $brut = json_encode($liste, JSON_UNESCAPED_UNICODE);
+        self::assertStringNotContainsString('loutre', (string) $brut);
+        self::assertStringNotContainsString('Greffier FICTIF', (string) $brut);
+    }
+
     #[TestDox('UC-APP-10-U24 — fiches confidentielles injectées côté serveur depuis les clés de lookup (CODE ; POLE_NUM + ordre)')]
     public function testU24FicheInjectionFromLookupKeys(): void
     {
@@ -117,7 +138,7 @@ final class UcApp10AnalyseApprofondieTwin9Test extends TestCase
         self::assertSame([], $fiches->injecter(['TEXTE_JOURNEE' => 'x']));
     }
 
-    #[TestDox('UC-APP-10-U25 — anti-fuite sur l’index de la route (variables VIDES + fiches INJECTÉES) : gabarit et fiche expurgés, citation de l’apprenant conservée')]
+    #[TestDox('UC-APP-10-U25 — LeakFilter::redact sur un index de la même forme que celui de la route (variables VIDES + fiches INJECTÉES) : gabarit et fiche expurgés, citation de l’apprenant conservée')]
     public function testU25LeakFilterOnTheRouteIndex(): void
     {
         $repo = new ProtocoleRepository(self::$pdo);
@@ -126,7 +147,9 @@ final class UcApp10AnalyseApprofondieTwin9Test extends TestCase
         $fiches = FicheStore::fromSettings(new SettingsRepository(self::$pdo));
         $variables = ['CODE' => '1.01', 'TEXTE_JOURNEE' => 'hier j’ai réparé la grande horloge du village avec mes deux mains nues ce matin'];
 
-        // Index construit EXACTEMENT comme routes/twin9.php.
+        // Index de la MÊME FORME que celui de routes/twin9.php (reconstruit ici :
+        // que la route injecte bien les fiches dans SON index est vérifié par
+        // UC-APP-10-F20, à travers l'API).
         $gabaritVide = $repo->render('fictif/greffier', array_merge(
             array_fill_keys($repo->get('fictif/greffier')['variables'], ''),
             $fiches->injecter($variables),
@@ -259,7 +282,7 @@ final class UcApp10AnalyseApprofondieTwin9Test extends TestCase
         TestDb::restoreEnv();
     }
 
-    #[TestDox('UC-APP-10-U33 — échec amont : la réserve rendue porte le MODÈLE (facture par modèle exacte) ; l’audit anti-fuite ne garde que des compteurs')]
+    #[TestDox('UC-APP-10-U33 — échec amont : la réserve rendue porte le MODÈLE (facture par modèle exacte) ; Audit::record persiste les détails fournis tels quels (la route n’y met que {etape, fuites}, F20)')]
     public function testU33FailureRefundCarriesModelAndAuditIsCountersOnly(): void
     {
         $lea = self::lea();
@@ -269,6 +292,8 @@ final class UcApp10AnalyseApprofondieTwin9Test extends TestCase
         self::assertSame(1_000_000, $credits->adjust($lea, 250_000, 'lourd/24-president (remboursement échec)', 'claude-opus-4-8'));
         self::assertSame(['claude-opus-4-8', 'claude-opus-4-8', null], array_column($credits->events($lea), 'model'));
 
+        // Audit::record stocke les détails TELS QUELS : le « compteurs seulement »
+        // tient à ce que la route lui passe (vérifié par UC-APP-10-F20).
         Audit::record(self::$pdo, $lea, 'twin9_fuite_expurgee', ['etape' => 'lourd/24-president', 'fuites' => 2]);
         $row = self::$pdo->query("SELECT user_id, details FROM audit_events WHERE type = 'twin9_fuite_expurgee'")->fetch();
         self::assertSame($lea, (int) $row['user_id']);

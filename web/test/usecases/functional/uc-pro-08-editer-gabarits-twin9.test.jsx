@@ -87,7 +87,7 @@ describe('UC-PRO-08 — l’administrateur-promptologue édite un gabarit', () =
     expect(await screen.findByText('Contenu inchangé — aucune nouvelle version.')).toBeDefined()
   })
 
-  it('UC-PRO-08-F03 — A2 : historique → lecture d’une version archivée → restauration non destructive', async () => {
+  it('UC-PRO-08-F03 — A2 : historique → lecture d’une version archivée → restauration non destructive ; restaurer une version identique → « rien à restaurer »', async () => {
     let restauree = false
     const { calls } = stubFetch(
       routes({
@@ -105,8 +105,9 @@ describe('UC-PRO-08 — l’administrateur-promptologue édite un gabarit', () =
           }),
         [`GET twin9/admin/protocole/${ENC}/versions/1`]: jsonResponse(200, { name: NOM, version: 1, content: V_ARCHIVEE, variables: ['EXTRAIT'] }),
         [`POST twin9/admin/protocole/${ENC}/restore`]: () => {
+          const deja = restauree
           restauree = true
-          return jsonResponse(200, { name: NOM, variables: ['EXTRAIT'], status: 'updated', restored_from: 1 })
+          return jsonResponse(200, { name: NOM, variables: ['EXTRAIT'], status: deja ? 'unchanged' : 'updated', restored_from: 1 })
         },
       }),
     )
@@ -131,6 +132,16 @@ describe('UC-PRO-08 — l’administrateur-promptologue édite un gabarit', () =
     expect(within(screen.getByRole('table')).getAllByRole('row')).toHaveLength(3) // l'ex-vivant est archivé
     expect(bodyOf(calls.find((c) => c.key === `POST twin9/admin/protocole/${ENC}/restore`))).toEqual({ version: 1 })
     expect(screen.queryByTestId('twin9-apercu-version')).toBeNull()
+
+    // La version 1 est désormais identique au vivant : le serveur répond « unchanged ».
+    await act(async () => {
+      fireEvent.click(within(screen.getByRole('table')).getAllByRole('button', { name: 'Voir' })[1])
+    })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Restaurer cette version' }))
+    })
+    expect(await screen.findByText('La version 1 est identique au gabarit vivant — rien à restaurer.')).toBeDefined()
+    expect(within(screen.getByRole('table')).getAllByRole('row')).toHaveLength(3) // aucune version de plus
   })
 
   it('UC-PRO-08-F04 — A3 : banc d’essai — rendu avec des variables d’exemple, sans appel LLM, variables non résolues signalées', async () => {
@@ -162,10 +173,16 @@ describe('UC-PRO-08 — l’administrateur-promptologue édite un gabarit', () =
     expect(screen.queryByRole('link', { name: /Atelier Twin9/ })).toBeNull()
   })
 
-  it('UC-PRO-08-F06 — E3 : enregistrement refusé par le serveur (422) → message affiché, contenu conservé dans l’éditeur', async () => {
-    stubFetch(routes({ [`PUT twin9/admin/protocole/${ENC}`]: jsonResponse(422, { error: 'Gabarit trop volumineux (maximum 256 Ko)' }) }))
+  it('UC-PRO-08-F06 — E3 : contenu vide ou blanc → « Enregistrer » désactivé côté IHM ; refus serveur (422) → message affiché, contenu conservé dans l’éditeur', async () => {
+    const { calls } = stubFetch(routes({ [`PUT twin9/admin/protocole/${ENC}`]: jsonResponse(422, { error: 'Gabarit trop volumineux (maximum 256 Ko)' }) }))
     openAtelier()
     const zone = await ouvrirGabarit()
+    for (const vide of ['', '   \n\t ']) {
+      fireEvent.change(zone, { target: { value: vide } })
+      expect(screen.getByRole('button', { name: 'Enregistrer' }).disabled).toBe(true)
+    }
+    expect(calls.some((c) => c.key.startsWith('PUT '))).toBe(false)
+
     fireEvent.change(zone, { target: { value: 'x'.repeat(300) } })
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
@@ -175,10 +192,17 @@ describe('UC-PRO-08 — l’administrateur-promptologue édite un gabarit', () =
     expect(screen.getByLabelText('Contenu du gabarit (texte brut)').value).toBe('x'.repeat(300))
   })
 
-  it('UC-PRO-08-F07 — E5 : API indisponible (copie statique) → message explicite, aucun contenu', async () => {
+  it('UC-PRO-08-F07 — E5 : API indisponible (copie statique) → message explicite ; autre refus de la liste (403 : rôles retirés côté serveur) → « Chargement impossible. » ; aucun contenu', async () => {
     stubFetch({ 'GET auth/me': meResponse(['admin', 'promptologue']), 'GET twin9/admin/protocole': htmlResponse(200) })
     openAtelier()
     expect((await screen.findByText(API_UNAVAILABLE_MESSAGE)).getAttribute('role')).toBe('alert')
+    expect(screen.queryByText(/Gabarits du Golden Prompt/)).toBeNull()
+    cleanup()
+    resetApiClient()
+
+    stubFetch({ 'GET auth/me': meResponse(['admin', 'promptologue']), 'GET twin9/admin/protocole': jsonResponse(403, { error: 'Rôle insuffisant' }) })
+    openAtelier()
+    expect((await screen.findByText('Chargement impossible.')).getAttribute('role')).toBe('alert')
     expect(screen.queryByText(/Gabarits du Golden Prompt/)).toBeNull()
   })
 })

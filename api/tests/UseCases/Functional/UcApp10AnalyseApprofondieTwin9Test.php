@@ -52,7 +52,7 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
         $this->http = new LlmFakeHttpClient();
         LlmRuntime::setHttpClient($this->http);
 
-        // Précondition « import » (UC-PRO-08 A3) : gabarits, fiches et référentiel FICTIFS.
+        // Précondition « import » (UC-PRO-08 A4) : gabarits, fiches et référentiel FICTIFS.
         $repo = new ProtocoleRepository($pdo);
         $repo->put('tagger/1-tag-pole', TwinSupport::GABARIT_TAG, null);
         $repo->put('lourd/20-greffier', TwinSupport::GABARIT_GREFFIER, null);
@@ -140,7 +140,7 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
         self::assertSame(['lourd/20-greffier (réconciliation)', 'lourd/20-greffier (réserve)', 'Recharge PayPal'], $labels);
     }
 
-    #[TestDox('UC-APP-10-F13 — nominal (API) : un fil d’appels sur les trois étages, chacun au tarif de SON modèle ; débit total = somme des coûts réels')]
+    #[TestDox('UC-APP-10-F13 — nominal (API) : un fil d’appels sur les trois étages, chacun au tarif de SON modèle ; débit total = somme des coûts réels (scénario API seulement : la vue envoie un seul modèle, anomalie 4)')]
     public function testF13ThreeStagesThreeModels(): void
     {
         $this->crediter(5_000_000);
@@ -208,7 +208,7 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
         self::assertSame(5_000_000, $this->solde());
     }
 
-    #[TestDox('UC-APP-10-F17 — E7 : requêtes invalides (400/413/422/404) refusées avant tout débit, sans le moindre fragment de gabarit')]
+    #[TestDox('UC-APP-10-F17 — E7 : requêtes invalides (400/413/422/404, 403 sans jeton CSRF) refusées avant tout débit, sans le moindre fragment de gabarit')]
     public function testF17InvalidRequestsNeverLeakNorBill(): void
     {
         $this->crediter(5_000_000);
@@ -237,6 +237,18 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
         self::assertSame(413, $this->appel(['variables' => ['POLE_NUM' => 1, 'TEXTE_JOURNEE' => str_repeat('a', 310 * 1024)]])->getStatusCode());
         $raw = TwinSupport::rawRequest('POST', '/api/twin9/appel', '[1, 2', $this->apprenant['sid'], $this->apprenant['csrf']);
         self::assertSame(400, $raw->getStatusCode());
+
+        // Session valide mais jeton CSRF absent : refusé AVANT la route.
+        $corpsValide = json_encode([
+            'etape' => 'tagger/1-tag-pole',
+            'variables' => ['POLE_NUM' => 1, 'TEXTE_JOURNEE' => self::JOURNEE],
+            'modele' => 'claude-sonnet-5',
+            'etage' => 'taggers',
+            'facturation' => 'platform',
+        ], JSON_THROW_ON_ERROR);
+        $sansJeton = TwinSupport::rawRequest('POST', '/api/twin9/appel', $corpsValide, $this->apprenant['sid'], null);
+        self::assertSame(403, $sansJeton->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($sansJeton));
 
         self::assertSame([], $this->http->requests);
         self::assertSame(5_000_000, $this->solde());
@@ -356,6 +368,10 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
 
         self::assertSame(204, $this->as_($this->apprenant, 'DELETE', '/api/cartographies/' . $id)->getStatusCode());
         self::assertSame(404, $this->as_($this->apprenant, 'GET', '/api/cartographies/' . $id)->getStatusCode());
+        // Purge RÉELLE : la ligne a disparu de la base (pas une suppression logique).
+        $reste = self::$pdo->prepare('SELECT COUNT(*) FROM cartographies WHERE id = ?');
+        $reste->execute([$id]);
+        self::assertSame(0, (int) $reste->fetchColumn());
     }
 
     #[TestDox('UC-APP-10-F23 — E11 : service non configuré → 503 (clé plateforme absente ; clé maître absente en voie clé privée)')]
@@ -363,7 +379,9 @@ final class UcApp10AnalyseApprofondieTwin9Test extends CartographeTestCase
     {
         $this->crediter(5_000_000);
         TestDb::setEnv('ANTHROPIC_API_KEY', '');
-        self::assertSame(['error' => 'Service indisponible'], self::json($this->appel()));
+        $plateforme = $this->appel();
+        self::assertSame(503, $plateforme->getStatusCode());
+        self::assertSame(['error' => 'Service indisponible'], self::json($plateforme));
 
         (new Twin9Config(new SettingsRepository(Db::get())))->update(['twin9_cle_perso_ouverte' => true]);
         TestDb::setEnv('SODIUM_MASTER_KEY', '');

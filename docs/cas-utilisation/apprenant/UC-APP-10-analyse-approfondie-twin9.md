@@ -7,7 +7,7 @@
 | **Portée** | humanome.xyz — vue `#/twin9`, moteur navigateur `engine/src/twin9/`, proxy `POST /api/twin9/appel`, offre `GET /api/twin9/meta` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.2, §4.3 (découpage journalier + fusion), §4.4, §6 (RGPD), §7 (Golden Prompt payant) ; ADR-001, ADR-004, ADR-007, ADR-010 |
-| **Statut** | Implémenté, **parcours réel bloqué** par une anomalie (voir « Anomalies constatées ») ; démonstration opérationnelle |
+| **Statut** | Implémenté, **parcours réel bloqué** par une anomalie, et d'autres défauts latents derrière elle (voir « Anomalies constatées ») ; démonstration opérationnelle |
 
 ## Objectif
 
@@ -28,7 +28,7 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 
 - Compte actif et session (UC-CPT-01, UC-CPT-02).
 - Les gabarits, les fiches confidentielles et le référentiel ont été importés
-  (`POST /api/admin/twin9/import`, UC-PRO-08 A3) : Twin9 est **activé**.
+  (`POST /api/admin/twin9/import`, UC-PRO-08 A4) : Twin9 est **activé**.
 - Voie plateforme : la clé `ANTHROPIC_API_KEY` est configurée et le solde couvre
   la réserve de chaque appel (UC-APP-11). Voie clé privée : promotion ouverte
   (UC-ADM-05) et clé Anthropic enregistrée au profil (UC-CPT-04).
@@ -59,22 +59,31 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
    aussi un run interrompu dans IndexedDB (A3).
 2. L'apprenant coche le **consentement** : le texte du portfolio transitera par
    le serveur et le fournisseur, sans être conservé.
-3. Il colle son portfolio en journées datées (plus de 20 caractères), choisit le
-   modèle (étages couverts affichés) et garde « Crédit plateforme » (solde
-   affiché).
+3. Il colle son portfolio en journées datées (plus de 20 caractères, sinon
+   l'estimation reste désactivée), choisit le modèle (présélection : le
+   **premier** modèle de l'offre ; étages couverts affichés, voir l'anomalie 4)
+   et garde « Crédit plateforme » (solde affiché).
 4. « Estimer le coût » : le moteur tourne en **mode mock** (0 appel LLM, 0 appel
    réseau) avec le sel fixe `twin9-devis`, le même roster mono-famille (3 passes)
-   et les mêmes réglages que le run réel — donc le même graphe d'appels. Le devis
-   affiche le nombre exact d'appels et une fourchette de coût par étage
-   (taggers, rapide, tribunal). Solde sous l'estimation basse : lancement
-   bloqué (E4) ; sous l'estimation haute : avertissement.
+   et les mêmes réglages que le run réel. Le sel n'est repris qu'en
+   **démonstration**, où le nombre d'appels annoncé est exact ; en réel, le run
+   part sans sel et son graphe (escalades au tribunal, second ressort) dépend des
+   réponses du modèle : le nombre d'appels est une **estimation**. Le devis
+   affiche ce nombre et une fourchette de coût par étage (taggers, rapide,
+   tribunal). Solde sous l'estimation basse : lancement bloqué (E4) ; sous
+   l'estimation haute : avertissement « couvre l'estimation basse mais pas la
+   haute », lancement permis.
 5. « Lancer l'analyse » : le moteur est lancé en mode réel avec un état
    persistant **en mémoire** ; la progression (journées puis fusion) et le nombre
    d'appels s'affichent ; les paramètres du run sont sauvegardés localement.
 6. Chaque appel LLM devient `POST /api/twin9/appel {etape, variables, modele,
-   etage, facturation, max_tokens}` : `etape` = chemin du gabarit (sans `.md`),
-   `variables` = état de run **sans** les fiches confidentielles, `etage` déduit
-   de l'étiquette d'appel. Le serveur : vérifie l'activation (503) et la session
+   etage, facturation, max_tokens?}` avec le jeton CSRF : `etape` = chemin du
+   gabarit (sans `.md`), `variables` = état de run **sans** les fiches
+   confidentielles, `modele` = le modèle choisi à l'étape 3 pour **tous** les
+   appels, `etage` déduit de l'étiquette d'appel ; `max_tokens` est facultatif et
+   **jamais envoyé par le moteur actuel** (défaut serveur 4 096). Avant la route,
+   `CsrfMiddleware` refuse une session sans jeton valide (403). Le serveur :
+   vérifie l'activation (503) et la session
    (401), borne le corps (300 Ko, 413), valide le JSON (400) puis les champs
    (422), refuse la clé privée hors promotion (403), applique le rythme (429),
    **injecte les fiches** à partir des clés de lookup, **rend** le gabarit
@@ -87,16 +96,20 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
    (projection `twin9ToMergeDocument`), synthèse, rapport, profil ipsatif,
    renvois, journées reconstituées ; tout narratif du modèle est assaini
    (ADR-007).
-8. L'apprenant exporte le JSON ou clique « Enregistrer dans mes cartographies »
-   (enregistrement **local**, type `twin9`, privé).
+8. L'apprenant exporte le JSON (`carto_evolutive_<journal>.json`, octets
+   canoniques) ou clique « Enregistrer dans mes cartographies »
+   (enregistrement **local** IndexedDB, type `twin9`, privé, titre daté) ; le
+   bouton devient « Enregistrée dans mes cartographies ✓ ».
 
 ## Scénarios alternatifs
 
 - **A1 — Démonstration** (étape 1) : via `#/twin9/demo` ou le bouton « Voir une
   démonstration (données fictives) », même sans compte : portfolio et
   référentiel fictifs, moteur mock en local ; devis, run et résultats complets,
-  **aucun appel réseau, aucun débit** ; bandeau « données fictives », pas
-  d'enregistrement.
+  **aucun appel d'analyse ni débit** (seules les lectures de session et d'offre
+  partent au montage de la vue) ; bandeau « données fictives », pas de bouton
+  d'enregistrement. La démonstration écrit pourtant, puis efface, le « run
+  courant » local de reprise (anomalie 6).
 - **A2 — Clé privée pendant la promotion** (étape 3) : l'option « Ma clé privée
   Anthropic » n'apparaît que si la promotion est ouverte **et** qu'une clé est
   enregistrée ; le devis indique « aucun débit plateforme » et le lancement est
@@ -105,10 +118,14 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
   aucun événement au grand-livre.
 - **A3 — Reprise d'une analyse interrompue** (étape 1) : un run sauvegardé est
   proposé : « Restaurer les saisies » remet portfolio, modèle, facturation et
-  consentement ; « Ignorer » l'efface. Seuls les **paramètres** sont conservés
-  (jamais l'état du moteur).
-- **A4 — Annulation** (étape 5) : « Annuler » met l'analyse en pause ;
-  « Reprendre l'analyse » relance avec le **même** état en mémoire.
+  **recoche le consentement** donné au run interrompu (exception à RG11) ;
+  « Ignorer » l'efface. Seuls les **paramètres** sont conservés (jamais l'état
+  du moteur).
+- **A4 — Annulation** (étape 5) : « Annuler » lève un drapeau lu seulement à la
+  fin de la journée ou de l'étape de fusion en cours (`onProgress`) : les appels
+  déjà partis d'ici là sont facturés ; l'analyse passe alors en pause, et
+  « Reprendre l'analyse » relance avec le **même** état en mémoire (journées
+  déjà analysées non rejouées).
 - **A5 — Copie serveur** (étape 8) : depuis « Mes cartographies », l'apprenant
   peut copier le résultat sur le serveur (`POST /api/cartographies`, type
   `twin9`, opt-in daté, UC-APP-04) ; la liste ne renvoie jamais le document, la
@@ -131,22 +148,29 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 - **E4 — Solde insuffisant** (étape 4) : alerte « Solde insuffisant pour lancer
   l'analyse » avec lien `#/compte/credit`, bouton désactivé ; côté serveur, une
   réserve non couverte donne `402 {solde_microusd, requis_estime_microusd}`.
-- **E5 — Solde épuisé en cours d'analyse** (étape 6) : `402` → pause « Rechargez
-  votre crédit, puis reprenez : les journées déjà analysées ne seront pas
-  refacturées » ; la reprise réutilise l'état (journées à empreinte inchangée
-  non rejouées).
+- **E5 — Solde épuisé en cours d'analyse** (étape 6) : le serveur répond `402`.
+  La vue prévoit une pause « Rechargez votre crédit, puis reprenez : les journées
+  déjà analysées ne seront pas refacturées » si le moteur lui **rejette** une
+  `ApiError 402` (UC-APP-10-U35). Cette pause n'est aujourd'hui **pas
+  atteignable** : le moteur avale l'erreur et termine le run sur une analyse
+  dégradée, dont les journées sont mémorisées comme faites (anomalie 3,
+  UC-APP-10-F11, UC-APP-10-U34).
 - **E6 — Clé privée refusée** (étape 6) : hors promotion `403` (« Twin9 s'utilise
   avec nos crédits… ») ; promotion ouverte sans clé enregistrée `409`.
-- **E7 — Requête invalide** (étape 6) : corps non JSON `400`, corps > 300 Ko `413`,
-  champ manquant ou invalide `422` (étape, variables imbriquées, étage inconnu,
-  modèle non proposé pour l'étage, `max_tokens` non entier, facturation), gabarit
-  inconnu `404` générique ; rien n'est débité ni appelé.
+- **E7 — Requête invalide** (étape 6) : jeton CSRF absent ou invalide avec une
+  session `403` (« Jeton CSRF absent ou invalide », avant la route) ; corps non
+  JSON `400`, corps > 300 Ko `413`, champ manquant ou invalide `422` (étape,
+  variables : objets ou listes **imbriqués** refusés — un objet **plat** de
+  scalaires est accepté et rendu en JSON, voir l'anomalie 5 —, étage inconnu,
+  modèle non proposé pour l'étage, `max_tokens` non entier, facturation),
+  gabarit inconnu `404` générique ; rien n'est débité ni appelé.
 - **E8 — Échec du fournisseur** (étape 6) : `502` (ou `504` délai, `429`
   saturation) au message générique ; la réserve est rendue (étiquette
   « … (remboursement échec) », modèle conservé pour la facture).
-- **E9 — Échec du run** (étapes 5-7) : toute autre erreur est affichée telle
-  quelle avec « Réessayer » (voir l'anomalie 1 : c'est aujourd'hui le cas de
-  tout lancement réel).
+- **E9 — Échec du run** (étapes 5-7) : une erreur levée par le moteur lui-même
+  est affichée telle quelle avec « Réessayer » (voir l'anomalie 1 : c'est
+  aujourd'hui le cas de tout lancement réel). Les erreurs des appels serveur
+  (E5-E8, E10-E11) n'y arrivent **pas** : le moteur les avale (anomalie 3).
 - **E10 — Rythme dépassé** (étape 6) : au-delà de `appels_par_minute` (30 par
   défaut) → `429` + `Retry-After`.
 - **E11 — Service non configuré** (étape 6) : clé plateforme absente → `503
@@ -178,10 +202,16 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
   **vides** et les fiches **injectées** ; séquences ≥ 48 caractères normalisés
   (NFKC, casse, lettres et chiffres) expurgées ; compteur jamais renvoyé.
 - **RG9 — Bornes** : corps ≤ 300 Ko ; `max_tokens` entier ramené dans
-  [256, 16 000] (4 096 par défaut) ; variables scalaires ou listes plates.
-- **RG10 — Devis** : exécution mock déterministe (même sel, roster et réglages
-  que le run) ; fourchettes de tokens par étage × prix margé ; indicatif.
-- **RG11 — Consentement** : explicite avant tout devis ou lancement.
+  [256, 16 000] (4 096 par défaut) ; variables scalaires ou tableaux de
+  scalaires — objets et listes imbriqués refusés, mais un objet **plat** de
+  scalaires passe (tableau associatif PHP) et est rendu en JSON.
+- **RG10 — Devis** : exécution mock déterministe (même roster et mêmes réglages
+  que le run ; le sel `twin9-devis` n'est repris qu'en démonstration, où le
+  nombre d'appels annoncé est exact ; en réel, c'est une estimation) ;
+  fourchettes de tokens par étage × prix margé ; indicatif.
+- **RG11 — Consentement** : explicite avant tout devis ou lancement — sauf
+  après « Restaurer les saisies » (A3), qui recoche le consentement donné au run
+  interrompu.
 - **RG12 — Reprise** : IndexedDB ne garde que les paramètres ; la reprise fidèle
   (pause, 402) réutilise l'état vivant en mémoire.
 
@@ -189,12 +219,12 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 
 | Donnée | Traitement |
 |---|---|
-| Texte du portfolio | Transite par le serveur et le fournisseur le temps de chaque appel ; jamais stocké (endpoint sans état) ; consentement explicite par run |
+| Texte du portfolio | Transite par le serveur et le fournisseur le temps de chaque appel ; jamais stocké (endpoint sans état) ; consentement explicite par run (recoché automatiquement par la restauration d'une reprise, A3) |
 | Gabarits et fiches | En base (`twin9_protocole`, réglage `twin9_fiches`), jamais transmis au navigateur |
 | Clé privée | Chiffrée (ADR-004), utilisée côté serveur uniquement |
 | Grand-livre | Montants, modèle, tokens, libellé d'étape — jamais de contenu |
 | Audit anti-fuite | `{etape, fuites}` seulement |
-| Run en cours | Paramètres dans IndexedDB (navigateur) ; état du moteur en mémoire |
+| Run en cours | Paramètres dans IndexedDB (navigateur) ; état du moteur en mémoire ; la démonstration y écrit aussi (anomalie 6) |
 | Résultat | Local par défaut ; copie serveur = opt-in explicite (A5) |
 
 ## Code sollicité
@@ -213,6 +243,7 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | Moteur | `engine/src/twin9/heatmap.js` (`ancrer`), `journee.js` (`empreinteJournee`), `tribunal.js` (`resoudre`, `calculerConfiance`), `merge.js` (`statutTemporel`, `trajectoire`), `scan.js` (`resoudreJournees`, `cleObs`) | Briques déterministes du protocole (journée, tribunal, fusion, scan global) |
 | Moteur | `engine/src/twin9/mapper.js` — `twin9ToMergeDocument` | Projection sunburst |
 | API | `POST /api/twin9/appel`, `GET /api/twin9/meta` — `api/src/routes/twin9.php` | Proxy confidentiel, offre |
+| API | `api/src/Middleware/CsrfMiddleware.php` | Jeton CSRF des mutations (E7) — logique unitaire couverte par UC-CPT-02-U07 |
 | API | `POST/GET/DELETE /api/cartographies` — `api/src/routes/cartographies.php` | Copie serveur opt-in (type `twin9`) |
 | Domaine | `api/src/Twin9/ProtocoleRepository.php` — `render`, `list`, `get` | Gabarits confidentiels |
 | Domaine | `api/src/Twin9/FicheStore.php` — `injecter` | Fiches confidentielles |
@@ -228,10 +259,10 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | ID | Cible | Vérifie | Fichier |
 |---|---|---|---|
 | UC-APP-10-U01 | `executerTwin9` (mock) | Devis reproductible : même graphe d'appels et même carto ; métriques | `engine/test/usecases/unit/uc-app-10-analyse-approfondie-twin9.test.js` |
-| UC-APP-10-U02 | `executerTwin9` + `protocole-contrat.json` | Contrat des appels : gabarit + variables, jamais de fiche, tout `{$VAR}` fourni ou injectable (RG1-RG2) | idem |
+| UC-APP-10-U02 | `executerTwin9` + `protocole-contrat.json` | Contrat des appels : gabarit + variables, jamais de fiche, tout `{$VAR}` fourni ou injectable (RG1-RG2) ; variables sérialisées scalaires ou listes plates, **anomalie 5 figée** (RG9) | idem |
 | UC-APP-10-U03 | `executerTwin9` (réel) | Tous les backends passent par la fabrique injectée | idem |
 | UC-APP-10-U04 | `executerTwin9` (réel) | **Cause de l'anomalie 1** : sans fabrique → « Backend inconnu » | idem |
-| UC-APP-10-U05 | `executerTwin9` (état) | Journées déjà analysées non rejouées (E5, RG12) | idem |
+| UC-APP-10-U05 | `executerTwin9` (état) | Journées déjà analysées non rejouées (A4, RG12) | idem |
 | UC-APP-10-U06 | `varsClient` | Fiches jamais transmises, clés de lookup ajoutées | idem |
 | UC-APP-10-U07 | `ancrer` | Citation introuvable rejetée, jamais inventée | idem |
 | UC-APP-10-U08 | `resoudre`, `calculerConfiance` | Résolution calculée sans vote, confiance mécanique | idem |
@@ -239,10 +270,12 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | UC-APP-10-U10 | `empreinteJournee` | Clé de reprise stable / sensible au texte et au collège | idem |
 | UC-APP-10-U11 | `twin9ToMergeDocument` | Feuilles = journées attestées, points = attestations | idem |
 | UC-APP-10-U30 | `resoudreJournees`, `cleObs` | Scan global : références résolues par id ou date, clé d'observation | idem |
+| UC-APP-10-U34 | `executerTwin9` (réel) | **Anomalie 3 figée** : erreurs 402 de la fabrique avalées, run résolu et vidé, journées dégradées mémorisées puis reprises sans relecture | idem |
 | UC-APP-10-U12 | `parseHash` | `#/twin9`, `#/twin9/demo` | `web/test/usecases/unit/uc-app-10-analyse-approfondie-twin9.test.jsx` |
 | UC-APP-10-U13 | `makeServerBackend` | Corps de l'appel, replis, tokens réels enregistrés | idem |
 | UC-APP-10-U14 | `makeServerBackend` | 402 → `ApiError`, rien d'enregistré | idem |
 | UC-APP-10-U15 | `makeServerFactory` | Gabarit sans `.md`, variables, étage ; jamais le prompt ni les méta | idem |
+| UC-APP-10-U36 | `makeServerFactory` | **Anomalie 4 figée** : le même modèle (Haiku) part sur tous les étages, tribunal compris | idem |
 | UC-APP-10-U16 | `etageDeLabel` | Étiquette → étage de facturation | idem |
 | UC-APP-10-U17 | `calculerDevis` | Fourchettes par étage, étape inconnue = rapide (RG10) | idem |
 | UC-APP-10-U18 | `rosterFromModele`, `SALT_DEVIS` | Roster mono-famille 3 passes, sel fixe | idem |
@@ -250,44 +283,50 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | UC-APP-10-U20 | `createMemoryTwin9Store` | Un seul run courant, paramètres seulement | idem |
 | UC-APP-10-U21 | `createCartoStore` | Enregistrement local type `twin9`, natif conservé | idem |
 | UC-APP-10-U22 | `ResultatsTwin9` | Narratif assaini (ADR-007) ; échec d'enregistrement signalé | idem |
+| UC-APP-10-U37 | `ResultatsTwin9` | Étape 8 : export (octets canoniques, nom de fichier) ; enregistrement {type `twin9`, privé, titre daté, document natif}, confirmation, bouton désactivé | idem |
+| UC-APP-10-U35 | `Twin9View` (moteur injecté) | Branche 402 de la vue : pause « Rechargez… » et reprise sur le même état (inatteignable avec le vrai moteur, anomalie 3) | idem |
 | UC-APP-10-U31 | `fetchTwin9Meta` | GET de l'offre ; copie statique → `ApiUnavailableError` (E3) ; 401 → `ApiError` (E1) | idem |
+| UC-APP-10-U38 | `formatUsd`, `referentielPourMoteur` | Virgule, 4 décimales sous le centime ; pôles et compétences aplaties portant leur pôle | idem |
 | UC-APP-10-U23 | `ProtocoleRepository::render` | Une passe, typage, non résolues ; 404 ; **anomalie 2 figée** | `api/tests/UseCases/Unit/UcApp10AnalyseApprofondieTwin9Test.php` |
+| UC-APP-10-U39 | `ProtocoleRepository::list` | Métadonnées seulement (nom, longueur en caractères, variables), triées par nom, jamais le contenu | idem |
 | UC-APP-10-U24 | `FicheStore::injecter` | Injection depuis les clés de lookup, ordre du client (RG2) | idem |
-| UC-APP-10-U25 | `LeakFilter::redact` | Index de la route : gabarit et fiche expurgés, charge utile intacte (RG8) | idem |
+| UC-APP-10-U25 | `LeakFilter::redact` | Sur un index de même forme que celui de la route : gabarit et fiche expurgés, charge utile intacte (RG8) — la construction de l'index par la route est vérifiée par F20 | idem |
 | UC-APP-10-U26 | `Twin9Config` | Offre par étage, coûts par modèle, réserve ≥ coût (RG4-RG6) | idem |
 | UC-APP-10-U27 | `Twin9Config` | Interrupteurs par défaut, référentiel sans texte de fiche, vue publique | idem |
 | UC-APP-10-U28 | `AnthropicCaller::appeler` | Sans système, arrêt `max_tokens` relayé, compteurs absents → 0 | idem |
 | UC-APP-10-U29 | `CartographyRepository::create` | Type `twin9` (migration 021), document natif, opt-in daté | idem |
 | UC-APP-10-U32 | `KeyVault` | Clé privée chiffrée, relue par son seul propriétaire ; clé maître invalide → null (A2, E11) | idem |
-| UC-APP-10-U33 | `CreditService::debit`/`adjust`, `Audit::record` | Remboursement d'échec portant le modèle ; audit anti-fuite en compteurs (E8, A6) | idem |
+| UC-APP-10-U33 | `CreditService::debit`/`adjust`, `Audit::record` | Remboursement d'échec portant le modèle (E8) ; `Audit::record` persiste les détails tels quels (le contenu `{etape, fuites}` relève de la route, F20) | idem |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-APP-10-F01 | Nominal (étapes 1-5) | IHM | `<App/>` : consentement requis, devis = appels exacts du mock, aucun réseau | `web/test/usecases/functional/uc-app-10-analyse-approfondie-twin9.test.jsx` |
+| UC-APP-10-F01 | Nominal (étapes 1-5) | IHM | `<App/>` : portfolio ≤ 20 caractères ou consentement absent → estimation impossible ; devis = appels exacts du mock, aucun réseau | `web/test/usecases/functional/uc-app-10-analyse-approfondie-twin9.test.jsx` |
 | UC-APP-10-F02 | Nominal (étape 6), E9 | IHM | **Anomalie 1 figée** : « Backend inconnu », « Réessayer », aucun appel serveur | idem |
 | UC-APP-10-F03 | A1 | IHM | Démonstration sans compte : devis, run mock, sunburst, aucun appel ni enregistrement | idem |
 | UC-APP-10-F04 | E1 | IHM | Garde de session, bascule en démonstration | idem |
 | UC-APP-10-F05 | E2 | IHM | « momentanément indisponible » | idem |
 | UC-APP-10-F06 | E3 | IHM | Copie statique complète / méta seule absente | idem |
-| UC-APP-10-F07 | E4 | IHM | Solde < estimation basse : alerte, lien de recharge, bouton désactivé | idem |
-| UC-APP-10-F08 | A2 | IHM | Promotion + clé : option visible, devis sans débit, lancement permis à solde nul | idem |
-| UC-APP-10-F09 | A3 | IHM | Reprise détectée, saisies restaurées | idem |
-| UC-APP-10-F10 | A4 | IHM | Annulation → pause → reprise avec le même état | idem |
-| UC-APP-10-F11 | E5 | IHM | 402 en cours → pause → reprise avec le même état | idem |
+| UC-APP-10-F07 | E4, étape 4 | IHM | Solde < estimation basse : alerte, lien de recharge, bouton désactivé ; solde entre basse et haute : avertissement, lancement permis | idem |
+| UC-APP-10-F08 | A2 | IHM | Promotion + clé : option visible, devis sans débit, lancement permis à solde nul ; promo fermée ou sans clé : option absente | idem |
+| UC-APP-10-F09 | A3 | IHM | Reprise détectée ; « Restaurer » remet portfolio, modèle, facturation et recoche le consentement ; « Ignorer » efface la reprise | idem |
+| UC-APP-10-F10 | A4, étape 8 | IHM | Annulation → pause → reprise avec le même état ; « Enregistrer » range le résultat (type `twin9`, privé) dans IndexedDB (simulé) | idem |
+| UC-APP-10-F11 | E5 | IHM | **Anomalie 3 figée**, vrai moteur branché sur la fabrique serveur : 402 en cours avalé, ni pause ni « Réessayer », résultats affichés, reprise locale effacée | idem |
+| UC-APP-10-F25 | A1, A4 | IHM | Démonstration sur le vrai moteur : annulation puis reprise sur le même état (journées reprises) ; **anomalie 6 figée** (la démo écrase puis efface le run courant local) | idem |
+| UC-APP-10-F26 | Étape 3, RG6 | IHM | **Anomalie 4 figée** : Haiku (taggers, rapide) présélectionné, devis avec tribunal, lancement permis sans avertissement | idem |
 | UC-APP-10-F12 | Nominal | API | `/meta` sans contenu ; appel greffier : fiches injectées, sortie seule, coût réel, grand-livre | `api/tests/UseCases/Functional/UcApp10AnalyseApprofondieTwin9Test.php` |
-| UC-APP-10-F13 | Nominal | API | Trois étages, trois modèles, débit = somme des coûts | idem |
+| UC-APP-10-F13 | Nominal | API | Trois étages, trois modèles, débit = somme des coûts — scénario d'API seulement : l'IHM envoie un seul modèle (anomalie 4) | idem |
 | UC-APP-10-F14 | A2, E6 | API | 403 hors promo ; 409 sans clé ; 200 sans débit avec la clé de l'apprenant | idem |
 | UC-APP-10-F15 | E1 | API | 401 sur `/appel` et `/meta` | idem |
 | UC-APP-10-F16 | E2 | API | 503 « Twin9 non disponible », `enabled=false` | idem |
-| UC-APP-10-F17 | E7 | API | 400/413/422/404 sans fragment de gabarit ni débit | idem |
-| UC-APP-10-F18 | E4, E5 | API | 402 avec montants, solde intact | idem |
+| UC-APP-10-F17 | E7 | API | 400/413/422/404, 403 sans jeton CSRF, sans fragment de gabarit ni débit | idem |
+| UC-APP-10-F18 | E4, E5 | API | 402 avec montants, solde intact (côté serveur ; côté client, voir F11) | idem |
 | UC-APP-10-F19 | E8 | API | 502/504/429 génériques, réserves rendues avec le modèle | idem |
 | UC-APP-10-F20 | A6 | API | Récitation expurgée, audit en compteurs, citation de l'apprenant intacte | idem |
 | UC-APP-10-F21 | E10 | API | 429 + `Retry-After: 30` | idem |
-| UC-APP-10-F22 | A5 | API | Copie serveur `twin9` : création, liste sans document, relecture, purge | idem |
-| UC-APP-10-F23 | E11 | API | 503 clé plateforme / clé maître absentes | idem |
+| UC-APP-10-F22 | A5 | API | Copie serveur `twin9` : création, liste sans document, relecture, purge réelle (ligne absente de la base) | idem |
+| UC-APP-10-F23 | E11 | API | 503 (statut et message) clé plateforme / clé maître absentes | idem |
 | UC-APP-10-F24 | Anomalie 2 | API | Journal contenant « {$PRENOM} » → 422, aucun appel | idem |
 
 ### Tests existants liés (non-régression)
@@ -317,14 +356,52 @@ cd engine && npx vitest run test/usecases/unit/uc-app-10
    lève « Backend inconnu : anthropic (choix : mock) » avant le moindre appel :
    aucun `POST /api/twin9/appel` n'est émis, rien n'est débité, la vue affiche
    l'erreur avec « Réessayer ». Les tests historiques injectent le moteur
-   (`deps.runEngine`) et ne voient pas le défaut. La couture elle-même
-   fonctionne : avec la fabrique injectée, tout le run passe par elle
-   (UC-APP-10-U03). Figé par UC-APP-10-F02 et UC-APP-10-U04.
+   (`deps.runEngine`) et ne voient pas le défaut. Avec la fabrique injectée, tout
+   le run passe bien par elle (UC-APP-10-U03, fabrique qui ne lève jamais) ; mais
+   corriger ce seul défaut exposerait les anomalies 3 et 4. Figé par
+   UC-APP-10-F02 et UC-APP-10-U04.
 2. **Un motif `{$X}` dans le texte de l'apprenant bloque l'appel.**
    `ProtocoleRepository::render` recherche les variables non résolues dans le
    **rendu** : un journal qui contient littéralement « {$PRENOM} » (atelier de
    prompts, par exemple) est pris pour une variable manquante et `/appel`
    répond `422 Variables non résolues`. Figé par UC-APP-10-U23 et UC-APP-10-F24.
+3. **Les erreurs de `/api/twin9/appel` sont avalées par le moteur.** Chaque appel
+   du moteur Twin9 est entouré d'une capture qui traite toute exception comme
+   une « panne technique » (`journee.js` : tagging → « 0 tag pour ce passage »,
+   première impression, greffier, juge léger, contre-lecture ; `tribunal.js` :
+   « panne technique → renvoi » ; `merge.js` : relectures ; `scan.js`). Un `402`,
+   `403`, `409`, `422` (dont l'anomalie 2 et l'anomalie 4), `429`, `502`/`504` ou
+   `503` n'atteint donc jamais la vue : la pause de E5 et le message de E9 sont
+   inatteignables, le run se termine en « terminé » et affiche comme une vraie
+   analyse une cartographie **dégradée** (0 tag, verdicts « renvoi »), déjà
+   facturée pour les appels réussis. Pire : les journées dégradées sont
+   mémorisées dans l'état avec leur empreinte ; une reprise ne les rejoue pas,
+   contrairement à la promesse « les journées déjà analysées ne seront pas
+   refacturées ». Latent tant que l'anomalie 1 bloque tout lancement réel. Figé
+   par UC-APP-10-U34 et UC-APP-10-F11.
+4. **Un seul modèle pour tous les étages.** `makeServerFactory` envoie le modèle
+   choisi à l'étape 3 pour **chaque** appel, alors que `etage` varie selon
+   l'étiquette et que le serveur refuse (`422 Modèle non proposé pour cet étage`)
+   tout modèle hors de ses étages (RG6). Dans l'offre par défaut, seul Sonnet
+   couvre les trois étages ; or la vue présélectionne le **premier** modèle de
+   l'offre (Haiku, taggers et rapide seulement, dans les défauts — ou ce que
+   donne l'ordre des clés relues de la colonne JSON), sans blocage ni
+   avertissement au devis. Avec Haiku, tout le tribunal partirait en 422 ; avec
+   Opus, tout le tagging — erreurs ensuite avalées (anomalie 3). UC-APP-10-F13
+   (trois modèles sur trois étages) ne correspond à aucun parcours de l'IHM.
+   Latent derrière l'anomalie 1. Figé par UC-APP-10-U36 et UC-APP-10-F26.
+5. **Deux variables partent en objets.** Pour `merge/03-competence-evolution`,
+   le moteur transmet `CONFIANCE_MOY` et `SCORE_CUMULE` comme objets `PyFloat`,
+   que `JSON.stringify` sérialise en `{"value": 0.75}`. Le serveur accepte ce
+   tableau associatif « plat » (RG9) et le rend par `json_encode` : le prompt
+   contient `{"value":0.75}` au lieu de `0.75`. Figé par UC-APP-10-U02.
+6. **La démonstration écrit dans la reprise locale.** En démonstration,
+   `onProgress` sauvegarde quand même le « run courant » (portfolio **fictif**)
+   dans IndexedDB, et la fin du run l'efface. Une démo annulée laisse donc une
+   reprise fictive (sur `#/twin9`, « Restaurer les saisies » injecte le
+   portfolio de démonstration et coche le consentement) ; une démo menée à terme
+   efface les paramètres d'une vraie analyse interrompue. Figé par
+   UC-APP-10-F25.
 
 ## Limites
 

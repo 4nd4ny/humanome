@@ -4,7 +4,7 @@
 |---|---|
 | **Acteur principal** | Apprenant (tout compte connecté — un compte établissement suit le même parcours) |
 | **Acteurs secondaires** | PayPal (paiement en redirection, capture, remboursement) ; administrateur (packs et supervision, UC-ADM-05) |
-| **Portée** | humanome.xyz — vue `#/compte/credit`, routes `/api/twin9/credit*`, `/api/twin9/facture`, `/api/twin9/depenses` |
+| **Portée** | humanome.xyz — vue `#/compte/credit`, routes `/api/twin9/credit*`, `/api/twin9/facture`, `/api/twin9/depenses`, offre `/api/twin9/meta` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §6.5 (journalisation minimale), §7 (modèle économique : usage payant, coût API + marge) ; ADR-010 §3 |
 | **Statut** | Implémenté (recharges PayPal, factures récapitulatives, remboursement à la demande) |
@@ -32,8 +32,9 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 
 - Le solde est crédité du montant **capturé par PayPal**, une seule fois par
   ordre, et chaque mouvement laisse un événement au grand-livre.
-- La facture d'un mois est un document **déterministe** (même numéro, même
-  contenu à chaque édition), dérivé du grand-livre.
+- La facture d'un mois **clos** est un document **déterministe** (même numéro,
+  même contenu à chaque édition), dérivé du grand-livre ; celle du mois en cours
+  évolue à chaque mouvement.
 - Un remboursement n'est débité qu'après confirmation de PayPal, capture par
   capture.
 
@@ -41,7 +42,8 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 
 - Aucun crédit n'est accordé sans capture PayPal aboutie pour un ordre créé par
   le compte lui-même.
-- Aucun remboursement ne dépasse le solde ni ce qui a été capturé.
+- Aucun remboursement ne dépasse le solde ni ce qui a été capturé — sauf en cas
+  de dépense concurrente pendant le remboursement (anomalie 3).
 - Aucune donnée bancaire n'est vue ni stockée ; le grand-livre ne porte que des
   compteurs et des identifiants PayPal.
 
@@ -51,17 +53,20 @@ Twin9, menu du compte) ou y revient depuis PayPal.
    (`GET /api/auth/me`, qui sème le jeton CSRF), puis charge en parallèle l'offre
    (`GET /api/twin9/meta` : packs, `paypalConfigured`, clé privée), le crédit
    (`GET /api/twin9/credit` : solde et 50 derniers événements) et le suivi
-   (`GET /api/twin9/depenses` : 12 derniers mois).
+   (`GET /api/twin9/depenses` : les 12 derniers mois **ayant de l'activité** —
+   les mois vides sont sautés).
 2. La vue affiche le **solde**, les **packs** de recharge, le **suivi des
    dépenses** (barres et tableau recharges / consommé / appels), le
    **grand-livre** (type, montant signé, libellé, modèle, tokens, date — aucun
    contenu) et le sélecteur de **factures** (mois depuis janvier 2026).
 3. L'apprenant choisit un pack. La vue envoie `POST
-   /api/twin9/credit/paypal/creer {pack_index}` ; le serveur vérifie la session,
-   le rythme, la configuration PayPal et le pack, obtient un jeton OAuth, crée
-   l'ordre (intention CAPTURE, montant à 2 décimales, retours
-   `#/compte/credit?paypal=retour` / `?paypal=annule`), **lie l'ordre au compte**
-   et renvoie `{order_id, approve_url}`. La vue redirige vers PayPal.
+   /api/twin9/credit/paypal/creer {pack_index}` avec le jeton CSRF (E10) ; le
+   serveur vérifie la session, le rythme, la configuration PayPal et le pack,
+   obtient un jeton OAuth, crée l'ordre (intention CAPTURE, montant à 2
+   décimales, retours `https://humanome.xyz/#/compte/credit?paypal=retour` /
+   `?paypal=annule` — domaine **codé en dur**, y compris en sandbox), **lie
+   l'ordre au compte** (`twin9_paypal_orders`) et renvoie `{order_id,
+   approve_url}`. La vue redirige vers PayPal.
 4. L'apprenant approuve le paiement chez PayPal, qui le renvoie vers
    `#/compte/credit?paypal=retour&token=<order_id>`.
 5. Après la sonde de session, la vue capture **une seule fois** : `POST
@@ -89,10 +94,16 @@ Twin9, menu du compte) ou y revient depuis PayPal.
   restant », puis « Confirmer le remboursement » → `POST
   /api/twin9/credit/rembourser {montant_microusd?}` (sans montant : tout le
   remboursable). Le serveur répartit sur les captures, **les plus récentes
-  d'abord**, en **centimes entiers**, chaque portion avec une clé d'idempotence
-  PayPal ; il ne débite qu'après confirmation (`COMPLETED` ou `PENDING`) et
-  renvoie `{rembourse_microusd, solde_microusd}`. La vue affiche « Remboursement
-  de X envoyé vers PayPal. »
+  d'abord** (date de capture), en **centimes entiers** (la fraction de centime
+  reste au solde), chaque portion avec une clé d'idempotence PayPal décalée du
+  montant déjà remboursé sur la capture ; il ne débite qu'après confirmation
+  (`COMPLETED` ou `PENDING`) et renvoie `{rembourse_microusd, solde_microusd}`.
+  La vue affiche « Remboursement de X envoyé vers PayPal. » Cas limites : moins
+  d'un centime remboursable, ou montant demandé inférieur à un centime, nul ou
+  négatif → `200 {rembourse_microusd: 0}` sans appel PayPal, et la vue annonce
+  « Remboursement de 0,00 $ envoyé vers PayPal. » ; la confirmation annonce le
+  **solde total** (« Rembourser votre solde restant (X) ») même quand une partie
+  n'est pas remboursable (crédit offert).
 
 ## Scénarios d'erreur
 
@@ -111,14 +122,25 @@ Twin9, menu du compte) ou y revient depuis PayPal.
   le paiement sur PayPal ») ; statut autre que `COMPLETED` → `422` ; montant
   capturé nul → `502 Montant PayPal invalide`.
 - **E6 — PayPal en erreur** (étapes 3, 5) : `502` au message générique
-  (injoignable, erreur, identifiants refusés) ; aucun ordre lié.
+  (injoignable, erreur, identifiants refusés) ; aucun ordre lié, aucun crédit.
 - **E7 — Remboursement impossible** (A3) : rien de remboursable (crédit non
-  PayPal, déjà remboursé) → `422` ; PayPal refuse → `502`, solde intact ; échec
-  au milieu de plusieurs captures → `502` avec le montant déjà remboursé.
+  PayPal, déjà remboursé) → `422` ; PayPal refuse la première portion → `502`,
+  solde intact. Échec au milieu de plusieurs captures : si PayPal répond `2xx`
+  avec un statut non abouti → `502 « Le remboursement PayPal n'a pas abouti… »`
+  **avec** `rembourse_microusd` partiel ; si PayPal répond en **erreur HTTP** →
+  `502` générique **sans** montant, les portions déjà confirmées restant
+  débitées (le client ignore ce qui a été remboursé ; la vue garde l'ancien
+  solde affiché). Une nouvelle demande rejoue la portion échouée avec la même
+  clé d'idempotence.
 - **E8 — Période de facture invalide** (étape 7) : année hors [2026, 2100] ou
-  mois hors [1, 12] → `422`.
+  mois hors [1, 12] → `422`. Une période **future** (jusqu'en 2100) n'est pas
+  refusée : facture numérotée, vide, dont le solde de fin est le solde courant.
 - **E9 — Trop de tentatives** (étapes 3, 5, A3) : plus de 20 appels par minute et
-  par compte sur une route PayPal → `429` + `Retry-After`.
+  par compte sur une route PayPal (un seau par route : créer, capturer,
+  rembourser) → `429` + `Retry-After: 30`.
+- **E10 — Jeton CSRF absent ou invalide** (étapes 3, 5, A3) : avec un cookie de
+  session mais sans `X-CSRF-Token` valide → `403 {error: "Jeton CSRF absent ou
+  invalide"}` (`CsrfMiddleware`, avant la route) ; rien ne part chez PayPal.
 
 ## Règles de gestion
 
@@ -163,8 +185,9 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 | Front | `web/src/router.js` — `parseHash` | Route `#/compte/credit` (paramètres PayPal dans le fragment) |
 | Front | `web/src/views/CreditView.jsx` | Solde, packs, redirection, capture unique au retour, suivi, grand-livre, factures, remboursement |
 | Front | `web/src/views/twin9/FactureTwin9.jsx` | Facture imprimable |
-| Front | `web/src/api/twin9.js` — `fetchCredit`, `fetchDepenses`, `fetchFacture`, `creerRecharge`, `capturerRecharge`, `rembourserSolde`, `formatUsd` | Client API du crédit |
-| API | `GET /api/twin9/credit`, `GET /api/twin9/depenses`, `GET /api/twin9/facture`, `POST /api/twin9/credit/paypal/creer`, `POST /api/twin9/credit/paypal/capturer`, `POST /api/twin9/credit/rembourser` — `api/src/routes/twin9.php` | Orchestration |
+| Front | `web/src/api/twin9.js` — `fetchTwin9Meta`, `fetchCredit`, `fetchDepenses`, `fetchFacture`, `creerRecharge`, `capturerRecharge`, `rembourserSolde`, `formatUsd` | Client API du crédit (offre et packs via `fetchTwin9Meta`, unitaire en UC-APP-10-U31) |
+| API | `GET /api/twin9/meta`, `GET /api/twin9/credit`, `GET /api/twin9/depenses`, `GET /api/twin9/facture`, `POST /api/twin9/credit/paypal/creer`, `POST /api/twin9/credit/paypal/capturer`, `POST /api/twin9/credit/rembourser` — `api/src/routes/twin9.php` | Offre, orchestration (répartition des remboursements, bornes) |
+| API | `api/src/Middleware/CsrfMiddleware.php` | Jeton CSRF des mutations (E10) — logique unitaire couverte par UC-CPT-02-U07 |
 | Domaine | `api/src/Twin9/PayPalClient.php` — `fromEnv`, `createOrder`, `captureOrder`, `getOrder`, `refundCapture` | Dialogue serveur-à-serveur avec PayPal |
 | Domaine | `api/src/Twin9/CreditService.php` — `balance`, `topup`, `events`, `recordPaypalOrder`, `paypalOrderOwner`, `recordCapture`, `refundableCaptures`, `soldeRemboursable`, `appliquerRemboursement` ; `SoldeInsuffisantException` | Grand-livre, propriété, remboursement |
 | Domaine | `api/src/Twin9/FactureService.php` — `facture`, `depensesParMois` | Facture et suivi |
@@ -182,16 +205,17 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 | UC-APP-11-U03 | client API | Refus serveur → `ApiError` (statut + message) | idem |
 | UC-APP-11-U04 | `FactureTwin9` | Document complet, montants signés, impression hors document | idem |
 | UC-APP-11-U05 | `FactureTwin9` | Mois vide, sections absentes, rien sans données | idem |
-| UC-APP-11-U06 | `PayPalClient::fromEnv` | Non configuré → null ; sandbox / live | `api/tests/UseCases/Unit/UcApp11GererCreditTwin9Test.php` |
-| UC-APP-11-U07 | `PayPalClient::createOrder` | OAuth, CAPTURE, 2 décimales, URLs ; lien absent → 502 | idem |
-| UC-APP-11-U08 | `PayPalClient::captureOrder` | Capture, relecture « déjà capturé », 422 / 502, identifiants jamais cités | idem |
+| UC-APP-11-U16 | `formatUsd` | Virgule, 4 décimales sous le centime, signe (RG1) | idem |
+| UC-APP-11-U06 | `PayPalClient::fromEnv` | Identifiant ou secret absent → null ; sandbox / live | `api/tests/UseCases/Unit/UcApp11GererCreditTwin9Test.php` |
+| UC-APP-11-U07 | `PayPalClient::createOrder` | OAuth, CAPTURE, 2 décimales, URLs de retour et d'annulation ; lien absent → 502 | idem |
+| UC-APP-11-U08 | `PayPalClient::captureOrder` | Capture, relecture « déjà capturé », 422 / 502, ni identifiant client, ni secret, ni en-tête Basic dans le message | idem |
 | UC-APP-11-U09 | `PayPalClient::refundCapture` | Capture ciblée, montant, `PayPal-Request-Id` ; refus → 502 | idem |
 | UC-APP-11-U10 | `CreditService::topup`, `recordPaypalOrder`, `paypalOrderOwner` | Idempotence, premier propriétaire conservé (RG2-RG3) | idem |
 | UC-APP-11-U11 | `CreditService` (captures, remboursement) | Remboursable = min(solde, captures), ordre, débit conditionnel (RG5) | idem |
 | UC-APP-11-U12 | `FactureService::facture` | Numéro, consommation nette, ajustements, solde de fin, bornes de décembre (RG6) | idem |
-| UC-APP-11-U13 | `FactureService::depensesParMois` | Mois récents d'abord, recharges / consommé / appels | idem |
+| UC-APP-11-U13 | `FactureService::depensesParMois` | Mois récents d'abord, recharges / consommé / appels ; **anomalie 1 figée** (ajustement administratif en consommation négative) | idem |
 | UC-APP-11-U14 | `Twin9Config::packs`, `publicView` | Packs 10 à 500 USD ; disponibilité PayPal annoncée (RG4, E2) | idem |
-| UC-APP-11-U15 | `RateLimiter` | 20 tentatives PayPal par minute, compte et route ; 30 s ensuite (E9) | idem |
+| UC-APP-11-U15 | `RateLimiter` | Fenêtre fixe d'une minute, un seau par clé, blocage au-delà du plafond, 30 s ensuite (E9) — la limite réelle des routes relève de F22 | idem |
 
 ### Tests fonctionnels
 
@@ -199,27 +223,32 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 |---|---|---|---|---|
 | UC-APP-11-F01 | Nominal (étapes 1-2) | IHM | `<App/>` : solde, suivi mensuel, grand-livre signé, packs | `web/test/usecases/functional/uc-app-11-gerer-credit-twin9.test.jsx` |
 | UC-APP-11-F02 | Nominal (étape 3) | IHM | Pack → `creer` avec CSRF → redirection vers PayPal | idem |
-| UC-APP-11-F03 | Nominal (étape 5) | IHM | Retour : capture unique après la session, nouveau solde, lien nettoyé | idem |
+| UC-APP-11-F03 | Nominal (étape 5) | IHM | Retour : capture unique après la session, sous `StrictMode` (effets doublés) et après un rendu supplémentaire, nouveau solde, lien nettoyé | idem |
 | UC-APP-11-F04 | Nominal (étape 7) | IHM | Choix du mois → facture rendue, impression | idem |
 | UC-APP-11-F05 | A1 | IHM | `?paypal=annule` : message neutre, aucune capture | idem |
 | UC-APP-11-F06 | A3 | IHM | Remboursement en deux temps, nouveau solde | idem |
 | UC-APP-11-F07 | E4 | IHM | Capture refusée 403 : bandeau, aucun crédit affiché | idem |
 | UC-APP-11-F08 | E2 | IHM | PayPal non configuré : indisponible, clé privée suggérée | idem |
 | UC-APP-11-F09 | E1 | IHM | Anonyme : invitation ; copie statique : message | idem |
-| UC-APP-11-F10 | E6, E7 | IHM | Échec de création d'ordre, remboursement refusé : messages serveur | idem |
-| UC-APP-11-F11 | Nominal | API | Crédit vide → ordre 20 $ → capture → dépense réelle → grand-livre → suivi → facture | `api/tests/UseCases/Functional/UcApp11GererCreditTwin9Test.php` |
-| UC-APP-11-F12 | A2 | API | Capture rejouée : même solde, une seule recharge | idem |
-| UC-APP-11-F13 | A3 | API | Remboursement partiel puis total, clés d'idempotence, facture ; **anomalie 1 figée** | idem |
+| UC-APP-11-F10 | E6, E7 | IHM | Création d'ordre en `502` (PayPal en erreur), remboursement refusé : messages serveur | idem |
+| UC-APP-11-F11 | Nominal | API | Crédit vide → ordre 20 $ (URLs de retour envoyées par la route) → capture → dépense réelle → grand-livre → suivi → facture | `api/tests/UseCases/Functional/UcApp11GererCreditTwin9Test.php` |
+| UC-APP-11-F12 | A2, RG2 | API | Capture rejouée : même solde, une seule recharge ; pack de 20 $ mais capture de 12,34 $ → 12,34 $ crédités | idem |
+| UC-APP-11-F13 | A3 | API | Remboursement partiel puis total, deux clés d'idempotence (décalage), facture ; **anomalie 1 figée** | idem |
 | UC-APP-11-F14 | E1 | API | 401 sur les six routes | idem |
-| UC-APP-11-F15 | E2 | API | 503 ; **anomalie 2 figée** (identifiant sans secret) | idem |
-| UC-APP-11-F16 | E3 | API | 422 pack / `order_id`, rien chez PayPal | idem |
+| UC-APP-11-F15 | E2 | API | 503 (statut et message) ; **anomalie 2 figée** (identifiant sans secret) | idem |
+| UC-APP-11-F16 | E3 | API | 422 (statut et message) pack / `order_id`, rien chez PayPal | idem |
 | UC-APP-11-F17 | E4 | API | 403 ordre d'autrui ou inconnu | idem |
 | UC-APP-11-F18 | E5 | API | 422 non approuvé / non finalisé, 502 montant nul | idem |
-| UC-APP-11-F19 | E6 | API | 502 générique à la création, aucun ordre lié | idem |
+| UC-APP-11-F19 | E6 | API | 502 générique à la création (aucun ordre lié) et à la capture (aucun crédit) | idem |
 | UC-APP-11-F20 | E7 | API | 422 rien de remboursable, 502 refus PayPal, solde intact | idem |
-| UC-APP-11-F21 | E8 | API | 422 période invalide | idem |
-| UC-APP-11-F22 | E9 | API | 429 + `Retry-After: 30` | idem |
-| UC-APP-11-F23 | RGPD, RG7 | API | Aucune donnée bancaire stockée ; données de la session seulement | idem |
+| UC-APP-11-F21 | E8 | API | 422 période invalide ; période future acceptée (comportement figé) | idem |
+| UC-APP-11-F22 | E9 | API | 429 + `Retry-After: 30` sur créer, capturer et rembourser ; la 20e tentative passe | idem |
+| UC-APP-11-F23 | RGPD, RG7 | API | Réponse de capture PayPal portant des données d'acheteur : rien de celles-ci n'est stocké ; données de la session seulement | idem |
+| UC-APP-11-F24 | A3 | API | Plusieurs captures : la plus récente d'abord (par date), centimes entiers, fraction de centime au solde, clés d'idempotence par portion | idem |
+| UC-APP-11-F25 | E7 | API | Échec en cours de boucle : 2xx non abouti → 502 avec montant partiel ; erreur HTTP → 502 sans montant, portion confirmée débitée ; rejeu de la même clé ; tout remboursé → 422 | idem |
+| UC-APP-11-F26 | E10 | API | Sans jeton CSRF ou jeton faux → 403 sur les trois routes d'argent, rien chez PayPal | idem |
+| UC-APP-11-F27 | Anomalie 3 | API | Dépense concurrente pendant le remboursement : PayPal rembourse, la route répond 402, grand-livre et capture intacts | idem |
+| UC-APP-11-F28 | A3 (limite) | API | Moins d'un centime remboursable ou demandé (nul, négatif) → 200 avec 0, aucun appel PayPal | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -243,17 +272,41 @@ cd web && npx vitest run test/usecases/unit/uc-app-11 test/usecases/functional/u
    calcule le consommé comme « tout ce qui n'est pas une recharge » : un
    remboursement PayPal y apparaît comme une dépense (10 $ remboursés = 10 $
    « consommés », 0 appel), alors que la facture du même mois l'exclut
-   correctement de la consommation. Figé par UC-APP-11-F13.
+   correctement de la consommation. Il en va de même des **ajustements
+   administratifs** (crédit offert, correction) : un « Geste commercial » de
+   +4 $ y apparaît comme une consommation **négative** de −4 $, alors que la
+   facture le range à part (« Ajustements »). Figé par UC-APP-11-F13 et
+   UC-APP-11-U13.
 2. **Disponibilité PayPal annoncée à tort.** `Twin9Config::publicView` déclare
    `paypalConfigured` dès que `PAYPAL_CLIENT_ID` est défini, sans vérifier
    `PAYPAL_SECRET` ; avec un secret manquant, la vue propose les packs mais
    chaque recharge échoue en `503`. Figé par UC-APP-11-F15.
+3. **Remboursement confirmé par PayPal mais non débité en cas de dépense
+   concurrente.** La route calcule le solde remboursable une fois, fait
+   **réellement** rembourser la portion par PayPal, puis débite le solde de façon
+   conditionnelle (`appliquerRemboursement`). Si une réserve concurrente
+   (`/api/twin9/appel` ou `/api/twin6/appel`, analyse dans un autre onglet) a
+   fait baisser le solde entre-temps, le débit lève `SoldeInsuffisantException`
+   et la route répond `402 Solde insuffisant` alors que l'argent est déjà parti :
+   le grand-livre n'est pas débité et la capture garde toute sa marge.
+   L'apprenant conserve un solde dépensable **et** le remboursement (perte pour
+   la plateforme, contraire à la garantie « aucun remboursement ne dépasse le
+   solde »). Figé par UC-APP-11-F27.
 
 ## Limites
 
 - Pas de webhook PayPal : la capture n'est déclenchée que par le retour du
   navigateur sur le lien PayPal ; un paiement approuvé sans retour n'est pas
-  crédité automatiquement (un ordre non capturé expire chez PayPal, aucun état
-  intermédiaire n'est stocké).
+  crédité automatiquement. Un ordre non capturé expire chez PayPal ; seule la
+  liaison identifiant d'ordre → compte (`twin9_paypal_orders`, écrite dès
+  `/creer`) est conservée, sans purge des ordres abandonnés (supprimée avec le
+  compte). Le commentaire de la route (« NO intermediate state stored ») est
+  antérieur à cette liaison.
+- Après un `502` partiel (E7), la vue garde le solde affiché avant la demande,
+  alors que des portions ont pu être débitées ; la confirmation annonce le solde
+  total, remboursable ou non ; un remboursement de moins d'un centime est
+  annoncé « 0,00 $ envoyé vers PayPal » (UC-APP-11-F28).
+- Les petites fonctions de la vue (`moisFacturables`, `libelleKind`) ne sont
+  pas exportées : elles ne sont couvertes que fonctionnellement (F01, F04).
 - La liste des factures proposées commence en janvier 2026 (lancement) ; le
   serveur refuse toute période antérieure.

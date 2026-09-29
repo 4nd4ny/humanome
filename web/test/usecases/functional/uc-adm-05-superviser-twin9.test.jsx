@@ -10,7 +10,7 @@ import { act, cleanup, fireEvent, render, screen, within } from '@testing-librar
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
-import { bodyOf, jsonResponse, meResponse, stubFetch } from '../support/twin.js'
+import { bodyOf, htmlResponse, jsonResponse, meResponse, stubFetch } from '../support/twin.js'
 
 const CONFIG = {
   marge: 1.2,
@@ -62,7 +62,7 @@ afterEach(() => {
 })
 
 describe('UC-ADM-05 — l’administrateur supervise Twin9', () => {
-  it('UC-ADM-05-F01 — nominal : réglages et comptes affichés, contribution modifiée → PUT partiel (CSRF) → confirmation', async () => {
+  it('UC-ADM-05-F01 — nominal : réglages et comptes affichés (jamais le contenu des gabarits), contribution modifiée → PUT partiel (CSRF) → confirmation → resynchronisation', async () => {
     const { calls } = stubFetch(routes())
     openSupervision()
 
@@ -80,7 +80,15 @@ describe('UC-ADM-05 — l’administrateur supervise Twin9', () => {
     const [put] = putsConfig(calls)
     expect(bodyOf(put)).toEqual({ marge: 1.35 })
     expect(put.init.headers['X-CSRF-Token']).toBe('csrf-twin-lot')
-    expect(screen.getByLabelText(/Contribution Twin9/).value).toBe('1.35') // resynchronisé
+    expect(screen.getByLabelText(/Contribution Twin9/).value).toBe('1.35')
+
+    // Étape 5 : la configuration renvoyée devient la nouvelle référence du diff —
+    // un second enregistrement sans modification n'envoie plus rien.
+    await enregistrer()
+    expect(await screen.findByText('Aucune modification à enregistrer.')).toBeDefined()
+    expect(putsConfig(calls)).toHaveLength(1)
+    // La supervision ne demande jamais le contenu des gabarits (atelier, UC-PRO-08).
+    expect(calls.some((c) => c.key.includes('protocole'))).toBe(false)
   })
 
   it('UC-ADM-05-F02 — A1 : ouvrir la promotion « Twin9 gratuit avec sa propre clé »', async () => {
@@ -150,10 +158,19 @@ describe('UC-ADM-05 — l’administrateur supervise Twin9', () => {
     expect(putsConfig(calls)).toHaveLength(0)
   })
 
-  it('UC-ADM-05-F08 — E4 : chargement impossible (erreur serveur) → message, pas de formulaire', async () => {
+  it('UC-ADM-05-F08 — E4 : chargement impossible (erreur serveur) → message, pas de formulaire ; copie statique → message d’indisponibilité, rien demandé', async () => {
     stubFetch(routes({ 'GET twin9/admin/comptes': jsonResponse(500, { error: 'Erreur interne' }) }))
     openSupervision()
     expect((await screen.findByText('Chargement impossible.')).getAttribute('role')).toBe('alert')
     expect(screen.queryByRole('button', { name: 'Enregistrer les réglages' })).toBeNull()
+    cleanup()
+    resetApiClient()
+
+    // Copie statique : l'API répond par la page HTML ; AdminView s'arrête avant la section.
+    const { calls } = stubFetch({ 'GET auth/me': htmlResponse(200) })
+    openSupervision()
+    expect((await screen.findByText(/Copie statique du site : l’administration a besoin de l’API/)).getAttribute('role')).toBe('status')
+    expect(calls.some((c) => c.key.startsWith('GET twin9/admin'))).toBe(false)
+    expect(screen.queryByRole('heading', { name: 'Twin9 — supervision' })).toBeNull()
   })
 })

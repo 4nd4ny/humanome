@@ -5,18 +5,23 @@
 //   - l'application ENTIÈRE (<App/>) sur #/twin9 et #/twin9/demo, avec le VRAI
 //     moteur Twin9 (devis mock, démonstration) ; seul le réseau est simulé ;
 //   - la vue Twin9View rendue seule quand le scénario exige une couture de
-//     test (magasin de reprise en mémoire, moteur piloté pour l'annulation et
-//     la reprise après 402).
+//     test (magasin de reprise en mémoire, moteur piloté pour l'annulation, ou
+//     VRAI moteur branché sur la fabrique serveur comme le serait la vue une
+//     fois l'anomalie 1 corrigée).
 // CONFIDENTIALITÉ : aucun gabarit n'intervient (le front n'en voit jamais).
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from '../../../src/App.jsx'
-import Twin9View from '../../../src/views/Twin9View.jsx'
-import { ApiError, resetApiClient } from '../../../src/api/client.js'
+import Twin9View, { makeServerFactory } from '../../../src/views/Twin9View.jsx'
+import { resetApiClient } from '../../../src/api/client.js'
+import { makeServerBackend } from '../../../src/api/twin9.js'
+import { listCartographies } from '../../../src/lib/carto-store.js'
 import { executerTwin9 } from '@engine/twin9/index.js'
-import { rosterFromModele, SALT_DEVIS } from '../../../src/views/twin9/run-helpers.js'
+import { calculerDevis, rosterFromModele, SALT_DEVIS } from '../../../src/views/twin9/run-helpers.js'
 import { createMemoryTwin9Store } from '../../../src/views/twin9/twin9-store.js'
+import { DEMO_PORTFOLIO } from '../../../src/views/twin9/demo-fixture.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
+import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import { META_REFERENTIEL, htmlResponse, jsonResponse, meResponse, metaTwin9, stubFetch } from '../support/twin.js'
 
 const PORTFOLIO = `### 2026-04-06
@@ -59,6 +64,23 @@ async function remplirEtEstimer(texte = PORTFOLIO) {
 
 const appelsTwin9 = (calls) => calls.filter((c) => c.key === 'POST twin9/appel')
 
+/** Devis attendu (même calcul que la vue : moteur mock, sel fixe, prix margé). */
+async function devisAttendu(meta = metaTwin9({ pipeline: PIPELINE }), modele = 'claude-sonnet-5') {
+  const res = await executerTwin9({
+    portfolioTexte: PORTFOLIO,
+    nomJournal: 'twin9.md',
+    referentiel: meta.referentiel,
+    roster: rosterFromModele(modele),
+    config: JSON.parse(JSON.stringify(meta.pipeline)),
+    mock: true,
+    etat: null,
+    salt: SALT_DEVIS,
+    options: {},
+    nowIso: '2026-01-01T00:00:00',
+  })
+  return calculerDevis(res.metrics.par_etape, meta.modeles[modele].prix_usd_mtok)
+}
+
 beforeEach(() => resetApiClient())
 
 afterEach(() => {
@@ -73,7 +95,13 @@ describe('UC-APP-10 — parcours serveur sur <App/> (#/twin9)', () => {
     const { calls } = stubFetch(routes())
     openApp('#/twin9')
 
-    fireEvent.change(await screen.findByTestId('twin9-portfolio'), { target: { value: PORTFOLIO } })
+    // Étape 3 : un portfolio de 20 caractères ou moins ne permet pas d'estimer.
+    fireEvent.change(await screen.findByTestId('twin9-portfolio'), { target: { value: '### 2026-04-06 court' } })
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    expect(screen.getByTestId('twin9-estimer').disabled).toBe(true)
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+
+    fireEvent.change(screen.getByTestId('twin9-portfolio'), { target: { value: PORTFOLIO } })
     // Le modèle et son tarif MARGÉ viennent de /api/twin9/meta.
     expect(screen.getByTestId('twin9-modele').textContent).toContain('claude-sonnet-5 — 3.6 / 18 $ le Mtok')
     expect(screen.getByText(/Crédit plateforme — solde/).textContent).toContain('50,00 $')
@@ -182,7 +210,7 @@ describe('UC-APP-10 — parcours serveur sur <App/> (#/twin9)', () => {
     expect(screen.getByRole('button', { name: 'Voir une démonstration (données fictives)' })).toBeDefined()
   })
 
-  it('UC-APP-10-F07 — E4 : solde sous l’estimation basse → alerte + lien de recharge, lancement impossible', async () => {
+  it('UC-APP-10-F07 — E4 : solde sous l’estimation basse → alerte + lien de recharge, lancement impossible ; entre basse et haute → simple avertissement', async () => {
     stubFetch(routes(metaTwin9({ pipeline: PIPELINE, solde_microusd: 1_000 })))
     openApp('#/twin9')
     await remplirEtEstimer()
@@ -191,6 +219,18 @@ describe('UC-APP-10 — parcours serveur sur <App/> (#/twin9)', () => {
     expect(alerte.textContent).toContain('Solde insuffisant pour lancer l’analyse.')
     expect(alerte.querySelector('a').getAttribute('href')).toBe('#/compte/credit')
     expect(screen.getByTestId('twin9-lancer').disabled).toBe(true)
+    cleanup()
+    resetApiClient()
+
+    // Étape 4 : solde exactement à l'estimation basse (< haute) → avertissement, lancement permis.
+    const { basMicrousd, hautMicrousd } = await devisAttendu()
+    expect(basMicrousd).toBeLessThan(hautMicrousd)
+    stubFetch(routes(metaTwin9({ pipeline: PIPELINE, solde_microusd: basMicrousd })))
+    openApp('#/twin9')
+    await remplirEtEstimer()
+    expect(screen.queryByTestId('twin9-solde-insuffisant')).toBeNull()
+    expect(screen.getByText(/couvre l’estimation basse mais pas la haute/)).toBeDefined()
+    expect(screen.getByTestId('twin9-lancer').disabled).toBe(false)
   })
 
   it('UC-APP-10-F08 — A2 : promotion ouverte + clé enregistrée → voie « clé privée », devis sans débit, lancement permis même à solde nul', async () => {
@@ -208,6 +248,39 @@ describe('UC-APP-10 — parcours serveur sur <App/> (#/twin9)', () => {
     expect((await screen.findByTestId('twin9-devis')).textContent).toContain('Facturé sur votre clé privée (aucun débit plateforme).')
     expect(screen.queryByTestId('twin9-solde-insuffisant')).toBeNull()
     expect(screen.getByTestId('twin9-lancer').disabled).toBe(false)
+    cleanup()
+    resetApiClient()
+
+    // L'option n'apparaît que si la promotion est ouverte ET qu'une clé est enregistrée.
+    for (const meta of [
+      metaTwin9({ pipeline: PIPELINE, twin9_cle_perso_ouverte: false, cle_privee_disponible: true }),
+      metaTwin9({ pipeline: PIPELINE, twin9_cle_perso_ouverte: true, cle_privee_disponible: false }),
+    ]) {
+      stubFetch(routes(meta))
+      openApp('#/twin9')
+      await screen.findByTestId('twin9-portfolio')
+      expect(screen.queryByRole('radio', { name: /Ma clé privée Anthropic/ })).toBeNull()
+      cleanup()
+      resetApiClient()
+    }
+  })
+
+  it('UC-APP-10-F26 — étape 3 — ANOMALIE figée : le premier modèle de l’offre (Haiku : taggers, rapide) est présélectionné sans avertissement, alors qu’il ne couvre pas le tribunal', async () => {
+    const modeles = {
+      'claude-haiku-4-5-20251001': { etages: ['taggers', 'rapide'], prix_usd_mtok: [1.2, 6] },
+      'claude-sonnet-5': { etages: ['taggers', 'rapide', 'tribunal'], prix_usd_mtok: [3.6, 18] },
+    }
+    stubFetch(routes(metaTwin9({ pipeline: PIPELINE, modeles })))
+    openApp('#/twin9')
+    await remplirEtEstimer()
+
+    // Comportement ACTUEL : Haiku est retenu pour TOUT le run (un seul modèle
+    // envoyé à tous les étages, UC-APP-10-U36) ; le serveur refuserait chaque
+    // appel du tribunal (422, RG6), et rien ne bloque ni n'avertit.
+    expect(screen.getByTestId('twin9-modele').value).toBe('claude-haiku-4-5-20251001')
+    expect(screen.getByText(/Étages couverts/).textContent).toBe('Étages couverts : taggers, rapide')
+    expect(screen.getByTestId('twin9-devis').textContent).toContain('tribunal')
+    expect(screen.getByTestId('twin9-lancer').disabled).toBe(false)
   })
 })
 
@@ -222,14 +295,15 @@ describe('UC-APP-10 — reprise, annulation et 402 (vue Twin9View, coutures de t
   }
   const devisMock = { metrics: { par_etape: { tagging: { appels: 4 } } }, cartoEvolutive: {} }
 
-  function monter({ runEngine, store = createMemoryTwin9Store() }) {
+  function monter({ runEngine, store = createMemoryTwin9Store(), meta = metaTwin9({ pipeline: PIPELINE }), serialiser = (c) => JSON.stringify(c), section = null }) {
     render(
       <Twin9View
+        section={section}
         deps={{
           fetchMeFn: async () => ({ user: { id: 7 } }),
-          fetchMetaFn: async () => metaTwin9({ pipeline: PIPELINE }),
+          fetchMetaFn: async () => meta,
           runEngine,
-          serialiser: (c) => JSON.stringify(c),
+          ...(serialiser ? { serialiser } : {}),
           store,
         }}
       />,
@@ -237,19 +311,45 @@ describe('UC-APP-10 — reprise, annulation et 402 (vue Twin9View, coutures de t
     return store
   }
 
-  it('UC-APP-10-F09 — A3 : une analyse interrompue est détectée (IndexedDB local) ; « Restaurer » reprend portfolio, modèle et consentement', async () => {
+  it('UC-APP-10-F09 — A3 : une analyse interrompue est détectée (IndexedDB local) ; « Restaurer » reprend portfolio, modèle, facturation et recoche le consentement ; « Ignorer » l’efface', async () => {
+    // Offre à deux modèles et promotion ouverte : modèle et facturation restaurés sont discriminants.
+    const meta = metaTwin9({
+      pipeline: PIPELINE,
+      modeles: {
+        'claude-sonnet-5': { etages: ['taggers', 'rapide', 'tribunal'], prix_usd_mtok: [3.6, 18] },
+        'claude-opus-4-8': { etages: ['tribunal'], prix_usd_mtok: [6, 30] },
+      },
+      twin9_cle_perso_ouverte: true,
+      cle_privee_disponible: true,
+    })
     const store = createMemoryTwin9Store()
-    await store.save({ portfolioTexte: PORTFOLIO, modele: 'claude-sonnet-5', facturation: 'platform', phase: 'running', faits: 1, total: 2 })
-    monter({ runEngine: vi.fn(), store })
+    await store.save({ portfolioTexte: PORTFOLIO, modele: 'claude-opus-4-8', facturation: 'cle_privee', phase: 'running', faits: 1, total: 2 })
+    monter({ runEngine: vi.fn(), store, meta })
 
     expect((await screen.findByText(/Une analyse a été interrompue/)).textContent).toContain('Restaurer vos saisies')
+    expect(screen.getByTestId('twin9-modele').value).toBe('claude-sonnet-5')
+    expect(screen.getByTestId('twin9-consentement').checked).toBe(false)
     fireEvent.click(screen.getByRole('button', { name: 'Restaurer les saisies' }))
     expect(screen.getByTestId('twin9-portfolio').value).toBe(PORTFOLIO)
+    expect(screen.getByTestId('twin9-modele').value).toBe('claude-opus-4-8')
+    expect(screen.getByRole('radio', { name: /Ma clé privée Anthropic/ }).checked).toBe(true)
+    // Exception à RG11 : le consentement est recoché sans geste de l'apprenant.
     expect(screen.getByTestId('twin9-consentement').checked).toBe(true)
     expect(screen.queryByText(/Une analyse a été interrompue/)).toBeNull()
+    cleanup()
+
+    // « Ignorer » : la reprise est effacée du stockage local.
+    monter({ runEngine: vi.fn(), store, meta })
+    await screen.findByText(/Une analyse a été interrompue/)
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Ignorer' }))
+    })
+    expect(await store.charger()).toBeUndefined()
+    expect(screen.queryByText(/Une analyse a été interrompue/)).toBeNull()
+    expect(screen.getByTestId('twin9-portfolio').value).toBe('')
   })
 
-  it('UC-APP-10-F10 — A4 : « Annuler » met l’analyse en pause ; « Reprendre » relance avec le MÊME état persistant', async () => {
+  it('UC-APP-10-F10 — A4 puis étape 8 : « Annuler » met l’analyse en pause ; « Reprendre » relance avec le MÊME état persistant ; « Enregistrer » range le résultat (type twin9, privé) dans IndexedDB', async () => {
     let debloquer
     const bloque = new Promise((r) => {
       debloquer = r
@@ -288,34 +388,117 @@ describe('UC-APP-10 — reprise, annulation et 402 (vue Twin9View, coutures de t
     expect(etats[1]).toBe(etats[0]) // même objet d'état : rien n'est recommencé
     expect(runEngine.mock.calls[2][0].mock).toBe(false)
     expect(await store.charger()).toBeUndefined() // run terminé : reprise effacée
+
+    // Étape 8 : enregistrement LOCAL (IndexedDB du navigateur, simulé), jamais le serveur.
+    const idb = createFakeIndexedDb()
+    vi.stubGlobal('indexedDB', idb.factory)
+    try {
+      await act(async () => {
+        fireEvent.click(screen.getByText('Enregistrer dans mes cartographies'))
+      })
+      expect(await screen.findByText('Enregistrée dans mes cartographies ✓')).toBeDefined()
+      const locales = await listCartographies()
+      expect(locales).toHaveLength(1)
+      expect(locales[0]).toMatchObject({ type: 'twin9', visibility: 'privee', serverId: null, titre: 'Twin9 — twin9 (2026-04-06 → 2026-04-09)' })
+    } finally {
+      vi.unstubAllGlobals()
+    }
   })
 
-  it('UC-APP-10-F11 — E5 : solde épuisé en cours d’analyse (402) → pause « Rechargez… », reprise avec le MÊME état', async () => {
-    const etats = []
-    const runEngine = vi
-      .fn()
-      .mockResolvedValueOnce(devisMock)
-      .mockImplementationOnce(async (args) => {
-        etats.push(args.etat)
-        args.etat.journees = { j1: { empreinte: 'e1' } } // journée déjà payée
-        throw new ApiError('Solde insuffisant', 402)
-      })
-      .mockImplementationOnce(async (args) => {
-        etats.push(args.etat)
-        return { etat: args.etat, cartoEvolutive: CARTO }
-      })
-    monter({ runEngine })
+  it('UC-APP-10-F11 — E5 — ANOMALIE figée : avec le VRAI moteur branché sur /api/twin9/appel, un 402 en cours d’analyse est avalé — pas de pause « Rechargez… », le run se termine sur une analyse dégradée', async () => {
+    // Réseau : les 3 premiers appels sont servis (et facturés), puis le solde est épuisé.
+    let n = 0
+    const { calls } = stubFetch({
+      'POST twin9/appel': () => {
+        n += 1
+        return n <= 3
+          ? jsonResponse(200, { sortie: 'sortie fictive', tokens_in: 900, tokens_out: 120, cout_microusd: 5400, stop_reason: 'end_turn' })
+          : jsonResponse(402, { error: 'Solde insuffisant', solde_microusd: 0, requis_estime_microusd: 160_000 })
+      },
+    })
+    // Câblage qui MIME la correction de l'anomalie 1 : la fabrique serveur est
+    // transmise au moteur réel (le devis, lui, reste en mock).
+    const runEngine = vi.fn((a) =>
+      executerTwin9(
+        a.mock
+          ? a
+          : {
+              ...a,
+              backends: makeServerFactory({
+                modele: 'claude-sonnet-5',
+                facturation: 'platform',
+                onDebit: () => {},
+                makeBackend: makeServerBackend,
+              }),
+            },
+      ),
+    )
+    const store = monter({ runEngine, serialiser: null })
     await remplirEtEstimer()
     await act(async () => {
       fireEvent.click(screen.getByTestId('twin9-lancer'))
     })
 
-    expect((await screen.findByTestId('twin9-pause')).textContent).toContain('les journées déjà analysées ne seront pas refacturées')
+    // Comportement ACTUEL : aucune erreur ne remonte ; les résultats s'affichent.
+    expect(await screen.findByRole('heading', { name: /Cartographie évolutive — twin9/ })).toBeDefined()
+    expect(screen.queryByTestId('twin9-pause')).toBeNull()
+    expect(screen.queryByRole('button', { name: 'Réessayer' })).toBeNull()
+    const refus = appelsTwin9(calls).length - 3
+    expect(refus).toBeGreaterThan(0)
+    // …et la reprise locale est effacée comme après un run réussi.
+    expect(await store.charger()).toBeUndefined()
+  })
+
+  it('UC-APP-10-F25 — A1 + A4, VRAI moteur en démonstration : annulation puis reprise sur le MÊME état (journées reprises) — ANOMALIE figée : la démo écrit puis efface le « run courant » local', async () => {
+    // Une vraie analyse interrompue est mémorisée localement AVANT la démonstration.
+    const store = createMemoryTwin9Store()
+    await store.save({ portfolioTexte: PORTFOLIO, modele: 'claude-sonnet-5', facturation: 'platform', phase: 'running', faits: 1, total: 2 })
+
+    const etats = []
+    const resultats = []
+    let lancement = 0
+    const runEngine = vi.fn(async (a) => {
+      if (a.onProgress === undefined) return executerTwin9(a) // devis
+      lancement += 1
+      etats.push(a.etat)
+      const annulerAuDeuxieme = lancement === 1
+      let progressions = 0
+      await new Promise((r) => setTimeout(r, 0)) // la vue affiche « Annuler »
+      const res = await executerTwin9({
+        ...a,
+        onProgress: (...p) => {
+          progressions += 1
+          if (annulerAuDeuxieme && progressions === 2) fireEvent.click(screen.getByRole('button', { name: 'Annuler' }))
+          return a.onProgress(...p)
+        },
+      })
+      resultats.push(res)
+      return res
+    })
+    monter({ runEngine, store, section: 'demo', serialiser: null })
+
+    expect((await screen.findByTestId('twin9-mode-demo')).textContent).toContain('aucun appel réseau, aucun débit')
+    fireEvent.click(screen.getByTestId('twin9-consentement'))
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('twin9-estimer'))
+    })
+    await screen.findByTestId('twin9-devis')
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('twin9-lancer'))
+    })
+    expect((await screen.findByTestId('twin9-pause')).textContent).toContain('Analyse annulée. Vous pouvez reprendre.')
+
+    // ANOMALIE (a) : la démonstration a ÉCRASÉ la reprise réelle par le portfolio fictif.
+    expect((await store.charger()).portfolioTexte).toBe(DEMO_PORTFOLIO)
+
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Reprendre l’analyse' }))
     })
-    await waitFor(() => expect(screen.getByText(/Synthèse de reprise/)).toBeDefined())
+    expect(await screen.findByTestId('resultats-demo')).toBeDefined()
     expect(etats[1]).toBe(etats[0])
-    expect(etats[1].journees).toEqual({ j1: { empreinte: 'e1' } })
+    expect(resultats.at(-1).metrics.n_journees_reprises_etat).toBeGreaterThanOrEqual(1)
+    // ANOMALIE (b) : la fin de la démonstration efface le « run courant » — la
+    // vraie analyse interrompue n'est plus proposée à la reprise.
+    expect(await store.charger()).toBeUndefined()
   })
 })

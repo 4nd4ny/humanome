@@ -7,6 +7,7 @@
 // PayPal) ou dépend du mois courant (liste des factures), la vue CreditView
 // est rendue seule avec ses coutures `redirect` / `now` — le réseau reste le
 // fetch global. PayPal n'est jamais appelé : ce sont les routes API qui le font.
+import { StrictMode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
@@ -51,9 +52,11 @@ function routes(overrides = {}) {
   }
 }
 
-function openApp(hash = '#/compte/credit', user = { id: 7, roles: ['apprenant'] }) {
+function openApp(hash = '#/compte/credit', user = { id: 7, roles: ['apprenant'] }, { strict = false } = {}) {
   window.location.hash = hash
-  render(<App lib={fakeLib} fetchMeFn={async () => ({ user })} />)
+  const app = <App lib={fakeLib} fetchMeFn={async () => ({ user })} />
+  // StrictMode : comme web/src/main.jsx (effets montés, démontés puis remontés en développement).
+  render(strict ? <StrictMode>{app}</StrictMode> : app)
 }
 
 const posts = (calls, path) => calls.filter((c) => c.key === `POST ${path}`)
@@ -109,14 +112,14 @@ describe('UC-APP-11 — l’apprenant gère son crédit prépayé', () => {
     expect(screen.getByRole('button', { name: 'Redirection…' }).disabled).toBe(true)
   })
 
-  it('UC-APP-11-F03 — nominal (retour PayPal) : capture UNE fois après la session, nouveau solde, paramètres retirés du lien', async () => {
+  it('UC-APP-11-F03 — nominal (retour PayPal) : capture UNE fois après la session (même sous StrictMode), nouveau solde, paramètres retirés du lien', async () => {
     const { calls } = stubFetch(
       routes({
         'POST twin9/credit/paypal/capturer': jsonResponse(200, { solde_microusd: 14_500_000 }),
         'GET twin9/credit': jsonResponse(200, { ...CREDIT, solde_microusd: 14_500_000 }),
       }),
     )
-    openApp('#/compte/credit?paypal=retour&token=ORDER-77')
+    openApp('#/compte/credit?paypal=retour&token=ORDER-77', undefined, { strict: true })
 
     expect((await screen.findByTestId('paypal-succes')).textContent).toMatch(/Recharge confirmée\.\s+Nouveau solde\s:\s14,50 \$/)
     const captures = posts(calls, 'twin9/credit/paypal/capturer')
@@ -127,6 +130,12 @@ describe('UC-APP-11 — l’apprenant gère son crédit prépayé', () => {
     expect(calls.findIndex((c) => c.key === 'GET auth/me')).toBeLessThan(calls.indexOf(captures[0]))
     expect(window.location.hash).toBe('#/compte/credit')
     expect((await screen.findByTestId('credit-solde')).textContent).toBe('14,50 $')
+    // Nouvel événement de session (rendu supplémentaire) : toujours une seule capture.
+    await act(async () => {
+      window.dispatchEvent(new Event('humanome:auth'))
+    })
+    await waitFor(() => expect(screen.getByTestId('credit-solde').textContent).toBe('14,50 $'))
+    expect(posts(calls, 'twin9/credit/paypal/capturer')).toHaveLength(1)
   })
 
   it('UC-APP-11-F04 — nominal (facture) : choix d’un mois → facture récapitulative générée, imprimable', async () => {
@@ -205,10 +214,10 @@ describe('UC-APP-11 — l’apprenant gère son crédit prépayé', () => {
     expect((await screen.findByText(/Copie statique du site/)).textContent).toContain('https://humanome.xyz')
   })
 
-  it('UC-APP-11-F10 — E6 / E7 : création d’ordre en échec (503) et remboursement refusé (422) → messages du serveur affichés', async () => {
+  it('UC-APP-11-F10 — E6 / E7 : création d’ordre en échec (PayPal en erreur, 502) et remboursement refusé (422) → messages du serveur affichés', async () => {
     stubFetch(
       routes({
-        'POST twin9/credit/paypal/creer': jsonResponse(503, { error: 'Recharge PayPal non configurée' }),
+        'POST twin9/credit/paypal/creer': jsonResponse(502, { error: 'Le service PayPal a renvoyé une erreur, réessayez plus tard.' }),
         'POST twin9/credit/rembourser': jsonResponse(422, { error: 'Aucun solde remboursable pour le moment.' }),
       }),
     )
@@ -219,7 +228,7 @@ describe('UC-APP-11 — l’apprenant gère son crédit prépayé', () => {
     await act(async () => {
       fireEvent.click(premier)
     })
-    expect(screen.getByText('Recharge PayPal non configurée').getAttribute('role')).toBe('alert')
+    expect(screen.getByText('Le service PayPal a renvoyé une erreur, réessayez plus tard.').getAttribute('role')).toBe('alert')
     expect(redirect).not.toHaveBeenCalled()
     expect(screen.getAllByRole('button', { name: 'Recharger' })[0].disabled).toBe(false)
 

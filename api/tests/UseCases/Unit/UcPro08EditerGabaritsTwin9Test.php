@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Unit;
 
+use Humanome\Auth\Session;
 use Humanome\Auth\Users;
 use Humanome\DbSessionHandler;
 use Humanome\Middleware\RequireRole;
@@ -52,6 +53,26 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         self::$pdo->exec('DELETE FROM users');
     }
 
+    protected function tearDown(): void
+    {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_abort();
+        }
+        session_id('');
+        unset($_COOKIE[DbSessionHandler::SESSION_NAME]);
+        TestDb::restoreEnv();
+    }
+
+    /** @param list<string> $roles */
+    private static function roles(int $userId, array $roles): void
+    {
+        self::$pdo->prepare('DELETE FROM user_roles WHERE user_id = ?')->execute([$userId]);
+        $bind = self::$pdo->prepare('INSERT INTO user_roles (user_id, role_id) SELECT ?, id FROM roles WHERE name = ?');
+        foreach ($roles as $role) {
+            $bind->execute([$userId, $role]);
+        }
+    }
+
     private static function user(string $email): int
     {
         self::$pdo->prepare('INSERT INTO users (email, password_hash, display_name) VALUES (?, ?, ?)')
@@ -60,7 +81,7 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         return (int) self::$pdo->lastInsertId();
     }
 
-    #[TestDox('UC-PRO-08-U05 — écriture : created / updated / unchanged ; l’ancien contenu est archivé au nom de SON auteur')]
+    #[TestDox('UC-PRO-08-U05 — écriture : created / updated / unchanged ; l’ancien contenu est archivé au nom de SON auteur ; compte supprimé → auteur NULL, versions intactes')]
     public function testU05VersionedWritesKeepAuthorship(): void
     {
         $camille = self::user('camille@example.org');
@@ -83,6 +104,16 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         self::assertArrayNotHasKey('content', $repo->versions('lourd/20-greffier')[0]);
         self::assertSame('V1 FICTIVE {$A}', $repo->version('lourd/20-greffier', 1)['content']);
         self::assertNull($repo->version('lourd/20-greffier', 9));
+
+        // RGPD : la suppression d'un compte met l'auteur à NULL (ON DELETE SET NULL),
+        // le gabarit et son historique appartiennent à la plateforme.
+        self::$pdo->exec('DELETE FROM users WHERE id = ' . $camille);
+        self::$pdo->exec('DELETE FROM users WHERE id = ' . $noe);
+        $v2 = self::$pdo->query("SELECT content, created_by FROM twin9_protocole_versions WHERE name = 'lourd/20-greffier' AND version = 2")->fetch();
+        self::assertSame(['content' => 'V2 FICTIVE {$A} {$B}', 'created_by' => null], $v2);
+        $vivant = self::$pdo->query("SELECT content, updated_by FROM twin9_protocole WHERE name = 'lourd/20-greffier'")->fetch();
+        self::assertSame(['content' => 'V3 FICTIVE {$C}', 'updated_by' => null], $vivant);
+        self::assertSame([2, 1], array_column($repo->versions('lourd/20-greffier'), 'version'));
     }
 
     #[TestDox('UC-PRO-08-U06 — restauration : l’état vivant est archivé d’abord, rien n’est réécrit ; identique → unchanged ; inconnu → 404')]
@@ -113,7 +144,7 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         }
     }
 
-    #[TestDox('UC-PRO-08-U07 — validations : nom hiérarchique [a-z0-9_-] par segments, 190 car. max ; contenu non vide, strictement sous 256 Ko')]
+    #[TestDox('UC-PRO-08-U07 — validations : nom hiérarchique [a-z0-9_-] par segments, 190 car. max (anomalie figée : saut de ligne final accepté) ; contenu non vide, strictement sous 256 Ko')]
     public function testU07NameAndContentValidation(): void
     {
         foreach (['lourd/20-greffier', 'tagger/1-tag-pole', 'Scan/00_Condense', 'a'] as $ok) {
@@ -127,6 +158,10 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
                 self::assertSame([422, 'Nom de gabarit invalide'], [$e->getStatusCode(), $e->getMessage()]);
             }
         }
+        // ANOMALIE figée : NAME_PATTERN finit par « $ » sans le modificateur D — en
+        // PCRE, « $ » accepte un saut de ligne final. Ce nom devrait être refusé (RG2).
+        ProtocoleRepository::assertValidName("lourd/20-greffier\n");
+        self::assertSame(1, preg_match(ProtocoleRepository::NAME_PATTERN, "lourd/20-greffier\n"));
 
         ProtocoleRepository::assertValidContent(str_repeat('a', ProtocoleRepository::MAX_CONTENT_BYTES - 1));
         foreach ([["  \n\t", 'Contenu de gabarit requis'], [str_repeat('a', 262144), 'Gabarit trop volumineux (maximum 256 Ko)']] as [$content, $message]) {
@@ -163,33 +198,56 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         self::assertSame(['name', 'longueur', 'variables', 'updated_at'], array_keys($list[0]));
     }
 
-    #[TestDox('UC-PRO-08-U09 — garde RequireRole::all (admin ∧ promptologue) : sans session → 401 avant tout traitement ; au moins un rôle exigé')]
-    public function testU09ConjunctiveGuardWithoutSession(): void
+    #[TestDox('UC-PRO-08-U09 — garde RequireRole::all (admin ∧ promptologue) : sans session → 401 ; un seul des deux rôles (admin OU promptologue) → 403 ; les deux → passage avec userId et rôles ; au moins un rôle exigé')]
+    public function testU09ConjunctiveGuard(): void
     {
+        TestDb::overrideEnv();
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_abort();
+        }
+        session_id('');
+        unset($_COOKIE[DbSessionHandler::SESSION_NAME]);
+
         $handler = new class () implements RequestHandlerInterface {
-            public bool $called = false;
+            public ?ServerRequestInterface $seen = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
-                $this->called = true;
+                $this->seen = $request;
 
                 return new Response(200);
             }
         };
-        unset($_COOKIE[DbSessionHandler::SESSION_NAME]);
-        $response = RequireRole::all('admin', 'promptologue')->process(
-            (new ServerRequestFactory())->createServerRequest('GET', '/api/twin9/admin/protocole'),
-            $handler,
-        );
+        $guard = RequireRole::all('admin', 'promptologue');
+        $request = (new ServerRequestFactory())->createServerRequest('GET', '/api/twin9/admin/protocole');
+
+        $response = $guard->process($request, $handler);
         self::assertSame(401, $response->getStatusCode());
         self::assertSame('{"error":"Authentification requise"}', (string) $response->getBody());
-        self::assertFalse($handler->called);
+        self::assertNull($handler->seen);
+
+        // Session réelle ; les rôles sont relus en base à chaque requête.
+        $camille = self::user('camille@example.org');
+        Session::openForUser($camille);
+        foreach ([['admin'], ['promptologue'], ['admin', 'apprenant']] as $roles) {
+            self::roles($camille, $roles);
+            $refus = $guard->process($request, $handler);
+            self::assertSame(403, $refus->getStatusCode(), implode('+', $roles));
+            self::assertSame(['error' => 'Rôle insuffisant'], json_decode((string) $refus->getBody(), true));
+            self::assertNull($handler->seen);
+        }
+
+        self::roles($camille, ['admin', 'promptologue', 'apprenant']);
+        $ok = $guard->process($request, $handler);
+        self::assertSame(200, $ok->getStatusCode());
+        self::assertSame($camille, $handler->seen?->getAttribute('userId'));
+        self::assertEqualsCanonicalizing(['admin', 'apprenant', 'promptologue'], $handler->seen?->getAttribute('roles'));
 
         $this->expectException(\InvalidArgumentException::class);
         RequireRole::all();
     }
 
-    #[TestDox('UC-PRO-08-U10 — banc d’essai : rendu avec les seules variables saisies (fiches NON injectées), absentes laissées en place et listées')]
+    #[TestDox('UC-PRO-08-U10 — banc d’essai : rendu en une passe avec les seules variables saisies (fiches NON injectées), absentes laissées en place et listées ; anomalie figée : un motif {$X} apporté par une VALEUR est listé comme non résolu')]
     public function testU10BenchRendering(): void
     {
         $repo = new ProtocoleRepository(self::$pdo);
@@ -201,9 +259,16 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
         self::assertStringContainsString('{$COMPETENCE_FICHE}', $out['rendu']);
         self::assertStringNotContainsString('FICHE FICTIVE', $out['rendu'], 'le banc n’injecte pas les fiches');
         self::assertSame(['COMPETENCE_FICHE', 'POLE_FICHES'], $out['non_resolues']);
+
+        // Une seule passe : « {$EXTRAIT} » saisi comme VALEUR de CODE reste littéral…
+        $passe = $repo->render('lourd/20-greffier', ['CODE' => '{$EXTRAIT}', 'EXTRAIT' => 'e']);
+        self::assertStringContainsString('Code {$EXTRAIT} — extrait : e', $passe['rendu']);
+        // …mais ANOMALIE figée : non_resolues est calculé sur le RENDU, EXTRAIT (pourtant
+        // fourni) y figure. Même cause que l'anomalie 2 de UC-APP-10 (422 sur /appel).
+        self::assertSame(['COMPETENCE_FICHE', 'POLE_FICHES', 'EXTRAIT'], $passe['non_resolues']);
     }
 
-    #[TestDox('UC-PRO-08-U11 — import (briques) : structure du référentiel et fiches nettoyées, réglages du pipeline stockés, Twin9 activé')]
+    #[TestDox('UC-PRO-08-U11 — import (briques) : fiches et structure du référentiel NETTOYÉES (aucun fiche_md ni en-tête dans le référentiel), réglages du pipeline stockés, Twin9 activé')]
     public function testU11ImportBuildingBlocks(): void
     {
         $settings = new SettingsRepository(self::$pdo);
@@ -222,9 +287,25 @@ final class UcPro08EditerGabaritsTwin9Test extends TestCase
 
         $config = new Twin9Config($settings);
         $config->update(['enabled' => true, 'pipeline' => ['seuils_consensus' => ['conf_min' => 0.4]]]);
-        $config->setReferentiel(TwinSupport::referentielFictif());
         self::assertTrue($config->isEnabled());
         self::assertEquals(['seuils_consensus' => ['conf_min' => 0.4]], $config->pipeline());
-        self::assertSame(['1.01', '1.02'], array_column($config->referentiel()[0]['competences'], 'code'));
+
+        // Référentiel : seule la structure non secrète (num/nom, code/nom) est gardée —
+        // aucun fiche_md, aucun en-tête de pôle ne peut atteindre /api/twin9/meta.
+        $config->setReferentiel([
+            ['num' => '1', 'nom' => 'TÊTE — Penser & Comprendre', 'header' => 'PRÉAMBULE SECRET', 'competences' => [
+                ['code' => '1.01', 'nom' => 'Pensée critique', 'fiche_md' => 'FICHE FICTIVE'],
+                ['code' => '1.02', 'fiche_md' => 'sans nom : jetée'],
+                'pas une compétence',
+            ]],
+            'pas un pôle',
+        ]);
+        self::assertEquals(
+            [['num' => 1, 'nom' => 'TÊTE — Penser & Comprendre', 'competences' => [['code' => '1.01', 'nom' => 'Pensée critique']]]],
+            $config->referentiel(),
+        );
+        $brut = (string) json_encode($config->referentiel(), JSON_UNESCAPED_UNICODE);
+        self::assertStringNotContainsString('FICHE FICTIVE', $brut);
+        self::assertStringNotContainsString('PRÉAMBULE SECRET', $brut);
     }
 }

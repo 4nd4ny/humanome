@@ -35,7 +35,7 @@ describe('UC-APP-09 — route', () => {
 })
 
 describe('UC-APP-09 — paquet de prompts PUBLIC', () => {
-  it('UC-APP-09-U14 — chargé depuis l’URL publique par défaut ; modèle cible par défaut ; HTTP en échec → message explicite', async () => {
+  it('UC-APP-09-U14 — chargé depuis l’URL publique par défaut ; modèle cible par défaut ; HTTP en échec ou paquet incomplet → message explicite', async () => {
     const { modeleCibleDefaut, ...sansDefaut } = TWIN6_PACKAGE
     expect(modeleCibleDefaut).toBe('claude-sonnet-5')
     const fetchFn = vi.fn(async () => jsonResponse(200, sansDefaut))
@@ -48,6 +48,12 @@ describe('UC-APP-09 — paquet de prompts PUBLIC', () => {
 
     const absent = vi.fn(async () => jsonResponse(404, { error: 'absent' }))
     await expect(loadTwin6Package({ fetchFn: absent })).rejects.toThrow('Paquet Twin6 introuvable (404)')
+
+    // Paquet servi mais incomplet (kairos manquant) : refusé explicitement (E6).
+    const incomplet = vi.fn(async () => jsonResponse(200, { scanPole: 'x', fiches: {} }))
+    await expect(loadTwin6Package({ fetchFn: incomplet })).rejects.toThrow(
+      'Paquet Twin6 invalide (scanPole/kairos/fiches attendus)',
+    )
   })
 })
 
@@ -182,7 +188,7 @@ describe('UC-APP-09 — offre et référentiel lus dans /api/twin9/meta', () => 
 })
 
 describe('UC-APP-09 — clé enregistrée et garde-fou de solde', () => {
-  it('UC-APP-09-U28 — clés du profil : liste sans la clé (GET api/keys), révélation au seul propriétaire (GET api/keys/anthropic)', async () => {
+  it('UC-APP-09-U28 — clés du profil : liste sans la clé (GET api/keys), révélation à la demande (GET api/keys/anthropic) — la garde propriétaire relève de UC-CPT-04', async () => {
     const fetchFn = vi.fn(async (url) =>
       url === 'api/keys'
         ? jsonResponse(200, [{ provider: 'anthropic', createdAt: '2026-07-15' }])

@@ -15,6 +15,7 @@ import {
   fetchCredit,
   fetchDepenses,
   fetchFacture,
+  formatUsd,
   rembourserSolde,
 } from '../../../src/api/twin9.js'
 import FactureTwin9 from '../../../src/views/twin9/FactureTwin9.jsx'
@@ -30,6 +31,16 @@ describe('UC-APP-11 — route', () => {
     expect(parseHash('#/compte/credit')).toEqual({ name: 'account', section: 'credit' })
     expect(parseHash('#/compte/credit?paypal=retour&token=ORDER-1')).toEqual({ name: 'account', section: 'credit' })
     expect(parseHash('#/compte/credit?paypal=annule')).toEqual({ name: 'account', section: 'credit' })
+  })
+})
+
+describe('UC-APP-11 — montants', () => {
+  it('UC-APP-11-U16 — formatUsd (RG1) : micro-USD → « x,yy $ », 4 décimales sous le centime, signe conservé', () => {
+    expect(formatUsd(4_200)).toBe('0,0042 $')
+    expect(formatUsd(0)).toBe('0,00 $')
+    expect(formatUsd(-120_000)).toBe('-0,12 $')
+    expect(formatUsd(22_340_000)).toBe('22,34 $')
+    expect(formatUsd(10_000)).toBe('0,01 $')
   })
 })
 

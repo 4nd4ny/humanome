@@ -52,7 +52,7 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         parent::tearDown();
     }
 
-    /** Précondition : le script de déploiement importe les gabarits (A3). */
+    /** Précondition : le script d'import scripts/twin9/import-protocole.mjs (X-Migrate-Token) importe les gabarits (A4). */
     private function importer(array $files, array $extra = []): ResponseInterface
     {
         $this->cookieSid = null;
@@ -80,6 +80,8 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         $nouveau = TwinSupport::GABARIT_GREFFIER . "\nPièces : {\$PIECES}";
         $put = self::json($this->atelier('PUT', '/protocole/' . self::ENC, ['content' => $nouveau]));
         self::assertSame(['name' => 'lourd/20-greffier', 'variables' => ['COMPETENCE_FICHE', 'POLE_FICHES', 'CODE', 'EXTRAIT', 'PIECES'], 'status' => 'updated'], $put);
+        // A1 : même contenu renvoyé → « unchanged », aucune version créée.
+        self::assertSame('unchanged', self::json($this->atelier('PUT', '/protocole/' . self::ENC, ['content' => $nouveau]))['status']);
 
         $versions = self::json($this->atelier('GET', '/protocole/' . self::ENC . '/versions'));
         self::assertSame('lourd/20-greffier', $versions['name']);
@@ -90,10 +92,19 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         self::assertSame(['updated', 1], [$restore['status'], $restore['restored_from']]);
         self::assertSame(TwinSupport::GABARIT_GREFFIER, self::json($this->atelier('GET', '/protocole/' . self::ENC))['content']);
         self::assertSame([2, 1], array_column(self::json($this->atelier('GET', '/protocole/' . self::ENC . '/versions'))['versions'], 'version'));
+        // A2 : restaurer une version identique au vivant ne crée rien.
+        $encore = self::json($this->atelier('POST', '/protocole/' . self::ENC . '/restore', ['version' => 1]));
+        self::assertSame(['unchanged', 1], [$encore['status'], $encore['restored_from']]);
+        self::assertSame([2, 1], array_column(self::json($this->atelier('GET', '/protocole/' . self::ENC . '/versions'))['versions'], 'version'));
 
+        // A3 : le banc d'essai ne fait AUCUN appel au modèle et ne débite rien.
+        $http = new LlmFakeHttpClient();
+        LlmRuntime::setHttpClient($http);
         $rendu = self::json($this->atelier('POST', '/tester', ['name' => 'lourd/20-greffier', 'variables' => ['CODE' => '1.01', 'EXTRAIT' => 'x']]));
         self::assertStringContainsString('Code 1.01 — extrait : x', $rendu['rendu']);
         self::assertSame(['COMPETENCE_FICHE', 'POLE_FICHES'], $rendu['non_resolues'], 'le banc d’essai n’injecte pas les fiches');
+        self::assertSame([], $http->requests);
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM twin9_credit_events')->fetchColumn());
         self::assertSame($this->atelier['id'], (int) self::$pdo->query("SELECT updated_by FROM twin9_protocole WHERE name = 'lourd/20-greffier'")->fetchColumn(), 'édition attribuée');
     }
 
@@ -120,7 +131,7 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         self::assertSame('Nouvelle consigne FICTIVE journal', json_decode((string) $http->requests[0]['body'], true)['messages'][0]['content']);
     }
 
-    #[TestDox('UC-PRO-08-F10 — A4 : import technique (X-Migrate-Token) — gabarits, réglages, référentiel, fiches ; active Twin9 ; réimport identique sans nouvelle version')]
+    #[TestDox('UC-PRO-08-F10 — A4 : import technique (X-Migrate-Token) — gabarits, réglages, référentiel, fiches (injectées ensuite dans les appels) ; active Twin9 ; réimport identique sans nouvelle version')]
     public function testF10TechnicalImport(): void
     {
         $response = $this->importer(
@@ -131,13 +142,31 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
 
         $config = new Twin9Config(new SettingsRepository(Db::get()));
         self::assertTrue($config->isEnabled());
-        self::assertSame(['taille_aleatoire' => 5], $config->pipeline()['jury']);
+        self::assertEquals(['jury' => ['taille_aleatoire' => 5]], $config->pipeline(), 'colonne JSON : même contenu');
         $apprenant = $this->registerAs('lea@example.org', 'Léa', ['apprenant']);
         $metaRaw = (string) $this->as_($apprenant, 'GET', '/api/twin9/meta')->getBody();
         $meta = json_decode($metaRaw, true);
         self::assertSame(['lourd/20-greffier', 'tagger/1-tag-pole'], array_column($meta['etapes'], 'name'));
         self::assertSame('CŒUR — Relier & Naviguer', $meta['referentiel'][1]['nom']);
         self::assertStringNotContainsString('FICHE FICTIVE', $metaRaw, 'les fiches restent serveur');
+
+        // Les fiches importées sont bien STOCKÉES : le serveur les injecte dans l'appel d'un apprenant.
+        $http = new LlmFakeHttpClient();
+        LlmRuntime::setHttpClient($http);
+        TestDb::setEnv('ANTHROPIC_API_KEY', TwinSupport::PLATFORM_KEY);
+        (new CreditService(Db::get()))->topup($apprenant['id'], 5_000_000, 'ORDER-PRO-08-F10');
+        TwinSupport::queueAnthropic($http, 'Dossier fictif.');
+        $appel = $this->as_($apprenant, 'POST', '/api/twin9/appel', [
+            'etape' => 'lourd/20-greffier',
+            'variables' => ['CODE' => '1.01', 'EXTRAIT' => 'x', 'POLE_NUM' => 1],
+            'modele' => 'claude-sonnet-5',
+            'etage' => 'rapide',
+            'facturation' => 'platform',
+        ]);
+        self::assertSame(200, $appel->getStatusCode(), (string) $appel->getBody());
+        $prompt = json_decode((string) $http->requests[0]['body'], true)['messages'][0]['content'];
+        self::assertStringContainsString('Fiche : ' . TwinSupport::FICHE_SECRETE, $prompt);
+        self::assertStringContainsString('PRÉAMBULE FICTIF DU PÔLE 1', $prompt);
 
         self::assertSame(['imported' => 2], self::json($this->importer(['lourd/20-greffier' => TwinSupport::GABARIT_GREFFIER, 'tagger/1-tag-pole' => TwinSupport::GABARIT_TAG])));
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM twin9_protocole_versions')->fetchColumn());
@@ -171,16 +200,33 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         self::assertSame('Greffier FICTIF modifié', (string) self::$pdo->query("SELECT content FROM twin9_protocole WHERE name = 'lourd/20-greffier'")->fetchColumn());
     }
 
-    #[TestDox('UC-PRO-08-F12 — E2 : gabarit ou version inconnus → 404 générique (lecture, historique, restauration, banc d’essai)')]
+    #[TestDox('UC-PRO-08-F12 — E2 : gabarit ou version inconnus → 404 générique (lecture, historique, restauration, banc d’essai, y compris nom hors format) ; A5 : un PUT sur un nom valide inconnu CRÉE le gabarit')]
     public function testF12UnknownTemplateOrVersion(): void
     {
         $this->importer(['lourd/20-greffier' => TwinSupport::GABARIT_GREFFIER]);
-        self::assertSame(['error' => 'Gabarit introuvable'], self::json($this->atelier('GET', '/protocole/lourd%2Finconnu')));
-        self::assertSame(404, $this->atelier('GET', '/protocole/lourd%2Finconnu/versions')->getStatusCode());
-        self::assertSame(['error' => 'Version introuvable'], self::json($this->atelier('GET', '/protocole/' . self::ENC . '/versions/3')));
-        self::assertSame(['error' => 'Version introuvable'], self::json($this->atelier('POST', '/protocole/' . self::ENC . '/restore', ['version' => 3])));
-        self::assertSame(['error' => 'Gabarit introuvable'], self::json($this->atelier('POST', '/protocole/lourd%2Finconnu/restore', ['version' => 1])));
-        self::assertSame(['error' => 'Gabarit introuvable'], self::json($this->atelier('POST', '/tester', ['name' => 'lourd/inconnu'])));
+        foreach ([
+            ['GET', '/protocole/lourd%2Finconnu', null, 'Gabarit introuvable'],
+            ['GET', '/protocole/lourd%2Finconnu/versions', null, 'Gabarit introuvable'],
+            ['GET', '/protocole/' . self::ENC . '/versions/3', null, 'Version introuvable'],
+            ['POST', '/protocole/' . self::ENC . '/restore', ['version' => 3], 'Version introuvable'],
+            ['POST', '/protocole/lourd%2Finconnu/restore', ['version' => 1], 'Gabarit introuvable'],
+            ['POST', '/tester', ['name' => 'lourd/inconnu'], 'Gabarit introuvable'],
+            // Nom HORS FORMAT : restauration et banc d'essai répondent 404 (get() avant toute validation), pas 422.
+            ['POST', '/protocole/lourd%2F%2Fdouble/restore', ['version' => 1], 'Gabarit introuvable'],
+            ['POST', '/tester', ['name' => 'lourd//double'], 'Gabarit introuvable'],
+        ] as [$method, $path, $body, $message]) {
+            $response = $this->atelier($method, $path, $body);
+            self::assertSame(404, $response->getStatusCode(), "$method $path");
+            self::assertSame(['error' => $message], self::json($response));
+        }
+
+        // A5 (comportement figé) : l'étape 4 n'a pas de 404 — un PUT sur un nom
+        // valide inconnu crée le gabarit, aussitôt appelable par /api/twin9/appel.
+        $cree = $this->atelier('PUT', '/protocole/lourd%2Finconnu', ['content' => 'Gabarit FICTIF créé par l’API {$CODE}']);
+        self::assertSame(200, $cree->getStatusCode());
+        self::assertSame(['name' => 'lourd/inconnu', 'variables' => ['CODE'], 'status' => 'created'], self::json($cree));
+        self::assertSame($this->atelier['id'], (int) self::$pdo->query("SELECT updated_by FROM twin9_protocole WHERE name = 'lourd/inconnu'")->fetchColumn());
+        self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM twin9_protocole_versions WHERE name = 'lourd/inconnu'")->fetchColumn());
     }
 
     #[TestDox('UC-PRO-08-F13 — E3 : saisies invalides → 422 (contenu vide ou ≥ 256 Ko, nom invalide, version manquante, banc sans nom) ; rien n’est écrit')]
@@ -214,19 +260,88 @@ final class UcPro08EditerGabaritsTwin9Test extends CartographeTestCase
         self::assertSame(404, $this->importer(['lourd/20-greffier' => 'x'])->getStatusCode());
         TestDb::setEnv('MIGRATE_TOKEN', self::TOKEN);
         $this->cookieSid = null;
-        self::assertSame(403, $this->request('POST', '/api/admin/twin9/import', ['files' => ['a' => 'x']], ['X-Migrate-Token' => 'faux'])->getStatusCode());
+        $faux = $this->request('POST', '/api/admin/twin9/import', ['files' => ['a' => 'x']], ['X-Migrate-Token' => 'faux']);
+        self::assertSame(403, $faux->getStatusCode());
+        self::assertSame(['error' => 'Forbidden'], self::json($faux));
         // Une session d'atelier ne remplace pas le jeton de déploiement.
         $session = $this->as_($this->atelier, 'POST', '/api/admin/twin9/import', ['files' => ['a' => 'x']]);
+        self::assertSame(403, $session->getStatusCode());
         self::assertSame(['error' => 'Forbidden'], self::json($session));
-        self::assertSame(['error' => 'Body must contain a non-empty files map'], self::json($this->importer([])));
+        $vide = $this->importer([]);
+        self::assertSame(400, $vide->getStatusCode());
+        self::assertSame(['error' => 'Body must contain a non-empty files map'], self::json($vide));
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM twin9_protocole')->fetchColumn());
 
-        // Comportement ACTUEL : les fichiers valides AVANT le fichier invalide
-        // sont écrits (pas de transaction), et Twin9 n'est pas activé.
+        // Comportement ACTUEL (premier import) : les fichiers valides AVANT le
+        // fichier invalide sont écrits (pas de transaction), et Twin9 n'est pas
+        // activé ; le 422 cite le NOM du fichier fautif (destiné au détenteur du jeton).
         $partiel = $this->importer(['tagger/1-tag-pole' => TwinSupport::GABARIT_TAG, 'lourd/20-greffier' => ['pas', 'une', 'chaine']]);
         self::assertSame(422, $partiel->getStatusCode());
         self::assertSame('Fichier invalide : lourd/20-greffier', self::json($partiel)['error']);
         self::assertSame(['tagger/1-tag-pole'], self::$pdo->query('SELECT name FROM twin9_protocole')->fetchAll(\PDO::FETCH_COLUMN));
         self::assertFalse((new Twin9Config(new SettingsRepository(Db::get())))->isEnabled());
+
+        // RÉIMPORT (cas courant en production) : Twin9 déjà activé le RESTE, et
+        // sert un mélange de gabarits neufs et anciens ; référentiel non mis à jour.
+        self::assertSame(200, $this->importer(
+            ['tagger/1-tag-pole' => 'Tag FICTIF v1 {$TEXTE_JOURNEE}', 'lourd/20-greffier' => 'Greffier FICTIF v1 {$CODE}', 'merge/04-rapporteur' => 'Rapporteur FICTIF v1'],
+            ['referentiel' => TwinSupport::referentielFictif()],
+        )->getStatusCode());
+        $second = $this->importer(
+            ['tagger/1-tag-pole' => 'Tag FICTIF v2 {$TEXTE_JOURNEE}', 'lourd/20-greffier' => 42, 'merge/04-rapporteur' => 'Rapporteur FICTIF v2'],
+            ['referentiel' => [['num' => 9, 'nom' => 'PÔLE FICTIF NEUF', 'competences' => []]]],
+        );
+        self::assertSame(422, $second->getStatusCode());
+        $config = new Twin9Config(new SettingsRepository(Db::get()));
+        self::assertTrue($config->isEnabled(), 'Twin9 reste ACTIVÉ après un réimport partiel');
+        $contenus = self::$pdo->query('SELECT name, content FROM twin9_protocole ORDER BY name')->fetchAll(\PDO::FETCH_KEY_PAIR);
+        self::assertSame([
+            'lourd/20-greffier' => 'Greffier FICTIF v1 {$CODE}',
+            'merge/04-rapporteur' => 'Rapporteur FICTIF v1',
+            'tagger/1-tag-pole' => 'Tag FICTIF v2 {$TEXTE_JOURNEE}',
+        ], $contenus);
+        self::assertSame('TÊTE — Penser & Comprendre', $config->referentiel()[0]['nom'], 'référentiel inchangé');
+    }
+
+    #[TestDox('UC-PRO-08-F15 — E6 : session d’atelier valide mais jeton CSRF absent ou faux → 403 sur PUT, restauration et banc d’essai ; rien n’est écrit')]
+    public function testF15CsrfTokenIsRequiredOnAtelierWrites(): void
+    {
+        $this->importer(['lourd/20-greffier' => TwinSupport::GABARIT_GREFFIER]);
+        $this->atelier('PUT', '/protocole/' . self::ENC, ['content' => 'Greffier FICTIF v2']);
+        foreach ([
+            ['PUT', '/protocole/' . self::ENC, ['content' => 'écrasement']],
+            ['POST', '/protocole/' . self::ENC . '/restore', ['version' => 1]],
+            ['POST', '/tester', ['name' => 'lourd/20-greffier', 'variables' => []]],
+        ] as [$method, $path, $body]) {
+            foreach ([[], ['X-CSRF-Token' => 'jeton-faux']] as $entetes) {
+                $this->cookieSid = $this->atelier['sid'];
+                $response = $this->request($method, '/api/twin9/admin' . $path, $body, $entetes);
+                self::assertSame(403, $response->getStatusCode(), "$method $path");
+                self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($response));
+            }
+        }
+        self::assertSame('Greffier FICTIF v2', (string) self::$pdo->query("SELECT content FROM twin9_protocole WHERE name = 'lourd/20-greffier'")->fetchColumn());
+        self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM twin9_protocole_versions')->fetchColumn());
+    }
+
+    #[TestDox('UC-PRO-08-F16 — ANOMALIES figées des noms : clé d’import purement numérique refusée (422) ; nom finissant par un saut de ligne accepté ; gabarit « …/versions » créé mais illisible dans l’atelier')]
+    public function testF16NameEdgeCases(): void
+    {
+        // json_decode transforme la clé « 20 » en entier : refusée, bien que valide selon RG2.
+        $numerique = $this->importer(['20' => 'Gabarit FICTIF numérique']);
+        self::assertSame(422, $numerique->getStatusCode());
+        self::assertSame(['error' => 'Fichier invalide : 20'], self::json($numerique));
+
+        // NAME_PATTERN se termine par « $ » sans /D : un saut de ligne final passe.
+        self::assertSame(['imported' => 1], self::json($this->importer(["lourd/20-greffier\n" => 'Gabarit FICTIF à saut de ligne'])));
+        self::assertSame(["lourd/20-greffier\n"], self::$pdo->query('SELECT name FROM twin9_protocole')->fetchAll(\PDO::FETCH_COLUMN));
+
+        // Un gabarit dont le dernier segment est « versions » est capté par la route
+        // d'historique (enregistrée d'abord) : créé, mais jamais relu.
+        $cree = $this->atelier('PUT', '/protocole/x%2Fversions', ['content' => 'Gabarit FICTIF masqué']);
+        self::assertSame('created', self::json($cree)['status']);
+        $lu = $this->atelier('GET', '/protocole/x%2Fversions');
+        self::assertSame(404, $lu->getStatusCode());
+        self::assertSame(['error' => 'Gabarit introuvable'], self::json($lu));
     }
 }

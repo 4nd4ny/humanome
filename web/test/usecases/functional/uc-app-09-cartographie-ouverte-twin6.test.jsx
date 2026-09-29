@@ -6,11 +6,12 @@
 // Le VRAI moteur (executerTwin6 + twin6ToMergeDocument) tourne dans jsdom ;
 // seul le réseau est simulé (fetch global) : paquet public fictif, /api/twin9/meta,
 // /api/twin6/appel (voie crédits) ou api.anthropic.com (voie clé perso).
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import { TWIN6_PACKAGE_URL } from '../../../src/api/twin6.js'
+import { downloadJson } from '../../../src/lib/download-json.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import {
   TWIN6_PACKAGE,
@@ -22,6 +23,9 @@ import {
   stubFetch,
   twin6ModelText,
 } from '../support/twin.js'
+
+// Export « un clic » observé sans Blob ni <a download> (jsdom).
+vi.mock('../../../src/lib/download-json.js', () => ({ downloadJson: vi.fn(() => true) }))
 
 const PORTFOLIO =
   '### 2026-02-10\n---\nAujourd’hui j’ai recoupé trois sources avant de conclure, puis expliqué ma démarche au groupe.'
@@ -79,7 +83,10 @@ async function lancer() {
 
 const appelsTwin6 = (calls) => calls.filter((c) => c.key === 'POST twin6/appel')
 
-beforeEach(() => resetApiClient())
+beforeEach(() => {
+  resetApiClient()
+  downloadJson.mockClear()
+})
 
 afterEach(() => {
   cleanup()
@@ -88,8 +95,22 @@ afterEach(() => {
 })
 
 describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
-  it('UC-APP-09-F01 — nominal (voie crédits) : 8 appels via /api/twin6/appel, contribution affichée, sunburst rendu', async () => {
-    const { calls } = stubFetch(routes())
+  it('UC-APP-09-F01 — nominal (voie crédits) : 8 appels via /api/twin6/appel, progression et contribution affichées, sunburst rendu, export JSON', async () => {
+    // Le 2e appel est retenu le temps d'observer la progression (étape 5).
+    let liberer
+    const retenu = new Promise((r) => {
+      liberer = r
+    })
+    let n = 0
+    const { calls } = stubFetch(
+      routes({
+        'POST twin6/appel': async (url, init) => {
+          n += 1
+          if (n === 2) await retenu
+          return appelOk(url, init)
+        },
+      }),
+    )
     openTwin6()
 
     // Étapes 1-3 : formulaire prêt, voie « crédits » par défaut, prompts téléchargeables.
@@ -100,11 +121,36 @@ describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
 
     await lancer()
 
-    // Étape 7 : résultat + contribution cumulée (8 × 6 602 µUSD ≈ 0,05 $).
+    // Étape 5 : « étape n/8 » et contribution cumulée pendant le run.
+    const progression = await screen.findByText(/Analyse en cours — étape 1\/8 \(scan-pole\)/)
+    expect(progression.textContent).toContain('0,0066 $ débités jusqu’ici')
+    expect(screen.getByRole('button', { name: 'Analyse en cours…' }).disabled).toBe(true)
+    await act(async () => {
+      liberer()
+    })
+
+    // Étape 8 : résultat + contribution cumulée (8 × 6 602 µUSD ≈ 0,05 $).
     const succes = await screen.findByText(/Cartographie ouverte terminée/)
     expect(succes.textContent).toContain('0,05 $ de contribution')
     expect(screen.getByText('Feuilles de portfolio')).toBeDefined()
-    expect(screen.getByTestId('twin6-export')).toBeDefined()
+    // Sunburst rendu (secteurs de la lib injectée).
+    expect(document.querySelectorAll('.sector').length).toBeGreaterThan(0)
+
+    // Export JSON : le document cartographie-merge, en .json, sans aucun envoi réseau.
+    const avantExport = calls.length
+    fireEvent.click(screen.getByTestId('twin6-export'))
+    expect(downloadJson).toHaveBeenCalledTimes(1)
+    const [docExporte, nomFichier] = downloadJson.mock.calls[0]
+    expect(docExporte.kind).toBe('cartographie-merge')
+    expect(nomFichier).toMatch(/^cartographie-twin6-.+\.json$/)
+    expect(calls.length).toBe(avantExport)
+
+    // ANOMALIE figée (fiche, anomalie 3) : la vue passe à MergeView le référentiel
+    // au format /meta (tableau de pôles) ; le dénominateur « Compétences établies »
+    // retombe sur 61 alors que le référentiel importé n'en compte que 7.
+    // (bandeau StatBadges et résumé de profil : « X / 61 », jamais « X / 7 »).
+    expect(screen.getAllByText(/^\d+ \/ 61$/).length).toBeGreaterThan(0)
+    expect(screen.queryByText(/^\d+ \/ 7$/)).toBeNull()
 
     // Étapes 5-6 : 7 scan-pole (pôles 1→7) puis le kairos, chacun avec le CSRF de la session.
     const appels = appelsTwin6(calls)
@@ -124,8 +170,14 @@ describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
     expect(calls.some((c) => c.url === ANTHROPIC_URL)).toBe(false)
   })
 
-  it('UC-APP-09-F02 — A1 : clé perso saisie → appels DIRECTS au fournisseur, aucun passage par /api/twin6/appel, gratuit', async () => {
-    const { calls } = stubFetch(routes({ [`POST ${ANTHROPIC_URL}`]: anthropicOk }))
+  it('UC-APP-09-F02 — A1 : clé perso saisie → appels DIRECTS au fournisseur, aucun passage par /api/twin6/appel, gratuit, même à solde nul (RG5)', async () => {
+    // Solde prépayé NUL : le garde-fou de solde ne s'applique pas à la voie clé perso.
+    const { calls } = stubFetch(
+      routes({
+        'GET twin9/meta': jsonResponse(200, metaTwin9({ solde_microusd: 0 })),
+        [`POST ${ANTHROPIC_URL}`]: anthropicOk,
+      }),
+    )
     openTwin6()
     await saisirPortfolio()
 
@@ -149,6 +201,8 @@ describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
         'GET keys': jsonResponse(200, [{ provider: 'anthropic', createdAt: '2026-07-15' }]),
         'GET keys/anthropic': jsonResponse(200, { provider: 'anthropic', apiKey: 'sk-ant-profil-fictive' }),
         [`POST ${ANTHROPIC_URL}`]: anthropicOk,
+        // Toute fuite vers la voie crédits ferait échouer le run.
+        'POST twin6/appel': jsonResponse(500, { error: 'voie crédits interdite dans ce scénario' }),
       }),
     )
     openTwin6()
@@ -158,9 +212,13 @@ describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
     expect(screen.queryByLabelText('Clé API Anthropic')).toBeNull()
 
     await lancer()
-    await screen.findByText(/Cartographie ouverte terminée/)
+    const succes = await screen.findByText(/Cartographie ouverte terminée/)
+    expect(succes.textContent).toContain('(avec votre clé)')
     expect(calls.filter((c) => c.key === 'GET keys/anthropic')).toHaveLength(1)
-    expect(calls.filter((c) => c.url === ANTHROPIC_URL).every((c) => c.init.headers['x-api-key'] === 'sk-ant-profil-fictive')).toBe(true)
+    const directs = calls.filter((c) => c.url === ANTHROPIC_URL)
+    expect(directs).toHaveLength(8)
+    expect(directs.every((c) => c.init.headers['x-api-key'] === 'sk-ant-profil-fictive')).toBe(true)
+    expect(appelsTwin6(calls)).toHaveLength(0)
   })
 
   it('UC-APP-09-F04 — E1 : visiteur sans session → invitation à se connecter, rien n’est chargé', async () => {
@@ -222,11 +280,19 @@ describe('UC-APP-09 — l’apprenant lance une cartographie ouverte', () => {
     expect(screen.queryByTestId('twin6-export')).toBeNull()
   })
 
-  it('UC-APP-09-F09 — E6 : paquet de prompts public introuvable → erreur de chargement, formulaire absent', async () => {
+  it('UC-APP-09-F09 — E6 : paquet de prompts public introuvable, ou offre /api/twin9/meta illisible → erreur de chargement, formulaire absent', async () => {
     stubFetch(routes({ [`GET ${TWIN6_PACKAGE_URL}`]: jsonResponse(404, { error: 'absent' }) }))
     openTwin6()
 
     await waitFor(() => expect(screen.getByRole('alert').textContent).toBe('Paquet Twin6 introuvable (404)'))
+    expect(screen.queryByLabelText(/Votre portfolio/)).toBeNull()
+    cleanup()
+    resetApiClient()
+
+    // Paquet servi, mais l'offre ne peut être lue : même issue.
+    stubFetch(routes({ 'GET twin9/meta': jsonResponse(500, { error: 'Erreur interne' }) }))
+    openTwin6()
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toBe('Erreur interne'))
     expect(screen.queryByLabelText(/Votre portfolio/)).toBeNull()
   })
 })
