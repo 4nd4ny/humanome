@@ -178,8 +178,8 @@ final class UcCpt04GererClesApiTest extends CartographeTestCase
         self::assertSame(['anthropic'], array_column(self::json($this->as_($this->ada, 'GET', '/api/keys')), 'provider'), 'l’entrée reste listée');
 
         // L'entrée illisible peut être remplacée (chiffrée avec la nouvelle clé maîtresse)…
-        self::assertSame(204, $this->store($this->ada, 'anthropic', 'sk-ant-nouvelle-cle-apres-rotation')->getStatusCode());
-        self::assertSame('sk-ant-nouvelle-cle-apres-rotation', self::json($this->as_($this->ada, 'GET', '/api/keys/anthropic'))['apiKey']);
+        self::assertSame(204, $this->store($this->ada, 'anthropic', 'sk-ant-rotation-test')->getStatusCode());
+        self::assertSame('sk-ant-rotation-test', self::json($this->as_($this->ada, 'GET', '/api/keys/anthropic'))['apiKey']);
         // … ou supprimée (la suppression ne déchiffre rien).
         self::assertSame(204, $this->as_($this->ada, 'DELETE', '/api/keys/anthropic')->getStatusCode());
         self::assertSame(0, self::rowCount());
