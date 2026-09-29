@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Functional;
 
-use Humanome\Cartographe\Links;
 use Humanome\Tests\CartographeTestCase;
 use Humanome\Tests\UseCases\Support\CarSupport;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -90,10 +89,26 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
         self::assertNull(self::lastAudit('garantie_retiree'), 'aucune garantie en place : rien à journaliser');
     }
 
-    #[TestDox('UC-CAR-04-F02 — A2 : révision sur une cartographie garantie → garantie retirée + audit garantie_retiree')]
+    /** L'employeur consulte le lien de partage (aucun cookie, autre IP). */
+    private function employeurConsulte(string $token): array
+    {
+        $this->cookieSid = null;
+        $this->clientIp = '198.51.100.7';
+        $response = $this->request('POST', '/api/share/' . $token, ['password' => 'mot-de-passe-du-lien']);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+
+        return self::json($response);
+    }
+
+    #[TestDox('UC-CAR-04-F02 — A2 : révision sur une cartographie garantie → garantie retirée (détail, file, lien employeur) + audit garantie_retiree')]
     public function testF02RevisionOnGuaranteedCartographyRemovesTheGarantie(): void
     {
+        // Précondition UC-APP-05 : Maya a partagé la cartographie avec un employeur.
+        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => 'mot-de-passe-du-lien']);
+        self::assertSame(201, $share->getStatusCode(), (string) $share->getBody());
+        $token = (string) self::json($share)['token'];
         self::assertSame(201, $this->as_($this->carl, 'POST', '/api/cartographies/' . $this->cartoId . '/garantie')->getStatusCode());
+        self::assertSame('Carl', $this->employeurConsulte($token)['garantie']['par'], 'avant : l’employeur voit la garantie');
 
         $revisionId = (int) self::json($this->revise($this->carl, ['document' => self::corrected(), 'note' => 'Erreur vue après coup']))['revisionId'];
 
@@ -106,6 +121,11 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
             ['cartographieId' => $this->cartoId, 'cause' => 'nouvelle_revision', 'revisionId' => $revisionId],
             $audit['details'],
         );
+
+        // Côté employeur (§8) : le même lien ne présente plus de garantie.
+        $shared = $this->employeurConsulte($token);
+        self::assertNull($shared['garantie']);
+        self::assertEquals(self::jourDocument(), $shared['document'], 'document de base, pas la révision non garantie');
     }
 
     #[TestDox('UC-CAR-04-F03 — A3 : le propriétaire révise sa propre cartographie ; note facultative (absente → null)')]
@@ -131,6 +151,17 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
         $tooLong = $this->revise($this->carl, ['document' => self::corrected(), 'note' => str_repeat('n', 501)]);
         self::assertSame(422, $tooLong->getStatusCode());
         self::assertSame(['note' => 'Note invalide (500 caractères maximum)'], self::json($tooLong)['fields']);
+        $notAString = $this->revise($this->carl, ['document' => self::corrected(), 'note' => 5]);
+        self::assertSame(422, $notAString->getStatusCode(), 'note non textuelle');
+        self::assertSame(['note' => 'Note invalide (500 caractères maximum)'], self::json($notAString)['fields']);
+
+        // Plafond de 8 Mo sur le document sérialisé.
+        $huge = self::corrected();
+        $huge['reserved'] = ['bourrage' => str_repeat('x', 8 * 1024 * 1024)];
+        $tooBig = $this->revise($this->carl, ['document' => $huge]);
+        self::assertSame(422, $tooBig->getStatusCode());
+        self::assertSame(['document' => 'Document trop volumineux (8 Mo maximum)'], self::json($tooBig)['fields']);
+        unset($huge);
         self::assertSame(0, $this->revisionCount());
 
         self::assertSame(201, $this->revise($this->carl, ['document' => self::corrected(), 'note' => str_repeat('é', 500)])->getStatusCode());
@@ -201,6 +232,12 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
         self::assertSame(404, $this->as_($this->carl, 'GET', '/api/revisions/' . $revisionId)->getStatusCode());
         self::assertSame(200, $this->as_($this->maya, 'GET', '/api/revisions/' . $revisionId)->getStatusCode());
         self::assertSame(1, $this->revisionCount());
+
+        // En privée, la propriétaire garde tout l'historique et peut réviser.
+        $history = self::json($this->as_($this->maya, 'GET', '/api/cartographies/' . $this->cartoId . '/revisions'));
+        self::assertSame([$revisionId], array_column($history, 'id'));
+        self::assertSame(201, $this->revise($this->maya, ['document' => self::corrected(), 'note' => 'Ma propre révision'])->getStatusCode());
+        self::assertSame(2, $this->revisionCount());
     }
 
     #[TestDox('UC-CAR-04-F07 — AN2 (anomalie) : une note vide "" — ce qu’envoie l’IHM sans note — est refusée en 422')]
@@ -220,7 +257,11 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
     public function testF08RevisionOfATwin9CartographyFailsWith500(): void
     {
         $twin9 = $this->createCarto($this->maya, ['type' => 'twin9', 'titre' => 'Analyse approfondie', 'document' => ['journal_id' => 'j-1', 'competences' => []]]);
-        self::assertSame(['level' => 'cartographe', 'type' => 'twin9'], (new Links(self::$pdo))->access($twin9, $this->carl['id'], ['cartographe']));
+        // Précondition observée par l'interface publique : Carl a bien accès
+        // à cette cartographie (l'historique lui répond 200, vide).
+        $history = $this->as_($this->carl, 'GET', '/api/cartographies/' . $twin9 . '/revisions');
+        self::assertSame(200, $history->getStatusCode());
+        self::assertSame([], self::json($history));
 
         // Comportement ACTUEL figé : Validation::validate('cartographie-twin9')
         // lève une InvalidArgumentException non interceptée par la route.
@@ -241,6 +282,46 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
         $response = $this->request('POST', '/api/cartographies/' . $this->cartoId . '/revisions', ['document' => self::corrected()]);
 
         self::assertSame(403, $response->getStatusCode());
+        // Corps du middleware CSRF (et non le 403 « Rôle insuffisant »).
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($response));
+
+        $forged = $this->request('POST', '/api/cartographies/' . $this->cartoId . '/revisions', ['document' => self::corrected()], ['X-CSRF-Token' => 'faux']);
+        self::assertSame(403, $forged->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($forged));
         self::assertSame(0, $this->revisionCount());
+    }
+
+    #[TestDox('UC-CAR-04-F19 — E7 : sans session → 401 ; sans rôle apprenant ni cartographe → 403 ; cartographe lié privé du rôle cartographe → 404')]
+    public function testF19RoleGuards(): void
+    {
+        $revisionId = (int) self::json($this->revise($this->carl, ['document' => self::corrected()]))['revisionId'];
+        $routes = [
+            ['POST', '/api/cartographies/' . $this->cartoId . '/revisions', ['document' => self::corrected()]],
+            ['GET', '/api/cartographies/' . $this->cartoId . '/revisions', null],
+            ['GET', '/api/revisions/' . $revisionId, null],
+        ];
+
+        $this->cookieSid = null;
+        foreach ($routes as [$method, $path, $body]) {
+            $response = $this->request($method, $path, $body);
+            self::assertSame(401, $response->getStatusCode(), $method . ' ' . $path);
+            self::assertSame(['error' => 'Authentification requise'], self::json($response));
+        }
+
+        $pat = $this->registerAs('pat@example.org', 'Pat', ['promptologue']);
+        foreach ($routes as [$method, $path, $body]) {
+            $response = $this->as_($pat, $method, $path, $body);
+            self::assertSame(403, $response->getStatusCode(), $method . ' ' . $path);
+            self::assertSame(['error' => 'Rôle insuffisant'], self::json($response));
+        }
+
+        // Lien conservé, rôle cartographe perdu (apprenant seulement) : la
+        // garde de rôle passe, Links::access refuse → 404 homogène.
+        self::setRoles($this->carl['id'], ['apprenant']);
+        self::assertSame(['error' => 'Cartographie introuvable'], self::json($this->revise($this->carl, ['document' => self::corrected()])));
+        self::assertSame(404, $this->as_($this->carl, 'GET', '/api/cartographies/' . $this->cartoId . '/revisions')->getStatusCode());
+        self::assertSame(['error' => 'Révision introuvable'], self::json($this->as_($this->carl, 'GET', '/api/revisions/' . $revisionId)));
+
+        self::assertSame(1, $this->revisionCount());
     }
 }

@@ -2,19 +2,47 @@
 // Fiche : docs/cas-utilisation/cartographe/UC-CAR-01-accepter-invitation.md
 //
 // Code sollicité appelé directement : le routeur par hash (#/cartographe),
-// les appels API de l'accueil cartographe (acceptInvitation, fetchApprentis)
-// et le formatage de date de rattachement (frDate).
+// les appels API de l'accueil cartographe (acceptInvitation, fetchApprentis),
+// le formatage de date de rattachement (frDate), puis les composants rendus
+// SEULS (sans <App/>, réseau injecté par la couture `fetchFn`) : le
+// formulaire de code d'AccueilSection et la garde de rôle de CartographeView.
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createElement } from 'react'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
-import { apiFetch, resetApiClient } from '../../../src/api/client.js'
+import { ApiError, apiFetch, resetApiClient } from '../../../src/api/client.js'
 import {
   acceptInvitation,
   fetchApprentis,
   frDate,
 } from '../../../src/views/cartographe/cartographe-api.js'
+import AccueilSection from '../../../src/views/cartographe/AccueilSection.jsx'
+import CartographeView from '../../../src/views/CartographeView.jsx'
 import { jsonResponse } from '../support/car.js'
 
-afterEach(() => resetApiClient())
+afterEach(() => {
+  cleanup()
+  resetApiClient()
+})
+
+/** Réseau injecté : les deux GET du montage répondent des listes vides. */
+function fakeAccueilNetwork(extra = {}) {
+  return vi.fn(async (url, init = {}) => {
+    const key = `${init.method ?? 'GET'} ${url}`
+    if (key in extra) return extra[key]
+    if (key === 'GET api/cartographe/apprentis' || key === 'GET api/cartographe/cartographies') {
+      return jsonResponse(200, [])
+    }
+    return jsonResponse(404, { error: 'absent' })
+  })
+}
+
+async function submitInAccueil(value) {
+  fireEvent.change(await screen.findByLabelText('Code d’invitation'), { target: { value } })
+  await act(async () => {
+    fireEvent.click(screen.getByRole('button', { name: 'Accepter l’invitation' }))
+  })
+}
 
 describe('UC-CAR-01 — routeur', () => {
   it('UC-CAR-01-U08 — #/cartographe ouvre l’accueil de l’espace (section null)', () => {
@@ -47,7 +75,9 @@ describe('UC-CAR-01 — acceptInvitation', () => {
       .fn()
       .mockResolvedValue(jsonResponse(404, { error: 'Invitation introuvable ou expirée' }))
 
-    const failure = await acceptInvitation('A/B C', fetchFn).catch((e) => e)
+    const pending = acceptInvitation('A/B C', fetchFn)
+    await expect(pending).rejects.toBeInstanceOf(ApiError)
+    const failure = await pending.catch((e) => e)
 
     expect(fetchFn.mock.calls[0][0]).toBe('api/cartographe/invitations/A%2FB%20C/accept')
     expect(failure.status).toBe(404)
@@ -78,5 +108,75 @@ describe('UC-CAR-01 — frDate (date de rattachement)', () => {
     expect(frDate(null)).toBe('—')
     expect(frDate(undefined)).toBe('—')
     expect(frDate('pas une date')).toBe('pas une date')
+  })
+})
+
+describe('UC-CAR-01 — AccueilSection (formulaire de code, rendu seul)', () => {
+  it('UC-CAR-01-U15 — normalisation : espaces retirés (trim) et majuscules avant l’envoi', async () => {
+    const fetchFn = fakeAccueilNetwork({
+      'POST api/cartographe/invitations/K7TQZ2M9RC/accept': jsonResponse(201, {
+        apprenant: { id: 1, displayName: 'Maya' },
+      }),
+    })
+    render(createElement(AccueilSection, { fetchFn }))
+
+    // jsdom n'applique pas maxLength : la valeur arrive entière au composant,
+    // ce qui permet d'exercer le trim (cf. Limites de la fiche).
+    await submitInAccueil(' k7tqz2m9rc ')
+
+    expect(await screen.findByText(/Invitation acceptée/)).toBeTruthy()
+    const posts = fetchFn.mock.calls.filter(([, init]) => init?.method === 'POST')
+    expect(posts.map(([url]) => url)).toEqual(['api/cartographe/invitations/K7TQZ2M9RC/accept'])
+  })
+
+  it('UC-CAR-01-U16 — contrôle local : code hors alphabet refusé avec le message, sans autre appel que les deux GET du montage', async () => {
+    const fetchFn = fakeAccueilNetwork()
+    render(createElement(AccueilSection, { fetchFn }))
+
+    await submitInAccueil('K7TQZ2M9R0')
+
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      'Le code d’invitation comporte 10 caractères (lettres A-Z, chiffres 2-9).',
+    )
+    expect(fetchFn.mock.calls.map(([url, init]) => `${init?.method ?? 'GET'} ${url}`).sort()).toEqual([
+      'GET api/cartographe/apprentis',
+      'GET api/cartographe/cartographies',
+    ])
+    expect(screen.getByLabelText('Code d’invitation').value).toBe('K7TQZ2M9R0')
+  })
+})
+
+describe('UC-CAR-01 — CartographeView (garde de rôle, rendu seul)', () => {
+  it('UC-CAR-01-U17 — sans le rôle cartographe : espace réservé et aucun appel ; avec le rôle : formulaire de code', async () => {
+    const apprenantFetch = fakeAccueilNetwork()
+    const first = render(
+      createElement(CartographeView, {
+        section: null,
+        deps: {
+          fetchMeFn: async () => ({ user: { id: 3, displayName: 'Zoé', roles: ['apprenant'] } }),
+          fetchFn: apprenantFetch,
+        },
+      }),
+    )
+    expect((await screen.findByTestId('cartographe-reserve')).textContent).toContain(
+      'Cet espace de travail est réservé aux cartographes.',
+    )
+    expect(screen.queryByLabelText('Code d’invitation')).toBeNull()
+    expect(apprenantFetch).not.toHaveBeenCalled()
+    first.unmount()
+
+    const cartographeFetch = fakeAccueilNetwork()
+    render(
+      createElement(CartographeView, {
+        section: null,
+        deps: {
+          fetchMeFn: async () => ({ user: { id: 9, displayName: 'Camille', roles: ['cartographe'] } }),
+          fetchFn: cartographeFetch,
+        },
+      }),
+    )
+    expect(await screen.findByLabelText('Code d’invitation')).toBeTruthy()
+    expect(screen.queryByTestId('cartographe-reserve')).toBeNull()
+    expect(cartographeFetch).toHaveBeenCalled()
   })
 })

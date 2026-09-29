@@ -26,9 +26,10 @@ afterEach(() => {
   resetApiClient()
 })
 
+// Ordre RÉEL de l'API : id décroissant (Revisions::listForCartography).
 const REVISIONS = [
-  { id: 6, note: 'Première relecture', author: { id: 9, displayName: 'Camille' }, createdAt: '2026-07-05T10:00:00' },
   { id: 7, note: 'Seconde relecture', author: { id: 9, displayName: 'Camille' }, createdAt: '2026-07-08T10:00:00' },
+  { id: 6, note: 'Première relecture', author: { id: 9, displayName: 'Camille' }, createdAt: '2026-07-05T10:00:00' },
 ]
 
 async function openConfirmation() {
@@ -170,10 +171,24 @@ describe('UC-CAR-05 — refus', () => {
     openCartographe('relecture/12')
 
     expect((await screen.findByTestId('garantie-badge')).textContent).toContain('garantie par Rita')
-    // Comportement ACTUEL figé : la vue ne sait pas qui a signé.
+    // Comportement ACTUEL figé : la vue ne sait pas qui a signé ; pas de
+    // « Valider et garantir » non plus (il aurait répondu 409).
+    expect(screen.queryByRole('button', { name: 'Valider et garantir' })).toBeNull()
     await click(screen.getByRole('button', { name: 'Retirer ma garantie' }))
 
     expect((await screen.findByRole('alert')).textContent).toBe('Garantie introuvable')
     expect(screen.getByTestId('garantie-badge').textContent).toContain('garantie par Rita')
+  })
+
+  it('UC-CAR-05-F19 — A4 / AN15 : cartographie repassée en privée → relecture en 404, aucun moyen de retirer sa garantie depuis le site', async () => {
+    stubNetwork({
+      'GET api/cartographe/cartographies/12': jsonResponse(404, { error: 'Cartographie introuvable' }),
+    })
+    openCartographe('relecture/12')
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Cartographie introuvable')
+    // Comportement ACTUEL figé : ni section « Garantie » ni bouton de retrait.
+    expect(screen.queryByRole('button', { name: 'Retirer ma garantie' })).toBeNull()
+    expect(screen.queryByRole('region', { name: 'Garantie' })).toBeNull()
   })
 })

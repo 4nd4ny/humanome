@@ -34,13 +34,17 @@ describe('UC-CAR-02 — la file de relecture', () => {
       'GET api/cartographe/cartographies': jsonResponse(200, [
         queueEntry({ id: 14, titre: 'Mon parcours', type: 'merge', createdAt: '2026-07-04T08:00:00', garantie: { par: 'Camille', date: '2026-07-10T09:00:00' } }),
         queueEntry({ id: 12, titre: 'Journée du 5 janvier', createdAt: '2026-07-02T10:00:00' }),
+        queueEntry({ id: 15, titre: 'Analyse approfondie', type: 'twin9', createdAt: '2026-07-01T08:00:00' }),
       ]),
     })
     openCartographe()
 
     const table = await screen.findByTestId('cartographe-queue')
     const rows = within(table).getAllByRole('row').slice(1) // sans l'en-tête
-    expect(rows).toHaveLength(2)
+    expect(rows).toHaveLength(3)
+    // Colonne « Type » (3ᵉ cellule) lue seule : le titre contient aussi « Journée ».
+    const typeCell = (row) => within(row).getAllByRole('cell')[2].textContent
+    expect(rows.map(typeCell)).toEqual(['Parcours (merge)', 'Journée', 'twin9'])
 
     expect(rows[0].textContent).toContain('Mon parcours')
     expect(rows[0].textContent).toContain('Parcours (merge)')
@@ -74,6 +78,7 @@ describe('UC-CAR-02 — la file de relecture', () => {
     expect(await screen.findByText(/Aucune cartographie dans votre file/)).toBeTruthy()
     expect(screen.queryByTestId('cartographe-queue')).toBeNull()
     expect(screen.queryByRole('link', { name: /Comparer deux cartographies/ })).toBeNull()
+    expect(screen.queryByRole('link', { name: /Analyser la consistance/ })).toBeNull()
   })
 })
 
@@ -142,14 +147,15 @@ describe('UC-CAR-02 — erreurs d’accès à l’espace', () => {
     expect(net.calls.some((call) => call.key.includes('api/cartographe/'))).toBe(false)
   })
 
-  it('UC-CAR-02-F14 — E5 : échec de la file → alerte ; les deux listes retombent à vide (état ACTUEL, cf. Limites)', async () => {
+  it('UC-CAR-02-F14 — E5 (AN8) : échec de la file → alerte ; les deux listes retombent à vide (état ACTUEL, cf. Limites)', async () => {
     stubNetwork({
       'GET api/cartographe/apprentis': jsonResponse(200, APPRENTIS),
       'GET api/cartographe/cartographies': jsonResponse(500, { error: 'Erreur interne' }),
     })
     openCartographe()
 
-    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    const file = await screen.findByRole('region', { name: 'Cartographies à relire' })
+    expect((await within(file).findByRole('alert')).textContent).toBe('Erreur interne')
     // Comportement actuel figé : Promise.all rejette -> « Mes apprentis » vide
     // alors que GET apprentis a réussi.
     expect(screen.getByText(/Aucun apprenant rattaché pour l’instant/)).toBeTruthy()
@@ -166,5 +172,39 @@ describe('UC-CAR-02 — erreurs d’accès à l’espace', () => {
     expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' }).getAttribute('href')).toBe(
       '#/cartographe',
     )
+  })
+
+  it('UC-CAR-02-F18 — E5 inverse (AN8) : échec des apprentis alors que la file a réussi → file affichée vide (message trompeur, état ACTUEL)', async () => {
+    stubNetwork({
+      'GET api/cartographe/apprentis': jsonResponse(500, { error: 'Erreur interne' }),
+      'GET api/cartographe/cartographies': jsonResponse(200, [queueEntry()]),
+    })
+    openCartographe()
+
+    const file = await screen.findByRole('region', { name: 'Cartographies à relire' })
+    expect((await within(file).findByRole('alert')).textContent).toBe('Erreur interne')
+    // Comportement actuel : Promise.all rejette, la file reçue est perdue et
+    // le message affirme que les apprentis n'ont rien partagé.
+    expect(within(file).getByText(/Aucune cartographie dans votre file/)).toBeTruthy()
+    expect(screen.queryByTestId('cartographe-queue')).toBeNull()
+  })
+
+  it('UC-CAR-02-F19 — E3 (limite) : api/auth/me en erreur 500 → traité comme un visiteur (espace réservé, « pas connecté »)', async () => {
+    const net = stubNetwork({ 'GET api/auth/me': jsonResponse(500, { error: 'Erreur interne' }) })
+    openCartographe()
+
+    expect(await screen.findByTestId('cartographe-reserve')).toBeTruthy()
+    await waitFor(() => expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy())
+    expect(net.calls.some((call) => call.key.includes('api/cartographe/'))).toBe(false)
+  })
+
+  it('UC-CAR-02-F20 — E1 (AN9) : id non numérique → 404 générique de Slim affiché tel quel, en anglais (état ACTUEL)', async () => {
+    stubNetwork({
+      'GET api/cartographe/cartographies/abc': jsonResponse(404, { message: '404 Not Found' }),
+    })
+    openCartographe('relecture/abc')
+
+    expect((await screen.findByRole('alert')).textContent).toBe('404 Not Found')
+    expect(screen.getByRole('link', { name: '← Retour à la file' })).toBeTruthy()
   })
 })

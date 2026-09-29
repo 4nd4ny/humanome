@@ -70,7 +70,8 @@ final class UcCar01AccepterInvitationTest extends CartographeTestCase
         self::assertSame(201, $response->getStatusCode());
         self::assertSame(['apprenant' => ['id' => $this->maya['id'], 'displayName' => 'Maya']], self::json($response));
 
-        // Audit : l'accepteur, l'id de l'apprenant — ni code, ni nom (§6.5).
+        // Audit : l'accepteur, l'id de l'apprenant — ni code, ni nom
+        // (principe RGPD 5 de CLAUDE.md, journalisation minimale).
         $audit = self::lastAudit('invitation_accepted');
         self::assertSame($this->carl['id'], $audit['userId']);
         self::assertSame(['apprenantId' => $this->maya['id']], $audit['details']);
@@ -93,15 +94,20 @@ final class UcCar01AccepterInvitationTest extends CartographeTestCase
         self::assertSame([$exposee], array_column($file, 'id'), 'seule la cartographie exposée entre dans la file');
     }
 
-    #[TestDox('UC-CAR-01-F02 — A1 : second code du même apprenant → 201, lien inchangé, code consommé')]
+    #[TestDox('UC-CAR-01-F02 — A1 : second code du même apprenant → 201, lien inchangé (date d’origine), code consommé')]
     public function testF02SecondCodeIsIdempotent(): void
     {
         self::assertSame(201, $this->accept($this->carl, $this->codeFrom($this->maya))->getStatusCode());
+        // Date d'origine reconnaissable : un lien recréé (DELETE + INSERT,
+        // REPLACE) dans la même seconde ne pourrait pas passer pour l'original.
+        self::$pdo->exec("UPDATE cartographe_links SET created_at = '2026-01-01 08:00:00'");
         $second = $this->accept($this->carl, $this->codeFrom($this->maya));
 
         self::assertSame(201, $second->getStatusCode());
         self::assertSame('Maya', self::json($second)['apprenant']['displayName']);
-        self::assertCount(1, self::json($this->as_($this->carl, 'GET', '/api/cartographe/apprentis')));
+        $apprentis = self::json($this->as_($this->carl, 'GET', '/api/cartographe/apprentis'));
+        self::assertCount(1, $apprentis);
+        self::assertSame('2026-01-01T08:00:00', $apprentis[0]['linkedAt'], 'le lien existant est conservé tel quel');
         self::assertSame(
             ['acceptee', 'acceptee'],
             array_column(self::json($this->as_($this->maya, 'GET', '/api/cartographe/invitations')), 'statut'),
@@ -169,7 +175,7 @@ final class UcCar01AccepterInvitationTest extends CartographeTestCase
         self::assertSame(201, $this->accept($this->carl, $code)->getStatusCode());
     }
 
-    #[TestDox('UC-CAR-01-F05 — E4 : sans jeton CSRF → 403, le code reste utilisable')]
+    #[TestDox('UC-CAR-01-F05 — E4 : sans jeton CSRF → 403 (avant la garde de rôle), le code reste utilisable')]
     public function testF05MissingCsrfIsRejected(): void
     {
         $code = $this->codeFrom($this->maya);
@@ -180,6 +186,46 @@ final class UcCar01AccepterInvitationTest extends CartographeTestCase
         self::assertStringContainsString('CSRF', (string) $response->getBody());
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_links')->fetchColumn());
 
+        // Le CSRF (middleware d'application) passe AVANT la garde de rôle (de
+        // route) : un compte sans le rôle et sans jeton reçoit le 403 CSRF, pas
+        // « Rôle insuffisant » (E3 suppose un jeton valide).
+        $zoe = $this->registerAs('zoe@example.org', 'Zoé');
+        $this->cookieSid = $zoe['sid'];
+        $noRoleNoToken = $this->request('POST', '/api/cartographe/invitations/' . $code . '/accept');
+        self::assertSame(403, $noRoleNoToken->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($noRoleNoToken));
+
         self::assertSame(201, $this->accept($this->carl, $code)->getStatusCode());
+    }
+
+    #[TestDox('UC-CAR-01-F11 — nominal, étape 5 (AN7) : audit en échec → 500 alors que le code est consommé et le lien créé (comportement actuel)')]
+    public function testF11AuditFailureAfterCommitLeavesTheLinkInPlace(): void
+    {
+        $code = $this->codeFrom($this->maya);
+
+        // Panne provoquée du journal : la table d'audit est renommée le temps
+        // d'une requête (restaurée quoi qu'il arrive).
+        self::$pdo->exec('RENAME TABLE audit_events TO audit_events_uc_car_01_off');
+        $previousLog = ini_set('error_log', '/dev/null'); // le $wrap journalise l'exception
+        try {
+            $response = $this->accept($this->carl, $code);
+        } finally {
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
+            self::$pdo->exec('RENAME TABLE audit_events_uc_car_01_off TO audit_events');
+        }
+
+        // Comportement ACTUEL (anomalie AN7) : l'acceptation a été validée
+        // (COMMIT) avant l'écriture de l'audit ; l'échec de l'audit donne 500…
+        self::assertSame(500, $response->getStatusCode());
+        self::assertSame(['error' => 'Erreur interne'], self::json($response));
+        // … alors que le lien existe et que le code est consommé, sans trace.
+        self::assertSame(
+            [$this->maya['id']],
+            array_column(self::json($this->as_($this->carl, 'GET', '/api/cartographe/apprentis')), 'id'),
+        );
+        self::assertSame('acceptee', self::json($this->as_($this->maya, 'GET', '/api/cartographe/invitations'))[0]['statut']);
+        self::assertSame(0, $this->countAudits('invitation_accepted'));
+        // Un nouvel essai du cartographe ne peut plus aboutir.
+        self::assertSame(404, $this->accept($this->carl, $code)->getStatusCode());
     }
 }

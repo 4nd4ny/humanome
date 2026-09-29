@@ -41,7 +41,10 @@ compétence et modifie son verdict dans « Corriger le verdict ».
 
 ## Garanties minimales (en cas d'échec)
 
-- Rien n'est stocké ; les corrections en attente restent à l'écran.
+- Rien n'est stocké ; les corrections en attente restent à l'écran — sauf si
+  seul le rechargement de l'historique échoue après un envoi réussi : la
+  révision est alors stockée (et une garantie éventuelle retirée) alors que
+  l'écran affiche une erreur (voir AN12).
 - Un document non conforme n'entre jamais dans l'historique (validation
   engine avant envoi, puis validation serveur).
 
@@ -64,7 +67,8 @@ compétence et modifie son verdict dans « Corriger le verdict ».
    l'engine (`validateDocument('cartographie-jour')`).
 5. Le navigateur envoie `POST /api/cartographies/{id}/revisions`
    `{document, note}` (session + `X-CSRF-Token`).
-6. Le serveur vérifie le rôle (`apprenant` ou `cartographe`), l'accès
+6. Le middleware CSRF global vérifie le jeton (E6), puis la route vérifie le
+   rôle (`RequireRole::any('apprenant', 'cartographe')`, E7), l'accès
    (`Links::access`), la forme (document objet non vide ≤ 8 Mo ; note absente
    ou 1 à 500 caractères), puis la conformité au schéma
    `cartographie-<type de la cartographie>` (`Validation::validate`) ;
@@ -80,10 +84,16 @@ compétence et modifie son verdict dans « Corriger le verdict ».
 - **A1 — Consulter une révision** (à tout moment) : « Voir » dans
   « Historique des révisions » → `GET /api/revisions/{revisionId}` (document
   complet ; l'accès suit la cartographie parente) ; « Revenir au document
-  d'origine » rétablit la base.
+  d'origine » rétablit la base. « Voir » vide sans avertissement les
+  corrections en attente, « Revenir » les conserve (voir AN13). Si le document
+  de la révision ne peut être lu (`404 « Révision introuvable »`, ou réponse
+  sans document : « La révision ne contient pas de document. »), le message
+  s'affiche dans la section de l'historique et l'affichage ne change pas.
 - **A2 — Cartographie garantie** (étape 6) : la nouvelle révision retire la
   garantie en place (audit `garantie_retiree`, cause `nouvelle_revision`) ;
-  le lien de partage employeur ne présente plus de garantie (UC-EMP-01 A2).
+  le lien de partage employeur ne présente plus de garantie et sert de
+  nouveau le document de base (même effet que le retrait manuel de
+  UC-EMP-01 A2, ici par une nouvelle révision — UC-CAR-04-F02).
 - **A3 — Révision par le propriétaire** (étape 6) : l'apprenant peut poster
   une révision de sa propre cartographie (par l'API) ; la note est
   facultative (absente ou `null` → `null`).
@@ -91,7 +101,9 @@ compétence et modifie son verdict dans « Corriger le verdict ».
   supprime de la liste ; elle n'entre pas dans la révision.
 - **A5 — Corriger une révision** (étapes 1 et 4) : quand une révision est
   affichée, l'éditeur et `buildRevision` partent de **ce** document, pas de
-  la base.
+  la base : la nouvelle révision hérite des changements de la révision
+  affichée. C'est le document affiché **au moment de l'envoi** qui compte
+  (voir AN13).
 - **A6 — Parcours (merge)** (étape 1) : l'IHM ne propose ni éditeur de
   verdict ni section « Proposer une révision » ; l'API accepte une révision
   merge conforme au schéma `cartographie-merge` (voir AN3).
@@ -99,15 +111,18 @@ compétence et modifie son verdict dans « Corriger le verdict ».
 ## Scénarios d'erreur
 
 - **E1 — Aucune correction en attente** (étape 3) : bouton désactivé (garde
-  défensive : « Aucune correction en attente : corrigez au moins un
-  verdict. »).
+  défensive, si le formulaire est soumis quand même : « Aucune correction en
+  attente : corrigez au moins un verdict. », aucune requête).
 - **E2 — Document révisé non conforme** (étape 4) : « Le document révisé ne
   respecte pas le schéma : révision non envoyée. » et jusqu'à 5 erreurs
   (`chemin — message`) ; aucune requête.
-- **E3 — Correction invalide** (étape 4) : confiance hors `0..1` ou non
-  numérique, statut inconnu, code absent du document → message de
-  `buildRevision` (par exemple « Confiance hors bornes (0..1) pour 1.03 »),
-  aucune requête.
+- **E3 — Correction invalide** (étape 4) : confiance hors `0..1` → message de
+  `buildRevision` (« Confiance hors bornes (0..1) pour 1.03 »), aucune
+  requête. `buildRevision` refuse aussi une confiance non numérique, un
+  statut inconnu, un code absent du document ou un document qui n'est pas
+  une journée, mais ces cas sont inatteignables depuis l'IHM (champ numérique,
+  liste déroulante des statuts, codes du document, éditeur réservé aux
+  journées) ; un champ « Confiance » vidé vaut `0` sans message (AN14).
 - **E4 — Refus de validation serveur** (étape 6) : forme invalide → `422
   {error: "Validation échouée", fields: {document | note}}` ; document non
   conforme ou d'un autre type que la cartographie → `422 {error: "Document
@@ -118,7 +133,14 @@ compétence et modifie son verdict dans « Corriger le verdict ».
   {error: "Cartographie introuvable"}` (POST, historique) ou `404 {error:
   "Révision introuvable"}` (document d'une révision) ; en privée, le
   propriétaire garde tout l'historique.
-- **E6 — Jeton CSRF absent** (étape 5) : `403`, rien n'est stocké.
+- **E6 — Jeton CSRF absent ou invalide** (étape 5) : `403 {error: "Jeton
+  CSRF absent ou invalide"}`, rien n'est stocké.
+- **E7 — Pas de session ou rôle insuffisant** (étapes 6 et A1) : sans
+  session → `401 {error: "Authentification requise"}` ; session sans rôle
+  `apprenant` ni `cartographe` (compte seulement promptologue, par exemple)
+  → `403 {error: "Rôle insuffisant"}` ; rien n'est stocké. Un cartographe lié
+  qui a perdu le rôle `cartographe` mais garde `apprenant` passe la garde de
+  rôle puis reçoit le `404` de E5 (`Links::access` exige le rôle).
 
 ## Règles de gestion
 
@@ -155,6 +177,8 @@ compétence et modifie son verdict dans « Corriger le verdict ».
 | Front | `web/src/views/cartographe/revision.js` — `VERDICT_STATUTS`, `verdictFields`, `buildRevision` | Construction pure du document révisé |
 | Moteur | `engine/src/validation.js` — `validateDocument` | Validation avant envoi |
 | Front | `web/src/views/cartographe/cartographe-api.js` — `postRevision`, `fetchRevisions`, `fetchRevisionDocument` | Appels HTTP |
+| API | `api/src/Middleware/CsrfMiddleware.php` | CSRF global (E6) |
+| API | `api/src/Middleware/RequireRole.php` | 401 sans session, 403 sans rôle `apprenant`/`cartographe` (E7) |
 | API | `POST/GET /api/cartographies/{id}/revisions`, `GET /api/revisions/{revisionId}` — `api/src/routes/annotations.php` | Forme, schéma, audit, 404 homogène |
 | Domaine | `api/src/Cartographe/Revisions.php` — `create`, `listForCartography`, `find` | Historique, retrait transactionnel de la garantie |
 | Domaine | `api/src/Validation.php` — `validate` | Schéma serveur par type |
@@ -170,38 +194,48 @@ compétence et modifie son verdict dans « Corriger le verdict ».
 | UC-CAR-04-U02 | `Revisions::create` | Garantie retirée dans la transaction ; `garantieRemoved` (RG3) | idem |
 | UC-CAR-04-U03 | `Revisions::listForCartography` | Récentes d'abord, méta seulement ; auteur purgé → anonyme, révision conservée | idem |
 | UC-CAR-04-U04 | `Revisions::find` | Document + cartographie parente ; inconnue → `null` | idem |
-| UC-CAR-04-U05 | `Validation::validate` | Conforme / non conforme (pointeurs) / type épinglé (RG2) | idem |
+| UC-CAR-04-U05 | `Validation::validate` | Conforme / non conforme (pointeurs) / type épinglé : un merge réel dont seul `kind` change est refusé sur le seul pointeur `/kind` (RG2) | idem |
 | UC-CAR-04-U06 | `Validation::validate` | Type `twin9` non supporté → exception (cause AN1) | idem |
 | UC-CAR-04-U07 | `Validation::validate` | Merge décodé en tableaux : `{}` → `[]` refusé (cause AN3) | idem |
 | UC-CAR-04-U08 | `VERDICT_STATUTS` | Figé, identique à l'énumération du schéma (RG4) | `web/test/usecases/unit/uc-car-04-corriger-cartographie.test.js` |
 | UC-CAR-04-U09 | `verdictFields` | Valeurs, replis `raison`/`prescriptionMinimale`, défauts, code inconnu | idem |
 | UC-CAR-04-U10 | `buildRevision` | Deux pôles, `Map`, nettoyage, champs vides sans effet, audits recalculés, entrée intacte, conforme (RG5) | idem |
-| UC-CAR-04-U11 | `buildRevision` | Verdict absent → verdict minimal ; confiance non numérique refusée | idem |
+| UC-CAR-04-U11 | `buildRevision` | Verdict absent → verdict minimal ; confiance non numérique, statut inconnu, code absent, document non journée refusés (messages exacts) | idem |
 | UC-CAR-04-U12 | `validateDocument` | Conforme ; erreurs avec chemin ; type inconnu → exception | idem |
 | UC-CAR-04-U13 | `postRevision`, `fetchRevisions`, `fetchRevisionDocument` | URLs, corps, extraction du document | idem |
+| UC-CAR-04-U14 | Contraintes SQL | Révisions supprimées avec leur cartographie (CASCADE) | `api/tests/UseCases/Unit/UcCar04CorrigerCartographieTest.php` |
+| UC-CAR-04-U15 | `buildRevision` | Confiance `''`, `null` ou blanche → `0` sans erreur (AN14, comportement actuel) | `web/test/usecases/unit/uc-car-04-corriger-cartographie.test.js` |
+
+`Links::access` (propriétaire ou cartographe lié) est testé unitairement par
+UC-CAR-03-U04.
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
 | UC-CAR-04-F01 | Nominal | API | 201, note nettoyée, historique méta et document lus par les deux, base intacte, compteur, pas d'audit | `api/tests/UseCases/Functional/UcCar04CorrigerCartographieTest.php` |
-| UC-CAR-04-F02 | A2 | API | Garantie retirée (détail et file), audit `garantie_retiree` complet | idem |
+| UC-CAR-04-F02 | A2 | API | Garantie retirée (détail, file et lien de partage employeur : `garantie` null, document de base), audit `garantie_retiree` complet | idem |
 | UC-CAR-04-F03 | A3 | API | Propriétaire, note absente ou `null` → `null` | idem |
-| UC-CAR-04-F04 | E4 (forme) | API | Document absent/texte/liste/vide, note de 501 → 422 ; 500 admis | idem |
+| UC-CAR-04-F04 | E4 (forme) | API | Document absent/texte/liste/vide ou de plus de 8 Mo, note de 501 ou non textuelle → 422 ; 500 admis | idem |
 | UC-CAR-04-F05 | E4 (schéma), A6 | API | Non conforme (pointeurs), type différent → 422 ; merge conforme → 201 | idem |
-| UC-CAR-04-F06 | E5 | API | 404 écriture/historique/document ; privée : propriétaire garde tout | idem |
+| UC-CAR-04-F06 | E5 | API | 404 écriture/historique/document ; privée : le propriétaire lit le document et l'historique et révise encore (201) | idem |
 | UC-CAR-04-F07 | AN2 | API | Note `""` ou blanche → 422 (comportement actuel) | idem |
-| UC-CAR-04-F08 | AN1 | API | Révision d'une cartographie `twin9` → 500 (comportement actuel) | idem |
-| UC-CAR-04-F09 | E6 | API | Sans CSRF → 403 | idem |
+| UC-CAR-04-F08 | AN1 | API | Révision d'une cartographie `twin9` (accès vérifié par l'historique, 200) → 500 (comportement actuel) | idem |
+| UC-CAR-04-F09 | E6 | API | Sans jeton ou jeton faux → 403 « Jeton CSRF absent ou invalide », rien de stocké | idem |
 | UC-CAR-04-F10 | AN3 | API | Merge réel (`reserved.piecesData: {}`) → 422 `/reserved/piecesData` (comportement actuel) | idem |
-| UC-CAR-04-F11 | Nominal, A4, E1 | IHM | `<App/>` : pré-remplissage, envoi désactivé sans correction, deux corrections dont une retirée, document envoyé conforme, CSRF, historique, bascule | `web/test/usecases/functional/uc-car-04-corriger-cartographie.test.jsx` |
+| UC-CAR-04-F11 | Nominal, A4, E1 | IHM | `<App/>` : pré-remplissage, envoi désactivé sans correction et garde défensive (message exact, aucun POST), deux corrections dont une retirée, document envoyé conforme, CSRF, historique, bascule | `web/test/usecases/functional/uc-car-04-corriger-cartographie.test.jsx` |
 | UC-CAR-04-F12 | A1, A5 | IHM | « Voir » une révision, éditeur parti de la révision, retour à l'origine | idem |
 | UC-CAR-04-F13 | E3 | IHM | Confiance 2 → message, aucune requête | idem |
-| UC-CAR-04-F14 | E2 | IHM | Base abîmée : erreurs de schéma listées, aucun envoi | idem |
-| UC-CAR-04-F15 | E4, E5 | IHM | 422 puis 404 : messages, corrections conservées | idem |
+| UC-CAR-04-F14 | E2 | IHM | Base abîmée (7 erreurs) : 5 erreurs de schéma listées, aucun envoi | idem |
+| UC-CAR-04-F15 | E4, E5 | IHM | 422 puis 404 : messages, corrections conservées après chacun | idem |
 | UC-CAR-04-F16 | A6 | IHM | Merge : ni éditeur ni section de révision, historique présent | idem |
 | UC-CAR-04-F17 | AN2 | IHM | Note vide envoyée `""` → « Validation échouée » (comportement actuel) | idem |
 | UC-CAR-04-F18 | AN4 | IHM | Mention de garantie périmée après révision ; retrait → « Garantie introuvable » (comportement actuel) | idem |
+| UC-CAR-04-F19 | E7 | API | Sans session → 401, compte promptologue → 403 « Rôle insuffisant » (POST, historique, document) ; cartographe lié réduit au rôle apprenant → 404 ; rien de stocké | `api/tests/UseCases/Functional/UcCar04CorrigerCartographieTest.php` |
+| UC-CAR-04-F20 | A5 | IHM | Révision proposée depuis la révision 20 affichée : le document envoyé garde 1.03 « présence établie » (hérité), porte la correction de 2.01, `auditPole` recalculé depuis la révision | `web/test/usecases/functional/uc-car-04-corriger-cartographie.test.jsx` |
+| UC-CAR-04-F21 | AN12 | IHM | POST 201 puis historique en 500 : alerte, corrections gardées, pas de bascule ; un nouvel essai reposte (comportement actuel) | idem |
+| UC-CAR-04-F22 | AN13 | IHM | « Voir » efface une correction en attente ; une correction saisie sur la révision puis « Revenir » s'applique à la base (comportement actuel) | idem |
+| UC-CAR-04-F23 | A1, E5 | IHM | « Voir » en 404 : « Révision introuvable » dans l'historique, affichage inchangé | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -246,3 +280,23 @@ cd web && npx vitest run test/usecases/unit/uc-car-04 test/usecases/functional/u
   « Retirer ma garantie » restent affichés alors que le serveur a retiré la
   garantie (RG3) ; cliquer répond « Garantie introuvable ». Un rechargement
   de la page rétablit l'état exact. Figé par UC-CAR-04-F18.
+- **AN12 — Historique non rechargé après un envoi réussi : doublon au nouvel
+  essai.** `submitRevision` enchaîne `postRevision` puis `fetchRevisions`
+  dans le même `try` : si le POST réussit (`201`, révision stockée, garantie
+  éventuelle déjà retirée) mais que le rechargement de l'historique échoue,
+  l'écran affiche l'erreur, garde corrections et note et ne bascule pas sur
+  la révision ; un nouvel envoi crée une seconde révision identique.
+  Contredit la garantie minimale « rien n'est stocké ». Figé par
+  UC-CAR-04-F21.
+- **AN13 — « Voir » et « Revenir » traitent les corrections en attente de
+  façon asymétrique.** « Voir » une révision vide sans avertissement les
+  corrections en attente (`setCorrections({})`), « Revenir au document
+  d'origine » les conserve. Des corrections saisies sur une révision R puis
+  envoyées après « Revenir » sont appliquées par `buildRevision` au document
+  de **base** : la nouvelle révision perd silencieusement les changements de
+  R. Figé par UC-CAR-04-F22.
+- **AN14 — Champ « Confiance » vidé enregistré à 0 %.** `buildRevision`
+  convertit la confiance par `Number()` : `''`, `' '`, `null`, `[]` donnent
+  `0` (et `true` donne `1`) sans erreur. Dans l'IHM, le champ numérique vidé
+  produit `Number('') = 0` : la correction part avec une confiance de 0 %
+  sans que le cartographe l'ait saisie. Figé par UC-CAR-04-U15.

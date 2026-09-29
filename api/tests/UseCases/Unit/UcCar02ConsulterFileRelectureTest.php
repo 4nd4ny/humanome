@@ -22,7 +22,8 @@ use PHPUnit\Framework\TestCase;
  * GET /api/cartographe/cartographies/{id} sont appelées directement : Links
  * (file = projection de métadonnées, détail = document si lien + visibilité)
  * et les trois listes qui composent la vue de relecture (Annotations,
- * Revisions, Garanties).
+ * Revisions, Garanties), ainsi que Links::access, qui garde les routes
+ * d'annotations et de révisions (404 de E2).
  */
 final class UcCar02ConsulterFileRelectureTest extends TestCase
 {
@@ -116,14 +117,31 @@ final class UcCar02ConsulterFileRelectureTest extends TestCase
         self::assertNull($links->findForCartographe(999999, $this->carl), 'inconnue');
     }
 
-    #[TestDox('UC-CAR-02-U04 — isLinked : lien orienté apprenant -> cartographe')]
-    public function testU04IsLinkedIsDirectional(): void
+    #[TestDox('UC-CAR-02-U04 — Links::access (annotations/révisions, E2) : suit la visibilité à chaque appel ; privée → null pour le cartographe, owner pour l’apprenant')]
+    public function testU04AccessFollowsTheVisibilityAtEachCall(): void
     {
+        $cartoId = CarSupport::carto(self::$pdo, $this->maya, 'cartographe');
         $links = new Links(self::$pdo);
+        $setVisibility = function (string $visibility) use ($cartoId): void {
+            self::$pdo->prepare('UPDATE cartographies SET visibility = ? WHERE id = ?')->execute([$visibility, $cartoId]);
+        };
 
-        self::assertTrue($links->isLinked($this->maya, $this->carl));
-        self::assertFalse($links->isLinked($this->carl, $this->maya));
-        self::assertFalse($links->isLinked($this->zoe, $this->carl));
+        self::assertSame(['level' => 'cartographe', 'type' => 'jour'], $links->access($cartoId, $this->carl, ['cartographe']));
+        $setVisibility('publique');
+        self::assertSame('cartographe', $links->access($cartoId, $this->carl, ['cartographe'])['level']);
+
+        // E2 : l'apprenante repasse en privée — accès coupé sur-le-champ…
+        $setVisibility('privee');
+        self::assertNull($links->access($cartoId, $this->carl, ['cartographe']));
+        self::assertSame('owner', $links->access($cartoId, $this->maya, ['apprenant'])['level'], 'la propriétaire garde tout');
+        // … puis rouvert : l'accès revient, rien n'a été détruit.
+        $setVisibility('cartographe');
+        self::assertSame('cartographe', $links->access($cartoId, $this->carl, ['cartographe'])['level']);
+
+        self::assertNull($links->access($cartoId, $this->carl, ['apprenant']), 'lié mais sans le rôle cartographe');
+        $rita = CarSupport::user(self::$pdo, 'Rita', ['cartographe']);
+        self::assertNull($links->access($cartoId, $rita, ['cartographe']), 'cartographe non lié');
+        self::assertNull($links->access(999999, $this->carl, ['cartographe']), 'inconnue');
     }
 
     #[TestDox('UC-CAR-02-U05 — vue de relecture : annotations (ordre de saisie), révisions (récentes d’abord, sans document), garantie')]
@@ -150,5 +168,18 @@ final class UcCar02ConsulterFileRelectureTest extends TestCase
         self::assertSame(['par', 'date', 'revisionId'], array_keys($garantie));
         self::assertSame($r2, $garantie['revisionId']);
         self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', $garantie['date']);
+    }
+
+    #[TestDox('UC-CAR-02-U11 — Garanties::findForCartography : garantie posée sur le document d’origine → revisionId null (A3 sans parenthèse)')]
+    public function testU11GarantieOnTheBaseDocumentHasNoRevisionId(): void
+    {
+        $cartoId = CarSupport::carto(self::$pdo, $this->maya);
+        (new Garanties(self::$pdo))->pose($cartoId, $this->carl, 'Carl', null);
+
+        $garantie = (new Garanties(self::$pdo))->findForCartography($cartoId);
+
+        self::assertSame(['par', 'date', 'revisionId'], array_keys($garantie));
+        self::assertSame('Carl', $garantie['par']);
+        self::assertNull($garantie['revisionId']);
     }
 }

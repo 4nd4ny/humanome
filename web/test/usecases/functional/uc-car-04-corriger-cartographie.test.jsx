@@ -75,8 +75,16 @@ describe('UC-CAR-04 — le cartographe propose une révision', () => {
     expect(within(editor).getByLabelText('Confiance (0 à 1)').value).toBe('0.4')
     expect(within(editor).getByLabelText('Motif').value).toContain('Pièce unique et ambivalente')
     // E1 : tant qu'aucune correction n'est en attente, l'envoi est impossible.
-    expect(screen.getByText(/Aucune correction en attente/)).toBeTruthy()
+    expect(screen.getByText(/Aucune correction en attente\. Les corrections enregistrées/)).toBeTruthy()
     expect(screen.getByRole('button', { name: 'Proposer la révision' }).disabled).toBe(true)
+    // Garde défensive : le formulaire soumis quand même (bouton contourné).
+    await act(async () => {
+      fireEvent.submit(screen.getByLabelText('Note de révision').closest('form'))
+    })
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      'Aucune correction en attente : corrigez au moins un verdict.',
+    )
+    expect(net.called('POST api/cartographies/12/revisions')).toHaveLength(0)
 
     // 2-3. Deux corrections, puis l'une est retirée (A4).
     await correct('1.03', { statut: 'présence établie', confiance: 0.8, motif: 'Note de synthèse retrouvée.' })
@@ -153,9 +161,17 @@ describe('UC-CAR-04 — le cartographe propose une révision', () => {
     expect(net.calls.some((call) => call.key.startsWith('POST'))).toBe(false)
   })
 
-  it('UC-CAR-04-F14 — E2 : document révisé non conforme au schéma → erreurs listées, révision NON envoyée', async () => {
+  it('UC-CAR-04-F14 — E2 : document révisé non conforme au schéma → 5 erreurs listées au plus, révision NON envoyée', async () => {
     const broken = dayDoc()
     delete broken.kairos
+    // Six statuts hors énumération en plus : 7 erreurs de schéma au total.
+    broken.poles
+      .flatMap((p) => p.competences)
+      .filter((c) => c.code !== '1.03')
+      .slice(0, 6)
+      .forEach((c) => {
+        c.verdict.statut = 'peut-être'
+      })
     const net = stubNetwork({
       'GET api/cartographe/cartographies/12': jsonResponse(200, detailBody({ document: broken })),
     })
@@ -167,7 +183,9 @@ describe('UC-CAR-04 — le cartographe propose une révision', () => {
     expect((await screen.findByRole('alert')).textContent).toBe(
       'Le document révisé ne respecte pas le schéma : révision non envoyée.',
     )
-    expect(screen.getByTestId('revision-schema-errors').textContent).toContain('kairos')
+    const errors = screen.getByTestId('revision-schema-errors')
+    expect(errors.textContent).toContain('kairos')
+    expect(within(errors).getAllByRole('listitem')).toHaveLength(5)
     expect(net.calls.some((call) => call.key.startsWith('POST'))).toBe(false)
   })
 
@@ -188,6 +206,7 @@ describe('UC-CAR-04 — le cartographe propose une révision', () => {
     await propose('Relue')
     expect((await screen.findByRole('alert')).textContent).toBe('Cartographie introuvable')
     expect(screen.queryByTestId('viewing-revision')).toBeNull()
+    expect(screen.getByTestId('pending-corrections').textContent).toContain('1.03')
   })
 
   it('UC-CAR-04-F16 — A6 : parcours (merge) → ni éditeur de verdict ni section « Proposer une révision »', async () => {
@@ -253,5 +272,112 @@ describe('UC-CAR-04 — anomalies constatées (comportement ACTUEL figé)', () =
       fireEvent.click(screen.getByRole('button', { name: 'Retirer ma garantie' }))
     })
     expect((await screen.findByText('Garantie introuvable')).getAttribute('role')).toBe('alert')
+  })
+})
+
+describe('UC-CAR-04 — révisions successives et historique', () => {
+  const revision20 = () => {
+    const revisee = dayDoc()
+    comp(revisee, '1.03').verdict.statut = 'présence établie'
+    return revisee
+  }
+  const detailWithRevision20 = () =>
+    jsonResponse(
+      200,
+      detailBody({
+        revisions: [{ id: 20, note: 'Première relecture', author: { id: 9, displayName: 'Camille' }, createdAt: '2026-07-05T10:00:00' }],
+      }),
+    )
+  const revision20Response = () =>
+    jsonResponse(200, { id: 20, cartographieId: 12, document: revision20(), note: 'Première relecture', author: null, createdAt: '2026-07-05T10:00:00' })
+
+  async function voir() {
+    const historique = await screen.findByTestId('revisions-list')
+    await act(async () => {
+      fireEvent.click(within(historique).getByRole('button', { name: 'Voir' }))
+    })
+  }
+
+  it('UC-CAR-04-F20 — A5 : révision proposée depuis une révision affichée → document envoyé = révision + nouvelle correction', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/cartographies/12': detailWithRevision20(),
+      'GET api/revisions/20': revision20Response(),
+      'POST api/cartographies/12/revisions': jsonResponse(201, { revisionId: 21 }),
+      'GET api/cartographies/12/revisions': jsonResponse(200, []),
+    })
+    openCartographe('relecture/12')
+    await voir()
+    expect((await screen.findByTestId('viewing-revision')).textContent).toContain('révision 20')
+
+    await correct('2.01', { statut: 'renvoi au cartographe', confiance: 0.5 })
+    await propose('Sur la révision 20')
+
+    const sent = net.called('POST api/cartographies/12/revisions')[0].body.document
+    expect(comp(sent, '1.03').verdict.statut).toBe('présence établie') // hérité de la révision 20
+    expect(comp(sent, '2.01').verdict).toMatchObject({ statut: 'renvoi au cartographe', confiance: 0.5 })
+    expect(sent.poles[0].auditPole.presencesEtablies).toBe(1) // recalculé depuis la révision, pas la base
+    expect(validateDocument('cartographie-jour', sent).valid).toBe(true)
+  })
+
+  it('UC-CAR-04-F21 — AN12 : POST réussi mais historique non rechargé → erreur, corrections gardées, un nouvel essai reposte (état ACTUEL)', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/cartographies/12': jsonResponse(200, detailBody()),
+      'POST api/cartographies/12/revisions': jsonResponse(201, { revisionId: 21 }),
+      'GET api/cartographies/12/revisions': jsonResponse(500, { error: 'Erreur interne' }),
+    })
+    openCartographe('relecture/12')
+
+    await correct('1.03', { statut: 'présence établie', confiance: 0.8 })
+    await propose('Relue')
+
+    // La révision est stockée (201), mais l'écran affiche un échec…
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByTestId('pending-corrections').textContent).toContain('1.03')
+    expect(screen.queryByTestId('viewing-revision')).toBeNull()
+    expect(screen.queryByText(/Révision enregistrée/)).toBeNull()
+    // … et un nouvel essai crée un doublon.
+    await propose('Relue')
+    expect(net.called('POST api/cartographies/12/revisions')).toHaveLength(2)
+  })
+
+  it('UC-CAR-04-F22 — AN13 : « Voir » efface les corrections en attente ; « Revenir » les garde et les applique à la base (état ACTUEL)', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/cartographies/12': detailWithRevision20(),
+      'GET api/revisions/20': revision20Response(),
+      'POST api/cartographies/12/revisions': jsonResponse(201, { revisionId: 21 }),
+      'GET api/cartographies/12/revisions': jsonResponse(200, []),
+    })
+    openCartographe('relecture/12')
+
+    // 1. Correction en attente sur la base, puis « Voir » : elle disparaît sans avertissement.
+    await correct('2.02', { statut: 'présence établie', confiance: 0.7 })
+    expect(screen.getByTestId('pending-corrections').textContent).toContain('2.02')
+    await voir()
+    expect(await screen.findByTestId('viewing-revision')).toBeTruthy()
+    expect(screen.queryByTestId('pending-corrections')).toBeNull()
+
+    // 2. Correction saisie sur la révision 20, puis « Revenir au document d'origine » :
+    //    elle reste en attente et s'applique à la BASE.
+    await correct('2.01', { statut: 'renvoi au cartographe', confiance: 0.5 })
+    fireEvent.click(screen.getByRole('button', { name: 'Revenir au document d’origine' }))
+    expect(screen.getByTestId('pending-corrections').textContent).toContain('2.01')
+    await propose('Envoyée depuis la base')
+
+    const sent = net.called('POST api/cartographies/12/revisions')[0].body.document
+    expect(comp(sent, '2.01').verdict.statut).toBe('renvoi au cartographe')
+    expect(comp(sent, '1.03').verdict.statut).toBe('renvoi au cartographe') // le changement de la révision 20 est perdu
+  })
+
+  it('UC-CAR-04-F23 — A1/E5 : « Voir » une révision devenue inaccessible → alerte de l’historique, affichage inchangé', async () => {
+    stubNetwork({
+      'GET api/cartographe/cartographies/12': detailWithRevision20(),
+      'GET api/revisions/20': jsonResponse(404, { error: 'Révision introuvable' }),
+    })
+    openCartographe('relecture/12')
+    await voir()
+
+    const historique = screen.getByRole('region', { name: 'Historique des révisions' })
+    expect((await within(historique).findByRole('alert')).textContent).toBe('Révision introuvable')
+    expect(screen.queryByTestId('viewing-revision')).toBeNull()
   })
 })

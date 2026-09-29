@@ -103,6 +103,10 @@ describe('UC-CAR-06 — comparer deux cartographies d’un même apprenant', () 
     expect(net.called('GET api/cartographe/cartographies/21').length).toBeGreaterThan(0)
     expect(net.called('GET api/cartographe/cartographies/22').length).toBeGreaterThan(0)
     expect(net.called('GET api/cartographe/cartographies/23')).toHaveLength(0) // Noé : jamais chargé
+    // RG4 : uniquement des lectures — session, référentiel publié, file, les deux documents.
+    expect(net.calls.every((call) => call.key.startsWith('GET '))).toBe(true)
+    const allowed = /^GET (api\/auth\/me|api\/cartographe\/cartographies(\/2[12])?|data\/referentiel\/.+)$/
+    expect(net.calls.filter((call) => !allowed.test(call.key))).toEqual([])
 
     // 4. Tableau : résumé, ligne surlignée, cellules divergentes.
     expect(screen.getByTestId('compare-summary').textContent).toBe('1 compétence(s) divergente(s) sur 15 comparée(s).')
@@ -120,11 +124,14 @@ describe('UC-CAR-06 — comparer deux cartographies d’un même apprenant', () 
     expect(row('2.01').getAttribute('data-divergent')).toBe('false')
   })
 
-  it('UC-CAR-06-F02 — A1 : deux parcours (merge) → niveau et points comparés', async () => {
+  it('UC-CAR-06-F02 — A1 : deux parcours (merge) → niveau, points et confiance moyenne comparés et surlignés', async () => {
     const b = mergeDoc()
-    const c = b.domains.flatMap((d) => d.competences).find((x) => x.code === '1.01')
+    const mc = (code) => b.domains.flatMap((d) => d.competences).find((x) => x.code === code)
+    const c = mc('1.01')
     c.niveau = 3
     c.points = 9
+    mc('3.04').confiance_moyenne = 0.5 // 60 % → 50 %
+    mc('2.01').confiance_moyenne = 0.74 // 0.7433 → 0.74 : divergence stricte, même affichage (Limites)
     network(
       [
         { id: 31, titre: 'Parcours v1', type: 'merge', apprenant: MAYA },
@@ -135,9 +142,15 @@ describe('UC-CAR-06 — comparer deux cartographies d’un même apprenant', () 
     openCartographe('comparer')
     await choose(31, 32)
 
-    expect((await screen.findByTestId('compare-summary')).textContent).toBe('1 compétence(s) divergente(s) sur 10 comparée(s).')
-    const cells = within(row('1.01')).getAllByRole('cell').map((td) => td.textContent)
-    expect(cells).toEqual(['présence établie / présence établie', '1 / 3', '1 / 9', '62 % / 62 %'])
+    expect((await screen.findByTestId('compare-summary')).textContent).toBe('3 compétence(s) divergente(s) sur 10 comparée(s).')
+    const cells = within(row('1.01')).getAllByRole('cell')
+    expect(cells.map((td) => td.textContent)).toEqual(['présence établie / présence établie', '1 / 3', '1 / 9', '62 % / 62 %'])
+    expect(cells.map((td) => td.className)).toEqual(['', 'compare-champ-divergent', 'compare-champ-divergent', ''])
+    const confiance = (code) => within(row(code)).getAllByRole('cell')[3]
+    expect(confiance('3.04').textContent).toBe('60 % / 50 %')
+    expect(confiance('3.04').className).toBe('compare-champ-divergent')
+    expect(confiance('2.01').textContent).toBe('74 % / 74 %') // surlignée alors que l'affichage est identique
+    expect(confiance('2.01').className).toBe('compare-champ-divergent')
   })
 
   it('UC-CAR-06-F03 — A3 : deux versions identiques → aucune divergence', async () => {
@@ -179,9 +192,11 @@ describe('UC-CAR-06 — comparer deux cartographies d’un même apprenant', () 
     expect(cells[0].textContent).toBe('présence établie / présence établie')
     expect(cells[1].textContent).toBe('— / 5')
     expect(cells[1].className).toBe('compare-champ-divergent')
+    expect(cells[2].textContent).toBe('— / 3')
+    expect(cells[2].className).toBe('compare-champ-divergent')
   })
 
-  it('UC-CAR-06-F06 — RG : changer la cartographie 1 réinitialise la 2 ; un document déjà chargé n’est pas redemandé', async () => {
+  it('UC-CAR-06-F06 — A5 : changer la cartographie 1 réinitialise la 2 ; un document déjà chargé n’est pas redemandé', async () => {
     const net = network(QUEUE, { 21: dayDoc(), 22: versionB() })
     openCartographe('comparer')
     await choose(21, 22)
@@ -205,6 +220,9 @@ describe('UC-CAR-06 — erreurs', () => {
 
     expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
     expect(within(screen.getByLabelText('Cartographie 1')).getAllByRole('option')).toHaveLength(1)
+    const selectB = screen.getByLabelText('Cartographie 2 (même apprenant)')
+    expect(within(selectB).getAllByRole('option')).toHaveLength(1)
+    expect(selectB.disabled).toBe(true)
   })
 
   it('UC-CAR-06-F08 — E2 : un document devient inaccessible (404) → message, pas de tableau', async () => {
@@ -237,5 +255,42 @@ describe('UC-CAR-06 — erreurs', () => {
     expect(await screen.findByTestId('cartographe-reserve')).toBeTruthy()
     expect(screen.queryByLabelText('Cartographie 1')).toBeNull()
     expect(net.calls.some((call) => call.key.includes('api/cartographe/'))).toBe(false)
+  })
+
+  it('UC-CAR-06-F12 — E2 (AN18) : après un 404, une comparaison réussie s’affiche sous l’alerte périmée (état ACTUEL)', async () => {
+    let doc22Calls = 0
+    network(QUEUE, { 21: dayDoc() }, {
+      // 22 : inaccessible au premier appel, rouvert ensuite.
+      'GET api/cartographe/cartographies/22': () =>
+        ++doc22Calls === 1
+          ? jsonResponse(404, { error: 'Cartographie introuvable' })
+          : jsonResponse(200, detailBody({ ...QUEUE[1], document: versionB() })),
+    })
+    openCartographe('comparer')
+    await choose(21, 22)
+    expect((await screen.findByRole('alert')).textContent).toBe('Cartographie introuvable')
+
+    // Nouvelle paire : 22 (rechargé, 200) puis 21 (en cache).
+    await choose(22, 21)
+
+    expect((await screen.findByTestId('compare-summary')).textContent).toBe('1 compétence(s) divergente(s) sur 15 comparée(s).')
+    // Comportement actuel : loadError n'est jamais remis à zéro.
+    expect(screen.getByRole('alert').textContent).toBe('Cartographie introuvable')
+  })
+})
+
+describe('UC-CAR-06 — compétence instruite d’un seul côté, sens inverse', () => {
+  it('UC-CAR-06-F11 — A4 : compétence absente de la cartographie 1 → « — » à gauche, ligne divergente', async () => {
+    const a = dayDoc()
+    a.poles[6].competences = a.poles[6].competences.filter((c) => c.code !== '7.03')
+    network(QUEUE, { 21: a, 22: dayDoc() })
+    openCartographe('comparer')
+    await choose(21, 22)
+
+    expect((await screen.findByTestId('compare-summary')).textContent).toBe('1 compétence(s) divergente(s) sur 15 comparée(s).')
+    const cells = within(row('7.03')).getAllByRole('cell').map((td) => td.textContent)
+    expect(cells[0]).toBe('— / présence non établie')
+    expect(cells[3]).toBe('— / 100 %')
+    expect(row('7.03').getAttribute('data-divergent')).toBe('true')
   })
 })

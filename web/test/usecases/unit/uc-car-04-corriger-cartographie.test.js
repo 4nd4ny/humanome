@@ -18,7 +18,7 @@ import {
   verdictFields,
 } from '../../../src/views/cartographe/revision.js'
 import jourSchema from '../../../../schemas/cartographie-jour.schema.json'
-import { dayDoc, jsonResponse } from '../support/car.js'
+import { dayDoc, jsonResponse, mergeDoc } from '../support/car.js'
 
 afterEach(() => resetApiClient())
 
@@ -82,7 +82,7 @@ describe('UC-CAR-04 — buildRevision', () => {
     expect(validateDocument('cartographie-jour', revised).valid).toBe(true)
   })
 
-  it('UC-CAR-04-U11 — compétence sans verdict : verdict minimal créé ; confiance non numérique refusée', () => {
+  it('UC-CAR-04-U11 — compétence sans verdict : verdict minimal créé ; confiance non numérique, statut inconnu, code absent, document non journée refusés', () => {
     const doc = dayDoc()
     delete comp(doc, '2.01').verdict
     const revised = buildRevision(doc, { '2.01': { statut: 'présence établie', confiance: 0.7 } })
@@ -97,6 +97,21 @@ describe('UC-CAR-04 — buildRevision', () => {
       'Confiance hors bornes (0..1) pour 1.03',
     )
     expect(() => buildRevision(dayDoc(), { '1.03': { statut: 'présence établie', confiance: -0.1 } })).toThrow(/bornes/)
+    expect(() => buildRevision(dayDoc(), { '1.03': { statut: 'peut-être', confiance: 0.5 } })).toThrow(
+      'Statut de verdict invalide pour 1.03 : « peut-être »',
+    )
+    expect(() => buildRevision(dayDoc(), { '9.99': { statut: 'présence établie', confiance: 0.5 } })).toThrow(
+      'Compétence inconnue dans le document : 9.99',
+    )
+    expect(() => buildRevision(mergeDoc(), {})).toThrow(/cartographies de journée/)
+  })
+
+  it('UC-CAR-04-U15 — AN14 : confiance vide, nulle ou blanche convertie en 0 sans erreur (comportement actuel)', () => {
+    // Number('') === 0 : un champ « Confiance » vidé dans l'IHM enregistre 0 %.
+    for (const confiance of ['', null, ' ']) {
+      const revised = buildRevision(dayDoc(), { '1.03': { statut: 'présence établie', confiance } })
+      expect(comp(revised, '1.03').verdict.confiance).toBe(0)
+    }
   })
 })
 

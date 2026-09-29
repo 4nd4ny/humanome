@@ -64,6 +64,21 @@ describe('UC-CAR-07 — buildConsistencyView', () => {
     ])
     expect(view.lignes.map((l) => l.code)).toEqual([...view.lignes.map((l) => l.code)].sort())
     expect(view.lignes.filter((l) => !l.stable).map((l) => l.code)).toEqual(['1.03'])
+
+    // Tri propre à la vue : un résultat dont les clés arrivent dans le
+    // désordre (compareRuns, lui, les trie déjà) ressort trié.
+    const unsorted = buildConsistencyView({
+      nbRuns: 2,
+      competencesCommunes: [],
+      competencesDivergentes: [],
+      distanceStructurelle: 0,
+      parCompetence: {
+        '7.01': { statuts: [ETABLIE, ETABLIE], confiances: [1, 1], ecartType: 0 },
+        '1.03': { statuts: [ETABLIE, ETABLIE], confiances: [1, 1], ecartType: 0 },
+        '4.05': { statuts: [ETABLIE, ETABLIE], confiances: [1, 1], ecartType: 0 },
+      },
+    })
+    expect(unsorted.lignes.map((l) => l.code)).toEqual(['1.03', '4.05', '7.01'])
   })
 
   it('UC-CAR-07-U11 — run où la compétence est absente : groupe « non instruite » ; ligne marquée instable', () => {

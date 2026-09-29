@@ -7,6 +7,7 @@ namespace Humanome\Tests\UseCases\Unit;
 use Humanome\Cartographe\Garanties;
 use Humanome\Cartographe\Links;
 use Humanome\Cartographe\Revisions;
+use Humanome\Tests\TestDb;
 use Humanome\Tests\UseCases\Support\CarSupport;
 use PDO;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -92,11 +93,14 @@ final class UcCar05GarantirCartographieTest extends TestCase
         $garanties = new Garanties(self::$pdo);
         $revisionId = $this->revision();
         $garanties->pose($this->cartoId, $this->carl, 'Carl', null);
+        // Signature vieillie : le remplacement doit porter un NOUVEL horodatage.
+        self::$pdo->exec("UPDATE cartography_garanties SET created_at = '2020-01-01 00:00:00'");
 
         $replaced = $garanties->pose($this->cartoId, $this->carl, 'Carl D.', $revisionId);
 
         self::assertSame('Carl D.', $replaced['par']);
         self::assertSame($revisionId, $replaced['revisionId']);
+        self::assertNotSame('2020-01-01T00:00:00', $replaced['date'], 'nouvel horodatage');
         self::assertSame(1, CarSupport::count(self::$pdo, 'SELECT COUNT(*) FROM cartography_garanties'));
     }
 
@@ -132,6 +136,9 @@ final class UcCar05GarantirCartographieTest extends TestCase
     {
         $both = CarSupport::user(self::$pdo, 'Bea', ['apprenant', 'cartographe']);
         $own = CarSupport::carto(self::$pdo, $both);
+        // Auto-lien posé en SQL (l'API le refuse, UC-CAR-01 RG3) : le niveau
+        // « cartographe » devient possible, la propriété doit quand même primer.
+        CarSupport::link(self::$pdo, $both, $both);
         $links = new Links(self::$pdo);
 
         self::assertSame('owner', $links->access($own, $both, ['apprenant', 'cartographe'])['level']);
@@ -155,5 +162,73 @@ final class UcCar05GarantirCartographieTest extends TestCase
         $garanties->pose($this->cartoId, $this->rita, 'Rita', null);
         self::$pdo->exec('DELETE FROM cartographies WHERE id = ' . $this->cartoId);
         self::assertSame(0, CarSupport::count(self::$pdo, 'SELECT COUNT(*) FROM cartography_garanties'), 'cartographie supprimée');
+    }
+
+    #[TestDox('UC-CAR-05-U12 — pose concurrente de deux PREMIÈRES signatures : l’une passe, l’autre échoue en interblocage (1213), jamais le refus propre null → 409 (comportement actuel)')]
+    public function testU12ConcurrentFirstSignaturesDeadlockInsteadOfConflict(): void
+    {
+        // Un second processus (autre connexion MySQL) joue Rita qui garantit
+        // au même moment, avec la même séquence que Garanties::pose : SELECT
+        // … FOR UPDATE sur une ligne absente (verrou d'intervalle, compatible
+        // avec celui de Carl), pause, puis INSERT.
+        $child = <<<'PHP'
+            require $argv[1];
+            $pdo = \Humanome\Tests\TestDb::pdo();
+            $pdo->beginTransaction();
+            $pdo->prepare('SELECT id, cartographe_id FROM cartography_garanties WHERE cartographie_id = ? FOR UPDATE')
+                ->execute([(int) $argv[2]]);
+            fwrite(STDOUT, "locked\n");
+            fflush(STDOUT);
+            sleep(2);
+            try {
+                $pdo->prepare('INSERT INTO cartography_garanties (cartographie_id, cartographe_id, revision_id, par) VALUES (?, ?, NULL, ?)')
+                    ->execute([(int) $argv[2], (int) $argv[3], 'Rita']);
+                $pdo->commit();
+                fwrite(STDOUT, "ok\n");
+            } catch (\PDOException $e) {
+                $pdo->rollBack();
+                fwrite(STDOUT, 'error ' . ($e->errorInfo[1] ?? '?') . "\n");
+            }
+            PHP;
+        $env = getenv();
+        $env['DB_TEST_NAME'] = TestDb::name();
+        $process = proc_open(
+            [PHP_BINARY, '-r', $child, \dirname(__DIR__, 3) . '/vendor/autoload.php', (string) $this->cartoId, (string) $this->rita],
+            [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+            $pipes,
+            null,
+            $env,
+        );
+        self::assertIsResource($process);
+        $carlResult = null;
+        $carlError = null;
+        try {
+            // (Pas de lecture de stderr avant la fin : elle bloquerait.)
+            self::assertSame("locked\n", fgets($pipes[1]));
+            try {
+                $carlResult = (new Garanties(self::$pdo))->pose($this->cartoId, $this->carl, 'Carl', null);
+            } catch (\PDOException $e) {
+                $carlError = (int) ($e->errorInfo[1] ?? 0);
+            }
+        } finally {
+            $ritaOutcome = trim((string) stream_get_contents($pipes[1]));
+            $errors = (string) stream_get_contents($pipes[2]);
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+            $exit = proc_close($process);
+        }
+        self::assertSame(0, $exit, $errors);
+
+        // Exactement une signature passe…
+        $winners = ($carlResult !== null ? 1 : 0) + ($ritaOutcome === 'ok' ? 1 : 0);
+        self::assertSame(1, $winners, 'Carl : ' . var_export($carlResult, true) . ' / Rita : ' . $ritaOutcome);
+        self::assertSame(1, CarSupport::count(self::$pdo, 'SELECT COUNT(*) FROM cartography_garanties'));
+        // … et le perdant reçoit une exception d'interblocage (→ 500 « Erreur
+        // interne » par la route), pas le null qui produirait le 409 documenté.
+        if ($carlResult === null) {
+            self::assertSame(1213, $carlError);
+        } else {
+            self::assertSame('error 1213', $ritaOutcome);
+        }
     }
 }

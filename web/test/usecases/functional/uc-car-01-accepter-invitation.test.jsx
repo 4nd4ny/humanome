@@ -127,4 +127,61 @@ describe('UC-CAR-01 — le cartographe accepte le code reçu', () => {
     await waitFor(() => expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy())
     expect(screen.queryByTestId('cartographe-connecte')).toBeNull()
   })
+
+  it('UC-CAR-01-F12 — E4 : jeton CSRF refusé → message serveur affiché tel quel, saisie conservée, rien de rechargé', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/apprentis': jsonResponse(200, []),
+      'GET api/cartographe/cartographies': jsonResponse(200, []),
+      'POST api/cartographe/invitations/K7TQZ2M9RC/accept': jsonResponse(403, {
+        error: 'Jeton CSRF absent ou invalide',
+      }),
+    })
+    openCartographe()
+
+    await submitCode('K7TQZ2M9RC')
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Jeton CSRF absent ou invalide')
+    expect(screen.queryByText(/Invitation acceptée/)).toBeNull()
+    expect(screen.getByLabelText('Code d’invitation').value).toBe('K7TQZ2M9RC')
+    expect(screen.getByRole('button', { name: 'Accepter l’invitation' }).disabled).toBe(false)
+    expect(net.called('GET api/cartographe/apprentis')).toHaveLength(1)
+  })
+
+  it('UC-CAR-01-F13 — E5 : session perdue pendant l’acceptation (401) → message affiché, saisie conservée, rien de rechargé', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/apprentis': jsonResponse(200, []),
+      'GET api/cartographe/cartographies': jsonResponse(200, []),
+      'POST api/cartographe/invitations/K7TQZ2M9RC/accept': jsonResponse(401, {
+        error: 'Authentification requise',
+      }),
+    })
+    openCartographe()
+
+    await submitCode('K7TQZ2M9RC')
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Authentification requise')
+    expect(screen.getByLabelText('Code d’invitation').value).toBe('K7TQZ2M9RC')
+    expect(net.called('GET api/cartographe/apprentis')).toHaveLength(1)
+  })
+
+  it('UC-CAR-01-F14 — étape 6 : acceptation réussie mais rechargement en échec → succès ET alerte de chargement', async () => {
+    let accepted = false
+    stubNetwork({
+      'GET api/cartographe/apprentis': () =>
+        accepted ? jsonResponse(500, { error: 'Erreur interne' }) : jsonResponse(200, []),
+      'GET api/cartographe/cartographies': jsonResponse(200, []),
+      'POST api/cartographe/invitations/K7TQZ2M9RC/accept': () => {
+        accepted = true
+        return jsonResponse(201, { apprenant: { id: 1, displayName: 'Maya' } })
+      },
+    })
+    openCartographe()
+
+    await submitCode('K7TQZ2M9RC')
+
+    expect((await screen.findByText(/Invitation acceptée/)).textContent).toContain('rattaché à vous')
+    const file = screen.getByRole('region', { name: 'Cartographies à relire' })
+    expect((await within(file).findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByLabelText('Code d’invitation').value).toBe('')
+  })
 })

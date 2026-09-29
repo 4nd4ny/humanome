@@ -114,17 +114,19 @@ final class UcCar05GarantirCartographieTest extends CartographeTestCase
         // La révision est posée d'abord : postée APRÈS, elle retirerait la garantie (UC-CAR-04 A2).
         $r1 = $this->revision($this->carl);
         self::assertSame(201, $this->guarantee($this->carl)->getStatusCode()); // document d'origine
+        self::$pdo->exec("UPDATE cartography_garanties SET created_at = '2020-01-01 00:00:00'");
 
         $again = $this->guarantee($this->carl, ['revisionId' => $r1]);
 
         self::assertSame(201, $again->getStatusCode());
         self::assertSame($r1, self::json($again)['revisionId']);
+        self::assertNotSame('2020-01-01T00:00:00', self::json($again)['date'], 'nouvel horodatage');
         self::assertSame(1, $this->countRows('cartography_garanties'));
         self::assertSame(2, $this->countAudits('garantie_posee'), 'chaque signature est un fait daté');
         self::assertSame($r1, self::json($this->as_($this->carl, 'GET', '/api/cartographe/cartographies/' . $this->cartoId))['garantie']['revisionId']);
     }
 
-    #[TestDox('UC-CAR-05-F04 — A4 : retrait par le signataire → 204, audit « retrait », même si l’apprenant a fermé la cartographie')]
+    #[TestDox('UC-CAR-05-F04 — A4 : retrait par le signataire → 204, audit « retrait », même si l’apprenant a fermé la cartographie (par l’API ; AN15 : lien employeur toujours garanti entre-temps)')]
     public function testF04WithdrawalBySignatory(): void
     {
         self::assertSame(201, $this->guarantee($this->carl)->getStatusCode());
@@ -136,11 +138,29 @@ final class UcCar05GarantirCartographieTest extends CartographeTestCase
         self::assertEquals(['cartographieId' => $this->cartoId, 'cause' => 'retrait'], $audit['details']);
 
         // RG : c'est SON nom — il peut le retirer même après fermeture en privée.
+        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => 'mot-de-passe-du-lien']);
+        self::assertSame(201, $share->getStatusCode(), (string) $share->getBody());
+        $token = (string) self::json($share)['token'];
         self::assertSame(201, $this->guarantee($this->carl)->getStatusCode());
         self::assertSame(200, $this->as_($this->maya, 'PATCH', '/api/cartographies/' . $this->cartoId, ['visibility' => 'privee'])->getStatusCode());
         self::assertSame(404, $this->guarantee($this->carl)->getStatusCode(), 'plus de pose possible');
-        self::assertSame(204, $this->withdraw($this->carl)->getStatusCode(), 'mais le retrait reste possible');
+        self::assertSame(404, $this->as_($this->carl, 'GET', '/api/cartographe/cartographies/' . $this->cartoId)->getStatusCode(), 'relecture fermée (AN15)');
+        // AN15 : pendant ce temps, le lien employeur présente toujours la garantie.
+        self::assertSame('Carl', $this->employeurConsulte($token)['garantie']['par']);
+        self::assertSame(204, $this->withdraw($this->carl)->getStatusCode(), 'mais le retrait reste possible (par l’API)');
         self::assertSame(0, $this->countRows('cartography_garanties'));
+        self::assertNull($this->employeurConsulte($token)['garantie']);
+    }
+
+    /** L'employeur consulte le lien de partage (aucun cookie, autre IP). */
+    private function employeurConsulte(string $token): array
+    {
+        $this->cookieSid = null;
+        $this->clientIp = '198.51.100.7';
+        $response = $this->request('POST', '/api/share/' . $token, ['password' => 'mot-de-passe-du-lien']);
+        self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+
+        return self::json($response);
     }
 
     #[TestDox('UC-CAR-05-F05 — RG : le nom signé est figé — renommer son compte ne réécrit pas la garantie')]
@@ -218,7 +238,7 @@ final class UcCar05GarantirCartographieTest extends CartographeTestCase
         self::assertSame(201, $this->guarantee($this->carl, ['revisionId' => null])->getStatusCode(), 'null = document d’origine');
     }
 
-    #[TestDox('UC-CAR-05-F10 — E5 : retrait par un autre cartographe ou sans garantie → 404 « Garantie introuvable »')]
+    #[TestDox('UC-CAR-05-F10 — E5 : retrait par un autre cartographe ou sans garantie → 404 « Garantie introuvable » ; sans le rôle cartographe (propriétaire, signataire déchu) → 403')]
     public function testF10WithdrawalRefusals(): void
     {
         $rita = $this->registerAs('rita@example.org', 'Rita', ['cartographe']);
@@ -230,7 +250,16 @@ final class UcCar05GarantirCartographieTest extends CartographeTestCase
 
         self::assertSame(201, $this->guarantee($this->carl)->getStatusCode());
         self::assertSame(404, $this->withdraw($rita)->getStatusCode());
-        self::assertSame(403, $this->withdraw($this->maya)->getStatusCode(), 'propriétaire sans le rôle');
+        $owner = $this->withdraw($this->maya);
+        self::assertSame(403, $owner->getStatusCode(), 'propriétaire sans le rôle');
+        self::assertSame(['error' => 'Rôle insuffisant'], self::json($owner));
+
+        // Le signataire à qui l'on retire le rôle cartographe ne peut plus
+        // retirer sa propre garantie, qui reste servie à son nom.
+        self::setRoles($this->carl['id'], ['apprenant']);
+        $lost = $this->withdraw($this->carl);
+        self::assertSame(403, $lost->getStatusCode());
+        self::assertSame(['error' => 'Rôle insuffisant'], self::json($lost));
         self::assertSame(1, $this->countRows('cartography_garanties'));
         self::assertSame(0, $this->countAudits('garantie_retiree'));
     }

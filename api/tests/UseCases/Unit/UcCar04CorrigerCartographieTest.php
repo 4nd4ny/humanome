@@ -134,8 +134,16 @@ final class UcCar04CorrigerCartographieTest extends TestCase
             self::assertStringStartsWith('/', (string) $pointer);
         }
 
-        // Le `kind` du schéma épingle le type : une journée n'est pas un merge.
-        self::assertFalse(Validation::validate('cartographie-merge', self::corrected())['valid']);
+        // Le `kind` du schéma épingle le type : un merge réel (conforme une
+        // fois décodé en objets) dont seul `kind` est changé est refusé, sur
+        // le seul pointeur /kind.
+        $raw = (string) file_get_contents(\dirname(__DIR__, 4) . '/schemas/fixtures/cartographie-merge-3-jours.json');
+        $merge = json_decode($raw, false);
+        self::assertTrue(Validation::validate('cartographie-merge', $merge)['valid']);
+        $merge->kind = 'cartographie-jour';
+        $pinned = Validation::validate('cartographie-merge', $merge);
+        self::assertFalse($pinned['valid']);
+        self::assertSame(['/kind'], array_keys($pinned['errors']));
     }
 
     #[TestDox('UC-CAR-04-U06 — Validation : type « twin9 » non supporté → exception (cause de l’anomalie AN1)')]
@@ -166,5 +174,19 @@ final class UcCar04CorrigerCartographieTest extends TestCase
         $filled = json_decode($raw, true);
         $filled['reserved']['piecesData'] = ['p1' => ['texte' => 'x']];
         self::assertTrue(Validation::validate('cartographie-merge', $filled)['valid']);
+    }
+
+    #[TestDox('UC-CAR-04-U14 — contraintes SQL : les révisions disparaissent avec leur cartographie (CASCADE)')]
+    public function testU14RevisionsAreDeletedWithTheirCartography(): void
+    {
+        $revisions = new Revisions(self::$pdo);
+        ['revisionId' => $revisionId] = $revisions->create($this->cartoId, $this->carl, self::corrected(), 'À supprimer');
+        self::assertCount(1, $revisions->listForCartography($this->cartoId));
+
+        self::$pdo->exec('DELETE FROM cartographies WHERE id = ' . $this->cartoId);
+
+        self::assertSame([], $revisions->listForCartography($this->cartoId));
+        self::assertNull($revisions->find($revisionId));
+        self::assertSame(0, CarSupport::count(self::$pdo, 'SELECT COUNT(*) FROM cartography_revisions'));
     }
 }

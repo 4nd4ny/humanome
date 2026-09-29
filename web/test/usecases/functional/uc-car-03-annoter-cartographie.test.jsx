@@ -125,21 +125,42 @@ describe('UC-CAR-03 — le cartographe annote par compétence', () => {
     expect(screen.getByTestId('annotations-list').textContent).toContain('La note de synthèse existe')
   })
 
-  it('UC-CAR-03-F11 — A3 : parcours (merge) → annotation possible, pas de correction de verdict', async () => {
-    stubNetwork({
+  it('UC-CAR-03-F11 — A3 : parcours (merge) → annotation postée et fil rechargé, pas de correction de verdict', async () => {
+    const net = stubNetwork({
       'GET api/cartographe/cartographies/14': jsonResponse(
         200,
         detailBody({ id: 14, type: 'merge', titre: 'Mon parcours', document: mergeDoc() }),
       ),
+      'POST api/cartographies/14/annotations': jsonResponse(201, { id: 7 }),
+      'GET api/cartographies/14/annotations': jsonResponse(200, [
+        {
+          id: 7,
+          competenceCode: '2.06',
+          type: 'oubli',
+          texte: 'Trace absente du parcours.',
+          author: { id: 9, displayName: 'Camille' },
+          createdAt: '2026-07-04T09:30:00',
+        },
+      ]),
     })
     openCartographe('relecture/14')
     await chooseCompetence('2.06')
 
     expect(await screen.findByTestId('annotation-panel')).toBeTruthy()
     expect(screen.getByText('Aucune annotation sur cette compétence.')).toBeTruthy()
-    expect(screen.getByRole('button', { name: 'Annoter' })).toBeTruthy()
     expect(screen.queryByTestId('correction-editor')).toBeNull()
     expect(screen.getByText(/La correction par verdict s’applique aux cartographies de journée/)).toBeTruthy()
+
+    await annotate('oubli', 'Trace absente du parcours.')
+
+    expect(net.called('POST api/cartographies/14/annotations')[0].body).toEqual({
+      competenceCode: '2.06',
+      type: 'oubli',
+      texte: 'Trace absente du parcours.',
+    })
+    await waitFor(() =>
+      expect(screen.getByTestId('annotations-list').textContent).toContain('Trace absente du parcours.'),
+    )
   })
 
   it('UC-CAR-03-F12 — E1 : texte vide (ou blanc) refusé localement, aucune requête', async () => {
@@ -191,5 +212,24 @@ describe('UC-CAR-03 — le cartographe annote par compétence', () => {
 
     expect((await screen.findByRole('alert')).textContent).toBe('Annotation introuvable')
     expect(screen.getByTestId('annotations-list').textContent).toContain('ne figure pas')
+  })
+
+  it('UC-CAR-03-F16 — nominal, étape 5 (AN11) : POST réussi mais rechargement du fil en échec → erreur affichée, champ vidé (état ACTUEL)', async () => {
+    const net = stubNetwork({
+      'GET api/cartographe/cartographies/12': jsonResponse(200, detailBody()),
+      'POST api/cartographies/12/annotations': jsonResponse(201, { id: 8 }),
+      'GET api/cartographies/12/annotations': jsonResponse(404, { error: 'Cartographie introuvable' }),
+    })
+    openCartographe('relecture/12')
+    await chooseCompetence('2.01')
+
+    await annotate('commentaire', 'Annotation bien enregistrée.')
+
+    // Comportement actuel : l'annotation est stockée (201), mais le fil n'est
+    // pas rechargé, le champ est déjà vidé et l'alerte laisse croire à un échec.
+    expect((await screen.findByRole('alert')).textContent).toBe('Cartographie introuvable')
+    expect(screen.getByLabelText('Annotation').value).toBe('')
+    expect(net.called('POST api/cartographies/12/annotations')).toHaveLength(1)
+    expect(screen.getByText('Aucune annotation sur cette compétence.')).toBeTruthy()
   })
 })

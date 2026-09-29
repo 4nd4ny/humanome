@@ -117,7 +117,7 @@ describe('UC-CAR-07 — rapport de consistance', () => {
     expect(ligne.getAttribute('data-stable')).toBe('false')
     expect(ligne.querySelectorAll('td')[0].textContent).toBe('présence non établie 100 %')
     expect(ligne.querySelectorAll('td')[2].textContent).toBe('0.000')
-    expect(net.calls.some((call) => call.key.startsWith('POST'))).toBe(false)
+    expect(net.calls.every((call) => call.key.startsWith('GET '))).toBe(true) // aucune écriture
   })
 
   it('UC-CAR-07-F02 — A1 : runs 100 % locaux (fichiers JSON validés) → rapport, aucun envoi au serveur', async () => {
@@ -135,10 +135,10 @@ describe('UC-CAR-07 — rapport de consistance', () => {
     expect(await screen.findByTestId('consistance-rapport')).toBeTruthy()
     expect(screen.getByTestId('consistance-divergentes').textContent).toContain('1.03')
     expect(net.calls.filter((call) => call.key.includes('api/cartographe/cartographies/'))).toHaveLength(0)
-    expect(net.calls.some((call) => call.key.startsWith('POST') || call.key.startsWith('PUT'))).toBe(false)
+    expect(net.calls.every((call) => call.key.startsWith('GET '))).toBe(true) // aucune écriture, aucun envoi
   })
 
-  it('UC-CAR-07-F03 — A2/A3 : file + fichier local ; retirer un document masque le rapport', async () => {
+  it('UC-CAR-07-F03 — A2/A3 : file puis fichier local (dans cet ordre) ; décocher, ajouter ou retirer masque le rapport', async () => {
     network({ 31: dayDoc() })
     openCartographe('consistance')
     fireEvent.click(await screen.findByLabelText(/Run 1/))
@@ -147,11 +147,31 @@ describe('UC-CAR-07 — rapport de consistance', () => {
 
     await analyse()
     expect(await screen.findByTestId('consistance-rapport')).toBeTruthy()
+    // A2 : run 1 = document de la file (2.01 établie), run 2 = fichier local (renvoi).
+    const divergentes = screen.getByTestId('consistance-divergentes').textContent
+    expect(divergentes).toContain('présence établie (run 1)')
+    expect(divergentes).toContain('renvoi au cartographe (run 2)')
 
-    fireEvent.click(within(screen.getByTestId('consistance-locaux')).getByRole('button', { name: 'Retirer' }))
+    // A3 : décocher masque le rapport.
+    fireEvent.click(screen.getByLabelText(/Run 1/))
     expect(screen.queryByTestId('consistance-rapport')).toBeNull()
     expect(analyseButton().textContent).toBe('Analyser la consistance (1 document(s))')
     expect(analyseButton().disabled).toBe(true)
+
+    // A3 : ajouter un fichier masque aussi le rapport.
+    fireEvent.click(screen.getByLabelText(/Run 1/))
+    await analyse()
+    expect(await screen.findByTestId('consistance-rapport')).toBeTruthy()
+    await addFiles(localFile('run-local-2.json', dayDoc()))
+    expect(screen.queryByTestId('consistance-rapport')).toBeNull()
+    expect(analyseButton().textContent).toBe('Analyser la consistance (3 document(s))')
+
+    // A3 : « Retirer » un fichier masque le rapport.
+    await analyse()
+    expect(await screen.findByTestId('consistance-rapport')).toBeTruthy()
+    fireEvent.click(within(screen.getByTestId('consistance-locaux')).getAllByRole('button', { name: 'Retirer' })[1])
+    expect(screen.queryByTestId('consistance-rapport')).toBeNull()
+    expect(analyseButton().textContent).toBe('Analyser la consistance (2 document(s))')
   })
 
   it('UC-CAR-07-F04 — A4 : trois runs → une colonne par run, runs groupés par statut', async () => {
@@ -186,6 +206,15 @@ describe('UC-CAR-07 — erreurs', () => {
     )
     expect(screen.queryByTestId('consistance-locaux')).toBeNull()
     expect(analyseButton().disabled).toBe(true)
+
+    // Lot mixte : les fichiers valides sont ajoutés, et seul le DERNIER
+    // message d'erreur reste affiché.
+    await addFiles(localFile('casse.json', '{ pas du json'), localFile('parcours.json', mergeDoc()), localFile('run.json', dayDoc()))
+    expect(screen.getAllByRole('alert').map((a) => a.textContent)).toEqual([
+      '« parcours.json » ne respecte pas le schéma cartographie-jour : fichier ignoré.',
+    ])
+    expect(within(screen.getByTestId('consistance-locaux')).getAllByRole('listitem')).toHaveLength(1)
+    expect(screen.getByTestId('consistance-locaux').textContent).toContain('run.json')
   })
 
   it('UC-CAR-07-F06 — E2 : document de la file qui n’est pas une journée → analyse refusée', async () => {
@@ -221,6 +250,7 @@ describe('UC-CAR-07 — erreurs', () => {
     openCartographe('consistance')
 
     expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByText('Aucune cartographie de journée dans votre file.')).toBeTruthy()
     await addFiles(localFile('a.json', dayDoc()), localFile('b.json', dayDoc()))
     await analyse()
     expect(screen.getByTestId('consistance-accord').textContent).toContain('Accord global : 100 %')
@@ -249,5 +279,109 @@ describe('UC-CAR-07 — erreurs', () => {
     expect(await screen.findByTestId('cartographe-reserve')).toBeTruthy()
     expect(screen.queryByLabelText(/fichiers locaux/)).toBeNull()
     expect(net.calls.some((call) => call.key.includes('api/cartographe/'))).toBe(false)
+  })
+})
+
+describe('UC-CAR-07 — limites et anomalies (comportement ACTUEL figé)', () => {
+  it('UC-CAR-07-F11 — L3 : documents de la file hors schéma (seul `kind` est contrôlé) → analysés tels quels, accord 100 %', async () => {
+    network({
+      31: { kind: 'cartographie-jour', poles: [] },
+      32: { kind: 'cartographie-jour', poles: [{ competences: [{ code: 'X', verdict: { statut: 'n’importe quoi' } }] }] },
+    })
+    openCartographe('consistance')
+    fireEvent.click(await screen.findByLabelText(/Run 1/))
+    fireEvent.click(screen.getByLabelText(/Run 2/))
+
+    await analyse()
+
+    expect(screen.getByTestId('consistance-accord').textContent).toBe(
+      'Accord global : 100 % (distance structurelle 0.000).',
+    )
+    expect(screen.queryAllByRole('alert')).toHaveLength(0)
+  })
+
+  it('UC-CAR-07-F12 — AN19 : les runs de la file sont numérotés dans l’ordre des CLICS, sans lien visible avec les documents', async () => {
+    network(
+      { 31: dayDoc(), 32: withStatut(dayDoc(), '1.01', ETABLIE) },
+      [
+        queueEntry({ id: 31, titre: 'Premier dépôt', createdAt: '2026-07-02T10:00:00' }),
+        queueEntry({ id: 32, titre: 'Second dépôt', createdAt: '2026-07-03T10:00:00' }),
+      ],
+    )
+    openCartographe('consistance')
+    // Coché d'abord le second de la liste (1.01 établie), puis le premier.
+    fireEvent.click(await screen.findByLabelText(/Second dépôt/))
+    fireEvent.click(screen.getByLabelText(/Premier dépôt/))
+
+    await analyse()
+
+    const divergentes = screen.getByTestId('consistance-divergentes').textContent
+    expect(divergentes).toContain('présence établie (run 1)') // = « Second dépôt »
+    expect(divergentes).toContain('présence non établie (run 2)') // = « Premier dépôt »
+    expect(screen.getByTestId('consistance-rapport').textContent).not.toContain('dépôt')
+  })
+
+  it('UC-CAR-07-F13 — AN20 : sélection modifiée pendant l’analyse → rapport périmé sur 3 runs alors que 1 seul est coché', async () => {
+    let release
+    const pending = new Promise((resolve) => {
+      release = resolve
+    })
+    network(
+      { 31: dayDoc(), 33: dayDoc() },
+      [
+        queueEntry({ id: 31, titre: 'Run A' }),
+        queueEntry({ id: 32, titre: 'Run B' }),
+        queueEntry({ id: 33, titre: 'Run C' }),
+      ],
+      {
+        'GET api/cartographe/cartographies/32': async () => {
+          await pending
+          return jsonResponse(200, detailBody({ id: 32, document: dayDoc() }))
+        },
+      },
+    )
+    openCartographe('consistance')
+    for (const titre of [/Run A/, /Run B/, /Run C/]) fireEvent.click(await screen.findByLabelText(titre))
+
+    await analyse()
+    // Analyse en cours : bouton « Analyse… » désactivé, mais cases toujours actives.
+    const busyButton = screen.getByRole('button', { name: 'Analyse…' })
+    expect(busyButton.disabled).toBe(true)
+    fireEvent.click(screen.getByLabelText(/Run A/))
+    fireEvent.click(screen.getByLabelText(/Run C/))
+
+    await act(async () => {
+      release()
+    })
+
+    // Comportement actuel : le rapport de la sélection d'origine s'affiche.
+    expect(within(await screen.findByTestId('consistance-rapport')).getByRole('heading', { name: '2. Rapport (3 runs)' })).toBeTruthy()
+    expect(analyseButton().textContent).toBe('Analyser la consistance (1 document(s))')
+  })
+
+  it('UC-CAR-07-F14 — E7 : document de la file étiqueté journée mais sans pôles → message technique du moteur (index 0), pas de rapport', async () => {
+    network({ 31: { kind: 'cartographie-jour', date: '2026-01-05' }, 32: dayDoc() })
+    openCartographe('consistance')
+    fireEvent.click(await screen.findByLabelText(/Run 1/))
+    fireEvent.click(screen.getByLabelText(/Run 2/))
+
+    await analyse()
+
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      "compareRuns : docs[0] n'est pas un document cartographie-jour (poles[] manquant)",
+    )
+    expect(screen.queryByTestId('consistance-rapport')).toBeNull()
+  })
+
+  it('UC-CAR-07-F15 — limite : aucun dédoublonnage, le même fichier ajouté deux fois compte pour deux runs (accord 100 %)', async () => {
+    network({}, [])
+    openCartographe('consistance')
+    await addFiles(localFile('run.json', dayDoc()))
+    await addFiles(localFile('run.json', dayDoc()))
+
+    expect(within(screen.getByTestId('consistance-locaux')).getAllByRole('listitem')).toHaveLength(2)
+    expect(analyseButton().textContent).toBe('Analyser la consistance (2 document(s))')
+    await analyse()
+    expect(screen.getByTestId('consistance-accord').textContent).toContain('Accord global : 100 %')
   })
 })
