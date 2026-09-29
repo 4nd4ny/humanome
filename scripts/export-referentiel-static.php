@@ -7,7 +7,7 @@ declare(strict_types=1);
  * plan M3): the public consultation page reads these files directly —
  * zero PHP involved at consultation time.
  *
- * Usage (dev): docker compose run --rm php php scripts/export-referentiel-static.php [outDir]
+ * Usage (dev): docker compose run --rm php php ../scripts/export-referentiel-static.php [outDir]
  * Default output: web/public/data/referentiel/
  *   - <referentielId>-v<semver>.json  (one schema-valid document per version)
  *   - index.json                      (list {referentielId, semver, label, publishedAt, fichier})

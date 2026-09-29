@@ -36,17 +36,27 @@ Générer les données dérivées (référentiel, documents de démo) :
 ```bash
 node scripts/convert/carto-data-to-merge-json.mjs
 node scripts/convert/extracted-to-day-json.mjs
-node scripts/extract-referentiel.mjs
+node scripts/extract-referentiel.mjs                 # référentiel 7.0.0
+node scripts/enrich-referentiel.mjs                  # 7.1.0 (définitions des compétences)
 node scripts/build-default-prompt-package.mjs
 ```
 
 ## 3. Base de données
 
+Le conteneur `php` travaille dans `api/` : les scripts de la racine se
+lancent donc par `../scripts/…`.
+
 ```bash
-docker compose run --rm php php scripts/migrate.php        # applique 001..010
-docker compose run --rm php php scripts/import-referentiel.php
-docker compose run --rm php php scripts/import-prompt-packages.php
+docker compose run --rm php php ../scripts/migrate.php     # applique les migrations en attente
+docker compose run --rm php php ../scripts/import-referentiel.php
+docker compose run --rm php php ../scripts/import-referentiel.php ../web/public/data/referentiel/respire-v7.1.0.json
+docker compose run --rm php php ../scripts/import-prompt-packages.php
+docker compose run --rm php php ../scripts/export-referentiel-static.php
 ```
+
+L'export statique écrit dans `web/public/data/referentiel/` les versions
+publiées (`respire-v7.0.0.json`, `respire-v7.1.0.json`) et `index.json`, que
+lit la page `#/referentiel`.
 
 Vérifier : `curl http://localhost:8080/api/health` → `{"status":"ok","db":"ok"}`.
 
@@ -56,6 +66,11 @@ Vérifier : `curl http://localhost:8080/api/health` → `{"status":"ok","db":"ok
 cd web && npm install && npm run build   # bundle statique dans web/dist
 npm run dev                              # ou : serveur de dev, proxy /api -> :8080
 ```
+
+Le `prebuild` assemble le paquet Twin6 public : il faut au préalable déposer
+ses trois gabarits (`0-mega-prompt.md`, `1-scan-pole.md`, `2-kairos-final.md`)
+dans `web/public/data/twin6/prompts/`, car ils ne sont pas encore versionnés
+(anomalie AN-2 de `docs/cas-utilisation/systeme/UC-SYS-04-construire-artefacts-derives.md`).
 
 Ouvrir http://localhost:5173. Le bundle `web/dist` est aussi ouvrable en
 `file://` (routing par hash, ADR-009) sauf les vues journée (fetch relatif).
@@ -69,6 +84,10 @@ cd web && npm test                           # front (Vitest)
 cd web && npm run test:e2e                    # Playwright (docker mock requis)
 node scripts/validate-corpus.mjs             # schémas ↔ données réelles
 ```
+
+Les suites front et moteur lisent les données dérivées du §2 ; la suite front
+lit aussi l'export statique du référentiel (§3) et le paquet Twin6 construit
+par `npm run build` (§4).
 
 ## 6. Déploiement (OVH mutualisé, sans SSH — ADR-008)
 
