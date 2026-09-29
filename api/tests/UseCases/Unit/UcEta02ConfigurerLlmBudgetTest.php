@@ -104,7 +104,7 @@ final class UcEta02ConfigurerLlmBudgetTest extends TestCase
         self::assertFalse($repo->projection($etab)['hasApiKey']);
     }
 
-    #[TestDox('UC-ETA-02-U03 — save : une clé fournie sans clé maîtresse lève une exception (jamais de stockage en clair)')]
+    #[TestDox('UC-ETA-02-U03 — save : une clé fournie sans clé maîtresse lève une exception (jamais de stockage en clair) — après avoir déjà écrit les autres champs (comportement actuel)')]
     public function testU03SaveWithoutMasterKeyRefusesToStoreAKey(): void
     {
         $etab = self::seedUser(self::$pdo, 'Lycée Astrolabe', ['etablissement']);
@@ -120,6 +120,11 @@ final class UcEta02ConfigurerLlmBudgetTest extends TestCase
             self::assertStringContainsString('SODIUM_MASTER_KEY', $e->getMessage());
         }
         self::assertNull(self::scalar(self::$pdo, 'SELECT encrypted_key FROM etablissement_config WHERE user_id = ?', [$etab]));
+        // Comportement ACTUEL (fiche, « Anomalies constatées ») : save() n'est
+        // pas atomique — l'upsert fournisseur/URL/plafond a eu lieu AVANT
+        // l'exception. Seul le pré-contrôle 503 de la route protège E2.
+        $row = self::$pdo->query("SELECT provider, endpoint_url FROM etablissement_config WHERE user_id = {$etab}")->fetch();
+        self::assertSame(['endpoint', 'http://10.0.0.12:11434'], [$row['provider'], $row['endpoint_url']]);
     }
 
     #[TestDox('UC-ETA-02-U04 — revealApiKey : sans ligne, sans clé ou avec une autre clé maîtresse → null')]
@@ -209,7 +214,12 @@ final class UcEta02ConfigurerLlmBudgetTest extends TestCase
         self::assertSame(['2026-01-05' => 'queued', '2026-01-06' => 'done', '2026-01-07' => 'cancelled'], $statuses($runs[$etab]));
         self::assertSame('active', self::scalar(self::$pdo, 'SELECT status FROM mass_runs WHERE id = ?', [$runs[$etab]]));
         self::assertNull(self::scalar(self::$pdo, 'SELECT finished_at FROM mass_runs WHERE id = ?', [$runs[$etab]]));
-        self::assertNotNull(self::scalar(self::$pdo, 'SELECT checkpoint FROM mass_jobs WHERE run_id = ? AND day_date = "2026-01-05"', [$runs[$etab]]), 'checkpoint conservé');
+        // Colonne JSON : ordre des clés non garanti → assertEquals.
+        self::assertEquals(
+            ['poles' => ['1' => ['stub' => true]]],
+            json_decode((string) self::scalar(self::$pdo, 'SELECT checkpoint FROM mass_jobs WHERE run_id = ? AND day_date = "2026-01-05"', [$runs[$etab]]), true),
+            'checkpoint conservé',
+        );
 
         self::assertSame('budget_exceeded', $statuses($runs[$autre])['2026-01-05']);
         self::assertSame('budget_exceeded', self::scalar(self::$pdo, 'SELECT status FROM mass_runs WHERE id = ?', [$runs[$autre]]));

@@ -10,10 +10,11 @@
 // LLM = mock du moteur rejouant les fixtures versionnées (schemas/fixtures).
 // Complète scripts/runner-node/runner.test.mjs (options, journaux, relances).
 import { readFileSync } from 'node:fs'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createMockProvider, validateDocument } from '../../../src/index.js'
 import {
   createRunner,
+  main,
   parseArgs,
   resolveProviderConfig,
   RunnerConfigError,
@@ -184,5 +185,44 @@ describe('UC-SYS-01 — runner Node : contrat avec l’API worker', () => {
     expect(forJob1[1].coutUsd).toBe(0.054)
     expect(api.status.get(1)).toBe('cancelled')
     expect(api.status.get(2)).toBe('done')
+  })
+})
+
+describe('UC-SYS-01 — runner Node : point d’entrée CLI (main)', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  it('UC-SYS-01-U22 — main : jeton refusé → code 3 ; job « humanome » sans --provider → code 4, rien posté ; avec --provider, le job humanome devient exécutable', async () => {
+    const stderr = vi.spyOn(process.stderr, 'write').mockImplementation(() => true)
+    const argv = ['--api', 'https://humanome.xyz', '--token', TOKEN]
+
+    // E1 : 401 sur la réservation → WorkerAuthError → code 3.
+    vi.stubGlobal('fetch', vi.fn(async () => jsonResponse(401, { error: 'Jeton worker invalide' })))
+    expect(await main(argv, {})).toBe(3)
+
+    // RG9 : job d'un établissement « humanome » sans fournisseur CLI →
+    // RunnerConfigError → code 4, aucun résultat posté.
+    const referentiel = fixture('referentiel-respire-v7.json')
+    const platformJob = phpJob(7, '2026-01-05', { provider: { provider: 'humanome' }, model: null })
+    const calls = []
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url, init = {}) => {
+        calls.push(`${init.method ?? 'GET'} ${new URL(url).pathname}`)
+        return jsonResponse(200, { jobs: [platformJob], referentiel })
+      }),
+    )
+    expect(await main(argv, {})).toBe(4)
+    expect(calls).toEqual(['GET /api/worker/jobs'])
+    expect(stderr.mock.calls.map(([line]) => String(line)).join('')).toContain('ERREUR de configuration')
+
+    // Avec --provider/--endpoint/--model, les options CLI priment : le même
+    // job « humanome » est exécuté avec le LLM de l'établissement (la clé
+    // plateforme ne quitte toujours pas le serveur).
+    expect(
+      resolveProviderConfig(platformJob, { provider: 'openai', endpoint: ENDPOINT, model: 'llama3', maxTokens: 8192 }, { LLM_API_KEY: 'local' }),
+    ).toMatchObject({ provider: 'openai', baseUrl: ENDPOINT, model: 'llama3', apiKey: 'local' })
   })
 })

@@ -21,8 +21,13 @@ use PDO;
  * - Surcharge temporaire de variables d'environnement (WORKER_PROVIDER,
  *   MIGRATE_TOKEN, SODIUM_MASTER_KEY…) restaurée quoi qu'il arrive : les
  *   bases de test partagent le processus PHPUnit.
- * - Fixtures versionnées : référentiel RESPIRE v7 extrait, paquet par défaut
- *   construit depuis les gabarits du moteur, documents jour du schéma.
+ * - Fixtures : référentiel RESPIRE v7 (instantané versionné
+ *   schemas/fixtures/referentiel-respire-v7.json), paquet par défaut construit
+ *   depuis les gabarits du moteur (build/, généré — précondition vérifiée),
+ *   documents jour du schéma.
+ * - Verrou du worker : GET_LOCK('humanome_worker') est global au serveur
+ *   MySQL (UC-SYS-01, RG1) ; untilUnlocked() relance un tick tant qu'un AUTRE
+ *   processus PHPUnit (autre base de test) le tient.
  */
 trait EtaSupport
 {
@@ -40,10 +45,14 @@ trait EtaSupport
         return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    /** @return array<string, mixed> référentiel RESPIRE v7 extrait (données dérivées) */
+    /**
+     * @return array<string, mixed> référentiel RESPIRE v7 — instantané VERSIONNÉ
+     *   de web/public/data/referentiel/respire-v7.json (fichier généré, absent
+     *   d'un checkout neuf) ; seul le champ `source` diffère, même contentHash.
+     */
     protected static function respireReferentiel(): array
     {
-        $path = self::repoRoot() . '/web/public/data/referentiel/respire-v7.json';
+        $path = self::repoRoot() . '/schemas/fixtures/referentiel-respire-v7.json';
 
         return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
     }
@@ -52,8 +61,28 @@ trait EtaSupport
     protected static function defaultPackage(): array
     {
         $path = self::repoRoot() . '/build/prompt-packages/aurora-v3-reconstruit-1.0.0.json';
+        self::assertFileExists($path, 'run: node scripts/build-default-prompt-package.mjs');
 
         return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * Relance $run (un tick) tant qu'il répond {locked: true} parce qu'un AUTRE
+     * processus tient le verrou global du worker (≤ 30 s). À ne pas utiliser
+     * quand le test tient lui-même le verrou (A6).
+     *
+     * @param callable(): array<string, mixed> $run
+     * @return array<string, mixed>
+     */
+    protected static function untilUnlocked(callable $run): array
+    {
+        for ($try = 1; ; $try++) {
+            $counters = $run();
+            if (($counters['locked'] ?? false) !== true || $try >= 300) {
+                return $counters;
+            }
+            usleep(100_000);
+        }
     }
 
     /** Référentiel v7 + paquet par défaut publiés en base (préconditions d'un run). */

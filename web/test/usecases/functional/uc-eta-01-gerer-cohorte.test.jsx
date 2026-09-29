@@ -121,7 +121,7 @@ describe('UC-ETA-01 — l’établissement crée et gère ses cohortes', () => {
     expect(screen.queryByTestId('etab-cohortes')).toBeNull()
   })
 
-  it('UC-ETA-01-F10 — E1 : nom vide refusé localement ; refus du serveur (422) affiché', async () => {
+  it('UC-ETA-01-F10 — E0, E1 : nom vide refusé localement (E0) ; refus du serveur (422) affiché (E1)', async () => {
     const api = stubApi({
       'GET api/etablissement/cohortes': jsonResponse(200, []),
       'GET api/etablissement/config': jsonResponse(200, configProjection()),
@@ -142,7 +142,9 @@ describe('UC-ETA-01 — l’établissement crée et gère ses cohortes', () => {
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Créer la cohorte' }))
     })
+    // Seul le message général est affiché : le détail fields.nom ne l'est pas.
     expect((await screen.findByRole('alert')).textContent).toBe('Validation échouée')
+    expect(screen.queryByText(/190 caractères maximum/)).toBeNull()
     expect(screen.queryByTestId('etab-cohorte-creee')).toBeNull()
   })
 
@@ -157,6 +159,10 @@ describe('UC-ETA-01 — l’établissement crée et gère ses cohortes', () => {
     expect((await screen.findByRole('alert')).textContent).toBe('Cohorte introuvable')
     expect(screen.queryByTestId('etab-membres')).toBeNull()
     expect(screen.getByRole('heading', { name: 'Cohorte' })).toBeDefined()
+    expect(screen.queryByText(/Code d’invitation/)).toBeNull()
+    // Comportement ACTUEL (fiche, « Anomalies constatées ») : l'échec de
+    // chargement laisse un état vide trompeur, comme pour une cohorte vide.
+    expect(screen.getByText(/Aucun membre : transmettez le code d’invitation/)).toBeDefined()
   })
 
   it('UC-ETA-01-F12 — E3 : sans le rôle établissement (apprenant, visiteur) → espace réservé, aucun appel cohorte', async () => {
@@ -168,9 +174,54 @@ describe('UC-ETA-01 — l’établissement crée et gère ses cohortes', () => {
     cleanup()
     vi.unstubAllGlobals()
 
-    stubApi({}, { user: null })
+    const visitorApi = stubApi({}, { user: null })
     openApp('#/etablissement', { user: null })
     await screen.findByTestId('etab-reserve')
     expect(screen.getByText(/Connectez-vous/)).toBeDefined()
+    expect(visitorApi.calls.some((c) => c.url.startsWith('api/etablissement/'))).toBe(false)
+  })
+
+  it('UC-ETA-01-F13 — erreur de chargement (500) : message affiché MAIS états vides trompeurs (comportement actuel)', async () => {
+    // Accueil : la liste contient une cohorte, mais la configuration échoue ;
+    // le Promise.all rejette et l'accueil affiche « aucune cohorte ».
+    stubApi({
+      'GET api/etablissement/cohortes': jsonResponse(200, [cohorteListItem()]),
+      'GET api/etablissement/config': jsonResponse(500, { error: 'Erreur interne' }),
+    })
+    openApp('#/etablissement')
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByText(/Aucune cohorte pour l’instant/)).toBeDefined()
+    expect(screen.queryByTestId('etab-cohortes')).toBeNull()
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Page cohorte : la cohorte a un membre, mais la liste des paquets échoue ;
+    // la page affiche « aucun membre » et « aucun paquet publié ».
+    stubApi({
+      'GET api/etablissement/cohortes/7': jsonResponse(200, cohorteDetail()),
+      'GET api/etablissement/config': jsonResponse(200, configProjection()),
+      'GET api/prompt-packages': jsonResponse(500, { error: 'Erreur interne' }),
+    })
+    openApp('#/etablissement/cohorte/7')
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByText(/Aucun membre : transmettez le code d’invitation/)).toBeDefined()
+    expect(screen.getByText(/Aucun paquet de prompts publié n’est disponible/)).toBeDefined()
+    expect(screen.queryByTestId('etab-membres')).toBeNull()
+  })
+
+  it('UC-ETA-01-F14 — E5 : API injoignable (copie statique) → message dédié, aucun appel cohorte', async () => {
+    const api = stubApi({
+      'GET api/auth/me': () => {
+        throw new TypeError('Failed to fetch')
+      },
+    })
+    openApp('#/etablissement')
+
+    expect((await screen.findByText(/Copie statique du site/)).textContent).toContain(
+      'l’espace établissement a besoin de l’API',
+    )
+    expect(screen.queryByTestId('etab-reserve')).toBeNull()
+    expect(screen.queryByLabelText('Nom de la cohorte')).toBeNull()
+    expect(api.calls.some((c) => c.url.startsWith('api/etablissement/'))).toBe(false)
   })
 })

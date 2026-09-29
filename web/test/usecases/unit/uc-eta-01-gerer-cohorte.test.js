@@ -3,11 +3,18 @@
 //
 // Code sollicité appelé directement : le routeur par hash (#/etablissement et
 // ses sections), les appels de etablissement-api.js (création, liste, détail
-// normalisé, suppression — jeton CSRF sur les mutations) et le formatage des
-// dates. Réseau simulé par la couture fetchFn.
+// normalisé, suppression — jeton CSRF sur les mutations), le formatage des
+// dates, puis les composants rendus ISOLÉMENT (hors <App/>) avec leurs
+// coutures : EtablissementView (garde de rôle, deps.fetchMeFn), AccueilSection
+// et CohorteSection (fetchFn). Réseau simulé par la couture fetchFn.
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createElement } from 'react'
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
-import { apiFetch, resetApiClient } from '../../../src/api/client.js'
+import { ApiUnavailableError, apiFetch, resetApiClient } from '../../../src/api/client.js'
+import EtablissementView from '../../../src/views/EtablissementView.jsx'
+import AccueilSection from '../../../src/views/etablissement/AccueilSection.jsx'
+import CohorteSection from '../../../src/views/etablissement/CohorteSection.jsx'
 import {
   createCohorte,
   deleteCohorte,
@@ -15,9 +22,24 @@ import {
   fetchCohortes,
   frDate,
 } from '../../../src/views/etablissement/etablissement-api.js'
-import { CSRF, cohorteDetail, cohorteListItem, jsonResponse, noContent } from '../support/eta.js'
+import {
+  CSRF,
+  cohorteDetail,
+  cohorteListItem,
+  configProjection,
+  ETAB_USER,
+  fakeFetch,
+  jsonResponse,
+  LEARNER_USER,
+  membre,
+  noContent,
+  PUBLISHED_PACKAGES,
+} from '../support/eta.js'
 
-afterEach(() => resetApiClient())
+afterEach(() => {
+  cleanup()
+  resetApiClient()
+})
 
 /** Amorce le jeton CSRF en mémoire comme le fait GET api/auth/me. */
 async function primeCsrf() {
@@ -59,7 +81,20 @@ describe('UC-ETA-01 — client API des cohortes', () => {
   })
 
   it('UC-ETA-01-U10 — fetchCohorte normalise le détail À PLAT de l’API (membres, dépôt, avancement)', async () => {
-    const fetchFn = vi.fn().mockResolvedValue(jsonResponse(200, cohorteDetail()))
+    const fetchFn = vi.fn().mockResolvedValue(
+      jsonResponse(
+        200,
+        cohorteDetail({
+          membres: [
+            membre({ avancement: { jobsTotal: 3, jobsDone: 1 } }),
+            // Replis snake_case du contrat, valeurs textuelles converties.
+            membre({ userId: 13, displayName: 'Noé', portfolio: null, avancement: { jobs_total: '2', jobs_done: '0' } }),
+            // Avancement absent → null ; taille 0 → null.
+            membre({ userId: 14, displayName: 'Lila', avancement: undefined, portfolio: { titre: 'T', journees: 1, taille: 0 } }),
+          ],
+        }),
+      ),
+    )
 
     const { cohorte, membres } = await fetchCohorte(7, fetchFn)
 
@@ -72,15 +107,23 @@ describe('UC-ETA-01 — client API des cohortes', () => {
         email: null,
         consentAt: '2026-07-02T10:00:00',
         portfolio: { titre: 'Journal Astrolabe', journees: 3, taille: 9000, deposeLe: '2026-07-03T10:00:00' },
-        avancement: { jobsTotal: 0, jobsDone: 0 },
+        avancement: { jobsTotal: 3, jobsDone: 1 },
       },
       {
         userId: 13,
         displayName: 'Noé',
         email: null,
-        consentAt: '2026-07-02T11:00:00',
+        consentAt: '2026-07-02T10:00:00',
         portfolio: null,
-        avancement: { jobsTotal: 0, jobsDone: 0 },
+        avancement: { jobsTotal: 2, jobsDone: 0 },
+      },
+      {
+        userId: 14,
+        displayName: 'Lila',
+        email: null,
+        consentAt: '2026-07-02T10:00:00',
+        portfolio: { titre: 'T', journees: 1, taille: null, deposeLe: null },
+        avancement: null,
       },
     ])
   })
@@ -102,5 +145,132 @@ describe('UC-ETA-01 — client API des cohortes', () => {
     expect(frDate('')).toBe('—')
     expect(frDate(null)).toBe('—')
     expect(frDate('pas une date')).toBe('pas une date')
+  })
+})
+
+/** Routes de l'accueil servies à la couture fetchFn (liste mutable). */
+function accueilFetch(initial = [cohorteListItem(), cohorteListItem({ id: 8, nom: 'CAP Cuisine', codeInvitation: 'NOUVCODE42' })]) {
+  let cohortes = initial
+  return fakeFetch({
+    'GET api/etablissement/cohortes': () => jsonResponse(200, cohortes),
+    'GET api/etablissement/config': jsonResponse(200, configProjection()),
+    'POST api/etablissement/cohortes': (init) => {
+      const { nom } = JSON.parse(init.body)
+      cohortes = [...cohortes, cohorteListItem({ id: 9, nom, codeInvitation: 'CODE9ABCDE', membres: 0 })]
+      return jsonResponse(201, { id: 9, codeInvitation: 'CODE9ABCDE' })
+    },
+  })
+}
+
+describe('UC-ETA-01 — composants de l’espace établissement rendus isolément', () => {
+  it('UC-ETA-01-U13 — EtablissementView : garde de rôle (établissement, autre rôle, visiteur, API indisponible) et section inconnue', async () => {
+    const view = (section, fetchMeFn, fetchFn) =>
+      render(createElement(EtablissementView, { section, deps: { fetchMeFn, fetchFn } }))
+
+    // Rôle établissement → accueil (cohortes + configuration).
+    const net = accueilFetch()
+    view(null, async () => ({ user: ETAB_USER }), net.fetchMock)
+    expect(await screen.findByLabelText('Nom de la cohorte')).toBeDefined()
+    expect(screen.getByTestId('etab-connecte').textContent).toContain('Lycée Astrolabe')
+    expect(screen.queryByTestId('etab-reserve')).toBeNull()
+    cleanup()
+
+    // Autre rôle (apprenant connecté) → espace réservé, sans invitation à se connecter.
+    const silent = fakeFetch()
+    view(null, async () => ({ user: LEARNER_USER }), silent.fetchMock)
+    expect((await screen.findByTestId('etab-reserve')).textContent).toContain('réservé aux établissements')
+    expect(screen.queryByText(/Connectez-vous/)).toBeNull()
+    cleanup()
+
+    // Visiteur (user null) → espace réservé + invitation à se connecter.
+    view(null, async () => ({ user: null }), silent.fetchMock)
+    await screen.findByTestId('etab-reserve')
+    expect(screen.getByText(/Connectez-vous/)).toBeDefined()
+    cleanup()
+
+    // Copie statique (API absente) → message dédié, pas d'espace réservé.
+    view(null, async () => {
+      throw new ApiUnavailableError()
+    }, silent.fetchMock)
+    expect((await screen.findByText(/Copie statique du site/)).textContent).toContain('a besoin de l’API')
+    expect(screen.queryByTestId('etab-reserve')).toBeNull()
+    cleanup()
+
+    // Section inconnue → alerte et lien de retour.
+    view('inconnue/3', async () => ({ user: ETAB_USER }), silent.fetchMock)
+    expect((await screen.findByRole('alert')).textContent).toBe('Section inconnue de l’espace établissement : « inconnue/3 ».')
+    expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' }).getAttribute('href')).toBe('#/etablissement')
+    expect(silent.calls).toEqual([])
+  })
+
+  it('UC-ETA-01-U14 — AccueilSection : nom nettoyé, nom vide refusé sans appel, suppression armée par ligne', async () => {
+    const net = accueilFetch()
+    render(createElement(AccueilSection, { fetchFn: net.fetchMock }))
+    await screen.findByTestId('etab-cohortes')
+
+    // Nom vide (espaces) : refus local, aucune requête.
+    fireEvent.change(screen.getByLabelText('Nom de la cohorte'), { target: { value: '   ' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Créer la cohorte' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Donnez un nom à la cohorte (ex. « BTS SIO 2026 »).')
+    expect(net.callsTo('POST api/etablissement/cohortes')).toHaveLength(0)
+
+    // Nom entouré d'espaces : envoyé nettoyé, champ vidé, code affiché.
+    fireEvent.change(screen.getByLabelText('Nom de la cohorte'), { target: { value: '  Seconde 4  ' } })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Créer la cohorte' }))
+    })
+    expect(net.callsTo('POST api/etablissement/cohortes')[0].body).toEqual({ nom: 'Seconde 4' })
+    expect((await screen.findByTestId('etab-cohorte-creee')).textContent).toContain('Cohorte « Seconde 4 » créée.')
+    expect(screen.getByLabelText('Nom de la cohorte').value).toBe('')
+
+    // Suppression : le premier clic ARME la ligne, sans DELETE ; armer une
+    // autre ligne désarme la première.
+    const rows = within(await screen.findByTestId('etab-cohortes')).getAllByRole('row').slice(1)
+    fireEvent.click(within(rows[0]).getByRole('button', { name: 'Supprimer' }))
+    expect(within(rows[0]).getByRole('button', { name: 'Confirmer la suppression' })).toBeDefined()
+    fireEvent.click(within(rows[1]).getByRole('button', { name: 'Supprimer' }))
+    expect(within(rows[0]).getByRole('button', { name: 'Supprimer' })).toBeDefined()
+    expect(within(rows[1]).getByRole('button', { name: 'Confirmer la suppression' })).toBeDefined()
+    expect(net.calls.filter((c) => c.method === 'DELETE')).toEqual([])
+  })
+
+  it('UC-ETA-01-U15 — CohorteSection : avancement « — » sans job, « x/y journées », « Non déposé », badge « Sans consentement », erreur de chargement', async () => {
+    const net = fakeFetch({
+      'GET api/etablissement/cohortes/7': jsonResponse(
+        200,
+        cohorteDetail({
+          membres: [
+            membre(), // avancement {0, 0}
+            membre({ userId: 13, displayName: 'Noé', portfolio: null, avancement: { jobsTotal: 4, jobsDone: 3 } }),
+            // Forme jamais produite par l'API (l'adhésion EST le consentement) :
+            // le composant prévoit tout de même le badge.
+            membre({ userId: 14, displayName: 'Lila', consentAt: null }),
+          ],
+        }),
+      ),
+      'GET api/etablissement/config': jsonResponse(200, configProjection()),
+      'GET api/prompt-packages': jsonResponse(200, PUBLISHED_PACKAGES),
+    })
+    render(createElement(CohorteSection, { id: '7', fetchFn: net.fetchMock }))
+
+    const rows = within(await screen.findByTestId('etab-membres')).getAllByRole('row').slice(1)
+    const cells = (row) => within(row).getAllByRole('cell').map((cell) => cell.textContent)
+    expect(cells(rows[0])[4]).toBe('—')
+    expect(cells(rows[1])[3]).toBe('Non déposé')
+    expect(cells(rows[1])[4]).toBe('3/4 journées')
+    expect(cells(rows[2])[2]).toBe('Sans consentement')
+    expect(screen.getByText('COHORTE7AZ')).toBeDefined()
+    cleanup()
+
+    // Erreur de chargement : message serveur affiché, aucun code rappelé.
+    const missing = fakeFetch({
+      'GET api/etablissement/cohortes/99': jsonResponse(404, { error: 'Cohorte introuvable' }),
+      'GET api/etablissement/config': jsonResponse(200, configProjection()),
+      'GET api/prompt-packages': jsonResponse(200, PUBLISHED_PACKAGES),
+    })
+    render(createElement(CohorteSection, { id: '99', fetchFn: missing.fetchMock }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Cohorte introuvable')
+    expect(screen.queryByText(/Code d’invitation/)).toBeNull()
+    expect(screen.queryByTestId('etab-membres')).toBeNull()
   })
 })

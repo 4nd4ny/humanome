@@ -51,6 +51,16 @@ export function noContent() {
  * toute autre URL non routée répond 404 JSON (copie statique absente).
  */
 export function stubApi(routes = {}, { user = ETAB_USER } = {}) {
+  const stub = fakeFetch(routes, { user })
+  vi.stubGlobal('fetch', stub.fetchMock)
+  return stub
+}
+
+/**
+ * Même réseau simulé que stubApi, SANS toucher au fetch global : pour les
+ * tests unitaires qui rendent un composant isolé avec sa couture `fetchFn`.
+ */
+export function fakeFetch(routes = {}, { user = ETAB_USER } = {}) {
   const calls = []
   const fetchMock = vi.fn(async (url, init = {}) => {
     const method = init.method ?? 'GET'
@@ -69,7 +79,6 @@ export function stubApi(routes = {}, { user = ETAB_USER } = {}) {
     }
     return jsonResponse(404, { error: 'absent' })
   })
-  vi.stubGlobal('fetch', fetchMock)
   return {
     fetchMock,
     calls,
@@ -168,8 +177,9 @@ export function runBoard(overrides = {}) {
 
 /**
  * GET api/prompt-packages : paquets publiés, liste nue triée par slug puis
- * date de publication (PromptPackageRepository::listPublished) — l'API ne
- * porte PAS de marqueur « défaut ».
+ * date de publication (PromptPackageRepository::listPublished) — la liste ne
+ * porte PAS de marqueur « défaut » (GET api/prompt-packages/default existe,
+ * mais l'espace établissement ne l'appelle pas).
  */
 export const PUBLISHED_PACKAGES = [
   {

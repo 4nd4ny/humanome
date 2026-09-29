@@ -48,13 +48,25 @@ journalisant que des compteurs.
 ## Garanties minimales (en cas d'échec)
 
 - Aucun pôle déjà validé n'est perdu : il reste dans le `checkpoint` du job.
-- Aucune dépense plateforme au-delà du plafond ; aucun appel LLM pour un job
-  annulé ; aucune écriture sur un job qui n'est plus `running`.
+- Aucune dépense **enregistrée** au-delà du plafond, à l'estimation près : les
+  coûts des appels en échec ne sont ni imputés ni vus du coupe-circuit (voir
+  Anomalies), et l'estimation d'entrée reste une heuristique.
+- Le tick plateforme n'entame plus d'appel après avoir constaté l'annulation
+  d'un job (checkpoint refusé) — l'appel en vol, lui, est perdu ; le runner
+  termine l'extraction d'une journée annulée et ne l'apprend qu'au `409`
+  (UC-SYS-01-U18).
+- Aucune écriture sur la ligne d'un job qui n'est plus `running` (`spent_usd`,
+  lui, peut encore être incrémenté : anomalie « erreur acceptée hors
+  running »).
 
 ## Scénario nominal — tick de la plateforme
 
 1. Le planificateur lance `php scripts/worker.php` (le script charge
-   l'autoload, les secrets de `~/app/shared/.env`, vérifie la base).
+   l'autoload, puis le premier `.env` trouvé parmi `HUMANOME_SHARED_DIR`,
+   `<racine>/../shared` et `<racine>/api` — où `<racine>` est le parent de
+   `scripts/` — et vérifie la base). Dans la disposition des releases, le
+   deuxième candidat vaut `~/app/releases/shared`, pas `~/app/shared` : seul
+   `HUMANOME_SHARED_DIR` permet de lire les secrets partagés (voir Anomalies).
 2. Le tick prend le verrou MySQL `GET_LOCK('humanome_worker', 0)`.
 3. Il réserve le job le plus prioritaire puis le plus ancien, parmi les
    établissements configurés en fournisseur `humanome`
@@ -103,10 +115,11 @@ journalisant que des compteurs.
   manquant (au moins un appel est garanti par tick).
 - **A4 — Exécutant disparu** (étape 3) : un job `running` dont le bail a
   expiré (tick tué, runner coupé) redevient réservable, checkpoint intact.
-- **A5 — Kairos inexploitable** (étape 6) : après le nouvel essai, la synthèse
-  est dégradée à `kairos: null` (autorisé par le schéma) ; le job se termine
-  `done` avec la note « kairos dégradé à null (date) — … », visible dans les
-  erreurs du tableau.
+- **A5 — Kairos inexploitable** (étape 6) : réponse non JSON, invalide ou
+  tronquée ; après le nouvel essai, la synthèse est dégradée à `kairos: null`
+  (autorisé par le schéma) ; le job se termine `done` avec la note « kairos
+  dégradé à null (date) — … », visible dans les erreurs du tableau, sans
+  compter de tentative.
 - **A6 — Tick déjà en cours** (étape 2) : verrou tenu → le tick rend aussitôt
   `{locked: true, …}` sans rien toucher.
 - **A7 — Budget atteint** (étape 5) : l'estimation dépasse le plafond → aucun
@@ -115,10 +128,14 @@ journalisant que des compteurs.
   une réservation alors que `spent_usd` dépasse le plafond répond
   `{jobs: [], budget: "exceeded"}` et marque la file de même. Réactivation par
   hausse du plafond (UC-ETA-02, A3).
-- **A8 — Source disparue** (étape 4) : dépôt retiré (`portfolio_id` nul),
-  journée absente du dépôt (re-dépôt), paquet ou référentiel figé
-  indisponible → échec définitif immédiat du job (`failed`, message
-  explicite), sans appel ; côté runner, le job n'est pas servi.
+- **A8 — Source disparue** (étape 4) : côté tick plateforme, dépôt retiré
+  (`portfolio_id` nul), journée absente du dépôt (re-dépôt), paquet ou
+  référentiel figé indisponible → échec définitif immédiat du job (`failed`,
+  message explicite), sans appel. Côté runner, dépôt retiré, journée absente
+  ou référentiel figé non publié → job non servi, `failed` (message propre à
+  la route : « référentiel <id>@<version> indisponible (version figée non
+  publiée) ») ; un paquet figé indisponible n'empêche PAS le service (le
+  runner exécute les gabarits du moteur, voir Limites).
 - **A9 — Partage du travail** (étape 3) : les jobs d'un établissement en
   `endpoint` ne sont jamais réservés par le tick de la plateforme (infra
   injoignable depuis OVH) ; ils sont servis à son runner.
@@ -128,10 +145,17 @@ journalisant que des compteurs.
 - **E1 — Jeton worker absent ou inconnu** : `401 {error: "Jeton worker
   invalide"}` sur les trois routes ; un job d'un autre établissement répond
   `404 {error: "Job introuvable"}` (la réservation ne le sert jamais) ; le
-  runner s'arrête (code 3) sur `401`/`403`.
+  runner s'arrête (code 3) sur `401`/`403`. Les routes `/api/worker/*` et
+  `/api/admin/worker-tick` ne sont pas dans la liste d'exemption CSRF : elles
+  passent parce qu'aucun cookie de session n'est envoyé ; un appel porteur
+  d'un cookie de session sans `X-CSRF-Token` est refusé (`403 "Jeton CSRF
+  absent ou invalide"`).
 - **E2 — Checkpoint invalide ou job plus en cours** : corps qui n'est pas un
-  objet JSON de 2 Mo au plus → `422` ; job annulé, terminé ou repris →
-  `409 {error: "Job plus en cours (annulé ou bail repris)"}`.
+  objet JSON de 2 Mo au plus → `422` ; job annulé, terminé, en échec, reposé
+  en file ou `budget_exceeded` → `409 {error: "Job plus en cours (annulé ou
+  bail repris)"}`. Un job dont le bail a été repris par un autre exécutant
+  reste `running` : le checkpoint de l'ancien exécutant est accepté (`200`),
+  faute de jeton de bail (voir Limites).
 - **E3 — Résultat refusé** : ni `document` ni `erreur` (ou les deux), `erreur`
   vide, `document` non objet, date différente de celle du job, document
   invalide au schéma (`details`, 5 erreurs au plus) → `422` ; document posté
@@ -139,18 +163,29 @@ journalisant que des compteurs.
   comptage.
 - **E4 — Déclenchement HTTP refusé** : `X-Migrate-Token` absent ou faux →
   `403 {error: "Forbidden"}` ; `MIGRATE_TOKEN` non configuré → `404 {error:
-  "Not found"}` ; exception du tick → `500` (détail dans le journal serveur).
-- **E5 — CLI sans base** : `php scripts/worker.php` sans base configurée ou
-  sans autoload → message sur stderr, code 1, rien sur stdout.
+  "Not found"}` ; exception du tick → `500 {error: "Tick failed, see server
+  log"}` (message de l'exception dans le journal serveur). Plus généralement,
+  les routes worker répondent `503 {error: "Service indisponible"}` sans base
+  configurée et `500 {error: "Erreur interne"}` sur une exception SQL.
+- **E5 — CLI en échec** : `php scripts/worker.php` sans autoload (« autoload
+  introuvable ») ou sans base configurée (« base de données non
+  configurée ») → message sur stderr, code 1, rien sur stdout ; base
+  configurée mais exception du tick → « [worker] tick en échec : … » sur
+  stderr, code 1.
 - **E6 — Échecs répétés** : chaque échec (appel LLM après nouvel essai côté
   plateforme, ou `{erreur}` posté par le runner) ajoute une tentative et remet
   le job en file ; à la 3e, il passe `failed` et le run se termine `failed`.
+  Côté plateforme, le job remis en file est aussitôt re-réservé par le MÊME
+  tick : les 3 tentatives peuvent être consommées en quelques secondes ; une
+  exception du fournisseur (HTTP 5xx/429, délai dépassé) n'a pas de nouvel
+  essai immédiat ; une clé plateforme absente fait échouer toute la file
+  `humanome` en un tick, sans appel (voir Anomalies).
 
 ## Règles de gestion
 
 - **RG1** — Un seul tick plateforme à la fois (`GET_LOCK`, nom global au
-  serveur MySQL) ; la réservation est transactionnelle (`SKIP LOCKED`), donc
-  sûre face aux runners.
+  serveur MySQL, toutes bases confondues) ; la réservation est
+  transactionnelle (`SKIP LOCKED`), donc sûre face aux runners.
 - **RG2** — Réservation : `ORDER BY priority DESC, id ASC`, bail de 300 s,
   limite bornée à [1, 20] ; le tick plateforme ne sert que le fournisseur
   `humanome`, le runner que son établissement.
@@ -164,18 +199,25 @@ journalisant que des compteurs.
   `WORKER_MODEL`, défaut `claude-sonnet-4-5`) ; un point d'accès `endpoint`
   n'est jamais bloqué côté tick (coût 0 pour la plateforme).
 - **RG6** — Politique d'appel (leçons M5) : réponse tronquée
-  (`stop_reason max_tokens`) = échec ; un nouvel essai immédiat, payé ; au-delà,
-  tentative comptée.
+  (`stop_reason max_tokens`) ou inexploitable = échec ; un nouvel essai
+  immédiat, payé ; au-delà, tentative comptée. Une exception du fournisseur
+  n'a pas de nouvel essai (voir Anomalies).
 - **RG7** — Les résultats du runner sont revalidés côté serveur ; son coût
   déclaré est borné à [0, 1000] $ et imputé à `spent_usd`.
 - **RG8** — Journalisation minimale : compteurs du tick, identifiants,
-  messages techniques ; jamais de texte de portfolio ni de réponse LLM (le
-  runner masque les extraits cités « … » dans son journal local).
-- **RG9** — La clé de la plateforme ne quitte jamais le serveur : un job
-  `humanome` est inexécutable par le runner (erreur de configuration, code 4,
-  rien n'est posté) ; la clé d'un point d'accès d'établissement n'est jamais
-  servie au runner, qui prend la sienne en option ou variable
-  d'environnement.
+  messages techniques (le runner masque les extraits cités « … » dans son
+  journal local). Mais `mass_jobs.erreur`, lu par l'établissement, peut
+  contenir un extrait de réponse LLM (≤ 160 caractères, potentiellement
+  verbatim du portfolio) — côté tick plateforme comme côté runner (voir
+  Anomalies) ; et le journal serveur reçoit les messages des exceptions SQL
+  ou du tick (`error_log` de `routes/worker.php`), pas seulement des
+  compteurs.
+- **RG9** — La clé de la plateforme ne quitte jamais le serveur : sans
+  `--provider`, un job `humanome` est inexécutable par le runner (erreur de
+  configuration, code 4, rien n'est posté) ; avec `--provider` (options CLI
+  prioritaires), le runner l'exécute avec le LLM de l'établissement. La clé
+  d'un point d'accès d'établissement n'est jamais servie au runner, qui prend
+  la sienne en option ou variable d'environnement.
 
 ## Données et RGPD
 
@@ -184,16 +226,17 @@ journalisant que des compteurs.
 | Texte de la journée | Lu dans le dépôt de l'apprenant (opt-in) ; transmis au LLM et, pour le runner, dans la réponse de réservation ; jamais journalisé |
 | Checkpoint / document | `mass_jobs.checkpoint`, `mass_jobs.document` (validé) |
 | Compteurs | `mass_jobs.tokens_*`, `cost_usd`, `attempts` ; `etablissement_config.spent_usd` |
-| Erreurs | `mass_jobs.erreur` : message technique (contexte pôle/date, extrait de réponse LLM possible pour le runner — périmètre du consentement de cohorte) |
-| Journaux | Ligne JSON de compteurs (CLI, `error_log` du tick HTTP), journal stderr du runner expurgé |
+| Erreurs | `mass_jobs.erreur` : message technique (contexte pôle/date) pouvant contenir un extrait de réponse LLM (≤ 160 caractères, potentiellement verbatim du portfolio), côté tick plateforme ET runner ; visible de l'établissement au tableau du run, même après le départ du membre |
+| Journaux | Ligne JSON de compteurs (CLI, `error_log` du tick HTTP) ; messages d'exception (SQL, tick) dans le journal serveur ; journal stderr du runner expurgé |
 
 ## Code sollicité
 
 | Couche | Élément | Rôle |
 |---|---|---|
 | CLI | `scripts/worker.php` | Point d'entrée cron : secrets, garde base, un tick, compteurs sur stdout |
-| API | `api/src/routes/worker.php` — `GET /api/worker/jobs`, `POST /api/worker/jobs/{id}/checkpoint`, `POST /api/worker/jobs/{id}/result`, `POST /api/admin/worker-tick` | Authentification par jeton, charge utile, revalidation, bornes, déclenchement |
-| Domaine | `api/src/Worker/JobQueue.php` — `reserve`, `release`, `saveCheckpoint`, `complete`, `fail`, `failHard`, `markBudgetExceeded`, `jobRow` | File MySQL, bail, écritures conditionnelles |
+| API | `api/src/routes/worker.php` — `GET /api/worker/jobs`, `POST /api/worker/jobs/{id}/checkpoint`, `POST /api/worker/jobs/{id}/result`, `POST /api/admin/worker-tick` | Authentification par jeton, charge utile, revalidation, bornes, déclenchement, `503`/`500` |
+| API | `api/src/Middleware/CsrfMiddleware.php` | Routes worker hors exemption : sans cookie de session elles passent, avec un cookie il faut le jeton CSRF |
+| Domaine | `api/src/Worker/JobQueue.php` — `reserve`, `release`, `saveCheckpoint`, `complete`, `fail`, `failHard`, `markBudgetExceeded`, `jobRow`, `refreshRunStatus` | File MySQL, bail, écritures conditionnelles, statut terminal du run |
 | Domaine | `api/src/Worker/Tick.php` — `run` (verrou, boucle, `advance`, `callWithRetry`, `budgetAllows`, `mayStartCall`, fournisseurs) | Tick borné et reprenable |
 | Domaine | `api/src/Worker/PromptRunner.php` | Substitution des gabarits du paquet figé |
 | Domaine | `api/src/Worker/PoleAssembler.php` — `assemblePole`, `validateKairos`, `assembleDay`, `parse` | Réparation et validation des réponses |
@@ -207,17 +250,17 @@ journalisant que des compteurs.
 
 | ID | Cible | Vérifie | Fichier |
 |---|---|---|---|
-| UC-SYS-01-U01 | `JobQueue::reserve` | Priorité, bail 300 s, cron = `humanome` seul, runner = son établissement, bail expiré repris (RG2) | `api/tests/UseCases/Unit/UcSys01TraiterFileJobsTest.php` |
+| UC-SYS-01-U01 | `JobQueue::reserve` | Runner = son établissement (réservé pendant que les jobs plus anciens d'un autre sont en file), priorité, bail 300 s, cron = `humanome` seul, bail expiré repris (RG2) | `api/tests/UseCases/Unit/UcSys01TraiterFileJobsTest.php` |
 | UC-SYS-01-U02 | `JobQueue::reserve` | Limite bornée [1, 20] ; établissement sans configuration jamais servi | idem |
-| UC-SYS-01-U03 | `saveCheckpoint`, `release`, `complete` | Écritures conditionnelles, bail renouvelé, checkpoint gardé, rejeu refusé (RG3, RG4) | idem |
+| UC-SYS-01-U03 | `saveCheckpoint`, `release`, `complete`, `jobRow` | Écritures conditionnelles, bail renouvelé, checkpoint gardé, rejeu refusé (RG3, RG4) ; relecture avec colonnes du run jointes | idem |
 | UC-SYS-01-U04 | `fail`, `failHard` | Tentatives, échec à la 3e, échec immédiat, statut du run | idem |
 | UC-SYS-01-U05 | `markBudgetExceeded` | Job courant + file de l'établissement, runs marqués, autres intacts | idem |
-| UC-SYS-01-U06 | `Tick::run` | Verrou tenu → `locked`, rien touché (RG1) | idem |
+| UC-SYS-01-U06 | `Tick::run` | Verrou tenu → `locked`, rien touché (RG1 ; prise du verrou avec attente bornée) | idem |
 | UC-SYS-01-U07 | `Tick::run` | Budget d'appels → job reposé avec checkpoint, reprise sans rappel (5 + 3 = 8 appels) | idem |
-| UC-SYS-01-U08 | `Tick::run` | Kairos inexploitable → `kairos: null` + note, 9 appels | idem |
+| UC-SYS-01-U08 | `Tick::run` | Kairos inexploitable → `kairos: null` + note, 9 appels ; seuls les 7 pôles imputés au job et à `spent_usd` (anomalie 3 figée) | idem |
 | UC-SYS-01-U09 | `Tick::run` | Segment/dépôt/paquet introuvable → `failed` sans appel | idem |
 | UC-SYS-01-U10 | `Tick::run` | Coupe-circuit avant appel → `budget_exceeded`, zéro appel (RG5) | idem |
-| UC-SYS-01-U11 | `Tick::run` | Pôle en échec après nouvel essai : tentative comptée, coût non imputé (anomalie figée) | idem |
+| UC-SYS-01-U11 | `Tick::run` | Pôle en échec après nouvel essai : tentative comptée, coût non imputé, message citant la réponse (anomalies figées) | idem |
 | UC-SYS-01-U12 | `PromptRunner` | Substitution exacte, tri, date FR, erreurs de gabarit, référentiel invalide | idem |
 | UC-SYS-01-U13 | `PoleAssembler` | `poleNum` incohérent refusé, champs réparés, kairos invalide refusé | idem |
 | UC-SYS-01-U14 | `OpenAiCompatibleProvider::complete` | URL, en-têtes (clé en `Authorization` seulement), corps, usage, `length` → `max_tokens` | idem |
@@ -225,35 +268,44 @@ journalisant que des compteurs.
 | UC-SYS-01-U16 | `resolveProviderConfig` | Job « endpoint » réel → adaptateur openai ; job « humanome » → `RunnerConfigError` (RG9) | `engine/test/usecases/unit/uc-sys-01-runner-node.test.js` |
 | UC-SYS-01-U17 | `createRunner().runOnce` | Face à une API simulée fidèle : documents valides, compteurs postés (forme actuelle), aucune route de checkpoint, jeton hors URL, journal sans contenu | idem |
 | UC-SYS-01-U18 | `createRunner().runOnce` | Job annulé en cours : `409`, erreur postée avec coût, la passe continue | idem |
+| UC-SYS-01-U19 | `Tick::run` | Job en échec re-réservé dans le même tick : 3 tentatives, 6 appels, `failed` en un tick (anomalie figée) | `api/tests/UseCases/Unit/UcSys01TraiterFileJobsTest.php` |
+| UC-SYS-01-U20 | `Tick::run` (fabrique de production) | `ANTHROPIC_API_KEY` vide : les jobs de deux runs `failed` en un tick, 0 appel, 6 erreurs (anomalie figée) | idem |
+| UC-SYS-01-U21 | `Tick::run` | Kairos tronqué (`max_tokens`) → `done`, `kairos: null`, note « réponse tronquée » (RG6, A5) | idem |
+| UC-SYS-01-U22 | `main` (runner) | `401` → code 3 ; job `humanome` sans `--provider` → code 4, rien posté ; avec `--provider`, configuration résolue (RG9) | `engine/test/usecases/unit/uc-sys-01-runner-node.test.js` |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
 | UC-SYS-01-F01 | Nominal | CLI | `php scripts/worker.php` : code 0, compteurs exacts (8 appels), run `done`, document valide, dépense > 0 | `api/tests/UseCases/Functional/UcSys01TraiterFileJobsTest.php` |
-| UC-SYS-01-F02 | E5 | CLI | Sans base : code 1, message stderr, stdout vide | idem |
+| UC-SYS-01-F02 | E5 | CLI | Sans base (`.env` partagé vide, jamais le `api/.env` du poste) : code 1, message stderr, stdout vide | idem |
 | UC-SYS-01-F03 | A1, A3 | API | Tick HTTP : 3 appels puis borne à 50, reprise exacte (72 appels au total), journal = compteurs | idem |
-| UC-SYS-01-F04 | E4 | API | `403` sans/faux jeton, `404` si `MIGRATE_TOKEN` absent | idem |
+| UC-SYS-01-F04 | E4 | API | `403` sans/faux jeton, `404` si `MIGRATE_TOKEN` absent, exception du tick → `500` + journal serveur | idem |
 | UC-SYS-01-F05 | A6 | API | Verrou tenu → `locked`, file intacte | idem |
 | UC-SYS-01-F06 | A7 | API | Plafond insuffisant : `budgetBlocked`, zéro appel, run `budget_exceeded` | idem |
-| UC-SYS-01-F07 | A5 | Tick (cron simulé) | Kairos tronqué → document avec `kairos: null`, note au tableau | idem |
+| UC-SYS-01-F07 | A5 | API (tick HTTP) | Paquet publié au gabarit kairos inexploitable : 9 appels, document avec `kairos: null`, note au tableau (0 tentative) | idem |
 | UC-SYS-01-F08 | A2 | API runner | Réservation (forme de la charge utile), checkpoint, résultats → run `done`, tokens et coût | idem |
 | UC-SYS-01-F09 | A4 | API runner | Bail expiré → job re-servi avec son checkpoint | idem |
 | UC-SYS-01-F10 | A8 | API runner | Journée retirée du dépôt → job non servi, `failed` expliqué | idem |
 | UC-SYS-01-F11 | A9 | API | Jobs `endpoint` ignorés par le tick, servis au runner | idem |
-| UC-SYS-01-F12 | E1 | API runner | `401` sans/mauvais jeton ; job étranger `404`, réservation vide | idem |
-| UC-SYS-01-F13 | E2 | API runner | Checkpoint `422` (liste, texte, > 2 Mo) ; `409` hors `running` | idem |
-| UC-SYS-01-F14 | E3 | API runner | 6 résultats invalides `422` ; rejeu `409` sans double comptage ; coût borné [0, 1000] | idem |
+| UC-SYS-01-F12 | E1 | API runner | Réservation étrangère vide alors que le job est en file ; `401` sans/mauvais jeton ; job étranger `404` ; cookie de session sans CSRF → `403` | idem |
+| UC-SYS-01-F13 | E2 | API runner | Checkpoint `422` (liste, texte, > 2 Mo) ; checkpoint d'un exécutant dont le bail a été repris → `200` ; `409` hors `running` | idem |
+| UC-SYS-01-F14 | E3 | API runner | 6 résultats invalides `422` ; rejeu `409` sans double comptage ; coût borné [0, 1000] (négatif ou texte → `200 done`, coût 0) | idem |
 | UC-SYS-01-F15 | E6 | API runner | 3 erreurs → `failed`, tentatives et message au tableau | idem |
 | UC-SYS-01-F16 | Anomalies | API runner | Tokens au format du runner ignorés ; erreur après `done` acceptée et refacturée | idem |
 | UC-SYS-01-F17 | A7 | API runner | Coûts déclarés au-delà du plafond → `{jobs: [], budget: "exceeded"}`, file marquée | idem |
+| UC-SYS-01-F18 | Nominal (étape 1) | CLI | Sans `DB_*` dans l'environnement : secrets lus dans le `.env` de `HUMANOME_SHARED_DIR`, tick exécuté | idem |
+| UC-SYS-01-F19 | Anomalies | CLI | Disposition des releases : `~/app/shared/.env` ignoré (code 1), `~/app/releases/shared/.env` lu (comportement actuel) | idem |
+| UC-SYS-01-F20 | A8 | API runner | Version de paquet figée introuvable : le job est quand même servi | idem |
+| UC-SYS-01-F21 | E6 | API (tick HTTP) | Paquet publié au gabarit de pôle inexploitable : 3 tentatives en un tick (6 appels), job et run `failed`, message citant la réponse | idem |
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/MasseDoDTest.php` — DoD P11 : 20 portfolios par ticks simulés, interruption/reprise (480 appels exactement), plafond, bail expiré, annulation, échecs, `WORKER_TICK_MAX_CALLS`.
 - `api/tests/WorkerRouteTest.php` — API runner : jeton, charge utile, checkpoint, résultats, budget, tick HTTP.
 - `api/tests/WorkerPromptRunnerTest.php` — parité octet à octet des prompts avec le moteur (goldens `api/tests/MasseGolden/`), ports `PoleAssembler`.
-- `scripts/runner-node/runner.test.mjs` — options CLI, résolution du fournisseur, relances, jeton refusé, RGPD du journal (`cd scripts/runner-node && npm test`).
+- `scripts/runner-node/runner.test.mjs` — options CLI, résolution du fournisseur, relances, jeton refusé, RGPD du journal (`cd scripts/runner-node && npm test`) ; couvre notamment `runLoop`, `sanitizeForLog` et `computeCostUsd`, sans test UC propre.
+- Éléments du « Code sollicité » couverts ailleurs : `ConfigRepository::etablissementIdForWorkerToken`, `allowsSpending`, `addSpentUsd`, `revealApiKey` → UC-ETA-02-U02, U04, U05, U06 ; `JobQueue::refreshRunStatus` → UC-ETA-03-U06 ; `PoleAssembler::parse`, `assembleDay` → `WorkerPromptRunnerTest::testParseTolerant`, `::testAssembleDayDocumentComplet` (et indirectement U08, U11, U21).
 
 ### Exécuter
 
@@ -261,6 +313,16 @@ journalisant que des compteurs.
 docker compose run --rm php vendor/bin/phpunit --filter UcSys01 --testdox
 cd engine && npx vitest run test/usecases/unit/uc-sys-01
 ```
+
+Le verrou `humanome_worker` étant global au serveur MySQL, ces tests (U06 et
+F05 le tiennent volontairement ; les autres lancent des ticks) ne sont pas
+isolés des autres processus PHPUnit qui tournent en parallèle sur d'autres
+bases : les tests du lot relancent un tick qui répond `locked` à cause d'un
+autre processus (`EtaSupport::untilUnlocked`, `EtaTickSupport`) et prennent le
+verrou avec une attente bornée, mais les classes hors lot qui lancent des
+ticks (`MasseDoDTest`, `WorkerRouteTest`, UC-CPT-05…) n'ont pas cette
+protection : en cas d'échec « locked » inattendu, rejouer ces suites
+séquentiellement.
 
 ## Anomalies constatées
 
@@ -282,7 +344,35 @@ cd engine && npx vitest run test/usecases/unit/uc-sys-01
   consommés sur la clé plateforme ne sont reportés ni sur le job ni sur
   `spent_usd` (le coût cumulé est perdu avec l'exception), alors que le runner,
   lui, déclare le coût de ses échecs. Le coupe-circuit budgétaire ignore donc
-  ces dépenses. Figé par UC-SYS-01-U11.
+  ces dépenses. Figé par UC-SYS-01-U11 (pôle) et U08 (kairos).
+- **Tentatives consommées dans un même tick, sans espacement.** Après un
+  échec, `fail()` remet le job `queued` (tentative + 1) et la boucle du tick
+  le re-réserve aussitôt (`ORDER BY priority DESC, id ASC`) : ses 3
+  tentatives partent en quelques secondes, alors que docs/plan-masse.md
+  prévoit « retenté au tick suivant ». De plus, `$provider->complete()` est
+  hors du `try` de `callWithRetry` : une exception du fournisseur (HTTP
+  5xx/429/529, délai dépassé) n'a aucun nouvel essai immédiat. Enfin, sans
+  `ANTHROPIC_API_KEY`, la fabrique lève une exception attrapée par le filet
+  de `processJob` (`fail()` sans appel ; `calls` reste à 0, le tick ne
+  s'arrête pas) : un seul tick fait passer `failed` toute la file `humanome`.
+  Figé par UC-SYS-01-U19, U20 et F21.
+- **CLI mal branché dans la disposition des releases.** `scripts/worker.php`
+  cherche `$root/../shared/.env` avec `$root = dirname(__DIR__)` : sur
+  l'hébergement, `~/app/releases/<ts>/../shared` = `~/app/releases/shared`
+  (le commentaire du script annonce `~/app/shared` ; `Bootstrap` utilise bien
+  `dirname(__DIR__, 3)`). Et `scripts/deploy/stage-api.sh` ne copie pas
+  `scripts/worker.php` dans la release (seulement `scripts/migrations` et
+  `migrate.php`), alors que docs/deploiement.md recommande de planifier
+  `php scripts/worker.php` sur une offre avec cron. Sur une telle offre, le
+  nominal tomberait en E5 ; seul `HUMANOME_SHARED_DIR` permet de le faire
+  fonctionner. Figé par UC-SYS-01-F19 (F18 couvre `HUMANOME_SHARED_DIR`).
+- **Extraits de réponse LLM dans `mass_jobs.erreur` (tick plateforme
+  compris).** `PoleAssembler::parse` met les 160 premiers caractères de la
+  réponse dans son exception (« début : « … » »), que le tick recopie dans
+  `fail()` ou dans la note kairos de `complete()` ; `runStats` les renvoie à
+  l'établissement. Contredit la docblock de `JobQueue::fail` (« never
+  portfolio content ») et plan-masse §6. Figé par UC-SYS-01-U11, F07, F21 et
+  UC-ETA-03-F24.
 - **Documentation du runner** : docs/runner-node.md affirme « le dernier
   résultat posté pour un job gagne » ; c'est le **premier** document accepté
   qui gagne, les suivants reçoivent `409`.
@@ -305,7 +395,9 @@ cd engine && npx vitest run test/usecases/unit/uc-sys-01
   checkpoint) — une journée qui dépasse 5 minutes peut être servie deux fois
   (double coût LLM, le premier document gagne).
 - Le verrou `humanome_worker` est global au serveur MySQL (toutes bases
-  confondues).
+  confondues) : deux environnements partageant un serveur MySQL se
+  sérialisent, et les suites de tests parallèles se gênent (voir
+  « Exécuter »).
 - Le runner exécute les gabarits **du moteur**, pas ceux du paquet figé :
   identiques pour le paquet par défaut, divergents pour un paquet personnalisé
   (limite v1 assumée, docs/runner-node.md).

@@ -130,6 +130,9 @@ describe('UC-ETA-02 — l’établissement règle son moteur LLM et son budget',
     expect(budget.validity.rangeUnderflow).toBe(true)
     await submitConfig()
     expect(screen.queryByText('Configuration enregistrée.')).toBeNull()
+    // Aucune alerte : le contrôle JavaScript (« Le plafond de budget doit
+    // être… ») n'a pas été atteint, c'est bien la contrainte native qui bloque.
+    expect(screen.queryByRole('alert')).toBeNull()
 
     fireEvent.change(budget, { target: { value: '10' } })
     fireEvent.click(screen.getByLabelText(/Mon infrastructure/))

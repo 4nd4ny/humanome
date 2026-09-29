@@ -39,9 +39,11 @@ masse ») et clique « Estimer le coût ».
 - Un run est créé avec les versions **figées** du paquet et du référentiel
   (reproductibilité) et un job `queued` par (membre consenti ayant déposé ×
   journée de son dépôt).
-- Le tableau d'avancement reflète la file (six statuts, coût, tokens, erreurs)
-  jusqu'au statut terminal du run (`done`, `failed`, `cancelled`) ou à l'arrêt
-  budgétaire (`budget_exceeded`).
+- Le tableau d'avancement de l'API reflète la file (six statuts, coût, tokens,
+  erreurs) jusqu'au statut terminal du run (`done`, `failed`, `cancelled`) ou
+  à l'arrêt budgétaire (`budget_exceeded`) ; le site en affiche les statuts,
+  le coût et les erreurs (pas les tokens). Exception : un run dont le dernier
+  travail disparaît par départ du membre reste `active` (voir Anomalies).
 - Événements d'audit `mass_run_created {runId, cohorteId, jobs}` et
   `mass_run_cancelled {runId}` — compteurs et identifiants seulement.
 
@@ -85,7 +87,10 @@ masse ») et clique « Estimer le coût ».
 8. Les exécutants traitent la file (UC-SYS-01) ; quand plus aucun job n'est
    `queued`/`running`/`budget_exceeded`, le run passe `done` (ou `failed` si
    un job a échoué définitivement) avec `finishedAt` ; le bouton « Annuler le
-   run » disparaît.
+   run » disparaît. Ce recalcul n'a lieu qu'à la fin d'un job par un exécutant
+   (`complete`, `fail`, `failHard`) : si les derniers jobs en attente sont
+   annulés par le départ de leur membre (A2), le run reste `active` (voir
+   Anomalies).
 
 ## Scénarios alternatifs
 
@@ -94,21 +99,38 @@ masse ») et clique « Estimer le coût ».
   ces déposants sont enfilés.
 - **A2 — Membre sans dépôt ou parti** (étape 5) : un membre consenti qui n'a
   pas déposé, ou qui a quitté la cohorte (dépôt purgé), n'obtient aucun job.
+  Un membre qui quitte la cohorte **en cours de run** voit ses jobs
+  `queued`/`running`/`budget_exceeded` passer `cancelled` ; ses journées déjà
+  produites restent comptées, mais le run n'est pas recalculé (étape 8).
 - **A3 — Plafond atteint en cours de run** (étape 8) : avant chaque appel LLM
   le worker vérifie le budget ; au plafond, les jobs restants passent
-  `budget_exceeded` et le run aussi ; le site affiche « Plafond de budget
-  atteint : N job(s) en attente de budget… ». Une **hausse** du plafond
-  (UC-ETA-02, A3) remet ces jobs en file et le run redevient `active`.
+  `budget_exceeded` et le run aussi (tous les jobs en file de l'établissement
+  sont marqués : le tableau n'a plus de job `queued`) ; le site affiche
+  « Plafond de budget atteint : N job(s) en attente de budget. Montez le
+  plafond dans la configuration puis relancez pour les réactiver. » et **ne
+  propose plus « Annuler le run »** (voir Anomalies). Une **hausse** du
+  plafond (UC-ETA-02, A3) remet ces jobs en file et le run redevient
+  `active`.
 - **A4 — Annulation** (étape 7) : « Annuler le run » envoie
   `POST /api/etablissement/runs/{runId}/annuler` → `200 {id, status:
   "cancelled"}` ; les jobs `queued`/`running`/`budget_exceeded` passent
   `cancelled`, les journées déjà produites restent acquises, le run est
   définitivement `cancelled` (un worker en plein pôle perd son écriture
   conditionnelle et abandonne) ; audit `mass_run_cancelled`.
-- **A5 — Échecs** (étape 8) : un job dont les appels échouent est retenté
-  jusqu'à 3 tentatives puis passe `failed` ; le tableau liste les erreurs
-  (`jobId`, `userId`, `date`, `status`, `attempts`, message technique sans
-  contenu de portfolio) et le run se termine `failed`.
+- **A5 — Échecs** (étape 8) : l'échec d'un appel de pôle (après le nouvel
+  essai immédiat : jusqu'à 2 appels payés par tentative ; une panne du
+  fournisseur n'est pas réessayée) ou de l'assemblage compte une tentative ;
+  à la 3e, le job passe `failed` et le run se termine `failed`. Un kairos en
+  échec ne compte pas : la journée se termine `done` avec `kairos: null` et
+  une note. Une source absente (dépôt retiré, journée absente, paquet ou
+  référentiel indisponible) fait passer le job `failed` immédiatement
+  (UC-SYS-01, A8). L'API liste dans `erreurs` (50 au plus) tous les jobs
+  portant un message, quel que soit leur statut — échecs définitifs, jobs
+  remis en file après un échec, journées `done` avec note kairos — sous la
+  forme `{jobId, userId, date, status, attempts, erreur}` ; le message est
+  technique mais **peut citer jusqu'à 160 caractères de la réponse du LLM**,
+  donc du portfolio (voir Anomalies). Le site n'en affiche que
+  « userId — message ».
 - **A6 — Pas encore de configuration** (étape 8) : un run lancé avant toute
   configuration LLM/budget reste `active` avec ses jobs `queued` — aucun
   exécutant ne les réserve — jusqu'à l'enregistrement d'une configuration.
@@ -116,7 +138,11 @@ masse ») et clique « Estimer le coût ».
   budget restant (`plafond − dépense`), un avertissement annonce que les jobs
   excédentaires passeront « budget dépassé » ; si le modèle configuré est
   absent de la table de prix, le coût s'affiche « inconnu (modèle hors table
-  de prix) ».
+  de prix) ». Sans configuration, la projection par défaut (plafond 0,
+  dépense 0) fait afficher « l'estimation dépasse le budget restant
+  (0.00 $) » alors que les jobs resteront simplement en file (A6). Pour un
+  fournisseur `endpoint`, le tick ne bloque jamais sur le budget ; seul le
+  runner l'est, par ses coûts déclarés (UC-ETA-02, RG3).
 
 ## Scénarios d'erreur
 
@@ -127,8 +153,9 @@ masse ») et clique « Estimer le coût ».
 - **E1 — Corps invalide** (étape 5) : `promptPackageId`/`promptPackageVersion`
   absents ou vides, `membres` qui n'est pas une liste d'entiers →
   `422 {error: "Validation échouée", fields}`.
-- **E2 — Paquet inutilisable** (étape 5) : version non publiée →
-  `422 "Paquet de prompts publié introuvable : <id>@<version>"` ; paquet sans
+- **E2 — Paquet inutilisable** (étape 5) : paquet inconnu, version non
+  publiée ou paquet privé → même `422 "Paquet de prompts publié introuvable :
+  <id>@<version>"` ; paquet sans
   `extraction-pole` + `kairos` → `422 "Ce paquet ne contient pas les gabarits
   d'extraction (extraction-pole + kairos)"`.
 - **E3 — Aucun référentiel publié** (étape 5) : `409 "Aucun référentiel publié"`.
@@ -140,7 +167,11 @@ masse ») et clique « Estimer le coût ».
 - **E6 — Accès refusé** : sans session `401`, sans rôle `403`, mutation sans
   jeton CSRF `403`.
 
-Le site affiche le message du serveur pour E1 à E5.
+Le site affiche le message du serveur au lancement (E2 à E4 ; E1 n'est pas
+atteignable depuis le site, qui envoie toujours un corps valide) et à
+l'annulation (E5 « Run introuvable ») ; une erreur du **polling** (par
+exemple `404` après suppression de la cohorte) est ignorée en silence : le
+tableau reste figé sur le dernier état reçu.
 
 ## Règles de gestion
 
@@ -157,8 +188,10 @@ Le site affiche le message du serveur pour E1 à E5.
 - **RG5** — L'annulation est définitive (`refreshRunStatus` ne touche qu'un
   run `active`) ; toutes les écritures des exécutants sont conditionnelles au
   statut `running`.
-- **RG6** — Le tableau n'expose que des compteurs, identifiants, dates et
-  messages techniques : jamais de texte de portfolio.
+- **RG6** — Le tableau expose des compteurs, identifiants, dates et messages
+  techniques ; ces messages peuvent toutefois contenir un extrait (≤ 160
+  caractères) de la réponse du LLM, qui peut citer le portfolio, et restent
+  servis après le départ du membre (voir Anomalies).
 
 ## Données et RGPD
 
@@ -167,13 +200,13 @@ Le site affiche le message du serveur pour E1 à E5.
 | Run | `mass_runs` : établissement, cohorte, versions figées, statut, dates |
 | Jobs | `mass_jobs` : membre, dépôt source, journée, statut, compteurs (tentatives, tokens, coût), erreur technique, document produit |
 | Audit | `mass_run_created {runId, cohorteId, jobs}`, `mass_run_cancelled {runId}` |
-| Portfolio | Lu uniquement par les exécutants (UC-SYS-01), jamais renvoyé à l'établissement |
+| Portfolio | Lu uniquement par les exécutants (UC-SYS-01) ; jamais renvoyé tel quel à l'établissement, mais un extrait peut lui parvenir par le message d'erreur d'un job (réponse LLM citée, ≤ 160 caractères — voir Anomalies) |
 
 ## Code sollicité
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/views/etablissement/CohorteSection.jsx` — sélection, `computeEstimate`, `confirmLaunch`, polling (`POLL_INTERVAL_MS`), `RunProgress`, `onCancel` | Assistant de lancement, suivi, annulation |
+| Front | `web/src/views/etablissement/CohorteSection.jsx` — sélection, `computeEstimate` (taille moyenne d'une journée = Σ tailles / Σ journées, repli 3 000 ; modèle configuré sinon `SERVICE_MODEL`), `confirmLaunch` (`membres` omis quand tous les déposants sont cochés), polling (`POLL_INTERVAL_MS`, erreurs ignorées), `RunProgress` (bouton d'annulation si run `active` ou jobs `queued`/`running`), `onCancel` | Assistant de lancement, suivi, annulation |
 | Front | `web/src/views/etablissement/etablissement-api.js` — `estimateMassRun`, `EXTRACTION_CALLS_PER_DAY`, `SERVICE_MODEL`, `fetchPublishedPackages`, `launchRun`, `fetchRun`, `cancelRun`, `JOB_STATUS_LABELS` | Estimation, appels, normalisation du tableau |
 | Moteur | `engine/src/providers/estimate.js` — `getModelPricing`, `CHARS_PER_TOKEN_FR`, `PRICING_DISCLAIMER` | Table de prix indicative |
 | API | `api/src/routes/etablissement.php` — `POST …/cohortes/{id}/runs`, `GET …/runs/{runId}`, `POST …/runs/{runId}/annuler` | Validation, versions, enfilage, audit |
@@ -190,15 +223,17 @@ Le site affiche le message du serveur pour E1 à E5.
 | UC-ETA-03-U01 | `CohorteRepository::depositsForRun` | Consentis ayant déposé ; sélection ; `[]` = tous (RG2) | `api/tests/UseCases/Unit/UcEta03PiloterRunMasseTest.php` |
 | UC-ETA-03-U02 | `JobQueue::enqueueRun` | Versions figées, un job `queued` par journée, doublon ignoré (RG1, RG3) | idem |
 | UC-ETA-03-U03 | `JobQueue::runForEtablissement` | Run étranger ou inexistant → `null` | idem |
-| UC-ETA-03-U04 | `JobQueue::runStats` | 6 statuts, coût arrondi, tokens, erreurs (50 max) (RG6) | idem |
+| UC-ETA-03-U04 | `JobQueue::runStats` | 6 statuts, coût sommé par statut puis arrondi (0.1 + 0.2 → 0.3), tokens, erreurs (50 max) (RG6) | idem |
 | UC-ETA-03-U05 | `JobQueue::cancelRun` | Non terminaux → `cancelled`, terminés intacts ; run fini re-marqué (anomalie figée) | idem |
 | UC-ETA-03-U06 | `JobQueue::refreshRunStatus` | `active` / `done` / `failed` ; annulation définitive (RG5) | idem |
-| UC-ETA-03-U07 | `latestPublished`, `findPublished` | Référentiel 7.0.0, gabarits du paquet, version inconnue → `null` | idem |
+| UC-ETA-03-U07 | `latestPublished`, `findPublished` | Référentiel le plus haut en semver (7.1.0 malgré une 7.0.1 importée après), gabarits du paquet, version inconnue → `null` | idem |
 | UC-ETA-03-U08 | `estimateMassRun` | 8 appels/journée, tokens, coût, hors table → `null`, familles locales → 0 | `web/test/usecases/unit/uc-eta-03-piloter-run-masse.test.js` |
 | UC-ETA-03-U09 | `fetchRun` | Normalisation du tableau réel | idem |
-| UC-ETA-03-U10 | `launchRun`, `cancelRun` | POST + CSRF sur les bonnes routes | idem |
+| UC-ETA-03-U10 | `launchRun`, `cancelRun` | POST + CSRF sur les bonnes routes (les deux) | idem |
 | UC-ETA-03-U11 | `fetchPublishedPackages` | Liste réelle filtrée | idem |
 | UC-ETA-03-U12 | `JOB_STATUS_LABELS`, `EXTRACTION_CALLS_PER_DAY`, `POLL_INTERVAL_MS`, `SERVICE_MODEL` | Six statuts libellés, 8 appels, 5 s, modèle de référence | idem |
+| UC-ETA-03-U13 | `CohorteSection` (isolée, `fetchFn`) — `computeEstimate` | Taille moyenne tirée des dépôts (1.69 $), repli 3 000 sans taille (1.70 $), modèle configuré prioritaire | idem |
+| UC-ETA-03-U14 | `CohorteSection` (isolée) — `RunProgress` | Bouton « Annuler le run » : run `active` ou jobs en file → présent ; `done`, `cancelled`, `budget_exceeded` sans file → absent | idem |
 
 ### Tests fonctionnels
 
@@ -209,22 +244,26 @@ Le site affiche le message du serveur pour E1 à E5.
 | UC-ETA-03-F03 | A2, E4 | API | Non-déposant et partant ignorés ; sélection sans déposant → `422` | idem |
 | UC-ETA-03-F04 | A3 | API | Tableau `budget_exceeded`, déjà-produit conservé, reprise après hausse | idem |
 | UC-ETA-03-F05 | A4 | API | `200 {id, status}`, jobs annulés, produit gardé, plus d'appel, audit | idem |
-| UC-ETA-03-F06 | A5 | API | Run `failed`, erreur (3 tentatives) sans contenu | idem |
-| UC-ETA-03-F07 | A6 | API | Sans configuration : jobs non réservés, traités après configuration | idem |
+| UC-ETA-03-F06 | A5 | API | Panne du fournisseur : run `failed`, erreur (3 tentatives) = contexte pôle/date + libellé du fournisseur | idem |
+| UC-ETA-03-F07 | A6 | API | Sans configuration : run `active` sans date de fin, jobs non réservés, traités après configuration | idem |
 | UC-ETA-03-F08 | E1 | API | Paquet absent/vide, `membres` mal formé → `422 fields` | idem |
 | UC-ETA-03-F09 | E2 | API | Version non publiée, paquet sans kairos → `422` explicite | idem |
 | UC-ETA-03-F10 | E3 | API | `409 Aucun référentiel publié` | idem |
 | UC-ETA-03-F11 | E4 | API | Aucun déposant → `422`, aucun run | idem |
-| UC-ETA-03-F12 | E5 | API | Étranger et inexistant → `404` homogènes, run intact | idem |
+| UC-ETA-03-F12 | E5 | API | Lancement, suivi, annulation : étranger et inexistant → `404` homogènes (statut et corps), aucun run créé, run intact | idem |
 | UC-ETA-03-F13 | E6 | API | `401`/`403`, CSRF absent → `403` | idem |
-| UC-ETA-03-F14 | RG3 | API | Nouveau référentiel publié : ancien run figé en 7.0.0, nouveau en 7.1.0, tous deux traités | idem |
-| UC-ETA-03-F15 | Anomalies | API | `membres: []` = tous ; annuler un run `done` le marque `cancelled` (comportement actuel) | idem |
-| UC-ETA-03-F16 | Nominal | IHM | `<App/>` : cases par défaut, estimation (40 appels), POST (CSRF), polling 5 s jusqu'à `done` | `web/test/usecases/functional/uc-eta-03-piloter-run-masse.test.jsx` |
-| UC-ETA-03-F17 | A1 | IHM | Décocher → estimation effacée ; POST avec `membres` | idem |
-| UC-ETA-03-F18 | A3, A4, A5 | IHM | Alerte budget, erreurs par membre, annulation puis tableau `cancelled` | idem |
+| UC-ETA-03-F14 | RG3 | API | Nouveau référentiel publié (libellé modifié) : ancien run figé en 7.0.0 et servi avec l'ancien libellé, nouveau en 7.1.0 avec le nouveau | idem |
+| UC-ETA-03-F15 | Anomalies | API | `membres: []` = tous ; annuler un run `done` le marque `cancelled` et journalise `mass_run_cancelled` (comportement actuel) | idem |
+| UC-ETA-03-F16 | Nominal | IHM | `<App/>` : cases par défaut, estimation (40 appels, 1.69 $), POST (CSRF), polling 5 s jusqu'à `done` | `web/test/usecases/functional/uc-eta-03-piloter-run-masse.test.jsx` |
+| UC-ETA-03-F17 | A1, RG4 | IHM | Changer de paquet ou décocher → estimation effacée ; POST avec la version choisie et `membres` | idem |
+| UC-ETA-03-F18 | A4, A5 | IHM | Run actif : erreurs par membre (« userId — message »), annulation (CSRF) puis tableau `cancelled` | idem |
 | UC-ETA-03-F19 | E0 | IHM | Pas de paquet ; aucun membre coché → refus local | idem |
-| UC-ETA-03-F20 | E2-E4 | IHM | `422`/`409` affichés, pas de suivi démarré | idem |
-| UC-ETA-03-F21 | A7 | IHM | Dépassement du budget restant averti ; modèle hors table → « inconnu » | idem |
+| UC-ETA-03-F20 | E2-E5 | IHM | `422` (E2, E4) et `409` (E3) au lancement affichés, pas de suivi ; `404` d'annulation affiché (E5) ; `404` de polling ignoré, tableau figé | idem |
+| UC-ETA-03-F21 | A7 | IHM | Dépassement du budget restant averti ; modèle hors table → « inconnu » ; sans configuration → avertissement « 0.00 $ » trompeur (comportement actuel) | idem |
+| UC-ETA-03-F22 | A3, Anomalies | IHM | Tableau réel après arrêt budgétaire : alerte complète (« … puis relancez… »), bouton « Annuler le run » absent (comportement actuel) | idem |
+| UC-ETA-03-F23 | A2, Anomalies | API | Départ d'un membre en cours de run, ses jobs étaient les derniers : run `active` sans travail ni `finishedAt` (comportement actuel) | `api/tests/UseCases/Functional/UcEta03PiloterRunMasseTest.php` |
+| UC-ETA-03-F24 | A5, Anomalies | API | Réponse LLM inexploitable citant la feuille : extrait du portfolio dans `erreurs`, toujours servi après le départ du membre (comportement actuel) | idem |
+| UC-ETA-03-F25 | A3, Anomalies | API | « Relancez » après arrêt budgétaire : le nouveau run ré-enfile les journées déjà produites (32 appels, 4 documents pour 2 journées) | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -232,6 +271,7 @@ Le site affiche le message du serveur pour E1 à E5.
 - `api/tests/MasseDoDTest.php` — DoD P11 : 20 portfolios, interruption/reprise sans double appel, plafond abaissé puis relevé, annulation, échecs.
 - `web/src/views/EtablissementView.test.jsx` — estimation puis lancement, avancement, annulation, alerte budget (vue isolée).
 - `engine/src/providers/estimate.test.js` — table de prix du moteur.
+- `api/tests/UseCases/Unit/UcEta01GererCohorteTest.php` — UC-ETA-01-U04 : `CohorteRepository::findForEtablissement` (cohorte étrangère ou inexistante → `null`).
 
 ### Exécuter
 
@@ -257,22 +297,56 @@ cd web && npx vitest run test/usecases/unit/uc-eta-03 test/usecases/functional/u
   guide établissement (chapitre 4, §6) invitent à relancer un run, alors que la
   hausse du plafond suffit à réactiver les jobs du run existant (UC-ETA-02, A3).
   Un nouveau run ré-enfile **toutes** les journées des déposants, y compris
-  celles déjà produites : double traitement et double dépense.
+  celles déjà produites : double traitement et double dépense. Figé par
+  UC-ETA-03-F22 (texte de l'alerte) et F25 (double extraction).
+- **Un run arrêté au plafond ne peut pas être annulé depuis le site.**
+  `RunProgress` n'affiche « Annuler le run » que si le run est `active` ou a
+  des jobs `queued`/`running` ; or l'arrêt budgétaire fait passer TOUS les
+  jobs en file de l'établissement (et le run) à `budget_exceeded` : le bouton
+  disparaît. L'établissement ne peut plus que monter le plafond — ce qui
+  réactive ce run ET tous ses autres runs bloqués — ou passer par l'API, ce
+  qui contredit l'objectif (« arrêter le run à tout moment »). Figé par
+  UC-ETA-03-U14 et F22.
+- **Un run peut rester `active` indéfiniment.** Le départ d'un membre
+  (`CohorteRepository::quit`) annule ses jobs en attente directement en SQL,
+  sans appeler `refreshRunStatus` (appelé seulement par `complete`, `fail`,
+  `failHard`) ; la purge du compte de l'apprenant supprime ses jobs en
+  cascade, avec le même effet. Si ces jobs étaient les derniers en attente,
+  plus aucun exécutant ne rafraîchit le run : il reste `active`, sans
+  `finishedAt`, le site affiche « Annuler le run » et continue d'interroger
+  le tableau. Figé par UC-ETA-03-F23.
+- **Extraits de réponse LLM (donc de portfolio) dans les erreurs du tableau.**
+  Quand la réponse n'est pas du JSON exploitable, `PoleAssembler::parse` met
+  dans l'exception les 160 premiers caractères de la réponse brute
+  (« début : « … » ») ; le tick l'enregistre dans `mass_jobs.erreur`
+  (`fail`, ou note kairos de `complete`) et `runStats` la renvoie dans
+  `erreurs` — sans filtre sur l'adhésion en cours : l'extrait reste servi à
+  l'établissement après le retrait du consentement. Contredit la garantie
+  « jamais de texte de portfolio » (plan-masse §6, docblock de
+  `JobQueue::fail`). Figé par UC-ETA-03-F24.
 
 ## Limites
 
 - Les erreurs du tableau montrent l'**identifiant** du membre (`userId`), pas
   son nom : l'API ne renvoie pas `displayName` et `fetchRun` retombe sur
   `String(userId)`.
-- L'API des paquets ne porte pas de marqueur « défaut » : l'IHM présélectionne
-  le premier paquet de la liste (tri par slug puis date de publication, donc la
-  plus ancienne version) et n'affiche jamais « (défaut) ».
+- L'IHM n'utilise pas `GET /api/prompt-packages/default` (paquet par défaut
+  validé — UC-PRO-04 —, à défaut le dernier publié) : la liste
+  `GET /api/prompt-packages` ne porte pas de marqueur, l'IHM présélectionne le
+  premier paquet de la liste (tri par slug puis date de publication, donc la
+  plus ancienne version du premier slug) et n'affiche jamais « (défaut) ».
+  Elle propose aussi des paquets publiés sans gabarits d'extraction (par
+  exemple le paquet réservé `twin6-ouverte`, rôles `twin6-*`), qui ne peuvent
+  mener qu'à E2.
 - Le modèle de l'estimation (`claude-sonnet-5` à défaut de modèle configuré)
   peut différer du modèle facturé par le worker (`WORKER_MODEL`, défaut
   `claude-sonnet-4-5`) — même famille tarifaire ; les modèles locaux `llama`,
   `mistral`, `qwen` sont estimés à `0.00 $`, pas « inconnu ».
-- Un run lancé sans configuration (A6) attend silencieusement : aucun message
-  n'explique pourquoi rien n'avance.
+- Un run lancé sans configuration (A6) attend sans explication : avant le
+  lancement, le seul message est l'avertissement trompeur « l'estimation
+  dépasse le budget restant (0.00 $) — les jobs excédentaires passeront en
+  « budget dépassé » » (A7), et rien n'explique ensuite pourquoi rien
+  n'avance.
 - Le polling continue toutes les 5 s tant que la page reste ouverte, même
   après la fin du run.
 - Le référentiel du run n'est pas choisi par l'établissement : c'est la

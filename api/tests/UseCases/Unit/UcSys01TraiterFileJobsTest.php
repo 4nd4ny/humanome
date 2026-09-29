@@ -6,6 +6,7 @@ namespace Humanome\Tests\UseCases\Unit;
 
 use Humanome\Etablissement\CohorteRepository;
 use Humanome\Llm\MockProvider;
+use Humanome\Llm\Pricing;
 use Humanome\Llm\UpstreamException;
 use Humanome\MigrationRunner;
 use Humanome\Tests\LlmFakeHttpClient;
@@ -87,19 +88,27 @@ final class UcSys01TraiterFileJobsTest extends TestCase
         return array_map(intval(...), self::$pdo->query("SELECT id FROM mass_jobs WHERE run_id = {$runId} ORDER BY id")->fetchAll(PDO::FETCH_COLUMN));
     }
 
+    /** Un tick (relancé si un AUTRE processus tient le verrou global — voir EtaSupport). */
     private static function tick(object $provider, array $options = []): array
     {
-        return (new Tick(self::$pdo, $options + [
+        $tick = new Tick(self::$pdo, $options + [
             'budgetSeconds' => 3600,
             'providerFactory' => static fn (array $config): object => $provider,
-        ]))->run();
+        ]);
+
+        return self::untilUnlocked($tick->run(...));
     }
 
-    /** Fournisseur mock qui répond « pas de JSON » aux N premiers appels (ou aux prompts kairos). */
+    /**
+     * Fournisseur mock qui répond « pas de JSON » aux N premiers appels (ou aux
+     * prompts kairos) ; garde l'usage de chaque appel [kairos?, in, out].
+     */
     private static function flakyProvider(int $garbageFirst = 0, bool $garbageKairos = false): object
     {
         return new class ($garbageFirst, $garbageKairos) {
             public int $calls = 0;
+            /** @var list<array{0: bool, 1: int, 2: int}> */
+            public array $usages = [];
             private MockProvider $inner;
 
             public function __construct(private int $garbageFirst, private bool $garbageKairos)
@@ -110,13 +119,17 @@ final class UcSys01TraiterFileJobsTest extends TestCase
             public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
             {
                 $this->calls++;
-                if ($this->garbageFirst > 0 || ($this->garbageKairos && str_contains($prompt, 'SYNTHÈSE KAIROS'))) {
+                $kairos = str_contains($prompt, 'SYNTHÈSE KAIROS');
+                if ($this->garbageFirst > 0 || ($this->garbageKairos && $kairos)) {
                     $this->garbageFirst = max(0, $this->garbageFirst - 1);
+                    $this->usages[] = [$kairos, 1000, 500];
 
                     return ['text' => 'Désolé, pas de JSON ici.', 'usage' => ['inputTokens' => 1000, 'outputTokens' => 500], 'model' => 'mock'];
                 }
+                $result = $this->inner->complete($model, $system, $prompt, $maxTokens);
+                $this->usages[] = [$kairos, $result['usage']['inputTokens'], $result['usage']['outputTokens']];
 
-                return $this->inner->complete($model, $system, $prompt, $maxTokens);
+                return $result;
             }
         };
     }
@@ -131,22 +144,28 @@ final class UcSys01TraiterFileJobsTest extends TestCase
         [$a1, $a2, $a3] = self::jobIds($a['runId']);
         self::$pdo->exec("UPDATE mass_jobs SET priority = 5 WHERE id = {$a3}");
         $queue = new JobQueue(self::$pdo);
+        $ids = static fn (array $jobs): array => array_map(static fn (array $j): int => (int) $j['id'], $jobs);
+
+        // Runner de B d'abord, pendant que les jobs de A (plus anciens) sont
+        // encore en file : seul le filtre d'établissement les écarte.
+        self::assertSame(self::jobIds($b['runId']), $ids($queue->reserve(10, $b['etab'])));
+        self::assertSame('queued', self::job($a1)['status']);
 
         $first = $queue->reserve(1);
-        self::assertSame([$a3], array_map(static fn (array $j): int => (int) $j['id'], $first), 'priorité d’abord');
+        self::assertSame([$a3], $ids($first), 'priorité d’abord');
         self::assertSame([$a['etab'], 'aurora-v3-reconstruit', '7.0.0'], [(int) $first[0]['etablissement_id'], $first[0]['prompt_package_slug'], $first[0]['referentiel_semver']]);
         $lease = (int) self::scalar(self::$pdo, 'SELECT TIMESTAMPDIFF(SECOND, NOW(), lease_until) FROM mass_jobs WHERE id = ?', [$a3]);
         self::assertGreaterThanOrEqual(295, $lease);
         self::assertLessThanOrEqual(300, $lease);
         self::assertSame('running', self::job($a3)['status']);
 
-        $cron = array_map(static fn (array $j): int => (int) $j['id'], $queue->reserve(10));
-        self::assertSame([$a1, $a2], $cron, 'le cron ne sert pas l’établissement en « endpoint »');
-        self::assertSame(self::jobIds($b['runId']), array_map(static fn (array $j): int => (int) $j['id'], $queue->reserve(10, $b['etab'])));
+        // Le cron ne sert jamais l'établissement en « endpoint » (ses jobs sont
+        // de toute façon en cours ici ; voir aussi U02 et F11).
+        self::assertSame([$a1, $a2], $ids($queue->reserve(10)));
         self::assertSame([], $queue->reserve(10, $a['etab']), 'baux en cours : rien à reprendre');
 
         self::$pdo->exec("UPDATE mass_jobs SET lease_until = NOW() - INTERVAL 1 SECOND WHERE id = {$a1}");
-        self::assertSame([$a1], array_map(static fn (array $j): int => (int) $j['id'], $queue->reserve(10)), 'bail expiré : de nouveau réservable');
+        self::assertSame([$a1], $ids($queue->reserve(10)), 'bail expiré : de nouveau réservable');
     }
 
     #[TestDox('UC-SYS-01-U02 — reserve : limite bornée à [1, 20] ; établissement sans configuration jamais servi')]
@@ -199,6 +218,14 @@ final class UcSys01TraiterFileJobsTest extends TestCase
 
         self::assertFalse($queue->complete($jobId, $document), 'rejeu : refus');
         self::assertFalse($queue->saveCheckpoint($jobId, ['poles' => []], 0, 0, 0.0));
+
+        // jobRow : relecture fraîche du job, colonnes du run jointes.
+        $row = $queue->jobRow($jobId);
+        self::assertSame(['done', $run['etab'], 'aurora-v3-reconstruit', '1.0.0', 'respire', '7.0.0'], [
+            $row['status'], (int) $row['etablissement_id'], $row['prompt_package_slug'],
+            $row['prompt_package_semver'], $row['referentiel_id'], $row['referentiel_semver'],
+        ]);
+        self::assertNull($queue->jobRow(999999));
     }
 
     #[TestDox('UC-SYS-01-U04 — fail : tentatives + 1 et retour en file, échec définitif à la 3e ; failHard immédiat')]
@@ -249,10 +276,15 @@ final class UcSys01TraiterFileJobsTest extends TestCase
     {
         $run = self::seedRun([['2026-01-05']]);
         $other = TestDb::pdo();
-        self::assertSame(1, (int) $other->query("SELECT GET_LOCK('" . Tick::LOCK_NAME . "', 0)")->fetchColumn());
+        // Attente bornée : le verrou est global au serveur MySQL, un autre
+        // processus PHPUnit peut être en plein tick (voir Limites de la fiche).
+        self::assertSame(1, (int) $other->query("SELECT GET_LOCK('" . Tick::LOCK_NAME . "', 30)")->fetchColumn());
         try {
             $provider = self::flakyProvider();
-            $counters = self::tick($provider);
+            $counters = (new Tick(self::$pdo, [
+                'budgetSeconds' => 3600,
+                'providerFactory' => static fn (array $config): object => $provider,
+            ]))->run(); // sans relance : le verrou est tenu par CE test
         } finally {
             $other->query("SELECT RELEASE_LOCK('" . Tick::LOCK_NAME . "')")->fetchColumn();
         }
@@ -286,7 +318,7 @@ final class UcSys01TraiterFileJobsTest extends TestCase
         self::assertGreaterThan(0.0, (float) self::scalar(self::$pdo, 'SELECT spent_usd FROM etablissement_config WHERE user_id = ?', [$run['etab']]));
     }
 
-    #[TestDox('UC-SYS-01-U08 — Tick : kairos en échec après reprise → document gardé avec kairos null et note de dégradation')]
+    #[TestDox('UC-SYS-01-U08 — Tick : kairos en échec après nouvel essai → document gardé avec kairos null et note ; coût des 2 appels kairos NON imputé (comportement actuel)')]
     public function testU08KairosFailureDegradesToNull(): void
     {
         $run = self::seedRun([['2026-01-06']]);
@@ -302,6 +334,18 @@ final class UcSys01TraiterFileJobsTest extends TestCase
         self::assertSame('done', $job['status']);
         self::assertNull(json_decode((string) $job['document'], true)['kairos']);
         self::assertStringStartsWith('kairos dégradé à null (2026-01-06) — ', (string) $job['erreur']);
+
+        // Anomalie 3 (volet kairos) : seuls les 7 appels de pôle sont imputés,
+        // au job comme à la dépense ; les 2 appels kairos payés sont perdus.
+        $poles = array_values(array_filter($provider->usages, static fn (array $u): bool => !$u[0]));
+        $kairos = array_values(array_filter($provider->usages, static fn (array $u): bool => $u[0]));
+        self::assertCount(7, $poles);
+        self::assertCount(2, $kairos);
+        $cost = static fn (array $usages): float => array_sum(array_map(static fn (array $u): float => Pricing::estimateUsd('claude-sonnet-4-5', $u[1], $u[2]), $usages));
+        self::assertGreaterThan(0.0, $cost($kairos));
+        self::assertSame(array_sum(array_column($poles, 1)), (int) $job['tokens_input']);
+        self::assertEqualsWithDelta($cost($poles), (float) $job['cost_usd'], 1e-5);
+        self::assertEqualsWithDelta($cost($poles), (float) self::scalar(self::$pdo, 'SELECT spent_usd FROM etablissement_config WHERE user_id = ?', [$run['etab']]), 1e-5);
     }
 
     #[TestDox('UC-SYS-01-U09 — Tick : source introuvable (segment, portfolio, paquet) → échec définitif sans appel LLM')]
@@ -362,7 +406,8 @@ final class UcSys01TraiterFileJobsTest extends TestCase
         self::assertSame(1, $counters['callErrors']);
         $job = self::job($jobId);
         self::assertSame(['queued', 1], [$job['status'], (int) $job['attempts']]);
-        self::assertStringStartsWith('pôle 1 (2026-01-05) — aucun JSON valide trouvé', (string) $job['erreur']);
+        // Le message cite le début de la réponse du LLM (RG8, comportement actuel).
+        self::assertSame('pôle 1 (2026-01-05) — aucun JSON valide trouvé dans la réponse (début : « Désolé, pas de JSON ici. »)', (string) $job['erreur']);
         // Voir « Anomalies constatées » : ni le job ni la dépense ne portent ces appels.
         self::assertSame(0.0, (float) $job['cost_usd']);
         self::assertSame(0.0, (float) self::scalar(self::$pdo, 'SELECT spent_usd FROM etablissement_config WHERE user_id = ?', [$run['etab']]));
@@ -497,5 +542,79 @@ final class UcSys01TraiterFileJobsTest extends TestCase
                 self::assertStringNotContainsString('sk-local', $e->getMessage());
             }
         }
+    }
+
+    // ------------------------------------------- comportements actuels figés
+
+    #[TestDox('UC-SYS-01-U19 — Tick : un job en échec est re-réservé aussitôt, dans le MÊME tick — 3 tentatives (6 appels) en un tick, puis « failed » (comportement actuel)')]
+    public function testU19FailedJobIsRetriedWithinTheSameTick(): void
+    {
+        $run = self::seedRun([['2026-01-05']]);
+        [$jobId] = self::jobIds($run['runId']);
+        $provider = self::flakyProvider(garbageFirst: 6);
+
+        $counters = self::tick($provider, ['maxCalls' => 50]);
+
+        self::assertSame(6, $provider->calls, '3 tentatives × (appel + nouvel essai)');
+        self::assertSame([3, 3], [$counters['jobsTouched'], $counters['callErrors']], 'le même job réservé trois fois');
+        $job = self::job($jobId);
+        self::assertSame(['failed', 3], [$job['status'], (int) $job['attempts']]);
+        self::assertSame('failed', self::scalar(self::$pdo, 'SELECT status FROM mass_runs WHERE id = ?', [$run['runId']]));
+    }
+
+    #[TestDox('UC-SYS-01-U20 — Tick : clé plateforme absente (ANTHROPIC_API_KEY) → toute la file « humanome » passe « failed » en un tick, sans aucun appel (comportement actuel)')]
+    public function testU20MissingPlatformKeyFailsTheWholeQueueInOneTick(): void
+    {
+        $first = self::seedRun([['2026-01-05']]);
+        $second = self::seedRun([['2026-01-06']]);
+
+        // Fabrique de production (pas d'injection) : WORKER_PROVIDER vide,
+        // clé vide → l'exception est levée AVANT toute requête HTTP.
+        $counters = self::withEnv(['WORKER_PROVIDER' => '', 'ANTHROPIC_API_KEY' => ''], static fn (): array => self::untilUnlocked(
+            (new Tick(self::$pdo, ['budgetSeconds' => 3600]))->run(...),
+        ));
+
+        self::assertSame([0, 6, 6], [$counters['calls'], $counters['callErrors'], $counters['jobsTouched']]);
+        foreach ([$first, $second] as $run) {
+            $job = self::job(self::jobIds($run['runId'])[0]);
+            self::assertSame(['failed', 3], [$job['status'], (int) $job['attempts']]);
+            self::assertSame('erreur worker : ANTHROPIC_API_KEY non configurée (fournisseur humanome)', $job['erreur']);
+        }
+    }
+
+    #[TestDox('UC-SYS-01-U21 — Tick : kairos tronqué (stop_reason max_tokens) → journée « done », kairos null, note « réponse tronquée » (RG6, A5)')]
+    public function testU21TruncatedKairosDegradesToNull(): void
+    {
+        $run = self::seedRun([['2026-01-07']]);
+        [$jobId] = self::jobIds($run['runId']);
+        $provider = new class () {
+            public int $calls = 0;
+            private MockProvider $inner;
+
+            public function __construct()
+            {
+                $this->inner = new MockProvider();
+            }
+
+            public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
+            {
+                $this->calls++;
+
+                return str_contains($prompt, 'SYNTHÈSE KAIROS')
+                    ? ['text' => '{"tronqué": ', 'usage' => ['inputTokens' => 10, 'outputTokens' => 5], 'model' => 'mock', 'stopReason' => 'max_tokens']
+                    : $this->inner->complete($model, $system, $prompt, $maxTokens);
+            }
+        };
+
+        self::tick($provider);
+
+        self::assertSame(9, $provider->calls, '7 pôles + kairos tronqué + nouvel essai tronqué');
+        $job = self::job($jobId);
+        self::assertSame('done', $job['status']);
+        self::assertSame('kairos dégradé à null (2026-01-07) — réponse tronquée (budget de sortie atteint)', $job['erreur']);
+        $document = json_decode((string) $job['document'], true);
+        self::assertNull($document['kairos']);
+        self::assertCount(7, $document['poles']);
+        self::assertTrue(Validation::validate('cartographie-jour', $document)['valid']);
     }
 }

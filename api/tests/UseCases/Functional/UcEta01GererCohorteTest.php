@@ -6,6 +6,8 @@ namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Db;
 use Humanome\Tests\MasseTestCase;
+use Humanome\Tests\UseCases\Support\EtaSupport;
+use Humanome\Tests\UseCases\Support\EtaTickSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 
 /**
@@ -21,6 +23,9 @@ use PHPUnit\Framework\Attributes\TestDox;
  */
 final class UcEta01GererCohorteTest extends MasseTestCase
 {
+    use EtaSupport;
+    use EtaTickSupport;
+
     #[TestDox('UC-ETA-01-F01 — nominal : création, code transmis, liste puis détail des membres (consentement, dépôt, avancement) sans contenu')]
     public function testF01NominalCreateListAndFollowMembers(): void
     {
@@ -175,22 +180,26 @@ final class UcEta01GererCohorteTest extends MasseTestCase
         self::assertSame(1, (int) Db::get()->query('SELECT COUNT(*) FROM cohortes')->fetchColumn());
     }
 
-    #[TestDox('UC-ETA-01-F07 — A2 : plusieurs cohortes, codes distincts ; l’apprenant rejoint la bonne cohorte par son code')]
+    #[TestDox('UC-ETA-01-F07 — A2 : plusieurs cohortes, codes distincts ; l’apprenant rejoint la bonne cohorte par son code ; liste triée par identifiant')]
     public function testF07SeveralCohortesEachWithItsOwnCode(): void
     {
         $etab = $this->registerEtablissement();
-        $b = $this->createCohorte($etab, 'Terminale B');
+        // Créées dans l'ordre inverse de l'ordre alphabétique : la liste doit
+        // suivre l'identifiant (ordre de création), pas le nom.
         $c = $this->createCohorte($etab, 'Terminale C');
+        $b = $this->createCohorte($etab, 'Terminale B');
         self::assertNotSame($b['code'], $c['code']);
 
         $learner = $this->registerAs('eleve@example.org', 'Élève');
-        // Le code est accepté en minuscules (normalisé côté serveur).
+        // Le code est accepté en minuscules (strtoupper côté serveur ; la
+        // colonne utf8mb4_unicode_ci est de toute façon insensible à la casse).
         $joined = $this->as_($learner, 'POST', '/api/cohortes/' . strtolower($c['code']) . '/rejoindre', ['consentement' => true]);
         self::assertSame(201, $joined->getStatusCode());
         self::assertSame($c['id'], self::json($joined)['cohorteId']);
 
         $list = self::json($this->as_($etab, 'GET', '/api/etablissement/cohortes'));
-        self::assertSame(['Terminale B', 'Terminale C'], array_column($list, 'nom'));
-        self::assertSame([0, 1], array_column($list, 'membres'));
+        self::assertSame(['Terminale C', 'Terminale B'], array_column($list, 'nom'));
+        self::assertSame([$c['id'], $b['id']], array_column($list, 'id'));
+        self::assertSame([1, 0], array_column($list, 'membres'));
     }
 }

@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Db;
+use Humanome\Llm\MockProvider;
 use Humanome\Packages\PromptPackageRepository;
 use Humanome\Referentiel\ReferentielRepository;
 use Humanome\Tests\MasseTestCase;
 use Humanome\Tests\UseCases\Support\EtaSupport;
+use Humanome\Tests\UseCases\Support\EtaTickSupport;
+use Humanome\Worker\Tick;
 use PHPUnit\Framework\Attributes\TestDox;
 
 /**
@@ -24,6 +27,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 final class UcEta03PiloterRunMasseTest extends MasseTestCase
 {
     use EtaSupport;
+    use EtaTickSupport;
 
     private function board(array $etab, int $runId): array
     {
@@ -171,7 +175,7 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         self::assertSame('cancelled', $this->board($etab, $run['runId'])['status']);
     }
 
-    #[TestDox('UC-ETA-03-F06 — A5 : échecs répétés → run « failed », erreurs par job (tentatives, message sans contenu)')]
+    #[TestDox('UC-ETA-03-F06 — A5 : échecs répétés (panne du fournisseur) → run « failed », erreurs par job (tentatives, contexte pôle/date + libellé du fournisseur)')]
     public function testF06FailuresAreReportedOnTheBoard(): void
     {
         $etab = $this->registerEtablissement();
@@ -189,9 +193,10 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         self::assertCount(1, $board['erreurs']);
         $erreur = $board['erreurs'][0];
         self::assertSame([$learner['id'], '2026-01-05', 'failed', 3], [$erreur['userId'], $erreur['date'], $erreur['status'], $erreur['attempts']]);
-        self::assertStringContainsString('pôle 1 (2026-01-05)', $erreur['erreur']);
-        self::assertStringContainsString('panne simulée', $erreur['erreur']);
-        self::assertStringNotContainsString("aujourd'hui", $erreur['erreur']);
+        // Panne AVANT toute réponse : le message ne peut contenir que le
+        // contexte et le libellé du fournisseur (le cas d'une réponse
+        // inexploitable, qui en cite un extrait, est figé par F24).
+        self::assertSame('pôle 1 (2026-01-05) — panne simulée du fournisseur', $erreur['erreur']);
     }
 
     #[TestDox('UC-ETA-03-F07 — A6 : run lancé sans configuration → jobs en attente, aucun exécutant ; traités dès la configuration')]
@@ -203,7 +208,10 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         $run = $this->launchRun($etab, $cohorte['id']);
 
         self::assertSame(0, $this->tick()['jobsTouched'], 'le cron ne réserve que les jobs d’un établissement configuré');
-        self::assertSame(1, $this->board($etab, $run['runId'])['jobs']['queued']);
+        $waiting = $this->board($etab, $run['runId']);
+        self::assertSame(1, $waiting['jobs']['queued']);
+        self::assertSame('active', $waiting['status']);
+        self::assertNull($waiting['finishedAt']);
 
         $this->configure($etab, 50.0);
         $this->tickUntilDrained();
@@ -294,7 +302,12 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         $run = $this->launchRun($etab, $cohorte['id']);
         $autre = $this->registerEtablissement('autre@example.org');
 
-        self::assertSame(['error' => 'Cohorte introuvable'], self::json($this->launch($autre, $cohorte['id'], [])));
+        foreach ([[$autre, $cohorte['id']], [$etab, 999999]] as [$who, $cohorteId]) {
+            $launch = $this->launch($who, $cohorteId, []);
+            self::assertSame(404, $launch->getStatusCode(), "lancement cohorte {$cohorteId}");
+            self::assertSame(['error' => 'Cohorte introuvable'], self::json($launch));
+        }
+        self::assertSame(1, (int) Db::get()->query('SELECT COUNT(*) FROM mass_runs')->fetchColumn());
         foreach ([$run['runId'], 999999] as $runId) {
             foreach ([['GET', "/api/etablissement/runs/{$runId}"], ['POST', "/api/etablissement/runs/{$runId}/annuler"]] as [$method, $path]) {
                 $response = $this->as_($autre, $method, $path);
@@ -332,7 +345,7 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         self::assertSame('active', $this->board($etab, $run['runId'])['status']);
     }
 
-    #[TestDox('UC-ETA-03-F14 — RG : les versions sont figées au lancement ; un run ultérieur prend le nouveau référentiel publié')]
+    #[TestDox('UC-ETA-03-F14 — RG3 : les versions sont figées au lancement ; le worker sert le référentiel figé du run, un run ultérieur prend le nouveau')]
     public function testF14VersionsAreFrozenPerRun(): void
     {
         $etab = $this->registerEtablissement();
@@ -341,9 +354,12 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, ['2026-01-05']);
         $first = $this->launchRun($etab, $cohorte['id']);
 
+        // 7.1.0 : un libellé de compétence du pôle 1 change.
         $next = self::respireReferentiel();
+        $oldLabel = (string) $next['competences'][0]['nom'];
         $next['version'] = '7.1.0';
         $next['label'] = 'RESPIRE v7.1';
+        $next['competences'][0]['nom'] = 'Libellé propre à la 7.1.0';
         $repo = new ReferentielRepository(Db::get());
         $next['contentHash'] = $repo->validateDocument($next)['contentHash'];
         $repo->importPublishedDocument($next, 'Version suivante');
@@ -351,9 +367,37 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
 
         self::assertSame('7.0.0', $this->board($etab, $first['runId'])['referentiel']['version']);
         self::assertSame('7.1.0', $this->board($etab, $second['runId'])['referentiel']['version']);
-        $this->tickUntilDrained();
-        self::assertSame('done', $this->board($etab, $first['runId'])['status'], 'le worker sert la version figée du run');
+
+        // Tick simulé avec un fournisseur qui garde les prompts reçus.
+        $recorder = new class () {
+            /** @var list<string> */
+            public array $prompts = [];
+            private MockProvider $inner;
+
+            public function __construct()
+            {
+                $this->inner = new MockProvider();
+            }
+
+            public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
+            {
+                $this->prompts[] = $prompt;
+
+                return $this->inner->complete($model, $system, $prompt, $maxTokens);
+            }
+        };
+        $tick = static fn (): array => self::untilUnlocked((new Tick(Db::get(), ['budgetSeconds' => 3600, 'maxCalls' => 8, 'providerFactory' => static fn (array $c): object => $recorder]))->run(...));
+
+        $tick(); // job du premier run (plus ancien)
+        self::assertSame('done', $this->board($etab, $first['runId'])['status']);
+        $firstPrompts = implode("\n", $recorder->prompts);
+        self::assertStringContainsString($oldLabel, $firstPrompts, 'le worker sert la version figée du run (7.0.0)');
+        self::assertStringNotContainsString('Libellé propre à la 7.1.0', $firstPrompts);
+
+        $recorder->prompts = [];
+        $tick(); // job du second run
         self::assertSame('done', $this->board($etab, $second['runId'])['status']);
+        self::assertStringContainsString('Libellé propre à la 7.1.0', implode("\n", $recorder->prompts));
     }
 
     #[TestDox('UC-ETA-03-F15 — comportements ACTUELS figés : membres [] = tous les déposants ; annuler un run terminé le marque « cancelled »')]
@@ -379,5 +423,86 @@ final class UcEta03PiloterRunMasseTest extends MasseTestCase
         self::assertSame('cancelled', $board['status']);
         self::assertSame(2, $board['jobs']['done']);
         self::assertSame(0, $board['jobs']['cancelled']);
+        // …et l'audit enregistre une annulation qui n'a rien annulé.
+        self::assertEquals(['runId' => $runId], self::lastAudit('mass_run_cancelled')['details']);
+    }
+
+    #[TestDox('UC-ETA-03-F23 — anomalie : un membre quitte la cohorte en cours de run, ses jobs étaient les derniers → le run reste « active » sans travail (comportement actuel)')]
+    public function testF23LeaverMidRunLeavesTheRunActiveForever(): void
+    {
+        $etab = $this->registerEtablissement();
+        $this->configure($etab, 50.0);
+        $cohorte = $this->createCohorte($etab);
+        $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, ['2026-01-05']);
+        $partant = $this->enrolLearner($cohorte['code'], $cohorte['id'], 2, ['2026-01-05']);
+        $run = $this->launchRun($etab, $cohorte['id']);
+        $this->tick(['maxCalls' => 8]); // la journée du membre 1 est extraite
+
+        self::assertSame(204, $this->as_($partant, 'DELETE', "/api/cohortes/{$cohorte['id']}/quitter")->getStatusCode());
+        $this->tickUntilDrained();
+
+        $board = $this->board($etab, $run['runId']);
+        self::assertSame(['queued' => 0, 'running' => 0, 'done' => 1, 'failed' => 0, 'budget_exceeded' => 0, 'cancelled' => 1], $board['jobs']);
+        // Plus rien à traiter, mais refreshRunStatus n'est jamais rappelé :
+        // le run reste « active » et sans date de fin (voir Anomalies).
+        self::assertSame('active', $board['status']);
+        self::assertNull($board['finishedAt']);
+    }
+
+    #[TestDox('UC-ETA-03-F24 — anomalie RGPD : une réponse LLM inexploitable est citée (≤ 160 caractères, texte du portfolio compris) dans les erreurs du tableau, même après le départ du membre')]
+    public function testF24UnusableLlmAnswerIsQuotedOnTheBoard(): void
+    {
+        $etab = $this->registerEtablissement();
+        $this->configure($etab, 50.0);
+        $cohorte = $this->createCohorte($etab);
+        $learner = $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, ['2026-01-05']);
+        $run = $this->launchRun($etab, $cohorte['id']);
+
+        // Fournisseur qui refuse le JSON en citant la feuille reçue (réponse
+        // plausible d'un LLM) ; tick simulé comme MasseTestCase::tick.
+        $quoting = new class () {
+            public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
+            {
+                preg_match("/Feuille \d+ de l'apprenant[^\n]{0,100}/u", $prompt, $m);
+
+                return ['text' => 'Je ne peux pas produire de JSON. Je cite : « ' . ($m[0] ?? '?') . ' »', 'usage' => ['inputTokens' => 10, 'outputTokens' => 5], 'model' => 'mock'];
+            }
+        };
+        for ($i = 0; $i < 5; $i++) {
+            self::untilUnlocked((new Tick(Db::get(), ['budgetSeconds' => 3600, 'providerFactory' => static fn (array $c): object => $quoting]))->run(...));
+        }
+
+        $erreur = $this->board($etab, $run['runId'])['erreurs'][0]['erreur'];
+        self::assertStringStartsWith('pôle 1 (2026-01-05) — aucun JSON valide trouvé dans la réponse (début : « Je ne peux pas produire de JSON. Je cite : « Feuille 0 de l\'apprenant 1 : aujourd\'hui j\'ai', $erreur);
+
+        // Départ du membre (consentement retiré) : l'extrait reste servi à l'établissement.
+        self::assertSame(204, $this->as_($learner, 'DELETE', "/api/cohortes/{$cohorte['id']}/quitter")->getStatusCode());
+        self::assertStringContainsString("aujourd'hui j'ai", $this->board($etab, $run['runId'])['erreurs'][0]['erreur']);
+    }
+
+    #[TestDox('UC-ETA-03-F25 — anomalie : « relancez » après un arrêt budgétaire → le nouveau run ré-enfile aussi les journées déjà produites (double traitement)')]
+    public function testF25RelaunchAfterBudgetStopReprocessesDoneDays(): void
+    {
+        $etab = $this->registerEtablissement();
+        $this->configure($etab, 50.0);
+        $cohorte = $this->createCohorte($etab);
+        $learner = $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, ['2026-01-05', '2026-01-06']);
+        $first = $this->launchRun($etab, $cohorte['id']);
+        $this->tick(['maxCalls' => 8]); // 2026-01-05 produite
+        $this->configure($etab, 0.01);
+        $this->tick(); // 2026-01-06 arrêtée au plafond
+        self::assertSame(['budget_exceeded' => 1, 'done' => 1], self::jobStatuses($first['runId']));
+
+        // Consigne de l'alerte : monter le plafond PUIS relancer.
+        $this->configure($etab, 50.0); // réactive déjà le premier run (UC-ETA-02, A3)
+        $second = $this->launchRun($etab, $cohorte['id']);
+        self::assertSame(2, $second['jobs'], 'la journée déjà produite est ré-enfilée');
+        $this->tickUntilDrained();
+
+        self::assertSame('done', $this->board($etab, $first['runId'])['status']);
+        self::assertSame('done', $this->board($etab, $second['runId'])['status']);
+        self::assertSame(32, $this->provider->calls, '4 extractions pour 2 journées (8 appels chacune)');
+        $dates = array_column(self::json($this->as_($etab, 'GET', '/api/etablissement/membres/' . $learner['id'] . '/documents'))['documents'], 'date');
+        self::assertSame(['2026-01-05', '2026-01-05', '2026-01-06', '2026-01-06'], $dates);
     }
 }

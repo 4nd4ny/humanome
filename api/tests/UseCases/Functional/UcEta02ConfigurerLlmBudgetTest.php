@@ -9,6 +9,7 @@ use Humanome\Etablissement\ConfigRepository;
 use Humanome\Keys\KeyVault;
 use Humanome\Tests\MasseTestCase;
 use Humanome\Tests\UseCases\Support\EtaSupport;
+use Humanome\Tests\UseCases\Support\EtaTickSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 
 /**
@@ -26,6 +27,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 final class UcEta02ConfigurerLlmBudgetTest extends MasseTestCase
 {
     use EtaSupport;
+    use EtaTickSupport;
 
     private const ENDPOINT = 'http://10.0.0.12:11434';
 
@@ -58,54 +60,68 @@ final class UcEta02ConfigurerLlmBudgetTest extends MasseTestCase
         $audit = self::lastAudit('etablissement_config_updated');
         self::assertSame($etab['id'], $audit['userId']);
         self::assertEquals(['provider' => 'humanome', 'budgetCapUsd' => 50], $audit['details']);
+
+        // Variante API (le site n'envoie jamais ce corps) : fournisseur absent
+        // = humanome, et un modèle est accepté et stocké en mode humanome —
+        // il primera ensuite sur WORKER_MODEL au tick (Tick::modelFor).
+        $variant = $this->as_($etab, 'PUT', '/api/etablissement/config', ['model' => 'claude-opus-4', 'budgetCapUsd' => 50]);
+        self::assertSame(200, $variant->getStatusCode(), (string) $variant->getBody());
+        self::assertSame(['humanome', 'claude-opus-4'], [self::json($variant)['provider'], self::json($variant)['model']]);
     }
 
-    #[TestDox('UC-ETA-02-F02 — A1 : infrastructure propre (URL, modèle, clé) → clé chiffrée, jamais relue, déchiffrable par le worker')]
+    #[TestDox('UC-ETA-02-F02 — A1 : infrastructure propre (URL, modèle, clé) → clé chiffrée, jamais relue par l’API, déchiffrable par ConfigRepository::revealApiKey (lecture de contrôle)')]
     public function testF02OwnEndpointKeyIsEncryptedAndNeverReturned(): void
     {
         $etab = $this->registerEtablissement();
 
-        $put = $this->as_($etab, 'PUT', '/api/etablissement/config', [
-            'provider' => 'endpoint',
-            'endpointUrl' => self::ENDPOINT,
-            'apiKey' => 'sk-etab-tres-secrete',
-            'model' => '  llama3:70b  ',
-            'budgetCapUsd' => 20.5,
-        ]);
+        // Clé maîtresse posée par le test (indépendante de l'environnement du conteneur).
+        self::withEnv(['SODIUM_MASTER_KEY' => bin2hex(random_bytes(32))], function () use ($etab): void {
+            $put = $this->as_($etab, 'PUT', '/api/etablissement/config', [
+                'provider' => 'endpoint',
+                'endpointUrl' => self::ENDPOINT,
+                'apiKey' => 'sk-etab-tres-secrete',
+                'model' => '  llama3:70b  ',
+                'budgetCapUsd' => 20.5,
+            ]);
 
-        self::assertSame(200, $put->getStatusCode(), (string) $put->getBody());
-        $config = self::json($put);
-        self::assertSame('endpoint', $config['provider']);
-        self::assertSame(self::ENDPOINT, $config['endpointUrl']);
-        self::assertSame('llama3:70b', $config['model'], 'modèle nettoyé');
-        self::assertTrue($config['hasApiKey']);
-        $get = $this->as_($etab, 'GET', '/api/etablissement/config');
-        foreach ([$put, $get] as $response) {
-            self::assertStringNotContainsString('sk-etab-tres-secrete', (string) $response->getBody());
-        }
-        $rawAudit = (string) Db::get()->query("SELECT details FROM audit_events WHERE type = 'etablissement_config_updated'")->fetchColumn();
-        self::assertStringNotContainsString('sk-etab', $rawAudit);
-        self::assertStringNotContainsString('sk-etab', (string) Db::get()->query('SELECT encrypted_key FROM etablissement_config')->fetchColumn());
-        self::assertSame('sk-etab-tres-secrete', (new ConfigRepository(Db::get(), KeyVault::masterKeyFromEnv()))->revealApiKey($etab['id']));
+            self::assertSame(200, $put->getStatusCode(), (string) $put->getBody());
+            $config = self::json($put);
+            self::assertSame('endpoint', $config['provider']);
+            self::assertSame(self::ENDPOINT, $config['endpointUrl']);
+            self::assertSame('llama3:70b', $config['model'], 'modèle nettoyé');
+            self::assertTrue($config['hasApiKey']);
+            $get = $this->as_($etab, 'GET', '/api/etablissement/config');
+            foreach ([$put, $get] as $response) {
+                self::assertStringNotContainsString('sk-etab-tres-secrete', (string) $response->getBody());
+            }
+            $rawAudit = (string) Db::get()->query("SELECT details FROM audit_events WHERE type = 'etablissement_config_updated'")->fetchColumn();
+            self::assertStringNotContainsString('sk-etab', $rawAudit);
+            self::assertStringNotContainsString('sk-etab', (string) Db::get()->query('SELECT encrypted_key FROM etablissement_config')->fetchColumn());
+            // Lecture de contrôle : aucun exécutant actuel ne relit la clé (voir Limites).
+            self::assertSame('sk-etab-tres-secrete', (new ConfigRepository(Db::get(), KeyVault::masterKeyFromEnv()))->revealApiKey($etab['id']));
+        });
     }
 
     #[TestDox('UC-ETA-02-F03 — A2 : clé conservée si absente, retour au service humanome (URL/modèle effacés, clé gardée), effacement par ""')]
     public function testF03KeyLifecycleAcrossProviderSwitch(): void
     {
         $etab = $this->registerEtablissement();
-        $repo = new ConfigRepository(Db::get(), KeyVault::masterKeyFromEnv());
-        $this->configure($etab, 10.0, ['provider' => 'endpoint', 'endpointUrl' => self::ENDPOINT, 'apiKey' => 'sk-a', 'model' => 'llama3']);
 
-        // Corps envoyé par le site en mode humanome : ni URL, ni modèle, ni clé.
-        $back = self::json($this->as_($etab, 'PUT', '/api/etablissement/config', ['provider' => 'humanome', 'budgetCapUsd' => 10]));
-        self::assertNull($back['endpointUrl']);
-        self::assertNull($back['model']);
-        self::assertTrue($back['hasApiKey'], 'la clé chiffrée reste stockée tant qu’elle n’est pas effacée');
-        self::assertSame('sk-a', $repo->revealApiKey($etab['id']));
+        self::withEnv(['SODIUM_MASTER_KEY' => bin2hex(random_bytes(32))], function () use ($etab): void {
+            $repo = new ConfigRepository(Db::get(), KeyVault::masterKeyFromEnv());
+            $this->configure($etab, 10.0, ['provider' => 'endpoint', 'endpointUrl' => self::ENDPOINT, 'apiKey' => 'sk-a', 'model' => 'llama3']);
 
-        $erased = self::json($this->as_($etab, 'PUT', '/api/etablissement/config', ['provider' => 'humanome', 'apiKey' => '', 'budgetCapUsd' => 10]));
-        self::assertFalse($erased['hasApiKey']);
-        self::assertNull(Db::get()->query('SELECT encrypted_key FROM etablissement_config')->fetchColumn());
+            // Corps envoyé par le site en mode humanome : ni URL, ni modèle, ni clé.
+            $back = self::json($this->as_($etab, 'PUT', '/api/etablissement/config', ['provider' => 'humanome', 'budgetCapUsd' => 10]));
+            self::assertNull($back['endpointUrl']);
+            self::assertNull($back['model']);
+            self::assertTrue($back['hasApiKey'], 'la clé chiffrée reste stockée tant qu’elle n’est pas effacée');
+            self::assertSame('sk-a', $repo->revealApiKey($etab['id']));
+
+            $erased = self::json($this->as_($etab, 'PUT', '/api/etablissement/config', ['provider' => 'humanome', 'apiKey' => '', 'budgetCapUsd' => 10]));
+            self::assertFalse($erased['hasApiKey']);
+            self::assertNull(Db::get()->query('SELECT encrypted_key FROM etablissement_config')->fetchColumn());
+        });
     }
 
     #[TestDox('UC-ETA-02-F04 — A3 : seule une HAUSSE du plafond réactive les jobs « budget dépassé » (run de nouveau actif)')]
@@ -124,9 +140,13 @@ final class UcEta02ConfigurerLlmBudgetTest extends MasseTestCase
         self::assertSame('budget_exceeded', $board['status']);
         self::assertSame(2, $board['jobs']['budget_exceeded']);
 
-        // Même plafond ré-enregistré : pas de réactivation.
-        $this->configure($etab, 0.01);
-        self::assertSame('budget_exceeded', self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $run['runId']))['status']);
+        // Même plafond ré-enregistré, puis plafond ABAISSÉ : pas de réactivation (RG5).
+        foreach ([0.01, 0.0] as $sameOrLower) {
+            $this->configure($etab, $sameOrLower);
+            $board = self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $run['runId']));
+            self::assertSame('budget_exceeded', $board['status'], "plafond {$sameOrLower}");
+            self::assertSame(2, $board['jobs']['budget_exceeded'], "plafond {$sameOrLower}");
+        }
 
         // Hausse : les jobs repartent en file, le run redevient actif, puis aboutit.
         $this->configure($etab, 50.0);
@@ -180,7 +200,8 @@ final class UcEta02ConfigurerLlmBudgetTest extends MasseTestCase
             'model' => ['provider' => 'humanome', 'model' => str_repeat('m', 121), 'budgetCapUsd' => 1],
             'budgetCapUsd absent' => ['provider' => 'humanome'],
             'budgetCapUsd négatif' => ['provider' => 'humanome', 'budgetCapUsd' => -1],
-            'budgetCapUsd texte' => ['provider' => 'humanome', 'budgetCapUsd' => '10'],
+            'budgetCapUsd texte' => ['provider' => 'humanome', 'budgetCapUsd' => '10'], // chaîne, même numérique
+            'endpointUrl ftp en mode humanome' => ['provider' => 'humanome', 'endpointUrl' => 'ftp://llm.lycee.fr', 'budgetCapUsd' => 1],
             'budgetCapUsd énorme' => ['provider' => 'humanome', 'budgetCapUsd' => 100000000],
         ];
         foreach ($cases as $label => $bodyIn) {
@@ -234,5 +255,33 @@ final class UcEta02ConfigurerLlmBudgetTest extends MasseTestCase
             self::assertSame('Jeton CSRF absent ou invalide', self::json($response)['error']);
         }
         self::assertSame(0, (int) Db::get()->query('SELECT COUNT(*) FROM etablissement_config')->fetchColumn());
+    }
+
+    #[TestDox('UC-ETA-02-F14 — anomalie : une hausse de moins d’un demi-centime réactive les jobs bloqués sans changer le plafond stocké (comportement actuel)')]
+    public function testF14SubCentRaiseReactivatesWithoutChangingTheStoredCap(): void
+    {
+        $etab = $this->registerEtablissement();
+        $this->configure($etab, 0.01);
+        $cohorte = $this->createCohorte($etab);
+        $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, ['2026-01-05', '2026-01-06']);
+        $run = $this->launchRun($etab, $cohorte['id']);
+        $this->tick();
+        self::assertSame('budget_exceeded', self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $run['runId']))['status']);
+
+        // 0.014 > 0.01 pour la comparaison (valeur saisie brute), mais le
+        // stockage DECIMAL(10,2) arrondit à 0.01 : voir « Anomalies constatées ».
+        $put = $this->as_($etab, 'PUT', '/api/etablissement/config', ['provider' => 'humanome', 'budgetCapUsd' => 0.014]);
+        self::assertSame(200, $put->getStatusCode());
+        self::assertEquals(0.01, self::json($put)['budgetCapUsd'], 'plafond stocké inchangé');
+        self::assertEquals(['provider' => 'humanome', 'budgetCapUsd' => 0.014], self::lastAudit('etablissement_config_updated')['details'], 'audit ≠ valeur stockée');
+        $board = self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $run['runId']));
+        self::assertSame('active', $board['status'], 'réactivé alors que le plafond n’a pas bougé');
+        self::assertSame(2, $board['jobs']['queued']);
+
+        // Le tick suivant rebloque aussitôt, sans appel.
+        $calls = $this->provider->calls;
+        $this->tick();
+        self::assertSame($calls, $this->provider->calls);
+        self::assertSame('budget_exceeded', self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $run['runId']))['status']);
     }
 }

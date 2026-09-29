@@ -6,6 +6,8 @@ namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Db;
 use Humanome\Tests\MasseTestCase;
+use Humanome\Tests\UseCases\Support\EtaSupport;
+use Humanome\Tests\UseCases\Support\EtaTickSupport;
 use Humanome\Validation;
 use PHPUnit\Framework\Attributes\TestDox;
 
@@ -23,6 +25,9 @@ use PHPUnit\Framework\Attributes\TestDox;
  */
 final class UcEta04ConsulterDocumentsMembreTest extends MasseTestCase
 {
+    use EtaSupport;
+    use EtaTickSupport;
+
     private function documents(array $etab, int $memberId): \Psr\Http\Message\ResponseInterface
     {
         return $this->as_($etab, 'GET', '/api/etablissement/membres/' . $memberId . '/documents');
@@ -61,7 +66,7 @@ final class UcEta04ConsulterDocumentsMembreTest extends MasseTestCase
         self::assertStringNotContainsString("aujourd'hui j'ai", (string) $response->getBody(), 'jamais le texte du dépôt');
     }
 
-    #[TestDox('UC-ETA-04-F02 — A1 : run en cours → seules les journées terminées sont servies')]
+    #[TestDox('UC-ETA-04-F02 — A2 : run en cours → seules les journées terminées sont servies')]
     public function testF02OnlyFinishedDaysDuringARun(): void
     {
         $etab = $this->registerEtablissement();
@@ -77,7 +82,7 @@ final class UcEta04ConsulterDocumentsMembreTest extends MasseTestCase
         self::assertSame(['2026-01-05'], array_column($documents, 'date'));
     }
 
-    #[TestDox('UC-ETA-04-F03 — A2 : même journée produite par deux runs → deux entrées dans l’ordre des jobs (dédoublonnage côté site)')]
+    #[TestDox('UC-ETA-04-F03 — A3 : même journée produite par deux runs → deux entrées dans l’ordre des jobs (dédoublonnage côté site)')]
     public function testF03SameDayFromTwoRuns(): void
     {
         $etab = $this->registerEtablissement();
@@ -95,7 +100,7 @@ final class UcEta04ConsulterDocumentsMembreTest extends MasseTestCase
         self::assertLessThan($documents[1]['jobId'], $documents[0]['jobId']);
     }
 
-    #[TestDox('UC-ETA-04-F04 — A3 : membre de deux cohortes du même établissement ; après départ de l’une, seule l’autre reste visible')]
+    #[TestDox('UC-ETA-04-F04 — A4 : membre de deux cohortes du même établissement ; après départ de l’une, seule l’autre reste visible')]
     public function testF04MemberOfTwoCohortes(): void
     {
         $etab = $this->registerEtablissement();

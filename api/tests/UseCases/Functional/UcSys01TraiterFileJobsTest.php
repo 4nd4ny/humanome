@@ -6,10 +6,11 @@ namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Db;
 use Humanome\Env;
-use Humanome\Llm\MockProvider;
+use Humanome\Packages\PromptPackageRepository;
 use Humanome\Tests\MasseTestCase;
 use Humanome\Tests\TestDb;
 use Humanome\Tests\UseCases\Support\EtaSupport;
+use Humanome\Tests\UseCases\Support\EtaTickSupport;
 use Humanome\Validation;
 use Humanome\Worker\Tick;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -22,16 +23,20 @@ use Psr\Http\Message\ResponseInterface;
  *
  * Les trois exécutants sont joués par leur interface publique :
  * - le cron de la plateforme : `php scripts/worker.php` lancé en SOUS-PROCESSUS
- *   (WORKER_PROVIDER=mock, base de test du lot) ;
+ *   (WORKER_PROVIDER=mock, base de test du lot, secrets lus dans un
+ *   HUMANOME_SHARED_DIR temporaire — jamais le api/.env du poste) ;
  * - le déclenchement sans SSH : POST /api/admin/worker-tick (X-Migrate-Token) ;
  * - le runner machine de l'établissement : /api/worker/* (X-Worker-Token, sans
  *   session ni CSRF), le runner étant simulé par des requêtes HTTP.
  * Les préconditions (cohorte, dépôts, run) passent par les routes réelles ;
- * aucun appel réseau n'est fait (fournisseur mock).
+ * aucun appel réseau n'est fait (fournisseur mock). Pour rejouer par l'API les
+ * réponses inexploitables (A5, E6), le run utilise un paquet PUBLIÉ dont un
+ * gabarit ne porte pas les marqueurs que reconnaît le fournisseur mock.
  */
 final class UcSys01TraiterFileJobsTest extends MasseTestCase
 {
     use EtaSupport;
+    use EtaTickSupport;
 
     private const ENDPOINT = 'http://192.168.1.50:11434';
 
@@ -70,7 +75,23 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
     /** Lignes écrites dans le journal serveur (error_log) par le dernier tick HTTP. */
     private array $serverLog = [];
 
-    private function adminTick(?array $body = [], ?string $token = null): ResponseInterface
+    /**
+     * POST /api/admin/worker-tick (WORKER_PROVIDER=mock). Relancé tant qu'un
+     * AUTRE processus tient le verrou global, sauf $retryWhileLocked = false (A6).
+     */
+    private function adminTick(?array $body = [], ?string $token = null, bool $retryWhileLocked = true): ResponseInterface
+    {
+        for ($try = 1; ; $try++) {
+            $response = $this->adminTickOnce($body, $token);
+            $locked = $response->getStatusCode() === 200 && (self::json($response)['locked'] ?? false) === true;
+            if (!$retryWhileLocked || !$locked || $try >= 300) {
+                return $response;
+            }
+            usleep(100_000);
+        }
+    }
+
+    private function adminTickOnce(?array $body, ?string $token): ResponseInterface
     {
         $this->cookieSid = null;
         $headers = $token === '' ? [] : ['X-Migrate-Token' => $token ?? Env::get('MIGRATE_TOKEN')];
@@ -78,7 +99,10 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         $logFile = (string) tempnam(sys_get_temp_dir(), 'uc-sys-01-log');
         $previous = ini_set('error_log', $logFile);
         try {
-            return self::withEnv(['WORKER_PROVIDER' => 'mock'], fn (): ResponseInterface => $this->request('POST', '/api/admin/worker-tick', $body, $headers));
+            $response = self::withEnv(['WORKER_PROVIDER' => 'mock'], fn (): ResponseInterface => $this->request('POST', '/api/admin/worker-tick', $body, $headers));
+            $response->getBody()->rewind();
+
+            return $response;
         } finally {
             ini_set('error_log', $previous === false ? '' : $previous);
             $this->serverLog = array_values(array_filter(explode("\n", (string) file_get_contents($logFile))));
@@ -86,28 +110,92 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         }
     }
 
+    /**
+     * Publie une copie du paquet par défaut sous $id, avec des gabarits
+     * remplacés (role => texte) ; les variables déclarées sont réduites à
+     * celles que le texte utilise.
+     */
+    private static function publishPackageVariant(string $id, array $templates): void
+    {
+        $doc = self::defaultPackage();
+        $doc['id'] = $id;
+        foreach ($doc['prompts'] as &$prompt) {
+            if (isset($templates[$prompt['role']])) {
+                $prompt['texte'] = $templates[$prompt['role']];
+                $prompt['variables'] = array_values(array_filter(
+                    $prompt['variables'],
+                    static fn (array $v): bool => str_contains($prompt['texte'], '{{' . $v['nom'] . '}}'),
+                ));
+            }
+        }
+        unset($prompt);
+        (new PromptPackageRepository(Db::get()))->importPublishedDocument($doc);
+    }
+
+    /** Établissement humanome + un déposant + run lancé avec le paquet $packageId@1.0.0. */
+    private function runWithPackage(string $packageId, array $days): array
+    {
+        $etab = $this->registerEtablissement();
+        $this->configure($etab, 50.0);
+        $cohorte = $this->createCohorte($etab);
+        $learner = $this->enrolLearner($cohorte['code'], $cohorte['id'], 1, $days);
+        $launched = $this->as_($etab, 'POST', "/api/etablissement/cohortes/{$cohorte['id']}/runs", [
+            'promptPackageId' => $packageId,
+            'promptPackageVersion' => '1.0.0',
+        ]);
+        self::assertSame(201, $launched->getStatusCode(), (string) $launched->getBody());
+
+        return [$etab, (int) self::json($launched)['runId'], $learner];
+    }
+
     private function board(array $etab, int $runId): array
     {
         return self::json($this->as_($etab, 'GET', '/api/etablissement/runs/' . $runId));
     }
 
-    /** `php scripts/worker.php` en sous-processus ; renvoie [code, stdout, stderr]. */
-    private static function runCli(array $env): array
+    /**
+     * `php scripts/worker.php` en sous-processus ; renvoie [code, stdout, stderr].
+     * L'environnement est EXACTEMENT $env ; sauf $env['HUMANOME_SHARED_DIR']
+     * fourni, les secrets sont cherchés dans un répertoire temporaire dont le
+     * .env contient $dotenv (vide par défaut) : le premier candidat du script,
+     * si bien qu'un api/.env local n'est jamais lu.
+     */
+    private static function runCli(array $env, string $dotenv = '', ?string $script = null): array
     {
-        $process = proc_open(
-            [PHP_BINARY, self::repoRoot() . '/scripts/worker.php'],
-            [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
-            $pipes,
-            self::repoRoot(),
-            $env,
-        );
-        self::assertIsResource($process);
-        $stdout = (string) stream_get_contents($pipes[1]);
-        $stderr = (string) stream_get_contents($pipes[2]);
-        fclose($pipes[1]);
-        fclose($pipes[2]);
+        $shared = null;
+        if (!\array_key_exists('HUMANOME_SHARED_DIR', $env)) {
+            $shared = sys_get_temp_dir() . '/uc-sys-01-shared-' . bin2hex(random_bytes(4));
+            mkdir($shared);
+            file_put_contents($shared . '/.env', $dotenv);
+            $env['HUMANOME_SHARED_DIR'] = $shared;
+        }
+        try {
+            $process = proc_open(
+                [PHP_BINARY, $script ?? self::repoRoot() . '/scripts/worker.php'],
+                [1 => ['pipe', 'w'], 2 => ['pipe', 'w']],
+                $pipes,
+                self::repoRoot(),
+                $env,
+            );
+            self::assertIsResource($process);
+            $stdout = (string) stream_get_contents($pipes[1]);
+            $stderr = (string) stream_get_contents($pipes[2]);
+            fclose($pipes[1]);
+            fclose($pipes[2]);
 
-        return [proc_close($process), $stdout, $stderr];
+            return [proc_close($process), $stdout, $stderr];
+        } finally {
+            if ($shared !== null) {
+                unlink($shared . '/.env');
+                rmdir($shared);
+            }
+        }
+    }
+
+    /** Contenu .env équivalent à cliDbEnv(). */
+    private static function dotenvOf(array $vars): string
+    {
+        return implode("\n", array_map(static fn (string $k, string $v): string => "{$k}={$v}", array_keys($vars), $vars)) . "\n";
     }
 
     private static function cliDbEnv(): array
@@ -202,6 +290,19 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         $disabled = self::withEnv(['MIGRATE_TOKEN' => ''], fn (): ResponseInterface => $this->adminTick([], 'dev_migrate_token'));
         self::assertSame(404, $disabled->getStatusCode());
         self::assertSame(['error' => 'Not found'], self::json($disabled));
+
+        // Exception du tick (ici : table de la file introuvable) → 500, détail
+        // dans le journal serveur seulement.
+        Db::get()->exec('RENAME TABLE mass_jobs TO mass_jobs_uc_sys_01');
+        try {
+            $failed = $this->adminTick([]);
+        } finally {
+            Db::get()->exec('RENAME TABLE mass_jobs_uc_sys_01 TO mass_jobs');
+        }
+        self::assertSame(500, $failed->getStatusCode());
+        self::assertSame(['error' => 'Tick failed, see server log'], self::json($failed));
+        self::assertCount(1, $this->serverLog);
+        self::assertStringContainsString('[worker-tick] SQLSTATE', $this->serverLog[0]);
     }
 
     #[TestDox('UC-SYS-01-F05 — A6 : un tick déjà en cours (verrou tenu) → réponse locked, file intacte')]
@@ -209,9 +310,10 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
     {
         [, , $runId] = $this->preparedRun([['2026-01-05']]);
         $holder = TestDb::pdo();
-        $holder->query("SELECT GET_LOCK('" . Tick::LOCK_NAME . "', 0)")->fetchColumn();
+        // Attente bornée : le verrou est global au serveur MySQL (RG1).
+        self::assertSame(1, (int) $holder->query("SELECT GET_LOCK('" . Tick::LOCK_NAME . "', 30)")->fetchColumn());
         try {
-            $counters = self::json($this->adminTick(['maxCalls' => 8]));
+            $counters = self::json($this->adminTick(['maxCalls' => 8], null, retryWhileLocked: false));
         } finally {
             $holder->query("SELECT RELEASE_LOCK('" . Tick::LOCK_NAME . "')")->fetchColumn();
         }
@@ -233,32 +335,24 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         self::assertSame('budget_exceeded', $this->board($etab, $runId)['status']);
     }
 
-    #[TestDox('UC-SYS-01-F07 — A5 : kairos en échec → journée terminée avec kairos null, note visible au tableau')]
+    #[TestDox('UC-SYS-01-F07 — A5 : kairos inexploitable (tick HTTP) → journée terminée avec kairos null, note visible au tableau')]
     public function testF07KairosDegradedToNull(): void
     {
-        [$etab, , $runId, [$learner]] = $this->preparedRun([['2026-01-07']]);
-        $provider = new class () {
-            private MockProvider $inner;
+        // Gabarit kairos sans les marqueurs reconnus par le mock : réponse non JSON.
+        self::publishPackageVariant('kairos-sans-marqueur', ['kairos' => "Synthèse du {{date_iso}} :\n{{portfolio_texte}}"]);
+        [$etab, $runId, $learner] = $this->runWithPackage('kairos-sans-marqueur', ['2026-01-07']);
 
-            public function __construct()
-            {
-                $this->inner = new MockProvider();
-            }
+        $counters = self::json($this->adminTick(['maxCalls' => 20]));
 
-            public function complete(string $model, ?string $system, string $prompt, int $maxTokens): array
-            {
-                return str_contains($prompt, 'SYNTHÈSE KAIROS')
-                    ? ['text' => '{"tronqué": ', 'usage' => ['inputTokens' => 10, 'outputTokens' => 5], 'model' => 'mock', 'stopReason' => 'max_tokens']
-                    : $this->inner->complete($model, $system, $prompt, $maxTokens);
-            }
-        };
-
-        (new Tick(Db::get(), ['budgetSeconds' => 3600, 'providerFactory' => static fn (array $c): object => $provider]))->run();
-
+        self::assertSame([1, 9, 1], [$counters['jobsCompleted'], $counters['calls'], $counters['callErrors']], '7 pôles + kairos + nouvel essai');
         $board = $this->board($etab, $runId);
         self::assertSame('done', $board['status']);
         self::assertSame('done', $board['erreurs'][0]['status']);
-        self::assertSame('kairos dégradé à null (2026-01-07) — réponse tronquée (budget de sortie atteint)', $board['erreurs'][0]['erreur']);
+        self::assertSame(0, $board['erreurs'][0]['attempts'], 'un kairos dégradé ne compte pas comme tentative');
+        self::assertSame(
+            'kairos dégradé à null (2026-01-07) — aucun JSON valide trouvé dans la réponse (début : « Réponse simulée du fournisseur mock (aucun marqueur de pôle détecté dans le prompt). »)',
+            $board['erreurs'][0]['erreur'],
+        );
         $document = self::json($this->as_($etab, 'GET', '/api/etablissement/membres/' . $learner['id'] . '/documents'))['documents'][0]['document'];
         self::assertNull($document['kairos']);
         self::assertCount(7, $document['poles']);
@@ -350,10 +444,19 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         self::assertCount(2, self::json($this->worker('GET', '/api/worker/jobs?limit=5', null, $token))['jobs']);
     }
 
-    #[TestDox('UC-SYS-01-F12 — E1 : jeton absent ou inconnu → 401 ; job d’un autre établissement → 404 (réservation vide)')]
+    #[TestDox('UC-SYS-01-F12 — E1 : jeton absent ou inconnu → 401 ; réservation d’un autre établissement vide, job étranger → 404 ; cookie de session sans CSRF → 403')]
     public function testF12TokenAndOwnershipGuards(): void
     {
-        [, , , , $token] = $this->endpointRun([['2026-01-05']]);
+        [$etab, , $runId, , $token] = $this->endpointRun([['2026-01-05']]);
+        $autre = $this->registerEtablissement('autre@example.org');
+        $this->configure($autre, 10.0, ['provider' => 'endpoint', 'endpointUrl' => 'http://10.0.0.9:8000']);
+        $foreignToken = self::json($this->as_($autre, 'POST', '/api/etablissement/worker-token'))['workerToken'];
+
+        // Réservation étrangère AVANT celle du propriétaire : le job, en file,
+        // n'est écarté que par le filtre d'établissement.
+        self::assertSame([], self::json($this->worker('GET', '/api/worker/jobs', null, $foreignToken))['jobs']);
+        self::assertSame(['queued' => 1], self::jobStatuses($runId));
+
         $job = self::json($this->worker('GET', '/api/worker/jobs', null, $token))['jobs'][0];
         $routes = [
             ['GET', '/api/worker/jobs', null],
@@ -368,15 +471,19 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
             self::assertSame(['error' => 'Jeton worker invalide'], self::json($unknown));
         }
 
-        $autre = $this->registerEtablissement('autre@example.org');
-        $this->configure($autre, 10.0, ['provider' => 'endpoint', 'endpointUrl' => 'http://10.0.0.9:8000']);
-        $foreignToken = self::json($this->as_($autre, 'POST', '/api/etablissement/worker-token'))['workerToken'];
-        self::assertSame([], self::json($this->worker('GET', '/api/worker/jobs', null, $foreignToken))['jobs']);
         foreach (array_slice($routes, 1) as [$method, $path, $body]) {
             $response = $this->worker($method, $path, $body, $foreignToken);
             self::assertSame(404, $response->getStatusCode());
             self::assertSame(['error' => 'Job introuvable'], self::json($response));
         }
+
+        // Routes hors liste d'exemption CSRF : un appel porteur d'un cookie de
+        // session (navigateur, script réutilisant une session) est refusé.
+        $this->cookieSid = $etab['sid'];
+        $withCookie = $this->request('POST', "/api/worker/jobs/{$job['id']}/result", ['erreur' => 'x'], ['X-Worker-Token' => $token]);
+        self::assertSame(403, $withCookie->getStatusCode());
+        self::assertSame('Jeton CSRF absent ou invalide', self::json($withCookie)['error']);
+        self::assertSame(['running' => 1], self::jobStatuses($runId));
     }
 
     #[TestDox('UC-SYS-01-F13 — E2 : checkpoint qui n’est pas un objet JSON (ou > 2 Mo) → 422 ; job plus en cours → 409')]
@@ -391,6 +498,14 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
             self::assertSame(422, $response->getStatusCode());
             self::assertSame('checkpoint requis (objet JSON, 2 Mo maximum)', self::json($response)['error']);
         }
+
+        // Bail expiré puis repris par un second exécutant : le job reste
+        // « running », le checkpoint du PREMIER est accepté (pas de jeton de bail).
+        Db::get()->exec("UPDATE mass_jobs SET lease_until = NOW() - INTERVAL 1 SECOND WHERE id = {$job['id']}");
+        self::assertSame([$job['id']], array_column(self::json($this->worker('GET', '/api/worker/jobs', null, $token))['jobs'], 'id'));
+        $stale = $this->worker('POST', $path, ['checkpoint' => ['poles' => ['1' => ['de' => 'premier runner']]]], $token);
+        self::assertSame(200, $stale->getStatusCode());
+        self::assertSame(['id' => $job['id'], 'leaseSeconds' => 300], self::json($stale));
 
         Db::get()->exec("UPDATE mass_jobs SET status = 'cancelled' WHERE id = {$job['id']}");
         $conflict = $this->worker('POST', $path, ['checkpoint' => ['poles' => []]], $token);
@@ -430,7 +545,10 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         self::assertEqualsWithDelta(1000.0, self::spentUsd($etab['id']), 1e-9, 'rejeu : aucun double comptage');
 
         foreach ([[$jobs[1], -3], [$jobs[2], '0.5']] as [$job, $cost]) {
-            $this->worker('POST', "/api/worker/jobs/{$job['id']}/result", ['document' => self::dayDocument($job['date']), 'coutUsd' => $cost], $token);
+            $response = $this->worker('POST', "/api/worker/jobs/{$job['id']}/result", ['document' => self::dayDocument($job['date']), 'coutUsd' => $cost], $token);
+            self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
+            self::assertSame('done', self::json($response)['status']);
+            self::assertSame(0.0, (float) Db::get()->query("SELECT cost_usd FROM mass_jobs WHERE id = {$job['id']}")->fetchColumn());
         }
         self::assertEqualsWithDelta(1000.0, self::spentUsd($etab['id']), 1e-9, 'négatif ou texte → 0');
     }
@@ -488,5 +606,87 @@ final class UcSys01TraiterFileJobsTest extends MasseTestCase
         self::assertSame(['jobs' => [], 'budget' => 'exceeded'], $refused);
         self::assertSame(['budget_exceeded' => 1, 'done' => 1], self::jobStatuses($runId));
         self::assertSame('budget_exceeded', $this->board($etab, $runId)['status']);
+    }
+
+    #[TestDox('UC-SYS-01-F18 — nominal cron : sans DB_* dans l’environnement, le CLI lit ses secrets dans le .env de HUMANOME_SHARED_DIR')]
+    public function testF18CronCliLoadsSecretsFromSharedDir(): void
+    {
+        [$etab, , $runId] = $this->preparedRun([['2026-01-05']]);
+
+        [$code, $stdout, $stderr] = self::runCli(
+            ['WORKER_PROVIDER' => 'mock', 'WORKER_TICK_MAX_CALLS' => '8'],
+            self::dotenvOf(self::cliDbEnv()),
+        );
+
+        self::assertSame(0, $code, $stderr);
+        self::assertSame(1, json_decode(trim($stdout), true, 512, JSON_THROW_ON_ERROR)['jobsCompleted']);
+        self::assertSame('done', $this->board($etab, $runId)['status']);
+    }
+
+    #[TestDox('UC-SYS-01-F19 — anomalie : dans la disposition des releases, le CLI cherche ~/app/releases/shared/.env au lieu de ~/app/shared/.env (comportement actuel)')]
+    public function testF19ReleaseLayoutLooksForSecretsOneLevelTooLow(): void
+    {
+        // ~/app/releases/<ts>/{scripts/worker.php, vendor} et ~/app/shared/.env,
+        // comme sur l'hébergement (ADR-008) ; HUMANOME_SHARED_DIR non défini.
+        $app = sys_get_temp_dir() . '/uc-sys-01-app-' . bin2hex(random_bytes(4));
+        $release = $app . '/releases/20260929T0600';
+        mkdir($release . '/scripts', 0777, true);
+        mkdir($app . '/shared');
+        copy(self::repoRoot() . '/scripts/worker.php', $release . '/scripts/worker.php');
+        symlink(self::repoRoot() . '/api/vendor', $release . '/vendor');
+        $dotenv = self::dotenvOf(self::cliDbEnv());
+        file_put_contents($app . '/shared/.env', $dotenv);
+        try {
+            [$code, $stdout, $stderr] = self::runCli(['WORKER_PROVIDER' => 'mock', 'HUMANOME_SHARED_DIR' => ''], '', $release . '/scripts/worker.php');
+            self::assertSame([1, '', "[worker] base de données non configurée\n"], [$code, $stdout, $stderr], '~/app/shared/.env ignoré');
+
+            mkdir($app . '/releases/shared');
+            file_put_contents($app . '/releases/shared/.env', $dotenv);
+            [$code, , $stderr] = self::runCli(['WORKER_PROVIDER' => 'mock', 'HUMANOME_SHARED_DIR' => '', 'WORKER_TICK_MAX_CALLS' => '1'], '', $release . '/scripts/worker.php');
+            self::assertSame(0, $code, '~/app/releases/shared/.env lu à la place : ' . $stderr);
+        } finally {
+            @unlink($app . '/releases/shared/.env');
+            @rmdir($app . '/releases/shared');
+            unlink($app . '/shared/.env');
+            rmdir($app . '/shared');
+            unlink($release . '/vendor');
+            unlink($release . '/scripts/worker.php');
+            rmdir($release . '/scripts');
+            rmdir($release);
+            rmdir($app . '/releases');
+            rmdir($app);
+        }
+    }
+
+    #[TestDox('UC-SYS-01-F20 — A8 (runner) : un paquet figé indisponible n’empêche PAS le service du job (seuls dépôt, journée et référentiel sont vérifiés)')]
+    public function testF20RunnerIgnoresTheFrozenPackage(): void
+    {
+        [, , $runId, , $token] = $this->endpointRun([['2026-01-05']]);
+        Db::get()->exec("UPDATE mass_runs SET prompt_package_semver = '9.9.9' WHERE id = {$runId}");
+
+        $jobs = self::json($this->worker('GET', '/api/worker/jobs', null, $token))['jobs'];
+
+        self::assertCount(1, $jobs);
+        self::assertSame(['id' => 'aurora-v3-reconstruit', 'version' => '9.9.9'], $jobs[0]['promptPackage']);
+        self::assertSame(['running' => 1], self::jobStatuses($runId));
+    }
+
+    #[TestDox('UC-SYS-01-F21 — E6 (plateforme, tick HTTP) : réponses inexploitables → 3 tentatives dans le MÊME tick, job et run « failed », message citant la réponse (comportement actuel)')]
+    public function testF21PlatformRepeatedFailuresWithinOneTick(): void
+    {
+        // Gabarit de pôle sans les marqueurs reconnus par le mock : réponse non JSON.
+        self::publishPackageVariant('pole-sans-marqueur', ['extraction-pole' => "Extraction du {{date_iso}} :\n{{portfolio_texte}}"]);
+        [$etab, $runId] = $this->runWithPackage('pole-sans-marqueur', ['2026-01-05']);
+
+        $counters = self::json($this->adminTick(['maxCalls' => 50]));
+
+        self::assertSame([3, 6, 3, 0], [$counters['jobsTouched'], $counters['calls'], $counters['callErrors'], $counters['jobsCompleted']], 'un seul tick suffit à épuiser les 3 tentatives');
+        $board = $this->board($etab, $runId);
+        self::assertSame('failed', $board['status']);
+        self::assertSame(['failed', 3], [$board['erreurs'][0]['status'], $board['erreurs'][0]['attempts']]);
+        self::assertSame(
+            'pôle 1 (2026-01-05) — aucun JSON valide trouvé dans la réponse (début : « Réponse simulée du fournisseur mock (aucun marqueur de pôle détecté dans le prompt). »)',
+            $board['erreurs'][0]['erreur'],
+        );
     }
 }

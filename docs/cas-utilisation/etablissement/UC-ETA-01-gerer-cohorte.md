@@ -61,8 +61,9 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
    `X-CSRF-Token`).
 4. Le serveur vérifie le rôle, le jeton CSRF et le nom (1 à 190 caractères
    après `trim`), génère un code de 10 caractères dans l'alphabet
-   `A-Z` + `2-9` (retente jusqu'à 5 fois en cas de collision sur la clé
-   unique) et répond `201 {id, codeInvitation}`.
+   `A-Z` + `2-9` (jusqu'à 5 tentatives de tirage en cas de collision sur la
+   clé unique, soit 4 reprises ; au-delà, l'erreur SQL remonte et la route
+   répond `500 {error: "Erreur interne"}`) et répond `201 {id, codeInvitation}`.
 5. Le site affiche « Cohorte « … » créée. Code d'invitation à transmettre aux
    apprenants : … » et recharge le tableau (0 membre).
 6. L'établissement transmet le code ; les apprenants rejoignent la cohorte avec
@@ -72,9 +73,15 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
    createdAt, consentement, membres}` ; chaque membre porte `userId`,
    `displayName`, `consentAt`, `portfolioDepose`, `portfolio {titre, journees,
    taille, deposeLe}` (ou `null`) et `avancement {jobsTotal, jobsDone}` agrégé
-   sur tous les runs de la cohorte. Le site affiche le code rappelé et le
-   tableau « Membres » (badge « Consenti le … », « « titre » — N journée(s),
-   déposé le … » ou « Non déposé », « x/y journées »).
+   sur tous les runs de la cohorte. En parallèle (même `Promise.all`), le site
+   charge la configuration (`GET /api/etablissement/config`) et les paquets
+   publiés (`GET /api/prompt-packages`) pour le bloc de lancement de run
+   (UC-ETA-03) : l'échec de l'un des trois appels masque aussi les membres
+   (voir Anomalies). Le site affiche le code rappelé et le tableau « Membres »
+   (badge « Consenti le … », « « titre » — N journée(s), déposé le … » ou
+   « Non déposé », « x/y journées », ou « — » tant qu'aucun job n'existe pour
+   le membre) ; une cohorte sans membre affiche « Aucun membre : transmettez
+   le code d'invitation à vos apprenants. ».
 
 ## Scénarios alternatifs
 
@@ -85,8 +92,10 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
   déposés, runs et jobs de la cohorte ; le tableau est rechargé.
 - **A2 — Plusieurs cohortes** (étape 3) : chaque cohorte reçoit son propre
   code ; l'apprenant rejoint celle dont il saisit le code (saisie en
-  minuscules acceptée, normalisée côté serveur) ; la liste est triée par
-  identifiant, chacune avec son compte de membres.
+  minuscules acceptée : `strtoupper` côté serveur, la colonne
+  `utf8mb4_unicode_ci` étant de toute façon insensible à la casse) ; la liste
+  est triée par identifiant (ordre de création, pas ordre alphabétique),
+  chacune avec son compte de membres.
 
 ## Scénarios d'erreur
 
@@ -94,15 +103,22 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
   (« Donnez un nom à la cohorte (ex. « BTS SIO 2026 »). »).
 - **E1 — Nom invalide** (étape 4) : nom absent, non textuel, vide après
   `trim` ou de plus de 190 caractères → `422 {error: "Validation échouée",
-  fields: {nom}}` ; le site affiche le message.
+  fields: {nom}}` ; le site affiche « Validation échouée » (le détail
+  `fields.nom`, « Nom requis (190 caractères maximum) », n'est pas affiché).
 - **E2 — Cohorte inconnue ou d'un autre établissement** (étapes 7, A1) :
   `GET` et `DELETE` → `404 {error: "Cohorte introuvable"}`, identique pour les
-  deux cas ; le site affiche le message sans aucune donnée.
+  deux cas ; le site affiche « Cohorte introuvable » ; ni nom, ni code, ni
+  membre ne sont affichés, mais la page présente l'état « Aucun membre :
+  transmettez le code… » et le bloc de lancement de run (voir Anomalies).
 - **E3 — Pas le rôle** (étape 1) : sans session → `401` ; compte sans rôle
   `etablissement` → `403` ; le site remplace l'espace par « Cet espace est
   réservé aux établissements de formation » (et invite à se connecter).
 - **E4 — Jeton CSRF absent ou faux** (étapes 3, A1) : `403 {error: "Jeton
   CSRF absent ou invalide"}`, aucun effet.
+- **E5 — API injoignable (copie statique)** (étape 1) : `GET /api/auth/me`
+  échoue au niveau réseau ou ne renvoie pas de JSON → le site affiche « Copie
+  statique du site : l'espace établissement a besoin de l'API… » à la place
+  de l'espace, sans autre appel.
 
 ## Règles de gestion
 
@@ -135,9 +151,10 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 | Couche | Élément | Rôle |
 |---|---|---|
 | Front | `web/src/router.js` — `parseHash` | Routes `#/etablissement` et `#/etablissement/cohorte/<id>` |
-| Front | `web/src/views/EtablissementView.jsx` | Garde de rôle (session), aiguillage des sections |
-| Front | `web/src/views/etablissement/AccueilSection.jsx` | Création, code affiché, tableau, suppression en deux temps |
-| Front | `web/src/views/etablissement/CohorteSection.jsx` | Détail : code rappelé, tableau des membres |
+| Front | `web/src/api/client.js` — `apiFetch`, `fetchMe` | Jeton CSRF gardé en mémoire depuis `GET /api/auth/me`, message d'erreur serveur (`data.error`) affiché, `ApiUnavailableError` (E5) |
+| Front | `web/src/views/EtablissementView.jsx` | Garde de rôle (session), copie statique, aiguillage des sections, section inconnue |
+| Front | `web/src/views/etablissement/AccueilSection.jsx` | Création (nom nettoyé, refus du nom vide), code affiché, tableau, suppression en deux temps armée par ligne |
+| Front | `web/src/views/etablissement/CohorteSection.jsx` | Détail : code rappelé, tableau des membres (« — », « Non déposé », badges), message de chargement |
 | Front | `web/src/views/etablissement/etablissement-api.js` — `fetchCohortes`, `createCohorte`, `fetchCohorte` (normalisation des membres), `deleteCohorte`, `frDate` | Appels HTTP et formes normalisées |
 | API | `api/src/routes/etablissement.php` — `POST/GET /api/etablissement/cohortes`, `GET/DELETE /api/etablissement/cohortes/{id}` | Orchestration, validation, codes HTTP |
 | API | `api/src/Middleware/RequireRole.php`, `CsrfMiddleware.php` | Rôle `etablissement`, double-soumission CSRF |
@@ -159,9 +176,12 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 | UC-ETA-01-U07 | `parseHash` | `#/etablissement` et `#/etablissement/cohorte/<id>` | `web/test/usecases/unit/uc-eta-01-gerer-cohorte.test.js` |
 | UC-ETA-01-U08 | `fetchCohortes` | Liste nue de l'API (et enveloppe tolérée) | idem |
 | UC-ETA-01-U09 | `createCohorte` | `POST {nom}` JSON avec `X-CSRF-Token` | idem |
-| UC-ETA-01-U10 | `fetchCohorte` | Normalisation du détail à plat (membres, dépôt, avancement) | idem |
+| UC-ETA-01-U10 | `fetchCohorte` | Normalisation du détail à plat (membres, dépôt, avancement non nul, replis `jobs_total`/`jobs_done`, avancement absent → `null`, taille 0 → `null`) | idem |
 | UC-ETA-01-U11 | `deleteCohorte` | `DELETE` avec CSRF, `204` → `null`, `404` → erreur typée | idem |
 | UC-ETA-01-U12 | `frDate` | Date ISO → `jj/mm/aaaa`, vide → `—` | idem |
+| UC-ETA-01-U13 | `EtablissementView` (isolée, `deps.fetchMeFn`) | Rôle établissement → accueil ; autre rôle → espace réservé sans invitation ; visiteur → invitation à se connecter ; `ApiUnavailableError` → copie statique ; section inconnue → alerte | idem |
+| UC-ETA-01-U14 | `AccueilSection` (isolée, `fetchFn`) | Nom nettoyé envoyé, nom vide refusé sans appel, premier clic arme la ligne sans `DELETE`, armer une autre ligne désarme la première | idem |
+| UC-ETA-01-U15 | `CohorteSection` (isolée, `fetchFn`) | « — » sans job, « x/y journées », « Non déposé », badge « Sans consentement » (forme non produite par l'API), `404` affiché sans code | idem |
 
 ### Tests fonctionnels
 
@@ -173,18 +193,22 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 | UC-ETA-01-F04 | E2 | API | Étranger et inexistant → même `404`, rien supprimé | idem |
 | UC-ETA-01-F05 | E3 | API | `401` visiteur, `403` apprenant sur les 4 routes | idem |
 | UC-ETA-01-F06 | E4 | API | Mutations sans/avec faux CSRF → `403`, aucun effet | idem |
-| UC-ETA-01-F07 | A2 | API | Codes distincts, jointure par code (minuscules), comptes par cohorte | idem |
+| UC-ETA-01-F07 | A2 | API | Codes distincts, jointure par code (minuscules), liste triée par identifiant et non par nom, comptes par cohorte | idem |
 | UC-ETA-01-F08 | Nominal | IHM | `<App/>` : création (CSRF), code affiché, liste rechargée, détail des membres | `web/test/usecases/functional/uc-eta-01-gerer-cohorte.test.jsx` |
 | UC-ETA-01-F09 | A1 | IHM | Suppression en deux temps puis liste vide | idem |
-| UC-ETA-01-F10 | E0, E1 | IHM | Nom vide refusé sans requête ; `422` serveur affiché | idem |
-| UC-ETA-01-F11 | E2 | IHM | `404` → « Cohorte introuvable », aucun membre affiché | idem |
+| UC-ETA-01-F10 | E0, E1 | IHM | Nom vide refusé sans requête ; `422` serveur affiché (« Validation échouée », sans le détail `fields.nom`) | idem |
+| UC-ETA-01-F11 | E2 | IHM | `404` → « Cohorte introuvable », ni code ni tableau ; état « Aucun membre… » affiché (comportement actuel) | idem |
 | UC-ETA-01-F12 | E3 | IHM | Apprenant et visiteur → espace réservé, aucun appel `api/etablissement/*` | idem |
+| UC-ETA-01-F13 | Anomalies | IHM | Configuration ou paquets en `500` : alerte, mais « Aucune cohorte pour l'instant » / « Aucun membre… » affichés alors que des données existent (comportement actuel) | idem |
+| UC-ETA-01-F14 | E5 | IHM | API injoignable → « Copie statique du site… », aucun appel `api/etablissement/*` | idem |
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/EtablissementCohortesTest.php` — gardes de rôle, cycle de cohorte, consentement à la jointure, dépôt, quitter et cascade.
 - `api/tests/MasseRgpdPurgeTest.php` — purge des comptes établissement/apprenant, cloisonnement des documents.
 - `web/src/views/EtablissementView.test.jsx` — garde de rôle, création, tableau des membres (vue isolée).
+- `api/tests/UseCases/Unit/UcAdm01GererComptesRolesTest.php` — UC-ADM-01-U10 : `RequireRole` (401 sans session, 403 sans rôle, rôles relus à chaque requête).
+- `api/tests/UseCases/Unit/UcCpt02SeConnecterDeconnecterTest.php` — UC-CPT-02-U07 : `CsrfMiddleware` (jeton absent ou faux → 403).
 
 ### Exécuter
 
@@ -195,15 +219,30 @@ cd web && npx vitest run test/usecases/unit/uc-eta-01 test/usecases/functional/u
 
 ## Anomalies constatées
 
-- **Suppression de cohorte = perte des documents de l'apprenant.** Les runs
-  sont en cascade sur la cohorte (`fk_mass_runs_cohorte`) et les jobs sur les
-  runs (`fk_mass_jobs_run`) : supprimer une cohorte efface aussi les documents
-  `cartographie-jour` déjà produits pour ses membres, y compris la copie que
-  l'apprenant récupère par `GET /api/mes-documents-masse`. Cela contredit la
-  règle posée pour le départ d'un membre (plan-masse §6 : « les cartographies
-  déjà produites restent à l'apprenant ») et le commentaire de la migration 009
-  (« the produced day-documents belong to the LEARNER »). UC-ETA-01-F02 fige le
-  comportement actuel.
+- **Incohérence de spécification (à arbitrer) : supprimer une cohorte efface
+  les documents de l'apprenant.** Le code applique fidèlement la cascade
+  voulue et documentée : runs en cascade sur la cohorte
+  (`fk_mass_runs_cohorte`, migration 009 : « mass_runs: … CASCADE on both the
+  establishment and the cohorte »), jobs en cascade sur les runs
+  (`fk_mass_jobs_run`), « purge réelle en cascade (membres, dépôts, runs,
+  jobs) » (docs/autorisations.md), « tout l'arbre » (plan-masse §6, « Purge
+  par FK »). Mais cette cascade efface aussi les documents `cartographie-jour`
+  déjà produits pour les membres, y compris la copie que l'apprenant récupère
+  par `GET /api/mes-documents-masse` ; or plan-masse §6 pose, pour le départ
+  d'un membre, que les cartographies déjà produites « restent à l'apprenant »
+  et « suivent le cycle de vie de SON compte » (principe repris par la même
+  migration : « the produced day-documents belong to the LEARNER »). Les deux
+  règles ne peuvent pas valoir ensemble ; UC-ETA-01-F02 fige le comportement
+  actuel.
+- **États vides trompeurs après une erreur de chargement.** L'accueil charge
+  cohortes et configuration dans un même `Promise.all`, la page cohorte
+  détail, configuration et paquets publiés de même ; à l'échec de l'un des
+  appels, le composant pose une liste vide (`current ?? []`) : à côté du
+  message d'erreur, l'accueil affiche « Aucune cohorte pour l'instant :
+  créez-en une ci-dessus. » alors que des cohortes existent, et la page
+  cohorte « Aucun membre : transmettez le code d'invitation… » et « Aucun
+  paquet de prompts publié n'est disponible » (même sur une cohorte en `404`,
+  E2). Figé par UC-ETA-01-F11 et F13.
 - **Pas de trace d'audit** : ni la création ni la suppression d'une cohorte
   (qui purge des données d'apprenants) n'enregistrent d'événement dans
   `audit_events`, contrairement à la jointure, au dépôt et au lancement de run.
@@ -211,5 +250,7 @@ cd web && npx vitest run test/usecases/unit/uc-eta-01 test/usecases/functional/u
 ## Limites
 
 - Le badge « Sans consentement » de la page cohorte n'est jamais affiché :
-  l'adhésion est elle-même le consentement (`consent_at` non nul).
+  l'adhésion est elle-même le consentement (`consent_at` non nul) ; seul le
+  test unitaire UC-ETA-01-U15 l'exerce, avec une forme que l'API ne produit
+  pas.
 - Le nom de cohorte n'est pas modifiable après création (aucune route).

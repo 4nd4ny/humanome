@@ -4,8 +4,13 @@
 // Code sollicité appelé directement : l'estimation de coût d'un run de masse
 // (8 appels par journée, table de prix du moteur), la normalisation du tableau
 // d'avancement réel, les appels de lancement / annulation / paquets publiés,
-// et les constantes d'affichage (six statuts de jobs, polling 5 s).
+// les constantes d'affichage (six statuts de jobs, polling 5 s), puis
+// CohorteSection rendue ISOLÉMENT (couture fetchFn) : calcul de l'estimation
+// (taille moyenne tirée des dépôts, modèle) et règle d'affichage du bouton
+// « Annuler le run » (RunProgress).
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createElement } from 'react'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { PRICING_DISCLAIMER } from '@engine/providers/index.js'
 import { apiFetch, resetApiClient } from '../../../src/api/client.js'
 import {
@@ -19,10 +24,22 @@ import {
   launchRun,
   SERVICE_MODEL,
 } from '../../../src/views/etablissement/etablissement-api.js'
-import { POLL_INTERVAL_MS } from '../../../src/views/etablissement/CohorteSection.jsx'
-import { CSRF, jsonResponse, PUBLISHED_PACKAGES, runBoard } from '../support/eta.js'
+import CohorteSection, { POLL_INTERVAL_MS } from '../../../src/views/etablissement/CohorteSection.jsx'
+import {
+  CSRF,
+  cohorteDetail,
+  configProjection,
+  fakeFetch,
+  jsonResponse,
+  membre,
+  PUBLISHED_PACKAGES,
+  runBoard,
+} from '../support/eta.js'
 
-afterEach(() => resetApiClient())
+afterEach(() => {
+  cleanup()
+  resetApiClient()
+})
 
 async function primeCsrf() {
   await apiFetch('auth/me', { fetchFn: async () => jsonResponse(200, { user: {}, csrfToken: CSRF }) })
@@ -97,6 +114,7 @@ describe('UC-ETA-03 — client API du run', () => {
     expect(await cancelRun(42, cancel)).toEqual({ id: 42, status: 'cancelled' })
     expect(cancel.mock.calls[0][0]).toBe('api/etablissement/runs/42/annuler')
     expect(cancel.mock.calls[0][1].method).toBe('POST')
+    expect(cancel.mock.calls[0][1].headers['X-CSRF-Token']).toBe(CSRF)
     expect(cancel.mock.calls[0][1].body).toBeUndefined()
   })
 
@@ -129,5 +147,80 @@ describe('UC-ETA-03 — constantes d’affichage', () => {
     expect(EXTRACTION_CALLS_PER_DAY).toBe(8)
     expect(POLL_INTERVAL_MS).toBe(5000)
     expect(SERVICE_MODEL).toBe('claude-sonnet-5')
+  })
+})
+
+/** Deux déposants (3 + 2 journées, 9 000 + 4 000 caractères) et un non-déposant. */
+const DEPOSANTS = [
+  membre(),
+  membre({
+    userId: 14,
+    displayName: 'Lila',
+    portfolio: { titre: 'Carnet de Lila', journees: 2, taille: 4000, deposeLe: '2026-07-03T11:00:00' },
+  }),
+  membre({ userId: 13, displayName: 'Noé', portfolioDepose: false, portfolio: null }),
+]
+
+function renderCohorte({ membres = DEPOSANTS, config = configProjection(), board = runBoard() } = {}) {
+  const net = fakeFetch({
+    'GET api/etablissement/cohortes/7': jsonResponse(200, cohorteDetail({ membres })),
+    'GET api/etablissement/config': jsonResponse(200, config),
+    'GET api/prompt-packages': jsonResponse(200, PUBLISHED_PACKAGES),
+    'POST api/etablissement/cohortes/7/runs': jsonResponse(201, { runId: 42, jobs: 5 }),
+    'GET api/etablissement/runs/42': jsonResponse(200, board),
+  })
+  render(createElement(CohorteSection, { id: '7', fetchFn: net.fetchMock }))
+  return net
+}
+
+async function estimateCost() {
+  fireEvent.click(await screen.findByRole('button', { name: 'Estimer le coût' }))
+  return screen.findByTestId('etab-run-estimate')
+}
+
+describe('UC-ETA-03 — CohorteSection rendue isolément', () => {
+  it('UC-ETA-03-U13 — computeEstimate : taille moyenne d’une journée = Σ tailles / Σ journées (repli 3 000), modèle configuré sinon claude-sonnet-5', async () => {
+    // (9 000 + 4 000) / 5 = 2 600 car. → ceil(40 × 32 600 / 3,6) = 362 223 tokens → 1.69 $.
+    renderCohorte()
+    let block = await estimateCost()
+    expect(block.textContent).toContain('40 appels LLM (modèle claude-sonnet-5)')
+    expect(screen.getByTestId('etab-cout-estime').textContent).toBe('1.69 $')
+    cleanup()
+
+    // Tailles absentes : repli DEFAULT_DAY_CHARS (3 000) → 366 667 tokens → 1.70 $.
+    renderCohorte({
+      membres: DEPOSANTS.map((m) => (m.portfolio ? { ...m, portfolio: { ...m.portfolio, taille: undefined } } : m)),
+    })
+    await estimateCost()
+    expect(screen.getByTestId('etab-cout-estime').textContent).toBe('1.70 $')
+    cleanup()
+
+    // Modèle configuré : il prime sur le modèle de référence.
+    renderCohorte({ config: configProjection({ model: 'claude-haiku-4-5' }) })
+    block = await estimateCost()
+    expect(block.textContent).toContain('(modèle claude-haiku-4-5)')
+    expect(block.textContent).not.toContain('claude-sonnet-5')
+  })
+
+  it('UC-ETA-03-U14 — RunProgress : « Annuler le run » tant que le run est actif ou a des jobs en file/en cours, masqué sinon', async () => {
+    const cases = [
+      [runBoard({ status: 'active' }), true],
+      [runBoard({ status: 'budget_exceeded', jobs: { queued: 1, running: 0, done: 0, failed: 0, budget_exceeded: 1, cancelled: 0 } }), true],
+      [runBoard({ status: 'done', jobs: { queued: 0, running: 0, done: 5, failed: 0, budget_exceeded: 0, cancelled: 0 } }), false],
+      [runBoard({ status: 'cancelled', jobs: { queued: 0, running: 0, done: 1, failed: 0, budget_exceeded: 0, cancelled: 4 } }), false],
+      // Forme réelle après un arrêt budgétaire (tout le « queued » est passé
+      // « budget_exceeded ») : bouton masqué — voir Anomalies de la fiche.
+      [runBoard({ status: 'budget_exceeded', jobs: { queued: 0, running: 0, done: 1, failed: 0, budget_exceeded: 4, cancelled: 0 } }), false],
+    ]
+    for (const [board, shown] of cases) {
+      renderCohorte({ board })
+      await estimateCost()
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: 'Confirmer et lancer le run' }))
+      })
+      await screen.findByTestId('etab-run-progress')
+      expect(Boolean(screen.queryByRole('button', { name: 'Annuler le run' })), `${board.status} ${JSON.stringify(board.jobs)}`).toBe(shown)
+      cleanup()
+    }
   })
 })

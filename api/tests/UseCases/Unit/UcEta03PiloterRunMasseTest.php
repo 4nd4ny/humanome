@@ -148,15 +148,18 @@ final class UcEta03PiloterRunMasseTest extends TestCase
         self::assertSame([], $empty['erreurs']);
 
         $runId = self::seedRun($etab, $cohorteId, $maya, [
-            '2026-01-05' => ['done', 0.1234564, 1000, 200, null],
-            '2026-01-06' => ['done', 0.2, 1500, 300, 'kairos dégradé à null (2026-01-06) — réponse tronquée'],
-            '2026-01-07' => ['failed', 0.0, 0, 0, 'pôle 3 (2026-01-07) — panne simulée'],
+            '2026-01-05' => ['done', 0.1, 1000, 200, null],
+            '2026-01-06' => ['done', 0.0, 1500, 300, 'kairos dégradé à null (2026-01-06) — réponse tronquée'],
+            // Coût dans un second groupe de statut : en flottants PHP,
+            // 0.1 + 0.2 = 0.30000000000000004 — seul le round() de runStats rend 0.3.
+            '2026-01-07' => ['failed', 0.2, 0, 0, 'pôle 3 (2026-01-07) — panne simulée'],
             '2026-01-08' => ['queued', 0.0, 0, 0, null],
         ]);
         $stats = $queue->runStats($runId);
 
         self::assertSame(['queued' => 1, 'running' => 0, 'done' => 2, 'failed' => 1, 'budget_exceeded' => 0, 'cancelled' => 0], $stats['jobs']);
-        self::assertSame(0.323456, $stats['coutUsd'], 'arrondi à 6 décimales');
+        self::assertNotSame(0.3, 0.1 + 0.2);
+        self::assertSame(0.3, $stats['coutUsd'], 'somme par statut puis arrondi à 6 décimales');
         self::assertSame(['input' => 2500, 'output' => 500], $stats['tokens']);
         self::assertSame(['2026-01-06', '2026-01-07'], array_column($stats['erreurs'], 'date'));
         self::assertSame(['jobId', 'userId', 'date', 'status', 'attempts', 'erreur'], array_keys($stats['erreurs'][1]));
@@ -229,14 +232,24 @@ final class UcEta03PiloterRunMasseTest extends TestCase
         self::assertSame('cancelled', $status($cancelled)['status'], 'l’annulation est définitive');
     }
 
-    #[TestDox('UC-ETA-03-U07 — versions publiées : dernier référentiel respire, paquet publié avec gabarits extraction-pole + kairos')]
+    #[TestDox('UC-ETA-03-U07 — versions publiées : dernier référentiel respire selon semver (pas l’ordre d’import), paquet publié avec gabarits extraction-pole + kairos')]
     public function testU07PublishedVersionsResolvedForTheRun(): void
     {
         self::seedPublishedVersions(self::$pdo);
+        $referentiels = new ReferentielRepository(self::$pdo);
 
-        $referentiel = (new ReferentielRepository(self::$pdo))->latestPublished('respire');
+        $referentiel = $referentiels->latestPublished('respire');
         self::assertSame(['respire', '7.0.0'], [$referentiel['referentielId'], $referentiel['semver']]);
-        self::assertNull((new ReferentielRepository(self::$pdo))->latestPublished('inconnu'));
+        self::assertNull($referentiels->latestPublished('inconnu'));
+
+        // 7.1.0 puis 7.0.1 importée EN DERNIER : la plus haute version semver gagne.
+        foreach (['7.1.0', '7.0.1'] as $semver) {
+            $doc = self::respireReferentiel();
+            $doc['version'] = $semver;
+            $doc['contentHash'] = $referentiels->validateDocument($doc)['contentHash'];
+            $referentiels->importPublishedDocument($doc, 'Version ' . $semver);
+        }
+        self::assertSame('7.1.0', $referentiels->latestPublished('respire')['semver']);
 
         $packages = new PromptPackageRepository(self::$pdo);
         $package = $packages->findPublished('aurora-v3-reconstruit', '1.0.0');
