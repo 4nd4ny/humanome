@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Unit;
 
+use Humanome\Auth\Audit;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Users;
 use Humanome\Cartographe\Garanties;
@@ -24,7 +25,8 @@ use PHPUnit\Framework\TestCase;
  * appelées directement (sans couche HTTP) : ShareLinks (recherche par jeton
  * haché, état consultable), Garanties::forShareLink (document garanti servi),
  * RateLimiter (fenêtre fixe + délai progressif), ClientIp (seau anti-rotation
- * IPv6) et Users::dummyHash (vérification factice anti-chronométrage).
+ * IPv6), Users::dummyHash (vérification factice anti-chronométrage) et
+ * Audit::record (journal share_consulted sans compte).
  */
 final class UcEmp01ConsulterPartageTest extends TestCase
 {
@@ -40,6 +42,7 @@ final class UcEmp01ConsulterPartageTest extends TestCase
     {
         self::$pdo->exec('DELETE FROM users');
         self::$pdo->exec('DELETE FROM rate_limits');
+        self::$pdo->exec('DELETE FROM audit_events');
     }
 
     /** Apprenant + cartographie stockée (opt-in) ; renvoie [userId, cartoId]. */
@@ -56,7 +59,7 @@ final class UcEmp01ConsulterPartageTest extends TestCase
         return [$userId, (int) self::$pdo->lastInsertId()];
     }
 
-    #[TestDox('UC-EMP-01-U01 — le jeton clair n’est jamais stocké : la recherche passe par son sha256')]
+    #[TestDox('UC-EMP-01-U01 — le jeton clair n’est jamais stocké : la recherche passe par son sha256 ; mot de passe en Argon2id (RG1, RG2)')]
     public function testU01FindByTokenLooksUpTheSha256OfTheClearToken(): void
     {
         [, $cartoId] = self::seedCartography('Feuille');
@@ -72,6 +75,9 @@ final class UcEmp01ConsulterPartageTest extends TestCase
         self::assertSame('Feuille', $row['titre']);
         self::assertSame('merge', $row['type']);
         self::assertTrue(password_verify('sesame-employeur', (string) $row['password_hash']));
+        // RG2 : l'algorithme est bien Argon2id (une régression vers bcrypt
+        // vérifierait encore le mot de passe, mais échouerait ici).
+        self::assertSame('argon2id', password_get_info((string) $row['password_hash'])['algoName']);
     }
 
     #[TestDox('UC-EMP-01-U02 — un jeton inconnu (ou le hash lui-même) ne trouve rien')]
@@ -86,7 +92,7 @@ final class UcEmp01ConsulterPartageTest extends TestCase
         self::assertNull($links->findByToken(hash('sha256', $token)));
     }
 
-    #[TestDox('UC-EMP-01-U03 — isConsultable : vivant oui, révoqué non, expiré non')]
+    #[TestDox('UC-EMP-01-U03 — isConsultable : vivant oui, révoqué non, expiré non (E3)')]
     public function testU03IsConsultableCoversLiveRevokedAndExpired(): void
     {
         [$userId, $cartoId] = self::seedCartography();
@@ -191,13 +197,38 @@ final class UcEmp01ConsulterPartageTest extends TestCase
         self::assertSame('raw:', ClientIp::bucketIdentity(''));
     }
 
-    #[TestDox('UC-EMP-01-U09 — dummyHash : hash valide, ne vérifie aucun mot de passe')]
+    #[TestDox('UC-EMP-01-U09 — dummyHash : Argon2id aux mêmes paramètres que les liens, ne vérifie aucun mot de passe')]
     public function testU09DummyHashNeverVerifies(): void
     {
         $hash = Users::dummyHash();
-        self::assertNotSame('', $hash);
-        self::assertNotFalse(password_get_info($hash)['algo']);
+        // password_get_info() renvoie algo = null (et non false) pour une chaîne
+        // quelconque : c'est algoName qui prouve un vrai hash Argon2id.
+        self::assertSame('argon2id', password_get_info($hash)['algoName']);
         self::assertFalse(password_verify('sesame-employeur', $hash));
         self::assertFalse(password_verify('', $hash));
+
+        // Égalisation des temps (E3) : la vérification factice coûte ce que coûte
+        // celle d'un vrai lien — même algorithme, mêmes paramètres de coût.
+        [, $cartoId] = self::seedCartography();
+        ['shareId' => $shareId] = (new ShareLinks(self::$pdo))->create($cartoId, 'sesame-employeur', 30);
+        $shareHash = (string) self::$pdo->query('SELECT password_hash FROM share_links WHERE id = ' . $shareId)->fetchColumn();
+        self::assertSame(password_get_info($shareHash)['algoName'], password_get_info($hash)['algoName']);
+        self::assertEquals(password_get_info($shareHash)['options'], password_get_info($hash)['options']);
+    }
+
+    #[TestDox('UC-EMP-01-U15 — Audit::record : share_consulted sans compte (user_id NULL), identifiants seulement')]
+    public function testU15AuditRecordsAnonymousConsultationWithIdsOnly(): void
+    {
+        Audit::record(self::$pdo, null, 'share_consulted', ['cartographieId' => 12, 'shareLinkId' => 34]);
+
+        $rows = self::$pdo->query("SELECT user_id, type, details FROM audit_events WHERE type = 'share_consulted'")->fetchAll();
+        self::assertCount(1, $rows);
+        self::assertNull($rows[0]['user_id'], 'l’employeur consultant n’a pas de compte');
+        self::assertSame('share_consulted', $rows[0]['type']);
+        // Colonne JSON MySQL : l'ordre des clés n'est pas conservé.
+        self::assertEquals(
+            ['cartographieId' => 12, 'shareLinkId' => 34],
+            json_decode((string) $rows[0]['details'], true, 512, JSON_THROW_ON_ERROR),
+        );
     }
 }
