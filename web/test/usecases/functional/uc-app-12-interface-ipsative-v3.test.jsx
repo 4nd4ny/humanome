@@ -5,9 +5,16 @@
 // travaille sur SES données : import de fichiers (JSON journaliers, ZIP
 // journalier ou corpus, master V3, instantané employeur), vues par persona,
 // grille de tuiles, comparaison avec soi-même, droit de réponse, éditeur JSON,
-// constructeur de partage et réimport. Réseau simulé : seules les données
-// statiques de la démonstration (fixtures versionnées) ; le téléchargement
-// final est intercepté (download-json simulé). Rien ne quitte le navigateur.
+// constructeur de partage et réimport, arbre du référentiel, présentation
+// (surface, distinctions renforcées, grille responsive). Réseau simulé : seules
+// les données statiques de la démonstration (fixtures versionnées) ; le
+// téléchargement final est intercepté (download-json simulé). Rien ne quitte
+// le navigateur. F23 et F24 insèrent la feuille v3.css (versionnée) dans jsdom,
+// qui en applique les règles de premier niveau et « @media screen » (pas
+// prefers-color-scheme, prefers-reduced-motion, print ni les largeurs).
+import { readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Component } from 'react'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
@@ -380,7 +387,7 @@ describe('UC-APP-12 — préparer un partage employeur (liste positive)', () => 
   // identifiants publics aléatoires, nouvelle date de génération) : son
   // empreinte ne peut jamais égaler celle verrouillée à la prévisualisation,
   // et la publication est TOUJOURS refusée comme « obsolète ».
-  it('UC-APP-12-F12 — A8 + [comportement actuel, anomalie AN3] famille incluse, mois, synthèse → prévisualisation exacte ; la publication confirmée est refusée', async () => {
+  it('UC-APP-12-F12 — A8 + [comportement actuel, anomalie AN3] famille incluse, mois, synthèse → prévisualisation exacte ; la publication confirmée est refusée, même après une nouvelle prévisualisation', async () => {
     await openV3()
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true)
     const share = await prepareFamilyShare()
@@ -400,9 +407,23 @@ describe('UC-APP-12 — préparer un partage employeur (liste positive)', () => 
     fireEvent.click(again.getByRole('button', { name: 'Publier et exporter le JSON employeur' }))
     expect(confirm.mock.calls[0][0]).toContain('ne peut pas être révoqué')
     // Attendu : téléchargement de cartographie-competences-partage-r01.json.
-    expect(again.getByRole('alert').textContent).toBe(
-      'publication — La prévisualisation est obsolète : le dossier ou le projet a changé. Prévisualisez de nouveau.',
-    )
+    const obsolete = 'publication — La prévisualisation est obsolète : le dossier ou le projet a changé. Prévisualisez de nouveau.'
+    expect(again.getByRole('alert').textContent).toBe(obsolete)
+    // Seule preuve du refus dans l'IHM : aucun téléchargement. (L'IHM n'affiche
+    // pas project.state, et « prévisualisation verrouillée » resterait affiché
+    // après une publication réussie, publishSnapshot conservant previewLock ;
+    // le refus du moteur est prouvé par U16.)
+    expect(downloadJson).not.toHaveBeenCalled()
+
+    // TOUJOURS refusée : suivre le conseil (« Prévisualisez de nouveau ») sans
+    // rien changer au dossier ni au projet ne débloque pas la publication.
+    fireEvent.click(again.getByRole('button', { name: 'Prévisualiser (vue employeur exacte)' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Revenir à l’espace privé' }))
+    const third = within(await screen.findByRole('region', { name: 'Préparer un partage' }))
+    expect(third.queryByRole('alert')).toBeNull()
+    fireEvent.click(third.getByRole('button', { name: 'Publier et exporter le JSON employeur' }))
+    expect(confirm).toHaveBeenCalledTimes(2)
+    expect(third.getByRole('alert').textContent).toBe(obsolete)
     expect(downloadJson).not.toHaveBeenCalled()
   })
 
@@ -572,5 +593,229 @@ describe('UC-APP-12 — imports : cas limites et anomalies', () => {
     expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain(
       'Date proposée depuis les feuilles (2026-02-12) — à confirmer',
     )
+  })
+})
+
+describe('UC-APP-12 — arbre du référentiel et présentation', () => {
+  const treeNav = () => screen.getByRole('navigation', { name: 'Référentiel de compétences' })
+  /** Élément d'arbre (li[role=treeitem]) d'une famille, par son nom. */
+  const familyItem = (name) => within(treeNav()).getByRole('button', { name }).closest('li')
+  /** Élément d'arbre d'une compétence, par son code. */
+  const competencyItem = (code) =>
+    [...treeNav().querySelectorAll('li[role="treeitem"]')].find((li) => li.querySelector('.v3-tree-label')?.textContent.startsWith(`${code} — `))
+  /** Secteur de compétence du soleil (les secteurs de famille commencent par « Famille »). */
+  const sector = (code) => document.querySelector(`.v3-sector[aria-label^="${code} "]`)
+  const undimmedCodes = () => [...sectors()].filter((s) => !s.classList.contains('v3-dimmed')).map((s) => s.getAttribute('aria-label').split(' ')[0])
+  const COEUR = 'COEUR — Relier & Naviguer'
+  const MAIN = 'MAIN — Créer & Incarner'
+
+  /** Insère la feuille v3.css (fichier versionné) : jsdom applique alors sa cascade. */
+  function injectV3Css() {
+    const here = dirname(fileURLToPath(import.meta.url))
+    const style = document.createElement('style')
+    style.textContent = readFileSync(resolve(here, '../../../src/v3/v3.css'), 'utf8')
+    document.head.appendChild(style)
+    return style
+  }
+
+  it('UC-APP-12-F21 — A10 : arbre — ouvrir et fermer une famille, filtrer par une branche, réinitialiser la sélection, ouvrir une journée depuis une feuille', async () => {
+    await openV3()
+    setMode('cartographe')
+    await screen.findByRole('navigation', { name: 'Référentiel de compétences' })
+    expect(within(treeNav()).getByRole('tree', { name: 'respire 7.0.0' })).toBeDefined()
+    const families = within(treeNav()).getAllByRole('treeitem')
+    expect(families).toHaveLength(7) // familles seules : toutes repliées au départ
+    expect(families.every((li) => li.getAttribute('aria-expanded') === 'false')).toBe(true)
+
+    // Ouvrir une famille : TOUTES ses compétences du référentiel, documentées ou non.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Ouvrir ${COEUR}` }))
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('true')
+    const group = within(familyItem(COEUR)).getByRole('group')
+    expect(within(group).getAllByRole('treeitem').map((li) => li.querySelector('.v3-tree-label').textContent.split(' ')[0])).toEqual(
+      ['2.01', '2.02', '2.03', '2.04', '2.05', '2.06', '2.07', '2.08', '2.09'],
+    )
+    expect(competencyItem('2.01').querySelector('.v3-count').textContent).toBe(' · 3 j.')
+    expect(competencyItem('2.02').querySelector('.v3-count').textContent).toBe('')
+    // Seules les compétences documentées ont un chevron de journées.
+    expect(within(group).getAllByRole('button', { name: /^Ouvrir les journées de / })).toHaveLength(2)
+
+    // Filtrer par la branche : le soleil ATTÉNUE les autres familles, n'en retire aucune.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: COEUR }))
+    expect(bar().textContent).toContain('Filtre : family-2')
+    expect(familyItem(COEUR).getAttribute('aria-selected')).toBe('true')
+    expect(sectors()).toHaveLength(10)
+    expect(undimmedCodes()).toEqual(['2.01', '2.06'])
+    expect(document.querySelector('.v3-sector-family.v3-scope').getAttribute('aria-label')).toBe(`Famille ${COEUR}. Entrée : filtrer cette famille.`)
+    expect(stat('Compétences documentées')).toBe('10') // les indicateurs ne sont pas filtrés
+
+    // Réinitialiser (titre « Référentiel ») : la sélection tombe, la branche reste ouverte.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: 'Référentiel — réinitialiser la sélection' }))
+    expect(bar().textContent).toContain('Toutes les compétences')
+    expect(familyItem(COEUR).getAttribute('aria-selected')).toBe('false')
+    expect(undimmedCodes()).toHaveLength(10)
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('true')
+
+    // Fermer la famille (ouverte à la main) : ses compétences disparaissent de l'arbre.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Fermer ${COEUR}` }))
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('false')
+    expect(competencyItem('2.01')).toBeUndefined()
+
+    // Feuille datée : filtre la compétence ET inspecte la journée (portfolio),
+    // sans déplacer la tête de lecture.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Ouvrir ${COEUR}` }))
+    fireEvent.click(within(treeNav()).getByRole('button', { name: 'Ouvrir les journées de Intelligence Émotionnelle & Sollicitude Active' }))
+    const leaves = within(competencyItem('2.01')).getByRole('group')
+    expect([...leaves.querySelectorAll('.v3-tree-leaf')].map((b) => b.textContent)).toEqual(['2026-01-05', '2026-01-06', '2026-01-07'])
+    fireEvent.click(within(leaves).getByRole('button', { name: '2026-01-06' }))
+    expect(bar().textContent).toContain('Filtre : comp-2.01')
+    expect(bar().textContent).toContain('état complet')
+    expect(competencyItem('2.01').getAttribute('aria-selected')).toBe('true')
+    expect(undimmedCodes()).toEqual(['2.01'])
+    const portfolio = await screen.findByRole('region', { name: 'Portfolio de la journée 2026-01-06' })
+    // Limite L5 : toute la journée est listée, pas seulement la compétence de la feuille.
+    expect(articleCodes(portfolio).sort()).toEqual(['1.01', '2.01', '2.06', '5.01'])
+    expect(screen.getByRole('gridcell', { name: '2026-01-06 : 4 compétences documentées' }).className).toContain('v3-inspected')
+  })
+
+  // ANOMALIE AN16 — comportement ACTUEL figé : sélectionner une compétence
+  // (soleil, arbre, portfolio) RÉVÈLE sa famille dans l'arbre ; le chevron
+  // « Fermer » ne bascule que les ouvertures manuelles, si bien qu'une branche
+  // révélée ne se referme pas (ni par le chevron, ni par la réinitialisation) :
+  // seule la sélection d'une autre compétence la referme — et seulement si le
+  // nombre de clics « Fermer » est pair : un clic impair l'a ouverte à la main.
+  it('UC-APP-12-F22 — A10 + [comportement actuel, anomalie AN16] famille révélée par une sélection : « Fermer » est sans effet, la réinitialisation aussi ; un seul clic « Fermer » la laisse ouverte après la révélation', async () => {
+    await openV3()
+    setMode('cartographe')
+    await screen.findByRole('navigation', { name: 'Référentiel de compétences' })
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('false')
+
+    fireEvent.click(sector('3.04')) // filtre depuis le soleil
+    expect(bar().textContent).toContain('Filtre : comp-3.04')
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // chemin révélé
+    expect(competencyItem('3.04').getAttribute('aria-selected')).toBe('true')
+
+    const close = within(treeNav()).getByRole('button', { name: `Fermer ${MAIN}` })
+    fireEvent.click(close)
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // attendu : 'false'
+    expect(close.getAttribute('aria-label')).toBe(`Fermer ${MAIN}`)
+    fireEvent.click(close)
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // attendu : 'false'
+
+    fireEvent.click(within(treeNav()).getByRole('button', { name: 'Référentiel — réinitialiser la sélection' }))
+    expect(bar().textContent).toContain('Toutes les compétences')
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // la révélation survit
+
+    // Seule une AUTRE sélection de compétence retire la révélation (deux clics
+    // « Fermer » ont remis l'état manuel à « fermé ») : MAIN se replie.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Ouvrir ${COEUR}` })) // COEUR ouverte à la main…
+    fireEvent.click(sector('2.01')) // …puis révélée par la sélection de 2.01
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('false')
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('true')
+    // Une famille ouverte à la main ne se referme plus dès qu'une de ses compétences est sélectionnée.
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Fermer ${COEUR}` }))
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('true') // attendu : 'false'
+
+    // Un SEUL clic « Fermer » sur une famille révélée l'ouvre en fait à la main
+    // (toggleBranch bascule l'ensemble manuel, où elle n'était pas) : quand la
+    // révélation passe à une autre famille, celle que l'apprenant voulait
+    // fermer reste dépliée — le clic a eu l'effet inverse.
+    fireEvent.click(sector('3.04')) // MAIN révélée ; COEUR (refermée à la main juste avant) se replie
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true')
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('false')
+    fireEvent.click(within(treeNav()).getByRole('button', { name: `Fermer ${MAIN}` })) // un seul clic
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // attendu : 'false'
+    fireEvent.click(sector('2.01')) // la révélation passe à COEUR
+    expect(bar().textContent).toContain('Filtre : comp-2.01')
+    expect(familyItem(COEUR).getAttribute('aria-expanded')).toBe('true')
+    expect(familyItem(MAIN).getAttribute('aria-expanded')).toBe('true') // attendu : 'false'
+    expect(within(treeNav()).getByRole('button', { name: `Fermer ${MAIN}` })).toBeDefined() // MAIN désormais ouverte à la main
+  })
+
+  it('UC-APP-12-F23 — A11 : présentation (feuille v3.css appliquée) — surface sombre, distinctions renforcées par motifs, grille de tuiles responsive, tableau équivalent hors écran', async () => {
+    const style = injectV3Css()
+    const innerWidth = Object.getOwnPropertyDescriptor(window, 'innerWidth')
+    try {
+      await openV3()
+      const root = document.querySelector('.v3-root')
+      const token = (name) => getComputedStyle(root).getPropertyValue(name)
+      // « Système » : jsdom n'évalue pas prefers-color-scheme → surface claire ici (limite L6).
+      expect(root.dataset.surface).toBe('system')
+      expect(token('--v3-bg')).toBe('#ffffff')
+
+      fireEvent.change(screen.getByLabelText(/Surface/), { target: { value: 'dark' } })
+      expect(root.dataset.surface).toBe('dark')
+      expect([token('--v3-bg'), token('--v3-surface'), token('--v3-text')]).toEqual(['#151a24', '#1d2432', '#e8ecf4'])
+      // Le choix de surface n'est pas une préférence mémorisée (limite L7).
+      expect(JSON.parse(localStorage.getItem('humanome-v3-presentation'))).not.toHaveProperty('surfaceTheme')
+
+      // Distinctions renforcées : chaque famille a son motif de trait, trait contrasté.
+      fireEvent.click(screen.getByLabelText('Renforcer les distinctions (daltonisme)'))
+      expect(root.dataset.vision).toBe('reinforced')
+      const dash = (code) => getComputedStyle(sector(code)).getPropertyValue('stroke-dasharray')
+      expect(sector('2.01').classList.contains('v3-pattern-diagonal')).toBe(true)
+      expect([dash('1.01'), dash('2.01'), dash('3.04'), dash('4.05')]).toEqual(['', '6 2', '1 3', '8 2 2 2']) // 1 = trait plein
+      expect(getComputedStyle(sector('5.01')).getPropertyValue('stroke')).toBe('var(--v3-text)')
+      expect(screen.getByRole('region', { name: 'Légende' }).textContent).toContain('(motif diagonal)')
+
+      // Grille de tuiles : grille CSS à flux dense, colonnes selon la largeur de la fenêtre.
+      setMode('apprenant')
+      await waitFor(() => expect(document.querySelector('.v3-tile-grid')).not.toBeNull())
+      const grid = document.querySelector('.v3-tile-grid')
+      expect(getComputedStyle(grid).display).toBe('grid')
+      expect(getComputedStyle(grid).getPropertyValue('grid-auto-flow')).toBe('dense')
+      const sunTile = () => screen.getByText('Soleil', { selector: '.v3-tile-label' }).closest('.v3-tile')
+      expect(grid.style.gridTemplateColumns).toBe('repeat(3, minmax(0, 1fr))') // jsdom : 1024 px
+      expect(sunTile().style.gridColumn).toBe('span 2')
+      const resizeTo = (width) => {
+        Object.defineProperty(window, 'innerWidth', { configurable: true, writable: true, value: width })
+        act(() => {
+          window.dispatchEvent(new Event('resize'))
+        })
+      }
+      resizeTo(390) // téléphone
+      expect(grid.style.gridTemplateColumns).toBe('repeat(1, minmax(0, 1fr))')
+      expect(grid.getAttribute('aria-label')).toBe('Disposition des panneaux (1 colonne)')
+      expect(sunTile().style.gridColumn).toBe('span 1') // empan borné par les colonnes
+      resizeTo(1440) // moniteur
+      expect(grid.style.gridTemplateColumns).toBe('repeat(4, minmax(0, 1fr))')
+      expect(sunTile().style.gridColumn).toBe('span 2')
+
+      // Tableau équivalent au soleil : hors écran mais présent pour les lecteurs d'écran.
+      const table = document.querySelector('.v3-sun-table')
+      expect([getComputedStyle(table).position, getComputedStyle(table).left]).toEqual(['absolute', '-9999px'])
+      expect(getComputedStyle(table).display).not.toBe('none')
+      expect(within(screen.getByRole('table', { name: /Tableau équivalent au soleil/ })).getAllByRole('row')).toHaveLength(11) // en-tête + 10
+    } finally {
+      style.remove()
+      if (innerWidth) Object.defineProperty(window, 'innerWidth', innerWidth)
+      else delete window.innerWidth
+    }
+  })
+
+  // ANOMALIE AN17 — comportement ACTUEL figé : en Simplifié, le menu
+  // « Panneaux » propose « Arbre », mais la feuille de style masque l'arbre
+  // dans cette vue (.v3-mode-simplified .v3-tree { display: none }) : cocher
+  // la case ne montre rien (et l'arbre sort de l'arbre d'accessibilité).
+  it('UC-APP-12-F24 — [comportement actuel, anomalie AN17] Simplifié : « Arbre » coché dans « Panneaux » reste invisible (feuille v3.css appliquée)', async () => {
+    const style = injectV3Css()
+    try {
+      await openV3()
+      expect(document.querySelector('nav.v3-tree')).toBeNull() // pas affiché par défaut
+      fireEvent.click(screen.getByText('Panneaux'))
+      const box = within(document.querySelector('.v3-panels-menu')).getByLabelText('Arbre')
+      fireEvent.click(box)
+      expect(box.checked).toBe(true)
+      const nav = document.querySelector('nav.v3-tree')
+      expect(nav).not.toBeNull() // rendu par React…
+      expect(getComputedStyle(nav).display).toBe('none') // …mais masqué — attendu : visible, ou « Arbre » non proposé
+      expect(screen.queryByRole('navigation', { name: 'Référentiel de compétences' })).toBeNull()
+
+      // Même préférence, vue Cartographe : l'arbre est bien affiché.
+      setMode('cartographe')
+      const shown = await screen.findByRole('navigation', { name: 'Référentiel de compétences' })
+      expect(getComputedStyle(shown).display).toBe('block')
+    } finally {
+      style.remove()
+    }
   })
 })

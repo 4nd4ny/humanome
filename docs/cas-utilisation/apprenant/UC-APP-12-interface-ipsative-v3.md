@@ -4,10 +4,10 @@
 |---|---|
 | **Acteur principal** | Apprenant (avec ou sans compte : l'interface est entièrement locale) |
 | **Acteurs secondaires** | Employeur (destinataire du fichier de partage, qu'il ouvre dans cette même interface) ; cartographe (utilise la vue « Cartographe » sur les fichiers que l'apprenant lui remet) |
-| **Portée** | humanome.xyz — `#/cartographie` (et `#/merge` sans document chargé) : import de fichiers, vues par persona, grille de tuiles, comparaison, droit de réponse, éditeur JSON, constructeur de partage, réimport |
+| **Portée** | humanome.xyz — `#/cartographie` (et `#/merge` sans document chargé) : import de fichiers, vues par persona, grille de tuiles, arbre du référentiel, présentation (surface, distinctions renforcées), comparaison, droit de réponse, éditeur JSON, constructeur de partage, réimport |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.2 (visualiser sa cartographie, graphe évolutif ; partager une cartographie choisie), §4.4 (visualisation unifiée), §6.1 et §6.4 (rien ne quitte le navigateur ; partage = décision explicite) |
-| **Statut** | Implémenté (interface V3, décision D14 ; vues par persona et grille de tuiles 2026-07-17) — voir anomalies AN1 à AN15 |
+| **Statut** | Implémenté (interface V3, décision D14 ; vues par persona et grille de tuiles 2026-07-17) — voir anomalies AN1 à AN19 |
 
 ## Objectif
 
@@ -50,7 +50,8 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 - Les préférences de présentation (vue, panneaux, disposition des tuiles) sont
   mémorisées **à part** des données d'évaluation (`localStorage`) ; les
   panneaux ne sont mémorisés au rechargement que pour les vues Simplifié et
-  Expert (anomalie AN13).
+  Expert (anomalie AN13) ; la surface et les distinctions renforcées ne le
+  sont pas (L7).
 - Un partage ne contient que ce qui a été **explicitement** autorisé ;
   identifiants remappés, dates masquées selon la précision choisie.
 
@@ -155,6 +156,43 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
   partagée (lecture seule) », « Forces documentées partagées », preuves,
   synthèses déclarées), sans aucune commande privée ; « Fermer » revient à
   l'espace privé. Seuls `kind` et l'empreinte sont contrôlés (anomalie AN14).
+- **A10 — Naviguer dans l'arbre du référentiel** (panneau « Arbre » : affiché
+  par défaut en vues Cartographe et Expert, à cocher dans « Panneaux » en vue
+  Apprenant, absent de la vue Employeur ; proposé mais masqué par la feuille
+  de style en Simplifié, anomalie AN17) : l'arbre liste les 7 familles,
+  **repliées** au départ. Le chevron « Ouvrir <famille> » / « Fermer
+  <famille> » déplie ou replie une famille, qui montre **toutes** ses
+  compétences du référentiel (« · N j. » pour les compétences documentées à
+  la tête de lecture). Cliquer le libellé d'une famille ou d'une compétence la
+  **filtre** : « Filtre : family-N » (ou `comp-X.YY`) dans la barre de
+  contexte, élément sélectionné ; dans le soleil, secteurs de compétence
+  hors portée **atténués** (jamais retirés) ; la couronne des familles n'est
+  pas atténuée, la famille filtrée y est cerclée — indicateurs, heatmap et
+  portfolio ne sont pas filtrés (L5). « Ouvrir les journées de
+  <compétence> » (compétences documentées seulement) liste ses dates ; une
+  date filtre la compétence
+  **et** inspecte cette journée (portfolio de la journée entière, L5), sans
+  déplacer la tête de lecture. Le titre « Référentiel » (« Référentiel —
+  réinitialiser la sélection ») retire le filtre sans refermer aucune
+  branche. Sélectionner une compétence (arbre, soleil, portfolio, feuille
+  datée) **révèle** sa famille ; cette révélation ne cède ni au chevron ni à
+  la réinitialisation, seulement à la sélection d'une autre compétence, et
+  un seul clic « Fermer » sur la famille révélée l'ouvre en fait à la main
+  (anomalie AN16).
+- **A11 — Adapter la présentation** (barre de contexte) : « Surface »
+  (Système, Clair, Sombre) — la surface sombre redéfinit les huit jetons de
+  couleur, sans noir pur, et « Système » l'applique sous préférence sombre du
+  système ; « Renforcer les distinctions (daltonisme) » donne aux secteurs un
+  trait contrasté et un **motif de trait propre à chaque famille** (la
+  famille 1 garde le trait plein), hachure la heatmap par niveau et nomme le
+  motif dans la légende. La grille de tuiles compte une colonne par ~340 px
+  de largeur (1 à 12), recalculée au redimensionnement ; l'empan d'une tuile
+  est borné par les colonnes disponibles. Le tableau équivalent au soleil est
+  placé hors écran (lu par les lecteurs d'écran, rendu à l'impression).
+  Surface et distinctions ne sont pas mémorisées (L7). Le basculement de ces
+  réglages sur la démonstration est décrit pour le visiteur dans
+  [UC-VIS-01](../visiteur/UC-VIS-01-explorer-cartographie-demonstration.md)
+  (A5) ; ce cas rattache la feuille `web/src/v3/v3.css` qui en porte l'effet.
 
 ## Scénarios d'erreur
 
@@ -170,7 +208,13 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
   d'erreurs de forme ; « Valider » reste inactif.
 - **E4 — Publication non confirmée** (A8) : « publication — Confirmation
   requise : un fichier transmis ne peut pas être révoqué (AC-SHARE-13). » ;
-  rien n'est exporté. Prévisualisation absente ou périmée → refus.
+  rien n'est exporté. Sans prévisualisation verrouillée (ou après toute
+  modification du projet, qui la déverrouille), « Publier et exporter le JSON
+  employeur » est inactif ; prévisualisation périmée → « publication — La
+  prévisualisation est obsolète : le dossier ou le projet a changé.
+  Prévisualisez de nouveau. » — réponse que l'IHM donne aujourd'hui à
+  **toute** publication confirmée, même juste après une nouvelle
+  prévisualisation (anomalie AN3).
 - **E5 — Fichier employeur altéré** (A9) : « Erreur d'intégrité : l'empreinte
   recalculée ne correspond pas… » (bloquant) ; ni affichage ni duplication.
 
@@ -182,8 +226,10 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
   stables **au sein d'un même import** (espace de noms = `datasetId`, tiré au
   hasard à chaque import : réimporter les mêmes fichiers donne d'autres
   identifiants) ; deux runs d'une même date ne sont jamais additionnés.
-- **RG3** — États séparés : vue, panneaux, thème, filtre, inspection, tête de
-  lecture et projet de partage sont indépendants ;
+- **RG3** — États séparés : vue, panneaux, thème, filtre, branches ouvertes à
+  la main dans l'arbre (`manuallyExpandedTreeNodeIds`), inspection, tête de
+  lecture et projet de partage sont indépendants ; la sélection d'une
+  compétence révèle en plus sa famille (A10, AN16) ;
   `panneaux rendus = affichés ∩ (capacités du format ∩ audience ∩ vue)`.
 - **RG4** — Liste positive : un projet neuf n'exporte aucune preuve ; retirer
   = « Retirer de cette version partagée », jamais supprimer du dossier.
@@ -200,26 +246,27 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 |---|---|
 | Fichiers importés, master, révisions | En mémoire du navigateur ; jamais envoyés ; perdus au rechargement |
 | Préférences (vue, panneaux, tuiles) | `localStorage` : `humanome-v3-presentation`, `humanome-v3-tiles-<vue>` |
-| Instantané employeur | Fichier téléchargé localement, remis par l'apprenant ; irrévocable une fois transmis |
+| Instantané employeur | Fichier téléchargé localement, remis par l'apprenant ; irrévocable une fois transmis (aujourd'hui jamais produit par l'IHM, anomalie AN3) |
 
 ## Code sollicité
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/v3/ui/V3View.jsx` — `handleImportFiles`, `V3Panels`, dispositions par persona | Import, aiguillage des formats, vues, tuiles |
+| Front | `web/src/v3/ui/V3View.jsx` — `handleImportFiles`, `V3Panels`, dispositions par persona, `toggleBranch`, `doSelectScope` (révélation de la famille), sélecteurs « Surface » et « Renforcer les distinctions » | Import, aiguillage des formats, vues, tuiles, arbre (A10, AN16), présentation (A11) |
 | Front | `web/src/v3/core/zip.js` — `listZipEntries`, `readZipEntry`, `isSafeZipPath`, `inventoryZip` | Archives ZIP (A1) |
 | Front | `web/src/v3/core/import.js` — `importJourDocuments`, `chooseVariant`, `summarizeReport` ; `correctEffectiveDate` (non branché dans l'IHM) ; `adapters.js` ; `ids.js` | Import, arbitrage (RG2) |
 | Front | `web/src/v3/core/events.js` — `computeEvents`, `supportingLinks` | Événements admissibles ; liens contestés exclus (A6, AN6) |
 | Front | `web/src/v3/core/master.js` — `reviewEvidenceLink`, `annotate`, `applyExpertJson`, `validateMasterShape`, `masterDigest` ; `reviewObservation` (non branché dans l'IHM) | Révisions, droit de réponse, éditeur |
 | Front | `web/src/v3/core/compare.js` — `resolveBaselinePreset`, `compareStates`, `whatChanged` | Comparaison ipsative (RG6) |
-| Front | `web/src/v3/core/state.js` — `availablePanels`, `defaultVisiblePanels`, `renderedPanels`, `switchMode`, `INTERFACE_MODES` | Vues par persona, formule des panneaux rendus (RG3) |
-| Front | `web/src/v3/ui/tile-grid.jsx` — `TileGrid`, `orderedTiles`, `moveTile`, `columnsForWidth`, `TILE_SIZES` | Grille de tuiles |
-| Front | `web/src/v3/ui/panels.jsx` (`PortfolioPanel`), `tools.jsx` (`ComparePanel`, `ImportReportPanel`, `ArbitragePanel`, `JsonEditorPanel`) | Panneaux interactifs |
-| Front | `web/src/v3/core/share.js` — `newShareProject`, `planScopeInclusion`, `applyScopeInclusion`, `removeScope`, `scopeTriState`, `setLinkShared`, `configureProject`, `addLearnerSummary`, `buildShareSnapshot`, `policyDigest`, `lockPreview`, `publishSnapshot`, `shareFilename` ; `web/src/v3/ui/share-ui.jsx` (`ShareBuilder`, `EmployerView`) | Partage par liste positive, retrait d'une portée (RG4, RG5) |
+| Front | `web/src/v3/core/state.js` — `availablePanels`, `defaultVisiblePanels`, `renderedPanels`, `switchMode`, `INTERFACE_MODES` ; `initialState`, `effectiveExpandedTreeNodeIds`, `selectScope`, `clearScope` | Vues par persona, formule des panneaux rendus (RG3) ; branches de l'arbre = manuelles ∪ révélées, filtre (A10, AN16) |
+| Front | `web/src/v3/ui/tile-grid.jsx` — `TileGrid` (colonnes recalculées au redimensionnement), `orderedTiles`, `moveTile`, `columnsForWidth`, `TILE_SIZES` | Grille de tuiles responsive (A4, A11) |
+| Front | `web/src/v3/ui/panels.jsx` (`TreePanel`, `PortfolioPanel` ; `SunPanel` et `LegendPanel` pour l'atténuation du filtre et les motifs renforcés), `tools.jsx` (`ComparePanel`, `ImportReportPanel`, `ArbitragePanel`, `JsonEditorPanel`) | Panneaux interactifs, arbre du référentiel (A10) |
+| Front | `web/src/v3/core/share.js` — `newShareProject`, `planScopeInclusion`, `applyScopeInclusion`, `removeScope`, `scopeTriState`, `setLinkShared`, `configureProject`, `addLearnerSummary`, `buildShareSnapshot`, `policyDigest`, `lockPreview`, `publishSnapshot`, `shareFilename` ; `web/src/v3/ui/share-ui.jsx` (`ShareBuilder` — dont `exportSnapshot`, qui reconstruit l'instantané, AN3 —, `EmployerView`) | Partage par liste positive, retrait d'une portée (RG4, RG5) |
 | Front | `web/src/v3/core/reimport.js` — `openShareSnapshot`, `snapshotToViewModel` ; `duplicateAsProject` (non branché dans l'IHM) ; `canonical-json.js` — `contentDigest`, `verifyIntegrity` | Réimport vérifié |
 | Front | `web/src/v3/core/metrics.js` — `countLabel` | Libellés des comptes (vue employeur) |
 | Front | `web/src/v3/core/store.js` — `createV3Store`, `createMemoryAdapter` | Persistance locale (non branchée, voir Limites) |
 | Front | `web/src/lib/download-json.js` — `downloadJson` | Export local du fichier employeur |
+| Front | `web/src/v3/v3.css` — jetons de surface (clair, sombre, « Système »), `.v3-tile-grid`, `.v3-layout`, motifs `.v3-pattern-*` et hachures renforcées, `:focus-visible`, cibles tactiles (`.v3-tree-row`, `.v3-timeline-controls button` à 44 px ; `.v3-tile-bar button`, `.v3-tile-size select` à 40 px), `prefers-reduced-motion`, `.v3-sun-table`, `.v3-visually-hidden`, `@media print`, `.v3-mode-simplified .v3-tree`, `.v3-badge` | Grille de tuiles, surface sombre, accessibilité (A11) ; anomalies AN17, AN18 et AN19 ; non appliquée par Vitest (L6) |
 
 ## Jeux de tests
 
@@ -238,7 +285,7 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 | UC-APP-12-U09 | `availablePanels`, `defaultVisiblePanels`, `switchMode` | Panneaux par persona, audience bornante, mémoire par vue (RG3) | idem |
 | UC-APP-12-U10 | `orderedTiles`, `moveTile`, `columnsForWidth`, `TILE_SIZES` | Ordre mémorisé, déplacement, colonnes, tailles | idem |
 | UC-APP-12-U11 | `newShareProject`, `planScopeInclusion`, `applyScopeInclusion`, `scopeTriState`, `setLinkShared`, `configureProject`, `addLearnerSummary`, `buildShareSnapshot`, `shareFilename` | Liste positive, précision mensuelle, remappage, synthèse, empreinte (RG4, RG5) | idem |
-| UC-APP-12-U12 | `lockPreview`, `publishSnapshot` | Prévisualisation à jour et confirmation exigées | idem |
+| UC-APP-12-U12 | `lockPreview`, `publishSnapshot`, `shareFilename` | Prévisualisation à jour et confirmation exigées ; publication nominale : projet « published », révision r1 à l'empreinte verrouillée, journal « Publication r1 », projet d'entrée intact, fichiers r01 puis r02 | idem |
 | UC-APP-12-U13 | `openShareSnapshot`, `duplicateAsProject`, `snapshotToViewModel` | Intégrité, quarantaine, duplication monotone | idem |
 | UC-APP-12-U14 | `createV3Store`, `createMemoryAdapter` | Révisions, dernière par jeu de données, projets, préférences | idem |
 | UC-APP-12-U15 | `validateMasterShape`, `computeEvents` | Cause racine de l'anomalie AN2 (moteur) : master incomplet rejeté par la validation, fatal pour `computeEvents` | idem |
@@ -249,6 +296,12 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 | UC-APP-12-U20 | `validateMasterShape`, `applyExpertJson` | **Comportement actuel figé** — anomalie AN11 (sans `annotations` : accepté ; sans `derivedNarratives` : `TypeError`) | idem |
 | UC-APP-12-U21 | `importJourDocuments` | **Comportement actuel figé** — cause racine de l'anomalie AN5 : entrée sans date → master neuf vide + `date-absente` | idem |
 | UC-APP-12-U22 | `removeScope`, `renderedPanels` | RG4 : retrait d'une famille (journal « Retrait de N association(s)… », dossier intact) ; RG3 : panneau interdit jamais rendu | idem |
+| UC-APP-12-U23 | `initialState`, `effectiveExpandedTreeNodeIds`, `selectScope`, `clearScope`, `switchMode` | A10, RG3 : familles repliées au départ, branches = manuelles ∪ révélées ; filtre par une famille, réinitialisation et changement de vue laissent les branches d'avant le filtre (mêmes ensembles, mêmes identifiants effectifs) ; cause racine de l'anomalie AN16 | idem |
+| UC-APP-12-U24 | `v3.css` (règles lues dans le fichier versionné) | A11 : grille de tuiles (flux dense, rangées de 236 px, colonnes laissées à `TileGrid`), disposition Simplifié sous 900 px ; surface sombre : huit jetons redéfinis sans noir pur, « Système » sombre identique, retouches propres au thème doublées | idem |
+| UC-APP-12-U25 | `v3.css` (règles lues dans le fichier versionné) | A11 : focus visible, rangées de l'arbre et commandes du lecteur ≥ 44 px, mouvement réduit, tableau équivalent hors écran (jamais `display: none`), libellés masqués lisibles, motif de trait distinct par famille, hachures de heatmap, contrastes de texte ≥ 4,5:1 dans les deux thèmes | idem |
+| UC-APP-12-U26 | `availablePanels`, `defaultVisiblePanels`, `v3.css` | **Comportement actuel figé** — cause racine de l'anomalie AN17 (« Arbre » disponible en Simplifié, masqué par la feuille) | idem |
+| UC-APP-12-U27 | `v3.css` (`.v3-badge`) | **Comportement actuel figé** — anomalie AN18 (contraste 3,7:1 en surface claire, 11,1:1 en sombre) | idem |
+| UC-APP-12-U28 | `v3.css` (`.v3-tile-bar button`, `.v3-tile-size select`) | **Comportement actuel figé** — anomalie AN19 (barre de tuile à 40 px contre 44 px promis par l'en-tête de la grille) | idem |
 
 ### Tests fonctionnels
 
@@ -265,7 +318,7 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 | UC-APP-12-F09 | A5 | IHM | Préréglage indisponible puis récit référencé, retrait | idem |
 | UC-APP-12-F10 | A6, anomalies AN6 et AN12 | IHM | Contester retire du soleil et du portfolio, « Contestée » jamais affiché ; confirmer ; note privée en révision, saisie partagée entre articles (**comportement actuel figé**) | idem |
 | UC-APP-12-F11 | A7, E3 | IHM | JSON invalide refusé, abandon, JSON valide = révision | idem |
-| UC-APP-12-F12 | A8, anomalie AN3 | IHM | Famille, mois, synthèse, prévisualisation exacte ; **comportement actuel figé** : publication refusée | idem |
+| UC-APP-12-F12 | A8, E4, anomalie AN3 | IHM | Famille, mois, synthèse, prévisualisation exacte ; **comportement actuel figé** : publication confirmée refusée (« obsolète »), de nouveau après une nouvelle prévisualisation ; rien n'est exporté | idem |
 | UC-APP-12-F13 | E4 | IHM | Publication non confirmée → refus, rien exporté | idem |
 | UC-APP-12-F14 | A9, E5 | IHM | Fichier employeur en lecture seule ; altéré → quarantaine | idem |
 | UC-APP-12-F15 | E1, anomalie AN8 | IHM | **Comportement actuel figé** — ZIP sans contenu reconnu ignoré, rapport précédent effacé (« Aucune anomalie. ») | idem |
@@ -274,12 +327,16 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 | UC-APP-12-F18 | A1 | IHM | ZIP journalier seul avec feuilles → date proposée « à confirmer », journée importée | idem |
 | UC-APP-12-F19 | A8, RG4 | IHM | « Inclure au partage » depuis le portfolio, famille incluse puis décochée → retirée de la version partagée, dossier intact | idem |
 | UC-APP-12-F20 | RG5 | IHM | Synthèse reprenant un verbatim exclu → `fuite-verbatim` affiché, pas de prévisualisation | idem |
+| UC-APP-12-F21 | A10 | IHM | Vue Cartographe : 7 familles repliées ; ouvrir (9 compétences, documentées ou non, « · 3 j. ») ; filtrer par la famille (secteurs de compétence hors famille atténués, 10 secteurs, famille cerclée dans la couronne, indicateurs inchangés) ; réinitialiser (branche restée ouverte) ; fermer ; feuille datée → filtre de la compétence et portfolio de la journée entière, tête de lecture inchangée | idem |
+| UC-APP-12-F22 | A10, anomalie AN16 | IHM | **Comportement actuel figé** — famille révélée depuis le soleil : « Fermer » (×2) et réinitialisation sans effet, repliée seulement par une autre sélection ; famille ouverte à la main puis révélée : « Fermer » sans effet ; famille révélée, un seul « Fermer » puis autre sélection : elle reste dépliée (ouverte à la main) | idem |
+| UC-APP-12-F23 | A11 | IHM (feuille `v3.css` insérée) | Surface Sombre (jetons), non mémorisée ; distinctions renforcées (motif par famille, légende) ; grille 3 → 1 → 4 colonnes au redimensionnement, empan borné ; tableau équivalent hors écran mais accessible | idem |
+| UC-APP-12-F24 | A4, anomalie AN17 | IHM (feuille `v3.css` insérée) | **Comportement actuel figé** — Simplifié : « Arbre » coché mais `display: none`, hors de l'arbre d'accessibilité ; affiché en vue Cartographe | idem |
 
 ### Tests existants liés (non-régression)
 
 - `web/src/v3/core/import.test.js` — identifiants, empreintes, adaptateurs, arbitrage, admissibilité, métriques.
 - `web/src/v3/core/share.test.js` — révisions, comparaison, panneaux, partage (AC-SHARE-01 à 07, 09 à 11, 13, 15, 17, 19, 20 ; les critères 08, 12, 14, 16 et 18 n'y figurent pas), réimport.
-- `web/src/v3/ui/V3View.test.jsx`, `web/src/v3/ui/tile-grid.test.jsx`.
+- `web/src/v3/ui/V3View.test.jsx` (dont le titre « Référentiel » qui retire un filtre posé depuis le soleil), `web/src/v3/ui/tile-grid.test.jsx` (colonnes par largeur, déplacement, tailles, redimensionnement au pointeur).
 - Guides : `content/formation/apprenant/07-interface-cartographie-ipsative.md`, `content/formation/cartographe/07-…`, `content/formation/employeur/06-…`.
 
 ### Exécuter
@@ -308,10 +365,16 @@ cd web && npx vitest run test/usecases/unit/uc-app-12 test/usecases/functional/u
   `ShareBuilder.exportSnapshot` reconstruit l'instantané au moment de
   publier ; chaque construction tire de nouveaux identifiants publics et une
   nouvelle date de génération, donc une empreinte différente de celle
-  verrouillée à la prévisualisation. `publishSnapshot` répond toujours
-  « La prévisualisation est obsolète… » : le fichier employeur n'est **jamais**
-  téléchargé (le moteur publie correctement l'instantané prévisualisé, U16).
-  Figé par F12 ; cause illustrée par U16.
+  verrouillée à la prévisualisation. Après que l'apprenant a confirmé
+  l'avertissement d'irrévocabilité, `publishSnapshot` répond toujours
+  « La prévisualisation est obsolète… », même juste après une nouvelle
+  prévisualisation : le projet ne passe jamais « publié » et le fichier
+  employeur n'est **jamais** téléchargé (le moteur publie correctement
+  l'instantané prévisualisé, U12 et U16). Figé par F12, où l'absence de
+  téléchargement est la seule preuve observable (l'IHM n'affiche pas l'état
+  du projet, et « prévisualisation verrouillée » subsisterait après une
+  publication réussie) ; refus de l'instantané reconstruit et cause
+  illustrés par U16.
 - **AN4 — Libellé mal accordé** (précision « mois ») : `countLabel` affiche
   « 1 mois documentée », « 2 mois documentée » dans la vue employeur. Figé par
   U17.
@@ -370,6 +433,45 @@ cd web && npx vitest run test/usecases/unit/uc-app-12 test/usecases/functional/u
   d'une même date (deux runs UC-APP-02) donnent une journée à arbitrer dont
   les deux choix s'appellent « import » (et, à contenu identique, le même
   identifiant de variante). Figé par F17.
+- **AN16 — Branche révélée impossible à refermer.** Sélectionner une
+  compétence (soleil, arbre, portfolio, feuille datée) place sa famille dans
+  `temporarilyRevealedTreeNodeIds` ; l'arbre déplie l'union des branches
+  manuelles et révélées (`effectiveExpandedTreeNodeIds`), mais le chevron
+  (`V3View.toggleBranch`) ne bascule que l'ensemble manuel. Sur une famille
+  révélée, « Fermer <famille> » — c'est le libellé affiché — reste sans effet
+  visible, clic après clic ; la réinitialisation de la sélection (titre
+  « Référentiel ») ne retire pas non plus la révélation, qui ne cesse qu'à la
+  sélection d'une autre compétence. Pire, chaque clic bascule l'ensemble
+  manuel : un seul clic sur « Fermer » (ou tout nombre impair) ouvre en fait
+  la famille à la main, si bien qu'elle reste dépliée après la fin de la
+  révélation — le clic a eu l'effet inverse. Une famille ouverte à la main ne
+  se referme donc plus dès qu'une de ses compétences est sélectionnée. Figé
+  par F22 ; cause illustrée par U23.
+- **AN17 — « Arbre » proposé mais invisible en Simplifié.** L'arbre est un
+  panneau disponible en vue Simplifié (`MODE_PANELS.simplified`) : le menu
+  « Panneaux » propose « Arbre » (et « Réafficher les panneaux » le coche),
+  V3View le rend, mais `v3.css` le masque dans cette vue
+  (`.v3-mode-simplified .v3-tree { display: none; }`) : la case cochée
+  n'affiche rien et l'arbre sort de l'arbre d'accessibilité, alors que le
+  soleil annonce « la liste équivalente est dans l'arbre et le tableau ».
+  Figé par F24 (feuille appliquée par jsdom) ; cause illustrée par U26.
+- **AN18 — Contraste insuffisant du badge d'anomalies en surface claire.**
+  `.v3-badge` écrit « N anomalie(s) à traiter » en `#1a1206` (gras 600, sans
+  taille propre : texte courant) sur `--v3-focus` (`#b45309` en surface
+  claire) : rapport 3,7:1, sous le 4,5:1 exigé par WCAG 2.2 AA (critère
+  1.4.3) et promis par l'en-tête de `v3.css` ; 11,1:1 en surface sombre.
+  Constaté par calcul sur la feuille versionnée (jsdom ne rend pas les
+  couleurs) ; figé par U27.
+- **AN19 — Cibles de la barre de tuile sous les 44 px promis.** L'en-tête de
+  la grille de tuiles dans `v3.css` annonce « Cibles tactiles ≥ 44 px sur la
+  barre de tuile », mais les boutons ◀ ▶ (`.v3-tile-bar button`) et le menu
+  de taille (`.v3-tile-size select`) de cette barre sont déclarés à 40 px.
+  D'autres cibles, sans engagement explicite de la feuille, sont déclarées
+  plus petites encore (`.v3-reset-title` et `.v3-review button` à 32 px de
+  haut, `.v3-chevron` large de 1,6 rem) ; leur conformité au critère 2.5.8 de
+  WCAG 2.2 AA (24 px, ou espacement suffisant) n'est pas vérifiée, faute de
+  mise en page sous jsdom (L6). Constaté sur la feuille versionnée ; figé par
+  U28.
 
 ## Limites
 
@@ -385,3 +487,23 @@ cd web && npx vitest run test/usecases/unit/uc-app-12 test/usecases/functional/u
 - **L4** — Le menu n'a pas d'entrée « ma cartographie V3 » dans la famille de
   l'apprenant : on y accède par « Cartographie (démonstration) », puis
   « Importer… ».
+- **L5** — Le filtre (arbre, soleil, portfolio) n'atténue que le soleil :
+  indicateurs, heatmap et portfolio ne sont pas restreints. Une journée
+  ouverte depuis une feuille de l'arbre liste **toute** la journée :
+  `pinnedCompetencyIds`, mémorisé par `inspectDay`, n'est lu par aucun
+  panneau, bien que le portfolio vide parle d'« observation documentée […]
+  dans ce périmètre ».
+- **L6** — `web/src/v3/v3.css` n'est pas appliquée sous Vitest (les CSS
+  importées y sont vides, même en `?raw`) : U24 à U28 lisent le fichier
+  versionné et en analysent les règles (CSSOM de jsdom) ; F23 et F24
+  l'insèrent dans le document, et jsdom n'applique alors que les règles de
+  premier niveau et `@media screen`, sans résoudre `var()` ni calculer de
+  mise en page. Ne sont donc vérifiés **que par lecture des règles**, jamais
+  rendus : « Système » sous préférence sombre (`prefers-color-scheme`), le
+  mouvement réduit, l'impression (« Aperçu avant impression »), les
+  dispositions sous 900 px et 700 px, le focus visible, les contrastes
+  effectivement rendus et l'agencement réel des tuiles (flux dense, rangées) ;
+  seul un navigateur (Playwright, local) les exercerait.
+- **L7** — Le choix de surface (Système, Clair, Sombre) et les distinctions
+  renforcées ne sont pas mémorisés : au rechargement, la vue revient à
+  « Système » et aux distinctions standard.

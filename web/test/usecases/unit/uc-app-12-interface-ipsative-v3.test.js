@@ -6,12 +6,17 @@
 // ZIP et inventaire des archives, import et arbitrage des variantes,
 // révisions et droit de réponse, annotations, comparaison ipsative, éditeur
 // JSON expert, vues par persona, grille de tuiles, constructeur de partage
-// par liste positive, réimport d'un instantané employeur, persistance locale.
+// par liste positive, réimport d'un instantané employeur, persistance locale,
+// état des branches de l'arbre, règles de la feuille de style v3.css.
 // Figées ici au niveau du moteur : AN4 (libellé mensuel), AN5 (entrée en
-// quarantaine = master vide, cause racine), AN7 (arbitrage sans révision) et
-// AN11 (forme du master partiellement contrôlée). U04, U15 et U16 illustrent
-// la CAUSE RACINE (moteur, correct par conception) des anomalies AN1, AN2 et
-// AN3, qui sont figées côté IHM par F06, F07 et F12.
+// quarantaine = master vide, cause racine), AN7 (arbitrage sans révision),
+// AN11 (forme du master partiellement contrôlée), AN18 (contraste du badge,
+// lu dans v3.css) et AN19 (cibles de la barre de tuile, lues dans v3.css). U04, U15, U16, U23 et U26 illustrent la CAUSE RACINE des
+// anomalies AN1, AN2, AN3, AN16 et AN17, qui sont figées côté IHM par F06,
+// F07, F12, F22 et F24.
+import { readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { describe, expect, it, vi } from 'vitest'
 import { normalizeReferential } from '../../../src/v3/core/referentiel.js'
 import { chooseVariant, correctEffectiveDate, importJourDocuments, summarizeReport } from '../../../src/v3/core/import.js'
@@ -19,7 +24,17 @@ import { computeEvents } from '../../../src/v3/core/events.js'
 import { inventoryZip, isSafeZipPath, listZipEntries, readZipEntry } from '../../../src/v3/core/zip.js'
 import { annotate, applyExpertJson, masterDigest, reviewEvidenceLink, reviewObservation, validateMasterShape } from '../../../src/v3/core/master.js'
 import { compareStates, resolveBaselinePreset, whatChanged } from '../../../src/v3/core/compare.js'
-import { availablePanels, defaultVisiblePanels, INTERFACE_MODES, initialState, renderedPanels, switchMode } from '../../../src/v3/core/state.js'
+import {
+  availablePanels,
+  clearScope,
+  defaultVisiblePanels,
+  effectiveExpandedTreeNodeIds,
+  INTERFACE_MODES,
+  initialState,
+  renderedPanels,
+  selectScope,
+  switchMode,
+} from '../../../src/v3/core/state.js'
 import { columnsForWidth, moveTile, orderedTiles, TILE_SIZES } from '../../../src/v3/ui/tile-grid.jsx'
 import {
   addLearnerSummary,
@@ -41,6 +56,7 @@ import { countLabel, METRICS } from '../../../src/v3/core/metrics.js'
 import { downloadJson } from '../../../src/lib/download-json.js'
 import referentielDoc from '../../../../schemas/fixtures/referentiel-respire-v7.json'
 import { dayZipFiles, FIXTURE_DAYS, storedZip } from '../support/vis.js'
+
 
 const REF = normalizeReferential(referentielDoc)
 const NOW = '2026-07-20T10:00:00Z'
@@ -273,8 +289,16 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
     expect(publishSnapshot(project, master, built.digests, { confirmedStaticExportWarning: false }).error).toMatch(/ne peut pas être révoqué/)
     const published = publishSnapshot(project, master, built.digests, { confirmedStaticExportWarning: true, now: NOW })
     expect(published.ok).toBe(true)
+    // Publication nominale : révision r1 enregistrée avec l'empreinte VERROUILLÉE
+    // (celle de l'instantané prévisualisé), journalisée, confirmation tracée ;
+    // le projet d'entrée n'est pas muté.
     expect(published.project.state).toBe('published')
-    expect(shareFilename(published.project)).toBe('cartographie-competences-partage-r02.json')
+    expect(published.project.publishedRevisions).toEqual([{ revision: 1, publishedAt: NOW, outputDigest: built.snapshot.integrity.contentDigest }])
+    expect(published.project.journal.at(-1)).toMatchObject({ action: 'publish', summary: 'Publication r1', staticWarningConfirmed: true })
+    expect(project.state).toBe('draft')
+    expect(project.publishedRevisions).toEqual([])
+    expect(shareFilename(project)).toBe('cartographie-competences-partage-r01.json') // fichier de cette publication
+    expect(shareFilename(published.project)).toBe('cartographie-competences-partage-r02.json') // publication suivante
     // Toute modification du dossier après la prévisualisation la rend obsolète.
     const changed = reviewEvidenceLink(master, linksOf(master, '3.04', '2026-01-05')[0].id, 'contested')
     const stale = publishSnapshot(project, changed, { ...built.digests, sourceDigest: masterDigest(changed) }, { confirmedStaticExportWarning: true })
@@ -462,5 +486,238 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
 
     const employer = availablePanels({ format: { temporalPrecision: 'day' }, audience: 'employer', interfaceMode: 'expert' })
     expect([...renderedPanels(new Set(['jsonEditor', 'sun']), employer)]).toEqual(['sun'])
+  })
+})
+
+describe('UC-APP-12 — arbre du référentiel (état des branches)', () => {
+  // Cause racine de l'ANOMALIE AN16 (figée côté IHM par F22) : les expansions
+  // effectives sont l'UNION des branches ouvertes à la main et des branches
+  // révélées par une sélection de compétence ; V3View.toggleBranch (le
+  // chevron) ne bascule que l'ensemble manuel. Une branche révélée reste donc
+  // dépliée quel que soit l'état manuel : le chevron « Fermer » est sans effet.
+  it('UC-APP-12-U23 — expansions effectives = manuelles ∪ révélées ; filtrer, réinitialiser ou changer de vue ne referme rien ; cause racine de l’anomalie AN16', () => {
+    const s0 = initialState()
+    expect(effectiveExpandedTreeNodeIds(s0)).toEqual(new Set()) // toutes les familles repliées au départ
+    let s = {
+      ...s0,
+      manuallyExpandedTreeNodeIds: new Set(['family-2', 'comp-2.01']),
+      temporarilyRevealedTreeNodeIds: new Set(['family-3']),
+    }
+    expect([...effectiveExpandedTreeNodeIds(s)].sort()).toEqual(['comp-2.01', 'family-2', 'family-3'])
+    // Ensemble neuf : le modifier ne touche pas l'état.
+    effectiveExpandedTreeNodeIds(s).add('family-7')
+    expect(s.manuallyExpandedTreeNodeIds.has('family-7')).toBe(false)
+
+    // Filtre par une famille (RG3 : états séparés) — idempotent, sans effet sur
+    // les branches : chaque étape est comparée à l'état d'AVANT le filtre. (La
+    // révélation de la famille d'une COMPÉTENCE sélectionnée n'est pas dans
+    // state.js mais dans V3View.doSelectScope : voir F21 et F22.)
+    const before = s
+    const branches = ['comp-2.01', 'family-2', 'family-3']
+    s = selectScope(before, 'family-2')
+    expect(s.activeScopeNodeId).toBe('family-2')
+    expect(s.manuallyExpandedTreeNodeIds).toBe(before.manuallyExpandedTreeNodeIds)
+    expect(s.temporarilyRevealedTreeNodeIds).toBe(before.temporarilyRevealedTreeNodeIds)
+    expect([...effectiveExpandedTreeNodeIds(s)].sort()).toEqual(branches)
+    expect(selectScope(s, 'family-2')).toBe(s)
+    // Réinitialisation (titre « Référentiel ») : seule la sélection tombe.
+    const reset = clearScope(s)
+    expect(reset.activeScopeNodeId).toBeNull()
+    expect(reset.manuallyExpandedTreeNodeIds).toBe(before.manuallyExpandedTreeNodeIds)
+    expect(reset.temporarilyRevealedTreeNodeIds).toBe(before.temporarilyRevealedTreeNodeIds)
+    expect([...effectiveExpandedTreeNodeIds(reset)].sort()).toEqual(branches)
+    // Changer de vue conserve filtre et branches (AC-UI-01).
+    const other = switchMode(s, 'cartographe')
+    expect(other.interfaceMode).toBe('cartographe')
+    expect(other.activeScopeNodeId).toBe('family-2')
+    expect(other.manuallyExpandedTreeNodeIds).toBe(before.manuallyExpandedTreeNodeIds)
+    expect(other.temporarilyRevealedTreeNodeIds).toBe(before.temporarilyRevealedTreeNodeIds)
+    expect([...effectiveExpandedTreeNodeIds(other)].sort()).toEqual(branches)
+
+    // Cause racine AN16 : famille 3 révélée → dépliée, que l'ensemble manuel la
+    // contienne ou non (ce que le chevron bascule).
+    const revealed = { ...s0, temporarilyRevealedTreeNodeIds: new Set(['family-3']) }
+    for (const manual of [new Set(), new Set(['family-3'])]) {
+      expect(effectiveExpandedTreeNodeIds({ ...revealed, manuallyExpandedTreeNodeIds: manual }).has('family-3')).toBe(true)
+    }
+  })
+})
+
+/**
+ * Règles de la feuille V3 (web/src/v3/v3.css, fichier versionné) analysées par
+ * le CSSOM de jsdom, feuille insérée le temps de la lecture. Vitest n'injecte
+ * pas les CSS importées (et renvoie une chaîne vide même pour « ?raw ») : le
+ * fichier est donc lu sur disque, à l'appel (jamais au niveau d'un describe).
+ * @returns {Array<{media: string|null, selector: string, decl: Record<string, string>}>}
+ */
+function v3Rules() {
+  const here = dirname(fileURLToPath(import.meta.url))
+  const style = document.createElement('style')
+  style.textContent = readFileSync(resolve(here, '../../../src/v3/v3.css'), 'utf8')
+  document.head.appendChild(style)
+  try {
+    const out = []
+    const walk = (rules, media) => {
+      for (const rule of rules) {
+        if (rule.media && rule.cssRules) walk(rule.cssRules, rule.media.mediaText)
+        else if (rule.selectorText) {
+          const decl = {}
+          for (let i = 0; i < rule.style.length; i++) {
+            const prop = rule.style[i]
+            const priority = rule.style.getPropertyPriority(prop)
+            decl[prop] = rule.style.getPropertyValue(prop) + (priority ? ` !${priority}` : '')
+          }
+          out.push({ media, selector: rule.selectorText.replace(/\s+/g, ' ').trim(), decl })
+        }
+      }
+    }
+    walk(style.sheet.cssRules, null)
+    return out
+  } finally {
+    style.remove()
+  }
+}
+
+/** Déclarations d'un sélecteur EXACT (fusionnées s'il apparaît plusieurs fois dans le même contexte). */
+function declOf(rules, selector, media = null) {
+  const found = rules.filter((r) => r.selector === selector && r.media === media)
+  if (found.length === 0) throw new Error(`Règle absente de v3.css : ${media ? `@media ${media} ` : ''}${selector}`)
+  return Object.assign({}, ...found.map((r) => r.decl))
+}
+
+const V3_TOKENS = ['--v3-bg', '--v3-surface', '--v3-surface-2', '--v3-text', '--v3-muted', '--v3-border', '--v3-accent', '--v3-focus']
+const pick = (decl, keys) => Object.fromEntries(keys.map((k) => [k, decl[k]]))
+
+/** Rapport de contraste WCAG 2.x entre deux couleurs #rrggbb. */
+function contrastRatio(a, b) {
+  const luminance = (hex) => {
+    const [r, g, bl] = [1, 3, 5]
+      .map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * bl
+  }
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
+  return (hi + 0.05) / (lo + 0.05)
+}
+
+describe('UC-APP-12 — feuille de style v3.css (grille, surface sombre, accessibilité)', () => {
+  it('UC-APP-12-U24 — grille de tuiles (flux dense, rangées fixes, colonnes laissées à TileGrid) ; surface sombre complète, identique en « Système » sous thème sombre', () => {
+    const rules = v3Rules()
+    // Grille : les COLONNES ne sont pas dans la feuille — TileGrid les pose en
+    // style en ligne (columnsForWidth) ; la feuille fixe flux et rangées.
+    const grid = declOf(rules, '.v3-tile-grid')
+    expect(grid).toMatchObject({ display: 'grid', 'grid-auto-flow': 'dense', 'grid-auto-rows': '236px' })
+    expect(grid).not.toHaveProperty('grid-template-columns')
+    expect(declOf(rules, '.v3-tile')).toMatchObject({ 'min-width': '0', overflow: 'hidden' })
+    expect(declOf(rules, '.v3-tile-content')).toMatchObject({ overflow: 'auto' }) // le contenu défile dans la tuile
+    expect(declOf(rules, '.v3-tile-resize')).toMatchObject({ cursor: 'nwse-resize', 'touch-action': 'none' })
+    // Disposition Simplifié : deux colonnes, une seule sous 900 px.
+    expect(declOf(rules, '.v3-layout')['grid-template-columns']).toBe('minmax(320px, 2fr) minmax(280px, 1.2fr)')
+    expect(declOf(rules, '.v3-layout', '(max-width: 900px)')).toEqual({ 'grid-template-columns': '1fr' })
+
+    // Surface : 8 jetons clairs, TOUS redéfinis en sombre, sans noir pur.
+    const light = pick(declOf(rules, '.v3-root'), V3_TOKENS)
+    const dark = pick(declOf(rules, ".v3-root[data-surface='dark']"), V3_TOKENS)
+    for (const token of V3_TOKENS) {
+      expect(light[token]).toMatch(/^#[0-9a-f]{6}$/)
+      expect(dark[token]).toMatch(/^#[0-9a-f]{6}$/)
+      expect(dark[token]).not.toBe(light[token])
+    }
+    expect(dark['--v3-bg']).toBe('#151a24')
+    expect(Object.values(dark)).not.toContain('#000000')
+    // « Système » sous préférence sombre = exactement la surface sombre, y
+    // compris pour chaque retouche propre au thème (erreurs, centre, bandes).
+    const systemDark = '(prefers-color-scheme: dark)'
+    expect(pick(declOf(rules, ".v3-root[data-surface='system']", systemDark), V3_TOKENS)).toEqual(dark)
+    for (const sel of ['.v3-errors', '.v3-center-stop', '.v3-center-stop-edge', '.v3-sun-band']) {
+      const darkTweak = declOf(rules, `.v3-root[data-surface='dark'] ${sel}`)
+      expect(declOf(rules, `.v3-root[data-surface='system'] ${sel}`, systemDark)).toEqual(darkTweak)
+      expect(darkTweak).not.toEqual(declOf(rules, sel)) // la retouche change bien quelque chose
+    }
+  })
+
+  it('UC-APP-12-U25 — motifs d’accessibilité : focus visible, rangées de l’arbre et commandes du lecteur ≥ 44 px, mouvement réduit, tableau équivalent hors écran (pas masqué), motifs distincts par famille, contrastes de texte ≥ 4,5:1', () => {
+    const rules = v3Rules()
+    // Focus visible sur toutes les commandes, les secteurs et les cellules.
+    expect(declOf(rules, '.v3-root :is(button, select, input, textarea, summary):focus-visible')).toMatchObject({ outline: '3px solid var(--v3-focus)' })
+    expect(declOf(rules, '.v3-root path:focus-visible, .v3-root .v3-cell:focus-visible')).toMatchObject({ outline: '3px solid var(--v3-focus)' })
+    // Cibles tactiles : rangées de l'arbre et commandes du lecteur ≥ 44 px
+    // (seules celles-ci ; la barre de tuile reste à 40 px, anomalie AN19, U28).
+    expect(declOf(rules, '.v3-tree-row')['min-height']).toBe('44px')
+    expect(declOf(rules, '.v3-timeline-controls button')).toEqual({ 'min-width': '44px', 'min-height': '44px' })
+    // Mouvement réduit : plus aucune transition ni animation.
+    expect(declOf(rules, '.v3-root *', '(prefers-reduced-motion: reduce)')).toEqual({ transition: 'none !important', animation: 'none !important' })
+    expect(declOf(rules, '.v3-sector', '(prefers-reduced-motion: reduce)')).toEqual({ transition: 'none' })
+    // Tableau équivalent au soleil : hors écran (lu par les lecteurs d'écran),
+    // jamais display:none ; remis dans le flux à l'impression.
+    expect(declOf(rules, '.v3-sun-table', 'screen')).toEqual({ position: 'absolute', left: '-9999px' })
+    for (const r of rules.filter((x) => x.selector.includes('v3-sun-table') && x.media !== 'print')) expect(r.decl.display).toBeUndefined()
+    expect(declOf(rules, '.v3-sun-table', 'print')).toEqual({ position: 'static !important', left: 'auto !important' })
+    // Libellés visuellement masqués mais lisibles (ex. « Taille de Soleil »).
+    expect(declOf(rules, '.v3-visually-hidden')).toMatchObject({ position: 'absolute', width: '1px', 'clip-path': 'inset(50%)' })
+    expect(declOf(rules, '.v3-visually-hidden').display).toBeUndefined()
+
+    // Distinctions renforcées : un motif de trait PROPRE à chaque famille
+    // (la famille « solid » garde le trait plein) — l'identité ne repose
+    // jamais sur la seule couleur.
+    const patterns = REF.families.map((f) => f.pattern)
+    expect(patterns).toEqual(['solid', 'diagonal', 'dots', 'cross', 'horizontal', 'vertical', 'grid'])
+    expect(rules.some((r) => r.selector === '.v3-pattern-solid')).toBe(false)
+    const dashes = patterns.slice(1).map((p) => declOf(rules, `.v3-pattern-${p}`)['stroke-dasharray'])
+    expect(dashes.every(Boolean)).toBe(true)
+    expect(new Set(dashes).size).toBe(6)
+    expect(declOf(rules, ".v3-root[data-vision='reinforced'] .v3-sector")).toEqual({ stroke: 'var(--v3-text)' })
+    const hatches = [1, 2, 3, 4].map((n) => declOf(rules, `.v3-root[data-vision='reinforced'] .v3-level-${n}`).background)
+    expect(new Set(hatches).size).toBe(4) // quatre niveaux de heatmap distincts sans couleur
+
+    // Contrastes (WCAG 2.2 AA, 1.4.3) : texte et texte atténué sur les trois
+    // surfaces, dans les deux thèmes.
+    for (const selector of ['.v3-root', ".v3-root[data-surface='dark']"]) {
+      const t = declOf(rules, selector)
+      for (const fg of ['--v3-text', '--v3-muted']) {
+        for (const bg of ['--v3-bg', '--v3-surface', '--v3-surface-2']) {
+          expect(contrastRatio(t[fg], t[bg]), `${selector} ${fg} / ${bg}`).toBeGreaterThanOrEqual(4.5)
+        }
+      }
+    }
+  })
+
+  // Cause racine de l'ANOMALIE AN17 (figée côté IHM par F24) : l'arbre est un
+  // panneau DISPONIBLE en Simplifié (le menu « Panneaux » propose « Arbre »),
+  // mais la feuille de style le masque dans cette vue.
+  it('UC-APP-12-U26 — [comportement actuel, anomalie AN17] cause racine : « Arbre » disponible en Simplifié, mais masqué par la feuille de style', () => {
+    const simplified = availablePanels({ format: { temporalPrecision: 'day' }, audience: 'learner', interfaceMode: 'simplified' })
+    expect(simplified.has('tree')).toBe(true) // proposé dans le menu « Panneaux »
+    expect(defaultVisiblePanels('simplified').has('tree')).toBe(false) // pas affiché par défaut
+    expect(declOf(v3Rules(), '.v3-mode-simplified .v3-tree')).toEqual({ display: 'none' }) // attendu : cohérent avec le menu
+  })
+
+  // ANOMALIE AN18 — comportement ACTUEL figé : le badge « N anomalie(s) à
+  // traiter » (texte #1a1206 gras 600, taille courante) sur le jeton
+  // --v3-focus n'atteint pas 4,5:1 en surface claire, contrairement à
+  // l'engagement de l'en-tête de v3.css (WCAG 2.2 AA, texte ≥ 4,5:1).
+  it('UC-APP-12-U27 — [comportement actuel, anomalie AN18] badge d’anomalies : contraste 3,7:1 en surface claire (AA exige 4,5:1), 11,1:1 en sombre', () => {
+    const rules = v3Rules()
+    const badge = declOf(rules, '.v3-badge')
+    expect(badge).toMatchObject({ background: 'var(--v3-focus)', color: '#1a1206', 'font-weight': '600' })
+    expect(badge['font-size']).toBeUndefined() // taille courante : pas un « grand texte » au sens WCAG
+    const light = contrastRatio(badge.color, declOf(rules, '.v3-root')['--v3-focus'])
+    const dark = contrastRatio(badge.color, declOf(rules, ".v3-root[data-surface='dark']")['--v3-focus'])
+    expect(light).toBeCloseTo(3.69, 2) // attendu : ≥ 4,5
+    expect(light).toBeLessThan(4.5)
+    expect(dark).toBeCloseTo(11.1, 1)
+  })
+
+  // ANOMALIE AN19 — comportement ACTUEL figé : l'en-tête de la grille de
+  // tuiles dans v3.css promet des « cibles tactiles ≥ 44 px sur la barre de
+  // tuile », mais les boutons ◀ ▶ et le menu de taille de cette barre sont
+  // déclarés à 40 px.
+  it('UC-APP-12-U28 — [comportement actuel, anomalie AN19] barre de tuile : boutons ◀ ▶ et menu de taille à 40 px, contre 44 px promis par l’en-tête de v3.css', () => {
+    const here = dirname(fileURLToPath(import.meta.url))
+    const source = readFileSync(resolve(here, '../../../src/v3/v3.css'), 'utf8')
+    expect(source).toContain('Cibles tactiles ≥ 44 px sur la barre de tuile') // engagement de la feuille
+    const rules = v3Rules()
+    expect(declOf(rules, '.v3-tile-bar button')).toMatchObject({ 'min-width': '40px', 'min-height': '40px' }) // attendu : 44px
+    expect(declOf(rules, '.v3-tile-size select')).toEqual({ 'min-height': '40px' }) // attendu : 44px
   })
 })
