@@ -126,8 +126,10 @@ journalisant que des compteurs.
   appel ; le job courant et les jobs en file de l'établissement passent
   `budget_exceeded`, ses runs actifs aussi (`budgetBlocked`). Côté runner,
   une réservation alors que `spent_usd` dépasse le plafond répond
-  `{jobs: [], budget: "exceeded"}` et marque la file de même. Réactivation par
-  hausse du plafond (UC-ETA-02, A3).
+  `{jobs: [], budget: "exceeded"}` et marque la file de même ; le runner ne
+  lit pas le champ `budget` : il journalise « file vide — aucun job en
+  attente » et, en `--loop`, continue d'interroger après chaque pause
+  (UC-SYS-01-U25). Réactivation par hausse du plafond (UC-ETA-02, A3).
 - **A8 — Source disparue** (étape 4) : côté tick plateforme, dépôt retiré
   (`portfolio_id` nul), journée absente du dépôt (re-dépôt), paquet ou
   référentiel figé indisponible → échec définitif immédiat du job (`failed`,
@@ -139,6 +141,26 @@ journalisant que des compteurs.
 - **A9 — Partage du travail** (étape 3) : les jobs d'un établissement en
   `endpoint` ne sont jamais réservés par le tick de la plateforme (infra
   injoignable depuis OVH) ; ils sont servis à son runner.
+- **A10 — Runner en boucle** (`--loop [s]`, défaut 30 s) : `runLoop` enchaîne
+  des passes `runOnce` (réservation par lots de `--limit`, 5 par défaut,
+  jusqu'à file vide) séparées par une pause de `s × 1000` ms, interruptible
+  par le signal d'arrêt du runner ; un job mis en file pendant la pause est
+  traité à la passe suivante. Un `409` sur un document (job annulé pendant
+  son extraction) est posté en erreur avec le coût de la journée, et la
+  boucle continue. `runLoop` rend les totaux cumulés des passes **terminées**
+  (`passes`, `reserved`, `ok`, `errors`, `tokens`, `coutUsd`) — `main` ne les
+  affiche pas (UC-SYS-01-U23, F22).
+- **A11 — Arrêt du runner** (Ctrl-C, SIGINT/SIGTERM captés par `main` puis
+  relâchés à la sortie) : une première fois, `requestStop()` — le job en
+  cours est terminé et son résultat posté, les autres jobs du lot restent
+  réservés (`running`) jusqu'à l'expiration du bail (300 s), aucune nouvelle
+  pause n'est entamée ; si l'arrêt survient pendant la réservation, aucun job
+  du lot reçu n'est traité (tout le lot reste `running`) ; une pause **en
+  cours** n'est pas écourtée (jusqu'à `s` secondes). Une seconde fois,
+  `abort()` — la pause ou l'appel LLM en vol est coupé, rien n'est posté pour
+  le job en cours (rendu par le bail) ; code de sortie 0, sauf interruption
+  d'un appel LLM en `--once` (code 1, voir Anomalies) (UC-SYS-01-U24, U26,
+  F23).
 
 ## Scénarios d'erreur
 
@@ -180,6 +202,25 @@ journalisant que des compteurs.
   exception du fournisseur (HTTP 5xx/429, délai dépassé) n'a pas de nouvel
   essai immédiat ; une clé plateforme absente fait échouer toute la file
   `humanome` en un tick, sans appel (voir Anomalies).
+- **E7 — Runner face à une API en erreur** : en `--once`, toute erreur de
+  l'API worker autre que `401`/`403` et qui n'est pas absorbée par le
+  traitement du job (un refus du document, `409` ou `422`, est redéclaré en
+  `{erreur}`) — réseau, `503 "Service indisponible"`, `500 "Erreur
+  interne"`, `404`… — arrête la passe : « ERREUR : API GET
+  /api/worker/jobs?limit=n : HTTP 503 — … » sur stderr, code 1. En `--loop`,
+  la même erreur — y compris un `404`, que le client ne tient pas pour
+  retentable — est journalisée « erreur API transitoire : … » (extraits
+  masqués) puis retentée après la pause ; seuls `401`/`403` (code 3) et une
+  configuration impossible (`RunnerConfigError`, code 4, rien posté)
+  arrêtent la boucle. Un résultat impossible à poster (réseau, `429`, `5xx` :
+  3 envois, relances à 2 s puis 4 s ; un autre `4xx` n'est pas renvoyé) est
+  redéclaré en `{erreur}` portant ce message (3 envois de plus) ; si ce
+  dernier échoue aussi, la passe est abandonnée : job laissé `running`
+  (rendu par le bail), journée extraite et payée absente des totaux
+  (UC-SYS-01-U25, U26). Arguments invalides → aide sur stderr, code 2 ;
+  `--help` → aide sur stdout, code 0. En sous-processus : UC-SYS-01-F24 (le
+  résultat impossible à poster, dont les relances réelles durent 12 s, n'est
+  couvert que par U25).
 
 ## Règles de gestion
 
@@ -242,7 +283,7 @@ journalisant que des compteurs.
 | Domaine | `api/src/Worker/PoleAssembler.php` — `assemblePole`, `validateKairos`, `assembleDay`, `parse` | Réparation et validation des réponses |
 | Domaine | `api/src/Worker/OpenAiCompatibleProvider.php` | Point d'accès compatible OpenAI (`/v1/chat/completions`) — branche du tick inatteignable, voir Anomalies |
 | Domaine | `api/src/Etablissement/ConfigRepository.php` — `etablissementIdForWorkerToken`, `allowsSpending`, `addSpentUsd`, `revealApiKey` ; `CohorteRepository::segmentText` | Jeton, budget, clé, texte du jour |
-| Runner | `scripts/runner-node/runner.mjs` — `parseArgs`, `resolveProviderConfig`, `createApiClient`, `createRunner` (`runOnce`, `runLoop`), `computeCostUsd`, `sanitizeForLog`, `main` | Exécutant machine de l'établissement |
+| Runner | `scripts/runner-node/runner.mjs` — `parseArgs`, `resolveProviderConfig`, `createApiClient` (`reserveJobs`, `postResult` et ses 3 envois), `createRunner` (`runOnce`, `runLoop`, `requestStop`, `abort`), `computeCostUsd`, `sanitizeForLog`, `main` (codes 0 à 4, SIGINT/SIGTERM) | Exécutant machine de l'établissement : passe unique ou boucle, arrêt coopératif ou immédiat |
 
 ## Jeux de tests
 
@@ -272,6 +313,10 @@ journalisant que des compteurs.
 | UC-SYS-01-U20 | `Tick::run` (fabrique de production) | `ANTHROPIC_API_KEY` vide : les jobs de deux runs `failed` en un tick, 0 appel, 6 erreurs (anomalie figée) | idem |
 | UC-SYS-01-U21 | `Tick::run` | Kairos tronqué (`max_tokens`) → `done`, `kairos: null`, note « réponse tronquée » (RG6, A5) | idem |
 | UC-SYS-01-U22 | `main` (runner) | `401` → code 3 ; job `humanome` sans `--provider` → code 4, rien posté ; avec `--provider`, configuration résolue (RG9) | `engine/test/usecases/unit/uc-sys-01-runner-node.test.js` |
+| UC-SYS-01-U23 | `createRunner().runLoop` | Face à une API simulée fidèle : 2 passes séparées par une pause de `--loop 7` (7 000 ms, signal du runner), job arrivé pendant la pause traité ensuite, `409` posté en erreur sans arrêter la boucle, `requestStop()` n'écourte pas la pause, totaux exacts (A10) | `engine/test/usecases/unit/uc-sys-01-runner-loop.test.js` |
+| UC-SYS-01-U24 | `runLoop`, `requestStop`, `abort` | `requestStop()` pendant un job : job posté, reste du lot `running`, aucune pause ; `abort()` coupe la pause réelle du moteur (30 s) ; comportement actuel : `abort()` pendant l'extraction → rien posté, journalisé « erreur API transitoire » (A11, anomalie) | idem |
+| UC-SYS-01-U25 | `runLoop` | `503`, réseau et `404` journalisés « transitoires » puis pause ; `{budget: "exceeded"}` = file vide ; résultat impossible à poster (document puis erreur, relances 2 s/4 s) → passe non comptée, job `running` ; `401` et `RunnerConfigError` arrêtent la boucle (A7, E7) | idem |
+| UC-SYS-01-U26 | `main` (runner) | `--help` → 0 ; arguments invalides → 2 ; `--once` + `503` → 1 ; `--loop` + Ctrl-C ×1 → 0, écouteurs SIGINT/SIGTERM retirés ; Ctrl-C ×2 pendant la pause → 0 immédiat ; comportement actuel : Ctrl-C ×2 pendant un appel LLM (adaptateur OpenAI réel) en `--once` → 1 (A11, E7, anomalie). « Ctrl-C » = appel direct de l'écouteur SIGINT posé par `main` (aucun signal émis) ; les vrais signaux sont envoyés par F23 | idem |
 
 ### Tests fonctionnels
 
@@ -298,13 +343,16 @@ journalisant que des compteurs.
 | UC-SYS-01-F19 | Anomalies | CLI | Disposition des releases : `~/app/shared/.env` ignoré (code 1), `~/app/releases/shared/.env` lu (comportement actuel) | idem |
 | UC-SYS-01-F20 | A8 | API runner | Version de paquet figée introuvable : le job est quand même servi | idem |
 | UC-SYS-01-F21 | E6 | API (tick HTTP) | Paquet publié au gabarit de pôle inexploitable : 3 tentatives en un tick (6 appels), job et run `failed`, message citant la réponse | idem |
+| UC-SYS-01-F22 | A10 | CLI runner (sous-processus Node, API worker et LLM simulés sur 127.0.0.1) | `--loop 1` réel : 2 passes séparées par une pause ≥ 1 s, job mis en file pendant la pause traité ensuite, `409` posté en erreur avec le coût sans arrêter la boucle, documents valides ; SIGINT pendant la pause : pause menée à son terme, aucune réservation de plus, code 0 ; journal sans contenu | `engine/test/usecases/unit/uc-sys-01-runner-cli.test.js` |
+| UC-SYS-01-F23 | A11, anomalie | CLI runner (vrais signaux) | SIGINT ×1 pendant un job → job posté, reste du lot `running`, aucune pause ; SIGINT ×1 pendant la réservation → lot entier `running`, aucun appel LLM ; SIGTERM ×2 pendant la pause de 30 s → sortie immédiate, code 0 ; SIGINT ×2 pendant un appel LLM → rien posté, code 0 en `--loop` (« erreur API transitoire »), comportement actuel : code 1 en `--once` | idem |
+| UC-SYS-01-F24 | E7, RG9 | CLI runner | `--once` + `503` → 1 sans nouvel essai ; `--loop 1` : `503`, coupure réseau, `404` retentés après la pause, puis `401` → 3 ; job `humanome` sans `--provider` → 4, rien posté ; arguments invalides → 2 ; `--help` → 0 | idem |
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/MasseDoDTest.php` — DoD P11 : 20 portfolios par ticks simulés, interruption/reprise (480 appels exactement), plafond, bail expiré, annulation, échecs, `WORKER_TICK_MAX_CALLS`.
 - `api/tests/WorkerRouteTest.php` — API runner : jeton, charge utile, checkpoint, résultats, budget, tick HTTP.
 - `api/tests/WorkerPromptRunnerTest.php` — parité octet à octet des prompts avec le moteur (goldens `api/tests/MasseGolden/`), ports `PoleAssembler`.
-- `scripts/runner-node/runner.test.mjs` — options CLI, résolution du fournisseur, relances, jeton refusé, RGPD du journal (`cd scripts/runner-node && npm test`) ; couvre notamment `runLoop`, `sanitizeForLog` et `computeCostUsd`, sans test UC propre.
+- `scripts/runner-node/runner.test.mjs` — options CLI, résolution du fournisseur, relances, jeton refusé, RGPD du journal (`cd scripts/runner-node && npm test` ; hors de la suite du moteur, donc hors CI) ; couvre notamment `sanitizeForLog` et `computeCostUsd` (sans test UC propre) et, sommairement, `runLoop` (403 fatal, survie à une erreur réseau) — la boucle, l'arrêt et `main` sont couverts par UC-SYS-01-U23 à U26 et, en sous-processus avec de vrais signaux, par F22 à F24.
 - Éléments du « Code sollicité » couverts ailleurs : `ConfigRepository::etablissementIdForWorkerToken`, `allowsSpending`, `addSpentUsd`, `revealApiKey` → UC-ETA-02-U02, U04, U05, U06 ; `JobQueue::refreshRunStatus` → UC-ETA-03-U06 ; `PoleAssembler::parse`, `assembleDay` → `WorkerPromptRunnerTest::testParseTolerant`, `::testAssembleDayDocumentComplet` (et indirectement U08, U11, U21).
 
 ### Exécuter
@@ -373,6 +421,18 @@ séquentiellement.
   l'établissement. Contredit la docblock de `JobQueue::fail` (« never
   portfolio content ») et plan-masse §6. Figé par UC-SYS-01-U11, F07, F21 et
   UC-ETA-03-F24.
+- **Interruption immédiate du runner mal classée.** Quand `abort()` (Ctrl-C
+  ×2) coupe un appel LLM, `extractDay` enveloppe l'`AbortError` dans une
+  `Error` ordinaire (« extractDay : pôle N (date) — This operation was
+  aborted »), que `processJob` relance telle quelle. `main` ne reconnaît
+  l'interruption que par `err.name === 'AbortError'` : en `--once`, il
+  journalise « ERREUR : extractDay … » et sort avec le code **1** (« erreur
+  d'exécution ») au lieu de 0 ; en `--loop`, `runLoop` la journalise
+  « erreur API transitoire : extractDay … » avant de s'arrêter (code 0).
+  Rien n'est posté dans les deux cas (le bail rend le job), conformément à
+  docs/runner-node.md. Correctif suggéré : tester `signal.aborted` (ou
+  `err.cause?.name`) plutôt que le seul nom de l'erreur. Figé par
+  UC-SYS-01-U24, U26 et F23.
 - **Documentation du runner** : docs/runner-node.md affirme « le dernier
   résultat posté pour un job gagne » ; c'est le **premier** document accepté
   qui gagne, les suivants reçoivent `409`.
@@ -406,3 +466,11 @@ séquentiellement.
 - La supervision de la file (`GET /api/status` : dernière activité, jobs en
   file ; tableau de monitoring d'administration via `Admin/PlatformStatus`)
   relève de UC-SYS-03 et UC-ADM-06.
+- Runner, limites de conception observées (UC-SYS-01-U24, U25, F23) : un
+  premier Ctrl-C abandonne les autres jobs du lot réservé (jusqu'à `--limit`
+  si l'arrêt tombe pendant la réservation, `--limit - 1` s'il tombe pendant
+  un job), bloqués `running` pendant le bail de 5 minutes ; il n'écourte pas
+  une pause en cours ; le plafond budgétaire atteint n'est pas signalé (« file vide ») ;
+  en `--loop`, une erreur d'API permanente (URL erronée → `404`) est
+  retentée indéfiniment ; les totaux de `runLoop` ignorent une passe
+  abandonnée sur erreur, même si ses journées ont été payées.

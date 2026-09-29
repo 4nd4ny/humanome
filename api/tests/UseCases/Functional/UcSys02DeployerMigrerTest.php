@@ -526,7 +526,7 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertNull(FicheStore::fromSettings($settings)->competenceFiche($code), 'fiche supprimée en silence');
     }
 
-    #[TestDox('UC-SYS-02-F14 — E11 : seed avant tout référentiel publié → 500 « Seed failed: Aucune version publiée du référentiel… » (deploy.mjs s’arrête)')]
+    #[TestDox('UC-SYS-02-F14 — E11 : seed avant tout référentiel publié → 500 « Seed failed: Aucune version publiée du référentiel… » (deploy.mjs s’arrête) ; étape 5 : 7.1.0 seule publiée → structure de référence, seed 200 (même empreinte)')]
     public function testF14SeedWithoutAPublishedReferentiel(): void
     {
         $this->emptyDatabase();
@@ -537,5 +537,316 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertSame(500, $seed->getStatusCode());
         self::assertStringStartsWith('Seed failed: Aucune version publiée du référentiel', AdmSupport::body($seed)['error']);
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM competence_versions')->fetchColumn());
+
+        // Étape 5 : seul respire-v7.1.0.json présent sur le poste (7.0.0 sautée).
+        // La 7.1.0 (même structure + définitions, hors empreinte) est publiée
+        // seule, sert de structure de référence et le seed réussit.
+        $v71 = json_decode(self::file(self::REFERENTIEL), true);
+        $v71['version'] = '7.1.0';
+        foreach ($v71['competences'] as &$competence) {
+            $competence['description'] = 'Définition de test de ' . $competence['code'] . '.';
+        }
+        unset($competence);
+        $import = $this->tool('POST', '/admin/import-referentiel', (string) json_encode($v71));
+        self::assertSame(200, $import->getStatusCode());
+        self::assertSame(['imported', '7.1.0', $v71['contentHash']], [AdmSupport::body($import)['status'], AdmSupport::body($import)['semver'], AdmSupport::body($import)['contentHash']], 'même empreinte structurelle que la 7.0.0');
+        $seeded = $this->tool('POST', '/admin/seed-competences');
+        self::assertSame(200, $seeded->getStatusCode(), (string) $seeded->getBody());
+        self::assertSame([7, 61, $v71['contentHash']], [AdmSupport::body($seeded)['poles'], AdmSupport::body($seeded)['imported'], AdmSupport::body($seeded)['parityHash']]);
+    }
+
+    // --- Scripts CLI : branches propres (sous-processus) ---------------------
+
+    /** Base VIDE puis migrée par le CLI, comme un poste de développement neuf. */
+    private function migratedEmptyDatabase(): void
+    {
+        $this->emptyDatabase();
+        $migrate = AdmSupport::runPhp('scripts/migrate.php', [], AdmSupport::cliEnv());
+        self::assertSame(0, $migrate['exit'], $migrate['stderr']);
+    }
+
+    private function scratchDir(): string
+    {
+        if ($this->tmpDir === null) {
+            $this->tmpDir = sys_get_temp_dir() . '/uc-sys02-cli-' . bin2hex(random_bytes(4));
+            mkdir($this->tmpDir, 0777, true);
+        }
+
+        return $this->tmpDir;
+    }
+
+    /**
+     * Disposition jetable pour un script CLI : <racine>/scripts/<script> est une
+     * copie octet à octet du script du dépôt — son `$root = dirname(__DIR__)`
+     * vaut alors <racine> — et, si demandé, <racine>/api/vendor/autoload.php
+     * délègue à l'autoload réel. Exerce les branches qui dépendent de fichiers
+     * relatifs à la racine (build/prompt-packages, scripts/data) sans jamais
+     * écrire dans le dépôt.
+     */
+    private function scriptLayout(string $script, bool $withAutoload = true): string
+    {
+        $root = $this->scratchDir() . '/layout-' . bin2hex(random_bytes(3));
+        mkdir($root . '/scripts', 0777, true);
+        copy(AdmSupport::repoRoot() . '/scripts/' . $script, $root . '/scripts/' . $script);
+        self::assertFileEquals(AdmSupport::repoRoot() . '/scripts/' . $script, $root . '/scripts/' . $script);
+        if ($withAutoload) {
+            mkdir($root . '/api/vendor', 0777, true);
+            file_put_contents(
+                $root . '/api/vendor/autoload.php',
+                "<?php\nreturn require " . var_export(AdmSupport::repoRoot() . '/api/vendor/autoload.php', true) . ";\n",
+            );
+        }
+
+        return $root;
+    }
+
+    /** @return list<array{semver: string, status: string, hash: string}> versions stockées du paquet */
+    private static function storedPackageVersions(string $slug): array
+    {
+        $stmt = self::$pdo->prepare(
+            'SELECT pv.semver, pv.status, pv.content FROM prompt_versions pv
+               JOIN prompt_packages pp ON pp.id = pv.package_id
+              WHERE pp.slug = ? ORDER BY pv.semver'
+        );
+        $stmt->execute([$slug]);
+
+        return array_map(static fn (array $row): array => [
+            'semver' => (string) $row['semver'],
+            'status' => (string) $row['status'],
+            'hash' => \Humanome\Packages\PromptPackageRepository::contentHash(json_decode((string) $row['content'], true)),
+        ], $stmt->fetchAll());
+    }
+
+    #[TestDox('UC-SYS-02-F15 — A1/A7/E5/E10 : CLI import-prompt-packages.php — relance sans changement → code 0 « already imported » ; document invalide ou tableau JSON (refus du schéma), JSON illisible ou scalaire (« Import failed »), conflit de version immuable → code 1, les fichiers suivants restent traités ; sans base → code 1')]
+    public function testF15PromptPackageCliBranches(): void
+    {
+        $this->migratedEmptyDatabase();
+        $env = AdmSupport::cliEnv();
+        $dir = $this->scratchDir();
+        $package = json_decode(self::file(self::PACKAGE), true);
+
+        // Nominal puis relance à l'identique (A1) : code 0, aucune écriture.
+        $first = AdmSupport::runPhp('scripts/import-prompt-packages.php', [self::PACKAGE], $env);
+        self::assertSame(0, $first['exit'], $first['stderr']);
+        $stored = self::storedPackageVersions('aurora-demo');
+        self::assertSame([['semver' => '1.0.0', 'status' => 'published', 'hash' => $stored[0]['hash']]], $stored);
+        $short = substr($stored[0]['hash'], 0, 12);
+        self::assertSame("imported as published — aurora-demo@1.0.0 (hash {$short})\n", $first['stdout']);
+        $again = AdmSupport::runPhp('scripts/import-prompt-packages.php', [self::PACKAGE], $env);
+        self::assertSame([0, "already imported — aurora-demo@1.0.0 (hash {$short}), nothing to do\n", ''], [$again['exit'], $again['stdout'], $again['stderr']]);
+        self::assertSame($stored, self::storedPackageVersions('aurora-demo'), 'relance sans effet');
+
+        // Document non conforme au schéma (E4) : code 1, pointeurs d'erreur sur stderr.
+        file_put_contents($dir . '/incomplet.json', '{"id":"aurora-demo"}');
+        $invalid = AdmSupport::runPhp('scripts/import-prompt-packages.php', [$dir . '/incomplet.json'], $env);
+        self::assertSame([1, ''], [$invalid['exit'], $invalid['stdout']]);
+        self::assertMatchesRegularExpression('/^Invalid prompt-package document incomplet\.json:\n(  \S*: .+\n)+$/u', $invalid['stderr']);
+
+        // Tableau JSON : décodé en tableau PHP, il passe la garde « non objet »
+        // et c'est le SCHÉMA qui le refuse (pointeur racine « / »).
+        file_put_contents($dir . '/liste.json', '[1,2]');
+        $list = AdmSupport::runPhp('scripts/import-prompt-packages.php', [$dir . '/liste.json'], $env);
+        self::assertSame(
+            [1, '', "Invalid prompt-package document liste.json:\n  /: The data (array) must match the type: object\n"],
+            [$list['exit'], $list['stdout'], $list['stderr']],
+        );
+
+        // JSON illisible ou valeur scalaire : code 1, « Import failed for … ».
+        file_put_contents($dir . '/casse.json', '{"id": ');
+        file_put_contents($dir . '/scalaire.json', '42');
+        $broken = AdmSupport::runPhp('scripts/import-prompt-packages.php', [$dir . '/casse.json', $dir . '/scalaire.json'], $env);
+        self::assertSame(1, $broken['exit']);
+        self::assertSame(
+            "Import failed for casse.json: Syntax error\nImport failed for scalaire.json: Top-level JSON value is not an object\n",
+            $broken['stderr'],
+        );
+
+        // Conflit d'immuabilité (E5) : même (id, version), autre contenu → code 1,
+        // version publiée intacte ; le fichier SUIVANT est tout de même importé.
+        file_put_contents($dir . '/reecrit.json', json_encode(['description' => 'Réécriture interdite'] + $package));
+        file_put_contents($dir . '/v2.json', json_encode(['version' => '2.0.0', 'description' => 'Deuxième version.'] + $package));
+        $conflict = AdmSupport::runPhp('scripts/import-prompt-packages.php', [$dir . '/reecrit.json', $dir . '/v2.json'], $env);
+        self::assertSame(1, $conflict['exit'], 'un échec suffit à rendre le code 1');
+        self::assertSame(
+            'Conflict on reecrit.json: Version 1.0.0 of prompt package "aurora-demo" already exists with a different content or status "published" (published versions are immutable)' . "\n",
+            $conflict['stderr'],
+        );
+        self::assertStringStartsWith('imported as published — aurora-demo@2.0.0 (hash ', $conflict['stdout']);
+        $versions = self::storedPackageVersions('aurora-demo');
+        self::assertSame(['1.0.0', '2.0.0'], array_column($versions, 'semver'));
+        self::assertSame($stored[0]['hash'], $versions[0]['hash'], '1.0.0 non réécrite');
+
+        // Sans base (E10) : code 1, rien sur stdout ; vérifiée APRÈS la liste des fichiers.
+        $noDb = AdmSupport::runPhp('scripts/import-prompt-packages.php', [self::PACKAGE], AdmSupport::cliEnv(['DB_HOST' => '']));
+        self::assertSame(
+            [1, '', "Error: DB_HOST is not set (expected DB_HOST/DB_NAME/DB_USER/DB_PASSWORD in env).\n"],
+            [$noDb['exit'], $noDb['stdout'], $noDb['stderr']],
+        );
+    }
+
+    #[TestDox('UC-SYS-02-F16 — A7/E10 : CLI import-prompt-packages.php sans argument — entrée par défaut build/prompt-packages/*.json (absente ou sans .json → code 1 avant tout accès base ; présente → chaque .json importé dans l’ordre des noms, relance « already imported ») ; autoload absent → code 1')]
+    public function testF16PromptPackageCliDefaultInput(): void
+    {
+        $this->migratedEmptyDatabase();
+        $env = AdmSupport::cliEnv();
+        $root = $this->scriptLayout('import-prompt-packages.php');
+        $script = $root . '/scripts/import-prompt-packages.php';
+        $none = "Error: no package file found in build/prompt-packages/.\nGenerate the default package with: node scripts/build-default-prompt-package.mjs\n";
+
+        // Dossier absent — même sans base : le contrôle des entrées passe avant.
+        $absent = AdmSupport::runPhp($script, [], AdmSupport::cliEnv(['DB_HOST' => '']), $root);
+        self::assertSame([1, '', $none], [$absent['exit'], $absent['stdout'], $absent['stderr']]);
+
+        // Dossier présent mais sans fichier .json.
+        mkdir($root . '/build/prompt-packages', 0777, true);
+        file_put_contents($root . '/build/prompt-packages/LISEZMOI.txt', 'généré par build-default-prompt-package.mjs');
+        $empty = AdmSupport::runPhp($script, [], $env, $root);
+        self::assertSame([1, $none], [$empty['exit'], $empty['stderr']]);
+        self::assertSame([], self::storedPackageVersions('aurora-demo'));
+
+        // Paquets présents : tous importés, ordre alphabétique des noms de fichier.
+        $package = json_decode(self::file(self::PACKAGE), true);
+        file_put_contents($root . '/build/prompt-packages/b-aurora-2.0.0.json', json_encode(['version' => '2.0.0', 'description' => 'Deuxième version.'] + $package));
+        file_put_contents($root . '/build/prompt-packages/a-aurora-1.0.0.json', json_encode($package));
+        $run = AdmSupport::runPhp($script, [], $env, $root);
+        self::assertSame(0, $run['exit'], $run['stderr']);
+        $versions = self::storedPackageVersions('aurora-demo');
+        self::assertSame([['1.0.0', 'published'], ['2.0.0', 'published']], array_map(static fn (array $v): array => [$v['semver'], $v['status']], $versions));
+        self::assertSame(sprintf(
+            "imported as published — aurora-demo@1.0.0 (hash %s)\nimported as published — aurora-demo@2.0.0 (hash %s)\n",
+            substr($versions[0]['hash'], 0, 12),
+            substr($versions[1]['hash'], 0, 12),
+        ), $run['stdout']);
+
+        $again = AdmSupport::runPhp($script, [], $env, $root);
+        self::assertSame(0, $again['exit']);
+        self::assertSame(2, substr_count($again['stdout'], ', nothing to do'));
+
+        // Dépendances non installées : code 1, message explicite.
+        $bare = $this->scriptLayout('import-prompt-packages.php', false);
+        $noAutoload = AdmSupport::runPhp($bare . '/scripts/import-prompt-packages.php', [], $env, $bare);
+        self::assertSame(
+            [1, '', "Error: composer autoload not found — run: docker compose run --rm php composer install\n"],
+            [$noAutoload['exit'], $noAutoload['stdout'], $noAutoload['stderr']],
+        );
+    }
+
+    #[TestDox('UC-SYS-02-F17 — A1/A7/E10/E11 : CLI seed-competences.php — sans base → code 1 ; référentiel non publié → code 1 ; nominal 7/61 puis relance idempotente (code 0, 61 inchangées) ; porte de parité en échec → code 1 sans sortie standard')]
+    public function testF17CompetenceSeedCliBranches(): void
+    {
+        $this->migratedEmptyDatabase();
+        $env = AdmSupport::cliEnv();
+
+        $noDb = AdmSupport::runPhp('scripts/seed-competences.php', [], AdmSupport::cliEnv(['DB_HOST' => '']));
+        self::assertSame(
+            [1, '', "Error: DB not configured (DB_HOST/DB_NAME/DB_USER/DB_PASSWORD)\n"],
+            [$noDb['exit'], $noDb['stdout'], $noDb['stderr']],
+        );
+
+        $noReferentiel = AdmSupport::runPhp('scripts/seed-competences.php', [], $env);
+        self::assertSame(
+            [1, '', "Seed échoué : Aucune version publiée du référentiel — importer respire-v7 d'abord.\n"],
+            [$noReferentiel['exit'], $noReferentiel['stdout'], $noReferentiel['stderr']],
+        );
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM competence_versions')->fetchColumn());
+
+        self::assertSame(0, AdmSupport::runPhp('scripts/import-referentiel.php', [self::REFERENTIEL], $env)['exit']);
+        $published = (string) self::$pdo->query("SELECT content_hash FROM referentiel_versions WHERE semver = '7.0.0'")->fetchColumn();
+        $short = substr($published, 0, 12);
+
+        $first = AdmSupport::runPhp('scripts/seed-competences.php', [], $env);
+        self::assertSame(0, $first['exit'], $first['stderr']);
+        self::assertSame(
+            "pôles 7 · compétences 61 importées / 0 inchangées / 0 backfillées · fiches 61 · gate parité OK ({$short}…) · lockfile 61 liens\nseed terminé.\n",
+            $first['stdout'],
+        );
+
+        // Relance (A1) : sans effet, même empreinte de parité, aucune ligne en plus.
+        $again = AdmSupport::runPhp('scripts/seed-competences.php', [], $env);
+        self::assertSame(
+            [0, "pôles 7 · compétences 0 importées / 61 inchangées / 0 backfillées · fiches 61 · gate parité OK ({$short}…) · lockfile 61 liens\nseed terminé.\n", ''],
+            [$again['exit'], $again['stdout'], $again['stderr']],
+        );
+        self::assertSame(61, (int) self::$pdo->query('SELECT COUNT(*) FROM competence_versions')->fetchColumn());
+        self::assertSame(61, (int) self::$pdo->query('SELECT COUNT(*) FROM referentiel_snapshot_competences')->fetchColumn());
+
+        // Porte de parité (RG5, E11) : un nom structurel divergent en base → code 1.
+        $code = (string) self::$pdo->query("SELECT competence_code FROM competence_versions ORDER BY competence_code LIMIT 1")->fetchColumn();
+        $nom = (string) self::$pdo->query("SELECT nom FROM competence_versions WHERE competence_code = '{$code}'")->fetchColumn();
+        self::$pdo->prepare("UPDATE competence_versions SET nom = 'Nom divergent' WHERE competence_code = ?")->execute([$code]);
+        try {
+            $gate = AdmSupport::runPhp('scripts/seed-competences.php', [], $env);
+        } finally {
+            self::$pdo->prepare('UPDATE competence_versions SET nom = ? WHERE competence_code = ?')->execute([$nom, $code]);
+        }
+        self::assertSame([1, ''], [$gate['exit'], $gate['stdout']]);
+        self::assertMatchesRegularExpression(
+            '/^Seed échoué : Gate de parité ÉCHOUÉ : corps assemblé ([0-9a-f]{64}) ≠ publié ' . $published . ' \(nom\/pôle structurel divergent\)\.\n$/u',
+            $gate['stderr'],
+        );
+        self::assertSame(0, AdmSupport::runPhp('scripts/seed-competences.php', [], $env)['exit'], 'nom rétabli : la porte s’ouvre');
+    }
+
+    /**
+     * Branches dépendant du corpus relatif au script (scripts/data), jouées
+     * dans une disposition jetable. COMPORTEMENT ACTUEL figé — anomalie AN-6 :
+     * sans fiches-v7.json (facultatif), le seed d'une base déjà amorcée
+     * « backfille » les 61 versions 1.0.0 SANS leur fiche et remet les en-têtes
+     * de pôle à NULL (code 0) : la source unique des fiches est effacée, et le
+     * garde-fou de generate-fiches (AN-1) laisse ensuite vider twin9_fiches.
+     */
+    #[TestDox('UC-SYS-02-F18 — E11 : CLI seed-competences.php — autoload absent → code 1 ; competences-v7.json absent → code 1 ; (AN-6, comportement actuel) fiches-v7.json absent → code 0 mais 61 fiches et 7 en-têtes effacés de la base, puis generate-fiches « unchanged » vide twin9_fiches (AN-1) ; un seed complet rétablit la base')]
+    public function testF18CompetenceSeedCliCorpusBranches(): void
+    {
+        $this->migratedEmptyDatabase();
+        $env = AdmSupport::cliEnv();
+        self::assertSame(0, AdmSupport::runPhp('scripts/import-referentiel.php', [self::REFERENTIEL], $env)['exit']);
+        self::assertSame(0, AdmSupport::runPhp('scripts/seed-competences.php', [], $env)['exit']);
+        $withFiche = "SELECT COUNT(*) FROM competence_versions WHERE semver = '1.0.0' AND JSON_CONTAINS_PATH(content, 'one', '$.fiche')";
+        $withHeader = 'SELECT COUNT(*) FROM referentiel_poles WHERE header IS NOT NULL';
+        self::assertSame([61, 7], [(int) self::$pdo->query($withFiche)->fetchColumn(), (int) self::$pdo->query($withHeader)->fetchColumn()]);
+
+        $bare = $this->scriptLayout('seed-competences.php', false);
+        $noAutoload = AdmSupport::runPhp($bare . '/scripts/seed-competences.php', [], $env, $bare);
+        self::assertSame(
+            [1, '', "Error: composer autoload not found — run composer install\n"],
+            [$noAutoload['exit'], $noAutoload['stdout'], $noAutoload['stderr']],
+        );
+
+        $root = $this->scriptLayout('seed-competences.php');
+        $script = $root . '/scripts/seed-competences.php';
+        $noCorpus = AdmSupport::runPhp($script, [], $env, $root);
+        self::assertSame(
+            [1, '', "Error: {$root}/scripts/data/competences-v7.json introuvable (régénérer depuis les YAML)\n"],
+            [$noCorpus['exit'], $noCorpus['stdout'], $noCorpus['stderr']],
+        );
+
+        // Réglage twin9_fiches en place (étape 7 d'un déploiement précédent).
+        self::assertSame(200, $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => true]))->getStatusCode());
+        $settings = new SettingsRepository(self::$pdo);
+        $code = (string) self::$pdo->query('SELECT competence_code FROM competence_versions ORDER BY competence_code LIMIT 1')->fetchColumn();
+        self::assertNotNull(FicheStore::fromSettings($settings)->competenceFiche($code));
+
+        // Corpus riche seul, sans fiches-v7.json.
+        mkdir($root . '/scripts/data', 0777, true);
+        copy(AdmSupport::repoRoot() . '/scripts/data/competences-v7.json', $root . '/scripts/data/competences-v7.json');
+        $noFiches = AdmSupport::runPhp($script, [], $env, $root);
+        self::assertSame(0, $noFiches['exit'], $noFiches['stderr']);
+        self::assertStringContainsString('compétences 0 importées / 0 inchangées / 61 backfillées · fiches 0 · gate parité OK', $noFiches['stdout']);
+        self::assertSame(
+            [0, 0],
+            [(int) self::$pdo->query($withFiche)->fetchColumn(), (int) self::$pdo->query($withHeader)->fetchColumn()],
+            'fiches et en-têtes effacés sans alerte (AN-6)',
+        );
+        // Enchaînement avec AN-1 : le garde-fou ne voit rien et vide le réglage.
+        $guard = $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => false]));
+        self::assertSame(200, $guard->getStatusCode());
+        self::assertSame(['unchanged', 0, []], [AdmSupport::body($guard)['status'], AdmSupport::body($guard)['competences'], AdmSupport::body($guard)['changed']]);
+        self::assertNull(FicheStore::fromSettings($settings)->competenceFiche($code), 'twin9_fiches vidé sous un « unchanged »');
+
+        // Un seed avec le corpus complet (dépôt) rétablit tout.
+        $restore = AdmSupport::runPhp('scripts/seed-competences.php', [], $env);
+        self::assertStringContainsString('compétences 0 importées / 0 inchangées / 61 backfillées · fiches 61', $restore['stdout']);
+        self::assertSame([61, 7], [(int) self::$pdo->query($withFiche)->fetchColumn(), (int) self::$pdo->query($withHeader)->fetchColumn()]);
     }
 }
