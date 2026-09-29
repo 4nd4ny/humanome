@@ -9,8 +9,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
+import { createCartoStore } from '../../../src/lib/carto-store.js'
+import { createPortfolioStore } from '../../../src/lib/portfolio-store.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import { clearLocalStorage, installFakeAccountApi, jsonResponse } from '../support/cpt.js'
+// IndexedDB factice en mémoire (outil du lot « apprenant », réutilisé tel quel).
+import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
+
+const idb = createFakeIndexedDb() // un seul faux par fichier (cf. support)
 
 const ADA = {
   id: 7,
@@ -76,7 +82,15 @@ describe('UC-CPT-06 — l’utilisateur supprime son compte', () => {
     expect(nav().queryByRole('link', { name: 'Ma file de relecture' })).toBeNull()
   })
 
-  it('UC-CPT-06-F07 — A1 : les données LOCALES du navigateur ne sont pas concernées par la suppression', async () => {
+  it('UC-CPT-06-F07 — A1 : les données LOCALES du navigateur (localStorage, portfolios et cartographies IndexedDB) ne sont pas concernées', async () => {
+    idb.reset()
+    vi.stubGlobal('indexedDB', idb.factory)
+    await createPortfolioStore().create({
+      titre: 'Journal local',
+      texte: 'Une journée.',
+      segments: [{ date: '2026-01-05', texte: 'Une journée.', debut: 0, fin: 12 }],
+    })
+    await createCartoStore().saveCartography({ type: 'jour', titre: 'Journée locale', document: { kind: 'cartographie-jour', date: '2026-01-05', poles: [] } })
     localStorage.setItem('humanome-keys', JSON.stringify({ openai: 'sk-openai-locale' }))
     localStorage.setItem('humanome-training', JSON.stringify({ apprenant: { chapitresTermines: ['02-ecrire-des-traces-exploitables'] } }))
     const { zone } = await openDangerZone()
@@ -87,6 +101,8 @@ describe('UC-CPT-06 — l’utilisateur supprime son compte', () => {
 
     expect(JSON.parse(localStorage.getItem('humanome-keys'))).toEqual({ openai: 'sk-openai-locale' })
     expect(localStorage.getItem('humanome-training')).not.toBeNull()
+    expect((await createPortfolioStore().list()).map((p) => p.titre)).toEqual(['Journal local'])
+    expect((await createCartoStore().listCartographies()).map((c) => c.titre)).toEqual(['Journée locale'])
   })
 
   it('UC-CPT-06-F08 — E2/E1 : suppression refusée (403 CSRF, 401 session expirée) → message, le profil reste affiché', async () => {
@@ -103,5 +119,7 @@ describe('UC-CPT-06 — l’utilisateur supprime son compte', () => {
       fireEvent.click(zone.getByRole('button', { name: 'Supprimer mon compte' }))
     })
     expect((await screen.findByRole('alert')).textContent).toBe('Authentification requise')
+    expect(screen.getByRole('region', { name: 'Profil' })).toBeDefined()
+    expect(api.users.has(ADA.email)).toBe(true)
   })
 })

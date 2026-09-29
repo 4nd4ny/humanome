@@ -4,11 +4,19 @@
 // Code sollicité appelé directement : le store de progression
 // (createTrainingStore : local anonyme, serveur connecté, migration) et le
 // contenu embarqué des parcours (listChapters, getChapter, rewriteChapterLink),
-// y compris le contrat « identifiants de chapitre acceptés par l'API », et
-// FormationSection rendu seul avec un store injecté.
+// y compris le contrat « identifiants de chapitre acceptés par l'API » ;
+// FormationSection rendu seul avec un store injecté (bascule optimiste,
+// annulation) ; EspaceView et GuidesView (session → connected) avec une sonde
+// fetchMeFn injectée ; exportArchive (la progression n'y figure pas).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import FormationSection from '../../../src/views/espace/FormationSection.jsx'
+import EspaceView from '../../../src/views/EspaceView.jsx'
+import GuidesView from '../../../src/views/GuidesView.jsx'
+import { ApiUnavailableError, resetApiClient } from '../../../src/api/client.js'
+import { exportArchive } from '../../../src/lib/archive.js'
+import referentiel from '../../../../schemas/fixtures/referentiel-respire-v7.json'
+import { createFakeAccountApi } from '../support/cpt.js'
 import {
   TRAINING_PARCOURS,
   TRAINING_STORAGE_KEY,
@@ -25,6 +33,7 @@ import {
 
 /** Motif d'identifiant de la route PUT /api/training/progress (training.php). */
 const API_SLUG = /^[a-z0-9][a-z0-9._-]{0,63}$/
+const CH_EXPORT = '05-relire-sa-cartographie'
 
 function memoryStorage(initial = {}) {
   const map = new Map(Object.entries(initial))
@@ -51,7 +60,19 @@ function fakeApi(server = {}) {
 afterEach(() => {
   cleanup()
   vi.unstubAllGlobals()
+  resetApiClient()
 })
+
+/** Promesse pilotée par le test : l'écriture reste « en vol » jusqu'à release. */
+function deferred() {
+  let resolve
+  let reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
+  return { promise, resolve, reject }
+}
 
 describe('UC-CPT-05 — progression anonyme (localStorage)', () => {
   it('UC-CPT-05-U02 — setLocal/listLocal/clearLocal : même forme que la réponse serveur, sous « humanome-training »', () => {
@@ -96,6 +117,19 @@ describe('UC-CPT-05 — progression connectée et migration', () => {
     ])
     expect(storage.map.has('humanome-training')).toBe(false)
     expect(loaded).toEqual({ chapitres: ['01-a', '02-b', '03-c'], source: 'serveur' })
+
+    // Comportement ACTUEL figé (voir AN1) : clearLocal() supprime la clé ENTIÈRE,
+    // y compris la progression locale d'un autre parcours, qui n'est pas migrée.
+    const both = memoryStorage({
+      'humanome-training': JSON.stringify({
+        apprenant: { chapitresTermines: ['01-a'] },
+        cartographe: { chapitresTermines: ['01-le-role'] },
+      }),
+    })
+    const api2 = fakeApi({})
+    await createTrainingStore({ storage: both, api: api2 }).load({ connected: true })
+    expect(api2.puts).toEqual([{ parcours: 'apprenant', chapitre: '01-a', completed: true }])
+    expect(both.map.has('humanome-training')).toBe(false) // « cartographe » perdu aussi
   })
 
   it('UC-CPT-05-U05 — migration interrompue ou API en panne : le local est CONSERVÉ et fait foi (source « local »)', async () => {
@@ -186,12 +220,17 @@ describe('UC-CPT-05 — contenu des parcours', () => {
 })
 
 describe('UC-CPT-05 — FormationSection (composant seul, store injecté)', () => {
-  it('UC-CPT-05-U11 — compteur arrondi, mention « synchronisée » selon la source, bascule optimiste annulée en cas d’échec', async () => {
-    let fail = false
+  const CH1 = '01-pourquoi-un-portfolio-reflexif'
+  const CH2 = '02-ecrire-des-traces-exploitables'
+  const box = (titre) => screen.getByRole('checkbox', { name: `Chapitre terminé : ${titre}` })
+
+  it('UC-CPT-05-U11 — compteur arrondi, mention « synchronisée » selon la source ; bascule OPTIMISTE (écran à jour avant la réponse), annulée en cas d’échec', async () => {
+    let pending
     const trainingStore = {
-      load: vi.fn(async () => ({ chapitres: ['01-pourquoi-un-portfolio-reflexif', '02-ecrire-des-traces-exploitables'], source: 'serveur' })),
-      setChapter: vi.fn(async () => {
-        if (fail) throw new Error('La progression n’a pas pu être enregistrée.')
+      load: vi.fn(async () => ({ chapitres: [CH1, CH2], source: 'serveur' })),
+      setChapter: vi.fn(() => {
+        pending = deferred()
+        return pending.promise
       }),
     }
     render(<FormationSection chapter={null} connected trainingStore={trainingStore} />)
@@ -201,18 +240,112 @@ describe('UC-CPT-05 — FormationSection (composant seul, store injecté)', () =
     expect(trainingStore.load).toHaveBeenCalledWith({ connected: true })
     expect(screen.queryByText(/Sans compte, la progression reste/)).toBeNull()
 
-    await act(async () => {
-      fireEvent.click(screen.getByRole('checkbox', { name: 'Chapitre terminé : Les pièges à éviter' }))
-    })
+    // Cocher : l'écran change AVANT la réponse du serveur.
+    fireEvent.click(box('Les pièges à éviter'))
     expect(trainingStore.setChapter).toHaveBeenCalledWith('04-les-pieges-a-eviter', true, { connected: true })
+    expect(box('Les pièges à éviter').checked).toBe(true)
     expect(progress.textContent).toContain('3 / 7 chapitres terminés (43 %)')
-
-    fail = true
-    await act(async () => {
-      fireEvent.click(screen.getByRole('checkbox', { name: 'Chapitre terminé : Les pièges à éviter' }))
-    })
-    expect(screen.getByRole('alert').textContent).toBe('La progression n’a pas pu être enregistrée.')
-    expect(screen.getByRole('checkbox', { name: 'Chapitre terminé : Les pièges à éviter' }).checked).toBe(true)
+    await act(async () => pending.resolve())
     expect(progress.textContent).toContain('3 / 7')
+
+    // Décocher : 2/7 immédiatement, puis l'échec rétablit la case et le compteur.
+    fireEvent.click(box('Les pièges à éviter'))
+    expect(box('Les pièges à éviter').checked).toBe(false)
+    expect(progress.textContent).toContain('2 / 7')
+    await act(async () => pending.reject(new Error('La progression n’a pas pu être enregistrée.')))
+    expect(screen.getByRole('alert').textContent).toBe('La progression n’a pas pu être enregistrée.')
+    expect(box('Les pièges à éviter').checked).toBe(true)
+    expect(progress.textContent).toContain('3 / 7')
+  })
+
+  it('UC-CPT-05-U12 — ANOMALIE AN3 : deux bascules concurrentes, la 1re échoue → l’annulation efface AUSSI la 2e, pourtant enregistrée', async () => {
+    const writes = []
+    const trainingStore = {
+      load: vi.fn(async () => ({ chapitres: [], source: 'serveur' })),
+      setChapter: vi.fn(() => {
+        const d = deferred()
+        writes.push(d)
+        return d.promise
+      }),
+    }
+    render(<FormationSection chapter={null} connected trainingStore={trainingStore} />)
+    const progress = await screen.findByTestId('formation-progress')
+    await vi.waitFor(() => expect(progress.textContent).toContain('0 / 7'))
+
+    fireEvent.click(box('Pourquoi un portfolio réflexif')) // A, en vol
+    fireEvent.click(box('Écrire des traces exploitables')) // B, en vol
+    expect(progress.textContent).toContain('2 / 7')
+    await act(async () => writes[1].resolve()) // B enregistrée
+    await act(async () => writes[0].reject(new Error('Erreur interne'))) // A refusée
+
+    // Comportement ACTUEL figé : setDone(previous) restaure l'instantané pris au clic
+    // sur A — B disparaît de l'écran alors qu'elle est enregistrée côté serveur.
+    expect(box('Pourquoi un portfolio réflexif').checked).toBe(false)
+    expect(box('Écrire des traces exploitables').checked).toBe(false)
+    expect(progress.textContent).toContain('0 / 7')
+  })
+
+  it('UC-CPT-05-U13 — ANOMALIE AN4 : parcours « noesiologie » sans introduction propre → titre et chapeau du parcours apprenant', async () => {
+    const trainingStore = { load: vi.fn(async () => ({ chapitres: [], source: 'local' })), setChapter: vi.fn() }
+    render(<FormationSection parcours="noesiologie" chapter={null} connected={false} trainingStore={trainingStore} />)
+
+    await screen.findByTestId('formation-progress')
+    // Comportement ACTUEL figé : repli PARCOURS_INTROS.apprenant.
+    expect(screen.getByRole('heading', { level: 2 }).textContent).toBe('Formation apprenant — mode expert')
+  })
+})
+
+describe('UC-CPT-05 — vues : de la session à « connected »', () => {
+  const store = () => ({ load: vi.fn(async () => ({ chapitres: [], source: 'local' })), setChapter: vi.fn() })
+  const lastLoad = (s) => s.load.mock.calls.at(-1)[0]
+
+  it('UC-CPT-05-U14 — EspaceView et GuidesView : utilisateur → connected ; 401, API indisponible ou erreur → progression locale', async () => {
+    for (const [fetchMeFn, expected] of [
+      [vi.fn(async () => ({ user: { id: 7, displayName: 'Ada', roles: ['apprenant'] } })), true],
+      [vi.fn(async () => ({ user: null })), false],
+      [vi.fn(async () => Promise.reject(new ApiUnavailableError())), false],
+    ]) {
+      const espaceStore = store()
+      render(<EspaceView section="formation" deps={{ fetchMeFn, trainingStore: espaceStore }} />)
+      await waitFor(() => expect(fetchMeFn).toHaveBeenCalled())
+      await waitFor(() => expect(lastLoad(espaceStore)).toEqual({ connected: expected }))
+      cleanup()
+
+      const guidesStore = store()
+      render(<GuidesView parcours="apprenant" chapter={null} deps={{ fetchMeFn, trainingStore: guidesStore }} />)
+      await waitFor(() => expect(lastLoad(guidesStore)).toEqual({ connected: expected }))
+      cleanup()
+    }
+    // GuidesView : toute erreur de la sonde (pas seulement « indisponible ») → local.
+    const failing = store()
+    render(<GuidesView parcours="apprenant" chapter={null} deps={{ fetchMeFn: vi.fn().mockRejectedValue(new Error('500')), trainingStore: failing }} />)
+    await waitFor(() => expect(failing.load).toHaveBeenCalled())
+    expect(lastLoad(failing)).toEqual({ connected: false })
+  })
+})
+
+describe('UC-CPT-05 — export RGPD (archive locale)', () => {
+  it('UC-CPT-05-U15 — ANOMALIE AN5 : l’archive exportée par un compte connecté ne contient pas sa progression de formation', async () => {
+    const api = createFakeAccountApi({
+      users: [{ id: 7, email: 'ada@example.org', displayName: 'Ada', training: { apprenant: [CH_EXPORT] } }],
+      loggedInAs: 'ada@example.org',
+    })
+    const { archive } = await exportArchive({
+      fetchFn: api.fetch,
+      cartoStore: { listCartographies: async () => [] },
+      portfolioStore: { list: async () => [] },
+      getReferentiel: async () => ({ doc: referentiel }),
+      getPromptPackages: async () => [],
+      getMassDocuments: async () => [],
+      download: vi.fn(),
+      now: () => new Date('2026-09-29T08:00:00Z'),
+    })
+
+    expect(archive.account).toMatchObject({ email: 'ada@example.org' }) // export d'un compte connecté
+    // Comportement ACTUEL figé : aucune lecture de GET /api/training/progress, aucune trace
+    // de la progression (scripts/rgpd-audit.php la déclare pourtant couverte « local »).
+    expect(api.callsTo('training/progress')).toHaveLength(0)
+    expect(JSON.stringify(archive)).not.toContain(CH_EXPORT)
+    expect(Object.keys(archive).some((k) => /training|formation|progress/i.test(k))).toBe(false)
   })
 })

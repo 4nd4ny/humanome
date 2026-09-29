@@ -90,7 +90,7 @@ describe('UC-CPT-02 — client API : déconnexion et session', () => {
     expect(events.listener.mock.calls.length).toBeGreaterThanOrEqual(3) // logout, login, logout
   })
 
-  it('UC-CPT-02-U12 — fetchMe() : 401 = visiteur (pas une erreur), 200 = profil + jeton, panne ou file:// = API indisponible', async () => {
+  it('UC-CPT-02-U12 — fetchMe() : 401 = visiteur (pas une erreur), 200 = profil + jeton, panne, file:// ou réponse HTML = API indisponible, autre statut = ApiError', async () => {
     await expect(fetchMe({ fetchFn: vi.fn().mockResolvedValue(jsonResponse(401, { error: 'Authentification requise' })) })).resolves.toEqual({ user: null })
 
     await expect(fetchMe({ fetchFn: vi.fn().mockResolvedValue(jsonResponse(200, { user: ada, csrfToken: 'tok-me' })) })).resolves.toEqual({ user: ada })
@@ -105,6 +105,17 @@ describe('UC-CPT-02 — client API : déconnexion et session', () => {
     const e = await fetchMe({ fetchFn: vi.fn().mockResolvedValue(jsonResponse(500, { error: 'Erreur interne' })) }).catch((err) => err)
     expect(e).toBeInstanceOf(ApiError)
     expect(e.status).toBe(500)
+
+    // Copie statique réelle : l'hébergeur répond une page HTML (404 ou index), pas du JSON.
+    const html = {
+      ok: false,
+      status: 404,
+      headers: { get: () => 'text/html; charset=utf-8' },
+      json: async () => {
+        throw new SyntaxError('Unexpected token <')
+      },
+    }
+    await expect(fetchMe({ fetchFn: vi.fn().mockResolvedValue(html) })).rejects.toBeInstanceOf(ApiUnavailableError)
   })
 })
 

@@ -170,4 +170,32 @@ describe('UC-CPT-03 — l’utilisateur gère son profil', () => {
     expect((await profile().findByRole('alert')).textContent).toBe('Image non prise en charge (JPEG, PNG ou WebP).')
     expect(api.callsTo('auth/me/avatar')).toHaveLength(0)
   })
+
+  it('UC-CPT-03-F18 — ANOMALIE AN1 : envoi d’une photo valide perdu (réseau, réponse non JSON) → « Image non prise en charge… », message trompeur', async () => {
+    const api = await openProfile()
+    api.override('PUT auth/me/avatar', () => {
+      throw new TypeError('Failed to fetch') // ou 413/5xx HTML de l'hébergeur : même ApiUnavailableError
+    })
+
+    await chooseFile()
+
+    // Comportement ACTUEL figé (« Anomalies constatées », AN1) : ApiUnavailableError
+    // n'hérite pas d'ApiError, handleAvatarFile la présente comme un format refusé.
+    expect((await profile().findByRole('alert')).textContent).toBe('Image non prise en charge (JPEG, PNG ou WebP).')
+    expect(api.callsTo('auth/me/avatar', 'PUT')).toHaveLength(1) // la requête est bien partie
+  })
+
+  it('UC-CPT-03-F19 — ANOMALIE AN2 : après un échec de chargement de la photo, une nouvelle photo envoyée avec succès reste affichée en initiales', async () => {
+    const api = await openProfile({ hasAvatar: true, displayName: 'Ada Lovelace' })
+    fireEvent.error(profile().getByTestId('avatar-img')) // repli sur les initiales (F13)
+
+    await chooseFile()
+
+    expect(await screen.findByText('Photo de profil mise à jour.')).toBeDefined()
+    expect(api.callsTo('auth/me/avatar', 'PUT')).toHaveLength(1)
+    // Comportement ACTUEL figé : l'état « failed » d'Avatar n'est jamais remis à zéro
+    // (ni sur version, ni sur hasAvatar) → pas d'image ?v=1 jusqu'au remontage de la vue.
+    expect(profile().getByTestId('avatar-initials').textContent).toBe('AL')
+    expect(profile().queryByTestId('avatar-img')).toBeNull()
+  })
 })

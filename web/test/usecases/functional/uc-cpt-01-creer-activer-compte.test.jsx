@@ -215,7 +215,7 @@ describe('UC-CPT-01 — le visiteur crée son compte puis l’active', () => {
     expect(api.session).toBeNull()
   })
 
-  it('UC-CPT-01-F20 — E8 : trop de renvois (429) → message affiché, pas de nouveau code', async () => {
+  it('UC-CPT-01-F20 — E8 : trop de renvois (429) → message affiché, aucune confirmation, on reste sur l’écran et le code en main reste valable', async () => {
     const api = installFakeAccountApi({
       users: [{ email: 'ada@example.org', password: PASSWORD, verified: false, code: '4242' }],
     })
@@ -225,6 +225,13 @@ describe('UC-CPT-01 — le visiteur crée son compte puis l’active', () => {
 
     await click('Renvoyer le code')
     expect((await screen.findByRole('alert')).textContent).toBe('Trop de demandes de code, réessayez plus tard')
-    expect(api.mailbox).toHaveLength(0)
+    expect(screen.queryByRole('status')).toBeNull() // pas de « nouveau code envoyé »
+    expect(screen.getByRole('heading', { name: 'Activer votre compte' })).toBeDefined()
+
+    // Le refus n'a rien régénéré : le code déjà reçu active toujours le compte.
+    type(/Code de confirmation/, '4242')
+    await click('Activer mon compte')
+    expect(await screen.findByText('Compte activé, bienvenue !')).toBeDefined()
+    expect(api.session).not.toBeNull()
   })
 })

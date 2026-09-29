@@ -2,10 +2,12 @@
 // Fiche : docs/cas-utilisation/compte/UC-CPT-06-supprimer-compte.md
 //
 // Code sollicité appelé directement : deleteAccount() du client API (jeton
-// CSRF, oubli du jeton, événement de session) et la règle de confirmation de
-// la « Zone de danger » d'AccountView, composant rendu seul.
+// CSRF, oubli du jeton, événement de session), la règle de confirmation de
+// la « Zone de danger » et les gestionnaires handleDelete / becomeAnonymous
+// d'AccountView, composant rendu seul. (L'écoute de « humanome:auth » par le
+// shell App.jsx est testée unitairement en UC-CPT-02-U14.)
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import AccountView from '../../../src/views/AccountView.jsx'
 import { ApiError, deleteAccount, getCsrfToken, login, resetApiClient } from '../../../src/api/client.js'
 import { installFakeAccountApi, jsonResponse, noContentResponse } from '../support/cpt.js'
@@ -79,5 +81,49 @@ describe('UC-CPT-06 — confirmation dans la Zone de danger (AccountView seul)',
       expect(button.disabled, JSON.stringify(value)).toBe(disabled)
     }
     expect(screen.getByText(/purge réelle de toutes vos données serveur/)).toBeDefined()
+  })
+})
+
+describe('UC-CPT-06 — AccountView : handleDelete et becomeAnonymous (composant seul)', () => {
+  const ADA = { email: 'ada@example.org', password: 'correct horse battery', displayName: 'Ada' }
+  const confirmField = () => screen.getByLabelText('Pour confirmer, saisissez votre email (ada@example.org) :')
+
+  async function deleteWithConfirmation() {
+    fireEvent.change(confirmField(), { target: { value: 'ada@example.org' } })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Supprimer mon compte' }))
+    })
+  }
+
+  it('UC-CPT-06-U09 — succès : notice RGPD (role=status) puis formulaire de connexion vierge ; échec : alerte, profil et saisie de confirmation conservés', async () => {
+    const api = installFakeAccountApi({ users: [ADA], loggedInAs: ADA.email })
+    render(<AccountView />)
+    await screen.findByRole('region', { name: 'Zone de danger' })
+    await deleteWithConfirmation()
+
+    expect((await screen.findByRole('status')).textContent).toBe(
+      'Votre compte a été supprimé : toutes vos données serveur ont été réellement purgées ' +
+        '(un événement d’audit anonyme en garde la trace, conformément au RGPD).',
+    )
+    expect(screen.getByRole('button', { name: 'Se connecter' })).toBeDefined() // mode « login »
+    expect(screen.getByLabelText(/Mot de passe/).value).toBe('')
+    expect(screen.queryByRole('region', { name: 'Profil' })).toBeNull()
+    expect(screen.queryByRole('alert')).toBeNull()
+    expect(api.users.has(ADA.email)).toBe(false)
+    cleanup()
+    vi.unstubAllGlobals()
+    resetApiClient()
+
+    // Échec (ex. 403) : setAccountError, rien d'autre ne change.
+    const refused = installFakeAccountApi({ users: [ADA], loggedInAs: ADA.email })
+    refused.failNext('DELETE auth/account', jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' }))
+    render(<AccountView />)
+    await screen.findByRole('region', { name: 'Zone de danger' })
+    await deleteWithConfirmation()
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Jeton CSRF absent ou invalide')
+    expect(screen.getByRole('region', { name: 'Profil' })).toBeDefined()
+    expect(confirmField().value).toBe('ada@example.org')
+    expect(screen.getByRole('button', { name: 'Supprimer mon compte' }).disabled).toBe(false)
   })
 })

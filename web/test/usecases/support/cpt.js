@@ -11,7 +11,10 @@
 //
 // Toute réponse peut être forcée par `api.failNext('PUT keys', reponse)` (un
 // coup) ou `api.override('GET keys', fn)` (permanent) pour les scénarios
-// d'erreur.
+// d'erreur. `api.expireSession()` simule une session disparue côté serveur
+// (ramasse-miettes, purge depuis un autre navigateur) alors que le navigateur
+// garde son cookie : comme CsrfMiddleware (Session::exists() ne regarde que le
+// cookie), toute mutation non exemptée reçoit alors 403, GET auth/me 401.
 import { vi } from 'vitest'
 
 export function jsonResponse(status, data, extraHeaders = {}) {
@@ -32,6 +35,9 @@ const CSRF_EXEMPT = new Set(['POST auth/login', 'POST auth/register', 'POST auth
 const MUTATING = new Set(['POST', 'PUT', 'PATCH', 'DELETE'])
 const SERVER_KEY_PROVIDERS = ['anthropic', 'openai', 'google', 'openrouter', 'xai', 'ollama', 'mock']
 const AVATAR_MIMES = ['image/jpeg', 'image/png', 'image/webp']
+// N.B. : le motif PHP de training.php (sans modificateur D) accepte EN PLUS un
+// saut de ligne final (UC-CPT-05, anomalie AN2, figée côté API par UC-CPT-05-F15) ;
+// le front n'envoie jamais de tels identifiants, le faux serveur ne l'imite pas.
 const SLUG_RE = /^[a-z0-9][a-z0-9._-]{0,63}$/
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -51,6 +57,7 @@ export function createFakeAccountApi(options = {}) {
   const oneShot = new Map() // 'METHOD path' -> [réponses]
   const permanent = new Map() // 'METHOD path' -> fn
   let session = null // {userId, csrf}
+  let staleCookie = false // cookie d'une session que le serveur ne connaît plus
   const today = options.today ?? '2026-09-28'
 
   function addUser(u) {
@@ -83,6 +90,7 @@ export function createFakeAccountApi(options = {}) {
     hasAvatar: u.hasAvatar,
   })
   function openSession(u) {
+    staleCookie = false // nouvel identifiant de session, nouveau cookie
     tokenSeq += 1
     session = { userId: u.id, csrf: `csrf-${u.id}-${tokenSeq}` }
     return session.csrf
@@ -292,8 +300,10 @@ export function createFakeAccountApi(options = {}) {
     const forced = permanent.get(signature)?.({ method, path, body, headers })
     if (forced) return forced
 
-    // CsrfMiddleware : mutation + session présente + route non exemptée.
-    if (MUTATING.has(method) && session && !CSRF_EXEMPT.has(signature) && headers['X-CSRF-Token'] !== session.csrf) {
+    // CsrfMiddleware : mutation + cookie de session présent + route non exemptée.
+    // Un cookie périmé ouvre une session neuve SANS jeton : refus quel que soit l'en-tête.
+    const csrfOk = session !== null && headers['X-CSRF-Token'] === session.csrf
+    if (MUTATING.has(method) && (session || staleCookie) && !CSRF_EXEMPT.has(signature) && !csrfOk) {
       return jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
     }
     return route(method, path, body)
@@ -316,6 +326,11 @@ export function createFakeAccountApi(options = {}) {
     },
     get session() {
       return session
+    },
+    /** Le serveur perd la session ; le navigateur garde son cookie (voir en-tête). */
+    expireSession() {
+      session = null
+      staleCookie = true
     },
     failNext(signature, response) {
       if (!oneShot.has(signature)) oneShot.set(signature, [])

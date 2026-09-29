@@ -4,12 +4,16 @@
 // Code sollicité appelé directement : stockage LOCAL par défaut des clés
 // (run-launcher : localStorage 'humanome-keys', ADR-004), synchronisation
 // opt-in avec le serveur (syncKeyToServer / fetchKeyFromServer), listes de
-// fournisseurs (interface de profil, assistant de run, coffre serveur) et la
+// fournisseurs (interface de profil, assistant de run, coffre serveur — liste
+// PHP lue dans le fichier versionné), le client /api/keys (keys.js) et la
 // section de profil ApiKeysSection rendue seule avec ses coutures deps.
+import { readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import ApiKeysSection from '../../../src/views/account/ApiKeysSection.jsx'
-import { ApiError } from '../../../src/api/client.js'
+import { ApiError, login, resetApiClient } from '../../../src/api/client.js'
 import {
   KEYS_STORAGE_KEY,
   PROVIDERS,
@@ -19,9 +23,13 @@ import {
   setLocalKey,
   syncKeyToServer,
 } from '../../../src/lib/run-launcher.js'
-import { KEY_PROVIDERS, providerLabel } from '../../../src/api/keys.js'
+import { KEY_PROVIDERS, deleteKey, listKeys, providerLabel, revealKey, storeKey } from '../../../src/api/keys.js'
+import { jsonResponse, noContentResponse } from '../support/cpt.js'
 
-afterEach(() => cleanup())
+afterEach(() => {
+  cleanup()
+  resetApiClient()
+})
 
 /** Stockage façon localStorage, en mémoire. */
 function memoryStorage(initial = {}) {
@@ -34,8 +42,14 @@ function memoryStorage(initial = {}) {
   }
 }
 
-/** Liste KeyVault::PROVIDERS côté serveur (api/src/Keys/KeyVault.php). */
-const SERVER_PROVIDERS = ['anthropic', 'openai', 'google', 'openrouter', 'xai', 'ollama', 'mock']
+/** KeyVault::PROVIDERS, lu dans le fichier PHP versionné (appelé dans un it()). */
+function serverProviders() {
+  const here = dirname(fileURLToPath(import.meta.url))
+  const php = readFileSync(resolve(here, '../../../../api/src/Keys/KeyVault.php'), 'utf8')
+  const block = /PROVIDERS\s*=\s*\[([^\]]*)\]/.exec(php)
+  if (!block) throw new Error('KeyVault::PROVIDERS introuvable')
+  return [...block[1].matchAll(/'([^']+)'/g)].map((m) => m[1])
+}
 
 describe('UC-CPT-04 — clés locales (défaut ADR-004)', () => {
   it('UC-CPT-04-U08 — setLocalKey / getLocalKey : table fournisseur → clé sous « humanome-keys », effacement par chaîne vide', () => {
@@ -88,12 +102,14 @@ describe('UC-CPT-04 — synchronisation serveur (opt-in)', () => {
 })
 
 describe('UC-CPT-04 — fournisseurs', () => {
-  it('UC-CPT-04-U12 — profil et assistant proposent les mêmes six fournisseurs, tous acceptés par le coffre serveur', () => {
+  it('UC-CPT-04-U12 — profil et assistant proposent les mêmes six fournisseurs, tous acceptés par le coffre serveur (KeyVault.php lu)', () => {
     const profileIds = KEY_PROVIDERS.map((p) => p.id)
     const wizardIds = PROVIDERS.map((p) => p.id)
+    const vault = serverProviders()
+    expect(vault).toContain('mock')
     expect([...profileIds].sort()).toEqual([...wizardIds].sort())
     expect(profileIds).toHaveLength(6)
-    for (const id of profileIds) expect(SERVER_PROVIDERS).toContain(id)
+    for (const id of profileIds) expect(vault).toContain(id)
     expect(profileIds).not.toContain('mock')
     // Ollama tourne en local : aucune clé à gérer dans l'assistant.
     expect(PROVIDERS.filter((p) => !p.requiresKey).map((p) => p.id)).toEqual(['ollama'])
@@ -103,7 +119,7 @@ describe('UC-CPT-04 — fournisseurs', () => {
 })
 
 describe('UC-CPT-04 — ApiKeysSection (composant seul)', () => {
-  it('UC-CPT-04-U13 — messages : message serveur d’une ApiError, repli générique sinon ; clé envoyée sans espaces, liste rechargée', async () => {
+  it('UC-CPT-04-U13 — messages : message serveur d’une ApiError, repli générique sinon ; clé envoyée sans espaces, liste rechargée ; alerte de chargement jamais effacée (anomalie AN1)', async () => {
     const listKeys = vi
       .fn()
       .mockRejectedValueOnce(Object.assign(new ApiError('Erreur serveur (HTTP 503).', 503), { serverMessage: 'Stockage de clés non configuré' }))
@@ -128,5 +144,37 @@ describe('UC-CPT-04 — ApiKeysSection (composant seul)', () => {
     expect(await screen.findByText('Clé Google (Gemini) enregistrée (chiffrée).')).toBeDefined()
     expect(listKeys).toHaveBeenCalledTimes(2)
     expect(await screen.findByText('enregistrée le 2026-09-28')).toBeDefined()
+    // Comportement ACTUEL figé (« Anomalies constatées », AN1) : loadError n'est
+    // jamais remis à null — l'alerte du premier chargement reste à côté de la
+    // liste rechargée avec succès.
+    expect(screen.getAllByRole('alert').map((a) => a.textContent)).toContain('Stockage de clés non configuré')
+  })
+})
+
+describe('UC-CPT-04 — client /api/keys', () => {
+  it('UC-CPT-04-U14 — listKeys, storeKey, revealKey, deleteKey : URL (fournisseur encodé), méthode, corps, X-CSRF-Token sur PUT et DELETE', async () => {
+    await login({ email: 'a', password: 'b' }, { fetchFn: vi.fn().mockResolvedValue(jsonResponse(200, { user: {}, csrfToken: 'tok-k' })) })
+
+    const list = vi.fn().mockResolvedValue(jsonResponse(200, [{ provider: 'openai', createdAt: '2026-09-28T12:00:00' }]))
+    await expect(listKeys({ fetchFn: list })).resolves.toEqual([{ provider: 'openai', createdAt: '2026-09-28T12:00:00' }])
+    const put = vi.fn().mockResolvedValue(noContentResponse())
+    await expect(storeKey({ provider: 'openai', apiKey: 'sk-openai-perso' }, { fetchFn: put })).resolves.toBeNull()
+    const reveal = vi.fn().mockResolvedValue(jsonResponse(200, { apiKey: 'sk-du-serveur' }, { 'cache-control': 'no-store' }))
+    await expect(revealKey('open router', { fetchFn: reveal })).resolves.toEqual({ apiKey: 'sk-du-serveur' })
+    const del = vi.fn().mockResolvedValue(noContentResponse())
+    await expect(deleteKey('open router', { fetchFn: del })).resolves.toBeNull()
+
+    expect(list.mock.calls[0][0]).toBe('api/keys')
+    expect(list.mock.calls[0][1].method).toBe('GET')
+    expect(put.mock.calls[0][0]).toBe('api/keys')
+    expect(put.mock.calls[0][1].method).toBe('PUT')
+    expect(JSON.parse(put.mock.calls[0][1].body)).toEqual({ provider: 'openai', apiKey: 'sk-openai-perso' })
+    expect(reveal.mock.calls[0][0]).toBe('api/keys/open%20router')
+    expect(reveal.mock.calls[0][1].method).toBe('GET')
+    expect(del.mock.calls[0][0]).toBe('api/keys/open%20router')
+    expect(del.mock.calls[0][1].method).toBe('DELETE')
+    expect(del.mock.calls[0][1].body).toBeUndefined()
+    for (const fn of [put, del]) expect(fn.mock.calls[0][1].headers['X-CSRF-Token']).toBe('tok-k')
+    for (const fn of [list, reveal]) expect(fn.mock.calls[0][1].headers['X-CSRF-Token']).toBeUndefined()
   })
 })

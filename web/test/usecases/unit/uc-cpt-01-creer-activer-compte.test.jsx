@@ -7,7 +7,7 @@
 // remontée des erreurs de validation champ par champ, et AccountView rendu
 // seul pour l'écran d'activation.
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import AccountView from '../../../src/views/AccountView.jsx'
 import { parseHash } from '../../../src/router.js'
 import {
@@ -45,13 +45,14 @@ describe('UC-CPT-01 — routeur : le lien reçu par email', () => {
       email: 'ada@example.org',
       code: '0420',
     })
-    // Paramètres absents : écran d'activation vide, pas une page introuvable.
+    // Paramètres absents : la route « activer » est reconnue (pas une page
+    // introuvable) ; sans email, AccountView affiche la connexion (U18).
     expect(parseHash('#/activer')).toEqual({ name: 'activer', email: '', code: '' })
   })
 })
 
 describe('UC-CPT-01 — client API', () => {
-  it('UC-CPT-01-U11 — register() POSTe les quatre champs (double saisie), sans session ni événement de session', async () => {
+  it('UC-CPT-01-U11 — register() POSTe les quatre champs (double saisie) et n’émet pas « humanome:auth » (compte en attente)', async () => {
     const fetchFn = vi.fn().mockResolvedValue(
       jsonResponse(201, { status: 'pending_activation', email: 'ada@example.org', message: 'ok' }),
     )
@@ -73,8 +74,9 @@ describe('UC-CPT-01 — client API', () => {
       password: 'correct horse',
       displayName: 'Ada',
     })
-    expect(init.headers['X-CSRF-Token']).toBeUndefined()
-    expect(getCsrfToken()).toBeNull()
+    // (Aucun jeton n'est en mémoire pour un visiteur : l'absence d'en-tête CSRF
+    // et de jeton après l'appel ne dit rien de register() et n'est pas vérifiée
+    // ici — la route est exemptée côté serveur, UC-CPT-01-U09.)
     expect(events).toBe(0) // compte en attente : la navigation ne change pas
 
     // Sans emailConfirm explicite, l'adresse est reprise telle quelle.
@@ -145,5 +147,56 @@ describe('UC-CPT-01 — AccountView : écran d’activation', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Retour à la connexion' }))
     expect(screen.getByRole('heading', { name: 'Compte' })).toBeDefined()
     expect(screen.getByRole('button', { name: 'Se connecter' })).toBeDefined()
+  })
+
+  it('UC-CPT-01-U18 — lien #/activer SANS email : AccountView ouvre le formulaire de connexion, pas l’écran d’activation', async () => {
+    installFakeAccountApi()
+    render(<AccountView initialActivation={{ email: '', code: '1234' }} />)
+
+    expect(await screen.findByRole('button', { name: 'Se connecter' })).toBeDefined()
+    expect(screen.getByRole('heading', { name: 'Compte' })).toBeDefined()
+    expect(screen.queryByRole('heading', { name: 'Activer votre compte' })).toBeNull()
+  })
+})
+
+describe('UC-CPT-01 — AccountView : formulaire d’inscription', () => {
+  async function fill({ name, email, confirm, password }) {
+    fireEvent.change(screen.getByLabelText('Nom affiché'), { target: { value: name } })
+    fireEvent.change(screen.getByLabelText('Email'), { target: { value: email } })
+    fireEvent.change(screen.getByLabelText(/Confirmez l’email/), { target: { value: confirm } })
+    fireEvent.change(screen.getByLabelText(/Mot de passe/), { target: { value: password } })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Créer mon compte' }))
+    })
+  }
+
+  it('UC-CPT-01-U17 — handleSubmit / submitErrorMessage : quatre refus locaux sans requête ; 422 à deux champs → messages joints ; mot de passe compté en unités UTF-16 (anomalie AN6)', async () => {
+    const api = installFakeAccountApi()
+    render(<AccountView />)
+    await screen.findByRole('button', { name: 'Se connecter' })
+    fireEvent.click(screen.getByRole('button', { name: 'Inscription' }))
+
+    const password = 'correct horse battery'
+    for (const [values, message] of [
+      [{ name: 'Ada', email: '   ', confirm: '', password }, 'Indiquez votre adresse email.'],
+      [{ name: 'Ada', email: 'ada@example.org', confirm: 'ada@example.com', password }, 'Les deux adresses email ne correspondent pas.'],
+      [{ name: ' ', email: 'ada@example.org', confirm: 'ADA@example.org ', password }, 'Indiquez le nom qui sera affiché sur votre profil.'],
+      [{ name: 'Ada', email: 'ada@example.org', confirm: 'ada@example.org', password: '123456789' }, 'Le mot de passe doit contenir au moins 10 caractères.'],
+    ]) {
+      await fill(values)
+      expect(screen.getByRole('alert').textContent).toBe(message)
+    }
+    expect(api.callsTo('auth/register')).toHaveLength(0)
+
+    // Comportement ACTUEL figé (« Anomalies constatées », AN6) : 5 émojis font
+    // 10 unités UTF-16 (password.length) → le contrôle local laisse passer, mais
+    // le serveur compte 5 caractères (mb_strlen) → 422. Le nom de 191 caractères
+    // n'est borné que par le serveur : les deux messages par champ sont joints.
+    await fill({ name: 'n'.repeat(191), email: 'ada@example.org', confirm: 'ada@example.org', password: '😀😀😀😀😀' })
+    expect(api.callsTo('auth/register', 'POST')).toHaveLength(1)
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      'Le mot de passe doit contenir au moins 10 caractères Le nom affiché est requis (190 caractères maximum)',
+    )
+    expect(screen.getByRole('button', { name: 'Créer mon compte' })).toBeDefined()
   })
 })

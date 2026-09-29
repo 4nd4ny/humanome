@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Tests\CartographeTestCase;
+use Humanome\Tests\UseCases\Support\CptSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 use Psr\Http\Message\ResponseInterface;
 
@@ -90,7 +91,7 @@ final class UcCpt03GererProfilTest extends CartographeTestCase
         self::assertSame($jpeg, (string) $again->getBody());
     }
 
-    #[TestDox('UC-CPT-03-F03 — A1 (variante) : data-URL acceptée, type déduit de l’en-tête, base64 coupé de retours à la ligne toléré')]
+    #[TestDox('UC-CPT-03-F03 — A1 (variantes) : data-URL sans mime (type de l’en-tête), base64 coupé de retours à la ligne ; mime normalisé ; mime explicite prioritaire sur la data-URL')]
     public function testF03DataUrlUpload(): void
     {
         $webp = 'RIFF' . pack('V', 20) . 'WEBP' . 'VP8 ' . str_repeat("\x00", 12);
@@ -101,6 +102,18 @@ final class UcCpt03GererProfilTest extends CartographeTestCase
         self::assertSame(200, $response->getStatusCode(), (string) $response->getBody());
         self::assertSame('image/webp', self::json($response)['mime']);
         self::assertSame($webp, (string) $this->fetchAvatar($this->ada['id'])->getBody());
+
+        // Le type déclaré est normalisé (minuscules, blancs retirés) avant validation.
+        $normalized = $this->putAvatar(['avatar' => self::PNG_B64, 'mime' => ' IMAGE/PNG ']);
+        self::assertSame(200, $normalized->getStatusCode(), (string) $normalized->getBody());
+        self::assertSame('image/png', self::json($normalized)['mime']);
+
+        // Un mime explicite l'emporte sur le type annoncé par la data-URL.
+        $jpeg = "\xFF\xD8\xFF\xE0" . str_repeat("\x10", 60);
+        $explicit = $this->putAvatar(['avatar' => 'data:image/png;base64,' . base64_encode($jpeg), 'mime' => 'image/jpeg']);
+        self::assertSame(200, $explicit->getStatusCode(), (string) $explicit->getBody());
+        self::assertSame('image/jpeg', self::json($explicit)['mime']);
+        self::assertSame('image/jpeg', $this->fetchAvatar($this->ada['id'])->getHeaderLine('Content-Type'));
     }
 
     #[TestDox('UC-CPT-03-F04 — A2 : retrait de la photo → 204, image 404, hasAvatar faux ; retrait répété sans effet')]
@@ -125,6 +138,11 @@ final class UcCpt03GererProfilTest extends CartographeTestCase
         self::assertSame(200, $this->fetchAvatar($this->ada['id'])->getStatusCode());
         self::assertSame(404, $this->fetchAvatar($bob['id'])->getStatusCode(), 'Bob n’a pas de photo');
         self::assertSame(404, $this->fetchAvatar(999999)->getStatusCode());
+
+        // Base non configurée : 503 explicite, jamais un 404 trompeur.
+        $unavailable = CptSupport::withoutDatabase(fn () => $this->fetchAvatar($this->ada['id']));
+        self::assertSame(503, $unavailable->getStatusCode());
+        self::assertSame(['error' => 'Service indisponible'], self::json($unavailable));
     }
 
     #[TestDox('UC-CPT-03-F06 — E1 : nom vide, blanc, absent ou de 191 caractères → 422 ; 190 caractères acceptés')]
@@ -143,33 +161,50 @@ final class UcCpt03GererProfilTest extends CartographeTestCase
         $max = str_repeat('é', 190); // borne comptée en caractères, pas en octets
         self::assertSame(200, $this->as_($this->ada, 'PATCH', '/api/auth/me', ['displayName' => $max])->getStatusCode());
         self::assertSame($max, $this->me()['displayName']);
+
+        // Comportement ACTUEL figé (« Anomalies constatées », AN3) : trim() de PHP ne
+        // retire que les blancs ASCII ; un nom fait d'espaces Unicode (insécable,
+        // idéographique) est accepté par l'API — seule l'IHM le refuse.
+        $invisible = "\u{00A0}\u{3000}";
+        self::assertSame(200, $this->as_($this->ada, 'PATCH', '/api/auth/me', ['displayName' => $invisible])->getStatusCode());
+        self::assertSame($invisible, $this->me()['displayName'], 'nom invisible enregistré');
     }
 
-    #[TestDox('UC-CPT-03-F07 — E2/E3 : sans session → 401 ; session sans jeton CSRF → 403, rien ne change')]
+    #[TestDox('UC-CPT-03-F07 — E2/E3 : sans session → 401 « Authentification requise » ; jeton CSRF absent ou faux → 403 ; nom et photo existants intacts')]
     public function testF07SessionAndCsrfAreRequired(): void
     {
-        $this->cookieSid = null;
+        // Une photo existe déjà : un DELETE ou un PUT forgé qui passerait se verrait.
+        self::assertSame(200, $this->putAvatar(['avatar' => self::PNG_B64, 'mime' => 'image/png'])->getStatusCode());
+        $jpeg = base64_encode("\xFF\xD8\xFF\xE0" . str_repeat("\x10", 60));
         foreach ([
             ['PATCH', '/api/auth/me', ['displayName' => 'Pirate']],
-            ['PUT', '/api/auth/me/avatar', ['avatar' => self::PNG_B64, 'mime' => 'image/png']],
+            ['PUT', '/api/auth/me/avatar', ['avatar' => $jpeg, 'mime' => 'image/jpeg']],
             ['DELETE', '/api/auth/me/avatar', null],
         ] as [$method, $path, $body]) {
             $this->cookieSid = null;
-            self::assertSame(401, $this->request($method, $path, $body)->getStatusCode(), $method . ' ' . $path);
+            $anonymous = $this->request($method, $path, $body);
+            self::assertSame(401, $anonymous->getStatusCode(), $method . ' ' . $path);
+            self::assertSame(['error' => 'Authentification requise'], self::json($anonymous));
 
-            $this->cookieSid = $this->ada['sid'];
-            $forged = $this->request($method, $path, $body); // tir cross-site : cookie sans en-tête
-            self::assertSame(403, $forged->getStatusCode(), $method . ' ' . $path);
-            self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($forged));
+            foreach ([[], ['X-CSRF-Token' => str_repeat('0', 64)]] as $headers) {
+                $this->cookieSid = $this->ada['sid'];
+                $forged = $this->request($method, $path, $body, $headers); // tir cross-site : cookie sans (bon) en-tête
+                self::assertSame(403, $forged->getStatusCode(), $method . ' ' . $path);
+                self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($forged));
+            }
         }
         $me = $this->me();
         self::assertSame('Ada', $me['displayName']);
-        self::assertFalse($me['hasAvatar']);
+        self::assertTrue($me['hasAvatar']);
+        $served = $this->fetchAvatar($this->ada['id']);
+        self::assertSame('image/png', $served->getHeaderLine('Content-Type'));
+        self::assertSame((string) base64_decode(self::PNG_B64, true), (string) $served->getBody(), 'photo d’origine intacte');
     }
 
-    #[TestDox('UC-CPT-03-F08 — E4 : base64 invalide, type interdit, image trop lourde ou contenu déguisé → 422, rien n’est stocké')]
+    #[TestDox('UC-CPT-03-F08 — E4 : base64 invalide ou vide, type interdit, image trop lourde, contenu déguisé → 422 (quatre messages) ; la photo existante n’est pas touchée')]
     public function testF08InvalidImagesAreRejected(): void
     {
+        self::assertSame(200, $this->putAvatar(['avatar' => self::PNG_B64, 'mime' => 'image/png'])->getStatusCode());
         $bigJpeg = "\xFF\xD8\xFF\xE0" . str_repeat("\x00", 205 * 1024);
         $cases = [
             [['avatar' => '*** pas du base64 ***', 'mime' => 'image/png'], 'Données d’image invalides (base64 attendu)'],
@@ -183,7 +218,31 @@ final class UcCpt03GererProfilTest extends CartographeTestCase
             self::assertSame(422, $response->getStatusCode(), $message);
             self::assertSame(['error' => $message], self::json($response));
         }
-        self::assertFalse($this->me()['hasAvatar']);
-        self::assertSame(404, $this->fetchAvatar($this->ada['id'])->getStatusCode());
+        // « Image vide. » (AvatarValidator) n'est jamais atteint par HTTP : un avatar
+        // vide est refusé avant, avec le message base64 (cas 2). Quatre messages distincts.
+        self::assertCount(4, array_unique(array_column($cases, 1)));
+        self::assertTrue($this->me()['hasAvatar']);
+        $served = $this->fetchAvatar($this->ada['id']);
+        self::assertSame(200, $served->getStatusCode());
+        self::assertSame((string) base64_decode(self::PNG_B64, true), (string) $served->getBody(), 'photo d’origine intacte');
+    }
+
+    #[TestDox('UC-CPT-03-F17 — RG4 : les mutations d’un autre compte (nom, photo, retrait) n’atteignent jamais le profil d’Ada')]
+    public function testF17MutationsOnlyTouchTheSessionAccount(): void
+    {
+        self::assertSame(200, $this->putAvatar(['avatar' => self::PNG_B64, 'mime' => 'image/png'])->getStatusCode());
+        $bob = $this->registerAs('bob@example.org', 'Bob');
+
+        self::assertSame(200, $this->as_($bob, 'PATCH', '/api/auth/me', ['displayName' => 'Bob2'])->getStatusCode());
+        $jpeg = "\xFF\xD8\xFF\xE0" . str_repeat("\x10", 60);
+        self::assertSame(200, $this->as_($bob, 'PUT', '/api/auth/me/avatar', ['avatar' => base64_encode($jpeg), 'mime' => 'image/jpeg'])->getStatusCode());
+        self::assertSame(204, $this->as_($bob, 'DELETE', '/api/auth/me/avatar')->getStatusCode());
+
+        $ada = $this->me();
+        self::assertSame('Ada', $ada['displayName']);
+        self::assertTrue($ada['hasAvatar']);
+        self::assertSame((string) base64_decode(self::PNG_B64, true), (string) $this->fetchAvatar($this->ada['id'])->getBody());
+        self::assertSame('Bob2', self::json($this->as_($bob, 'GET', '/api/auth/me'))['user']['displayName']);
+        self::assertSame(404, $this->fetchAvatar($bob['id'])->getStatusCode(), 'Bob a retiré SA photo');
     }
 }

@@ -119,6 +119,10 @@ final class UcCpt04GererClesApiTest extends CartographeTestCase
             }
             $this->cookieSid = null;
             self::assertSame(503, $this->request('GET', '/api/keys')->getStatusCode(), 'visiteur : 503 aussi');
+            // Sur une mutation, la garde CSRF (middleware global) passe AVANT la route :
+            // un cookie de session sans jeton reçoit 403, pas 503.
+            $this->cookieSid = $this->ada['sid'];
+            self::assertSame(403, $this->request('DELETE', '/api/keys/anthropic')->getStatusCode(), 'CSRF avant 503');
         }
         self::assertSame(1, self::rowCount(), 'rien n’a été effacé');
         self::assertSame(200, $this->as_($this->ada, 'GET', '/api/auth/me')->getStatusCode(), 'le reste de l’API répond');
@@ -152,13 +156,16 @@ final class UcCpt04GererClesApiTest extends CartographeTestCase
             $json = self::json($response);
             self::assertSame('Validation échouée', $json['error']);
             self::assertSame($fields, array_keys($json['fields']));
+            if (\in_array('apiKey', $fields, true)) {
+                self::assertSame('Clé API invalide (8 à 4096 caractères imprimables)', $json['fields']['apiKey']);
+            }
         }
         self::assertSame(0, self::rowCount());
         self::assertSame(204, $this->store($this->ada, 'openai', 'sk-12345')->getStatusCode(), '8 caractères suffisent');
         self::assertSame(204, $this->store($this->ada, 'ollama', str_repeat('k', 4096))->getStatusCode(), '4096 caractères acceptés');
     }
 
-    #[TestDox('UC-CPT-04-F08 — E5 : clé maîtresse changée (rotation) → la clé stockée n’est plus lisible : 404, jamais 500 ni fuite')]
+    #[TestDox('UC-CPT-04-F08 — E5 : clé maîtresse changée (rotation) → la clé stockée n’est plus lisible : 404, jamais 500 ni fuite ; l’entrée listée peut être remplacée ou supprimée')]
     public function testF08RotatedMasterKey(): void
     {
         $this->store($this->ada, 'anthropic', self::API_KEY);
@@ -169,6 +176,13 @@ final class UcCpt04GererClesApiTest extends CartographeTestCase
         self::assertSame(404, $response->getStatusCode());
         self::assertStringNotContainsString(self::API_KEY, (string) $response->getBody());
         self::assertSame(['anthropic'], array_column(self::json($this->as_($this->ada, 'GET', '/api/keys')), 'provider'), 'l’entrée reste listée');
+
+        // L'entrée illisible peut être remplacée (chiffrée avec la nouvelle clé maîtresse)…
+        self::assertSame(204, $this->store($this->ada, 'anthropic', 'sk-ant-nouvelle-cle-apres-rotation')->getStatusCode());
+        self::assertSame('sk-ant-nouvelle-cle-apres-rotation', self::json($this->as_($this->ada, 'GET', '/api/keys/anthropic'))['apiKey']);
+        // … ou supprimée (la suppression ne déchiffre rien).
+        self::assertSame(204, $this->as_($this->ada, 'DELETE', '/api/keys/anthropic')->getStatusCode());
+        self::assertSame(0, self::rowCount());
     }
 
     #[TestDox('UC-CPT-04-F09 — E6 : PUT ou DELETE sans jeton CSRF → 403, rien n’est écrit ni effacé')]

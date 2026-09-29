@@ -114,10 +114,17 @@ final class UcCpt05SuivreProgressionFormationTest extends CartographeTestCase
             [['parcours' => 'apprenant', 'chapitre' => self::CH1, 'completed' => 'true'], ['completed']],
             [[], ['parcours', 'chapitre', 'completed']],
         ];
+        $messages = [
+            'parcours' => 'Identifiant de parcours invalide',
+            'chapitre' => 'Identifiant de chapitre invalide',
+            'completed' => 'completed doit être un booléen',
+        ];
         foreach ($cases as [$body, $fields]) {
             $response = $this->as_($this->ada, 'PUT', '/api/training/progress', $body);
             self::assertSame(422, $response->getStatusCode(), json_encode($body));
-            self::assertSame($fields, array_keys(self::json($response)['fields']));
+            $json = self::json($response);
+            self::assertSame('Validation échouée', $json['error']);
+            self::assertSame(array_intersect_key($messages, array_flip($fields)), $json['fields']);
         }
         self::assertSame(200, $this->tick(str_repeat('a', 64))->getStatusCode(), '64 caractères acceptés');
 
@@ -136,5 +143,23 @@ final class UcCpt05SuivreProgressionFormationTest extends CartographeTestCase
 
         self::assertSame(['apprenant' => ['chapitresTermines' => [self::CH1]]], json_decode($this->progress(), true));
         self::assertSame(['apprenant' => ['chapitresTermines' => [self::CH2]]], json_decode($this->progress($bob), true));
+    }
+
+    #[TestDox('UC-CPT-05-F15 — ANOMALIE AN2 : un identifiant terminé par un saut de ligne passe le motif (200) ; stocké avec son \\n, ou tronqué en silence au-delà de 64 caractères')]
+    public function testF15TrailingNewlinePassesTheSlugPattern(): void
+    {
+        // Comportement ACTUEL figé (« Anomalies constatées », AN2) : sans modificateur D,
+        // le « $ » de PCRE accepte un saut de ligne final. E3 annonce pourtant 422.
+        $response = $this->tick("01-a\n");
+        self::assertSame(200, $response->getStatusCode(), 'devrait être 422 (E3)');
+        self::assertSame(['apprenant' => ['chapitresTermines' => ["01-a\n"]]], self::json($response));
+        self::assertSame("01-a\n", self::$pdo->query("SELECT chapitre FROM training_progress WHERE chapitre LIKE '01-a%'")->fetchColumn());
+
+        // 64 caractères + « \n » = 65 : le motif passe ; MySQL (même en mode strict)
+        // tronque le blanc final excédentaire d'un VARCHAR(64) avec un simple avertissement.
+        $tooLong = $this->tick(str_repeat('a', 64) . "\n");
+        self::assertSame(200, $tooLong->getStatusCode());
+        self::assertContains(str_repeat('a', 64), self::json($tooLong)['apprenant']['chapitresTermines'], 'stocké tronqué, sans le \\n');
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM training_progress WHERE LENGTH(chapitre) > 64')->fetchColumn());
     }
 }

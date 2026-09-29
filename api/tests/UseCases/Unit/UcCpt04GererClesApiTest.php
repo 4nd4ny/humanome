@@ -63,7 +63,7 @@ final class UcCpt04GererClesApiTest extends TestCase
         return (string) $stmt->fetchColumn();
     }
 
-    #[TestDox('UC-CPT-04-U01 — masterKeyFromEnv : 64 hexadécimaux → 32 octets ; absente, vide, courte ou non hexadécimale → null')]
+    #[TestDox('UC-CPT-04-U01 — masterKeyFromEnv : 64 hexadécimaux (casse indifférente) → 32 octets ; vide, courte, non hexadécimale ou trop longue → null')]
     public function testU01MasterKeyFromEnv(): void
     {
         TestDb::setEnv('SODIUM_MASTER_KEY', self::MASTER_HEX);

@@ -7,6 +7,7 @@ namespace Humanome\Tests\UseCases\Unit;
 use Humanome\Auth\Audit;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Users;
+use Humanome\ClientIp;
 use Humanome\DbSessionHandler;
 use Humanome\Mail\MailerFactory;
 use Humanome\Mail\MemoryMailer;
@@ -30,10 +31,16 @@ use Slim\Psr7\Factory\ServerRequestFactory;
  * Fiche : docs/cas-utilisation/compte/UC-CPT-01-creer-activer-compte.md
  *
  * Les briques appelées par POST /api/auth/register, /activate et /resend sont
- * exercées directement (sans couche HTTP) : Users (création, rôle par défaut,
- * code de vérification haché, compteur d'essais, activation), Audit
- * (account_created), le Mailer injectable (MailerFactory / MemoryMailer), les
- * trois quotas RateLimiter du cas et les exemptions CSRF des routes visiteur.
+ * exercées directement (sans couche HTTP) : Users (création, attribution et
+ * relecture de rôle, stockage de l'empreinte du code, compteur d'essais,
+ * activation), Audit, le Mailer injectable (MailerFactory / MemoryMailer), le
+ * RateLimiter, l'identité IP des seaux (ClientIp) et les exemptions CSRF des
+ * routes visiteur.
+ *
+ * Ce que ces briques NE décident PAS — rôle « apprenant » par défaut, hachage
+ * du code, absence de détail dans account_created, valeurs des quotas 10/20/3/10
+ * — est fixé par la route (api/src/routes/auth.php) et vérifié par les tests
+ * fonctionnels (F01, F07, F10, F11).
  */
 final class UcCpt01CreerActiverCompteTest extends TestCase
 {
@@ -72,10 +79,11 @@ final class UcCpt01CreerActiverCompteTest extends TestCase
         return $stmt->fetch();
     }
 
-    #[TestDox('UC-CPT-01-U01 — Users::create + assignRole : le compte naît avec le rôle apprenant ; rôle inconnu refusé')]
+    #[TestDox('UC-CPT-01-U01 — Users::create, assignRole, rolesOf : compte créé non activé, rôle attribué puis relu, rôle inconnu refusé')]
     public function testU01CreateAndDefaultRole(): void
     {
         $id = Users::create(self::$pdo, 'ada@example.org', Users::hashPassword('correct horse battery'), 'Ada');
+        self::assertSame([], Users::rolesOf(self::$pdo, $id), 'create n’attribue aucun rôle : c’est la route qui pose « apprenant » (F01)');
         Users::assignRole(self::$pdo, $id, 'apprenant');
 
         self::assertSame(['apprenant'], Users::rolesOf(self::$pdo, $id));
@@ -98,14 +106,17 @@ final class UcCpt01CreerActiverCompteTest extends TestCase
         self::assertFalse(password_verify('Correct horse battery', $hash));
     }
 
-    #[TestDox('UC-CPT-01-U03 — code de vérification : posé haché avec expiration, essais comptés, renvoi = compteur remis à 0')]
+    #[TestDox('UC-CPT-01-U03 — setVerificationCode stocke l’empreinte fournie et son expiration, remet les essais à 0 ; bumpVerificationAttempts compte')]
     public function testU03VerificationCodeAndAttempts(): void
     {
         $id = Users::create(self::$pdo, 'ada@example.org', Users::hashPassword('correct horse battery'), 'Ada');
-        Users::setVerificationCode(self::$pdo, $id, Users::hashPassword('0420'), '2030-01-01 00:30:00');
+        // L'empreinte est calculée par l'APPELANT (la route hache le code : F01) ;
+        // setVerificationCode stocke telle quelle la chaîne reçue.
+        $fingerprint = Users::hashPassword('0420');
+        Users::setVerificationCode(self::$pdo, $id, $fingerprint, '2030-01-01 00:30:00');
 
         $row = self::row($id);
-        self::assertNotSame('0420', $row['verification_code_hash'], 'jamais le code en clair');
+        self::assertSame($fingerprint, $row['verification_code_hash']);
         self::assertTrue(password_verify('0420', (string) $row['verification_code_hash']));
         self::assertSame('2030-01-01 00:30:00', $row['verification_expires_at']);
 
@@ -173,7 +184,7 @@ final class UcCpt01CreerActiverCompteTest extends TestCase
         self::assertNull($memory->last());
     }
 
-    #[TestDox('UC-CPT-01-U07 — Audit::record(account_created) : événement daté, sans détail personnel')]
+    #[TestDox('UC-CPT-01-U07 — Audit::record sans détails : événement account_created daté, details NULL')]
     public function testU07AccountCreatedAudit(): void
     {
         $id = Users::create(self::$pdo, 'ada@example.org', Users::hashPassword('correct horse battery'), 'Ada');
@@ -185,18 +196,28 @@ final class UcCpt01CreerActiverCompteTest extends TestCase
         self::assertNotEmpty($event['created_at']);
     }
 
-    #[TestDox('UC-CPT-01-U08 — quotas du cas : inscription 10/h, activation 20/15 min, renvoi 3/h par compte (délai 30 s au premier refus)')]
+    #[TestDox('UC-CPT-01-U08 — RateLimiter (fenêtre fixe) : blocage au-delà de la limite, fenêtre suivante libre, 30 s au premier refus puis doublé, plafonné à la fenêtre')]
     public function testU08RateLimitsOfTheUseCase(): void
     {
+        // Les paramètres ci-dessous REPRODUISENT ceux de la route (auth.php) ;
+        // ce test ne les lit pas : leur valeur réelle est vérifiée par F07
+        // (inscription), F10 (activation) et F11 (renvoi par compte et par IP).
         $now = 1_800_000_000;
-        foreach ([['register:x', 10, 3600], ['activate:x', 20, 900], ['resend:acct:x', 3, 3600]] as [$bucket, $limit, $window]) {
+        foreach ([
+            ['register:x', 10, 3600],
+            ['activate:x', 20, 900],
+            ['resend:acct:x', 3, 3600],
+            ['resend:ip:x', 10, 3600],
+        ] as [$bucket, $limit, $window]) {
             $limiter = new RateLimiter(self::$pdo, $limit, $window);
             for ($i = 1; $i <= $limit; $i++) {
                 self::assertFalse($limiter->isBlocked($bucket, $now), "$bucket essai $i");
                 $limiter->hit($bucket, $now);
             }
             self::assertTrue($limiter->isBlocked($bucket, $now), "$bucket bloqué après $limit");
-            self::assertSame(30, $limiter->retryAfter($limit + 1));
+            self::assertSame(30, $limiter->retryAfter($limit + 1), "$bucket : 30 s au premier refus");
+            self::assertSame(60, $limiter->retryAfter($limit + 2), "$bucket : délai doublé");
+            self::assertSame($window, $limiter->retryAfter($limit + 50), "$bucket : plafonné à la fenêtre");
             self::assertFalse($limiter->isBlocked($bucket, $now + $window), "$bucket : fenêtre suivante");
         }
     }
@@ -224,5 +245,25 @@ final class UcCpt01CreerActiverCompteTest extends TestCase
         }
         self::assertSame(3, $handler->calls);
         self::assertNotSame(PHP_SESSION_ACTIVE, session_status(), 'aucune session ouverte pour un visiteur');
+    }
+
+    #[TestDox('UC-CPT-01-U16 — ClientIp::bucketIdentity : IPv6 regroupée par /64, IPv4 complète, IPv4 mappée = IPv4 ; le seau stocké est haché')]
+    public function testU16BucketIdentityOfTheQuotas(): void
+    {
+        self::assertSame(
+            ClientIp::bucketIdentity('2001:db8:1:2::1'),
+            ClientIp::bucketIdentity('2001:db8:1:2::abcd'),
+            'même /64 : même seau (rotation de l’identifiant d’interface inutile)',
+        );
+        self::assertNotSame(ClientIp::bucketIdentity('2001:db8:1:2::1'), ClientIp::bucketIdentity('2001:db8:1:3::1'));
+        self::assertSame('v4:203.0.113.10', ClientIp::bucketIdentity('203.0.113.10'));
+        self::assertSame('v4:203.0.113.10', ClientIp::bucketIdentity('::ffff:203.0.113.10'));
+        self::assertNotSame(ClientIp::bucketIdentity('203.0.113.10'), ClientIp::bucketIdentity('203.0.113.11'), 'IPv4 : adresse complète');
+
+        // Forme du seau d'inscription (auth.php) : jamais l'IP en clair… mais
+        // un sha256 NON salé de « v4:a.b.c.d » (voir « Anomalies constatées », AN2).
+        $bucket = 'register:' . hash('sha256', ClientIp::bucketIdentity('203.0.113.10'));
+        self::assertStringNotContainsString('203.0.113.10', $bucket);
+        self::assertSame('register:' . hash('sha256', 'v4:203.0.113.10'), $bucket);
     }
 }

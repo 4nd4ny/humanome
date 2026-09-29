@@ -8,6 +8,7 @@ use Humanome\Auth\LoginJournal;
 use Humanome\Auth\RateLimiter;
 use Humanome\Auth\Session;
 use Humanome\Auth\Users;
+use Humanome\ClientIp;
 use Humanome\DbSessionHandler;
 use Humanome\Geo\CountryResolver;
 use Humanome\Geo\IpAnonymizer;
@@ -231,22 +232,26 @@ final class UcCpt02SeConnecterDeconnecterTest extends TestCase
         self::assertSame(3, $handler->calls);
     }
 
-    #[TestDox('UC-CPT-02-U08 — RateLimiter de connexion : 5 échecs puis blocage, délai 30 → 60 → 120 s, reset après succès')]
+    #[TestDox('UC-CPT-02-U08 — RateLimiter de connexion (5 / 900 s) : 5 échecs puis blocage, délai 30 → 60 → 120 s plafonné, reset() efface le seau')]
     public function testU08LoginRateLimiter(): void
     {
+        // Horloge figée : la fenêtre fixe ne peut pas basculer pendant le test.
+        $now = 1_800_000_000;
         $limiter = new RateLimiter(self::$pdo, 5, 900);
-        $bucket = 'login:' . hash('sha256', 'v4:203.0.113.10|ada@example.org');
+        // Même construction que la route (auth.php) : identité IP (ClientIp) + « | » + email, hachées.
+        $bucket = 'login:' . hash('sha256', ClientIp::bucketIdentity('203.0.113.10') . '|ada@example.org');
         for ($i = 1; $i <= 5; $i++) {
-            self::assertFalse($limiter->isBlocked($bucket));
-            $limiter->hit($bucket);
+            self::assertFalse($limiter->isBlocked($bucket, $now));
+            $limiter->hit($bucket, $now);
         }
-        self::assertTrue($limiter->isBlocked($bucket));
+        self::assertTrue($limiter->isBlocked($bucket, $now));
         self::assertSame([30, 60, 120], [$limiter->retryAfter(6), $limiter->retryAfter(7), $limiter->retryAfter(8)]);
         self::assertSame(900, $limiter->retryAfter(40), 'plafonné à la fenêtre de 15 min');
 
+        // reset() est ce que la route appelle après un succès (effet vérifié par F18).
         $limiter->reset($bucket);
-        self::assertSame(0, $limiter->attempts($bucket));
-        self::assertStringNotContainsString('ada@example.org', $bucket, 'seau haché : ni email ni IP en clair');
+        self::assertSame(0, $limiter->attempts($bucket, $now));
+        self::assertFalse($limiter->isBlocked($bucket, $now));
     }
 
     #[TestDox('UC-CPT-02-U15 — Users : l’email inconnu coûte une vraie vérification Argon2id (dummyHash) ; un compte non activé est reconnu')]
@@ -264,5 +269,62 @@ final class UcCpt02SeConnecterDeconnecterTest extends TestCase
         self::assertFalse(Users::isVerified(Users::findById(self::$pdo, $id)), 'login → 403 email_not_verified');
         Users::markVerified(self::$pdo, $id);
         self::assertTrue(Users::isVerified(Users::findById(self::$pdo, $id)));
+    }
+
+    #[TestDox('UC-CPT-02-U16 — ANOMALIE AN2 : use_strict_mode sans effet — un identifiant de session inconnu présenté par cookie est adopté tel quel (seul openForUser le régénère)')]
+    public function testU16UnknownSessionIdIsAdopted(): void
+    {
+        // Comportement ACTUEL figé (voir « Anomalies constatées », AN2) :
+        // DbSessionHandler n'implémente pas validateId() et read() rend '' pour un
+        // identifiant inconnu : PHP juge l'identifiant valide malgré
+        // session.use_strict_mode=1. Une correction du handler fera échouer ce test
+        // (et imposera de mettre la fiche à jour).
+        // En SAPI web, PHP lit l'identifiant dans le cookie ; sous PHPUnit, le
+        // harnais (AuthTestBase::request) le transmet par session_id(), car un
+        // session_id('') antérieur empêche la lecture du cookie. Les deux chemins
+        // passent par la même validation (php_session_initialize) : vérifié hors
+        // PHPUnit, un processus neuf avec le seul cookie adopte aussi l'identifiant.
+        $_SERVER['REMOTE_ADDR'] = '203.0.113.10';
+        $_COOKIE[DbSessionHandler::SESSION_NAME] = 'inconnuinconnuinconnu01';
+        session_id('inconnuinconnuinconnu01');
+
+        Session::start();
+
+        self::assertSame('1', ini_get('session.use_strict_mode'), 'option bien positionnée…');
+        self::assertSame('inconnuinconnuinconnu01', session_id(), '… mais sans effet : identifiant adopté');
+        session_write_close();
+        self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM sessions WHERE id = 'inconnuinconnuinconnu01' AND user_id IS NULL")->fetchColumn(), 'ligne créée sous l’identifiant imposé');
+
+        // La garantie anti-fixation tient grâce à session_regenerate_id(true) à la connexion.
+        $userId = self::newUser();
+        Session::start();
+        Session::openForUser($userId);
+        self::assertNotSame('inconnuinconnuinconnu01', session_id());
+    }
+
+    #[TestDox('UC-CPT-02-U17 — cookie de session : humanome_sid, HttpOnly, SameSite=Lax, session (lifetime 0), Secure hors APP_ENV=dev, cookies seuls')]
+    public function testU17SessionCookieAttributes(): void
+    {
+        $env = \Humanome\Env::get('APP_ENV');
+        try {
+            TestDb::setEnv('APP_ENV', 'production');
+            Session::start();
+            self::assertSame('humanome_sid', session_name());
+            self::assertEquals(
+                ['lifetime' => 0, 'path' => '/', 'domain' => '', 'secure' => true, 'httponly' => true, 'samesite' => 'Lax'],
+                session_get_cookie_params(),
+            );
+            self::assertSame('1', ini_get('session.use_only_cookies'));
+            session_abort();
+
+            TestDb::setEnv('APP_ENV', 'dev');
+            session_id('');
+            Session::start();
+            self::assertFalse(session_get_cookie_params()['secure'], 'dev (http://localhost) : pas de Secure');
+            self::assertTrue(session_get_cookie_params()['httponly']);
+            session_abort();
+        } finally {
+            TestDb::setEnv('APP_ENV', $env);
+        }
     }
 }

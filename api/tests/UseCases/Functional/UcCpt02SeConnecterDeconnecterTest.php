@@ -7,6 +7,7 @@ namespace Humanome\Tests\UseCases\Functional;
 use Humanome\Auth\Users;
 use Humanome\Geo\CountryResolver;
 use Humanome\Tests\CartographeTestCase;
+use Humanome\Tests\UseCases\Support\CptSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 
 /**
@@ -69,8 +70,9 @@ final class UcCpt02SeConnecterDeconnecterTest extends CartographeTestCase
         self::assertNotSame('fixationfixationfixation01', $this->cookieSid);
         $row = $this->sessionRow($this->cookieSid);
         self::assertSame($this->userId, (int) $row['user_id']);
-        self::assertSame(hash('sha256', $this->clientIp), $row['ip_hash'], 'IP hachée, jamais en clair');
-        self::assertSame(
+        self::assertSame(hash('sha256', $this->clientIp), $row['ip_hash'], 'IP hachée (sha256 non salé, AN5), jamais en clair');
+        // Colonne JSON relue : MySQL ne conserve pas l'ordre des clés (assertEquals).
+        self::assertEquals(
             ['userId' => $this->userId, 'details' => ['pays' => 'FR', 'reseau' => '203.0.113.0/24']],
             self::lastAudit('login'),
         );
@@ -114,8 +116,12 @@ final class UcCpt02SeConnecterDeconnecterTest extends CartographeTestCase
     public function testF03SessionOfAPurgedAccount(): void
     {
         $this->login('ada@example.org', self::PASSWORD);
+        $sid = $this->cookieSid;
+        self::assertSame($this->userId, self::lastAudit('login')['userId']);
         Users::purge(self::$pdo, $this->userId);
 
+        self::assertFalse($this->sessionRow($sid), 'session supprimée en cascade par la purge');
+        self::assertNull(self::lastAudit('login')['userId'], 'journal de connexion anonymisé (SET NULL)');
         $me = $this->request('GET', '/api/auth/me');
 
         self::assertSame(401, $me->getStatusCode());
@@ -172,6 +178,7 @@ final class UcCpt02SeConnecterDeconnecterTest extends CartographeTestCase
     #[TestDox('UC-CPT-02-F07 — E4 : 6e essai (IP + email) → 429 même avec le bon mot de passe, délai croissant ; autre IP ou autre email libres')]
     public function testF07LoginRateLimit(): void
     {
+        CptSupport::awayFromWindowBoundary(900); // fenêtre fixe de 15 min
         $this->clientIp = '2001:db8:5:6::1';
         for ($i = 1; $i <= 5; $i++) {
             self::assertSame(401, $this->login('ada@example.org', 'mauvais-' . $i)->getStatusCode());
@@ -210,5 +217,70 @@ final class UcCpt02SeConnecterDeconnecterTest extends CartographeTestCase
         }
         self::assertNotFalse($this->sessionRow($sid));
         self::assertSame(200, $this->request('GET', '/api/auth/me')->getStatusCode(), 'toujours connecté');
+    }
+
+    #[TestDox('UC-CPT-02-F18 — RG6 : une connexion réussie remet à zéro le quota du couple IP + email')]
+    public function testF18SuccessfulLoginResetsTheQuota(): void
+    {
+        CptSupport::awayFromWindowBoundary(900);
+        for ($i = 1; $i <= 4; $i++) {
+            self::assertSame(401, $this->login('ada@example.org', 'mauvais-' . $i)->getStatusCode());
+        }
+        self::assertSame(200, $this->login('ada@example.org', self::PASSWORD)->getStatusCode());
+        self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM rate_limits WHERE bucket LIKE 'login:%'")->fetchColumn(), 'seau effacé');
+
+        // Sans remise à zéro, le 2e échec suivant serait déjà un 429 (4 + 2 > 5).
+        $this->cookieSid = null;
+        for ($i = 1; $i <= 5; $i++) {
+            self::assertSame(401, $this->login('ada@example.org', 'encore-faux-' . $i)->getStatusCode(), "échec $i après le succès");
+        }
+        self::assertSame(429, $this->login('ada@example.org', self::PASSWORD)->getStatusCode(), 'nouveau quota plein');
+    }
+
+    #[TestDox('UC-CPT-02-F19 — ANOMALIE AN1 : déconnexion avec le cookie d’une session disparue (expirée, purgée) → 403 CSRF et non 401 ; /me → 401 ; ligne recréée vide (AN2)')]
+    public function testF19LogoutWithAStaleSessionCookie(): void
+    {
+        $token = self::json($this->login('ada@example.org', self::PASSWORD))['csrfToken'];
+        $sid = $this->cookieSid;
+        // Le ramasse-miettes (ou une purge depuis un autre navigateur) a supprimé la ligne.
+        self::$pdo->prepare('DELETE FROM sessions WHERE id = ?')->execute([$sid]);
+
+        // Comportement ACTUEL figé (voir « Anomalies constatées ») : le cookie suffit
+        // au middleware CSRF pour croire à une session ; la session neuve n'a pas de
+        // jeton → 403 avant la route, même avec l'ancien jeton.
+        $logout = $this->request('POST', '/api/auth/logout', null, ['X-CSRF-Token' => $token]);
+        self::assertSame(403, $logout->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($logout));
+        $row = $this->sessionRow($sid);
+        self::assertNotFalse($row, 'AN2 : la ligne supprimée est recréée sous le même identifiant…');
+        self::assertNull($row['user_id'], '… vide (aucun compte lié)');
+
+        $this->cookieSid = $sid;
+        self::assertSame(401, $this->request('GET', '/api/auth/me')->getStatusCode(), 'GET /me : 401 comme un visiteur');
+    }
+
+    #[TestDox('UC-CPT-02-F20 — E6 : API sans base configurée → connexion 503 « Service indisponible » ; /me et déconnexion 401')]
+    public function testF20DatabaseNotConfigured(): void
+    {
+        // Un navigateur déjà connecté (cookie + jeton) avant la panne de configuration.
+        $token = self::json($this->login('ada@example.org', self::PASSWORD))['csrfToken'];
+        $sid = $this->cookieSid;
+
+        CptSupport::withoutDatabase(function () use ($token, $sid): void {
+            $this->cookieSid = null;
+            $login = $this->login('ada@example.org', self::PASSWORD);
+            self::assertSame(503, $login->getStatusCode());
+            self::assertSame(['error' => 'Service indisponible'], self::json($login));
+            self::assertNull($this->cookieSid);
+
+            // Même avec le cookie d'une session valide : 401, pas 503.
+            $this->cookieSid = $sid;
+            $me = $this->request('GET', '/api/auth/me');
+            self::assertSame(401, $me->getStatusCode());
+            self::assertSame(['error' => 'Authentification requise'], self::json($me));
+            $this->cookieSid = $sid;
+            self::assertSame(401, $this->request('POST', '/api/auth/logout', null, ['X-CSRF-Token' => $token])->getStatusCode());
+        });
+        self::assertNotFalse($this->sessionRow($sid), 'la session n’a pas été touchée');
     }
 }

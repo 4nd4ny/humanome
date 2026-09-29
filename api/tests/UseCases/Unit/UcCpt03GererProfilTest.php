@@ -68,17 +68,26 @@ final class UcCpt03GererProfilTest extends TestCase
         self::assertSame(['image/jpeg', 'image/png', 'image/webp'], array_keys(AvatarValidator::ALLOWED));
     }
 
-    #[TestDox('UC-CPT-03-U02 — type non autorisé (GIF, SVG, vide) refusé avant tout examen des octets')]
+    #[TestDox('UC-CPT-03-U02 — type hors liste (GIF, SVG, vide, non normalisé) refusé AVANT tout examen des octets (vacuité, taille, signature)')]
     public function testU02RejectsTypesOutsideTheAllowlist(): void
     {
         $message = 'Format non supporté : seuls JPEG, PNG et WebP sont acceptés.';
         self::assertSame($message, AvatarValidator::validate("GIF89a\x01\x00\x01\x00", 'image/gif'));
         self::assertSame($message, AvatarValidator::validate('<svg xmlns="http://www.w3.org/2000/svg"/>', 'image/svg+xml'));
         self::assertSame($message, AvatarValidator::validate(self::png(), ''));
-        self::assertSame($message, AvatarValidator::validate(self::png(), 'IMAGE/PNG'), 'type attendu déjà normalisé en minuscules par la route');
+        // AvatarValidator seul ne normalise pas : c'est la route qui passe le type
+        // en minuscules et sans blancs avant l'appel (F03).
+        self::assertSame($message, AvatarValidator::validate(self::png(), 'IMAGE/PNG'));
+        // Ordre des contrôles : le type est jugé avant la vacuité et la taille.
+        self::assertSame($message, AvatarValidator::validate('', 'image/gif'), 'vide mais type interdit : message de type');
+        self::assertSame(
+            $message,
+            AvatarValidator::validate(str_repeat('x', AvatarValidator::MAX_BYTES + 1), 'image/svg+xml'),
+            'trop lourd mais type interdit : message de type',
+        );
     }
 
-    #[TestDox('UC-CPT-03-U03 — taille : vide refusé, 200 Ko pile acceptés, 1 octet de plus refusé')]
+    #[TestDox('UC-CPT-03-U03 — taille : vide refusé (« Image vide. », inatteignable par l’API), 200 Ko pile acceptés, 1 octet de plus refusé')]
     public function testU03SizeBoundaries(): void
     {
         self::assertSame(204800, AvatarValidator::MAX_BYTES);

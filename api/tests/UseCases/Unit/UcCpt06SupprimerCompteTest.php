@@ -187,6 +187,65 @@ final class UcCpt06SupprimerCompteTest extends TestCase
         Session::destroy();
 
         self::assertNotSame(PHP_SESSION_ACTIVE, session_status());
-        self::assertSame(0, self::rows('SELECT COUNT(*) FROM sessions'), 'aucune session orpheline');
+        // Fin de requête simulée, comme dans le contre-exemple : plus rien à écrire.
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+        }
+        self::assertSame(0, self::rows("SELECT COUNT(*) FROM sessions WHERE id = '$sid'"), 'aucune session orpheline');
+    }
+
+    #[TestDox('UC-CPT-06-U08 — purge d’un contributeur : ses contenus collectifs survivent, auteur anonymisé (prompt_versions.created_by, golden_grants.granted_by → NULL)')]
+    public function testU08ContributorContentSurvivesAnonymized(): void
+    {
+        self::$pdo->exec("DELETE FROM prompt_packages WHERE slug = 'uc-cpt-06-u08'");
+        $pro = self::newUser('pro@example.org', 'promptologue');
+        $admin = self::newUser('admin@example.org', 'admin');
+        $bob = self::newUser('bob@example.org');
+        self::$pdo->exec("INSERT INTO prompt_packages (slug) VALUES ('uc-cpt-06-u08')");
+        $package = (int) self::$pdo->lastInsertId();
+        self::$pdo->prepare("INSERT INTO prompt_versions (package_id, semver, content, created_by) VALUES (?, '1.0.0', '{}', ?)")
+            ->execute([$package, $pro]);
+        self::$pdo->prepare('INSERT INTO golden_grants (package_id, user_id, granted_by) VALUES (?, ?, ?)')
+            ->execute([$package, $bob, $admin]);
+
+        Users::purge(self::$pdo, $pro);
+        Users::purge(self::$pdo, $admin);
+
+        self::assertSame(1, self::rows("SELECT COUNT(*) FROM prompt_versions WHERE package_id = $package AND created_by IS NULL"), 'version conservée, auteur anonymisé');
+        self::assertSame(1, self::rows("SELECT COUNT(*) FROM golden_grants WHERE package_id = $package AND user_id = $bob AND granted_by IS NULL"), 'accès conservé, auteur anonymisé');
+        self::$pdo->exec("DELETE FROM prompt_packages WHERE slug = 'uc-cpt-06-u08'");
+    }
+
+    #[TestDox('UC-CPT-06-U10 — ANOMALIE AN3 : une requête en vol d’un autre navigateur réécrit sa session après la purge (ligne ressuscitée qui nomme encore le compte supprimé)')]
+    public function testU10InFlightRequestResurrectsItsSession(): void
+    {
+        $ada = self::newUser('ada@example.org');
+        $_SERVER['REMOTE_ADDR'] = '203.0.113.10';
+        // Navigateur B connecté (session persistée).
+        Session::start();
+        Session::openForUser($ada);
+        $sidB = session_id();
+        session_write_close();
+
+        // Une requête de B commence : sa session est chargée…
+        session_id($sidB);
+        Session::start();
+        self::assertSame($ada, Session::userId());
+        // … pendant que le navigateur A supprime le compte (cascade sur TOUTES les sessions).
+        Users::purge(self::$pdo, $ada);
+        self::assertSame(0, self::rows("SELECT COUNT(*) FROM sessions WHERE id = '$sidB'"), 'cascade');
+
+        // Fin de la requête de B : PHP réécrit la session (INSERT … ON DUPLICATE KEY UPDATE).
+        session_write_close();
+
+        // Comportement ACTUEL figé (« Anomalies constatées », AN3).
+        $row = self::$pdo->query("SELECT user_id, data FROM sessions WHERE id = '$sidB'")->fetch();
+        self::assertIsArray($row, 'ligne ressuscitée');
+        self::assertNull($row['user_id'], 'plus liée au compte (clé étrangère)…');
+        self::assertStringContainsString('user_id|i:' . $ada, (string) $row['data'], '… mais ses données nomment encore le compte supprimé');
+        session_id($sidB);
+        Session::start();
+        self::assertSame($ada, Session::userId(), 'Session::userId() rend l’identifiant d’un compte qui n’existe plus');
+        self::assertNull(Users::findById(self::$pdo, $ada));
     }
 }

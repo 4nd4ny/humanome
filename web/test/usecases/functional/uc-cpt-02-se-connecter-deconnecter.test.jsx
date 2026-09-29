@@ -8,7 +8,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
-import { API_UNAVAILABLE_MESSAGE, resetApiClient } from '../../../src/api/client.js'
+import { API_UNAVAILABLE_MESSAGE, getCsrfToken, resetApiClient } from '../../../src/api/client.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import { clearLocalStorage, installFakeAccountApi, jsonResponse } from '../support/cpt.js'
 
@@ -86,34 +86,43 @@ describe('UC-CPT-02 — connexion et déconnexion', () => {
     expect(api.callsTo('auth/login')).toHaveLength(0)
   })
 
-  it('UC-CPT-02-F11 — A2 : « Se déconnecter » du panneau de navigation → session fermée, retour à l’accueil', async () => {
+  it('UC-CPT-02-F11 — A2 : « Se déconnecter » du panneau de navigation → session fermée, panneau refermé, retour à l’accueil', async () => {
     const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
     openApp()
     await nav().findByRole('button', { name: 'Se déconnecter' })
+    await click('Menu de navigation')
+    expect(document.querySelector('.app-menu').classList.contains('is-open')).toBe(true)
 
     await click('Se déconnecter', nav())
 
     await waitFor(() => expect(window.location.hash).toBe('#/'))
+    expect(document.querySelector('.app-menu').classList.contains('is-open')).toBe(false)
     expect(api.session).toBeNull()
     expect(await nav().findByRole('link', { name: 'Se connecter' })).toBeDefined()
   })
 
-  it('UC-CPT-02-F12 — A3 : API injoignable → message « copie statique » ; déconnexion hors ligne = déconnexion locale', async () => {
+  it('UC-CPT-02-F12 — A3 : API injoignable → message « copie statique » ; déconnexion hors ligne = déconnexion locale, navigation visiteur', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')))
     openApp()
     expect((await screen.findByRole('status')).textContent).toBe(API_UNAVAILABLE_MESSAGE)
     cleanup()
     vi.unstubAllGlobals()
 
-    // Connecté, puis le réseau tombe : « Se déconnecter » ramène quand même au formulaire.
+    // Connecté, puis TOUT le réseau tombe : « Se déconnecter » ramène au formulaire
+    // et la relecture de session du shell (en échec) repasse la navigation en visiteur.
     const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
     openApp()
     await profileShown()
-    api.override('POST auth/logout', () => {
-      throw new TypeError('Failed to fetch')
-    })
+    await nav().findByRole('button', { name: 'Se déconnecter' })
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')))
+
     await click('Se déconnecter', profile())
+
     expect(await screen.findByText('Vous êtes déconnecté.')).toBeDefined()
+    expect(await nav().findByRole('link', { name: 'Se connecter' })).toBeDefined()
+    expect(nav().queryByRole('button', { name: 'Se déconnecter' })).toBeNull()
+    expect(getCsrfToken()).toBeNull()
+    expect(api.session).not.toBeNull() // session serveur intacte (voir « Limites »)
   })
 
   it('UC-CPT-02-F13 — E1 : email ou mot de passe vide → message local, aucune requête', async () => {
@@ -164,10 +173,88 @@ describe('UC-CPT-02 — connexion et déconnexion', () => {
     openApp()
     await profileShown()
 
+    const meCalls = api.callsTo('auth/me').length
+
     await click('Se déconnecter', profile())
 
     expect((await screen.findByRole('alert')).textContent).toBe('Jeton CSRF absent ou invalide')
     expect(profile().getByText('ada@example.org')).toBeDefined()
-    expect(api.session).not.toBeNull()
+    // « Rester connecté » côté client : logout() a oublié le jeton, la relecture
+    // de /me déclenchée par humanome:auth le récupère ; la navigation reste connectée.
+    await waitFor(() => expect(api.callsTo('auth/me').length).toBeGreaterThan(meCalls))
+    await waitFor(() => expect(getCsrfToken()).toBe(api.session.csrf))
+    expect(nav().getByRole('button', { name: 'Se déconnecter' })).toBeDefined()
+  })
+
+  it('UC-CPT-02-F21 — ANOMALIE AN1 : session disparue côté serveur (cookie gardé) → déconnexion refusée 403 CSRF ; profil + message, navigation visiteur', async () => {
+    const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
+    openApp()
+    await profileShown()
+    await nav().findByRole('button', { name: 'Se déconnecter' })
+    api.expireSession() // ramasse-miettes ou purge depuis un autre navigateur
+
+    await click('Se déconnecter', profile())
+
+    // Comportement ACTUEL figé (« Anomalies constatées », AN1) : affichage incohérent.
+    expect((await screen.findByRole('alert')).textContent).toBe('Jeton CSRF absent ou invalide')
+    expect(profile().getByText('ada@example.org')).toBeDefined() // le profil reste affiché…
+    expect(await nav().findByRole('link', { name: 'Se connecter' })).toBeDefined() // … la navigation est celle d'un visiteur
+    expect(nav().queryByRole('button', { name: 'Se déconnecter' })).toBeNull()
+  })
+
+  it('UC-CPT-02-F22 — ANOMALIE AN3 : déconnexion refusée depuis le panneau → aucun message, retour à l’accueil, toujours connecté', async () => {
+    const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
+    api.failNext('POST auth/logout', jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' }))
+    openApp()
+    await nav().findByRole('button', { name: 'Se déconnecter' })
+
+    await click('Se déconnecter', nav())
+
+    // Comportement ACTUEL figé : l'erreur est avalée (App.jsx, handleLogout).
+    await waitFor(() => expect(window.location.hash).toBe('#/'))
+    expect(screen.queryByText('Jeton CSRF absent ou invalide')).toBeNull()
+    await waitFor(() => expect(getCsrfToken()).toBe(api.session.csrf))
+    expect(nav().getByRole('button', { name: 'Se déconnecter' })).toBeDefined()
+  })
+
+  it('UC-CPT-02-F23 — ANOMALIE AN4 : compte connecté SANS aucun rôle → profil affiché mais navigation de visiteur, sans « Se déconnecter »', async () => {
+    const api = installFakeAccountApi({ users: [{ ...ADA, roles: [] }], loggedInAs: 'ada@example.org' })
+    openApp()
+
+    expect((await profileShown()).getByText('Aucun rôle attribué pour l’instant')).toBeDefined()
+    await waitFor(() => expect(api.callsTo('auth/me').length).toBeGreaterThanOrEqual(2)) // shell + profil
+    // Comportement ACTUEL figé : App.jsx déduit « connecté » de roles.length > 0.
+    expect(nav().getByRole('link', { name: 'Se connecter' })).toBeDefined()
+    expect(nav().queryByRole('button', { name: 'Se déconnecter' })).toBeNull()
+    expect(nav().queryByText('Ada Lovelace')).toBeNull()
+  })
+
+  it('UC-CPT-02-F24 — A3 : /me en erreur serveur (500) → « Impossible de vérifier votre session… », pas le message « copie statique »', async () => {
+    const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
+    api.override('GET auth/me', () => jsonResponse(500, { error: 'Erreur interne' }))
+    openApp()
+
+    expect((await screen.findByRole('status')).textContent).toBe(
+      'Impossible de vérifier votre session pour le moment. Réessayez plus tard.',
+    )
+    expect(nav().getByRole('link', { name: 'Se connecter' })).toBeDefined()
+  })
+
+  it('UC-CPT-02-F25 — A3 (limite) : panne PARTIELLE — déconnexion perdue mais /me joignable → profil « déconnecté », navigation toujours connectée', async () => {
+    const api = installFakeAccountApi({ users: [ADA], loggedInAs: 'ada@example.org' })
+    openApp()
+    await profileShown()
+    await nav().findByRole('button', { name: 'Se déconnecter' })
+    api.override('POST auth/logout', () => {
+      throw new TypeError('Failed to fetch')
+    })
+
+    await click('Se déconnecter', profile())
+
+    // Comportement ACTUEL figé (voir « Limites ») : l'espace compte se croit déconnecté…
+    expect(await screen.findByText('Vous êtes déconnecté.')).toBeDefined()
+    // … mais la session serveur vit : le shell relit /me, récupère le jeton et reste connecté.
+    await waitFor(() => expect(getCsrfToken()).toBe(api.session.csrf))
+    expect(nav().getByRole('button', { name: 'Se déconnecter' })).toBeDefined()
   })
 })

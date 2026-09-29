@@ -6,6 +6,7 @@ namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Geo\CountryResolver;
 use Humanome\Tests\CartographeTestCase;
+use Humanome\Tests\UseCases\Support\CptSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 use Psr\Http\Message\ResponseInterface;
 
@@ -125,8 +126,9 @@ final class UcCpt01CreerActiverCompteTest extends CartographeTestCase
         self::assertNotNull($after['email_verified_at']);
         self::assertNull($after['verification_code_hash'], 'code à usage unique');
 
-        // Journal des connexions : pays + réseau tronqué, jamais l'IP.
-        self::assertSame(
+        // Journal des connexions : pays + réseau tronqué, jamais l'IP. Colonne
+        // JSON relue : MySQL ne conserve pas l'ordre des clés (assertEquals).
+        self::assertEquals(
             ['userId' => $userId, 'details' => ['pays' => 'FR', 'reseau' => '203.0.113.0/24']],
             self::lastAudit('login'),
         );
@@ -238,6 +240,7 @@ final class UcCpt01CreerActiverCompteTest extends CartographeTestCase
     #[TestDox('UC-CPT-01-F07 — E4 : 11e inscription de l’heure depuis une IP (/64 en IPv6) → 429 + Retry-After, même invalide les essais comptent')]
     public function testF07RegisterRateLimitPerIp(): void
     {
+        CptSupport::awayFromWindowBoundary(3600); // fenêtre fixe d'une heure
         $this->clientIp = '2001:db8:1:2::1';
         for ($i = 1; $i <= 10; $i++) {
             // Le quota est compté AVANT la validation : même des requêtes invalides l'épuisent.
@@ -304,6 +307,7 @@ final class UcCpt01CreerActiverCompteTest extends CartographeTestCase
     #[TestDox('UC-CPT-01-F10 — E7 : au-delà de 20 activations par 15 min depuis une IP → 429, même avec le bon code')]
     public function testF10ActivationRateLimitPerIp(): void
     {
+        CptSupport::awayFromWindowBoundary(900); // fenêtre fixe de 15 min
         $this->signUp();
         $good = $this->lastCode();
         for ($i = 1; $i <= 20; $i++) {
@@ -323,6 +327,7 @@ final class UcCpt01CreerActiverCompteTest extends CartographeTestCase
     #[TestDox('UC-CPT-01-F11 — E8 : renvois limités à 3/h par compte et 10/h par IP → 429 sans nouvel email')]
     public function testF11ResendRateLimits(): void
     {
+        CptSupport::awayFromWindowBoundary(3600);
         $this->signUp();
         for ($i = 1; $i <= 3; $i++) {
             self::assertSame(200, $this->request('POST', '/api/auth/resend', ['email' => 'ada@example.org'])->getStatusCode());
@@ -344,5 +349,120 @@ final class UcCpt01CreerActiverCompteTest extends CartographeTestCase
         $sent = \count($this->mailer->sent);
         self::assertSame(429, $this->request('POST', '/api/auth/resend', ['email' => 'bob@example.org'])->getStatusCode());
         self::assertCount($sent, $this->mailer->sent);
+    }
+
+    #[TestDox('UC-CPT-01-F21 — ANOMALIE AN1 (pré-détournement) : l’activation par le titulaire de la boîte garde le mot de passe choisi par l’inscrivant, qui se connecte ensuite')]
+    public function testF21ActivationKeepsTheRegistrantsPassword(): void
+    {
+        // Comportement ACTUEL figé (voir « Anomalies constatées », AN1) : un tiers
+        // inscrit l'adresse de la victime avec SON mot de passe…
+        $this->clientIp = '198.51.100.66';
+        self::assertSame(201, $this->signUp(['password' => 'mot-de-passe-du-tiers'])->getStatusCode());
+
+        // … la victime (autre navigateur, autre IP) active le compte avec le code
+        // reçu dans SA boîte : l'activation n'exige ni ne redéfinit aucun mot de passe.
+        $this->clientIp = '203.0.113.10';
+        $this->cookieSid = null;
+        self::assertSame(200, $this->activate('ada@example.org', $this->lastCode())->getStatusCode());
+
+        // Le tiers se connecte au compte désormais vérifié avec son propre mot de passe.
+        $this->clientIp = '198.51.100.66';
+        $this->cookieSid = null;
+        $login = $this->login('ada@example.org', 'mot-de-passe-du-tiers');
+        self::assertSame(200, $login->getStatusCode(), 'anomalie AN1 : l’inscrivant garde l’accès');
+        self::assertSame('ada@example.org', self::json($login)['user']['email']);
+    }
+
+    #[TestDox('UC-CPT-01-F22 — ANOMALIE AN3 : un compte jamais activé est conservé ; l’inscrivant ne peut pas le supprimer, seul le titulaire de la boîte le peut')]
+    public function testF22UnactivatedAccountIsNeverPurged(): void
+    {
+        self::assertSame(201, $this->signUp()->getStatusCode());
+        // Code expiré depuis longtemps : rien ne purge la ligne (aucune tâche planifiée).
+        self::$pdo->exec("UPDATE users SET verification_expires_at = '2000-01-01 00:00:00' WHERE email = 'ada@example.org'");
+
+        // L'inscrivant n'obtient jamais de session (403) : DELETE /api/auth/account → 401.
+        $this->cookieSid = null;
+        self::assertSame(403, $this->login('ada@example.org', self::PASSWORD)->getStatusCode());
+        self::assertNull($this->cookieSid);
+        self::assertSame(401, $this->request('DELETE', '/api/auth/account')->getStatusCode());
+        $row = self::userRow('ada@example.org');
+        self::assertNull($row['email_verified_at']);
+        self::assertNotNull($row['verification_code_hash'], 'empreinte de code expirée conservée');
+        // L'adresse reste bloquée pour une nouvelle inscription.
+        self::assertSame(409, $this->signUp(['displayName' => 'Titulaire'])->getStatusCode());
+
+        // Seule issue : le titulaire de la boîte se fait renvoyer un code, active, puis supprime.
+        $this->cookieSid = null;
+        self::assertSame(200, $this->request('POST', '/api/auth/resend', ['email' => 'ada@example.org'])->getStatusCode());
+        $activated = $this->activate('ada@example.org', $this->lastCode());
+        self::assertSame(200, $activated->getStatusCode());
+        $token = (string) self::json($activated)['csrfToken'];
+        self::assertSame(204, $this->request('DELETE', '/api/auth/account', null, ['X-CSRF-Token' => $token])->getStatusCode());
+        self::assertSame(0, self::countUsers());
+    }
+
+    #[TestDox('UC-CPT-01-F23 — A2 : un renvoi vers une adresse mal formée répond de façon générique sans entamer aucun quota')]
+    public function testF23ResendToAMalformedAddressConsumesNoQuota(): void
+    {
+        $this->signUp();
+        $sent = \count($this->mailer->sent);
+        for ($i = 1; $i <= 11; $i++) {
+            $response = $this->request('POST', '/api/auth/resend', ['email' => 'pas-un-email']);
+            self::assertSame(200, $response->getStatusCode(), "renvoi invalide $i");
+            self::assertSame('ok', self::json($response)['status']);
+        }
+        self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM rate_limits WHERE bucket LIKE 'resend:%'")->fetchColumn());
+        self::assertCount($sent, $this->mailer->sent);
+
+        // Le quota IP (10/h) est intact : un vrai renvoi passe et envoie un mail.
+        self::assertSame(200, $this->request('POST', '/api/auth/resend', ['email' => 'ada@example.org'])->getStatusCode());
+        self::assertCount($sent + 1, $this->mailer->sent);
+    }
+
+    #[TestDox('UC-CPT-01-F24 — ANOMALIE AN5 : un tiers épuise le quota de renvoi du compte et verrouille le code ; le titulaire ne peut plus activer avant la fenêtre suivante')]
+    public function testF24ThirdPartyCanBlockTheActivation(): void
+    {
+        CptSupport::awayFromWindowBoundary(3600);
+        $this->signUp(); // le titulaire s'inscrit depuis 203.0.113.10
+
+        // Un tiers (autre réseau) connaît seulement l'adresse : 3 renvois (quota
+        // du COMPTE, clé = email seul) puis 5 codes faux (verrou du code).
+        $this->clientIp = '198.51.100.99';
+        for ($i = 1; $i <= 3; $i++) {
+            $this->cookieSid = null;
+            self::assertSame(200, $this->request('POST', '/api/auth/resend', ['email' => 'ada@example.org'])->getStatusCode());
+        }
+        $latest = $this->lastCode(); // le dernier code, parti dans la boîte du titulaire
+        for ($i = 1; $i <= 5; $i++) {
+            self::assertSame(401, $this->activate('ada@example.org', self::wrongCode($latest, $i))->getStatusCode());
+        }
+
+        // Comportement ACTUEL figé (voir « Anomalies constatées », AN5) : le titulaire,
+        // depuis son propre réseau, a le bon code mais il est verrouillé, et le renvoi
+        // lui est refusé jusqu'à la fenêtre suivante (1 h).
+        $this->clientIp = '203.0.113.10';
+        $this->cookieSid = null;
+        self::assertSame(401, $this->activate('ada@example.org', $latest)->getStatusCode(), 'code verrouillé');
+        self::assertSame(429, $this->request('POST', '/api/auth/resend', ['email' => 'ada@example.org'])->getStatusCode(), 'quota du compte épuisé par le tiers');
+        self::assertNull(self::userRow('ada@example.org')['email_verified_at']);
+    }
+
+    #[TestDox('UC-CPT-01-F25 — E9 : API sans base configurée → 503 « Service indisponible » sur register, activate et resend, rien n’est créé')]
+    public function testF25DatabaseNotConfigured(): void
+    {
+        CptSupport::withoutDatabase(function (): void {
+            foreach ([
+                ['/api/auth/register', ['email' => 'ada@example.org', 'emailConfirm' => 'ada@example.org', 'password' => self::PASSWORD, 'displayName' => 'Ada']],
+                ['/api/auth/activate', ['email' => 'ada@example.org', 'code' => '1234']],
+                ['/api/auth/resend', ['email' => 'ada@example.org']],
+            ] as [$path, $body]) {
+                $this->cookieSid = null;
+                $response = $this->request('POST', $path, $body);
+                self::assertSame(503, $response->getStatusCode(), $path);
+                self::assertSame(['error' => 'Service indisponible'], self::json($response));
+            }
+        });
+        self::assertSame(0, self::countUsers());
+        self::assertSame([], $this->mailer->sent);
     }
 }
