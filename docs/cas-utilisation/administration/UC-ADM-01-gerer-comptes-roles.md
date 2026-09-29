@@ -6,7 +6,7 @@
 | **Acteurs secondaires** | Compte cible (tout inscrit, dont les droits changent) ; outil de déploiement (amorçage du premier admin, UC-SYS-02) |
 | **Portée** | humanome.xyz — espace `#/admin/roles`, API de session `/api/admin/users*` |
 | **Niveau** | Objectif utilisateur |
-| **Cahier des charges** | §2 (glossaire des rôles), §3.8 et §4.10 (administration), §6.5 (journalisation minimale) ; `docs/administration.md` §1, `docs/autorisations.md` (règle 4) |
+| **Cahier des charges** | §2 (glossaire des rôles), §3.8 et §4.10 (administration) ; principe RGPD n°5 — journalisation minimale (`CLAUDE.md`, `docs/rgpd-registre.md`) ; `docs/administration.md` §1, `docs/autorisations.md` (règle 4) |
 | **Statut** | Implémenté (P12.1, jalon M9) |
 
 ## Objectif
@@ -43,8 +43,12 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 ## Garanties minimales (en cas d'échec)
 
 - Aucun rôle n'est modifié, aucun audit n'est écrit.
-- L'administrateur agissant conserve toujours son propre rôle `admin`
-  (anti-verrouillage) : la plateforme garde au moins un administrateur.
+- L'administrateur agissant conserve son propre rôle `admin`
+  (anti-verrouillage). La plateforme n'impose en revanche **aucun minimum
+  global** : deux retraits croisés simultanés, ou la suppression de son compte
+  par le dernier admin (UC-CPT-06), peuvent la laisser sans administrateur ; il
+  faut alors ré-amorcer un compte par `POST /api/admin/grant-role` (UC-SYS-02).
+  Voir « Limites ».
 
 ## Scénario nominal
 
@@ -88,14 +92,20 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
   (UC-ADM-06) ; `RolesSection` ne l'expose pas.
 - **A3 — Plus de 20 comptes** (étape 3) : pagination « Page 1 / N » avec
   « Précédent » / « Suivant » (`?page=2`…) ; une page ≤ 0 est ramenée à 1, une
-  page au-delà de la dernière est vide (le `total` reste exact).
+  page au-delà de la dernière est vide (le `total` reste exact), sauf page
+  démesurée (au-delà d'environ 4,6·10¹⁷) : `500 « Erreur interne »` (AN-2).
 - **A4 — Retrait du rôle admin d'un autre administrateur, ou d'un rôle non-admin
   à soi-même** (étape 7) : autorisé ; l'autre administrateur perd l'espace
   d'administration dès sa requête suivante (`403`).
 - **A5 — L'administrateur s'attribue un rôle métier** (étape 5) : `admin`
-  n'étant pas un super-rôle, un administrateur reçoit `403` sur les espaces des
-  autres rôles (ex. `/api/etablissement/cohortes`) tant qu'il ne s'est pas
-  attribué le rôle correspondant ; les rôles se cumulent.
+  n'étant pas un super-rôle, un administrateur reçoit `403` sur les espaces
+  dont la garde ne le liste pas (ex. `/api/etablissement/cohortes`,
+  `/api/cartographies`, `/api/cartographe/*`) tant qu'il ne s'est pas attribué
+  le rôle correspondant ; les rôles se cumulent (voir RG3 pour les surfaces où
+  `admin` est explicitement admis).
+- **A6 — Aucun résultat** (étape 4) : une recherche qui n'atteint aucun compte
+  affiche « 0 compte pour « … ». » et « Aucun compte ne correspond. », sans
+  tableau.
 
 ## Scénarios d'erreur
 
@@ -121,6 +131,10 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
   message.
 - **E7 — API injoignable** (étape 1) : sur une copie statique, l'IHM affiche
   « Copie statique du site : l'administration a besoin de l'API … ».
+- **E8 — Liste refusée ou en erreur** (étape 2) : si `GET /api/admin/users`
+  échoue (ex. `403 « Rôle insuffisant »` pour un admin dont le rôle vient
+  d'être retiré par un autre, A4), `RolesSection` affiche une alerte portant le
+  message serveur (« Chargement impossible. » à défaut), sans tableau.
 
 ## Règles de gestion
 
@@ -129,8 +143,13 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
   (un rôle invalide répond `422` même pour un compte inexistant).
 - **RG2** — Les rôles sont relus à chaque requête : aucune session n'a besoin
   d'être rouverte pour qu'un changement de rôle s'applique.
-- **RG3** — `admin` n'est pas un super-rôle : les routes `/api/admin/*` de
-  session sont sa seule surface ; ailleurs, chaque garde liste ses rôles.
+- **RG3** — `admin` n'est pas un super-rôle implicite : chaque garde liste
+  explicitement ses rôles. `admin` est admis sur `/api/admin/*` (session), sur
+  la supervision `/api/twin9/admin/{config,comptes,…}` (`RequireRole::any('admin')`)
+  et, avec `epistemiarque`, sur les routes d'écriture du référentiel et des
+  compétences (`RoleGuard::any('epistemiarque', 'admin')`) ; partout ailleurs
+  il reçoit `403`. (Le commentaire d'en-tête de `routes/admin.php`, « these
+  routes are the ONLY admin surface », est donc inexact.)
 - **RG4** — Anti-verrouillage : `revoke(adminId, adminId, 'admin')` est refusé
   (`409`) ; tout autre retrait est permis.
 - **RG5** — Attribution et retrait sont idempotents ; seul un changement effectif
@@ -147,7 +166,7 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | E-mail et nom des comptes | Affichés à l'administrateur seulement (liste) ; jamais journalisés |
 | Rôles | Table `user_roles` (CASCADE à la purge du compte) |
 | Trace d'attribution | `audit_events` : acteur = admin, `{targetUserId, role, status}` |
-| Recherche | Terme utilisé dans une requête préparée, jamais stocké |
+| Recherche | Terme passé en paramètre d'URL (`GET …?query=`) et utilisé dans une requête préparée ; jamais stocké par l'application (il peut figurer dans les journaux d'accès HTTP de l'hébergeur) |
 
 ## Code sollicité
 
@@ -172,7 +191,7 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 |---|---|---|---|
 | UC-ADM-01-U01 | `UserDirectory::list` | Supprimés exclus, tri par id, rôles alphabétiques, forme et date ISO | `api/tests/UseCases/Unit/UcAdm01GererComptesRolesTest.php` |
 | UC-ADM-01-U02 | `UserDirectory::list` | Recherche e-mail/nom insensible à la casse, `%` et `_` littéraux | idem |
-| UC-ADM-01-U03 | `UserDirectory::list` | Filtre par rôle, combiné à la recherche, rôle inconnu → vide | idem |
+| UC-ADM-01-U03 | `UserDirectory::list` | Filtre par rôle, combiné à la recherche (`example.org` + `epistemiarque` → 1 sur 3 ; `root` + `apprenant` → 0), rôle inconnu → vide | idem |
 | UC-ADM-01-U04 | `UserDirectory::list` | 20 par page, page ≤ 0 → 1, page au-delà → vide | idem |
 | UC-ADM-01-U05 | `UserDirectory::grant` | `granted` puis `unchanged`, audit unique sans e-mail (RG5) | idem |
 | UC-ADM-01-U06 | `UserDirectory::grant` | `422` rôle (avant le compte, RG1), `404` compte inconnu/supprimé | idem |
@@ -181,7 +200,10 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-U09 | `Users::rolesOf` | Changements visibles immédiatement, rôles cumulables (RG2) | idem |
 | UC-ADM-01-U10 | `RequireRole::process` | `401` sans session, passe avec `userId`/`roles`, `403` dès le retrait en base | idem |
 | UC-ADM-01-U11 | `RequireRole::any` | Au moins un rôle exigé | idem |
-| UC-ADM-01-U12 | `UserDirectory` (AN-1) | Comportement actuel : rôle résolu sans la casse, `revoke('ADMIN')` contourne l'anti-verrouillage de la classe | idem |
+| UC-ADM-01-U12 | `UserDirectory` (AN-1) | Comportement actuel : rôle résolu sans casse, accents ni espaces finaux ; `revoke('ADMIN' \| 'ádmin' \| 'admin ')` contourne l'anti-verrouillage de la classe, écho non normalisé | idem |
+| UC-ADM-01-U22 | `CsrfMiddleware::process` | GET et POST sans session passent ; session sans jeton ou jeton faux → `403 « Jeton CSRF absent ou invalide »`, handler non appelé ; bon jeton → passe | idem |
+| UC-ADM-01-U23 | `UserDirectory::revoke` | Rôle invalide → `422` avant le compte ; compte inconnu ou supprimé → `404`, aucun audit | idem |
+| UC-ADM-01-U24 | `UserDirectory::list` (AN-2) | Comportement actuel : `list('', PHP_INT_MAX)` → `PDOException` (OFFSET en notation scientifique) ; plus grande page sans débordement → vide | idem |
 | UC-ADM-01-U13 | `parseHash` | `#/admin/roles` → `{admin, roles}`, `#/admin` → section nulle | `web/test/usecases/unit/uc-adm-01-gerer-comptes-roles.test.jsx` |
 | UC-ADM-01-U14 | `navGroups` | Famille « Administrer » seulement avec `admin` | idem |
 | UC-ADM-01-U15 | `listUsers` | Paramètres `query`/`page`/`role`, réponse normalisée | idem |
@@ -191,6 +213,8 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-U19 | `RolesSection` | Pagination « Page 1 / 3 », Suivant → `page=2` | idem |
 | UC-ADM-01-U20 | `RolesSection` | Menu = rôles manquants, bouton inactif sans choix, « aucun » | idem |
 | UC-ADM-01-U21 | `apiFetch` | Copie statique (`file:`) → `ApiUnavailableError` sans réseau | idem |
+| UC-ADM-01-U25 | `fetchMe` | `200` → `{user}` + jeton CSRF en mémoire ; `401` → `{user: null}` ; `500` → `ApiError` relancée | idem |
+| UC-ADM-01-U26 | `AdminView` (`deps.fetchMeFn`, `deps.fetchFn`) | Copie statique → message ; admin → onglets (« Rôles » `aria-current`) et section ; non-admin → espace réservé ; `/auth/me` en 5xx → « non connecté » (limite) | idem |
 
 ### Tests fonctionnels
 
@@ -202,12 +226,13 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-F04 | A2, A3 | API | Filtre `role=` (+ recherche, rôle inconnu), pages 1 et 2 disjointes | idem |
 | UC-ADM-01-F05 | A4 | API | Retrait de l'admin d'un autre (effet immédiat) et d'un rôle non-admin à soi | idem |
 | UC-ADM-01-F06 | A5 | API | `403` sur l'espace établissement, puis `200` après auto-attribution | idem |
-| UC-ADM-01-F07 | E1, E2 | API | `401` visiteur, `403` compte à six rôles sans admin, aucune mutation | idem |
+| UC-ADM-01-F07 | E1, E2 | API | `401 « Authentification requise »` visiteur, `403 « Rôle insuffisant »` (et non CSRF) compte à six rôles sans admin, sur les trois routes ; aucune mutation | idem |
 | UC-ADM-01-F08 | E3 | API | `422` (inconnu, visiteur, vide, non-chaîne, absent), `404` routeur | idem |
 | UC-ADM-01-F09 | E4 | API | `404 « Compte introuvable »` inconnu/supprimé | idem |
 | UC-ADM-01-F10 | E5 | API | `409` anti-verrouillage, rôle conservé, pas d'audit | idem |
 | UC-ADM-01-F11 | E6 | API | `403` CSRF absent/faux, aucune mutation | idem |
-| UC-ADM-01-F12 | AN-1 | API | Comportement actuel : `CARTOGRAPHE` accepté, écho et audit non normalisés | idem |
+| UC-ADM-01-F12 | AN-1 | API | Comportement actuel : `CARTOGRAPHE` et `cártographe` acceptés, écho et audit non normalisés | idem |
+| UC-ADM-01-F22 | A3, AN-2 | API | Comportement actuel : `?page=9223372036854775807` → `500 « Erreur interne »` ; `?page=9` → vide | idem |
 | UC-ADM-01-F13 | Nominal (1-6) | IHM | `<App/>` : liste, recherche, attribution avec CSRF, message, puce ajoutée | `web/test/usecases/functional/uc-adm-01-gerer-comptes-roles.test.jsx` |
 | UC-ADM-01-F14 | Nominal (7) | IHM | Croix → `DELETE`, message, puce retirée | idem |
 | UC-ADM-01-F15 | E5, A4 | IHM | Cadenas sur son rôle admin ; croix sur ses autres rôles et l'admin d'autrui | idem |
@@ -215,8 +240,10 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-F17 | A3 | IHM | 23 comptes : « Page 1 / 2 », Suivant → page 2 | idem |
 | UC-ADM-01-F18 | E1 | IHM | Visiteur : espace réservé + « Connectez-vous », aucune liste | idem |
 | UC-ADM-01-F19 | E2 | IHM | Compte sans admin : espace réservé, section non rendue | idem |
-| UC-ADM-01-F20 | E6 | IHM | CSRF refusé → alerte, liste inchangée | idem |
+| UC-ADM-01-F20 | E6 | IHM | Jeton CSRF perdu (mémoire effacée) : `POST` parti sans `X-CSRF-Token`, refusé par le faux serveur → alerte « Jeton CSRF absent ou invalide », état inchangé | idem |
 | UC-ADM-01-F21 | E7 | IHM | Réseau indisponible → message « Copie statique du site » | idem |
+| UC-ADM-01-F23 | E8 | IHM | Liste refusée (`403 « Rôle insuffisant »`) → alerte, pas de tableau | idem |
+| UC-ADM-01-F24 | Nominal (4), A6 | IHM | Recherche depuis la page 2 → `?query=…` sans `page=2` ; aucun résultat → « Aucun compte ne correspond. » | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -236,16 +263,30 @@ cd web && npx vitest run test/usecases/unit/uc-adm-01 test/usecases/functional/u
 
 ## Anomalies constatées
 
-- **AN-1 — Nom de rôle comparé sans la casse, anti-verrouillage comparé à la
-  lettre.** `UserDirectory::roleId` cherche `roles.name = ?` sous la collation
-  `utf8mb4_unicode_ci` : `ADMIN`, `Cartographe`… sont acceptés et résolus vers
-  le bon rôle, mais la réponse et l'audit gardent la graphie reçue (non
-  normalisée). Surtout, la règle d'anti-verrouillage de `revoke` teste
-  `$role === 'admin'` : appelée directement, la classe laisse un administrateur
-  retirer son propre rôle avec `ADMIN`. **Par HTTP, la faille est fermée** par
-  le motif de route `{role:[a-z]+}` du `DELETE` (`404`). Correctif suggéré :
-  normaliser le rôle (`strtolower(trim())`) dans `grant`/`revoke`, ou comparer
-  l'identifiant de rôle. Figé par UC-ADM-01-U12 et UC-ADM-01-F12.
+- **AN-1 — Nom de rôle comparé sous `utf8mb4_unicode_ci` (casse, accents et
+  espaces finaux ignorés), anti-verrouillage comparé à la lettre.**
+  `UserDirectory::roleId` cherche `roles.name = ?` sous la collation
+  `utf8mb4_unicode_ci` (PAD SPACE) : `ADMIN`, `Cartographe`, `cártographe`,
+  `ádmin`, `admin ` sont acceptés et résolus vers le bon rôle, mais la réponse
+  et l'audit gardent la graphie reçue (non normalisée). Surtout, la règle
+  d'anti-verrouillage de `revoke` teste `$role === 'admin'` : appelée
+  directement, la classe laisse un administrateur retirer son propre rôle avec
+  `ADMIN`, `ádmin` ou `admin `. **Par HTTP, la faille est fermée** par le motif
+  de route `{role:[a-z]+}` du `DELETE` (`404`) ; seul l'écho non normalisé
+  subsiste en `POST`. Un correctif par `strtolower(trim())` **ne suffirait
+  pas** (depuis PHP 8.2, `strtolower` ne touche que l'ASCII : `ádmin` resterait
+  `ádmin`). Correctif recommandé : comparer l'identifiant de rôle résolu
+  (`roleId === id du rôle 'admin'`) et renvoyer/journaliser le nom canonique
+  relu en base. Figé par UC-ADM-01-U12 et UC-ADM-01-F12.
+- **AN-2 — Page démesurée : débordement de l'OFFSET → `500`.** `list()` calcule
+  `($page - 1) * 20` sans borne : au-delà d'environ 4,6·10¹⁷ (ex.
+  `?page=9223372036854775807`), le produit déborde en `float`, l'OFFSET est
+  concaténé en notation scientifique (`OFFSET 1.844674407371E+20`), MySQL
+  rejette la requête (erreur 1064) et l'enveloppe de la route répond
+  `500 « Erreur interne »` au lieu d'une page vide (A3). Aucun détail SQL n'est
+  divulgué. Correctif suggéré : borner la page
+  (`min($page, intdiv(PHP_INT_MAX, PAGE_SIZE))`) ou lier LIMIT/OFFSET en
+  paramètres entiers. Figé par UC-ADM-01-U24 et UC-ADM-01-F22.
 
 ## Limites
 
@@ -255,3 +296,15 @@ cd web && npx vitest run test/usecases/unit/uc-adm-01 test/usecases/functional/u
 - L'IHM ne propose ni le filtre par rôle (disponible au monitoring) ni la
   création/suppression de comptes (l'inscription et la suppression relèvent de
   UC-CPT-01 et UC-CPT-06).
+- Pas de minimum global d'administrateurs : l'anti-verrouillage ne protège que
+  le rôle de l'administrateur **agissant**. Les vérifications de `revoke`
+  (rôle, compte, auto-retrait) et le `DELETE` ne sont ni transactionnels ni
+  verrouillés, et `RequireRole` lit les rôles une seule fois en entrée de
+  requête : deux admins qui se retirent mutuellement leur rôle au même moment
+  peuvent tous deux aboutir. `DELETE /api/auth/account` (UC-CPT-06) ne vérifie
+  pas non plus si le compte est le dernier admin. Reprise : ré-amorçage par
+  `POST /api/admin/grant-role` (UC-SYS-02).
+- `AdminView` traite toute erreur de `GET /api/auth/me` autre
+  qu'`ApiUnavailableError` (ex. `500`) comme une absence de session : un admin
+  connecté voit alors « Vous n'êtes pas connecté » (trompeur ; figé par
+  UC-ADM-01-U26).

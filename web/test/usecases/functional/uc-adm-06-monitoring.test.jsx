@@ -40,6 +40,7 @@ function overviewFor(days) {
   o.cartographies.total = 12
   o.cartographies.parType = { jour: 8, merge: 4 }
   o.cartographies.partages = { ...o.cartographies.partages, actifs: 4, consultationsPeriode: 9, consultationsTotal: 21 }
+  o.finances.soldes = { totalMicrousd: 7_000_000, comptesCredites: 2 }
   o.connexions = {
     periode: { reussies: 14, echouees: 3 },
     parJour: [{ date: isoDaysAgo(0), reussies: 14, echouees: 3 }],
@@ -122,6 +123,9 @@ describe('UC-ADM-06 — l’administrateur consulte le monitoring', () => {
     const tiles = [...document.querySelectorAll('.mon-tile')].map((t) => spaces(t.textContent))
     expect(tiles[0]).toBe('5connectés maintenant+ 2 visiteurs anonymes')
     expect(tiles[1]).toBe('42comptes+ 7 sur la période · 3 non activés')
+    expect(tiles[2]).toBe('12cartographies8 journée · 4 merge')
+    expect(tiles[3]).toBe('4partages actifs9 consultations sur la période')
+    expect(tiles[4]).toBe('7,00 $crédits en circulation2 comptes crédités')
     expect(tiles[6]).toBe('14connexions période3 échecs')
     for (const chart of ['Connexions par jour', 'Tokens par jour (entrée + sortie, par source)', 'Mouvements par jour']) {
       expect(screen.getByRole('img', { name: chart })).toBeTruthy()
@@ -190,9 +194,23 @@ describe('UC-ADM-06 — l’administrateur consulte le monitoring', () => {
 
     expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
     expect(screen.queryByText('connectés maintenant')).toBeNull()
+    // Le bloc « Comptes par rôle » vit dans le tableau de bord : jamais monté ici.
+    expect(screen.queryByRole('heading', { name: 'Comptes par rôle' })).toBeNull()
+    expect(callsTo(backend.calls, 'GET', 'api/admin/users')).toHaveLength(0)
   })
 
-  it('UC-ADM-06-F14 — E1/E2 : compte sans rôle admin → espace réservé, aucun agrégat demandé', async () => {
+  it('UC-ADM-06-F14 — E1/E2 : visiteur ou compte sans rôle admin → espace réservé, aucun agrégat demandé', async () => {
+    // E1 : visiteur sans session (api/auth/me → 401).
+    const visitor = createAdminBackend({ me: null, routes: monitoringRoutes() })
+    openAdmin(visitor, '#/admin/monitoring')
+    expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy()
+    expect(callsTo(visitor.calls, 'GET', 'api/admin/monitoring')).toHaveLength(0)
+    cleanup()
+    vi.unstubAllGlobals()
+    resetApiClient()
+
+    // E2 : épistémiarque connecté, sans le rôle admin.
     const backend = createAdminBackend({
       me: { id: 7, email: 'alice@example.org', displayName: 'Alice', roles: ['epistemiarque'] },
       routes: monitoringRoutes(),
@@ -200,6 +218,35 @@ describe('UC-ADM-06 — l’administrateur consulte le monitoring', () => {
     openAdmin(backend, '#/admin/monitoring')
 
     expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.queryByText(/Vous n’êtes pas connecté/)).toBeNull()
     expect(callsTo(backend.calls, 'GET', 'api/admin/monitoring')).toHaveLength(0)
+  })
+
+  it('UC-ADM-06-F16 — (anomalie AN-3, comportement actuel) échec du rechargement d’une période : alerte, mais l’ancien tableau de bord reste affiché sous le nouveau bouton pressé', async () => {
+    const routes = monitoringRoutes()
+    routes['GET api/admin/monitoring?days=7'] = jsonResponse(500, { error: 'Erreur interne' })
+    const backend = createAdminBackend({ users: USERS, routes })
+    openAdmin(backend, '#/admin/monitoring')
+    await screen.findByText('+ 7 sur la période · 3 non activés')
+
+    fireEvent.click(screen.getByRole('button', { name: '7 j' }))
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect(screen.getByRole('button', { name: '7 j' }).getAttribute('aria-pressed')).toBe('true')
+    // Données de la période PRÉCÉDENTE (30 j) toujours affichées.
+    expect(screen.getByText('+ 7 sur la période · 3 non activés')).toBeTruthy()
+    expect(screen.getByText('connectés maintenant')).toBeTruthy()
+  })
+
+  it('UC-ADM-06-F17 — E3 : échec du bloc « Comptes par rôle » → « Chargement impossible. » dans le bloc, tableau de bord intact', async () => {
+    const routes = monitoringRoutes()
+    routes['GET api/admin/users?role=admin'] = jsonResponse(500, { error: 'Erreur interne' })
+    const backend = createAdminBackend({ users: USERS, routes })
+    openAdmin(backend, '#/admin/monitoring')
+
+    const block = (await screen.findByRole('heading', { name: 'Comptes par rôle' })).closest('section')
+    expect((await within(block).findByRole('alert')).textContent).toBe('Chargement impossible.')
+    expect(within(block).queryByRole('table')).toBeNull()
+    expect(screen.getByText('connectés maintenant')).toBeTruthy()
   })
 })

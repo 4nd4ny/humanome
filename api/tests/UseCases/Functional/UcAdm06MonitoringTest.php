@@ -78,7 +78,8 @@ final class UcAdm06MonitoringTest extends AdminTestCase
         self::assertSame(2, $body['utilisateurs']['total']);
         self::assertSame(2, $body['utilisateurs']['nouveauxPeriode']);
         self::assertSame(0, $body['utilisateurs']['nonActives'], 'comptes activés par code');
-        self::assertGreaterThanOrEqual(2, $body['utilisateurs']['actifsMaintenant'], 'sessions ouvertes à l’instant');
+        self::assertSame(2, $body['utilisateurs']['actifsMaintenant'], 'deux comptes DISTINCTS, sessions ouvertes à l’instant');
+        self::assertSame(0, $body['utilisateurs']['sessionsAnonymes'], 'ni la consultation du partage ni les échecs de connexion n’ouvrent de session');
         self::assertEquals(['admin' => 1, 'apprenant' => 1], array_column($body['utilisateurs']['parRole'], 'n', 'role'));
 
         self::assertSame(1, $body['cartographies']['total']);
@@ -116,7 +117,7 @@ final class UcAdm06MonitoringTest extends AdminTestCase
         self::assertStringContainsString('203.0.113.0\\/24', $journal);
     }
 
-    #[TestDox('UC-ADM-06-F03 — A1 : changer de période (days) ; valeur absente, nulle, non numérique ou excessive ramenée dans 1..365')]
+    #[TestDox('UC-ADM-06-F03 — A1 : changer de période (days) ; absent → 30 ; converti par (int) (« 7abc » → 7, « abc » → 0) puis borné à 1..365')]
     public function testF03PeriodSelection(): void
     {
         $admin = $this->registerAdmin('root@example.org');
@@ -132,7 +133,8 @@ final class UcAdm06MonitoringTest extends AdminTestCase
         self::assertSame(10, $week['tokens']['toutTemps']['demo']['requetes']);
 
         self::assertSame(30, self::json($this->as_($admin, 'GET', '/api/admin/monitoring'))['periode']['jours'], 'défaut 30');
-        foreach (['0' => 1, 'abc' => 1, '-3' => 1, '1000' => 365, '90' => 90] as $days => $expected) {
+        // (int) de PHP : préfixe numérique conservé (« 7abc » → 7), sans préfixe → 0 → 1.
+        foreach (['0' => 1, 'abc' => 1, '' => 1, '-3' => 1, '1000' => 365, '90' => 90, '7abc' => 7] as $days => $expected) {
             $response = $this->as_($admin, 'GET', '/api/admin/monitoring?days=' . $days);
             self::assertSame(200, $response->getStatusCode());
             self::assertSame($expected, self::json($response)['periode']['jours'], (string) $days);
@@ -153,29 +155,33 @@ final class UcAdm06MonitoringTest extends AdminTestCase
         self::assertSame(1, self::json($this->as_($admin, 'GET', '/api/admin/users?role=admin'))['total']);
     }
 
-    #[TestDox('UC-ADM-06-F05 — A3 : votes en cours — décompte à la majorité de l’électorat et retardataires à relancer')]
+    #[TestDox('UC-ADM-06-F05 — A3 : votes en cours — décompte à la majorité de l’électorat courant (vote d’un ancien membre ignoré) et retardataires à relancer')]
     public function testF05PendingVotesAndLateVoters(): void
     {
         $admin = $this->registerAdmin('root@example.org');
         $alice = $this->registerAs('alice@example.org', 'Alice', ['epistemiarque']);
         $this->registerAs('bob@example.org', 'Bob', ['epistemiarque']);
         $this->registerAs('carol@example.org', 'Carol', ['epistemiarque']);
+        $dave = $this->registerAs('dave@example.org', 'Dave', ['epistemiarque']);
         self::$pdo->exec(
             "INSERT INTO competence_versions (competence_code, semver, pole, nom, status, content, content_hash, submitted_at)
              VALUES ('R1', '7.1.1', 1, 'Respiration consciente', 'review', '{}', REPEAT('a', 64), NOW())"
         );
         $versionId = (int) self::$pdo->lastInsertId();
-        self::$pdo->exec("INSERT INTO competence_votes (competence_version_id, user_id, vote) VALUES ({$versionId}, {$alice['id']}, 'pour')");
+        self::$pdo->exec("INSERT INTO competence_votes (competence_version_id, user_id, vote) VALUES ({$versionId}, {$alice['id']}, 'pour'), ({$versionId}, {$dave['id']}, 'pour')");
+        // Dave vote puis perd le rôle : il sort de l'électorat, son vote ne compte plus.
+        self::setRoles($dave['id'], ['apprenant']);
 
         $votes = self::json($this->as_($admin, 'GET', '/api/admin/monitoring'))['votes'];
 
         self::assertCount(3, $votes['electorat']);
+        self::assertNotContains('dave@example.org', array_column($votes['electorat'], 'email'));
         $prop = $votes['competences'][0];
         self::assertEquals(['pour' => 1, 'threshold' => 2, 'outcome' => 'pending', 'notVoted' => 2], array_intersect_key(
             $prop['decompte'],
             array_flip(['pour', 'threshold', 'outcome', 'notVoted']),
         ));
-        self::assertSame(['bob@example.org', 'carol@example.org'], array_column($prop['manquants'], 'email'));
+        self::assertSame(['bob@example.org', 'carol@example.org'], array_column($prop['manquants'], 'email'), 'l’ancien membre n’est pas un retardataire');
     }
 
     #[TestDox('UC-ADM-06-F06 — A4 : base GeoIP présente (simulée) → répartition des connexions par pays')]
@@ -207,5 +213,37 @@ final class UcAdm06MonitoringTest extends AdminTestCase
         $anonymous = $this->request('GET', '/api/admin/monitoring?days=7');
         self::assertSame(401, $anonymous->getStatusCode());
         self::assertSame(['error' => 'Authentification requise'], self::json($anonymous));
+    }
+
+    /**
+     * RG5 tel qu'implémenté : seul l'échec d'identification de /auth/login
+     * (mot de passe faux ou e-mail inconnu) journalise login_failed. Une
+     * tentative refusée par le limiteur (429), un bon mot de passe sur un
+     * compte non activé (403) et un code d'activation faux (401) ne laissent
+     * aucune trace au monitoring.
+     */
+    #[TestDox('UC-ADM-06-F15 — RG5 : seuls les échecs d’identification sont journalisés ; tentatives bloquées (429), compte non activé (403) et code d’activation faux absents du monitoring')]
+    public function testF15OnlyCredentialFailuresAreJournaled(): void
+    {
+        $admin = $this->registerAdmin('root@example.org');
+        self::assertSame(201, $this->registerPending('pending@example.org', self::PASSWORD, 'Pending')->getStatusCode());
+        $this->clientIp = '198.51.100.40';
+
+        $statuses = [];
+        for ($i = 0; $i < 6; $i++) {
+            $this->cookieSid = null;
+            $statuses[] = $this->login('root@example.org', 'mauvais mot de passe')->getStatusCode();
+        }
+        self::assertSame([401, 401, 401, 401, 401, 429], $statuses, '5 essais par IP et e-mail, puis limiteur');
+
+        $this->cookieSid = null;
+        self::assertSame(403, $this->login('pending@example.org', self::PASSWORD)->getStatusCode(), 'compte non activé');
+        $this->cookieSid = null;
+        self::assertSame(401, $this->activate('pending@example.org', '0000' === $this->lastCode() ? '1111' : '0000')->getStatusCode(), 'code d’activation faux');
+
+        $cx = self::json($this->as_($admin, 'GET', '/api/admin/monitoring?days=1'))['connexions'];
+
+        self::assertSame(['reussies' => 1, 'echouees' => 5], $cx['periode'], 'activation de l’admin = 1 réussite ; 5 échecs sur 8 refus');
+        self::assertSame(5, \count(array_filter($cx['dernieres'], static fn (array $d): bool => !$d['reussie'])));
     }
 }

@@ -4,7 +4,8 @@
 // Code sollicité appelé directement : les appels de admin-api.js
 // (GET/PUT/DELETE api/admin/demo-config, geste « interrupteur »), la
 // construction du PUT partiel par le formulaire de ReglagesSection (rendu
-// isolé, réseau injecté par fetchFn) et l'affichage de la configuration
+// isolé, réseau injecté par fetchFn), ses contrôles côté client (modèle libre
+// vide, champ vide ou non numérique) et l'affichage de la configuration
 // serveur par ConfigSection (secrets réduits à « configuré / absent »).
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
@@ -91,6 +92,10 @@ describe('UC-ADM-04 — client admin-api.js', () => {
     await toggleDemo(0, fetchFn)
     await toggleDemo('oui', fetchFn)
 
+    expect(fetchFn.mock.calls.map(([url, init]) => [url, init.method])).toEqual([
+      ['api/admin/demo-config', 'PUT'],
+      ['api/admin/demo-config', 'PUT'],
+    ])
     expect(fetchFn.mock.calls.map(([, init]) => JSON.parse(init.body))).toEqual([{ enabled: false }, { enabled: true }])
   })
 })
@@ -153,6 +158,62 @@ describe('UC-ADM-04 — formulaire de la démo (ReglagesSection isolé)', () => 
     })
 
     expect(JSON.parse(puts(fetchFn)[0][1].body)).toEqual({ perIpPerHour: 12 })
+  })
+
+  it('UC-ADM-04-U25 — E3 (client) : « autre… » avec un identifiant libre vidé → « Le modèle ne peut pas être vide. », aucun PUT', async () => {
+    const fetchFn = reglagesFetch()
+    await renderReglages(fetchFn)
+
+    fireEvent.change(screen.getByLabelText('Modèle'), { target: { value: '__autre__' } })
+    expect(screen.getByLabelText('Identifiant de modèle libre').value).toBe('claude-haiku-4-5-20251001')
+    fireEvent.change(screen.getByLabelText('Identifiant de modèle libre'), { target: { value: '   ' } })
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+    })
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Le modèle ne peut pas être vide.')
+    expect(puts(fetchFn)).toHaveLength(0)
+  })
+
+  it('UC-ADM-04-U26 — « Valeur invalide » si le brouillon n’est pas numérique (valeur serveur nulle) ; une virgule dans un champ number est assainie en vide par le navigateur → « Champ vide »', async () => {
+    const fetchFn = reglagesFetch({ ...DEMO, effective: { ...DEMO.effective, maxInputChars: null } })
+    await renderReglages(fetchFn)
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+    })
+    expect((await screen.findByRole('alert')).textContent).toBe('Valeur invalide pour « Entrée max (caractères) ».')
+    cleanup()
+
+    const other = reglagesFetch()
+    await renderReglages(other)
+    // Assainissement HTML d'un <input type="number"> : « 2,5 » n'est pas un
+    // nombre flottant valide → valeur '' ; le remplacement « , » → « . » du
+    // code n'est donc jamais atteint depuis ce champ.
+    fireEvent.change(screen.getByLabelText('Budget quotidien (USD)'), { target: { value: '2,5' } })
+    expect(screen.getByLabelText('Budget quotidien (USD)').value).toBe('')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }))
+    })
+    expect((await screen.findByRole('alert')).textContent).toBe('Champ vide : Budget quotidien (USD).')
+    expect(puts(fetchFn)).toHaveLength(0)
+    expect(puts(other)).toHaveLength(0)
+  })
+
+  it('UC-ADM-04-U27 — (anomalie AN-2, comportement actuel) basculer l’interrupteur efface les saisies non enregistrées du formulaire', async () => {
+    const fetchFn = reglagesFetch(DEMO, () => jsonResponse(200, { ...DEMO, effective: { ...DEMO.effective, enabled: false } }))
+    const toggle = await renderReglages(fetchFn)
+
+    fireEvent.change(screen.getByLabelText('Tokens max par requête'), { target: { value: '4096' } })
+    expect(screen.getByLabelText('Tokens max par requête').value).toBe('4096')
+    await act(async () => {
+      fireEvent.click(toggle)
+    })
+
+    expect(await screen.findByText('Démo publique désactivée.')).toBeTruthy()
+    // Le geste n'envoie que {enabled} : la saisie en cours n'est pas enregistrée.
+    expect(JSON.parse(puts(fetchFn)[0][1].body)).toEqual({ enabled: false })
+    // La réponse remplace la config, l'effet draftFrom(config) écrase le brouillon.
+    expect(screen.getByLabelText('Tokens max par requête').value).toBe('2048')
   })
 })
 

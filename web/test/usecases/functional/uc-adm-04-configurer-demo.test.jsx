@@ -188,7 +188,19 @@ describe('UC-ADM-04 — l’administrateur configure la démo publique', () => {
     expect(screen.getByText('(défaut : —)')).toBeTruthy()
   })
 
-  it('UC-ADM-04-F18 — E1/E2 : compte sans rôle admin → espace réservé, aucune lecture de la configuration', async () => {
+  it('UC-ADM-04-F18 — E1/E2 : visiteur ou compte sans rôle admin → espace réservé, aucune lecture de la configuration', async () => {
+    // E1 : visiteur sans session (api/auth/me → 401).
+    const visitor = createAdminBackend({ me: null, routes: demoRoutes() })
+    openAdmin(visitor)
+    expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy()
+    expect(screen.queryByRole('switch')).toBeNull()
+    expect(callsTo(visitor.calls, 'GET', 'api/admin/demo-config')).toHaveLength(0)
+    cleanup()
+    vi.unstubAllGlobals()
+    resetApiClient()
+
+    // E2 : connecté sans le rôle admin.
     const backend = createAdminBackend({
       me: { id: 5, email: 'maya@example.org', displayName: 'Maya', roles: ['apprenant', 'promptologue'] },
       routes: demoRoutes(),
@@ -196,7 +208,29 @@ describe('UC-ADM-04 — l’administrateur configure la démo publique', () => {
     openAdmin(backend)
 
     expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.queryByText(/Vous n’êtes pas connecté/)).toBeNull()
     expect(screen.queryByRole('switch')).toBeNull()
     expect(callsTo(backend.calls, 'GET', 'api/admin/demo-config')).toHaveLength(0)
+  })
+
+  it('UC-ADM-04-F19 — A6 puis A5 : modèle effectif hors liste → « autre… » présélectionné ; Enregistrer sans modification → « Aucune modification à enregistrer. », aucun PUT', async () => {
+    const routes = demoRoutes()
+    routes['GET api/admin/demo-config'] = jsonResponse(200, {
+      effective: { ...FILE, model: 'claude-fable-5' },
+      sources: Object.fromEntries(Object.keys(FILE).map((k) => [k, 'fichier'])),
+      allowedModels: ['claude-haiku-4-5-20251001', 'claude-sonnet-5', 'claude-opus-4-8'],
+      apiKeyConfigured: true,
+    })
+    const backend = createAdminBackend({ routes })
+    openAdmin(backend)
+    await screen.findByRole('switch')
+
+    expect(screen.getByLabelText('Modèle').value).toBe('__autre__')
+    expect(screen.getByLabelText('Identifiant de modèle libre').value).toBe('claude-fable-5')
+    await click(screen.getByRole('button', { name: 'Enregistrer' }))
+
+    expect(await screen.findByText('Aucune modification à enregistrer.')).toBeTruthy()
+    expect(callsTo(backend.calls, 'PUT', 'api/admin/demo-config')).toHaveLength(0)
+    expect(screen.queryByRole('alert')).toBeNull()
   })
 })

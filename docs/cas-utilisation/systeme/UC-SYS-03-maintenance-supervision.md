@@ -6,7 +6,7 @@
 | **Acteurs secondaires** | Administrateur (lit le monitoring, UC-ADM-06) ; employeurs et apprenants (liens de partage purgés, UC-APP-05 / UC-EMP-01) ; visiteurs de la démo (compteurs, UC-VIS-03) |
 | **Portée** | `GET /api/health`, `GET /api/status` (publics), `POST /api/admin/maintenance` (jeton `X-Migrate-Token`), en-têtes de sécurité de toute l'API, `scripts/maintenance.php`, `scripts/rgpd-audit.php` |
 | **Niveau** | Sous-fonction technique (exploitation) |
-| **Cahier des charges** | §5 (mutualisé OVH), §6.3 (effacement vérifiable), §6.5 (compteurs, jamais de contenu) ; ADR-005, ADR-008 ; `docs/deploiement.md` (tâches planifiées, santé), `docs/hebergement.md`, `docs/rgpd-verification.md`, `docs/securite-checklist.md` |
+| **Cahier des charges** | §5 (mutualisé OVH), §6.3 (effacement vérifiable) ; principe RGPD n°5 — journalisation minimale : compteurs, jamais de contenu (`CLAUDE.md`, `docs/rgpd-registre.md`) ; ADR-005, ADR-008 ; `docs/deploiement.md` (tâches planifiées, santé), `docs/hebergement.md`, `docs/rgpd-verification.md`, `docs/securite-checklist.md` |
 | **Statut** | Implémenté (P12.2, P12.3, P13.6) |
 
 ## Objectif
@@ -23,14 +23,18 @@ couverture RGPD de l'effacement de compte.
 - Une sonde (ou le smoke de déploiement, UC-SYS-02) interroge `/api/health` ou
   `/api/status`.
 - Un planificateur externe appelle `POST /api/admin/maintenance` (fréquence
-  recommandée : quotidienne) ; sur une offre avec cron, `php
-  scripts/maintenance.php`.
-- Le mainteneur lance `php scripts/rgpd-audit.php [user_id]` sur une base.
+  recommandée : quotidienne) : c'est la **seule** entrée en production.
+  `php scripts/maintenance.php` en est l'équivalent local/dev : le script
+  n'est **pas livré** dans la release (`stage-api.sh` ne copie que
+  `scripts/migrations`, `migrate.php` et `scripts/data`).
+- Le mainteneur lance `php scripts/rgpd-audit.php [user_id]` sur une base
+  accessible depuis son poste (script non livré non plus).
 
 ## Préconditions
 
 - Pour la maintenance par HTTP : `MIGRATE_TOKEN` configuré côté serveur et
-  connu du planificateur (jamais en query string).
+  connu du planificateur (jamais en query string) ; requête **sans cookie de
+  session** (sinon la garde CSRF globale s'applique : `403`, voir E2).
 - Pour les scripts CLI : variables `DB_*` disponibles (environnement ou
   `.env` de `HUMANOME_SHARED_DIR`, `../shared` ou `api/`).
 - Les sondes de santé n'ont besoin d'aucune session ni d'aucun jeton.
@@ -45,7 +49,10 @@ couverture RGPD de l'effacement de compte.
 - Toute réponse de l'API porte les en-têtes durcis.
 - Le rapport RGPD liste, pour un compte, ses données par table avec la règle de
   suppression et la couverture d'export ; il signale toute colonne
-  utilisateur non gouvernée par une clé étrangère.
+  utilisateur non gouvernée par une clé étrangère — dans la limite de ses
+  listes codées en dur : les colonnes `submitted_by` / `updated_by` échappent à
+  l'empreinte et au contrôle, et plusieurs tables affichent « export: ? »
+  (AN-2).
 
 ## Garanties minimales (en cas d'échec)
 
@@ -55,7 +62,9 @@ couverture RGPD de l'effacement de compte.
   serveur) ; les suppressions déjà faites restent acquises (trois requêtes
   sans transaction commune) et un nouvel appel reprend sans risque
   (idempotence).
-- Aucune erreur ne divulgue de détail SQL.
+- Aucune **réponse HTTP** ne divulgue de détail SQL. (Les scripts CLI, eux,
+  écrivent le message de l'exception sur la sortie d'erreur du mainteneur :
+  voir E4.)
 
 ## Scénario nominal
 
@@ -63,7 +72,8 @@ couverture RGPD de l'effacement de compte.
    "version":…, "db":"ok"}` — la version vient de `APP_VERSION`, sinon du
    fichier `VERSION` de la release, sinon `dev` ; la base est testée par
    `SELECT 1`.
-2. La page de santé appelle `GET /api/status` : `200 {status, version, db,
+2. Une sonde ou un tableau de bord externe appelle `GET /api/status` (aucune
+   page du front ne l'utilise à ce jour) : `200 {status, version, db,
    demo: {enabled, remainingToday}, worker: {lastActivityAt, queued}}`, avec
    `Cache-Control: public, max-age=30`. `demo.enabled` suit `DemoConfig`
    (UC-ADM-04) ; `remainingToday` indique si le coupe-circuit journalier
@@ -75,23 +85,27 @@ couverture RGPD de l'effacement de compte.
    révoqués depuis plus de 30 jours, les lignes `llm_usage_daily` antérieures au
    jour UTC courant et les `llm_pow_challenges` expirés →
    `200 {shareLinksPurged, demoDaysPruned, powChallengesPruned}`.
-4. Un second appel le même jour renvoie des compteurs nuls (idempotent).
+4. Un second appel **immédiat** renvoie des compteurs nuls ; plus
+   généralement, rejouer est sans risque (idempotent) — entre deux appels, le
+   trafic de démo (défis expirés) ou un lien franchissant les 30 jours rendent
+   des compteurs non nuls.
 5. Sur toutes ces réponses — et sur toutes les autres de l'API, erreurs
    comprises — le middleware `SecurityHeaders` (le plus externe) pose
    `Content-Security-Policy: default-src 'none'; frame-ancestors 'none';
    base-uri 'none'`, `X-Content-Type-Options: nosniff`, `X-Frame-Options:
-   DENY`, `Referrer-Policy: no-referrer`, `Permissions-Policy` (tout refusé)
-   et `Strict-Transport-Security: max-age=31536000`.
+   DENY`, `Referrer-Policy: no-referrer`, `Permissions-Policy` (15
+   fonctionnalités sensibles refusées : caméra, micro, géolocalisation,
+   paiement, USB…) et `Strict-Transport-Security: max-age=31536000`.
 
 ## Scénarios alternatifs
 
 - **A1 — Démo épuisée ou éteinte** (étape 2) : plafond de tokens ou budget du
   jour atteint → `remainingToday: false` ; démo éteinte → `enabled: false`,
   `remainingToday: null`.
-- **A2 — Maintenance en ligne de commande** (étape 3) : `php
-  scripts/maintenance.php` exécute `Maintenance::run` (source de vérité des
-  requêtes, recopiées dans la route) et imprime les mêmes compteurs sur une
-  ligne JSON, code de sortie 0.
+- **A2 — Maintenance en ligne de commande** (étape 3 ; équivalent local/dev,
+  non livré dans la release) : `php scripts/maintenance.php` exécute
+  `Maintenance::run` (source de vérité des requêtes, recopiées dans la route)
+  et imprime les mêmes compteurs sur une ligne JSON, code de sortie 0.
 - **A3 — Audit RGPD** : `php scripts/rgpd-audit.php <user_id>` affiche (1) les
   colonnes identifiant un utilisateur **sans** clé étrangère vers `users`
   (« aucune — … » attendu), (2) la règle `ON DELETE` de chaque référence, (3)
@@ -106,12 +120,24 @@ couverture RGPD de l'effacement de compte.
 - **E1 — Base absente ou injoignable** (étapes 1-2) : `200` avec `db:
   "unconfigured"` ou `"error"` ; `/status` renvoie alors `demo: {enabled:
   false, remainingToday: null}` et `worker: {lastActivityAt: null, queued:
-  null}`.
+  null}`. Sur **échec partiel** (`SELECT 1` passe, une requête suivante
+  échoue — ex. table absente entre la bascule de release et
+  `/admin/migrate`), les champs déjà calculés sont conservés : `db: "error"`
+  avec `demo` déjà renseigné.
 - **E2 — Jeton de maintenance** (étape 3) : non configuré → `404`, absent ou
-  faux → `403`, base non configurée → `503 « Database not configured »`.
+  faux → `403`, base non configurée → `503 « Database not configured »`. Une
+  requête porteuse d'un cookie de session (même périmé) sans `X-CSRF-Token`
+  est refusée **avant** le contrôle du jeton par la garde CSRF globale
+  (`/api/admin/maintenance` n'est pas exemptée) : `403 « Jeton CSRF absent ou
+  invalide »` ; avec cookie et base injoignable, cette garde répond
+  `500 « Erreur interne »`.
 - **E3 — Échec de la maintenance** : `500 « Maintenance failed, see server log »`.
-- **E4 — Scripts CLI sans base** : message sur la sortie d'erreur (« base de
-  données non configurée »), code de sortie 1.
+- **E4 — Scripts CLI sans base** : `DB_HOST` vide → message sur la sortie
+  d'erreur (« base de données non configurée »), code de sortie 1. Base
+  configurée mais injoignable : `maintenance.php` écrit « [maintenance]
+  échec : » suivi du message de l'exception (SQLSTATE, hôte) sur la sortie
+  d'erreur, code 1 ; `rgpd-audit.php` appelle `Db::get()` hors de tout `try` :
+  exception non rattrapée, code 255.
 
 ## Règles de gestion
 
@@ -120,18 +146,22 @@ couverture RGPD de l'effacement de compte.
 - **RG2** — Politique d'expiration : un lien de partage est illisible dès son
   expiration ou sa révocation (appliqué à la lecture, UC-EMP-01) ; la
   maintenance ne fait que **purger** les lignes mortes au-delà d'une grâce de
-  30 jours (`Maintenance::SHARE_LINK_GRACE_DAYS`). Aucune maintenance n'est
+  30 jours (`Maintenance::SHARE_LINK_GRACE_DAYS` dans la classe ; la route,
+  autonome, code `INTERVAL 30 DAY` en dur). Aucune maintenance n'est
   nécessaire à la **correction** du service.
 - **RG3** — Les compteurs de démo sont indexés par jour UTC : le coupe-circuit
   repart de zéro chaque jour sans intervention ; la ligne du jour n'est jamais
   supprimée (coupe-circuit intact).
-- **RG4** — Maintenance idempotente, compteurs seulement (§6.5) ; route et
-  script produisent les mêmes effets (requêtes dupliquées, tests croisés).
+- **RG4** — Maintenance idempotente, compteurs seulement (principe RGPD n°5) ;
+  route et script produisent les mêmes effets (requêtes dupliquées — la
+  constante de grâce n'existe que dans la classe — et tests croisés sur la
+  même fixture J-29 / J-31 / cas mixte : UC-SYS-03-U01, F04, F06).
 - **RG5** — `SecurityHeaders` est ajouté en dernier dans `Bootstrap` (donc
   exécuté en premier) : il décore aussi les `401/403` des gardes, les `404/405`
   du routeur et les `500`, et **impose** ses valeurs (remplace un en-tête
   homonyme). Les mêmes valeurs sont dupliquées dans
-  `api/deploy/webroot/.htaccess` pour l'hébergement OVH.
+  `api/deploy/webroot/.htaccess` pour l'hébergement OVH (parité vérifiée par
+  UC-SYS-03-U08).
 
 ## Données et RGPD
 
@@ -149,7 +179,8 @@ couverture RGPD de l'effacement de compte.
 | API | `api/src/routes/system.php` — `GET /health`, `GET /status`, `POST /admin/maintenance` | Sondes, maintenance à jeton |
 | Domaine | `api/src/Bootstrap.php` — `version`, ordre des middlewares | Version servie, `SecurityHeaders` le plus externe |
 | Domaine | `api/src/Middleware/SecurityHeaders.php` | En-têtes durcis |
-| Domaine | `api/src/Llm/UsageCounters.php`, `api/src/Llm/DemoConfig.php` | Coupe-circuit journalier, état de la démo |
+| Domaine | `api/src/Llm/UsageCounters.php`, `api/src/Llm/DemoConfig.php` | Coupe-circuit journalier, état de la démo (`DemoConfig` : tests unitaires UC-ADM-04-U08 à U11 et U22) |
+| Domaine | `api/src/Middleware/CsrfMiddleware.php` | Garde CSRF globale : `/api/admin/maintenance` non exemptée (tests unitaires : UC-ADM-01-U22, UC-SYS-02-U11) |
 | Script | `scripts/maintenance.php` — `Maintenance::run` | Purge (source de vérité), CLI |
 | Script | `scripts/rgpd-audit.php` — `RgpdAudit` | Audit du schéma et empreinte d'un compte |
 | Serveur | `api/deploy/webroot/.htaccess` | Copie des en-têtes côté Apache (documentée) |
@@ -163,9 +194,11 @@ couverture RGPD de l'effacement de compte.
 | UC-SYS-03-U01 | `Maintenance::run` | Grâce de 30 jours (expiré ou révoqué), liens vivants gardés, idempotent (RG2, RG4) | `api/tests/UseCases/Unit/UcSys03MaintenanceSupervisionTest.php` |
 | UC-SYS-03-U02 | `Maintenance::run` | Jours UTC passés supprimés, jour courant gardé, défis expirés, tuteur intact (RG3) | idem |
 | UC-SYS-03-U03 | `UsageCounters` | Incrément, coupe-circuit par tokens ou budget, remise à zéro UTC, table blanche | idem |
-| UC-SYS-03-U04 | `Bootstrap::version` | `APP_VERSION`, sinon `dev` sans fichier `VERSION` | idem |
+| UC-SYS-03-U04 | `Bootstrap::version` | `APP_VERSION`, sinon fichier `VERSION` de la release (rogné, vide ignoré), sinon `dev` | idem |
 | UC-SYS-03-U05 | `SecurityHeaders::process` | Six en-têtes imposés, statut et type conservés (RG5) | idem |
-| UC-SYS-03-U06 | `RgpdAudit` | Aucune colonne non gouvernée, règles `ON DELETE`, empreinte vide après purge | idem |
+| UC-SYS-03-U06 | `RgpdAudit` | Aucune colonne non gouvernée ; une table `user_id` sans FK **est** détectée (`NONE`) ; règles `ON DELETE`, empreinte vide après purge | idem |
+| UC-SYS-03-U07 | `RgpdAudit` (AN-2) | Comportement actuel : `submitted_by` / `updated_by` hors `USER_COLUMNS` (absents de l'empreinte), 11 tables sans couverture d'export | idem |
+| UC-SYS-03-U08 | `.htaccess`, `SecurityHeaders` | Mêmes six en-têtes et valeurs côté Apache et PHP ; 15 fonctionnalités refusées (RG5) | idem |
 
 ### Tests fonctionnels
 
@@ -173,13 +206,14 @@ couverture RGPD de l'effacement de compte.
 |---|---|---|---|---|
 | UC-SYS-03-F01 | Nominal (1-2) | API | `/health` et `/status` exacts (version, base, démo, file du worker, cache) | `api/tests/UseCases/Functional/UcSys03MaintenanceSupervisionTest.php` |
 | UC-SYS-03-F02 | A1 | API | Démo épuisée → `remainingToday` faux ; éteinte → `enabled` faux | idem |
-| UC-SYS-03-F03 | E1 | API | Base absente / injoignable : `200`, diagnostic, aucun détail SQL | idem |
-| UC-SYS-03-F04 | Nominal (3-4) | API | Purge par la route à jeton, compteurs, second appel nul | idem |
+| UC-SYS-03-F03 | E1 | API | Base absente / injoignable (127.0.0.1:1, sans DNS) : `200`, corps complet, aucun détail SQL ; échec partiel (table renommée) : `db: "error"`, démo déjà renseignée | idem |
+| UC-SYS-03-F04 | Nominal (3-4) | API | Purge par la route à jeton sur la fixture J-29 / J-31 / cas mixte / futur / sans expiration : survivants exacts, `shareLinksPurged: 3`, second appel nul | idem |
 | UC-SYS-03-F05 | E2, E3 | API | `404` / `403` / `503` / `500` générique | idem |
-| UC-SYS-03-F06 | A2, E4 | CLI | `maintenance.php` : ligne JSON, mêmes effets ; sans base → code 1 | idem |
-| UC-SYS-03-F07 | Nominal (5), RG5 | API | En-têtes sur `200`, `401`, `403`, `404`, `405`, `500` | idem |
-| UC-SYS-03-F08 | A3 | CLI | `rgpd-audit.php` : schéma sain, empreinte, vide après `DELETE /api/auth/account` | idem |
+| UC-SYS-03-F06 | A2, E4 | CLI | `maintenance.php` : ligne JSON, mêmes survivants que la route ; sans base → code 1 ; base injoignable → SQLSTATE sur stderr, code 1 | idem |
+| UC-SYS-03-F07 | Nominal (5), RG5 | API | En-têtes sur `200`, `401`/`403` des gardes (rôle, CSRF), `403`/`500` de la route, `404`/`405` du routeur, `500` de l'ErrorMiddleware | idem |
+| UC-SYS-03-F08 | A3, E4 | CLI | `rgpd-audit.php` : schéma sain, empreinte, vide après `DELETE /api/auth/account` ; table orpheline → « ⚠ BUG RGPD », code 2 ; sans base → code 1 ; injoignable → code 255 | idem |
 | UC-SYS-03-F09 | AN-1 | API | Comportement actuel : la maintenance efface l'historique démo du monitoring | idem |
+| UC-SYS-03-F10 | E2 | API | Cookie de session périmé sans `X-CSRF-Token` → `403` CSRF, rien de purgé ; sans cookie → `200` | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -206,6 +240,21 @@ docker compose run --rm php vendor/bin/phpunit --filter UcSys03 --testdox
   elle, n'est pas purgée (traitement incohérent entre les deux sources).
   Correctif possible : ne purger qu'au-delà d'une rétention (ex. 365 jours,
   comme le journal des connexions). Figé par UC-SYS-03-F09.
+- **AN-2 — Listes codées en dur de `RgpdAudit` en dérive par rapport au
+  schéma.** (1) `USER_COLUMNS` ne contient ni `submitted_by` ni
+  `updated_by`, alors que `referentiel_versions.submitted_by` (migration 015),
+  `competence_versions.submitted_by` (016) et `twin9_protocole.updated_by`
+  (011) sont des clés étrangères vers `users` : l'empreinte d'un compte
+  (section 3 du rapport, `residualReferences`) ignore ces références, et le
+  contrôle anti-fuite, fait sur le **nom** de colonne, ne verrait pas une
+  future colonne `*_by` sans FK. (2) `EXPORT_COVERAGE` n'a pas d'entrée pour
+  `competence_versions`, `competence_votes`, `prompt_versions`,
+  `referentiel_versions`, `referentiel_votes`, `twin9_credit_events`,
+  `twin9_credits`, `twin9_paypal_captures`, `twin9_paypal_orders`,
+  `twin9_protocole`, `twin9_protocole_versions` : le rapport CLI y affiche
+  « export: ? ». Correctif possible : dériver les colonnes de
+  `foreignKeysToUsers()` et faire échouer l'audit sur une table sans
+  couverture déclarée. Figé par UC-SYS-03-U07.
 
 ## Limites
 
@@ -217,4 +266,8 @@ docker compose run --rm php vendor/bin/phpunit --filter UcSys03 --testdox
   même si le fichier active la démo — cohérent avec `POST /api/llm`, qui
   répond alors `503`.
 - La préséance réelle entre les en-têtes Apache (`.htaccess`) et ceux posés
-  par PHP ne peut être vérifiée qu'en production (note du fichier).
+  par PHP ne peut être vérifiée qu'en production (note du fichier) ; seule la
+  parité des valeurs est testée (UC-SYS-03-U08).
+- `scripts/maintenance.php` et `scripts/rgpd-audit.php` ne sont pas livrés
+  dans la release : en production, seule la route à jeton maintient ; l'audit
+  RGPD se lance depuis un poste ayant accès à la base.

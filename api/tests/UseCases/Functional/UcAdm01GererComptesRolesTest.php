@@ -158,15 +158,25 @@ final class UcAdm01GererComptesRolesTest extends AdminTestCase
     {
         $maya = $this->registerAs('maya@example.org', 'Maya', ['apprenant', 'cartographe', 'promptologue', 'epistemiarque', 'etablissement', 'employeur']);
 
-        $this->cookieSid = null;
-        self::assertSame(401, $this->request('GET', '/api/admin/users')->getStatusCode());
-        self::assertSame(401, $this->request('POST', "/api/admin/users/{$maya['id']}/roles", ['role' => 'admin'])->getStatusCode());
-        self::assertSame(401, $this->request('DELETE', "/api/admin/users/{$this->admin['id']}/roles/admin")->getStatusCode());
+        $visitor = [
+            ['GET', '/api/admin/users', null],
+            ['POST', "/api/admin/users/{$maya['id']}/roles", ['role' => 'admin']],
+            ['DELETE', "/api/admin/users/{$this->admin['id']}/roles/admin", null],
+        ];
+        foreach ($visitor as [$method, $path, $body]) {
+            $this->cookieSid = null;
+            $r = $this->request($method, $path, $body);
+            self::assertSame(401, $r->getStatusCode(), $method);
+            self::assertSame(['error' => 'Authentification requise'], self::json($r), $method);
+        }
 
-        // Six rôles, mais pas « admin » : refus.
-        self::assertSame(403, $this->as_($maya, 'GET', '/api/admin/users')->getStatusCode());
-        self::assertSame(403, $this->as_($maya, 'POST', "/api/admin/users/{$maya['id']}/roles", ['role' => 'admin'])->getStatusCode());
-        self::assertSame(403, $this->as_($maya, 'DELETE', "/api/admin/users/{$this->admin['id']}/roles/admin")->getStatusCode());
+        // Six rôles, mais pas « admin » : refus par la garde de rôle (et non
+        // par le CSRF : as_() envoie le bon jeton, le message le prouve).
+        foreach ($visitor as [$method, $path, $body]) {
+            $r = $this->as_($maya, $method, $path, $body);
+            self::assertSame(403, $r->getStatusCode(), $method);
+            self::assertSame(['error' => 'Rôle insuffisant'], self::json($r), $method);
+        }
 
         self::assertNotContains('admin', self::json($this->as_($maya, 'GET', '/api/auth/me'))['user']['roles']);
         self::assertSame(200, $this->as_($this->admin, 'GET', '/api/admin/users')->getStatusCode(), 'l’admin est intact');
@@ -233,11 +243,11 @@ final class UcAdm01GererComptesRolesTest extends AdminTestCase
 
     /**
      * COMPORTEMENT ACTUEL figé — anomalie AN-1 de la fiche : le rôle n'est pas
-     * normalisé ; « CARTOGRAPHE » est accepté (collation insensible à la
-     * casse), le bon rôle est posé, mais la réponse et l'audit gardent la
-     * graphie envoyée.
+     * normalisé ; « CARTOGRAPHE » ou « cártographe » sont acceptés (collation
+     * utf8mb4_unicode_ci : casse et accents ignorés), le bon rôle est posé,
+     * mais la réponse et l'audit gardent la graphie envoyée.
      */
-    #[TestDox('UC-ADM-01-F12 — (anomalie AN-1, comportement actuel) POST {role: "CARTOGRAPHE"} attribue « cartographe » mais renvoie et journalise la graphie reçue')]
+    #[TestDox('UC-ADM-01-F12 — (anomalie AN-1, comportement actuel) POST {role: "CARTOGRAPHE" | "cártographe"} attribue « cartographe » mais renvoie et journalise la graphie reçue')]
     public function testF12UppercaseRoleCurrentBehaviour(): void
     {
         $maya = $this->registerAs('maya@example.org', 'Maya', ['apprenant']);
@@ -248,5 +258,39 @@ final class UcAdm01GererComptesRolesTest extends AdminTestCase
         self::assertSame(['id' => $maya['id'], 'role' => 'CARTOGRAPHE', 'status' => 'granted'], self::json($response));
         self::assertSame(['apprenant', 'cartographe'], self::json($this->as_($maya, 'GET', '/api/auth/me'))['user']['roles']);
         self::assertSame('CARTOGRAPHE', self::lastAudit('role_granted')['details']['role']);
+
+        // Accent : même résolution, même écho non normalisé.
+        self::setRoles($maya['id'], ['apprenant']);
+        $accent = $this->grant($maya['id'], 'cártographe');
+        self::assertSame(200, $accent->getStatusCode());
+        self::assertSame(['id' => $maya['id'], 'role' => 'cártographe', 'status' => 'granted'], self::json($accent));
+        self::assertSame(['apprenant', 'cartographe'], self::json($this->as_($maya, 'GET', '/api/auth/me'))['user']['roles']);
+        self::assertSame('cártographe', self::lastAudit('role_granted')['details']['role']);
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé — anomalie AN-2 de la fiche : une page démesurée
+     * fait déborder l'OFFSET en float (notation scientifique), MySQL rejette
+     * la requête et l'enveloppe de la route répond 500 « Erreur interne », au
+     * lieu de la page vide annoncée pour « une page au-delà de la dernière ».
+     * À inverser (200, users vide) une fois la page bornée.
+     */
+    #[TestDox('UC-ADM-01-F22 — (anomalie AN-2, comportement actuel) GET /api/admin/users?page=9223372036854775807 → 500 « Erreur interne » (débordement de l’OFFSET)')]
+    public function testF22HugePageCurrentBehaviour(): void
+    {
+        $previousLog = ini_set('error_log', (string) tempnam(sys_get_temp_dir(), 'uc-adm01-'));
+        try {
+            $huge = $this->as_($this->admin, 'GET', '/api/admin/users?page=9223372036854775807');
+        } finally {
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
+        }
+
+        self::assertSame(500, $huge->getStatusCode());
+        self::assertSame(['error' => 'Erreur interne'], self::json($huge), 'aucun détail SQL divulgué');
+
+        // Témoin : une page simplement au-delà de la dernière reste vide (A3).
+        $beyond = self::json($this->as_($this->admin, 'GET', '/api/admin/users?page=9'));
+        self::assertSame([], $beyond['users']);
+        self::assertSame(1, $beyond['total']);
     }
 }

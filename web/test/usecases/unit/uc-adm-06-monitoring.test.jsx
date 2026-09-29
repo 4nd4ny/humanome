@@ -5,12 +5,13 @@
 // fr-FR (admin-api.js), la carte d'accueil de l'administration (AdminView) et
 // le tableau de bord MonitoringSection rendu isolément (réseau injecté par
 // fetchFn) : axe du temps continu sur N jours, tables de secours des
-// graphiques, états vides, libellés des connexions sans pays ni compte.
+// graphiques, états vides, libellés des connexions sans pays ni compte,
+// verdicts des votes ; plus listUsers (filtre ?role=) et frDate.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render, screen, within } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
 import { resetApiClient } from '../../../src/api/client.js'
-import { fetchMonitoring, nb, usd } from '../../../src/views/admin/admin-api.js'
+import { fetchMonitoring, frDate, listUsers, nb, usd } from '../../../src/views/admin/admin-api.js'
 import AdminView from '../../../src/views/AdminView.jsx'
 import MonitoringSection from '../../../src/views/admin/MonitoringSection.jsx'
 import { emptyOverview, isoDaysAgo, jsonResponse } from '../support/adm.js'
@@ -62,6 +63,20 @@ describe('UC-ADM-06 — client et formats', () => {
     expect(spaces(nb(1234))).toBe('1 234')
     expect(nb(undefined)).toBe('0')
     expect(nb(-1_500_000)).toBe('-1,5 M')
+  })
+
+  it('UC-ADM-06-U21 — listUsers (bloc « Comptes par rôle ») : ?role=, page > 1 ; frDate tolère le vide et l’invalide', async () => {
+    const fetchFn = vi.fn().mockResolvedValue(jsonResponse(200, { users: [], total: 0, page: 1, pageSize: 20 }))
+
+    await listUsers({ role: 'admin' }, fetchFn)
+    await listUsers({ role: 'epistemiarque', page: 2 }, fetchFn)
+
+    expect(fetchFn.mock.calls.map(([url]) => url)).toEqual([
+      'api/admin/users?role=admin',
+      'api/admin/users?page=2&role=epistemiarque',
+    ])
+    expect(frDate('')).toBe('—')
+    expect(frDate('pas-une-date')).toBe('pas-une-date')
   })
 
   it('UC-ADM-06-U14 — accès : #/admin/monitoring routé, carte « Monitoring » en tête de l’accueil admin', async () => {
@@ -132,5 +147,30 @@ describe('UC-ADM-06 — tableau de bord (MonitoringSection isolé)', () => {
     expect(row.slice(1).map(spaces)).toEqual(['10,00 $', '3,00 $'])
     const tile = screen.getByText('dépense LLM période').closest('.mon-tile')
     expect(spaces(tile.textContent)).toContain('2,75 $')
+  })
+
+  it('UC-ADM-06-U20 — votes : verdicts « Majorité atteinte — entérinable », « Rejetée (majorité contre) », « Électorat vide » (seuil « — » sur 0 membre), pas de relance sans retardataire', async () => {
+    const overview = emptyOverview(30)
+    const prop = (id, label, decompte, manquants = []) => ({ id, label, semver: '7.1.1', soumiseLe: null, decompte, manquants })
+    overview.votes = {
+      electorat: [{ id: 7, email: 'alice@b.fr', displayName: 'Alice' }],
+      competences: [
+        prop(1, 'R1 — Adoptée', { electorateSize: 1, threshold: 1, pour: 1, contre: 0, abstention: 0, notVoted: 0, outcome: 'adopted', reached: true }),
+        prop(2, 'R2 — Refusée', { electorateSize: 1, threshold: 1, pour: 0, contre: 1, abstention: 0, notVoted: 0, outcome: 'rejected', reached: true }),
+      ],
+      referentiel: [
+        prop(3, 'respire — Sans électeurs', { electorateSize: 0, threshold: null, pour: 0, contre: 0, abstention: 0, notVoted: 0, outcome: 'blocked', reached: false }),
+      ],
+    }
+    render(<MonitoringSection fetchFn={monitoringFetch(overview)} />)
+
+    const item = async (label) => (await screen.findByText(label)).closest('li')
+    expect(within(await item('R1 — Adoptée')).getByText('Majorité atteinte — entérinable')).toBeTruthy()
+    expect(within(await item('R2 — Refusée')).getByText('Rejetée (majorité contre)')).toBeTruthy()
+    const blocked = await item('respire — Sans électeurs')
+    expect(within(blocked).getByText('Électorat vide')).toBeTruthy()
+    expect(spaces(blocked.textContent)).toContain('seuil — sur 0 membre')
+    expect(screen.queryByRole('link', { name: 'écrire aux retardataires' })).toBeNull()
+    expect(screen.queryByText(/À relancer/)).toBeNull()
   })
 })

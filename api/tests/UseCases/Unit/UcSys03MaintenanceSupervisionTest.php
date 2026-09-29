@@ -141,16 +141,30 @@ final class UcSys03MaintenanceSupervisionTest extends TestCase
         new UsageCounters(self::$pdo, 'users');
     }
 
-    #[TestDox('UC-SYS-03-U04 — Bootstrap::version : APP_VERSION prioritaire, sinon « dev » dans le dépôt (pas de fichier VERSION)')]
+    #[TestDox('UC-SYS-03-U04 — Bootstrap::version : APP_VERSION prioritaire, sinon fichier VERSION de la release (rogné, vide ignoré), sinon « dev »')]
     public function testU04Version(): void
     {
         TestDb::setEnv('APP_VERSION', 'v2026.09.28-abc1234');
         self::assertSame('v2026.09.28-abc1234', Bootstrap::version());
 
         TestDb::setEnv('APP_VERSION', '');
-        self::assertFileDoesNotExist(AdmSupport::repoRoot() . '/api/VERSION');
+        $versionFile = AdmSupport::repoRoot() . '/api/VERSION'; // disposition release : <release>/VERSION
+        self::assertFileDoesNotExist($versionFile);
         self::assertFileDoesNotExist(AdmSupport::repoRoot() . '/VERSION');
         self::assertSame('dev', Bootstrap::version());
+
+        // Fichier VERSION posé par stage-api.sh (créé ici le temps du test).
+        try {
+            file_put_contents($versionFile, "v-uc-sys03-file\n");
+            self::assertSame('v-uc-sys03-file', Bootstrap::version(), 'contenu rogné');
+            file_put_contents($versionFile, "  \n");
+            self::assertSame('dev', Bootstrap::version(), 'fichier vide ignoré');
+            TestDb::setEnv('APP_VERSION', 'v-env');
+            file_put_contents($versionFile, "v-uc-sys03-file\n");
+            self::assertSame('v-env', Bootstrap::version(), 'APP_VERSION gagne sur le fichier');
+        } finally {
+            @unlink($versionFile);
+        }
     }
 
     #[TestDox('UC-SYS-03-U05 — SecurityHeaders : six en-têtes durcis posés sur toute réponse, valeurs imposées, statut et type conservés')]
@@ -178,13 +192,23 @@ final class UcSys03MaintenanceSupervisionTest extends TestCase
         self::assertStringContainsString('geolocation=()', $response->getHeaderLine('Permissions-Policy'));
     }
 
-    #[TestDox('UC-SYS-03-U06 — RgpdAudit : aucune colonne utilisateur sans clé étrangère ; empreinte d’un compte non vide avant purge, vide après')]
+    #[TestDox('UC-SYS-03-U06 — RgpdAudit : aucune colonne utilisateur sans clé étrangère (et une colonne « user_id » orpheline EST détectée) ; empreinte d’un compte non vide avant purge, vide après')]
     public function testU06RgpdAuditOnTheLiveSchema(): void
     {
         self::assertSame([], RgpdAudit::unconstrainedUserColumns(self::$pdo));
         self::assertSame('CASCADE', RgpdAudit::deleteRuleOf(self::$pdo, ['table' => 'cartographies', 'column' => 'user_id']));
         self::assertSame('SET NULL', RgpdAudit::deleteRuleOf(self::$pdo, ['table' => 'audit_events', 'column' => 'user_id']));
         self::assertSame('NONE', RgpdAudit::deleteRuleOf(self::$pdo, ['table' => 'users', 'column' => 'email']));
+
+        // La détection de fuite elle-même : une table avec un user_id SANS FK.
+        try {
+            self::$pdo->exec('CREATE TABLE uc_sys03_orphan (id INT PRIMARY KEY, user_id INT NULL)');
+            self::assertSame([['table' => 'uc_sys03_orphan', 'column' => 'user_id']], RgpdAudit::unconstrainedUserColumns(self::$pdo));
+            self::assertSame('NONE', RgpdAudit::deleteRuleOf(self::$pdo, ['table' => 'uc_sys03_orphan', 'column' => 'user_id']));
+        } finally {
+            self::$pdo->exec('DROP TABLE IF EXISTS uc_sys03_orphan');
+        }
+        self::assertSame([], RgpdAudit::unconstrainedUserColumns(self::$pdo));
 
         $linkId = self::shareLink(null, null);
         $userId = (int) self::$pdo->query("SELECT c.user_id FROM share_links s JOIN cartographies c ON c.id = s.cartographie_id WHERE s.id = {$linkId}")->fetchColumn();
@@ -196,5 +220,80 @@ final class UcSys03MaintenanceSupervisionTest extends TestCase
         Users::purge(self::$pdo, $userId);
         self::assertSame([], RgpdAudit::residualReferences(self::$pdo, $userId));
         self::assertSame(1, AdmSupport::countAudit(self::$pdo, 'share_created'), 'trace conservée, anonymisée');
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé (fiche, « Anomalies constatées », AN-2) : les
+     * listes codées en dur de RgpdAudit ont dérivé du schéma. USER_COLUMNS
+     * ignore submitted_by / updated_by, pourtant clés étrangères vers users :
+     * l'empreinte d'un compte (et le contrôle anti-fuite, fait sur le NOM de
+     * colonne) ne les voit pas. EXPORT_COVERAGE n'a pas d'entrée pour
+     * plusieurs tables personnelles : le rapport CLI y affiche « export: ? ».
+     * À inverser (listes vides) une fois les listes dérivées du schéma.
+     */
+    #[TestDox('UC-SYS-03-U07 — (anomalie AN-2, comportement actuel) RgpdAudit : submitted_by / updated_by hors USER_COLUMNS ; tables Twin9, votes et versions sans couverture d’export')]
+    public function testU07RgpdAuditListsHaveDriftedCurrentBehaviour(): void
+    {
+        $fks = RgpdAudit::foreignKeysToUsers(self::$pdo);
+
+        $ungoverned = [];
+        foreach ($fks as $fk) {
+            if (!\in_array($fk['column'], RgpdAudit::USER_COLUMNS, true)) {
+                $ungoverned[] = $fk['table'] . '.' . $fk['column'];
+            }
+        }
+        self::assertEquals(
+            ['competence_versions.submitted_by', 'referentiel_versions.submitted_by', 'twin9_protocole.updated_by'],
+            $ungoverned,
+            'FK vers users invisibles pour footprint()',
+        );
+
+        $tables = array_values(array_unique(array_column($fks, 'table')));
+        $withoutCoverage = array_values(array_diff($tables, array_keys(RgpdAudit::EXPORT_COVERAGE)));
+        sort($withoutCoverage);
+        self::assertEquals([
+            'competence_versions', 'competence_votes', 'prompt_versions', 'referentiel_versions', 'referentiel_votes',
+            'twin9_credit_events', 'twin9_credits', 'twin9_paypal_captures', 'twin9_paypal_orders',
+            'twin9_protocole', 'twin9_protocole_versions',
+        ], $withoutCoverage, 'couverture d’export inconnue (« ? » dans le rapport)');
+
+        // Conséquence observable : un compte qui a soumis une version du
+        // référentiel n'a pas cette référence dans son empreinte.
+        $userId = AdmSupport::user(self::$pdo, 'soumission-' . uniqid() . '@example.org', 'Épistémiarque');
+        self::$pdo->prepare(
+            "INSERT INTO referentiel_versions (referentiel_id, semver, label, status, content, content_hash, submitted_by)
+             VALUES ('respire', '9.9.9', 'Soumise', 'review', '{}', REPEAT('d', 64), ?)"
+        )->execute([$userId]);
+        try {
+            self::assertArrayNotHasKey('referentiel_versions.submitted_by', RgpdAudit::footprint(self::$pdo, $userId));
+        } finally {
+            self::$pdo->exec("DELETE FROM referentiel_versions WHERE semver = '9.9.9'");
+        }
+    }
+
+    #[TestDox('UC-SYS-03-U08 — .htaccess de la release : mêmes six en-têtes et mêmes valeurs que SecurityHeaders (RG5)')]
+    public function testU08HtaccessMatchesSecurityHeaders(): void
+    {
+        $htaccess = (string) file_get_contents(AdmSupport::repoRoot() . '/api/deploy/webroot/.htaccess');
+        preg_match_all('/^\s*Header always set (\S+) "([^"]*)"\s*$/m', $htaccess, $matches, PREG_SET_ORDER);
+        $apache = [];
+        foreach ($matches as [, $name, $value]) {
+            $apache[$name] = $value;
+        }
+
+        $handler = new class () implements RequestHandlerInterface {
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                return (new ResponseFactory())->createResponse(200);
+            }
+        };
+        $php = [];
+        foreach ((new SecurityHeaders())->process((new ServerRequestFactory())->createServerRequest('GET', '/api/health'), $handler)->getHeaders() as $name => $values) {
+            $php[$name] = implode(', ', $values);
+        }
+
+        self::assertCount(6, $apache);
+        self::assertEquals($php, $apache);
+        self::assertCount(15, explode(', ', $apache['Permissions-Policy']), '15 fonctionnalités refusées, pas « tout »');
     }
 }

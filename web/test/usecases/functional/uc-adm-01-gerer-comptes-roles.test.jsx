@@ -152,15 +152,13 @@ describe('UC-ADM-01 — l’administrateur gère les comptes et les rôles', () 
     expect(callsTo(backend.calls, 'GET', 'api/admin/users')).toHaveLength(0)
   })
 
-  it('UC-ADM-01-F20 — E6 : jeton CSRF refusé par le serveur → message d’erreur, liste inchangée', async () => {
-    const backend = createAdminBackend({
-      users: [{ ...ADMIN_USER }, MAYA],
-      routes: {
-        'POST api/admin/users/5/roles': jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' }),
-      },
-    })
+  it('UC-ADM-01-F20 — E6 : jeton CSRF perdu (mémoire effacée) → POST sans X-CSRF-Token refusé par le serveur, message affiché, aucune mutation', async () => {
+    // Aucun override : c'est le faux serveur qui applique la garde CSRF
+    // (support/adm.js), comme le middleware global de l'API.
+    const backend = createAdminBackend({ users: [{ ...ADMIN_USER }, MAYA] })
     openAdmin(backend)
     await screen.findByText('Maya')
+    resetApiClient() // jeton CSRF en mémoire perdu (ex. module rechargé)
 
     const row = within(rowOf('Maya'))
     fireEvent.change(row.getByLabelText('Rôle à attribuer à maya@example.org'), { target: { value: 'employeur' } })
@@ -169,6 +167,9 @@ describe('UC-ADM-01 — l’administrateur gère les comptes et les rôles', () 
     })
 
     expect((await screen.findByRole('alert')).textContent).toBe('Jeton CSRF absent ou invalide')
+    const [post] = callsTo(backend.calls, 'POST', 'api/admin/users/5/roles')
+    expect(post.init.headers['X-CSRF-Token']).toBeUndefined()
+    expect(backend.state.users.find((u) => u.id === 5).roles).toEqual(['apprenant'])
     expect(within(rowOf('Maya')).queryByText('employeur', { selector: 'li span' })).toBeNull()
   })
 
@@ -184,5 +185,46 @@ describe('UC-ADM-01 — l’administrateur gère les comptes et les rôles', () 
 
     expect(await screen.findByText(/Copie statique du site : l’administration a besoin de l’API/)).toBeDefined()
     expect(screen.queryByRole('heading', { name: 'Comptes et rôles' })).toBeNull()
+  })
+
+  it('UC-ADM-01-F23 — E8 : chargement de la liste refusé (rôle admin retiré entre-temps) → alerte portant le message serveur, pas de tableau', async () => {
+    const backend = createAdminBackend({
+      users: [{ ...ADMIN_USER }, MAYA],
+      routes: { 'GET api/admin/users': jsonResponse(403, { error: 'Rôle insuffisant' }) },
+    })
+    openAdmin(backend)
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Rôle insuffisant')
+    expect(screen.getByRole('heading', { name: 'Comptes et rôles' })).toBeDefined()
+    expect(screen.queryByRole('table')).toBeNull()
+    expect(screen.queryByText('Maya')).toBeNull()
+  })
+
+  it('UC-ADM-01-F24 — étape 4 et A6 : une recherche lancée depuis la page 2 repart en page 1 ; aucun résultat → « Aucun compte ne correspond. »', async () => {
+    const many = Array.from({ length: 23 }, (_, i) => ({
+      id: 100 + i,
+      email: `compte${String(i).padStart(2, '0')}@example.org`,
+      displayName: `Compte ${String(i).padStart(2, '0')}`,
+      roles: ['apprenant'],
+    }))
+    const backend = createAdminBackend({ users: [{ ...ADMIN_USER }, ...many] })
+    openAdmin(backend)
+    await screen.findByText('Compte 00')
+    fireEvent.click(screen.getByRole('button', { name: 'Suivant' }))
+    await screen.findByText('Page 2 / 2')
+
+    fireEvent.change(screen.getByLabelText('Rechercher un compte (e-mail ou nom)'), { target: { value: 'compte0' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Rechercher' }))
+
+    expect(await screen.findByText('10 comptes pour « compte0 ».')).toBeDefined()
+    expect(callsTo(backend.calls, 'GET', 'api/admin/users?query=compte0')).toHaveLength(1)
+    expect(callsTo(backend.calls, 'GET', 'api/admin/users?query=compte0')[0].url).toBe('api/admin/users?query=compte0')
+    expect(screen.queryByText(/^Page /)).toBeNull()
+
+    fireEvent.change(screen.getByLabelText('Rechercher un compte (e-mail ou nom)'), { target: { value: 'zzz' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Rechercher' }))
+    expect(await screen.findByText('Aucun compte ne correspond.')).toBeDefined()
+    expect(screen.getByText('0 compte pour « zzz ».')).toBeDefined()
+    expect(screen.queryByRole('table')).toBeNull()
   })
 })

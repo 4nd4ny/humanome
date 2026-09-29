@@ -254,7 +254,9 @@ final class UcAdm06MonitoringTest extends TestCase
         self::assertSame(['reussies' => 2, 'echouees' => 2], $cx['periode']);
         self::assertSame([['date' => gmdate('Y-m-d'), 'reussies' => 2, 'echouees' => 2]], $cx['parJour']);
         $parPays = array_column($cx['parPays'], 'n', 'pays');
-        self::assertSame(['FR' => 1, '' => 1], $parPays, 'réussies seulement ; pays inconnu = null');
+        // assertEquals : FR et null sont ex aequo (n = 1), l'ORDER BY n DESC ne
+        // fixe pas leur ordre relatif.
+        self::assertEquals(['FR' => 1, '' => 1], $parPays, 'réussies seulement ; pays inconnu = null');
         self::assertContains(null, array_column($cx['parPays'], 'pays'));
 
         $latest = $cx['dernieres'][0];
@@ -319,7 +321,7 @@ final class UcAdm06MonitoringTest extends TestCase
         LoginJournal::success(self::$pdo, $ada, '192.0.2.77');
         $audit = AdmSupport::lastAudit(self::$pdo, LoginJournal::LOGIN);
         self::assertSame($ada, $audit['userId']);
-        self::assertSame(['pays' => 'BE', 'reseau' => '192.0.2.0/24'], $audit['details']);
+        self::assertEquals(['pays' => 'BE', 'reseau' => '192.0.2.0/24'], $audit['details'], 'colonne JSON : ordre des clés non garanti');
         self::assertStringNotContainsString('192.0.2.77', $audit['raw']);
 
         LoginJournal::failure(self::$pdo, null, 'pas-une-ip');
@@ -328,11 +330,13 @@ final class UcAdm06MonitoringTest extends TestCase
         self::$pdo->exec(
             "INSERT INTO audit_events (user_id, type, details, created_at) VALUES
              (NULL, 'login', '{}', NOW() - INTERVAL 366 DAY),
+             (NULL, 'login', '{}', NOW() - INTERVAL 364 DAY),
              (NULL, 'login_failed', '{}', NOW() - INTERVAL 400 DAY),
              (NULL, 'share_consulted', '{}', NOW() - INTERVAL 400 DAY)"
         );
         LoginJournal::prune(self::$pdo);
-        self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'login'")->fetchColumn());
+        self::assertSame(2, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'login'")->fetchColumn(), 'l’événement du jour et celui de J-364 survivent');
+        self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'login' AND created_at < NOW() - INTERVAL 300 DAY")->fetchColumn(), 'seuil à 365 jours, pas en deçà');
         self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'login_failed'")->fetchColumn());
         self::assertSame(1, AdmSupport::countAudit(self::$pdo, 'share_consulted'), 'les autres traces ne sont pas purgées');
     }
@@ -362,5 +366,27 @@ final class UcAdm06MonitoringTest extends TestCase
         self::assertSame('198.51.100.0/24', IpAnonymizer::network('::ffff:198.51.100.200'));
         self::assertNull(IpAnonymizer::network('999.1.1.1'));
         self::assertNull(IpAnonymizer::network('203.0.113.0/24'));
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé (fiche, « Anomalies constatées », AN-2) : depuis
+     * la migration 021, cartographies.type accepte « twin9 », mais overview()
+     * calcule total = jour + merge. Une cartographie Twin9 stockée compte dans
+     * parType, avecDocument et nouvellesPeriode, pas dans total. À inverser
+     * (total = 2) une fois le total calculé sur tous les types.
+     */
+    #[TestDox('UC-ADM-06-U19 — (anomalie AN-2, comportement actuel) cartographie « twin9 » : comptée par type et sur la période, mais exclue du total')]
+    public function testU19Twin9CartographiesAreLeftOutOfTheTotalCurrentBehaviour(): void
+    {
+        $ada = AdmSupport::user(self::$pdo, 'ada@example.org', 'Ada', ['apprenant']);
+        self::carto($ada, 'twin9');
+        self::carto($ada, 'jour');
+
+        $c = self::overview(30)['cartographies'];
+
+        self::assertSame(['jour' => 1, 'merge' => 0, 'twin9' => 1], $c['parType']);
+        self::assertSame(2, $c['avecDocument']);
+        self::assertSame(2, $c['nouvellesPeriode']);
+        self::assertSame(1, $c['total'], 'twin9 exclu du total : nouvellesPeriode > total');
     }
 }

@@ -9,8 +9,11 @@ use Humanome\Db;
 use Humanome\DbSessionHandler;
 use Humanome\Env;
 use Humanome\Llm\DemoConfig;
+use Humanome\Llm\LlmRuntime;
 use Humanome\Llm\PowChallenge;
+use Humanome\Llm\UsageCounters;
 use Humanome\Tests\AdminTestCase;
+use Humanome\Tests\LlmFakeHttpClient;
 use Humanome\Tests\TestDb;
 use Humanome\Tests\UseCases\Support\AdmSupport;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -27,6 +30,8 @@ use Slim\Psr7\Factory\ServerRequestFactory;
  * routes publiques réelles de la démo (GET /api/llm/status,
  * GET /api/llm/challenge, POST /api/llm, GET /api/status). Le fournisseur est
  * forcé à « mock » par l'environnement (DEMO_PROVIDER) : aucun appel réseau ;
+ * F20 passe en « anthropic » avec un client HTTP simulé (LlmFakeHttpClient,
+ * LlmRuntime::setHttpClient) pour observer la requête amont ;
  * la preuve de travail est résolue pour de vrai (difficulté abaissée à 8 bits
  * par l'administrateur lui-même).
  */
@@ -172,6 +177,12 @@ final class UcAdm04ConfigurerDemoTest extends AdminTestCase
         self::assertSame(429, $second->getStatusCode());
         self::assertSame('Quota horaire atteint, réessayez plus tard.', self::json($second)['error']);
         self::assertNotSame('', $second->getHeaderLine('Retry-After'));
+
+        // RG6 : GET /api/gdoc-text partage ce quota par IP (seau « llm: ») ;
+        // le refus intervient avant tout appel amont (aucun réseau).
+        $gdoc = $this->visitor('GET', '/api/gdoc-text?docId=' . str_repeat('a', 30));
+        self::assertSame(429, $gdoc->getStatusCode());
+        self::assertSame('Quota horaire atteint, réessayez plus tard.', self::json($gdoc)['error']);
     }
 
     #[TestDox('UC-ADM-04-F04 — A1 : budget quotidien à 0 → démo « épuisée » pour aujourd’hui (status, page de santé, 503)')]
@@ -205,40 +216,81 @@ final class UcAdm04ConfigurerDemoTest extends AdminTestCase
         self::assertSame($this->admin['id'], self::lastAudit('demo_config_reset')['userId']);
     }
 
-    #[TestDox('UC-ADM-04-F06 — A3 : base injoignable → la démo publique reste servie sur env/fichier (jamais de 500)')]
+    /**
+     * A3 tel qu'implémenté : seul DemoConfig::load est tolérant aux pannes.
+     * GET /api/llm/status et GET /api/llm/challenge répondent sur env/fichier ;
+     * les routes qui ont besoin de la base (POST /api/llm, POST /api/tuteur,
+     * l'administration via RequireRole) échouent en 500 ; GET /api/status
+     * annonce db « error » et une démo « éteinte ». COMPORTEMENT ACTUEL figé.
+     * La panne est simulée par une connexion refusée localement (127.0.0.1:1),
+     * sans résolution DNS.
+     */
+    #[TestDox('UC-ADM-04-F06 — A3 : base injoignable → /api/llm/status et /api/llm/challenge servis sur env/fichier ; POST /api/llm, /api/tuteur et l’admin en 500 ; /api/status db « error »')]
     public function testF06DatabaseOutageFallsBackToEnvAndFile(): void
     {
         $this->put(['enabled' => false]);
+        TestDb::setEnv('DEMO_POW_DIFFICULTY_BITS', '8'); // env : lisible sans la base
         $originalHost = Env::get('DB_HOST');
+        $originalPort = Env::get('DB_PORT', '3306');
+        $log = (string) tempnam(sys_get_temp_dir(), 'uc-adm04-');
+        $previousLog = ini_set('error_log', $log);
 
-        TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
+        TestDb::setEnv('DB_HOST', '127.0.0.1');
+        TestDb::setEnv('DB_PORT', '1');
         Db::reset();
         try {
             $status = $this->visitor('GET', '/api/llm/status');
+            $challenge = $this->visitor('GET', '/api/llm/challenge');
+            $ask = $this->askDemo('Question pendant la panne.');
+            $tuteur = $this->visitor('POST', '/api/tuteur', ['question' => 'Que fait humanome ?']);
+            $health = $this->visitor('GET', '/api/status');
+            $admin = $this->as_($this->admin, 'GET', '/api/admin/demo-config');
         } finally {
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
             TestDb::setEnv('DB_HOST', $originalHost);
+            TestDb::setEnv('DB_PORT', $originalPort);
             TestDb::overrideEnv();
+            @unlink($log);
         }
 
         self::assertSame(200, $status->getStatusCode());
         self::assertSame(['enabled' => true, 'remainingToday' => false], self::json($status), 'fichier : activée ; compteurs illisibles');
+        self::assertSame(200, $challenge->getStatusCode(), 'défi sans état : servi sans la base');
+        self::assertSame(8, self::json($challenge)['difficultyBits']);
+        self::assertSame(500, $ask->getStatusCode(), 'POST /api/llm a besoin de la base (preuve à usage unique, quotas)');
+        self::assertSame(500, $tuteur->getStatusCode(), 'POST /api/tuteur : Db::get() hors try');
+        self::assertSame(500, $admin->getStatusCode(), 'étape 2 : la session admin vit en base');
+        $healthBody = self::json($health);
+        self::assertSame('error', $healthBody['db']);
+        self::assertSame(['enabled' => false, 'remainingToday' => null], $healthBody['demo'], '/api/status contredit /api/llm/status');
+
         self::assertFalse(DemoConfig::load()->enabled, 'base revenue : la surcharge n’a pas été perdue');
     }
 
-    #[TestDox('UC-ADM-04-F07 — E1/E2 : visiteur → 401, compte non admin → 403 sur GET/PUT/DELETE, aucune surcharge écrite')]
+    #[TestDox('UC-ADM-04-F07 — E1/E2 : visiteur → 401 « Authentification requise », compte non admin → 403 « Rôle insuffisant » sur GET/PUT/DELETE, rien d’écrit ni supprimé')]
     public function testF07GuardRefusesVisitorsAndNonAdmins(): void
     {
         $maya = $this->registerAs('maya@example.org', 'Maya', ['apprenant', 'promptologue', 'etablissement']);
 
-        $this->cookieSid = null;
-        self::assertSame(401, $this->request('GET', '/api/admin/demo-config')->getStatusCode());
-        self::assertSame(401, $this->request('PUT', '/api/admin/demo-config', ['enabled' => false])->getStatusCode());
-        self::assertSame(403, $this->as_($maya, 'GET', '/api/admin/demo-config')->getStatusCode());
-        self::assertSame(403, $this->as_($maya, 'PUT', '/api/admin/demo-config', ['enabled' => false])->getStatusCode());
-        self::assertSame(403, $this->as_($maya, 'DELETE', '/api/admin/demo-config')->getStatusCode());
+        $this->put(['model' => 'claude-opus-4-8']); // une surcharge à préserver du DELETE
+        $calls = [['GET', null], ['PUT', ['enabled' => false]], ['DELETE', null]];
+        foreach ($calls as [$method, $body]) {
+            $this->cookieSid = null;
+            $r = $this->request($method, '/api/admin/demo-config', $body);
+            self::assertSame(401, $r->getStatusCode(), $method);
+            self::assertSame(['error' => 'Authentification requise'], self::json($r), $method);
+        }
+        // Refus par la garde de rôle, pas par le CSRF (as_() envoie le bon jeton).
+        foreach ($calls as [$method, $body]) {
+            $r = $this->as_($maya, $method, '/api/admin/demo-config', $body);
+            self::assertSame(403, $r->getStatusCode(), $method);
+            self::assertSame(['error' => 'Rôle insuffisant'], self::json($r), $method);
+        }
 
         self::assertTrue(DemoConfig::load()->enabled);
-        self::assertSame(0, AdmSupport::countAudit(self::$pdo, 'demo_config_updated'));
+        self::assertSame('claude-opus-4-8', DemoConfig::load()->model, 'surcharge intacte');
+        self::assertSame(1, AdmSupport::countAudit(self::$pdo, 'demo_config_updated'));
+        self::assertSame(0, AdmSupport::countAudit(self::$pdo, 'demo_config_reset'));
     }
 
     #[TestDox('UC-ADM-04-F08 — E3 : valeur hors bornes, mauvais type, champ inconnu ou fournisseur → 422 avec message, rien n’est appliqué')]
@@ -274,17 +326,99 @@ final class UcAdm04ConfigurerDemoTest extends AdminTestCase
         self::assertTrue(DemoConfig::load()->enabled);
     }
 
-    #[TestDox('UC-ADM-04-F10 — E5 : session admin sans jeton CSRF → 403 sur PUT et DELETE, configuration intacte')]
+    #[TestDox('UC-ADM-04-F10 — E5 : session admin sans jeton CSRF ou avec un jeton faux → 403 « Jeton CSRF absent ou invalide » sur PUT et DELETE, configuration intacte')]
     public function testF10CsrfIsRequired(): void
     {
         $this->put(['model' => 'claude-opus-4-8']);
 
-        $this->cookieSid = $this->admin['sid'];
-        self::assertSame(403, $this->request('PUT', '/api/admin/demo-config', ['enabled' => false])->getStatusCode());
-        $this->cookieSid = $this->admin['sid'];
-        self::assertSame(403, $this->request('DELETE', '/api/admin/demo-config')->getStatusCode());
+        $attempts = [
+            ['PUT', ['enabled' => false], []],
+            ['DELETE', null, []],
+            ['PUT', ['enabled' => false], ['X-CSRF-Token' => 'jeton-faux']],
+            ['DELETE', null, ['X-CSRF-Token' => 'jeton-faux']],
+        ];
+        foreach ($attempts as [$method, $body, $headers]) {
+            $this->cookieSid = $this->admin['sid'];
+            $r = $this->request($method, '/api/admin/demo-config', $body, $headers);
+            self::assertSame(403, $r->getStatusCode(), $method);
+            self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($r), $method . ' : refus CSRF, pas de rôle');
+        }
 
         self::assertTrue(DemoConfig::load()->enabled);
         self::assertSame('claude-opus-4-8', DemoConfig::load()->model);
+        self::assertSame(1, AdmSupport::countAudit(self::$pdo, 'demo_config_updated'));
+        self::assertSame(0, AdmSupport::countAudit(self::$pdo, 'demo_config_reset'));
+    }
+
+    #[TestDox('UC-ADM-04-F20 — nominal (étape 6) : modèle, maxTokens et délai réglés par l’admin sont imposés au fournisseur Anthropic (client HTTP simulé)')]
+    public function testF20SettingsAreImposedOnTheUpstreamProvider(): void
+    {
+        TestDb::setEnv('DEMO_PROVIDER', 'anthropic');
+        TestDb::setEnv('ANTHROPIC_API_KEY', 'sk-ant-uc-adm-04-never-returned');
+        $fake = new LlmFakeHttpClient();
+        $fake->queueResponse(['status' => 200, 'body' => json_encode([
+            'id' => 'msg_uc_adm_04',
+            'type' => 'message',
+            'model' => 'claude-sonnet-5',
+            'content' => [['type' => 'text', 'text' => 'Réponse simulée.']],
+            'usage' => ['input_tokens' => 12, 'output_tokens' => 8],
+            'stop_reason' => 'end_turn',
+        ], JSON_THROW_ON_ERROR)]);
+        LlmRuntime::setHttpClient($fake);
+        try {
+            $put = $this->put(['model' => 'claude-sonnet-5', 'maxTokensPerRequest' => 512, 'upstreamTimeoutSeconds' => 15, 'powDifficultyBits' => 8]);
+            self::assertSame(200, $put->getStatusCode(), (string) $put->getBody());
+
+            $answer = $this->askDemo('Question relayée au fournisseur.');
+        } finally {
+            LlmRuntime::setHttpClient(null);
+        }
+
+        self::assertSame(200, $answer->getStatusCode(), (string) $answer->getBody());
+        self::assertCount(1, $fake->requests);
+        $upstream = $fake->requests[0];
+        $payload = json_decode((string) $upstream['body'], true, 512, JSON_THROW_ON_ERROR);
+        self::assertSame('claude-sonnet-5', $payload['model']);
+        self::assertSame(512, $payload['max_tokens']);
+        self::assertSame(15, $upstream['timeout']);
+        self::assertSame('Réponse simulée.', self::json($answer)['text']);
+        self::assertStringNotContainsString('sk-ant-uc-adm-04', (string) $answer->getBody());
+    }
+
+    #[TestDox('UC-ADM-04-F21 — A1 : plafond global de tokens réglé à 10 000 → démo « épuisée » dès 10 000 tokens consommés (comparaison ≥)')]
+    public function testF21TokenCapExhaustsTheDemo(): void
+    {
+        $this->put(['dailyGlobalTokens' => 10000, 'powDifficultyBits' => 8]);
+        $counters = new UsageCounters(self::$pdo);
+
+        $counters->record(6000, 3999, 0.0);
+        self::assertSame(['enabled' => true, 'remainingToday' => true], self::json($this->visitor('GET', '/api/llm/status')), '9 999 tokens : reste du crédit');
+
+        $counters->record(1, 0, 0.0);
+        self::assertSame(['enabled' => true, 'remainingToday' => false], self::json($this->visitor('GET', '/api/llm/status')));
+        $response = $this->askDemo('Question au-delà du plafond de tokens.');
+        self::assertSame(503, $response->getStatusCode());
+        self::assertSame('Démo épuisée pour aujourd’hui, revenez demain.', self::json($response)['error']);
+    }
+
+    #[TestDox('UC-ADM-04-F22 — A4 : GET /api/admin/settings → secrets « configured » sans valeur (clé absente du corps) ; compte non admin → 403')]
+    public function testF22SettingsSnapshotMasksSecrets(): void
+    {
+        TestDb::setEnv('ANTHROPIC_API_KEY', 'sk-ant-adm04-secret');
+        $maya = $this->registerAs('maya@example.org', 'Maya', ['apprenant', 'promptologue']);
+
+        $response = $this->as_($this->admin, 'GET', '/api/admin/settings');
+
+        self::assertSame(200, $response->getStatusCode());
+        $body = self::json($response);
+        self::assertTrue($body['config']['secrets']['ANTHROPIC_API_KEY']['configured']);
+        self::assertArrayNotHasKey('value', $body['config']['secrets']['ANTHROPIC_API_KEY']);
+        self::assertTrue($body['config']['secrets']['POW_SECRET']['configured']);
+        self::assertStringNotContainsString('sk-ant-adm04-secret', (string) $response->getBody());
+        self::assertStringNotContainsString('pow-secret-de-test-uc-adm-04', (string) $response->getBody());
+
+        $refused = $this->as_($maya, 'GET', '/api/admin/settings');
+        self::assertSame(403, $refused->getStatusCode());
+        self::assertSame(['error' => 'Rôle insuffisant'], self::json($refused));
     }
 }

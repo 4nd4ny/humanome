@@ -9,6 +9,7 @@ use Humanome\Admin\UserDirectory;
 use Humanome\Auth\Session;
 use Humanome\Auth\Users;
 use Humanome\DbSessionHandler;
+use Humanome\Middleware\CsrfMiddleware;
 use Humanome\Middleware\RequireRole;
 use Humanome\MigrationRunner;
 use Humanome\Tests\TestDb;
@@ -31,7 +32,8 @@ use Slim\Psr7\Factory\ServerRequestFactory;
  * POST /api/admin/users/{id}/roles et DELETE /api/admin/users/{id}/roles/{role}
  * est appelé directement, sans couche HTTP : UserDirectory (liste, recherche,
  * filtre, pagination, attribution, retrait, anti-verrouillage, audit),
- * Users::rolesOf (rôles relus en base) et le garde RequireRole.
+ * Users::rolesOf (rôles relus en base), le garde RequireRole et le
+ * middleware CsrfMiddleware (process() appelé avec un handler factice).
  */
 final class UcAdm01GererComptesRolesTest extends TestCase
 {
@@ -123,7 +125,11 @@ final class UcAdm01GererComptesRolesTest extends TestCase
         self::assertSame(['alice@example.org'], self::emails($epi));
         self::assertSame(['apprenant', 'epistemiarque'], $epi['users'][0]['roles'], 'tous les rôles du compte, pas seulement le filtre');
         self::assertSame(2, self::directory()->list('', 1, 'apprenant')['total']);
-        self::assertSame(1, self::directory()->list('ada', 1, 'apprenant')['total'], 'recherche ET filtre');
+        // Recherche ET filtre : « example.org » atteint les trois comptes, le
+        // filtre n'en garde qu'un ; « root » n'atteint qu'un compte sans le rôle.
+        self::assertSame(3, self::directory()->list('example.org')['total'], 'témoin : recherche seule');
+        self::assertSame(['alice@example.org'], self::emails(self::directory()->list('example.org', 1, 'epistemiarque')));
+        self::assertSame(0, self::directory()->list('root', 1, 'apprenant')['total'], 'le filtre s’applique aussi à la recherche');
         self::assertSame(0, self::directory()->list('', 1, 'inexistant')['total']);
     }
 
@@ -300,15 +306,18 @@ final class UcAdm01GererComptesRolesTest extends TestCase
     /**
      * COMPORTEMENT ACTUEL figé (fiche, « Anomalies constatées », AN-1) : le nom
      * de rôle est résolu par `roles.name = ?` sous la collation
-     * utf8mb4_unicode_ci, donc SANS tenir compte de la casse, alors que la
-     * règle d'anti-verrouillage compare `$role === 'admin'` à la lettre.
-     * Appelée directement, la classe laisse donc un admin retirer son propre
-     * rôle avec « ADMIN ». Par HTTP, le motif de route {role:[a-z]+} du DELETE
-     * ferme ce chemin ; seul l'écho non normalisé (« Admin ») subsiste côté
-     * POST (réponse + audit). À corriger en normalisant le rôle (strtolower)
-     * ou en comparant l'identifiant de rôle — ce test devra alors être inversé.
+     * utf8mb4_unicode_ci, qui ignore la CASSE, les ACCENTS et les ESPACES
+     * FINAUX (PAD SPACE), alors que la règle d'anti-verrouillage compare
+     * `$role === 'admin'` à la lettre. Appelée directement, la classe laisse
+     * donc un admin retirer son propre rôle avec « ADMIN », « ádmin » ou
+     * « admin ». Un correctif par strtolower(trim()) ne suffirait pas
+     * (strtolower ne touche que l'ASCII : « ádmin » resterait « ádmin ») : il
+     * faut comparer l'identifiant de rôle résolu et renvoyer/journaliser le nom
+     * canonique relu en base. Par HTTP, le motif de route {role:[a-z]+} du
+     * DELETE ferme ce chemin ; seul l'écho non normalisé subsiste côté POST
+     * (réponse + audit). Ce test devra être inversé une fois l'anomalie corrigée.
      */
-    #[TestDox('UC-ADM-01-U12 — (anomalie AN-1, comportement actuel) rôle résolu sans la casse ; revoke("ADMIN") contourne l’anti-verrouillage de la classe')]
+    #[TestDox('UC-ADM-01-U12 — (anomalie AN-1, comportement actuel) rôle résolu sans casse, accents ni espaces finaux ; revoke("ADMIN" | "ádmin" | "admin ") contourne l’anti-verrouillage de la classe')]
     public function testU12RoleNameIsCaseInsensitiveCurrentBehaviour(): void
     {
         $admin = AdmSupport::user(self::$pdo, 'root@example.org', 'Root', ['admin']);
@@ -318,7 +327,101 @@ final class UcAdm01GererComptesRolesTest extends TestCase
         self::assertSame(['apprenant', 'cartographe'], Users::rolesOf(self::$pdo, $target));
         self::assertSame('Cartographe', AdmSupport::lastAudit(self::$pdo, 'role_granted')['details']['role'], 'écho non normalisé');
 
-        self::assertSame(['status' => 'revoked'], self::directory()->revoke($admin, $admin, 'ADMIN'));
-        self::assertSame([], Users::rolesOf(self::$pdo, $admin), 'anti-verrouillage contourné au niveau de la classe');
+        foreach (['ADMIN', 'ádmin', 'admin '] as $variant) {
+            self::$pdo->exec('INSERT IGNORE INTO user_roles (user_id, role_id) SELECT ' . $admin . ", id FROM roles WHERE name = 'admin'");
+            self::assertSame(['admin'], Users::rolesOf(self::$pdo, $admin));
+
+            self::assertSame(['status' => 'revoked'], self::directory()->revoke($admin, $admin, $variant), var_export($variant, true));
+            self::assertSame([], Users::rolesOf(self::$pdo, $admin), var_export($variant, true) . ' : anti-verrouillage contourné au niveau de la classe');
+            self::assertSame($variant, AdmSupport::lastAudit(self::$pdo, 'role_revoked')['details']['role'], 'écho non normalisé');
+        }
+    }
+
+    #[TestDox('UC-ADM-01-U22 — CsrfMiddleware : GET et POST sans session passent ; session sans jeton ou jeton faux → 403 (handler non appelé) ; bon jeton → passe')]
+    public function testU22CsrfMiddleware(): void
+    {
+        $csrf = new CsrfMiddleware();
+        $handler = new class () implements RequestHandlerInterface {
+            public int $calls = 0;
+
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                $this->calls++;
+
+                return (new ResponseFactory())->createResponse(200);
+            }
+        };
+        $factory = new ServerRequestFactory();
+        $post = static fn (array $headers = []): ServerRequestInterface => array_reduce(
+            array_keys($headers),
+            static fn (ServerRequestInterface $r, string $name): ServerRequestInterface => $r->withHeader($name, $headers[$name]),
+            $factory->createServerRequest('POST', '/api/admin/users/5/roles'),
+        );
+
+        // Lecture : jamais contrôlée.
+        self::assertSame(200, $csrf->process($factory->createServerRequest('GET', '/api/admin/users'), $handler)->getStatusCode());
+        // Mutation sans cookie ni session : pas d'identifiants ambiants, la garde de rôle répondra 401.
+        self::assertSame(200, $csrf->process($post(), $handler)->getStatusCode());
+        self::assertSame(2, $handler->calls);
+
+        $token = Session::openForUser(AdmSupport::user(self::$pdo, 'root@example.org', 'Root', ['admin']));
+        foreach ([[], ['X-CSRF-Token' => 'jeton-faux']] as $headers) {
+            $refused = $csrf->process($post($headers), $handler);
+            self::assertSame(403, $refused->getStatusCode());
+            self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], json_decode((string) $refused->getBody(), true));
+        }
+        self::assertSame(2, $handler->calls, 'handler non appelé sur un refus');
+
+        self::assertSame(200, $csrf->process($post(['X-CSRF-Token' => $token]), $handler)->getStatusCode());
+        self::assertSame(3, $handler->calls);
+    }
+
+    #[TestDox('UC-ADM-01-U23 — revoke : rôle invalide → 422 avant le compte ; compte inconnu ou supprimé → 404, aucun audit')]
+    public function testU23RevokeValidation(): void
+    {
+        $admin = AdmSupport::user(self::$pdo, 'root@example.org', 'Root', ['admin']);
+        $gone = AdmSupport::user(self::$pdo, 'parti@example.org', 'Parti', ['apprenant']);
+        self::$pdo->exec('UPDATE users SET deleted_at = NOW() WHERE id = ' . $gone);
+
+        try {
+            self::directory()->revoke($admin, 999_999, 'superadmin');
+            self::fail('rôle inconnu accepté');
+        } catch (AdminException $e) {
+            self::assertSame(422, $e->getStatusCode(), 'le rôle est vérifié avant le compte');
+        }
+        foreach ([999_999, $gone] as $id) {
+            try {
+                self::directory()->revoke($admin, $id, 'apprenant');
+                self::fail('compte ' . $id . ' accepté');
+            } catch (AdminException $e) {
+                self::assertSame(404, $e->getStatusCode());
+                self::assertSame('Compte introuvable', $e->getMessage());
+            }
+        }
+        self::assertSame(['apprenant'], Users::rolesOf(self::$pdo, $gone), 'le compte supprimé garde ses lignes');
+        self::assertSame(0, AdmSupport::countAudit(self::$pdo, 'role_revoked'));
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé (fiche, « Anomalies constatées », AN-2) :
+     * ($page - 1) * PAGE_SIZE déborde en float au-delà d'environ 4,6e17 ;
+     * l'OFFSET est concaténé en notation scientifique (« 1.844674407371E+20 »)
+     * et MySQL rejette la requête (erreur 1064). À inverser une fois la page
+     * bornée (ou LIMIT/OFFSET liés en entiers).
+     */
+    #[TestDox('UC-ADM-01-U24 — (anomalie AN-2, comportement actuel) list(page = PHP_INT_MAX) : l’OFFSET déborde en float → PDOException')]
+    public function testU24HugePageOverflowsCurrentBehaviour(): void
+    {
+        AdmSupport::user(self::$pdo, 'root@example.org', 'Root', ['admin']);
+
+        try {
+            self::directory()->list('', PHP_INT_MAX);
+            self::fail('page démesurée acceptée');
+        } catch (\PDOException $e) {
+            self::assertStringContainsString('1.844674407371E+20', $e->getMessage(), 'OFFSET en notation scientifique');
+        }
+        // Témoin : la plus grande page sans débordement répond normalement (vide).
+        $last = intdiv(PHP_INT_MAX, UserDirectory::PAGE_SIZE);
+        self::assertSame([], self::directory()->list('', $last)['users']);
     }
 }

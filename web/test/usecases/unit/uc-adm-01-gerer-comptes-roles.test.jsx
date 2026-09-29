@@ -4,12 +4,20 @@
 // Code sollicité appelé directement : le routeur par hash (#/admin/roles), la
 // navigation adaptée au rôle (famille « Administrer »), les appels de
 // admin-api.js (liste, attribution, retrait — URL, méthode, corps, jeton CSRF)
-// et la pagination du composant RolesSection rendu isolément.
+// la pagination du composant RolesSection rendu isolément, la sonde de session
+// fetchMe et la garde de rôle d'AdminView (coutures deps.fetchMeFn/fetchFn).
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
 import { navGroups } from '../../../src/nav.js'
-import { apiFetch, fetchMe, resetApiClient } from '../../../src/api/client.js'
+import {
+  ApiError,
+  ApiUnavailableError,
+  apiFetch,
+  fetchMe,
+  getCsrfToken,
+  resetApiClient,
+} from '../../../src/api/client.js'
 import {
   ASSIGNABLE_ROLES,
   frDate,
@@ -18,6 +26,7 @@ import {
   revokeRole,
 } from '../../../src/views/admin/admin-api.js'
 import RolesSection from '../../../src/views/admin/RolesSection.jsx'
+import AdminView from '../../../src/views/AdminView.jsx'
 
 afterEach(() => {
   cleanup()
@@ -172,6 +181,62 @@ describe('UC-ADM-01 — composant RolesSection isolé', () => {
     const fetchFn = vi.fn()
     const failure = await apiFetch('admin/users', { fetchFn, protocol: 'file:' }).catch((e) => e)
     expect(failure.name).toBe('ApiUnavailableError')
+    expect(fetchFn).not.toHaveBeenCalled()
+  })
+})
+
+describe('UC-ADM-01 — session et garde de la vue', () => {
+  it('UC-ADM-01-U25 — fetchMe : 200 → {user} et jeton CSRF gardé en mémoire ; 401 → {user: null} ; 500 → ApiError relancée', async () => {
+    const ok = await fetchMe({ fetchFn: async () => jsonResponse(200, { user: { id: 1, roles: ['admin'] }, csrfToken: 'jeton-me' }) })
+    expect(ok).toEqual({ user: { id: 1, roles: ['admin'] } })
+    expect(getCsrfToken()).toBe('jeton-me')
+
+    expect(await fetchMe({ fetchFn: async () => jsonResponse(401, { error: 'Authentification requise' }) })).toEqual({ user: null })
+
+    const failure = await fetchMe({ fetchFn: async () => jsonResponse(500, { error: 'Erreur interne' }) }).catch((e) => e)
+    expect(failure).toBeInstanceOf(ApiError)
+    expect(failure.status).toBe(500)
+    expect(failure.message).toBe('Erreur interne')
+  })
+
+  it('UC-ADM-01-U26 — AdminView : copie statique → message ; admin → onglets (« Rôles » aria-current) + section ; non-admin → espace réservé ; /auth/me en 5xx → traité comme « non connecté » (limite)', async () => {
+    const fetchFn = vi.fn(async () => jsonResponse(200, { users: [], total: 0, page: 1, pageSize: 20 }))
+
+    // Copie statique : ApiUnavailableError.
+    render(<AdminView section="roles" deps={{ fetchMeFn: async () => Promise.reject(new ApiUnavailableError()), fetchFn }} />)
+    expect(await screen.findByText(/Copie statique du site : l’administration a besoin de l’API/)).toBeTruthy()
+    expect(screen.queryByRole('navigation', { name: 'Sections d’administration' })).toBeNull()
+    cleanup()
+
+    // Administrateur : onglets, section active, section rendue.
+    render(
+      <AdminView
+        section="roles"
+        deps={{ fetchMeFn: async () => ({ user: { id: 1, displayName: 'Root', roles: ['admin'] } }), fetchFn }}
+      />,
+    )
+    expect(await screen.findByRole('heading', { name: 'Comptes et rôles' })).toBeTruthy()
+    const tabs = screen.getByRole('navigation', { name: 'Sections d’administration' })
+    expect(tabs.querySelector('a[aria-current="page"]').textContent).toBe('Rôles')
+    expect(screen.getByTestId('admin-connecte').textContent).toBe('Connecté en tant que Root.')
+    await waitFor(() => expect(fetchFn).toHaveBeenCalledWith('api/admin/users', expect.objectContaining({ method: 'GET' })))
+    cleanup()
+
+    // Connecté sans rôle admin : espace réservé, sans invitation à se connecter.
+    fetchFn.mockClear()
+    render(
+      <AdminView section="roles" deps={{ fetchMeFn: async () => ({ user: { id: 5, displayName: 'Maya', roles: ['apprenant'] } }), fetchFn }} />,
+    )
+    expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.queryByText(/Vous n’êtes pas connecté/)).toBeNull()
+    expect(fetchFn).not.toHaveBeenCalled()
+    cleanup()
+
+    // COMPORTEMENT ACTUEL (fiche, « Limites ») : toute erreur de /auth/me
+    // autre qu'ApiUnavailableError (ici un 500) est affichée comme « non connecté ».
+    render(<AdminView section="roles" deps={{ fetchMeFn: async () => Promise.reject(new ApiError('Erreur interne', 500)), fetchFn }} />)
+    expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy()
     expect(fetchFn).not.toHaveBeenCalled()
   })
 })

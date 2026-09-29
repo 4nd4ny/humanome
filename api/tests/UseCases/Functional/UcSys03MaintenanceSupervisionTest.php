@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Functional;
 
+use Humanome\Db;
 use Humanome\Env;
 use Humanome\Llm\DemoConfig;
 use Humanome\Packages\SettingsRepository;
@@ -54,6 +55,31 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         return AdmSupport::toolRequest('GET', $path, null);
     }
 
+    /**
+     * Exécute $run avec une base « injoignable » : connexion refusée localement
+     * (127.0.0.1, port 1) — aucune résolution DNS, aucun appel réseau — et le
+     * journal d'erreurs PHP détourné vers un fichier jetable.
+     */
+    private function withUnreachableDatabase(callable $run): mixed
+    {
+        $originalHost = Env::get('DB_HOST');
+        $originalPort = Env::get('DB_PORT', '3306');
+        $log = (string) tempnam(sys_get_temp_dir(), 'uc-sys03-');
+        $previousLog = ini_set('error_log', $log);
+        TestDb::setEnv('DB_HOST', '127.0.0.1');
+        TestDb::setEnv('DB_PORT', '1');
+        Db::reset();
+        try {
+            return $run();
+        } finally {
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
+            @unlink($log);
+            TestDb::setEnv('DB_HOST', $originalHost);
+            TestDb::setEnv('DB_PORT', $originalPort);
+            TestDb::overrideEnv();
+        }
+    }
+
     private function maintenance(?string $token = self::TOKEN): ResponseInterface
     {
         return AdmSupport::toolRequest('POST', '/admin/maintenance', $token);
@@ -79,16 +105,34 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         );
     }
 
-    /** Liens morts (expiré / révoqué depuis 40 jours) et vivants. */
-    private function seedShareLinks(): void
+    /**
+     * Liens de partage autour de la grâce de 30 jours (mêmes cas que
+     * UC-SYS-03-U01, pour que la route soit testée aussi finement que la
+     * classe) + compteurs de démo et défis de preuve de travail.
+     *
+     * @return list<int> ids des liens qui doivent SURVIVRE à la maintenance
+     */
+    private function seedShareLinks(): array
     {
         $owner = $this->registerAs('maya-' . uniqid() . '@example.org', 'Maya', ['apprenant']);
         $cartoId = $this->createCarto($owner, ['visibility' => 'publique']);
+        $ago = static fn (int $days): string => gmdate('Y-m-d H:i:s', time() - $days * 86400);
         $insert = self::$pdo->prepare('INSERT INTO share_links (cartographie_id, token_hash, password_hash, expires_at, revoked_at) VALUES (?, ?, ?, ?, ?)');
-        $insert->execute([$cartoId, hash('sha256', 'mort-1'), 'h', gmdate('Y-m-d H:i:s', time() - 40 * 86400), null]);
-        $insert->execute([$cartoId, hash('sha256', 'mort-2'), 'h', null, gmdate('Y-m-d H:i:s', time() - 40 * 86400)]);
-        $insert->execute([$cartoId, hash('sha256', 'grace'), 'h', gmdate('Y-m-d H:i:s', time() - 5 * 86400), null]);
-        $insert->execute([$cartoId, hash('sha256', 'vivant'), 'h', null, null]);
+        $keep = [];
+        foreach ([
+            ['expire-29', $ago(29), null, true],     // expiré, encore dans la grâce
+            ['revoque-29', null, $ago(29), true],    // révoqué, encore dans la grâce
+            ['expire-31', $ago(31), null, false],
+            ['revoque-31', null, $ago(31), false],
+            ['mixte', $ago(10), $ago(45), false],    // expiré récemment MAIS révoqué depuis longtemps
+            ['futur', gmdate('Y-m-d H:i:s', time() + 86400), null, true],
+            ['sans-expiration', null, null, true],
+        ] as [$name, $expires, $revoked, $survives]) {
+            $insert->execute([$cartoId, hash('sha256', $name), 'h', $expires, $revoked]);
+            if ($survives) {
+                $keep[] = (int) self::$pdo->lastInsertId();
+            }
+        }
         self::$pdo->exec(
             "INSERT INTO llm_usage_daily (usage_date, requests, input_tokens, output_tokens, estimated_cost_usd)
              VALUES (UTC_DATE(), 3, 300, 100, 0.01), (UTC_DATE() - INTERVAL 1 DAY, 9, 900, 300, 0.03)"
@@ -100,6 +144,14 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
             hash('sha256', 'frais'),
             time() + 60,
         ));
+
+        return $keep;
+    }
+
+    /** @return list<int> */
+    private static function shareLinkIds(): array
+    {
+        return array_map(intval(...), self::$pdo->query('SELECT id FROM share_links ORDER BY id')->fetchAll(\PDO::FETCH_COLUMN));
     }
 
     #[TestDox('UC-SYS-03-F01 — nominal (supervision) : /health et /status répondent sans session — version, base, démo, file du worker, cache 30 s')]
@@ -138,7 +190,7 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         self::assertSame(['enabled' => false, 'remainingToday' => null], AdmSupport::body($this->probe('/status'))['demo']);
     }
 
-    #[TestDox('UC-SYS-03-F03 — E1 : base non configurée ou injoignable → /health et /status restent 200 avec un diagnostic, sans détail SQL')]
+    #[TestDox('UC-SYS-03-F03 — E1 : base non configurée ou injoignable → /health et /status restent 200 avec un diagnostic, sans détail SQL ; échec partiel : champs déjà calculés conservés')]
     public function testF03ProbesNeverFail(): void
     {
         $originalHost = Env::get('DB_HOST');
@@ -147,36 +199,58 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
             self::assertSame('unconfigured', AdmSupport::body($this->probe('/health'))['db']);
             $unconfigured = AdmSupport::body($this->probe('/status'));
             self::assertSame(['unconfigured', ['enabled' => false, 'remainingToday' => null]], [$unconfigured['db'], $unconfigured['demo']]);
-
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            TestDb::overrideEnv();
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            $health = $this->probe('/health');
-            $status = $this->probe('/status');
         } finally {
             TestDb::setEnv('DB_HOST', $originalHost);
             TestDb::overrideEnv();
         }
 
+        TestDb::setEnv('APP_VERSION', 'v-uc-sys03');
+        [$health, $status] = $this->withUnreachableDatabase(fn (): array => [$this->probe('/health'), $this->probe('/status')]);
+
         foreach ([$health, $status] as $response) {
             self::assertSame(200, $response->getStatusCode());
             self::assertSame('error', AdmSupport::body($response)['db']);
             self::assertStringNotContainsString('SQLSTATE', (string) $response->getBody());
-            self::assertStringNotContainsString('injoignable', (string) $response->getBody());
+            self::assertStringNotContainsString('127.0.0.1', (string) $response->getBody());
         }
-        self::assertSame(['lastActivityAt' => null, 'queued' => null], AdmSupport::body($status)['worker']);
+        // Corps complet : un /status qui lirait la démo AVANT la base (DemoConfig
+        // tolérant aux pannes, fichier « activée ») ne passerait pas.
+        self::assertSame([
+            'status' => 'ok',
+            'version' => 'v-uc-sys03',
+            'db' => 'error',
+            'demo' => ['enabled' => false, 'remainingToday' => null],
+            'worker' => ['lastActivityAt' => null, 'queued' => null],
+        ], AdmSupport::body($status));
+
+        // Échec PARTIEL (ex. table absente entre la bascule de release et
+        // /admin/migrate) : SELECT 1 passe, la démo est déjà lue, la file non.
+        self::$pdo->exec('RENAME TABLE mass_jobs TO mass_jobs_uc_sys03');
+        try {
+            $partial = $this->probe('/status');
+        } finally {
+            self::$pdo->exec('RENAME TABLE mass_jobs_uc_sys03 TO mass_jobs');
+        }
+        self::assertSame(200, $partial->getStatusCode());
+        self::assertSame([
+            'status' => 'ok',
+            'version' => 'v-uc-sys03',
+            'db' => 'error',
+            'demo' => ['enabled' => true, 'remainingToday' => true],
+            'worker' => ['lastActivityAt' => null, 'queued' => null],
+        ], AdmSupport::body($partial), 'db « error » mais démo déjà renseignée');
     }
 
-    #[TestDox('UC-SYS-03-F04 — nominal (maintenance) : le planificateur appelle la route à jeton → liens morts purgés, compteurs démo et défis nettoyés ; rejouable')]
+    #[TestDox('UC-SYS-03-F04 — nominal (maintenance) : le planificateur appelle la route à jeton → liens morts depuis plus de 30 jours purgés (J-29 gardé, J-31 et cas mixte purgés), compteurs démo et défis nettoyés ; rejouable')]
     public function testF04MaintenanceRoute(): void
     {
-        $this->seedShareLinks();
+        $keep = $this->seedShareLinks();
 
         $first = $this->maintenance();
 
         self::assertSame(200, $first->getStatusCode());
-        self::assertSame(['shareLinksPurged' => 2, 'demoDaysPruned' => 1, 'powChallengesPruned' => 1], AdmSupport::body($first));
-        self::assertSame(2, (int) self::$pdo->query('SELECT COUNT(*) FROM share_links')->fetchColumn(), 'lien en grâce + lien vivant');
+        self::assertSame(['shareLinksPurged' => 3, 'demoDaysPruned' => 1, 'powChallengesPruned' => 1], AdmSupport::body($first));
+        self::assertSame($keep, self::shareLinkIds(), 'J-29 (expiré, révoqué), futur et sans expiration survivent ; J-31 et le cas mixte sont purgés');
         self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM llm_usage_daily WHERE usage_date = UTC_DATE()')->fetchColumn());
         self::assertSame(['shareLinksPurged' => 0, 'demoDaysPruned' => 0, 'powChallengesPruned' => 0], AdmSupport::body($this->maintenance()));
     }
@@ -194,54 +268,61 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         try {
             TestDb::setEnv('DB_HOST', '');
             self::assertSame([503, ['error' => 'Database not configured']], [$this->maintenance()->getStatusCode(), AdmSupport::body($this->maintenance())]);
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            TestDb::overrideEnv();
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            $failed = $this->maintenance();
         } finally {
             TestDb::setEnv('DB_HOST', $originalHost);
             TestDb::overrideEnv();
         }
+        $failed = $this->withUnreachableDatabase(fn (): ResponseInterface => $this->maintenance());
         self::assertSame([500, ['error' => 'Maintenance failed, see server log']], [$failed->getStatusCode(), AdmSupport::body($failed)]);
     }
 
-    #[TestDox('UC-SYS-03-F06 — A2 : équivalent CLI php scripts/maintenance.php → mêmes effets, compteurs en une ligne JSON ; sans base → code 1')]
+    #[TestDox('UC-SYS-03-F06 — A2/E4 : équivalent CLI php scripts/maintenance.php → mêmes effets, compteurs en une ligne JSON ; sans base → code 1 ; base injoignable → message SQL sur stderr, code 1')]
     public function testF06MaintenanceCommandLine(): void
     {
-        $this->seedShareLinks();
+        $keep = $this->seedShareLinks();
 
         $run = AdmSupport::runPhp('scripts/maintenance.php', [], AdmSupport::cliEnv());
 
         self::assertSame(0, $run['exit'], $run['stderr']);
-        self::assertSame('{"shareLinksPurged":2,"demoDaysPruned":1,"powChallengesPruned":1}' . "\n", $run['stdout']);
-        self::assertSame(2, (int) self::$pdo->query('SELECT COUNT(*) FROM share_links')->fetchColumn());
+        self::assertSame('{"shareLinksPurged":3,"demoDaysPruned":1,"powChallengesPruned":1}' . "\n", $run['stdout']);
+        self::assertSame($keep, self::shareLinkIds(), 'mêmes survivants que par la route (F04)');
 
         $noDb = AdmSupport::runPhp('scripts/maintenance.php', [], AdmSupport::cliEnv(['DB_HOST' => '']));
         self::assertSame(1, $noDb['exit']);
         self::assertStringContainsString('base de données non configurée', $noDb['stderr']);
+
+        // COMPORTEMENT ACTUEL (E4) : base configurée mais injoignable → le
+        // message de l'exception (SQLSTATE) part sur la sortie d'erreur, code 1.
+        $unreachable = AdmSupport::runPhp('scripts/maintenance.php', [], AdmSupport::cliEnv(['DB_HOST' => '127.0.0.1', 'DB_PORT' => '1']));
+        self::assertSame(1, $unreachable['exit']);
+        self::assertStringStartsWith('[maintenance] échec : SQLSTATE', $unreachable['stderr']);
     }
 
-    #[TestDox('UC-SYS-03-F07 — RG : en-têtes de sécurité sur toute réponse réelle — 200, 401, 403 (jeton), 404, 405, 500')]
+    #[TestDox('UC-SYS-03-F07 — RG5 : en-têtes de sécurité sur toute réponse réelle — 200, 401 et 403 des gardes (rôle, CSRF), 403 et 500 de la route, 404/405 du routeur, 500 de l’ErrorMiddleware')]
     public function testF07SecurityHeadersOnEveryResponse(): void
     {
+        $eleve = $this->registerAs('eleve-' . uniqid() . '@example.org', 'Élève', ['apprenant']);
         $responses = [
             '200 /health' => $this->probe('/health'),
-            '401 /admin/users' => $this->probe('/admin/users'),
-            '403 /admin/maintenance' => $this->maintenance('faux'),
-            '404 inconnue' => $this->probe('/nexiste-pas'),
-            '405 DELETE /health' => AdmSupport::toolRequest('DELETE', '/health', null),
+            '401 /admin/users (garde RequireRole, sans session)' => $this->probe('/admin/users'),
+            '403 /admin/users (garde RequireRole, rôle)' => $this->as_($eleve, 'GET', '/api/admin/users'),
         ];
-        $originalHost = Env::get('DB_HOST');
-        try {
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            TestDb::overrideEnv();
-            TestDb::setEnv('DB_HOST', 'mysql-injoignable.invalid');
-            $responses['500 /admin/maintenance'] = $this->maintenance();
-        } finally {
-            TestDb::setEnv('DB_HOST', $originalHost);
-            TestDb::overrideEnv();
-        }
+        $this->cookieSid = $eleve['sid'];
+        $responses['403 POST sans X-CSRF-Token (CsrfMiddleware)'] = $this->request('POST', '/api/admin/users/1/roles', ['role' => 'admin']);
+        $responses['403 /admin/maintenance (jeton, dans la route)'] = $this->maintenance('faux');
+        $responses['404 inconnue (routeur)'] = $this->probe('/nexiste-pas');
+        $responses['405 DELETE /health (routeur)'] = AdmSupport::toolRequest('DELETE', '/health', null);
 
+        $this->withUnreachableDatabase(function () use (&$responses): void {
+            $responses['500 /admin/maintenance (catch de la route)'] = $this->maintenance();
+            // Session::start() → Db::get() lève dans RequireRole : l'exception
+            // n'est rattrapée que par l'ErrorMiddleware, qui synthétise le 500.
+            $this->cookieSid = 'uc-sys03-session';
+            $responses['500 /admin/users (ErrorMiddleware)'] = $this->request('GET', '/api/admin/users');
+        });
+
+        self::assertSame(['error' => 'Rôle insuffisant'], AdmSupport::body($responses['403 /admin/users (garde RequireRole, rôle)']));
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], AdmSupport::body($responses['403 POST sans X-CSRF-Token (CsrfMiddleware)']));
         foreach ($responses as $label => $response) {
             self::assertSame((int) substr($label, 0, 3), $response->getStatusCode(), $label);
             foreach (self::SECURITY_HEADERS as $name => $value) {
@@ -251,7 +332,7 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         }
     }
 
-    #[TestDox('UC-SYS-03-F08 — A3 : audit RGPD en CLI (rgpd-audit.php) — aucune fuite de schéma, empreinte d’un compte, puis vide après suppression du compte')]
+    #[TestDox('UC-SYS-03-F08 — A3/E4 : audit RGPD en CLI (rgpd-audit.php) — schéma sain, empreinte d’un compte, vide après suppression ; colonne non gouvernée → « ⚠ BUG RGPD », code 2 ; sans base → code 1')]
     public function testF08RgpdAuditCommandLine(): void
     {
         $maya = $this->registerAs('maya@example.org', 'Maya', ['apprenant']);
@@ -272,6 +353,26 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
 
         $noArg = AdmSupport::runPhp('scripts/rgpd-audit.php', [], AdmSupport::cliEnv());
         self::assertStringContainsString('Passez un user_id en argument', $noArg['stdout']);
+
+        // La détection de fuite : une colonne user_id SANS clé étrangère → code 2.
+        try {
+            self::$pdo->exec('CREATE TABLE uc_sys03_orphan (id INT PRIMARY KEY, user_id INT NULL)');
+            $leak = AdmSupport::runPhp('scripts/rgpd-audit.php', [], AdmSupport::cliEnv());
+        } finally {
+            self::$pdo->exec('DROP TABLE IF EXISTS uc_sys03_orphan');
+        }
+        self::assertSame(2, $leak['exit']);
+        self::assertStringContainsString('⚠ BUG RGPD', $leak['stdout']);
+        self::assertStringContainsString('- uc_sys03_orphan.user_id', $leak['stdout']);
+
+        // E4 : sans base → code 1 ; base injoignable → COMPORTEMENT ACTUEL :
+        // Db::get() hors de tout try, exception non rattrapée (code 255).
+        $noDb = AdmSupport::runPhp('scripts/rgpd-audit.php', [], AdmSupport::cliEnv(['DB_HOST' => '']));
+        self::assertSame(1, $noDb['exit']);
+        self::assertStringContainsString('base de données non configurée', $noDb['stderr']);
+        $unreachable = AdmSupport::runPhp('scripts/rgpd-audit.php', [], AdmSupport::cliEnv(['DB_HOST' => '127.0.0.1', 'DB_PORT' => '1']));
+        self::assertSame(255, $unreachable['exit']);
+        self::assertStringContainsString('PDOException', $unreachable['stdout'] . $unreachable['stderr']);
     }
 
     /**
@@ -298,5 +399,23 @@ final class UcSys03MaintenanceSupervisionTest extends AdminTestCase
         $after = self::json($this->as_($admin, 'GET', '/api/admin/monitoring?days=30'))['tokens'];
         self::assertSame(2, $after['toutTemps']['demo']['requetes'], 'l’historique de démo a disparu');
         self::assertCount(1, array_filter($after['parJour'], static fn (array $j): bool => $j['demo'] !== null));
+    }
+
+    #[TestDox('UC-SYS-03-F10 — E2 : appel de maintenance porteur d’un cookie de session (même périmé) sans X-CSRF-Token → 403 CSRF avant le contrôle du jeton, rien n’est purgé')]
+    public function testF10MaintenanceWithASessionCookieHitsTheCsrfGuard(): void
+    {
+        $keep = $this->seedShareLinks();
+        $before = self::shareLinkIds();
+
+        $this->cookieSid = 'uc-sys03-perime';
+        $response = $this->request('POST', '/api/admin/maintenance', null, ['X-Migrate-Token' => self::TOKEN]);
+
+        self::assertSame(403, $response->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($response));
+        self::assertSame($before, self::shareLinkIds(), 'aucune purge');
+        self::assertNotSame($keep, $before);
+        // Le même appel SANS cookie (planificateur) passe.
+        self::assertSame(200, $this->maintenance()->getStatusCode());
+        self::assertSame($keep, self::shareLinkIds());
     }
 }

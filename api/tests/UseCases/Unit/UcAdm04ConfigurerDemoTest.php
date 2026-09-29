@@ -330,4 +330,93 @@ final class UcAdm04ConfigurerDemoTest extends TestCase
         self::assertFalse($demo['editableInUi']);
         self::assertArrayNotHasKey('upstreamTimeoutSeconds', $demo, 'instantané incomplet par rapport à /demo-config');
     }
+
+    #[TestDox('UC-ADM-04-U21 — PlatformStatus::snapshot : secrets de config/app.php réduits à « configured », jamais leur valeur (A4)')]
+    public function testU21SnapshotNeverExposesSecretValues(): void
+    {
+        TestDb::setEnv('POW_SECRET', '');
+        TestDb::setEnv('MIGRATE_TOKEN', 'migrate-token-unit-never-returned');
+
+        $snap = (new PlatformStatus(Db::get()))->snapshot();
+        $secrets = $snap['config']['secrets'];
+
+        self::assertSame(
+            ['env' => 'ANTHROPIC_API_KEY', 'description' => $secrets['ANTHROPIC_API_KEY']['description'], 'secret' => true, 'configured' => true],
+            $secrets['ANTHROPIC_API_KEY'],
+        );
+        self::assertArrayNotHasKey('value', $secrets['ANTHROPIC_API_KEY']);
+        self::assertTrue($secrets['MIGRATE_TOKEN']['configured']);
+        self::assertFalse($secrets['POW_SECRET']['configured']);
+        self::assertArrayNotHasKey('value', $snap['config']['database']['DB_PASSWORD']);
+        $all = json_encode($snap, JSON_THROW_ON_ERROR);
+        self::assertStringNotContainsString(self::API_KEY, $all);
+        self::assertStringNotContainsString('migrate-token-unit-never-returned', $all);
+        // Une entrée publique, elle, expose sa valeur effective.
+        self::assertSame(TestDb::name(), $snap['config']['database']['DB_NAME']['value']);
+    }
+
+    #[TestDox('UC-ADM-04-U22 — DemoConfig::load : base configurée mais injoignable → exception captée, journal « [demo-config] overrides unavailable », repli env/fichier (A3)')]
+    public function testU22LoadFailsSafeWhenTheDatabaseIsUnreachable(): void
+    {
+        self::service()->update($this->adminId, ['enabled' => false]);
+        self::assertSame('base', DemoConfig::load()->sources['enabled']);
+
+        $log = (string) tempnam(sys_get_temp_dir(), 'uc-adm04-');
+        $previousLog = ini_set('error_log', $log);
+        // Connexion refusée localement (port 1), sans résolution DNS.
+        TestDb::setEnv('DB_HOST', '127.0.0.1');
+        TestDb::setEnv('DB_PORT', '1');
+        Db::reset();
+        try {
+            $config = DemoConfig::load();
+        } finally {
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
+            TestDb::restoreEnv();
+        }
+
+        self::assertTrue($config->enabled, 'la surcharge « éteinte » est ignorée : fichier');
+        self::assertNotContains('base', $config->sources);
+        self::assertStringContainsString('[demo-config] overrides unavailable, falling back to env/file', (string) file_get_contents($log));
+        @unlink($log);
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé (fiche, limite L5) : les bornes de RG2 ne sont
+     * contrôlées que par DemoConfigService::update (couche « base ») ; une
+     * variable DEMO_* numérique est prise telle quelle (cast (int), sans borne).
+     */
+    #[TestDox('UC-ADM-04-U23 — (limite L5, comportement actuel) valeurs DEMO_* d’environnement non bornées : 0 bit de preuve de travail, quota négatif, décimale tronquée')]
+    public function testU23EnvironmentValuesAreNotBoundedCurrentBehaviour(): void
+    {
+        TestDb::setEnv('DEMO_POW_DIFFICULTY_BITS', '0');
+        TestDb::setEnv('DEMO_PER_IP_PER_HOUR', '12.7');
+        TestDb::setEnv('DEMO_MAX_TOKENS_PER_REQUEST', '-1');
+
+        $config = DemoConfig::load();
+
+        self::assertSame(0, $config->powDifficultyBits, 'hors de 8–24, accepté');
+        self::assertSame(12, $config->perIpPerHour, '12.7 tronqué');
+        self::assertSame(-1, $config->maxTokensPerRequest, 'hors de 256–16000, accepté');
+        self::assertSame('env', $config->sources['powDifficultyBits']);
+        // Par l'API, les mêmes valeurs sont refusées (RG2).
+        $this->assertRejected(['powDifficultyBits' => 0], 'powDifficultyBits doit être compris entre 8 et 24.');
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé (fiche, RG7) : l'audit porte les noms des champs
+     * ENVOYÉS dans le patch, même inchangés ; et un champ renvoyé à l'identique
+     * devient une surcharge « base » qui masquera une future variable DEMO_*.
+     */
+    #[TestDox('UC-ADM-04-U24 — update d’un champ à sa valeur effective : surcharge « base » créée et audit {fields} quand même (champs envoyés, pas modifiés)')]
+    public function testU24UnchangedFieldIsStillStoredAndAudited(): void
+    {
+        self::assertTrue(self::service()->read()['effective']['enabled']);
+
+        $data = self::service()->update($this->adminId, ['enabled' => true]);
+
+        self::assertSame('base', $data['sources']['enabled']);
+        self::assertEquals(['fields' => ['enabled']], AdmSupport::lastAudit(self::$pdo, 'demo_config_updated')['details']);
+        TestDb::setEnv('DEMO_ENABLED', 'off');
+        self::assertTrue(DemoConfig::load()->enabled, 'la surcharge identique fige la valeur face à DEMO_ENABLED');
+    }
 }

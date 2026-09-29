@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Functional;
 
+use Humanome\Db;
 use Humanome\Env;
 use Humanome\MigrationRunner;
 use Humanome\Packages\SettingsRepository;
 use Humanome\Tests\AuthTestBase;
 use Humanome\Tests\TestDb;
 use Humanome\Tests\UseCases\Support\AdmSupport;
+use Humanome\Twin9\FicheStore;
 use PHPUnit\Framework\Attributes\TestDox;
 use Psr\Http\Message\ResponseInterface;
 
@@ -59,17 +61,46 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         return AdmSupport::toolRequest($method, $path, $token, $body);
     }
 
-    /** La séquence HTTP de `deploy.mjs api` après l'upload FTP. */
+    /**
+     * La séquence HTTP de `deploy.mjs api` après l'upload FTP. Comme le script
+     * (`if (!res.ok) throw …`), elle S'ARRÊTE à la première réponse non 2xx :
+     * seules les étapes réellement jouées figurent dans le résultat.
+     *
+     * @return array<string, ResponseInterface>
+     */
     private function deploySequence(bool $forceFiches): array
     {
-        return [
-            'migrate' => $this->tool('POST', '/admin/migrate'),
-            'import-referentiel' => $this->tool('POST', '/admin/import-referentiel', self::file(self::REFERENTIEL)),
-            'seed-competences' => $this->tool('POST', '/admin/seed-competences'),
-            'generate-fiches' => $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => $forceFiches])),
-            'import-prompt-package' => $this->tool('POST', '/admin/import-prompt-package', self::file(self::PACKAGE)),
-            'health' => $this->tool('GET', '/health', null, null),
+        $steps = [
+            'migrate' => fn (): ResponseInterface => $this->tool('POST', '/admin/migrate'),
+            'import-referentiel' => fn (): ResponseInterface => $this->tool('POST', '/admin/import-referentiel', self::file(self::REFERENTIEL)),
+            'seed-competences' => fn (): ResponseInterface => $this->tool('POST', '/admin/seed-competences'),
+            'generate-fiches' => fn (): ResponseInterface => $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => $forceFiches])),
+            'import-prompt-package' => fn (): ResponseInterface => $this->tool('POST', '/admin/import-prompt-package', self::file(self::PACKAGE)),
+            'health' => fn (): ResponseInterface => $this->tool('GET', '/health', null, null),
         ];
+        $played = [];
+        foreach ($steps as $name => $call) {
+            $played[$name] = $call();
+            $status = $played[$name]->getStatusCode();
+            if ($status < 200 || $status >= 300) {
+                break; // deploy.mjs lève une exception : la suite n'est pas jouée
+            }
+        }
+
+        return $played;
+    }
+
+    /** Journal d'erreurs PHP détourné vers un fichier jetable (les routes à jeton journalisent leurs échecs). */
+    private function quietErrorLog(callable $run): mixed
+    {
+        $log = (string) tempnam(sys_get_temp_dir(), 'uc-sys02-');
+        $previous = ini_set('error_log', $log);
+        try {
+            return $run();
+        } finally {
+            ini_set('error_log', $previous === false ? '' : $previous);
+            @unlink($log);
+        }
     }
 
     /** Base remise à VIDE (premier déploiement sur un hébergement neuf). */
@@ -88,7 +119,7 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         return $files;
     }
 
-    #[TestDox('UC-SYS-02-F01 — nominal : premier déploiement sur base vide, dans l’ordre de deploy.mjs (fiches : refus 409 puis force), smoke health')]
+    #[TestDox('UC-SYS-02-F01 — nominal : premier déploiement sur base vide, dans l’ordre de deploy.mjs (fiches : refus 409 sans écriture, arrêt, relance complète avec force), smoke health')]
     public function testF01FirstDeploymentOnAnEmptyDatabase(): void
     {
         $this->emptyDatabase();
@@ -105,22 +136,41 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertSame(200, $steps['seed-competences']->getStatusCode());
         self::assertSame([7, 61, 61], [$seed['poles'], $seed['imported'], $seed['fiches']]);
 
-        // Garde-fou : au premier déploiement, twin9_fiches est vide → 409, AUCUNE écriture.
+        // Garde-fou (E6) : au premier déploiement, twin9_fiches est vide → 409, AUCUNE écriture.
         self::assertSame(409, $steps['generate-fiches']->getStatusCode());
         $diff = AdmSupport::body($steps['generate-fiches']);
         self::assertSame('diff', $diff['status']);
         self::assertCount(61, $diff['changed']);
-        // deploy.mjs s'arrête là ; le mainteneur relance avec FICHES_FORCE=1.
-        $forced = $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => true]));
-        self::assertSame(200, $forced->getStatusCode());
-        self::assertSame(['applied', 7, 61], [AdmSupport::body($forced)['status'], AdmSupport::body($forced)['poles'], AdmSupport::body($forced)['competences']]);
+        self::assertNull((new SettingsRepository(self::$pdo))->get('twin9_fiches'), 'aucune écriture');
+        // deploy.mjs s'arrête là : ni import de paquet ni smoke.
+        self::assertSame(['migrate', 'import-referentiel', 'seed-competences', 'generate-fiches'], array_keys($steps));
 
-        self::assertSame('imported', AdmSupport::body($steps['import-prompt-package'])['status']);
+        // Le mainteneur relance TOUTE la séquence avec FICHES_FORCE=1.
+        $rerun = $this->deploySequence(true);
+        self::assertSame(['migrate', 'import-referentiel', 'seed-competences', 'generate-fiches', 'import-prompt-package', 'health'], array_keys($rerun));
+        self::assertSame(['applied' => [], 'skipped' => \count(self::migrationFiles())], AdmSupport::body($rerun['migrate']));
+        self::assertSame('unchanged', AdmSupport::body($rerun['import-referentiel'])['status']);
+        $forced = AdmSupport::body($rerun['generate-fiches']);
+        self::assertSame(['applied', 7, 61], [$forced['status'], $forced['poles'], $forced['competences']]);
+        self::assertSame('imported', AdmSupport::body($rerun['import-prompt-package'])['status']);
 
-        self::assertSame(200, $steps['health']->getStatusCode());
-        $health = AdmSupport::body($steps['health']);
+        self::assertSame(200, $rerun['health']->getStatusCode());
+        $health = AdmSupport::body($rerun['health']);
         self::assertSame(['ok', 'ok'], [$health['status'], $health['db']]);
-        self::assertStringContainsString('"ok"', (string) $steps['health']->getBody(), 'critère du smoke de deploy.mjs');
+        self::assertStringContainsString('"ok"', (string) $rerun['health']->getBody());
+
+        // Témoin : le critère du smoke de deploy.mjs (200 + « "ok" ») ne détecte
+        // PAS une base en panne — /health répond 200 {"status":"ok"} avec db « error ».
+        TestDb::setEnv('DB_NAME', 'humanome_absente_sys02');
+        Db::reset();
+        try {
+            $broken = $this->tool('GET', '/health', null, null);
+        } finally {
+            TestDb::overrideEnv();
+        }
+        self::assertSame(200, $broken->getStatusCode());
+        self::assertStringContainsString('"ok"', (string) $broken->getBody());
+        self::assertSame('error', AdmSupport::body($broken)['db']);
     }
 
     #[TestDox('UC-SYS-02-F02 — A1 : redéployer la même version ne change rien (migrations sautées, imports « unchanged », seed et fiches inchangés)')]
@@ -160,7 +210,8 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
 
         $audit = AdmSupport::lastAudit(self::$pdo, 'role_granted');
         self::assertNull($audit['userId'], 'action système : pas d’acteur');
-        self::assertSame(['role' => 'admin', 'status' => 'granted'], array_intersect_key($audit['details'], ['role' => 1, 'status' => 1]));
+        $targetId = (int) self::$pdo->query("SELECT id FROM users WHERE email = 'fondatrice@example.org'")->fetchColumn();
+        self::assertEquals(['targetUserId' => $targetId, 'role' => 'admin', 'status' => 'granted'], $audit['details']);
         self::assertStringNotContainsString('fondatrice@example.org', $audit['raw']);
 
         $again = $this->tool('POST', '/admin/grant-role', json_encode(['email' => 'fondatrice@example.org', 'role' => 'admin']));
@@ -168,7 +219,7 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertSame(2, AdmSupport::countAudit(self::$pdo, 'role_granted'), 'cette route journalise aussi les « unchanged »');
     }
 
-    #[TestDox('UC-SYS-02-F04 — A3 : l’opérateur valide le paquet par défaut ; il est servi aux apprenants et consomme la proposition correspondante')]
+    #[TestDox('UC-SYS-02-F04 — A3 : l’opérateur valide le paquet par défaut ; il est servi aux apprenants ; une proposition différente est conservée, une identique consommée')]
     public function testF04ValidateTheDefaultPromptPackage(): void
     {
         self::$pdo->exec('DELETE FROM prompt_packages');
@@ -177,16 +228,21 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         $v2 = ['version' => '2.0.0', 'description' => 'Deuxième version publiée.'] + $v1;
         self::assertSame(200, $this->tool('POST', '/admin/import-prompt-package', json_encode($v1))->getStatusCode());
         self::assertSame(200, $this->tool('POST', '/admin/import-prompt-package', json_encode($v2))->getStatusCode());
-        (new SettingsRepository(self::$pdo))->set(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL, ['id' => $v1['id'], 'version' => '1.0.0']);
+        $settings = new SettingsRepository(self::$pdo);
+        $settings->set(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL, ['id' => $v1['id'], 'version' => '2.0.0']);
 
         self::assertSame('2.0.0', AdmSupport::body($this->tool('GET', '/prompt-packages/default', null, null))['version'], 'sans validation : dernier publié');
 
         $validate = $this->tool('POST', '/admin/default-package', json_encode(['id' => $v1['id'], 'version' => '1.0.0']));
         self::assertSame(200, $validate->getStatusCode());
         self::assertSame(['id' => $v1['id'], 'version' => '1.0.0', 'status' => 'default'], AdmSupport::body($validate));
-
         self::assertSame(['id' => $v1['id'], 'version' => '1.0.0'], AdmSupport::body($this->tool('GET', '/prompt-packages/default', null, null)));
-        self::assertNull((new SettingsRepository(self::$pdo))->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL), 'proposition consommée');
+        self::assertEquals(['id' => $v1['id'], 'version' => '2.0.0'], $settings->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL), 'proposition DIFFÉRENTE conservée');
+
+        // Proposition identique à la version validée : consommée.
+        $settings->set(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL, ['id' => $v1['id'], 'version' => '1.0.0']);
+        self::assertSame(200, $this->tool('POST', '/admin/default-package', json_encode(['id' => $v1['id'], 'version' => '1.0.0']))->getStatusCode());
+        self::assertNull($settings->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL), 'proposition identique consommée');
     }
 
     #[TestDox('UC-SYS-02-F05 — A5 : dump-fiches resert le corpus depuis la base (resynchronisation de scripts/data/fiches-v7.json)')]
@@ -229,7 +285,7 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         }
     }
 
-    #[TestDox('UC-SYS-02-F07 — E4/E5/E8 : corps illisible 400, document invalide 422 (+ détails), conflit 409, compte ou version inconnus 404')]
+    #[TestDox('UC-SYS-02-F07 — E4/E5/E8 : corps illisible 400 (imports) ou 422 (grant-role, default-package), document invalide 422 (+ détails), conflit 409, compte inconnu ou supprimé et version inconnue ou privée 404')]
     public function testF07InvalidPayloads(): void
     {
         self::$pdo->exec('DELETE FROM prompt_packages');
@@ -251,10 +307,17 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         $conflict = $this->tool('POST', '/admin/import-prompt-package', json_encode(['description' => 'Réécriture'] + $package));
         self::assertSame(409, $conflict->getStatusCode(), 'version publiée immuable');
 
+        // grant-role et default-package : un corps non JSON donne 422 (et non 400).
+        self::assertSame(422, $this->tool('POST', '/admin/grant-role', 'pas du json')->getStatusCode());
+        self::assertSame(422, $this->tool('POST', '/admin/default-package', 'pas du json')->getStatusCode());
         self::assertSame(422, $this->tool('POST', '/admin/grant-role', '{"email":"x@example.org"}')->getStatusCode());
         self::assertSame(422, $this->tool('POST', '/admin/grant-role', '{"email":"x@example.org","role":"visiteur"}')->getStatusCode());
         $unknown = $this->tool('POST', '/admin/grant-role', '{"email":"inconnu@example.org","role":"admin"}');
         self::assertSame([404, ['error' => 'Unknown account']], [$unknown->getStatusCode(), AdmSupport::body($unknown)]);
+        $gone = AdmSupport::user(self::$pdo, 'parti-sys02@example.org', 'Parti');
+        self::$pdo->exec('UPDATE users SET deleted_at = NOW() WHERE id = ' . $gone);
+        $deleted = $this->tool('POST', '/admin/grant-role', '{"email":"parti-sys02@example.org","role":"admin"}');
+        self::assertSame([404, ['error' => 'Unknown account']], [$deleted->getStatusCode(), AdmSupport::body($deleted)], 'compte supprimé = inconnu');
 
         self::assertSame(422, $this->tool('POST', '/admin/default-package', '{"id":"aurora-demo"}')->getStatusCode());
         self::assertSame(404, $this->tool('POST', '/admin/default-package', '{"id":"aurora-demo","version":"9.9.9"}')->getStatusCode());
@@ -263,7 +326,13 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertSame([404, ['error' => 'Unknown published version']], [$private->getStatusCode(), AdmSupport::body($private)], 'un paquet privé (Golden) ne devient jamais le défaut');
     }
 
-    #[TestDox('UC-SYS-02-F08 — E7 : base injoignable pendant la migration ou l’import → 500 générique, aucun détail SQL divulgué')]
+    /**
+     * E7 + anomalie AN-2 (COMPORTEMENT ACTUEL figé) : migrate et
+     * import-referentiel répondent un 500 générique ; seed-competences et
+     * generate-fiches renvoient en revanche le message brut de l'exception
+     * (SQLSTATE et nom de base compris) au porteur du jeton.
+     */
+    #[TestDox('UC-SYS-02-F08 — E7 : base injoignable → 500 générique sur migrate et import ; (AN-2, comportement actuel) seed et generate-fiches divulguent le message SQL')]
     public function testF08FailuresDoNotLeakDetails(): void
     {
         $originalName = Env::get('DB_NAME');
@@ -271,8 +340,12 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         TestDb::overrideEnv();
         TestDb::setEnv('DB_NAME', 'humanome_absente_sys02'); // overrideEnv repose le nom de test
         try {
-            $migrate = $this->tool('POST', '/admin/migrate');
-            $import = $this->tool('POST', '/admin/import-referentiel', self::file(self::REFERENTIEL));
+            [$migrate, $import, $seed, $fiches] = $this->quietErrorLog(fn (): array => [
+                $this->tool('POST', '/admin/migrate'),
+                $this->tool('POST', '/admin/import-referentiel', self::file(self::REFERENTIEL)),
+                $this->tool('POST', '/admin/seed-competences'),
+                $this->tool('POST', '/admin/generate-fiches', '{"force":false}'),
+            ]);
         } finally {
             TestDb::setEnv('DB_NAME', $originalName);
             TestDb::overrideEnv();
@@ -284,6 +357,13 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
             self::assertStringNotContainsString('SQLSTATE', (string) $response->getBody());
             self::assertStringNotContainsString('humanome_absente_sys02', (string) $response->getBody());
         }
+
+        // AN-2 : fuite du message d'exception (à inverser une fois corrigé).
+        self::assertSame(500, $seed->getStatusCode());
+        self::assertStringStartsWith('Seed failed: SQLSTATE', AdmSupport::body($seed)['error']);
+        self::assertStringContainsString('humanome_absente_sys02', AdmSupport::body($seed)['error']);
+        self::assertSame(500, $fiches->getStatusCode());
+        self::assertStringStartsWith('Generation failed: SQLSTATE', AdmSupport::body($fiches)['error']);
     }
 
     #[TestDox('UC-SYS-02-F09 — RG2 : navigateur connecté sans jeton CSRF — /admin/migrate passe (exemptée), les autres routes à jeton → 403 CSRF')]
@@ -301,7 +381,7 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         self::assertSame(403, $this->request('POST', '/api/admin/grant-role', ['email' => 'mainteneur@example.org', 'role' => 'admin'], $headers)->getStatusCode());
     }
 
-    #[TestDox('UC-SYS-02-F10 — A6/E9 : front-controller www/api — sert la release pointée par current.txt, rollback par réécriture, 503 si pointeur invalide ou release absente')]
+    #[TestDox('UC-SYS-02-F10 — A6/E9 : front-controller www/api — sert la release pointée par current.txt, rollback par réécriture, code HTTP 503 si pointeur invalide ou release absente ; (AN-4) « releases/.. » accepté par le motif')]
     public function testF10FrontControllerAndRollback(): void
     {
         $this->tmpDir = sys_get_temp_dir() . '/uc-sys02-ftp-' . bin2hex(random_bytes(4));
@@ -315,29 +395,39 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
                 "<?php echo 'release={$release};shared=' . getenv('HUMANOME_SHARED_DIR');",
             );
         }
-        $serve = function (?string $pointer): string {
+        // Lanceur : exécute le front-controller puis écrit le code HTTP posé
+        // (http_response_code() reste lisible en CLI) sur la sortie d'erreur.
+        file_put_contents(
+            $this->tmpDir . '/probe.php',
+            "<?php\nregister_shutdown_function(static function (): void { fwrite(STDERR, 'HTTP ' . var_export(http_response_code(), true)); });\nrequire \$argv[1];\n",
+        );
+        /** @return array{0: string, 1: string} [corps, « HTTP <code> »] */
+        $serve = function (?string $pointer): array {
             $file = $this->tmpDir . '/app/current.txt';
             $pointer === null ? @unlink($file) : file_put_contents($file, $pointer);
-            $run = AdmSupport::runPhp($this->tmpDir . '/www/api/index.php', [], AdmSupport::cliEnv(), $this->tmpDir);
+            $run = AdmSupport::runPhp($this->tmpDir . '/probe.php', [$this->tmpDir . '/www/api/index.php'], AdmSupport::cliEnv(), $this->tmpDir);
 
-            return $run['stdout'];
+            return [$run['stdout'], $run['stderr']];
         };
 
-        $v2 = $serve("releases/20260928-090000-v2\n");
+        [$v2, $v2Code] = $serve("releases/20260928-090000-v2\n");
         self::assertSame('release=20260928-090000-v2;shared=' . $this->tmpDir . '/app/shared', $v2, 'secrets hors webroot');
+        self::assertSame('HTTP false', $v2Code, 'aucun code imposé : la release répond elle-même');
 
         // Rollback = réécrire le pointeur sur la release précédente (aucun transfert).
-        self::assertStringStartsWith('release=20260901-120000-v1;', $serve("releases/20260901-120000-v1\n"));
+        self::assertStringStartsWith('release=20260901-120000-v1;', $serve("releases/20260901-120000-v1\n")[0]);
 
-        $noRelease = json_encode(['status' => 'error', 'message' => 'No release deployed']);
+        $noRelease = [json_encode(['status' => 'error', 'message' => 'No release deployed']), 'HTTP 503'];
         self::assertSame($noRelease, $serve(null), 'current.txt absent');
         self::assertSame($noRelease, $serve("\n"), 'pointeur vide');
-        self::assertSame($noRelease, $serve('releases/../../shared'), 'traversée refusée par le motif');
+        self::assertSame($noRelease, $serve('releases/../../shared'), 'traversée multi-segments refusée par le motif');
         self::assertSame($noRelease, $serve('/home/x/app/releases/v1'), 'chemin absolu refusé');
-        self::assertSame(
-            json_encode(['status' => 'error', 'message' => 'Release entry point missing']),
-            $serve('releases/20250101-000000-purgee'),
-        );
+        $missing = [json_encode(['status' => 'error', 'message' => 'Release entry point missing']), 'HTTP 503'];
+        self::assertSame($missing, $serve('releases/20250101-000000-purgee'));
+        // COMPORTEMENT ACTUEL (anomalie AN-4) : « releases/.. » passe le motif et
+        // vise app/public/index.php ; seul son absence le bloque.
+        self::assertSame($missing, $serve('releases/..'), 'traversée d’un niveau : acceptée par le motif');
+        self::assertSame($missing, $serve('releases/.'));
     }
 
     #[TestDox('UC-SYS-02-F11 — A7/E10 : équivalents CLI (migrate, import-referentiel, import-prompt-packages, seed-competences) ; base non configurée → code 1')]
@@ -372,5 +462,80 @@ final class UcSys02DeployerMigrerTest extends AuthTestBase
         $missing = AdmSupport::runPhp('scripts/import-referentiel.php', ['/nulle/part.json'], $env);
         self::assertSame(1, $missing['exit']);
         self::assertStringContainsString('referentiel file not found', $missing['stderr']);
+        $missingPackage = AdmSupport::runPhp('scripts/import-prompt-packages.php', ['/nulle/part.json'], $env);
+        self::assertSame(1, $missingPackage['exit']);
+        self::assertStringContainsString('package file not found', $missingPackage['stderr']);
+    }
+
+    #[TestDox('UC-SYS-02-F12 — E6 : fiche modifiée en production (twin9_fiches ≠ base) → 409 {changed: [code]} sans force, réglage relu strictement inchangé')]
+    public function testF12FicheDivergenceIsRefusedWithoutWriting(): void
+    {
+        $this->emptyDatabase();
+        $this->deploySequence(true);
+        $settings = new SettingsRepository(self::$pdo);
+        $stored = $settings->get('twin9_fiches');
+        $code = (string) $stored['poles'][0]['competences'][0]['code'];
+        $stored['poles'][0]['competences'][0]['fiche_md'] .= "\n(retouche faite en production)";
+        $settings->set('twin9_fiches', $stored);
+
+        $response = $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => false]));
+
+        self::assertSame(409, $response->getStatusCode());
+        $body = AdmSupport::body($response);
+        self::assertSame(['diff', [$code]], [$body['status'], $body['changed']]);
+        self::assertEquals($stored, $settings->get('twin9_fiches'), 'aucune écriture');
+        // Un « force » non booléen vaut force:false (E4).
+        self::assertSame(409, $this->tool('POST', '/admin/generate-fiches', '{"force":1}')->getStatusCode());
+    }
+
+    /**
+     * COMPORTEMENT ACTUEL figé — anomalie AN-1 : le garde-fou ne compare que le
+     * fiche_md des compétences GÉNÉRÉES. Un en-tête de pôle modifié ou un code
+     * disparu de la génération (version publiée sans `fiche`) n'est pas vu, et
+     * FicheStore::store réécrit le réglage à chaque réponse 200 : écrasement
+     * silencieux sous un « unchanged ». À inverser (409) une fois corrigé.
+     */
+    #[TestDox('UC-SYS-02-F13 — (anomalie AN-1, comportement actuel) en-tête de pôle modifié ou fiche disparue de la génération → 200 « unchanged » et réglage twin9_fiches réécrit en silence')]
+    public function testF13GuardMissesHeadersAndVanishedCodesCurrentBehaviour(): void
+    {
+        $this->emptyDatabase();
+        $this->deploySequence(true);
+        $settings = new SettingsRepository(self::$pdo);
+
+        // (a) En-tête de pôle retouché en production.
+        $stored = $settings->get('twin9_fiches');
+        $stored['poles'][0]['header'] = 'EN-TÊTE PROD';
+        $settings->set('twin9_fiches', $stored);
+        $a = $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => false]));
+        self::assertSame(200, $a->getStatusCode());
+        self::assertSame(['unchanged', []], [AdmSupport::body($a)['status'], AdmSupport::body($a)['changed']]);
+        self::assertStringNotContainsString('EN-TÊTE PROD', (string) FicheStore::fromSettings($settings)->poleFiches(1), 'en-tête écrasé');
+
+        // (b) Une version 1.1.0 publiée SANS fiche fait disparaître le code de la génération.
+        $code = (string) $stored['poles'][0]['competences'][0]['code'];
+        self::assertNotNull(FicheStore::fromSettings($settings)->competenceFiche($code));
+        self::$pdo->prepare(
+            "INSERT INTO competence_versions (competence_code, semver, pole, nom, status, content, content_hash, published_at)
+             SELECT competence_code, '1.1.0', pole, nom, 'published', JSON_REMOVE(content, '$.fiche'), REPEAT('f', 64), NOW()
+               FROM competence_versions WHERE competence_code = ? AND semver = '1.0.0'"
+        )->execute([$code]);
+        $b = $this->tool('POST', '/admin/generate-fiches', json_encode(['force' => false]));
+        self::assertSame(200, $b->getStatusCode());
+        self::assertSame('unchanged', AdmSupport::body($b)['status']);
+        self::assertSame(60, AdmSupport::body($b)['competences']);
+        self::assertNull(FicheStore::fromSettings($settings)->competenceFiche($code), 'fiche supprimée en silence');
+    }
+
+    #[TestDox('UC-SYS-02-F14 — E11 : seed avant tout référentiel publié → 500 « Seed failed: Aucune version publiée du référentiel… » (deploy.mjs s’arrête)')]
+    public function testF14SeedWithoutAPublishedReferentiel(): void
+    {
+        $this->emptyDatabase();
+        self::assertSame(200, $this->tool('POST', '/admin/migrate')->getStatusCode());
+
+        $seed = $this->quietErrorLog(fn (): ResponseInterface => $this->tool('POST', '/admin/seed-competences'));
+
+        self::assertSame(500, $seed->getStatusCode());
+        self::assertStringStartsWith('Seed failed: Aucune version publiée du référentiel', AdmSupport::body($seed)['error']);
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM competence_versions')->fetchColumn());
     }
 }
