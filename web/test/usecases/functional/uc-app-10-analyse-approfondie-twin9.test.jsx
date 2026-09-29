@@ -502,3 +502,122 @@ describe('UC-APP-10 — reprise, annulation et 402 (vue Twin9View, coutures de t
     expect(await store.charger()).toBeUndefined()
   })
 })
+
+describe('UC-APP-10 — segments de route hors « demo » (#/twin9/<section>)', () => {
+  const naviguer = (hash) =>
+    act(() => {
+      window.location.hash = hash
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+
+  it('UC-APP-10-F27 — seul le segment exact « demo » (après décodage) ouvre la démonstration ; tout autre segment affiche le parcours #/twin9 ; « #/twin9/ » est introuvable ; revenir de #/twin9/demo à #/twin9 laisse la démonstration affichée (comportement actuel)', async () => {
+    // Apprenant connecté, segment inconnu : parcours serveur ordinaire, aucune démo.
+    const { calls } = stubFetch(routes())
+    openApp('#/twin9/inconnue')
+    expect(await screen.findByTestId('twin9-portfolio')).toBeDefined()
+    expect(screen.queryByTestId('twin9-mode-demo')).toBeNull()
+    expect(calls.map((c) => c.key)).toContain('GET twin9/meta')
+    cleanup()
+    resetApiClient()
+
+    // Visiteur : « DEMO » (casse) et « demo/ » (barre finale) ne sont PAS la démo → garde de session.
+    for (const hash of ['#/twin9/DEMO', '#/twin9/demo/']) {
+      stubFetch(routes(metaTwin9(), { 'GET auth/me': jsonResponse(401, { error: 'Authentification requise' }) }))
+      openApp(hash, null)
+      expect((await screen.findByTestId('twin9-garde-session')).textContent).toContain('nécessite un compte')
+      expect(screen.queryByTestId('twin9-mode-demo')).toBeNull()
+      cleanup()
+      resetApiClient()
+    }
+
+    // Le segment est décodé avant comparaison : « %64emo » = « demo ».
+    stubFetch(routes(metaTwin9(), { 'GET auth/me': jsonResponse(401, { error: 'Authentification requise' }) }))
+    openApp('#/twin9/%64emo', null)
+    expect(await screen.findByTestId('twin9-mode-demo')).toBeDefined()
+    cleanup()
+    resetApiClient()
+
+    // Barre finale sans segment : aucune route ne correspond.
+    stubFetch(routes())
+    openApp('#/twin9/')
+    expect(screen.getByRole('alert').textContent).toBe('Page introuvable : #/twin9/')
+    cleanup()
+    resetApiClient()
+
+    // Comportement ACTUEL : la vue Twin9 reste montée d'une route à l'autre ;
+    // le mode « démo » posé par #/twin9/demo n'est jamais retiré par la route.
+    const reseau = stubFetch(routes())
+    openApp('#/twin9/demo')
+    expect(await screen.findByTestId('twin9-mode-demo')).toBeDefined()
+    const nbMeta = reseau.calls.filter((c) => c.key === 'GET twin9/meta').length
+    naviguer('#/twin9')
+    await waitFor(() => expect(reseau.calls.filter((c) => c.key === 'GET twin9/meta').length).toBe(nbMeta + 1))
+    expect(screen.getByTestId('twin9-mode-demo')).toBeDefined()
+    expect(screen.queryByTestId('twin9-portfolio')).toBeNull()
+    // Issue dans la vue : « Quitter la démonstration » (offerte car la méta est servie).
+    fireEvent.click(screen.getByRole('button', { name: 'Quitter la démonstration' }))
+    expect(screen.queryByTestId('twin9-mode-demo')).toBeNull()
+    expect(screen.getByTestId('twin9-portfolio')).toBeDefined()
+
+    // Autre issue : passer par une autre page démonte la vue ; au retour, plus de démo.
+    naviguer('#/twin9/demo')
+    expect(await screen.findByTestId('twin9-mode-demo')).toBeDefined()
+    naviguer('#/')
+    expect(screen.queryByTestId('twin9-mode-demo')).toBeNull()
+    naviguer('#/twin9')
+    expect(await screen.findByTestId('twin9-portfolio')).toBeDefined()
+    expect(screen.queryByTestId('twin9-mode-demo')).toBeNull()
+  })
+})
+
+describe('UC-APP-10 — portfolio d’une seule journée datée (vue Twin9View, vrai moteur)', () => {
+  // Le lancement réel étant bloqué (anomalie 1), le run est joué par le VRAI
+  // moteur en mode mock : c'est ce que produirait un serveur répondant comme le
+  // mock (équivalence établie par UC-APP-10-U40).
+  const runEngine = (a) => executerTwin9(a.mock ? a : { ...a, mock: true, salt: SALT_DEVIS, nowIso: '2026-01-01T00:00:00' })
+
+  async function analyser(texte) {
+    render(
+      <Twin9View
+        deps={{
+          fetchMeFn: async () => ({ user: { id: 7 } }),
+          fetchMetaFn: async () => metaTwin9({ pipeline: PIPELINE }),
+          runEngine,
+          store: createMemoryTwin9Store(),
+        }}
+      />,
+    )
+    await remplirEtEstimer(texte)
+    await act(async () => {
+      fireEvent.click(screen.getByTestId('twin9-lancer'))
+    })
+    return screen.findByRole('heading', { name: 'Cartographie évolutive — twin9' })
+  }
+
+  it('UC-APP-10-F28 — ANOMALIE figée (anomalie 7) : une seule journée « ### 2026-04-06 » est analysée sans sa date — « 1 journée(s) · du F01 au F01 », journée « F01 », aucun sunburst ; avec deux journées datées, dates et sunburst sont là', async () => {
+    const UNE = PORTFOLIO.split('### 2026-04-09')[0]
+    await analyser(UNE)
+    expect(screen.getByText(/journée\(s\)/).textContent).toBe('1 journée(s) · du F01 au F01 · jury socle4+1')
+    expect(screen.queryByTestId('twin9-sunburst')).toBeNull()
+    expect(screen.getByRole('rowheader', { name: 'F01' })).toBeDefined()
+    expect(screen.queryByText('2026-04-06')).toBeNull()
+    // Enregistrement local (IndexedDB simulé) : le titre porte « F01 » pour période.
+    vi.stubGlobal('indexedDB', createFakeIndexedDb().factory)
+    try {
+      await act(async () => {
+        fireEvent.click(screen.getByText('Enregistrer dans mes cartographies'))
+      })
+      expect(await screen.findByText('Enregistrée dans mes cartographies ✓')).toBeDefined()
+      // (la base locale peut déjà contenir le résultat d'un autre scénario : filtre)
+      const titres = (await listCartographies()).map((c) => c.titre)
+      expect(titres.filter((t) => t.includes('F01'))).toEqual(['Twin9 — twin9 (F01 → F01)'])
+    } finally {
+      vi.unstubAllGlobals()
+    }
+    cleanup()
+
+    await analyser(PORTFOLIO)
+    expect(screen.getByText(/journée\(s\)/).textContent).toBe('2 journée(s) · du 2026-04-06 au 2026-04-09 · jury socle4+1')
+    expect(screen.getByTestId('twin9-sunburst')).toBeDefined()
+  })
+})

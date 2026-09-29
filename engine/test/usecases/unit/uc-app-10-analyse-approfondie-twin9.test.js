@@ -10,12 +10,16 @@
 //   - couture `backends` du run réel, reprise par état persistant ;
 //   - briques déterministes : ancrage verbatim, résolution calculée du
 //     tribunal, statut temporel, empreinte de journée, projection sunburst.
+//   - découpage du portfolio collé (portfolio.js) et backends (backends.js) :
+//     vecteurs VERSIONNÉS engine/test/twin9-vectors/ (synthétiques), lus dans
+//     les it() seulement.
 // CONFIDENTIALITÉ : aucun gabarit n'est lu (le mock les ignore).
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { executerTwin9 } from '../../../src/twin9/index.js'
-import { makeBackend as mockBackendFactory } from '../../../src/twin9/backends.js'
+import { KINDS, fetchBackend, makeBackend as mockBackendFactory } from '../../../src/twin9/backends.js'
+import { feuillesBlock, sentencesOf, splitPortfolio } from '../../../src/twin9/portfolio.js'
 import { varsClient, VARS_FICHES } from '../../../src/twin9/templates.js'
 import { ancrer } from '../../../src/twin9/heatmap.js'
 import { calculerConfiance, resoudre } from '../../../src/twin9/tribunal.js'
@@ -372,5 +376,134 @@ describe('UC-APP-10 — projection sunburst du résultat (twin9ToMergeDocument)'
       expect(comp.points).toBe(new Set(carto.competences[comp.code].attestations.map((a) => a.date)).size)
     }
     expect(() => twin9ToMergeDocument({ competences: {} }, referentiel)).toThrow(/attestation/)
+  })
+})
+
+/** Vecteurs figés versionnés (engine/test/twin9-vectors/) — à lire DANS un it(). */
+const vecteurs = (nom) =>
+  JSON.parse(readFileSync(fileURLToPath(new URL(`../../twin9-vectors/${nom}`, import.meta.url)), 'utf8'))
+
+describe('UC-APP-10 — découpage du portfolio collé en journées (portfolio.js)', () => {
+  it('UC-APP-10-U42 — splitPortfolio / feuillesBlock / sentencesOf sur les vecteurs synthétiques : journées datées (JJ.MM.AA, ISO) triées, même jour suffixé _b, fins de ligne CRLF normalisées ; journal hebdomadaire (titres ## / ###) ; feuille unique à défaut ; phrases candidates du mock ; texte précédant le premier séparateur (daté ou non) ignoré', () => {
+    const cas = vecteurs('portfolio_synth.vec.json')
+    expect(cas).toHaveLength(5)
+    for (const c of cas) {
+      const pf = splitPortfolio(c.content, c.filename)
+      expect(pf.journal_id, c.filename).toBe(c.journal_id)
+      expect(pf.feuilles, c.filename).toEqual(c.feuilles)
+      expect(feuillesBlock(pf.feuilles), c.filename).toBe(c.feuilles_block)
+      expect(sentencesOf(pf), c.filename).toEqual(c.sentences)
+    }
+    // Les règles que ces vecteurs figent, lues sur les cas eux-mêmes :
+    const par = Object.fromEntries(cas.map((c) => [c.filename, c.feuilles]))
+    const journal = par['Mon Portfolio (élève) v2.final.md']
+    expect(journal.map((f) => [f.id, f.date])).toEqual([
+      ['2024-03-11', '2024-03-11'], // ISO antérieure remontée par le tri
+      ['2024-03-12', '2024-03-12'], // « 12.3.24 » → 2024-03-12
+      ['2024-03-12_b', '2024-03-12'], // même jour : suffixe _b
+      ['2124-03-05', '2124-03-05'], // année à 3 chiffres : 2000 + n, sans contrôle calendaire
+    ])
+    expect(journal.every((f) => !f.texte.includes('\r'))).toBe(true)
+    expect(par['SYNTH-hebdo.md'].map((f) => [f.id, f.date, f.titre])).toEqual([
+      ['F01', null, 'Semaine 1'],
+      ['F02', null, 'Détail important'],
+      ['F03', null, 'Semaine 2'],
+    ])
+    for (const nom of ['unique.md', 'sans_titres.md']) {
+      expect(par[nom].map((f) => [f.id, f.date, f.start])).toEqual([['F01', null, 0]])
+    }
+    // Dès deux séparateurs, le texte qui précède le premier (préambule, titre #)
+    // n'appartient à aucune feuille : il n'est jamais analysé, sans avertissement.
+    const preambule = '# Mon journal\nPréambule fictif\n'
+    for (const [corps, ids] of [
+      ['### 1.1.24\na\n### 2.1.24\nb\n', ['2024-01-01', '2024-01-02']],
+      ['## Semaine 1\na\n## Semaine 2\nb\n', ['F01', 'F02']],
+    ]) {
+      const pf = splitPortfolio(preambule + corps, 'twin9.md')
+      expect(pf.feuilles.map((f) => f.id)).toEqual(ids)
+      expect(pf.feuilles[0].start).toBe(preambule.length)
+      expect(pf.feuilles.some((f) => f.texte.includes('Préambule'))).toBe(false)
+      expect(feuillesBlock(pf.feuilles)).not.toContain('Préambule')
+    }
+  })
+
+  it('UC-APP-10-U43 — ANOMALIE figée (anomalie 7) : un portfolio d’UNE seule journée datée perd sa date — feuille F01 non datée, période « F01 », attestations sans date, projection sunburst refusée', async () => {
+    const UNE_JOURNEE = PORTFOLIO.split('### 2026-04-09')[0].replace('# Journal fictif du lot twin\n\n', '')
+    expect(UNE_JOURNEE.startsWith('### 2026-04-06')).toBe(true)
+    // Il faut au moins DEUX titres datés pour découper par date (parité Python) ;
+    // sinon le titre unique ne compte pas et le document entier devient F01.
+    expect(splitPortfolio(UNE_JOURNEE, 'twin9.md').feuilles.map((f) => [f.id, f.date, f.titre])).toEqual([
+      ['F01', null, 'twin9'],
+    ])
+
+    const carto = aplatir((await run({ portfolioTexte: UNE_JOURNEE })).cartoEvolutive)
+    expect(carto.periode).toEqual({ debut: 'F01', fin: 'F01', n_journees: 1 })
+    const attestations = Object.values(carto.competences).flatMap((c) => c.attestations ?? [])
+    expect(attestations.length).toBeGreaterThan(0)
+    expect(attestations.every((a) => a.date === null && a.journee === 'F01')).toBe(true)
+    // La vue de résultats avale ce refus : pas de sunburst (ResultatsTwin9).
+    const referentiel = {
+      poles: REFERENTIEL.map((p) => ({ num: p.num, nom: p.nom })),
+      competences: REFERENTIEL.flatMap((p) => p.competences.map((c) => ({ ...c, pole: p.num }))),
+    }
+    expect(() => twin9ToMergeDocument(carto, referentiel)).toThrow(/aucune attestation datée/)
+  })
+})
+
+describe('UC-APP-10 — backends du moteur (backends.js)', () => {
+  it('UC-APP-10-U44 — fabrique par défaut : « mock » seul — les kinds de production du collège (anthropic) ET du tribunal (claude-cli) sont refusés (cause de l’anomalie 1) ; le mock rejoue les 196 vecteurs à l’identique, que le prompt soit vide ou un faux gabarit (le devis ignore les gabarits, RG10), un record par appel', async () => {
+    expect(Object.keys(KINDS)).toEqual(['mock'])
+    expect(mockBackendFactory({}).kind).toBe('mock') // kind absent → mock
+    expect(() => mockBackendFactory({ kind: 'anthropic', model: 'claude-sonnet-5' })).toThrow('Backend inconnu : anthropic (choix : mock)')
+    expect(() => mockBackendFactory({ kind: 'claude-cli', model: 'fictif-tribunal' })).toThrow('Backend inconnu : claude-cli (choix : mock)')
+
+    const { cases } = vecteurs('backends.vec.json')
+    expect(cases).toHaveLength(196)
+    const taches = new Set()
+    for (const c of cases) {
+      taches.add(c.task)
+      for (const prompt of ['', 'Gabarit fictif {$TEXTE_JOURNEE} — sans effet sur le mock']) {
+        const b = mockBackendFactory({ kind: 'mock', ...c.spec })
+        const out = await b.call(prompt, { model: c.model, task: c.task, meta: c.meta, label: c.label })
+        const ctx = `task=${c.task} label=${c.label}`
+        expect(out, ctx).toBe(c.out)
+        expect(b.records, ctx).toHaveLength(1)
+        const { label, model, response_chars: reponse, ok } = b.records[0].asDict()
+        expect([label, model, reponse, ok], ctx).toEqual([c.record.label, c.record.model, c.record.response_chars, true])
+      }
+    }
+    for (const t of ['tagger', 'premiere_impression', 'greffier', 'jure', 'president', 'kairos']) expect(taches).toContain(t)
+  })
+
+  it('UC-APP-10-U45 — fetchBackend (transport alternatif du moteur) : NON branché par la vue, il poste {etape, variables, modele, etage, facturation} sur une URL absolue SANS jeton CSRF ni max_tokens, et réduit un refus HTTP à un message sans statut (comportement actuel)', async () => {
+    const appels = []
+    const ok = fetchBackend(undefined, async (url, init) => {
+      appels.push({ url, init })
+      return { ok: true, status: 200, json: async () => ({ sortie: 'sortie filtrée' }) }
+    })
+    const res = await ok.call({
+      etape: 'lourd/20-greffier',
+      variables: { CODE: '1.01' },
+      modele: 'claude-sonnet-5',
+      etage: 'rapide',
+      facturation: 'platform',
+      max_tokens: 2048, // ignoré : le transport ne le relaie pas
+    })
+    expect(res).toEqual({ text: 'sortie filtrée' })
+    expect(appels[0].url).toBe('/api/twin9/appel')
+    expect(appels[0].init.headers).toEqual({ 'content-type': 'application/json' }) // pas de X-CSRF-Token
+    expect(JSON.parse(appels[0].init.body)).toEqual({
+      etape: 'lourd/20-greffier',
+      variables: { CODE: '1.01' },
+      modele: 'claude-sonnet-5',
+      etage: 'rapide',
+      facturation: 'platform',
+    })
+
+    // Ce que CsrfMiddleware répondrait à ce corps sans jeton (UC-APP-10-F17) : 403.
+    const refuse = fetchBackend(undefined, async () => ({ ok: false, status: 403, json: async () => ({ error: 'Jeton CSRF absent ou invalide' }) }))
+    const err = await refuse.call({ etape: 'x' }).catch((e) => e)
+    expect(err.message).toBe('twin9/appel : HTTP 403')
+    expect(err.status).toBeUndefined()
   })
 })

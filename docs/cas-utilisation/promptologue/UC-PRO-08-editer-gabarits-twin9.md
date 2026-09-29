@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Administrateur-promptologue (compte portant **les deux** rôles `admin` et `promptologue`) |
-| **Acteurs secondaires** | Script d'import `scripts/twin9/import-protocole.mjs` (manuel, jeton `X-Migrate-Token`) ; script de déploiement (régénère les fiches confidentielles, UC-SYS-02) ; apprenants (leurs analyses Twin9 utilisent immédiatement les gabarits édités, UC-APP-10) |
+| **Acteurs secondaires** | Script d'import `scripts/twin9/import-protocole.mjs` (manuel, jeton `X-Migrate-Token`) ; garde-fou de publication `scripts/check-publiable.mjs` (hook `.githooks/pre-commit`, à activer par clone, et job CI `check-publiable` de `.github/workflows/publiable.yml`) ; script de déploiement (régénère les fiches confidentielles, UC-SYS-02) ; apprenants (leurs analyses Twin9 utilisent immédiatement les gabarits édités, UC-APP-10) |
 | **Portée** | humanome.xyz — vue `#/twin9-atelier`, routes `/api/twin9/admin/protocole*`, `/api/twin9/admin/tester`, `POST /api/admin/twin9/import` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.4 (éditer et versionner le système de prompts), §3.8 et §4.10 (Golden Prompt privé), §7 ; ADR-010 §2 et §6 ; décision AD-D2 (`docs/autorisations.md`) |
@@ -27,7 +27,9 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
 - Le compte porte les rôles `admin` **et** `promptologue` (UC-ADM-01).
 - Les gabarits ont été importés en base par le script d'import (A4), qui lit
   `TWIN_V9_DIR` (par défaut `../Twin_v9`, **hors du dépôt**) ; ils ne sont
-  jamais dans le dépôt (contrôle `scripts/check-publiable.mjs`).
+  jamais dans le dépôt : `.gitignore` écarte `golden-twin9/` et
+  `engine/test/twin9-oracles/`, et le garde-fou de publication refuse tout
+  fichier suivi sous ces répertoires ou sous `golden-prompt/` (RG8).
 
 ## Garanties en cas de succès
 
@@ -84,12 +86,25 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
   variables}` → `{rendu, non_resolues}` affiché en texte brut ; **aucun appel
   LLM, aucun débit** ; les fiches confidentielles n'y sont pas injectées.
 - **A4 — Import technique** (précondition, par le script manuel
-  `scripts/twin9/import-protocole.mjs`, distinct de `deploy.mjs`) : `POST
-  /api/admin/twin9/import {files, config?, referentiel?, fiches?}` avec
-  `X-Migrate-Token` : chaque fichier est écrit comme par l'atelier (auteur nul,
-  versions archivées, réimport identique sans effet) ; les réglages du pipeline,
-  la structure du référentiel (nettoyée : num/nom, code/nom) et les fiches
-  confidentielles sont stockés ; Twin9 est **activé** ; réponse `{imported}`.
+  `scripts/twin9/import-protocole.mjs`, distinct de `deploy.mjs`) : le script lit
+  les gabarits `protocole/**/*.md` de `TWIN_V9_DIR` (nommés par leur chemin
+  relatif, `/` comme séparateur, sans `.md` ; les autres fichiers sont ignorés),
+  ne retient de `config.json` que les réglages du protocole (`seuils_consensus`,
+  `jury`, `juge_leger`, `merge`, `scan_global` — jamais les backends ni les
+  workers Python), et fait extraire par le Twin_v9 lui-même (`python3`, module
+  `aurora.referentiel`) la structure **non secrète** du référentiel (num/nom,
+  code/nom) et, à part, les fiches **confidentielles** (en-tête de pôle,
+  `fiche_md`) ; si l'extraction échoue, il avertit et les omet (le serveur
+  conserve alors ceux qu'il détient). Il ne journalise que des noms et des tailles, jamais un contenu ;
+  `--dry-run` s'arrête là. Sinon, `POST {base}/api/admin/twin9/import {files,
+  config?, referentiel?, fiches?}` avec `X-Migrate-Token` (variable
+  `MIGRATE_TOKEN`, sinon `.env.deploy` ; base : `--base-url`, sinon `SITE_URL`
+  de `.env.deploy`, sinon `https://humanome.xyz`) ; toute réponse non 2xx fait
+  échouer le script (sortie 1). Côté serveur : chaque fichier est écrit comme par
+  l'atelier (auteur nul, versions archivées, réimport identique sans effet) ; les
+  réglages du pipeline, la structure du référentiel (nettoyée : num/nom,
+  code/nom) et les fiches confidentielles sont stockés ; Twin9 est **activé** ;
+  réponse `{imported}`.
 - **A5 — Création par l'API** (étape 4) : un `PUT` sur un nom **valide mais
   inconnu** crée le gabarit (`200`, `status: "created"`, auteur = utilisateur,
   aucune version archivée), aussitôt appelable par `/api/twin9/appel`. Possible
@@ -115,7 +130,11 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
 - **E4 — Import refusé** (A4) : jeton non configuré → `404` ; jeton absent ou
   faux (une session, même d'atelier, ne suffit pas) → `403` ; sans fichier →
   `400` ; fichier invalide → `422 « Fichier invalide : <nom> »` (voir
-  l'anomalie 1).
+  l'anomalie 1). Le script sort alors en `1` (« twin9 import failed »), après
+  avoir journalisé le statut et le début de la réponse. Il s'arrête **avant tout
+  envoi** (sortie `1`) sur une option inconnue, un répertoire
+  `TWIN_V9_DIR/protocole` absent, un protocole sans aucun `.md`, ou un jeton
+  introuvable.
 - **E5 — API indisponible ou liste refusée** (étape 2) : copie statique →
   message d'indisponibilité ; tout autre échec de la liste (par ex. `403` si les
   rôles ont été retirés côté serveur) → « Chargement impossible. » ; aucun
@@ -147,6 +166,13 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
   (anomalie 2).
 - **RG7 — Messages génériques** : aucune erreur des routes de l'atelier ne cite
   un gabarit (l'import, lui, cite le nom du fichier fautif, E4).
+- **RG8 — Garde-fou de publication** (`scripts/check-publiable.mjs`, dépôt
+  miroité en public) : sur les fichiers **suivis** par git, tout chemin sous
+  `golden-twin9/`, `twin9-oracles/` ou `golden-prompt/` est refusé quel que soit
+  son contenu, comme un `.env` réel, un cache `.pyc`, une clé Anthropic, un
+  secret PayPal, un mot de passe hors fichiers de test, un chemin local absolu ou
+  un identifiant d'hébergement ; sortie `1` avec la liste « [règle]
+  fichier:ligne », sans recopier le contenu ; sortie `0` sinon. Voir Limites.
 
 ## Données et RGPD
 
@@ -171,8 +197,18 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
 | Domaine | `api/src/Twin9/ProtocoleRepository.php` — `list`, `get`, `put`, `versions`, `version`, `restore`, `render`, `extractVariables`, `assertValidName`, `assertValidContent` | Dépôt versionné des gabarits |
 | Domaine | `api/src/Middleware/RequireRole.php` — `all` | Garde conjonctive |
 | Domaine | `api/src/Twin9/Twin9Config.php`, `api/src/Twin9/FicheStore.php` | Activation, réglages, référentiel, fiches (import) |
+| Script | `scripts/twin9/import-protocole.mjs` | Acteur technique de A4 : lecture de `TWIN_V9_DIR`, filtre des réglages, extraction python du référentiel et des fiches, envoi avec `X-Migrate-Token` — script sans export, exécuté dès son chargement : couvert fonctionnellement seulement, en sous-processus (UC-PRO-08-F19 à F22) |
+| Script | `scripts/check-publiable.mjs` (+ `.githooks/pre-commit`, `.github/workflows/publiable.yml`) | Garde anti-fuite : aucun gabarit Twin9 ni secret dans les fichiers suivis (RG8) — script sans export, exécuté dès son chargement : couvert fonctionnellement seulement, en sous-processus (UC-PRO-08-F17, F18) |
 
 ## Jeux de tests
+
+Les deux scripts techniques (`check-publiable.mjs`, `import-protocole.mjs`)
+s'exécutent dès leur chargement et n'exportent rien : ils sont rejoués par leur
+interface en ligne de commande, en **sous-processus**, sur des dossiers
+temporaires fictifs (`os.tmpdir()`) — tests fonctionnels de niveau « CLI »
+(UC-PRO-08-F17 à F22), rangés avec les tests du moteur
+(`engine/test/usecases/unit/`, exécutés par la CI de publication) comme ceux
+de UC-SYS-04.
 
 ### Tests unitaires
 
@@ -210,19 +246,26 @@ L'administrateur-promptologue ouvre « Faire évoluer » → « Atelier Twin9 »
 | UC-PRO-08-F14 | E4 | API | 404 / 403 / 400 (statuts et messages) à l'import ; **anomalie 1 figée** : import partiel, au premier import comme au réimport (Twin9 reste activé, gabarits mélangés) | idem |
 | UC-PRO-08-F15 | E6 | API | Sans jeton CSRF ou jeton faux → 403 sur PUT, restauration, banc d'essai ; rien d'écrit | idem |
 | UC-PRO-08-F16 | Anomalies 3-5 | API | Clé d'import numérique refusée ; nom à saut de ligne final accepté ; gabarit « …/versions » créé mais illisible | idem |
+| UC-PRO-08-F17 | RG8 | CLI | `scripts/check-publiable.mjs` dans un dépôt git temporaire : répertoires de gabarits refusés quel que soit le contenu, `.env` réel, clé, mot de passe hors tests → sortie 1 et liste sans contenu ; gabarit rangé ailleurs, ligne à marqueur, binaire, fichier non suivi : non relevés ; dépôt propre → sortie 0 | `engine/test/usecases/unit/uc-pro-08-editer-gabarits-twin9.test.js` |
+| UC-PRO-08-F18 | RG8 (Limites) | CLI | **Limite figée** : chemins lus dans l'index mais contenu lu sur le disque — clé indexée puis effacée du disque non relevée ; répertoire de gabarits supprimé du disque mais indexé toujours refusé | idem |
+| UC-PRO-08-F19 | A4, E4 | CLI | `scripts/twin9/import-protocole.mjs --dry-run` (copie en miroir temporaire, faux `TWIN_V9_DIR`) : `.md` du protocole seuls, noms hiérarchiques sans `.md`, réglages filtrés, noms et tailles journalisés sans contenu, rien envoyé ; répertoire absent, protocole vide, option inconnue (avec `--dry-run`) → sortie 1 | idem |
+| UC-PRO-08-F20 | A4, E4 | CLI + HTTP simulé | Faux serveur `127.0.0.1` : `POST /api/admin/twin9/import`, `X-Migrate-Token`, corps `{files, config}` sans référentiel ni fiches non extraits ; refus 403 → sortie 1 « twin9 import failed » | idem |
+| UC-PRO-08-F21 | A4 | CLI + HTTP simulé | Faux module `aurora` (`python3`, sauté sans) : référentiel non secret (num/nom, code/nom) et fiches confidentielles (en-tête, `fiche_md`) envoyés séparément, pôles triés, aucun texte de fiche journalisé | idem |
+| UC-PRO-08-F22 | E4 | CLI + HTTP simulé | Jeton introuvable (ni `MIGRATE_TOKEN`, ni `.env.deploy` dans le miroir) → sortie 1 « MIGRATE_TOKEN missing (.env.deploy or environment) », aucune requête reçue par le faux serveur | idem |
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/Twin9ProtocoleTest.php` — import, matrice de rôles complète, CRUD, versions, restauration, banc d'essai, extraction.
 - `web/src/views/Twin9AtelierView.test.jsx` — garde, édition, versions, banc d'essai (noms plats).
 - `web/src/nav.test.js` — conjonction des rôles dans la navigation.
-- `scripts/check-publiable.mjs` — aucun gabarit Twin9 dans les fichiers publiables.
+- Job CI `check-publiable` (`.github/workflows/publiable.yml`) — applique `scripts/check-publiable.mjs` au dépôt lui-même à chaque push sur `main` et à chaque pull request (aucun gabarit Twin9 dans les fichiers publiables).
 
 ### Exécuter
 
 ```sh
 docker compose run --rm php vendor/bin/phpunit --filter UcPro08 --testdox
 cd web && npx vitest run test/usecases/unit/uc-pro-08 test/usecases/functional/uc-pro-08
+cd engine && npx vitest run test/usecases/unit/uc-pro-08
 ```
 
 ## Anomalies constatées
@@ -267,8 +310,23 @@ cd web && npx vitest run test/usecases/unit/uc-pro-08 test/usecases/functional/u
   et `POLE_FICHES` y apparaissent comme non résolues (UC-PRO-08-F08).
 - Les éditions de l'atelier ne sont pas journalisées dans l'audit : seule
   l'attribution `updated_by` / `created_by` garde la trace de l'auteur.
-- Le script d'import `scripts/twin9/import-protocole.mjs` (source `TWIN_V9_DIR`
-  hors dépôt, noms et tailles seulement dans ses journaux) n'est pas testé : il
-  s'exécute dès son chargement et n'exporte aucune fonction ; seule la route
-  qu'il appelle (`POST /api/admin/twin9/import`) l'est (UC-PRO-08-F10, F14,
-  F16).
+- Le script d'import `scripts/twin9/import-protocole.mjs` s'exécute dès son
+  chargement et n'exporte aucune fonction : il est testé en sous-processus,
+  copié dans un miroir temporaire (sans `.env.deploy` : le fichier du poste
+  n'est jamais lu), sur un faux `TWIN_V9_DIR` et contre un faux serveur local
+  (UC-PRO-08-F19 à F22) ; la route qu'il appelle l'est par ailleurs
+  (UC-PRO-08-F10, F14, F16).
+- Le garde-fou de publication (RG8) ne reconnaît les gabarits Twin9 qu'à leur
+  **répertoire** : un gabarit versionné sous un autre chemin (par exemple
+  `protocole/lourd/20-greffier.md`) n'est pas relevé, faute d'empreinte de
+  contenu (UC-PRO-08-F17). Ses règles de contenu ignorent toute ligne portant
+  un marqueur de valeur factice (« test », « jamais », « example », « ... »
+  (trois points ASCII), `<…>`, `_dev`, `dev_`/`dev-`, `= dev`…) : une vraie clé
+  commentée « jamais en production » passe (UC-PRO-08-F17).
+- Le hook pre-commit n'est actif qu'après `git config core.hooksPath .githooks`
+  (une fois par clone). Il relève les **chemins** de l'index mais lit le
+  **contenu** sur le disque : un secret ajouté à l'index puis effacé de la copie
+  de travail n'est pas relevé et partirait avec le commit (UC-PRO-08-F18) ; le
+  job CI, qui analyse la copie extraite du commit, le relèverait à un push sur
+  `main` ou dans une pull request (pas sur un push d'une autre branche sans
+  pull request).

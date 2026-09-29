@@ -28,7 +28,20 @@ L'apprenant ouvre `#/twin6-ouverte`, colle son portfolio et clique sur
 
 - L'apprenant a un compte actif et une session (UC-CPT-01, UC-CPT-02).
 - Le paquet public `data/twin6/twin6-ouverte-1.0.0.json` est servi par le site
-  (scanPole, kairos, fiches P1..P7).
+  (scanPole, kairos, fiches P1..P7). Ce fichier n'est **pas versionné**
+  (`web/public/data/` est ignoré par git) : il est **construit** avant chaque
+  build du front (`prebuild` de `web/package.json`) — `scripts/generate-fiches.mjs`
+  régénère les fiches `P1.md`..`P7.md` de `web/public/data/twin6/prompts/` depuis
+  le corpus versionné `scripts/data/fiches-v7.json`, puis
+  `scripts/build-twin6-package.mjs` assemble ces fiches avec `1-scan-pole.md`,
+  `2-kairos-final.md` et `0-mega-prompt.md` du même répertoire (modèle cible par
+  défaut `claude-sonnet-5`). Le même corpus alimente le paquet **publié** et
+  forkable `twin6-ouverte` 1.0.0 de l'atelier promptologue
+  (`scripts/build-twin6-prompt-package.mjs`, régénéré par
+  `scripts/deploy/stage-api.sh` dans `build/prompt-packages/`, marqué réservé),
+  aux textes identiques octet pour octet. Ces constructions sont techniques,
+  hors parcours de l'apprenant : elles relèvent de UC-SYS-04
+  (`docs/cas-utilisation/systeme/UC-SYS-04-construire-artefacts-derives.md`).
 - Le référentiel servi par `GET /api/twin9/meta` a été importé (structure non
   secrète des pôles et compétences, UC-PRO-08 A4).
 - Voie crédits : la clé plateforme `ANTHROPIC_API_KEY` est configurée et le
@@ -199,6 +212,8 @@ L'apprenant ouvre `#/twin6-ouverte`, colle son portfolio et clique sur
 | Front | `web/src/api/twin9.js` — `referentielPourMoteur`, `formatUsd` | Adaptation du référentiel, montants |
 | Front | `web/src/api/keys.js` — `listKeys`, `revealKey` | Clé enregistrée au profil |
 | Front | `web/src/api/client.js` — `fetchMe`, `apiFetch`, `ApiError`, `ApiUnavailableError` | Session et amorçage du jeton CSRF (étape 1), jeton sur chaque mutation, erreurs typées (E1, E2, E4) — unitaires : UC-APP-09-U15, U16 ; copie statique : UC-APP-10-U31 |
+| Build | `scripts/build-twin6-package.mjs` (après `scripts/generate-fiches.mjs`, `prebuild` du front) | Construit le paquet public servi à l'étape 2 (précondition) — relève de UC-SYS-04 : rejoué en sous-processus dans un miroir temporaire par UC-SYS-04-F11 (gabarits absents) et F12 (gabarits fournis) |
+| Build | `scripts/build-twin6-prompt-package.mjs` — `buildTwin6PromptPackageDoc` | Paquet publié forkable `twin6-ouverte` (même corpus) — relève de UC-SYS-04 : rejoué en sous-processus dans un miroir temporaire par UC-SYS-04-F11 et F12 ; test historique `web/src/views/promptologue/twin6-prompt-package.test.js` |
 | Front | `web/src/views/MergeView.jsx`, `web/src/lib/download-json.js` | Rendu sunburst commun et export JSON (étape 8) — composants partagés (unitaires relevant de UC-APP-03 et UC-APP-12), rendus ici fonctionnellement (UC-APP-09-F01) |
 | Moteur | `engine/src/twin6/index.js` — `buildScanPolePrompt`, `buildKairosPrompt`, `extractJson`, `executerTwin6`, `TWIN6_CALLS` | Orchestration des 8 appels |
 | Moteur | `engine/src/twin6/mapper.js` — `twin6ToMergeDocument` | Projection vers `cartographie-merge` |
@@ -325,6 +340,18 @@ cd engine && npx vitest run test/usecases/unit/uc-app-09
 - Le référentiel utilisé par Twin6 provient de l'import Twin9 (`/api/twin9/meta`) :
   s'il n'a jamais été importé, un run lance un unique appel kairos (facturé sur
   la voie crédits) puis échoue au mapping (figé par UC-APP-09-U12).
+- La construction du paquet public (précondition) n'est pas testée au titre de
+  ce cas mais de UC-SYS-04 : `scripts/build-twin6-package.mjs` (qui écrit
+  `web/public/data/twin6/twin6-ouverte-1.0.0.json`) et
+  `scripts/build-twin6-prompt-package.mjs` y sont rejoués dans un miroir
+  temporaire (UC-SYS-04-F11, F12). Les gabarits publics `1-scan-pole.md`,
+  `2-kairos-final.md` et `0-mega-prompt.md` ne sont versionnés nulle part
+  (seules les fiches P1..P7 se régénèrent depuis `scripts/data/fiches-v7.json`) :
+  sur un clone neuf, le `prebuild` s'arrête d'abord sur `generate-fiches.mjs`,
+  qui échoue en `ENOENT` (dossier `twin6/prompts/` absent) ; une fois le dossier
+  créé, `build-twin6-package.mjs` s'arrête sur « prompt manquant » et le paquet
+  ne peut être reconstruit (UC-SYS-04 E5, figé par UC-SYS-04-F11). Les tests de
+  ce cas utilisent un paquet fictif de même forme.
 - Le garde-fou de solde (RG5) est une heuristique client ; seul le refus 402
   serveur (réserve pire-cas) est opposable. Son message arrondit le solde au
   centime avec un point décimal : un solde de 1,999999 $ s'affiche « solde

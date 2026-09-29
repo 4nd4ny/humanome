@@ -11,7 +11,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
-import { ApiError, ApiUnavailableError, resetApiClient } from '../../../src/api/client.js'
+import { ApiError, ApiUnavailableError, fetchMe, resetApiClient } from '../../../src/api/client.js'
 import { fetchTwin9Meta, formatUsd, makeServerBackend, referentielPourMoteur } from '../../../src/api/twin9.js'
 import Twin9View, { etageDeLabel, makeServerFactory } from '../../../src/views/Twin9View.jsx'
 import {
@@ -25,7 +25,10 @@ import {
 import { createMemoryTwin9Store } from '../../../src/views/twin9/twin9-store.js'
 import { createCartoStore, createMemoryAdapter } from '../../../src/lib/carto-store.js'
 import ResultatsTwin9 from '../../../src/views/twin9/ResultatsTwin9.jsx'
-import { htmlResponse, jsonResponse, metaTwin9 } from '../support/twin.js'
+import { META_REFERENTIEL, htmlResponse, jsonResponse, metaTwin9 } from '../support/twin.js'
+import { executerTwin9 } from '@engine/twin9/index.js'
+import { makeBackend as fabriqueMock } from '@engine/twin9/backends.js'
+import { pyJsonDumpsWriteJson } from '@engine/twin9/py/pyJson.js'
 
 afterEach(() => {
   cleanup()
@@ -39,6 +42,21 @@ describe('UC-APP-10 — route', () => {
   it('UC-APP-10-U12 — #/twin9 ouvre l’analyse ; #/twin9/demo pré-câble la démonstration', () => {
     expect(parseHash('#/twin9')).toEqual({ name: 'twin9', section: null })
     expect(parseHash('#/twin9/demo')).toEqual({ name: 'twin9', section: 'demo' })
+  })
+})
+
+describe('UC-APP-10 — segments de route hors « demo »', () => {
+  it('UC-APP-10-U41 — #/twin9/<segment> : segment décodé et transmis tel quel (casse, barre finale, sous-chemin) ; « #/twin9/ » introuvable ; pourcentage mal formé → URIError (comportement actuel, anomalie AN1 de UC-VIS-02)', () => {
+    expect(parseHash('#/twin9/inconnue')).toEqual({ name: 'twin9', section: 'inconnue' })
+    expect(parseHash('#/twin9/DEMO')).toEqual({ name: 'twin9', section: 'DEMO' })
+    expect(parseHash('#/twin9/demo/')).toEqual({ name: 'twin9', section: 'demo/' })
+    expect(parseHash('#/twin9/a/b')).toEqual({ name: 'twin9', section: 'a/b' })
+    expect(parseHash('#/twin9/%64emo')).toEqual({ name: 'twin9', section: 'demo' })
+    expect(parseHash('#/twin9/demo?source=nav')).toEqual({ name: 'twin9', section: 'demo' })
+    expect(parseHash('#/twin9/')).toEqual({ name: 'not-found', hash: '/twin9/' })
+    // Distinct de l'atelier des gabarits (UC-PRO-08) malgré le préfixe commun.
+    expect(parseHash('#/twin9-atelier')).toEqual({ name: 'twin9atelier', section: null })
+    for (const hash of ['#/twin9/%', '#/twin9/%E9']) expect(() => parseHash(hash)).toThrow(URIError)
   })
 })
 
@@ -382,5 +400,109 @@ describe('UC-APP-10 — branche 402 de la vue (moteur injecté)', () => {
     await waitFor(() => expect(screen.getByText(/Synthèse fictive/)).toBeDefined())
     expect(etats[1]).toBe(etats[0])
     expect(etats[1].journees).toEqual({ j1: { empreinte: 'e1' } })
+  })
+})
+
+describe('UC-APP-10 — couture moteur : fabrique serveur transmise à executerTwin9 (anomalie 1 corrigée, mimée)', () => {
+  const PORTFOLIO = `### 2026-04-06
+
+J'ai comparé deux sources contradictoires avant d'affirmer quoi que ce soit, puis noté l'écart dans mon carnet daté.
+
+### 2026-04-09
+
+Quatre essais documentés ; j'ai présenté ma démarche au groupe sans couper la parole, puis nous avons réparti la suite.
+`
+  // Réglages de pipeline NON secrets (mêmes clés que config.json de Twin9).
+  const PIPELINE = {
+    juge_leger: { passes: 2, contre_lecture: true },
+    jury: { mode: 'socle4+1', taille_aleatoire: 5, graine: 1 },
+    backend_tribunal: { kind: 'claude-cli', model: 'fictif-tribunal', model_mini: 'fictif-mini' },
+    merge: { relectures: true, second_ressort: true, rapporteur: true },
+  }
+  const lancer = (extra) =>
+    executerTwin9({
+      portfolioTexte: PORTFOLIO,
+      nomJournal: 'twin9.md',
+      referentiel: META_REFERENTIEL,
+      roster: rosterFromModele('claude-sonnet-5'),
+      config: JSON.parse(JSON.stringify(PIPELINE)),
+      etat: {},
+      salt: SALT_DEVIS,
+      options: {},
+      nowIso: '2026-01-01T00:00:00',
+      ...extra,
+    })
+  // Motif de nom de gabarit accepté par le serveur (UC-PRO-08, RG2).
+  const NOM_GABARIT = /^[a-z0-9][a-z0-9_-]*(\/[a-z0-9][a-z0-9_-]*)*$/i
+
+  it('UC-APP-10-U40 — avec la fabrique transmise et un serveur rejouant les sorties du mock, le VRAI moteur va au bout : chaque appel devient un POST api/twin9/appel (jeton CSRF, gabarit sans .md, modèle unique, étage, jamais de max_tokens), un débit par appel, carto identique à celle du mock ; aucun réessai côté client ; métriques du moteur à zéro (comportement actuel)', async () => {
+    // Session : amorce le jeton CSRF comme au montage de la vue (étape 1).
+    await fetchMe({ fetchFn: async () => jsonResponse(200, { user: { id: 7 }, csrfToken: 'csrf-u40' }) })
+
+    // « Serveur » sain : il répond, pour chaque appel, ce qu'aurait produit le
+    // mock pour le même appel (sorties réalistes, jamais un gabarit).
+    const reponses = []
+    const posts = []
+    const fetchFn = vi.fn(async (url, init) => {
+      posts.push({ url, method: init.method, headers: init.headers, body: JSON.parse(init.body) })
+      return jsonResponse(200, { sortie: reponses.shift(), tokens_in: 1000, tokens_out: 200, cout_microusd: 7200, stop_reason: 'end_turn' })
+    })
+    const debits = []
+    const serveur = makeServerFactory({
+      modele: 'claude-sonnet-5',
+      facturation: 'platform',
+      onDebit: (cout) => debits.push(cout),
+      makeBackend: (p) => makeServerBackend({ ...p, fetchFn }),
+    })
+    let appelsMoteur = 0
+    const fabrique = (spec) => {
+      const reference = fabriqueMock({ ...spec, kind: 'mock' })
+      const distant = serveur(spec)
+      return {
+        records: distant.records,
+        async call(prompt, opts) {
+          appelsMoteur += 1
+          reponses.push(await reference.call(prompt, opts))
+          return distant.call(prompt, opts)
+        },
+      }
+    }
+
+    const reel = await lancer({ mock: false, backends: fabrique })
+    const mock = await lancer({ mock: true })
+
+    // Tous les appels du moteur sont passés par le serveur, un débit chacun.
+    expect(appelsMoteur).toBeGreaterThan(50)
+    expect(posts).toHaveLength(appelsMoteur)
+    expect(reponses).toEqual([])
+    expect(debits).toEqual(Array(appelsMoteur).fill(7200))
+    for (const { url, method, headers, body } of posts) {
+      expect([url, method, headers['X-CSRF-Token']]).toEqual(['api/twin9/appel', 'POST', 'csrf-u40'])
+      expect(Object.keys(body).sort()).toEqual(['etage', 'etape', 'facturation', 'modele', 'variables'])
+      expect(body.etape).toMatch(NOM_GABARIT)
+      expect([body.modele, body.facturation]).toEqual(['claude-sonnet-5', 'platform'])
+    }
+    expect(new Set(posts.map((p) => p.body.etage))).toEqual(new Set(['taggers', 'rapide', 'tribunal']))
+    // Le run aboutit : même carto_evolutive que le mock (l'adaptation rend bien
+    // au moteur la CHAÎNE attendue, pas l'objet {text}).
+    expect(pyJsonDumpsWriteJson(reel.cartoEvolutive)).toBe(pyJsonDumpsWriteJson(mock.cartoEvolutive))
+    expect(Object.keys(reel.etat.journees)).toEqual(['2026-04-06', '2026-04-09'])
+    // Comportement ACTUEL : la fabrique ne tient pas de records → métriques du
+    // moteur vides (la vue compte les appels par onDebit, pas par elles).
+    expect(mock.metrics.appels_llm).toBe(appelsMoteur)
+    expect([reel.metrics.appels_llm, reel.metrics.par_etape]).toEqual([0, {}])
+
+    // Aucun réessai côté client : un 429 = un seul POST, erreur typée remontée
+    // au moteur (qui l'avale ensuite, anomalie 3).
+    const sature = vi.fn(async () => jsonResponse(429, { error: 'Trop de requêtes' }, { 'Retry-After': '30' }))
+    const backend = makeServerFactory({
+      modele: 'claude-sonnet-5',
+      facturation: 'platform',
+      onDebit: () => {},
+      makeBackend: (p) => makeServerBackend({ ...p, fetchFn: sature }),
+    })({ kind: 'anthropic' })
+    const err = await backend.call('', { gabarit: 'tagger/1-tag-pole.md', variables: {}, label: 'tag_1_P1' }).catch((e) => e)
+    expect([err instanceof ApiError, err.status]).toEqual([true, 429])
+    expect(sature).toHaveBeenCalledTimes(1)
   })
 })

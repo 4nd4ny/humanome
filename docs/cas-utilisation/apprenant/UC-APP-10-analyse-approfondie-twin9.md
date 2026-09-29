@@ -60,7 +60,8 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 2. L'apprenant coche le **consentement** : le texte du portfolio transitera par
    le serveur et le fournisseur, sans être conservé.
 3. Il colle son portfolio en journées datées (plus de 20 caractères, sinon
-   l'estimation reste désactivée), choisit le modèle (présélection : le
+   l'estimation reste désactivée ; le moteur le découpera en journées selon
+   RG13), choisit le modèle (présélection : le
    **premier** modèle de l'offre ; étages couverts affichés, voir l'anomalie 4)
    et garde « Crédit plateforme » (solde affiché).
 4. « Estimer le coût » : le moteur tourne en **mode mock** (0 appel LLM, 0 appel
@@ -135,6 +136,15 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
   par `[expurgé]` ; la citation du portfolio de l'apprenant reste intacte ;
   l'audit `twin9_fuite_expurgee` n'enregistre que `{etape, fuites}` ; le nombre
   de fuites n'est jamais renvoyé au client.
+- **A7 — Segment de route autre que « demo »** (étape 1) : `#/twin9/<segment>`
+  transmet le segment décodé à la vue, qui ne reconnaît que `demo` **exact** :
+  `#/twin9/inconnue`, `#/twin9/DEMO` ou `#/twin9/demo/` ouvrent le parcours
+  ordinaire de `#/twin9` (garde de session comprise), `#/twin9/%64emo` ouvre la
+  démonstration ; `#/twin9/` (barre finale sans segment) affiche « Page
+  introuvable : #/twin9/ » ; un segment au pourcentage mal formé
+  (`#/twin9/%E9`) fait lever une `URIError` au routeur (anomalie AN1 de
+  UC-VIS-02). La démonstration une fois ouverte, revenir à `#/twin9` la laisse
+  affichée (voir Limites).
 
 ## Scénarios d'erreur
 
@@ -172,7 +182,10 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
   aujourd'hui le cas de tout lancement réel). Les erreurs des appels serveur
   (E5-E8, E10-E11) n'y arrivent **pas** : le moteur les avale (anomalie 3).
 - **E10 — Rythme dépassé** (étape 6) : au-delà de `appels_par_minute` (30 par
-  défaut) → `429` + `Retry-After`.
+  défaut) → `429` + `Retry-After`. Côté client, **aucun réessai** (ni ici ni sur
+  E8) : la fabrique de la vue ne dérive pas de `Backend`, dont les trois
+  tentatives ne servent qu'au mock ; un refus = un seul `POST`, l'`ApiError`
+  remonte au moteur, qui l'avale (anomalie 3).
 - **E11 — Service non configuré** (étape 6) : clé plateforme absente → `503
   Service indisponible` ; clé maître absente en voie clé privée → `503
   Stockage de clés non configuré`.
@@ -214,6 +227,20 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
   interrompu.
 - **RG12 — Reprise** : IndexedDB ne garde que les paramètres ; la reprise fidèle
   (pause, 402) réutilise l'état vivant en mémoire.
+- **RG13 — Découpage en journées** (`splitPortfolio`, parité avec
+  `aurora/portfolio.py`) : les séparateurs sont les titres `##` / `###` portant
+  une date `JJ.MM.AA`, `JJ.MM.AAAA` ou `AAAA-MM-JJ` — **deux au moins** ; les
+  journées sont triées par date, un même jour répété reçoit `_b`, `_c`… ; une
+  année à deux ou trois chiffres vaut 2000 + n, sans contrôle calendaire. À
+  défaut, tout titre `##` / `###` sépare des feuilles non datées `F01`, `F02`… ;
+  à défaut encore, le document entier est une feuille unique `F01` non datée
+  (anomalie 7). Dès qu'il y a au moins deux séparateurs, tout texte précédant le
+  premier (titre daté ou, à défaut, titre `##` / `###`) est ignoré : ni feuille,
+  ni analyse, sans avertissement — un préambule ou un titre `#` placé avant la
+  première journée disparaît (UC-APP-10-U42 ; test historique
+  `engine/src/twin9/portfolio.test.js`). Les titres `#` et `####` ne séparent
+  jamais ; les fins de ligne CRLF sont normalisées. Le nom de journal (`twin9`) vient du nom logique
+  `twin9.md`.
 
 ## Données et RGPD
 
@@ -231,7 +258,7 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Routes `#/twin9`, `#/twin9/demo` |
+| Front | `web/src/router.js` — `parseHash` | Routes `#/twin9`, `#/twin9/demo` ; tout autre segment transmis tel quel, décodé (A7) |
 | Front | `web/src/views/Twin9View.jsx` — vue, `makeServerFactory`, `etageDeLabel` | Garde, consentement, devis, lancement, pause/reprise, adaptation au moteur |
 | Front | `web/src/api/twin9.js` — `fetchTwin9Meta`, `makeServerBackend`, `referentielPourMoteur`, `formatUsd` | Offre, appels serveur |
 | Front | `web/src/views/twin9/run-helpers.js` — `calculerDevis`, `rosterFromModele`, `etapeToEtage`, `journeesDepuisCarto` | Logique pure du parcours |
@@ -240,6 +267,8 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | Front | `web/src/views/twin9/demo-fixture.js` | Démonstration fictive |
 | Moteur | `engine/src/twin9/index.js` — `executerTwin9` | Orchestration (devis mock, run, état persistant) |
 | Moteur | `engine/src/twin9/templates.js` — `varsClient` | Variables transmises sans fiches |
+| Moteur | `engine/src/twin9/portfolio.js` — `splitPortfolio`, `feuillesBlock`, `sentencesOf` | Découpage du portfolio collé en journées (RG13, anomalie 7), phrases candidates du mock (devis, démonstration) |
+| Moteur | `engine/src/twin9/backends.js` — `makeBackend`, `KINDS`, `MockBackend`, `Backend.call`, `fetchBackend` | Fabrique par défaut : `mock` seul (cause de l'anomalie 1) ; mock déterministe du devis et de la démonstration, indépendant du texte des gabarits ; `fetchBackend` non branché (voir Limites) |
 | Moteur | `engine/src/twin9/heatmap.js` (`ancrer`), `journee.js` (`empreinteJournee`), `tribunal.js` (`resoudre`, `calculerConfiance`), `merge.js` (`statutTemporel`, `trajectoire`), `scan.js` (`resoudreJournees`, `cleObs`) | Briques déterministes du protocole (journée, tribunal, fusion, scan global) |
 | Moteur | `engine/src/twin9/mapper.js` — `twin9ToMergeDocument` | Projection sunburst |
 | API | `POST /api/twin9/appel`, `GET /api/twin9/meta` — `api/src/routes/twin9.php` | Proxy confidentiel, offre |
@@ -271,7 +300,12 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | UC-APP-10-U11 | `twin9ToMergeDocument` | Feuilles = journées attestées, points = attestations | idem |
 | UC-APP-10-U30 | `resoudreJournees`, `cleObs` | Scan global : références résolues par id ou date, clé d'observation | idem |
 | UC-APP-10-U34 | `executerTwin9` (réel) | **Anomalie 3 figée** : erreurs 402 de la fabrique avalées, run résolu et vidé, journées dégradées mémorisées puis reprises sans relecture | idem |
+| UC-APP-10-U42 | `splitPortfolio`, `feuillesBlock`, `sentencesOf` | Vecteurs synthétiques versionnés (`portfolio_synth.vec.json`) : journées datées triées, `_b`, CRLF, journal hebdomadaire, feuille unique, phrases du mock ; texte précédant le premier séparateur (daté ou non) ignoré (RG13) | idem |
+| UC-APP-10-U43 | `splitPortfolio`, `executerTwin9`, `twin9ToMergeDocument` | **Anomalie 7 figée** : une seule journée datée → feuille `F01` non datée, période « F01 », attestations sans date, projection refusée | idem |
+| UC-APP-10-U44 | `makeBackend`, `KINDS`, `MockBackend` | Fabrique par défaut `mock` seul : `anthropic` et `claude-cli` refusés (cause de l'anomalie 1) ; 196 vecteurs (`backends.vec.json`) rejoués à l'identique avec un prompt vide ou un faux gabarit, un record par appel (RG10) | idem |
+| UC-APP-10-U45 | `fetchBackend` | Transport non branché : URL absolue, ni jeton CSRF ni `max_tokens`, refus réduit à « HTTP n » sans statut | idem |
 | UC-APP-10-U12 | `parseHash` | `#/twin9`, `#/twin9/demo` | `web/test/usecases/unit/uc-app-10-analyse-approfondie-twin9.test.jsx` |
+| UC-APP-10-U41 | `parseHash` | A7 : segment décodé transmis tel quel (casse, barre finale, sous-chemin, query retirée) ; `#/twin9/` introuvable ; `#/twin9-atelier` distinct ; pourcentage mal formé → `URIError` (AN1 de UC-VIS-02) | idem |
 | UC-APP-10-U13 | `makeServerBackend` | Corps de l'appel, replis, tokens réels enregistrés | idem |
 | UC-APP-10-U14 | `makeServerBackend` | 402 → `ApiError`, rien d'enregistré | idem |
 | UC-APP-10-U15 | `makeServerFactory` | Gabarit sans `.md`, variables, étage ; jamais le prompt ni les méta | idem |
@@ -287,6 +321,7 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | UC-APP-10-U35 | `Twin9View` (moteur injecté) | Branche 402 de la vue : pause « Rechargez… » et reprise sur le même état (inatteignable avec le vrai moteur, anomalie 3) | idem |
 | UC-APP-10-U31 | `fetchTwin9Meta` | GET de l'offre ; copie statique → `ApiUnavailableError` (E3) ; 401 → `ApiError` (E1) | idem |
 | UC-APP-10-U38 | `formatUsd`, `referentielPourMoteur` | Virgule, 4 décimales sous le centime ; pôles et compétences aplaties portant leur pôle | idem |
+| UC-APP-10-U40 | `makeServerFactory` + `makeServerBackend` + `executerTwin9` (réel) | Couture de l'anomalie 1 : fabrique transmise, serveur rejouant les sorties du mock → chaque appel du vrai moteur = un `POST api/twin9/appel` (jeton CSRF, gabarit sans `.md` au format de nom serveur, modèle unique, trois étages, jamais `max_tokens`), un débit par appel, `carto_evolutive` identique au mock ; aucun réessai (429 → un seul POST) ; métriques du moteur vides (comportement actuel) | idem |
 | UC-APP-10-U23 | `ProtocoleRepository::render` | Une passe, typage, non résolues ; 404 ; **anomalie 2 figée** | `api/tests/UseCases/Unit/UcApp10AnalyseApprofondieTwin9Test.php` |
 | UC-APP-10-U39 | `ProtocoleRepository::list` | Métadonnées seulement (nom, longueur en caractères, variables), triées par nom, jamais le contenu | idem |
 | UC-APP-10-U24 | `FicheStore::injecter` | Injection depuis les clés de lookup, ordre du client (RG2) | idem |
@@ -315,6 +350,8 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 | UC-APP-10-F11 | E5 | IHM | **Anomalie 3 figée**, vrai moteur branché sur la fabrique serveur : 402 en cours avalé, ni pause ni « Réessayer », résultats affichés, reprise locale effacée | idem |
 | UC-APP-10-F25 | A1, A4 | IHM | Démonstration sur le vrai moteur : annulation puis reprise sur le même état (journées reprises) ; **anomalie 6 figée** (la démo écrase puis efface le run courant local) | idem |
 | UC-APP-10-F26 | Étape 3, RG6 | IHM | **Anomalie 4 figée** : Haiku (taggers, rapide) présélectionné, devis avec tribunal, lancement permis sans avertissement | idem |
+| UC-APP-10-F27 | A7 | IHM | `<App/>` : segment inconnu → parcours ordinaire ; `DEMO` et `demo/` → garde de session ; `%64emo` → démo ; `#/twin9/` → page introuvable ; retour de `#/twin9/demo` à `#/twin9` : démo toujours affichée, « Quitter la démonstration » ou un passage par l'accueil en sort | idem |
+| UC-APP-10-F28 | Étapes 3-7, RG13 | IHM | **Anomalie 7 figée**, vrai moteur (réponses du mock) : une journée datée → « 1 journée(s) · du F01 au F01 », journée « F01 », aucun sunburst ; deux journées → dates et sunburst | idem |
 | UC-APP-10-F12 | Nominal | API | `/meta` sans contenu ; appel greffier : fiches injectées, sortie seule, coût réel, grand-livre | `api/tests/UseCases/Functional/UcApp10AnalyseApprofondieTwin9Test.php` |
 | UC-APP-10-F13 | Nominal | API | Trois étages, trois modèles, débit = somme des coûts — scénario d'API seulement : l'IHM envoie un seul modèle (anomalie 4) | idem |
 | UC-APP-10-F14 | A2, E6 | API | 403 hors promo ; 409 sans clé ; 200 sans débit avec la clé de l'apprenant | idem |
@@ -337,7 +374,7 @@ L'apprenant ouvre `#/twin9` (ou `#/twin9/demo` pour la démonstration).
 - `api/tests/CartographiesTest.php` — stockage du type `twin9`.
 - `web/src/views/Twin9View.test.jsx` — garde, devis, 402, garde-fou de solde, promotion, `ResultatsTwin9`.
 - `web/src/views/twin9/run-helpers.test.js`, `web/src/views/espace/CartographyViewer.test.jsx` (type `twin9`).
-- `engine/src/twin9/*.test.js` — parité octet avec le Python (vecteurs versionnés) ; `contrat-appels.test.js` se saute sans les oracles (UC-APP-10-U02 le rejoue sur données fictives versionnées).
+- `engine/src/twin9/*.test.js` — parité octet avec le Python (vecteurs versionnés), dont `portfolio.test.js` (découpage, phrases) et `backends.test.js` (mock, réessais de `Backend.call`, `fetchBackend`, fabrique) ; `contrat-appels.test.js` se saute sans les oracles (UC-APP-10-U02 le rejoue sur données fictives versionnées).
 
 ### Exécuter
 
@@ -357,9 +394,16 @@ cd engine && npx vitest run test/usecases/unit/uc-app-10
    aucun `POST /api/twin9/appel` n'est émis, rien n'est débité, la vue affiche
    l'erreur avec « Réessayer ». Les tests historiques injectent le moteur
    (`deps.runEngine`) et ne voient pas le défaut. Avec la fabrique injectée, tout
-   le run passe bien par elle (UC-APP-10-U03, fabrique qui ne lève jamais) ; mais
-   corriger ce seul défaut exposerait les anomalies 3 et 4. Figé par
-   UC-APP-10-F02 et UC-APP-10-U04.
+   le run passe bien par elle (UC-APP-10-U03, fabrique qui ne lève jamais) ; avec
+   la **vraie** fabrique serveur (`makeServerFactory` → `makeServerBackend`) et
+   un serveur qui renvoie, pour chaque appel, la sortie qu'aurait produite le
+   mock, le run va au bout : chaque appel devient un `POST /api/twin9/appel`
+   porteur du jeton CSRF et la cartographie obtenue est identique à celle du
+   mock, preuve que l'adaptation rend bien au moteur la chaîne attendue
+   (UC-APP-10-U40). Corriger ce seul défaut exposerait toutefois les
+   anomalies 3, 4 et 7. Figé par UC-APP-10-F02 et UC-APP-10-U04 ; la cause, au
+   niveau de la fabrique par défaut (`KINDS = {mock}` : `anthropic` comme
+   `claude-cli` refusés), par UC-APP-10-U44.
 2. **Un motif `{$X}` dans le texte de l'apprenant bloque l'appel.**
    `ProtocoleRepository::render` recherche les variables non résolues dans le
    **rendu** : un journal qui contient littéralement « {$PRENOM} » (atelier de
@@ -402,6 +446,17 @@ cd engine && npx vitest run test/usecases/unit/uc-app-10
    portfolio de démonstration et coche le consentement) ; une démo menée à terme
    efface les paramètres d'une vraie analyse interrompue. Figé par
    UC-APP-10-F25.
+7. **Un portfolio d'une seule journée datée perd sa date.** `splitPortfolio`
+   (parité avec `aurora/portfolio.py`) n'utilise les titres datés comme
+   séparateurs qu'à partir de **deux** ; avec un seul (« ### 2026-04-06 »), il
+   retombe sur les titres quelconques, puis sur une feuille unique `F01` **non
+   datée** titrée `twin9` (RG13). L'analyse aboutit (et, en voie plateforme,
+   est facturée) mais ses attestations n'ont pas de date : la période affichée
+   est « du F01 au F01 », la journée analysée s'appelle « F01 », le titre
+   enregistré « Twin9 — twin9 (F01 → F01) », et `twin9ToMergeDocument` refuse la
+   projection (« aucune attestation datée ») — `ResultatsTwin9` masque alors le
+   **sunburst** sans message, contrairement aux garanties de succès. Latent
+   derrière l'anomalie 1. Figé par UC-APP-10-U43 et UC-APP-10-F28.
 
 ## Limites
 
@@ -412,3 +467,18 @@ cd engine && npx vitest run test/usecases/unit/uc-app-10
   protection première reste dans les gabarits (ADR-010 §2).
 - Le devis est indicatif (fourchettes de tokens) ; seule la réserve serveur fait
   foi.
+- La vue Twin9 reste montée d'une route `#/twin9…` à l'autre : ouverte par
+  `#/twin9/demo`, la démonstration reste affichée après un retour à `#/twin9`
+  (la méta est relue, le mode n'est pas remis à zéro) ; seuls « Quitter la
+  démonstration », proposé quand la méta est servie (compte connecté), ou le
+  passage par une autre page, qui démonte la vue, en sortent (UC-APP-10-F27).
+- Avec la fabrique serveur, les métriques rendues par le moteur restent vides
+  (`appels_llm = 0`, `par_etape = {}`) : ses backends ne tiennent pas de
+  `records`. Sans effet visible aujourd'hui — la vue compte les appels par
+  `onDebit` et n'utilise les métriques que pour le devis, calculé en mock
+  (UC-APP-10-U40).
+- `fetchBackend` (`engine/src/twin9/backends.js`) est un transport **non
+  branché** : la vue passe par `makeServerBackend`. Il poste sur l'URL absolue
+  `/api/twin9/appel` sans jeton CSRF ni `max_tokens` — un appel avec session
+  serait refusé `403` par `CsrfMiddleware` (E7) — et réduit tout refus à
+  « twin9/appel : HTTP n », sans statut exploitable (UC-APP-10-U45).

@@ -34,6 +34,20 @@ describe('UC-APP-11 — route', () => {
   })
 })
 
+describe('UC-APP-11 — segments de route hors « credit »', () => {
+  it('UC-APP-11-U17 — #/compte/<segment> : segment décodé et transmis tel quel (casse, barre finale, paramètres encodés), sans décider de l’aiguillage (App.jsx, couvert par UC-APP-11-F29) ; « #/compte/ » introuvable ; pourcentage mal formé → URIError (comportement actuel, anomalie AN1 de UC-VIS-02)', () => {
+    expect(parseHash('#/compte')).toEqual({ name: 'account', section: null })
+    expect(parseHash('#/compte/profil')).toEqual({ name: 'account', section: 'profil' })
+    expect(parseHash('#/compte/CREDIT')).toEqual({ name: 'account', section: 'CREDIT' })
+    expect(parseHash('#/compte/credit/')).toEqual({ name: 'account', section: 'credit/' })
+    expect(parseHash('#/compte/%63redit')).toEqual({ name: 'account', section: 'credit' })
+    // Un « ? » encodé n'est pas une query : il reste dans le segment.
+    expect(parseHash('#/compte/credit%3Fpaypal%3Dretour')).toEqual({ name: 'account', section: 'credit?paypal=retour' })
+    expect(parseHash('#/compte/')).toEqual({ name: 'not-found', hash: '/compte/' })
+    for (const hash of ['#/compte/%', '#/compte/credit%E9']) expect(() => parseHash(hash)).toThrow(URIError)
+  })
+})
+
 describe('UC-APP-11 — montants', () => {
   it('UC-APP-11-U16 — formatUsd (RG1) : micro-USD → « x,yy $ », 4 décimales sous le centime, signe conservé', () => {
     expect(formatUsd(4_200)).toBe('0,0042 $')

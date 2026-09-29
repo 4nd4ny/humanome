@@ -104,6 +104,15 @@ Twin9, menu du compte) ou y revient depuis PayPal.
   « Remboursement de 0,00 $ envoyé vers PayPal. » ; la confirmation annonce le
   **solde total** (« Rembourser votre solde restant (X) ») même quand une partie
   n'est pas remboursable (crédit offert).
+- **A4 — Segment de route autre que « credit »** (étape 1) : `#/compte/<segment>`
+  transmet le segment décodé ; seul `credit` **exact** ouvre l'espace crédit
+  (`#/compte/%63redit` aussi, une fois décodé). Tout autre segment — section
+  inconnue, `CREDIT`, `credit/` (barre finale) — affiche la page **Compte**
+  (profil, UC-CPT-03) sans aucune lecture du crédit ni de l'offre, et sans
+  message. Un `?` encodé (`credit%3Fpaypal%3Dretour`) reste dans le segment : ce
+  n'est plus une query. `#/compte/` (barre finale sans segment) affiche « Page
+  introuvable : #/compte/ » ; un pourcentage mal formé (`#/compte/%`) fait lever
+  une `URIError` au routeur (anomalie AN1 de UC-VIS-02).
 
 ## Scénarios d'erreur
 
@@ -182,7 +191,8 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Route `#/compte/credit` (paramètres PayPal dans le fragment) |
+| Front | `web/src/router.js` — `parseHash` | Route `#/compte/credit` (paramètres PayPal dans le fragment) ; tout autre segment `#/compte/<section>` transmis tel quel, décodé (A4) |
+| Front | `web/src/App.jsx` — aiguillage de la route `account` | `section === 'credit'` → `CreditView`, sinon `AccountView` (A4) — couvert fonctionnellement seulement (UC-APP-11-F29) : l'aiguillage est interne au composant `App`, non isolable |
 | Front | `web/src/views/CreditView.jsx` | Solde, packs, redirection, capture unique au retour, suivi, grand-livre, factures, remboursement |
 | Front | `web/src/views/twin9/FactureTwin9.jsx` | Facture imprimable |
 | Front | `web/src/api/twin9.js` — `fetchTwin9Meta`, `fetchCredit`, `fetchDepenses`, `fetchFacture`, `creerRecharge`, `capturerRecharge`, `rembourserSolde`, `formatUsd` | Client API du crédit (offre et packs via `fetchTwin9Meta`, unitaire en UC-APP-10-U31) |
@@ -206,6 +216,7 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 | UC-APP-11-U04 | `FactureTwin9` | Document complet, montants signés, impression hors document | idem |
 | UC-APP-11-U05 | `FactureTwin9` | Mois vide, sections absentes, rien sans données | idem |
 | UC-APP-11-U16 | `formatUsd` | Virgule, 4 décimales sous le centime, signe (RG1) | idem |
+| UC-APP-11-U17 | `parseHash` | A4 : segment décodé transmis tel quel (casse, barre finale, `?` encodé) ; `#/compte/` introuvable ; pourcentage mal formé → `URIError` (AN1 de UC-VIS-02) | idem |
 | UC-APP-11-U06 | `PayPalClient::fromEnv` | Identifiant ou secret absent → null ; sandbox / live | `api/tests/UseCases/Unit/UcApp11GererCreditTwin9Test.php` |
 | UC-APP-11-U07 | `PayPalClient::createOrder` | OAuth, CAPTURE, 2 décimales, URLs de retour et d'annulation ; lien absent → 502 | idem |
 | UC-APP-11-U08 | `PayPalClient::captureOrder` | Capture, relecture « déjà capturé », 422 / 502, ni identifiant client, ni secret, ni en-tête Basic dans le message | idem |
@@ -231,6 +242,7 @@ Twin9, menu du compte) ou y revient depuis PayPal.
 | UC-APP-11-F08 | E2 | IHM | PayPal non configuré : indisponible, clé privée suggérée | idem |
 | UC-APP-11-F09 | E1 | IHM | Anonyme : invitation ; copie statique : message | idem |
 | UC-APP-11-F10 | E6, E7 | IHM | Création d'ordre en `502` (PayPal en erreur), remboursement refusé : messages serveur | idem |
+| UC-APP-11-F29 | A4 | IHM | `<App/>` : section inconnue, `CREDIT`, `credit/`, retour PayPal à barre finale (`credit/?paypal=retour&token=…`) → page Compte (« Profil »), aucun appel `twin9/…` (ni lecture du crédit, ni capture) ; `%63redit` → espace crédit ; `#/compte/` → page introuvable | idem |
 | UC-APP-11-F11 | Nominal | API | Crédit vide → ordre 20 $ (URLs de retour envoyées par la route) → capture → dépense réelle → grand-livre → suivi → facture | `api/tests/UseCases/Functional/UcApp11GererCreditTwin9Test.php` |
 | UC-APP-11-F12 | A2, RG2 | API | Capture rejouée : même solde, une seule recharge ; pack de 20 $ mais capture de 12,34 $ → 12,34 $ crédités | idem |
 | UC-APP-11-F13 | A3 | API | Remboursement partiel puis total, deux clés d'idempotence (décalage), facture ; **anomalie 1 figée** | idem |
@@ -308,5 +320,12 @@ cd web && npx vitest run test/usecases/unit/uc-app-11 test/usecases/functional/u
   annoncé « 0,00 $ envoyé vers PayPal » (UC-APP-11-F28).
 - Les petites fonctions de la vue (`moisFacturables`, `libelleKind`) ne sont
   pas exportées : elles ne sont couvertes que fonctionnellement (F01, F04).
+  De même, l'aiguillage de la route `account` (`web/src/App.jsx` :
+  `section === 'credit'` → `CreditView`) est interne au composant `App`, non
+  isolable : il n'est couvert que fonctionnellement (UC-APP-11-F29) ;
+  UC-APP-11-U01 et U17 ne vérifient que la section produite par `parseHash`.
 - La liste des factures proposées commence en janvier 2026 (lancement) ; le
   serveur refuse toute période antérieure.
+- Un lien vers l'espace crédit légèrement altéré (`#/compte/credit/`,
+  `#/compte/CREDIT`) ouvre la page Compte sans signaler l'erreur ; un retour
+  PayPal ainsi altéré ne capture rien (UC-APP-11-F29).

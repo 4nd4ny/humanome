@@ -240,3 +240,32 @@ describe('UC-APP-11 — l’apprenant gère son crédit prépayé', () => {
     expect(screen.getByTestId('credit-solde').textContent).toBe('4,50 $')
   })
 })
+
+describe('UC-APP-11 — segments de route hors « credit » (#/compte/<section>)', () => {
+  it('UC-APP-11-F29 — tout segment autre que « credit » exact (après décodage) affiche la page Compte, sans aucune lecture du crédit : section inconnue, « CREDIT », « credit/ » ; « %63redit » ouvre bien le crédit ; « #/compte/ » est introuvable', async () => {
+    const lecturesCredit = (calls) => calls.filter((c) => /^GET twin9\/(meta|credit|depenses)$/.test(c.key))
+    const appelsTwin9 = (calls) => calls.filter((c) => c.key.includes('twin9/'))
+    // Dernier cas : un retour PayPal dont le lien a été altéré (barre finale).
+    for (const hash of ['#/compte/inconnue', '#/compte/CREDIT', '#/compte/credit/', '#/compte/credit/?paypal=retour&token=ORDER-1']) {
+      const { calls } = stubFetch(routes())
+      openApp(hash)
+      expect(await screen.findByRole('heading', { name: 'Profil' })).toBeDefined()
+      expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('Compte')
+      expect(screen.queryByTestId('credit-solde')).toBeNull()
+      expect(appelsTwin9(calls), hash).toEqual([]) // ni lecture du crédit, ni capture PayPal
+      cleanup()
+      resetApiClient()
+    }
+
+    const { calls } = stubFetch(routes())
+    openApp('#/compte/%63redit')
+    expect((await screen.findByTestId('credit-solde')).textContent).toBe('4,50 $')
+    expect(lecturesCredit(calls).map((c) => c.key).sort()).toEqual(['GET twin9/credit', 'GET twin9/depenses', 'GET twin9/meta'])
+    cleanup()
+    resetApiClient()
+
+    stubFetch(routes())
+    openApp('#/compte/')
+    expect(screen.getByRole('alert').textContent).toBe('Page introuvable : #/compte/')
+  })
+})
