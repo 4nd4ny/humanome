@@ -88,14 +88,21 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
         self::assertSame(404, $this->act(null, 'GET', '/prompt-packages/aurora-demo/1.1.0')->getStatusCode());
     }
 
-    #[TestDox('UC-PRO-02-F02 — A1 : dériver un brouillon depuis un de SES brouillons')]
+    #[TestDox('UC-PRO-02-F02 — A1 : dériver un brouillon depuis un de SES brouillons (contenu copié du brouillon, pas de la version publiée)')]
     public function testF02ForkFromOwnDraft(): void
     {
         $first = $this->createDraft($this->pom, '1.1.0');
+        $doc = self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $first))['document'];
+        $doc['description'] = 'Retouche 1.1.0';
+        self::assertSame(200, $this->act($this->pom, 'PUT', '/prompt-packages/drafts/' . $first, ['document' => $doc])->getStatusCode());
+
         $second = $this->createDraft($this->pom, '1.2.0', '1.1.0');
 
         self::assertNotSame($first, $second);
         self::assertSame(['1.1.0', '1.2.0'], array_column(self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')), 'version'));
+        $derived = self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $second))['document'];
+        self::assertSame('Retouche 1.1.0', $derived['description'], 'provenance : le brouillon source');
+        self::assertSame('1.2.0', $derived['version']);
     }
 
     #[TestDox('UC-PRO-02-F03 — A2 : forker un paquet réservé sous un nouveau nom, puis comparer le fork à son original')]
@@ -109,7 +116,8 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
         $draftId = self::json($created)['draftId'];
 
         $doc = self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $draftId))['document'];
-        self::assertSame(['id' => 'twin6-ouverte', 'version' => '1.0.0'], $doc['metadata']['forkedFrom']);
+        // Colonne JSON MySQL : l'ordre des clés n'est pas conservé.
+        self::assertEquals(['id' => 'twin6-ouverte', 'version' => '1.0.0'], $doc['metadata']['forkedFrom']);
         $doc['prompts'][1]['texte'] .= "\nVariante du fork.";
         self::assertSame(200, $this->act($this->pom, 'PUT', '/prompt-packages/drafts/' . $draftId, ['document' => $doc])->getStatusCode());
 
@@ -155,7 +163,7 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
         self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM prompt_versions WHERE status = 'draft'")->fetchColumn());
     }
 
-    #[TestDox('UC-PRO-02-F06 — E2 : mutation sans jeton CSRF depuis une session → 403, rien n’est écrit')]
+    #[TestDox('UC-PRO-02-F06 — E2 : mutation sans jeton CSRF ou avec un jeton faux depuis une session → 403, rien n’est écrit')]
     public function testF06MutationsRequireTheCsrfToken(): void
     {
         $draftId = $this->createDraft($this->pom);
@@ -164,19 +172,29 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
 
         $post = $this->act($this->pom, 'POST', '/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'fromVersion' => '1.0.0', 'version' => '1.2.0'], false);
         $put = $this->act($this->pom, 'PUT', '/prompt-packages/drafts/' . $draftId, ['document' => $doc], false);
+        $forged = $this->act($this->pom, 'PUT', '/prompt-packages/drafts/' . $draftId, ['document' => $doc], false, ['X-CSRF-Token' => 'jeton-faux']);
 
-        self::assertSame([403, 403], [$post->getStatusCode(), $put->getStatusCode()]);
+        self::assertSame([403, 403, 403], [$post->getStatusCode(), $put->getStatusCode(), $forged->getStatusCode()]);
         self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($put));
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($forged), 'jeton présent mais faux');
         self::assertCount(1, self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')));
         self::assertNotSame('Sans jeton', self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $draftId))['document']['description']);
     }
 
-    #[TestDox('UC-PRO-02-F07 — E3 : corps de création invalide (JSON non objet 400, champs manquants 422, semver invalide 422)')]
+    #[TestDox('UC-PRO-02-F07 — E3 : corps de création invalide (JSON invalide ou scalaire 400 ; tableau JSON, corps vide ou champ manquant 422 ; semver invalide 422)')]
     public function testF07CreationBodyValidation(): void
     {
-        $raw = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', '/api/prompt-packages/drafts', '"1.1.0"');
-        self::assertSame(400, $raw->getStatusCode());
-        self::assertSame(['error' => 'Corps JSON invalide'], self::json($raw));
+        foreach (['"1.1.0"', 'pas du json'] as $body) {
+            $raw = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', '/api/prompt-packages/drafts', $body);
+            self::assertSame(400, $raw->getStatusCode(), $body);
+            self::assertSame(['error' => 'Corps JSON invalide'], self::json($raw));
+        }
+        // Un tableau JSON ou un corps vide passent le décodage : traités comme « sans champs ».
+        foreach (['[1]', '[]', ''] as $body) {
+            $raw = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', '/api/prompt-packages/drafts', $body);
+            self::assertSame(422, $raw->getStatusCode(), '« ' . $body . ' »');
+            self::assertSame('Champs requis : fromId, fromVersion (version source) et version (nouvelle version)', self::json($raw)['error']);
+        }
 
         $missing = $this->act($this->pom, 'POST', '/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'version' => '1.1.0']);
         self::assertSame(422, $missing->getStatusCode());
@@ -203,16 +221,20 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
         self::assertSame(['{"error":"Version source introuvable"}'], array_values(array_unique($bodies)));
     }
 
-    #[TestDox('UC-PRO-02-F09 — E5 : version déjà prise dans le paquet → 409')]
+    #[TestDox('UC-PRO-02-F09 — E5 : version déjà prise dans le paquet (publiée, son brouillon ou le brouillon invisible d’un autre promptologue) → 409')]
     public function testF09ExistingVersionIsAConflict(): void
     {
         $this->createDraft($this->pom, '1.1.0');
+        $zoe = $this->registerAs('zoe@example.org', 'Zoé', ['promptologue']);
 
-        foreach (['1.0.0', '1.1.0'] as $taken) {
-            $response = $this->act($this->pom, 'POST', '/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'fromVersion' => '1.0.0', 'version' => $taken]);
+        foreach ([[$this->pom, '1.0.0'], [$this->pom, '1.1.0'], [$zoe, '1.1.0']] as [$user, $taken]) {
+            $response = $this->act($user, 'POST', '/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'fromVersion' => '1.0.0', 'version' => $taken]);
             self::assertSame(409, $response->getStatusCode(), $taken);
             self::assertSame('Version ' . $taken . ' of prompt package "aurora-demo" already exists', self::json($response)['error']);
         }
+        // Zoé ne voit pourtant ce brouillon nulle part : le 409 révèle seulement que le numéro est pris.
+        self::assertSame([], self::json($this->act($zoe, 'GET', '/prompt-packages/drafts')));
+        self::assertSame(['1.0.0'], array_column(self::json($this->act(null, 'GET', '/prompt-packages')), 'version'));
     }
 
     #[TestDox('UC-PRO-02-F10 — E6 : fork d’un paquet réservé sans nouveau nom valide → 422 ; nom déjà pris → 409')]
@@ -342,5 +364,42 @@ final class UcPro02EditerBrouillonPaquetTest extends AdminTestCase
 
         self::assertSame(409, $response->getStatusCode(), 'la version 1.1.0 reste occupée par un brouillon que personne ne voit');
         self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM prompt_versions WHERE status = 'draft' AND created_by IS NULL")->fetchColumn());
+    }
+
+    #[TestDox('UC-PRO-02-F24 — anomalie AN-5 (comportement actuel figé) : version semver de plus de 32 caractères → 500 (création et enregistrement) ; fork réservé : le nom reste squatté (409)')]
+    public function testF24OverlongVersionAnswers500AndSquatsTheForkName(): void
+    {
+        // Chaque 500 est journalisé par la route (error_log « Data too long ») : on le fait taire.
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $this->replayOverlongVersion();
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+        }
+    }
+
+    private function replayOverlongVersion(): void
+    {
+        $long = '1.0.0-' . str_repeat('a', 30); // semver valide de 36 caractères
+        $plain = $this->act($this->pom, 'POST', '/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'fromVersion' => '1.0.0', 'version' => $long]);
+        self::assertSame(500, $plain->getStatusCode(), 'attendu 422, obtenu 500');
+        self::assertSame(['error' => 'Erreur interne'], self::json($plain));
+
+        // Enregistrement (A3, API) : même échec, brouillon intact.
+        $draftId = $this->createDraft($this->pom, '1.1.0');
+        $doc = self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $draftId))['document'];
+        $longDoc = $doc;
+        $longDoc['version'] = $long;
+        self::assertSame(500, $this->act($this->pom, 'PUT', '/prompt-packages/drafts/' . $draftId, ['document' => $longDoc])->getStatusCode());
+        self::assertSame('1.1.0', self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts/' . $draftId))['version']);
+
+        // Fork réservé : 500, puis le nom choisi est définitivement pris par un paquet vide.
+        ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
+        $fork = fn (string $version): ResponseInterface => $this->act($this->pom, 'POST', '/prompt-packages/drafts', ['fromId' => 'twin6-ouverte', 'fromVersion' => '1.0.0', 'version' => $version, 'toId' => 'mon-twin6']);
+        self::assertSame(500, $fork($long)->getStatusCode());
+        $retry = $fork('1.0.1');
+        self::assertSame(409, $retry->getStatusCode(), 'le nouvel essai, valide, est refusé');
+        self::assertSame(['error' => 'Un paquet nommé « mon-twin6 » existe déjà — choisissez un autre nom pour votre copie.'], self::json($retry));
+        self::assertSame(['1.1.0'], array_column(self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')), 'version'));
     }
 }

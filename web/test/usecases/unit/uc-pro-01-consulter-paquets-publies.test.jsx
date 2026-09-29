@@ -5,12 +5,16 @@
 // Code sollicité appelé directement : le client de l'atelier
 // (createPromptologueApi — routes de lecture publiques), le routeur par hash
 // (#/promptologue), le composant DiffView isolé (rendu tolérant de la sortie
-// de PackageDiff) et le consommateur apprenant du paquet par défaut
-// (fetchPromptPackages, lanceur de runs).
+// de PackageDiff), le consommateur apprenant du paquet par défaut
+// (fetchPromptPackages, lanceur de runs), la garde de PromptologueView et
+// l'accueil AccueilSection rendus seuls avec un client simulé (sans réseau).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, within } from '@testing-library/react'
 import { createPromptologueApi } from '../../../src/views/promptologue/api.js'
 import { DiffView } from '../../../src/views/promptologue/EditeurSection.jsx'
+import AccueilSection from '../../../src/views/promptologue/AccueilSection.jsx'
+import PromptologueView from '../../../src/views/PromptologueView.jsx'
+import { ApiUnavailableError } from '../../../src/api/client.js'
 import { parseHash } from '../../../src/router.js'
 import { BUILTIN_PACKAGE, fetchPromptPackages } from '../../../src/lib/run-launcher.js'
 
@@ -24,13 +28,13 @@ describe('UC-PRO-01 — client de l’atelier : lectures publiques', () => {
     await api.listPublished()
     await api.getPackage('aurora demo', '1.0.0+build')
     await api.getDefault()
-    await api.diff('aurora-demo', '1.0.0', '2.0.0-rc.1')
+    await api.diff('aurora demo', '1.0.0+a', '2.0.0')
 
     expect(apiFetchFn.mock.calls).toEqual([
       ['prompt-packages'],
       ['prompt-packages/aurora%20demo/1.0.0%2Bbuild'],
       ['prompt-packages/default'],
-      ['prompt-packages/aurora-demo/diff/1.0.0/2.0.0-rc.1'],
+      ['prompt-packages/aurora%20demo/diff/1.0.0%2Ba/2.0.0'],
     ])
   })
 })
@@ -97,5 +101,112 @@ describe('UC-PRO-01 — consommateur du paquet par défaut (lanceur de runs)', (
 
     const down = await fetchPromptPackages({ apiFetchFn: vi.fn(async () => Promise.reject(new Error('réseau'))) })
     expect(down).toEqual({ packages: [BUILTIN_PACKAGE], origin: 'embarque', defaut: null })
+  })
+})
+
+describe('UC-PRO-01 — consommateur du défaut : défaut = paquet embarqué', () => {
+  it('UC-PRO-01-U16 — anomalie AN-3 (comportement actuel figé) : quand le défaut servi est l’embarqué aurora-v3-reconstruit@1.0.0, aucune entrée ne porte defaut: true', async () => {
+    const builtin = { id: BUILTIN_PACKAGE.id, version: BUILTIN_PACKAGE.version }
+    const result = await fetchPromptPackages({
+      apiFetchFn: vi.fn(async (path) =>
+        path === 'prompt-packages/default' ? builtin : [{ ...builtin, description: 'copie publiée' }, { id: 'aurora-demo', version: '1.0.0' }],
+      ),
+    })
+
+    expect(result.defaut).toEqual(builtin)
+    // La copie publiée marquée est retirée comme doublon ; BUILTIN_PACKAGE (gelé) n'est jamais marqué.
+    expect(result.packages.map((p) => `${p.id}@${p.version}`)).toEqual(['aurora-v3-reconstruit@1.0.0', 'aurora-demo@1.0.0'])
+    expect(result.packages[0]).toBe(BUILTIN_PACKAGE)
+    expect(result.packages.filter((p) => p.defaut === true)).toEqual([])
+  })
+})
+
+/** Client promptologue simulé : chaque méthode est un vi.fn (aucun réseau). */
+function fakeApi(overrides = {}) {
+  return {
+    listPublished: vi.fn(async () => []),
+    listDrafts: vi.fn(async () => []),
+    getDefault: vi.fn(async () => null),
+    ...overrides,
+  }
+}
+
+describe('UC-PRO-01 — PromptologueView isolée : garde de session et de rôle', () => {
+  it('UC-PRO-01-U17 — visiteur, API injoignable, compte sans rôle : message dédié et aucune lecture ; promptologue : accueil de l’atelier', async () => {
+    const cases = [
+      ['anonyme', async () => ({ user: null }), 'promptologue-anonyme', 'nécessite une session'],
+      ['indisponible', async () => Promise.reject(new ApiUnavailableError()), 'promptologue-indisponible', 'Copie statique'],
+      ['sans rôle', async () => ({ user: { id: 3, email: 'e@example.org', roles: ['apprenant'] } }), 'promptologue-sans-role', 'réservé au rôle'],
+    ]
+    for (const [label, fetchMeFn, testId, text] of cases) {
+      const api = fakeApi()
+      render(<PromptologueView section={null} deps={{ fetchMeFn, api }} />)
+      expect((await screen.findByTestId(testId)).textContent, label).toContain(text)
+      expect(api.listPublished, label).not.toHaveBeenCalled()
+      expect(screen.queryByTestId('promptologue-connecte'), label).toBeNull()
+      cleanup()
+    }
+
+    const api = fakeApi()
+    render(
+      <PromptologueView
+        section={null}
+        deps={{ fetchMeFn: async () => ({ user: { id: 7, displayName: 'Pom', roles: ['promptologue'] } }), api }}
+      />,
+    )
+    expect((await screen.findByTestId('promptologue-connecte')).textContent).toContain('Pom (promptologue)')
+    expect(await screen.findByText('Aucune version publiée sur ce serveur.')).toBeDefined()
+    expect(api.listPublished).toHaveBeenCalledTimes(1)
+    expect(api.listDrafts).toHaveBeenCalledTimes(1)
+    expect(api.getDefault).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('UC-PRO-01 — AccueilSection isolée : tolérance des lectures', () => {
+  it('UC-PRO-01-U18 — chaque lecture en échec est tolérée (liste vide, pas de défaut) ; entrées mal formées filtrées ; défaut marqué', async () => {
+    render(
+      <AccueilSection
+        api={fakeApi({
+          listPublished: vi.fn(async () => Promise.reject(new Error('500'))),
+          listDrafts: vi.fn(async () => Promise.reject(new Error('403'))),
+          getDefault: vi.fn(async () => ({ id: 'aurora-demo', version: '1.0.0' })),
+        })}
+      />,
+    )
+    expect(await screen.findByText('Aucune version publiée sur ce serveur.')).toBeDefined()
+    expect(screen.getByText(/Aucun brouillon/)).toBeDefined()
+    cleanup()
+
+    render(
+      <AccueilSection
+        api={fakeApi({
+          listPublished: vi.fn(async () => [
+            { id: 'aurora-demo', version: '1.0.0' },
+            { id: 'aurora-demo' }, // sans version : filtrée
+            null,
+            { id: 'aurora-demo', version: '2.0.0' },
+          ]),
+          getDefault: vi.fn(async () => ({ id: 'aurora-demo', version: '2.0.0' })),
+        })}
+      />,
+    )
+    const rows = within(await screen.findByRole('table')).getAllByRole('row').slice(1)
+    expect(rows.map((r) => r.cells[1].textContent.split(' ')[0])).toEqual(['1.0.0', '2.0.0'])
+    expect(rows[1].querySelector('.promptologue-defaut')?.textContent).toBe('par défaut')
+    expect(rows[0].querySelector('.promptologue-defaut')).toBeNull()
+    cleanup()
+
+    // getDefault en échec : aucune ligne marquée, chaque ligne peut être proposée.
+    render(
+      <AccueilSection
+        api={fakeApi({
+          listPublished: vi.fn(async () => [{ id: 'aurora-demo', version: '1.0.0' }]),
+          getDefault: vi.fn(async () => Promise.reject(new Error('404 Aucun paquet publié'))),
+        })}
+      />,
+    )
+    const [row] = within(await screen.findByRole('table')).getAllByRole('row').slice(1)
+    expect(row.querySelector('.promptologue-defaut')).toBeNull()
+    expect(within(row).getByRole('button', { name: 'Proposer par défaut' })).toBeDefined()
   })
 })

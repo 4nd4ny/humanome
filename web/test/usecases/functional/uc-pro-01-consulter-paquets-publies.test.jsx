@@ -51,7 +51,9 @@ describe('UC-PRO-01 — le promptologue consulte les paquets publiés', () => {
       'aurora-demo@2.0.0',
       'twin6-ouverte@1.0.0',
     ])
-    // Sans défaut validé : la dernière publication est le défaut (repli serveur).
+    // Sans défaut validé : la dernière publication est le défaut (repli serveur),
+    // ici le paquet RÉSERVÉ twin6-ouverte — anomalie AN-2 de la fiche (le repli
+    // ne filtre pas les paquets réservés), comportement actuel figé.
     expect(rows[2].querySelector('.promptologue-defaut')?.textContent).toBe('par défaut')
     expect(rows[0].querySelector('.promptologue-defaut')).toBeNull()
     expect(rows[2].textContent).toContain('réservé')
@@ -79,6 +81,9 @@ describe('UC-PRO-01 — le promptologue consulte les paquets publiés', () => {
     expect(rows[0].querySelector('.promptologue-defaut')).not.toBeNull()
     expect(rows[1].querySelector('.promptologue-defaut')).toBeNull()
     expect(within(rows[1]).getByRole('button', { name: 'Proposer par défaut' })).toBeDefined()
+    // Étape 6 : la ligne par défaut (paquet NON réservé) n'offre pas « Proposer par défaut ».
+    expect(within(rows[0]).queryByRole('button', { name: 'Proposer par défaut' })).toBeNull()
+    expect(within(rows[0]).getByRole('button', { name: 'Nouvelle version' })).toBeDefined()
   })
 
   it('UC-PRO-01-F13 — E3 : aucune version publiée → message dédié, pas de tableau', async () => {

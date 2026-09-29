@@ -53,9 +53,12 @@ final class UcPro01ConsulterPaquetsPubliesTest extends TestCase
     #[TestDox('UC-PRO-01-U01 — listPublished : versions publiées non privées, triées par paquet puis publication, métadonnées seulement')]
     public function testU01ListPublishedExposesPublicPublishedVersionsOnly(): void
     {
+        // Ordre de publication volontairement DIFFÉRENT de l'ordre attendu
+        // (twin6-ouverte publiée avant aurora-demo 2.0.0) : seul le tri par
+        // paquet puis par publication produit la liste attendue.
         ProSupport::publish(self::$pdo);
-        ProSupport::publish(self::$pdo, ProSupport::packageDocV2());
         ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
+        ProSupport::publish(self::$pdo, ProSupport::packageDocV2());
         self::seedDraft('1.1.0');
         ProSupport::importGolden(self::$pdo, ProSupport::user(self::$pdo, 'Root', ['admin']));
 
@@ -101,8 +104,12 @@ final class UcPro01ConsulterPaquetsPubliesTest extends TestCase
         ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
         self::assertSame(['id' => 'twin6-ouverte', 'version' => '1.0.0'], self::repo()->latestPublishedAnyPackage());
 
-        // Un brouillon et un Golden plus récents ne comptent pas.
+        // Un brouillon et un Golden plus récents ne comptent pas. Le brouillon
+        // reçoit (en test seulement) une date de publication FUTURE : sans le
+        // filtre status = published, il passerait en tête du tri décroissant
+        // (un published_at NULL, lui, serait classé dernier de toute façon).
         self::seedDraft('3.0.0');
+        self::$pdo->exec("UPDATE prompt_versions SET published_at = NOW() + INTERVAL 1 DAY WHERE status = 'draft'");
         ProSupport::importGolden(self::$pdo, ProSupport::user(self::$pdo, 'Root', ['admin']));
         self::assertSame(['id' => 'twin6-ouverte', 'version' => '1.0.0'], self::repo()->latestPublishedAnyPackage());
 
@@ -259,9 +266,19 @@ final class UcPro01ConsulterPaquetsPubliesTest extends TestCase
         $diff = PackageDiff::compute(ProSupport::packageDoc(), $to);
         self::assertArrayHasKey('referentielCompatible', $diff['fields'], 'comportement ACTUEL figé (Limite L1)');
 
-        // Via le dépôt, les deux côtés sont normalisés par MySQL : aucun faux écart.
+        // Via le dépôt, les deux côtés sont normalisés par MySQL : deux versions
+        // PUBLIÉES dont referentielCompatible a été importé dans des ordres de
+        // clés différents ne produisent aucun faux écart.
         ProSupport::publish(self::$pdo);
-        $stored = self::repo()->findPublished(ProSupport::PKG, '1.0.0');
-        self::assertTrue(PackageDiff::compute($stored, self::repo()->findPublished(ProSupport::PKG, '1.0.0'))['identical']);
+        ProSupport::publish(self::$pdo, ProSupport::packageDoc([
+            'version' => '1.0.1',
+            'referentielCompatible' => ['versionMin' => '7.0.0', 'id' => 'respire'],
+        ]));
+        $stored = PackageDiff::compute(
+            self::repo()->findPublished(ProSupport::PKG, '1.0.0'),
+            self::repo()->findPublished(ProSupport::PKG, '1.0.1'),
+        );
+        self::assertArrayNotHasKey('referentielCompatible', $stored['fields']);
+        self::assertTrue($stored['identical']);
     }
 }

@@ -13,7 +13,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
-import { CSRF, PROMPTOLOGUE, createPromptologueBackend, packageDoc } from '../support/pro.js'
+import { CSRF, PROMPTOLOGUE, createPromptologueBackend, jsonResponse, packageDoc } from '../support/pro.js'
 
 function reservedDoc() {
   const doc = packageDoc({ id: 'twin6-ouverte', description: 'Cartographie ouverte Twin6.' })
@@ -75,9 +75,17 @@ describe('UC-PRO-02 — créer puis éditer un brouillon', () => {
     await waitFor(() => expect(window.location.hash).toBe('#/promptologue/editeur/100'))
     await waitEditor('Brouillon aurora-demo@1.1.0')
 
-    // 5. Édition du premier gabarit, validation client, enregistrement serveur.
+    // 5-6. Édition : gabarit (compteur de caractères), modèle cible, nouvelle variable.
     const texte = screen.getByLabelText('Texte du gabarit')
-    fireEvent.change(texte, { target: { value: `${texte.value}\nConsigne ajoutée en 1.1.0.` } })
+    const edited = `${texte.value}\nConsigne ajoutée en 1.1.0.`
+    fireEvent.change(texte, { target: { value: edited } })
+    expect(screen.getByTestId('prompt-counter').textContent).toBe(`${edited.length} caractères`)
+    fireEvent.change(screen.getByLabelText('Modèle cible (vide = agnostique)'), { target: { value: 'claude-haiku-4-5' } })
+    await click(screen.getByText('+ Ajouter une variable'))
+    const variable = screen.getByText('(sans nom)').closest('fieldset')
+    fireEvent.change(within(variable).getByLabelText('Nom'), { target: { value: 'ton' } })
+    fireEvent.change(within(variable).getByLabelText('Description'), { target: { value: 'Tonalité attendue.' } })
+    // 7. Validation client, puis 8. enregistrement serveur.
     await click(screen.getByText('Valider'))
     expect(screen.getByTestId('validation-ok').textContent).toBe('Document valide au schéma prompt-package.')
     await click(screen.getByText('Enregistrer'))
@@ -87,6 +95,8 @@ describe('UC-PRO-02 — créer puis éditer un brouillon', () => {
     expect(save.headers['X-CSRF-Token']).toBe(CSRF)
     expect(save.body.document.version).toBe('1.1.0')
     expect(save.body.document.prompts[0].texte.endsWith('Consigne ajoutée en 1.1.0.')).toBe(true)
+    expect(save.body.document.modeleCible).toBe('claude-haiku-4-5')
+    expect(save.body.document.prompts[0].variables.at(-1)).toEqual({ nom: 'ton', description: 'Tonalité attendue.', exemple: '' })
     expect(backend.state.drafts[0].document.prompts[0].texte.endsWith('Consigne ajoutée en 1.1.0.')).toBe(true)
   })
 
@@ -116,6 +126,14 @@ describe('UC-PRO-02 — créer puis éditer un brouillon', () => {
     const diff = await screen.findByTestId('promptologue-diff')
     expect(backend.callsTo('GET', 'api/prompt-packages/drafts/100/diff-origin')).toHaveLength(1)
     expect(diff.textContent).toContain('+ Mon gabarit réécrit.')
+
+    // Le diff porte sur la version ENREGISTRÉE : une modification non enregistrée n'y figure pas.
+    fireEvent.change(screen.getByLabelText('Texte du gabarit'), { target: { value: 'Texte non enregistré.' } })
+    await click(screen.getByText('Diff contre l’original twin6-ouverte@1.0.0'))
+    expect(backend.callsTo('GET', 'api/prompt-packages/drafts/100/diff-origin')).toHaveLength(2)
+    const again = screen.getByTestId('promptologue-diff')
+    expect(again.textContent).toContain('+ Mon gabarit réécrit.')
+    expect(again.textContent).not.toContain('Texte non enregistré.')
   })
 
   it('UC-PRO-02-F19 — E6 (IHM) : fork réservé sans nom → refus local, aucune requête', async () => {
@@ -153,6 +171,16 @@ describe('UC-PRO-02 — créer puis éditer un brouillon', () => {
     expect(errors.textContent).toContain('erreur(s) de schéma')
     expect(errors.textContent).toContain('/prompts/0/texte')
     expect(backend.callsTo('PUT', 'api/prompt-packages/drafts/100')).toHaveLength(0)
+
+    // Étape 7 : au-delà de dix erreurs, le total est annoncé mais dix seulement sont listées
+    // (six variables vides : nom et description requis).
+    for (let i = 0; i < 6; i++) await click(screen.getByText('+ Ajouter une variable'))
+    await click(screen.getByText('Valider'))
+    const many = screen.getByTestId('validation-errors')
+    const total = Number(/^(\d+) erreur\(s\) de schéma/.exec(many.querySelector('p').textContent)[1])
+    expect(total).toBeGreaterThan(10)
+    expect(many.querySelectorAll('li')).toHaveLength(10)
+    expect(backend.callsTo('PUT', 'api/prompt-packages/drafts/100')).toHaveLength(0)
   })
 
   it('UC-PRO-02-F22 — E8 : brouillon d’autrui ou inconnu → « Brouillon introuvable » et retour à l’atelier', async () => {
@@ -172,5 +200,41 @@ describe('UC-PRO-02 — créer puis éditer un brouillon', () => {
     expect(link.getAttribute('href')).toBe('#/promptologue/editeur/100')
     // L'API renvoie pourtant id et version dans GET drafts.
     expect(within(section).queryByText('aurora-demo@1.1.0')).toBeNull()
+    // … et « modifié le » n'apparaît jamais (updatedAt attendu, createdAt fourni).
+    expect(within(section).queryByText(/modifié le/)).toBeNull()
+  })
+
+  it('UC-PRO-02-F25 — anomalie AN-6 (comportement actuel figé) : un 422 du serveur ne montre que « Document invalide », sans ses détails (E3, E6)', async () => {
+    const backend = createPromptologueBackend({ published: [packageDoc(), reservedDoc()] })
+    openApp('#/promptologue', backend)
+
+    // E6 : nom de copie hors format (le serveur détaille « /toId »).
+    await click(await screen.findByRole('button', { name: 'Forker (copie)' }))
+    fireEvent.change(screen.getByLabelText('Nom du paquet copié'), { target: { value: 'Mon Twin6' } })
+    await click(screen.getByRole('button', { name: 'Créer le brouillon' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Document invalide')
+    const [fork] = backend.callsTo('POST', 'api/prompt-packages/drafts')
+    expect(fork.body.toId).toBe('Mon Twin6')
+
+    // E3 : version non semver (le serveur détaille « /version »).
+    await click(within(await publishedRow('aurora-demo', '1.0.0')).getByRole('button', { name: 'Nouvelle version' }))
+    fireEvent.change(screen.getByLabelText('Version du brouillon'), { target: { value: 'v2' } })
+    await click(screen.getByRole('button', { name: 'Créer le brouillon' }))
+    await waitFor(() => expect(backend.callsTo('POST', 'api/prompt-packages/drafts')).toHaveLength(2))
+    expect(screen.getByRole('alert').textContent).toBe('Document invalide')
+    expect(window.location.hash).toBe('#/promptologue')
+  })
+
+  it('UC-PRO-02-F26 — anomalie AN-2 (comportement figé) : session expirée après le chargement → le 401 de RoleGuard s’affiche en anglais', async () => {
+    const backend = createPromptologueBackend({
+      routes: { 'POST api/prompt-packages/drafts': () => jsonResponse(401, { error: 'Authentication required' }) },
+    })
+    openApp('#/promptologue', backend)
+
+    await click(within(await publishedRow('aurora-demo', '1.0.0')).getByRole('button', { name: 'Nouvelle version' }))
+    await click(screen.getByRole('button', { name: 'Créer le brouillon' }))
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Authentication required')
+    expect(window.location.hash).toBe('#/promptologue')
   })
 })

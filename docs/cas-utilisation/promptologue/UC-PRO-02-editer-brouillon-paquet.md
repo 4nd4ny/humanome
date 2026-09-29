@@ -96,10 +96,14 @@ réservé), ou rouvre un brouillon depuis « Mes brouillons ».
   `metadata.forkedFrom = {id, version}` de la source). Dans l'éditeur, le
   bouton « Diff contre l'original *id@version* » appelle
   `GET /api/prompt-packages/drafts/{draftId}/diff-origin` : diff structurel
-  (UC-PRO-01 RG4) de l'original publié vers le brouillon courant.
-- **A3 — Document nu et changement de version** (étape 8) : le `PUT` accepte
-  aussi le document sans enveloppe `{document}` ; la version d'un brouillon
-  peut changer tant qu'elle ne collisionne pas.
+  (UC-PRO-01 RG4) de l'original publié vers la dernière version
+  **enregistrée** du brouillon (le serveur relit le brouillon en base ; les
+  modifications non enregistrées de l'éditeur sont ignorées).
+- **A3 — Document nu et changement de version** (étape 8, **API
+  uniquement**, comme A1) : le `PUT` accepte aussi le document sans enveloppe
+  `{document}` ; la version d'un brouillon peut changer tant qu'elle ne
+  collisionne pas. L'éditeur, lui, n'expose pas la version (« La version est
+  fixée à la création du brouillon ») et envoie toujours `{document}`.
 
 ## Scénarios d'erreur
 
@@ -110,20 +114,26 @@ réservé), ou rouvre un brouillon depuis « Mes brouillons ».
 - **E2 — Jeton CSRF absent ou invalide** (étapes 2 et 8) : mutation d'une
   session sans `X-CSRF-Token` valide → `403 {error: "Jeton CSRF absent ou
   invalide"}`.
-- **E3 — Corps de création invalide** (étape 3) : JSON non objet → `400
-  {error: "Corps JSON invalide"}` ; champ manquant → `422` ; semver invalide →
-  `422 {error: "Document invalide", details: {"/version": ["Version semver
-  invalide"]}}`.
+- **E3 — Corps de création invalide** (étape 3) : JSON invalide ou scalaire
+  JSON → `400 {error: "Corps JSON invalide"}` ; tableau JSON, corps vide ou
+  champ manquant → `422` (« Champs requis : … ») ; semver invalide → `422
+  {error: "Document invalide", details: {"/version": ["Version semver
+  invalide"]}}` — l'IHM n'affiche que « Document invalide » (AN-6). Une
+  semver valide de plus de 32 caractères répond `500` (AN-5).
 - **E4 — Source introuvable** (étape 3) : version inconnue, brouillon d'un
   autre promptologue ou paquet privé (Golden) → même `404 {error: "Version
   source introuvable"}`.
 - **E5 — Version déjà prise** (étape 3) : `409` (« Version x of prompt package
   "id" already exists ») ; l'IHM affiche ce message et reste sur l'accueil.
+  Le numéro peut être pris par un brouillon d'un **autre** promptologue, que
+  l'on ne voit nulle part : le `409` révèle seulement que le numéro est
+  occupé.
 - **E6 — Fork réservé sans nom valide** (A2) : `toId` absent, identique à la
   source ou hors format (kebab-case, 64 caractères au plus) → `422` (détails
   sur `/toId`) ; nom déjà pris par un paquet (même privé) → `409`. L'IHM
   refuse localement un nom vide (« Ce paquet est réservé : donnez un nouveau
-  nom à votre copie. »), sans requête.
+  nom à votre copie. »), sans requête ; pour les autres refus, elle n'affiche
+  que « Document invalide », sans le détail `/toId` (AN-6).
 - **E7 — Document refusé à l'enregistrement** (étapes 7-8) : non conforme au
   schéma → `422 {error: "Document invalide", details: {<pointeur>: [...]}}` ;
   `id` modifié → `422` ; version déjà prise → `409` ; corps vide → `400`.
@@ -136,8 +146,10 @@ réservé), ou rouvre un brouillon depuis « Mes brouillons ».
   are immutable: create a new draft instead"}` ; la version n'est d'ailleurs
   plus listée ni lisible comme brouillon.
 - **E10 — Diff contre l'original impossible** (A2) : brouillon qui n'est pas
-  un fork renommé → `422` ; `forkedFrom` ne désignant aucune version publiée →
-  `409 {error: "Version d'origine introuvable (n'est plus publiée)."}`.
+  un fork renommé → `422 {error: "Ce brouillon n’a pas d’original de
+  référence (ce n’est pas un fork renommé)."}` ; `forkedFrom` ne désignant
+  aucune version publiée (`findPublished`) → `409 {error: "Version d’origine
+  introuvable (n’est plus publiée)."}`.
 
 ## Règles de gestion
 
@@ -173,6 +185,8 @@ réservé), ou rouvre un brouillon depuis « Mes brouillons ».
 | Couche | Élément | Rôle |
 |---|---|---|
 | Front | `web/src/router.js` — `parseHash` | Route `#/promptologue/editeur/<draftId>` |
+| Front | `web/src/views/PromptologueView.jsx` | Garde de rôle de l'IHM, dispatch de la section `editeur/<draftId>` vers `EditeurSection` |
+| Front | `web/src/api/client.js` — `apiFetch`, `ApiError` | En-tête `X-CSRF-Token` ; message affiché = `error` du serveur (AN-2), `details` ignorés (AN-6) |
 | Front | `web/src/views/promptologue/AccueilSection.jsx` | « Nouvelle version », fork renommé, « Mes brouillons », navigation vers l'éditeur |
 | Front | `web/src/views/promptologue/EditeurSection.jsx` | Chargement, édition, Valider, Enregistrer, diff contre l'original |
 | Front | `web/src/views/promptologue/api.js` — `createDraft`, `listDrafts`, `getDraft`, `saveDraft`, `diffDraftOrigin`, `suggestNextVersion`, `normalizeDraftEntry` | Appels HTTP et logique de l'accueil |
@@ -180,12 +194,18 @@ réservé), ou rouvre un brouillon depuis « Mes brouillons ».
 | API | `POST`/`GET /api/prompt-packages/drafts`, `GET`/`PUT …/drafts/{draftId}`, `GET …/diff-origin` — `api/src/routes/packages.php` | Orchestration, codes HTTP |
 | API | `api/src/Referentiel/RoleGuard.php`, `api/src/Middleware/CsrfMiddleware.php` | Rôle, CSRF |
 | Domaine | `api/src/Packages/PromptPackageRepository.php` — `createDraft` (et `packageForReservedFork`), `listDrafts`, `findDraft`, `updateDraft` | Cycle de vie du brouillon |
+| Domaine | `PromptPackageRepository::findPublished` | Original d'un fork renommé (A2, `409` de E10) |
 | Domaine | `api/src/Referentiel/Semver.php` — `isValid` ; `api/src/Validation.php` | Semver, schéma |
 | Domaine | `api/src/Packages/InvalidPackageException.php`, `PackageConflictException.php` | Erreurs 422 / 409 |
 | Domaine | `api/src/Packages/PackageDiff.php` — `compute` | Diff contre l'original (A2) |
 
 `web/src/views/promptologue/carnet.js` et `CompetenceDiff.jsx` relèvent du banc
 d'essai (UC-PRO-05), pas de ce cas.
+
+Éléments partagés dont les tests unitaires vivent dans d'autres cas :
+`RoleGuard` (UC-EPI-01-U11), `CsrfMiddleware` (UC-CPT-02-U07),
+`PackageDiff::compute` (UC-PRO-01-U06 à U11), `Semver` (UC-PRO-03-U04),
+`PromptologueView` (UC-PRO-01-U17).
 
 ## Jeux de tests
 
@@ -195,7 +215,7 @@ d'essai (UC-PRO-05), pas de ce cas.
 |---|---|---|---|
 | UC-PRO-02-U01 | `createDraft` | Copie de la source, version remplacée, `publieLe` retiré, `modifieLe`, auteur (RG6) | `api/tests/UseCases/Unit/UcPro02EditerBrouillonPaquetTest.php` |
 | UC-PRO-02-U02 | `createDraft`, `InvalidPackageException` | Semver invalide → erreurs sur `/version` (E3) | idem |
-| UC-PRO-02-U03 | `createDraft` | Source inconnue, brouillon d'autrui, privé → `null` ; propre brouillon accepté (E4, A1) | idem |
+| UC-PRO-02-U03 | `createDraft` | Source inconnue, brouillon d'autrui, privé → `null` ; propre brouillon accepté, contenu copié de ce brouillon retouché (E4, A1) | idem |
 | UC-PRO-02-U04 | `createDraft`, `PackageConflictException` | Version prise (publiée ou brouillon) (E5, RG4) | idem |
 | UC-PRO-02-U05 | `createDraft` (fork réservé) | `toId` requis, neuf, kebab-case ; copie non réservée, `forkedFrom` ; `toId` ignoré sinon (A2, E6) | idem |
 | UC-PRO-02-U06 | `listDrafts` | Brouillons de l'auteur, métadonnées (RG1) | idem |
@@ -213,20 +233,21 @@ d'essai (UC-PRO-05), pas de ce cas.
 | UC-PRO-02-U18 | `suggestNextVersion` | Correctif + 1, repli `1.0.1` | idem |
 | UC-PRO-02-U19 | `normalizeDraftEntry` | Formes API (liste sans document, détail), document nu | idem |
 | UC-PRO-02-U20 | `parseHash` | Route de l'éditeur | idem |
+| UC-PRO-02-U21 | `createDraft` (version longue) | Anomalie AN-5 : semver de plus de 32 caractères → `PDOException` ; fork réservé : paquet vide orphelin, nom bloqué (comportement figé) | `api/tests/UseCases/Unit/UcPro02EditerBrouillonPaquetTest.php` |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
 | UC-PRO-02-F01 | Nominal | API | Créer (201), lister, ouvrir, enregistrer ; invisible du public | `api/tests/UseCases/Functional/UcPro02EditerBrouillonPaquetTest.php` |
-| UC-PRO-02-F02 | A1 | API | Dériver depuis son brouillon | idem |
+| UC-PRO-02-F02 | A1 | API | Dériver depuis son brouillon retouché : contenu du brouillon source | idem |
 | UC-PRO-02-F03 | A2 | API | Fork renommé de `twin6-ouverte` + `diff-origin` | idem |
 | UC-PRO-02-F04 | A3 | API | `PUT` du document nu, changement de version | idem |
 | UC-PRO-02-F05 | E1 | API | 401 visiteur, 403 apprenant et admin | idem |
-| UC-PRO-02-F06 | E2 | API | Sans jeton CSRF : 403, rien d'écrit | idem |
-| UC-PRO-02-F07 | E3 | API | 400 JSON non objet, 422 champs, 422 semver | idem |
+| UC-PRO-02-F06 | E2 | API | Sans jeton CSRF ou jeton faux : 403, rien d'écrit | idem |
+| UC-PRO-02-F07 | E3 | API | 400 JSON invalide ou scalaire ; 422 tableau, corps vide, champs manquants ; 422 semver | idem |
 | UC-PRO-02-F08 | E4 | API | Source inconnue, étrangère, privée → même 404 | idem |
-| UC-PRO-02-F09 | E5 | API | Version publiée ou brouillon existante → 409 | idem |
+| UC-PRO-02-F09 | E5 | API | Version publiée, son brouillon ou le brouillon invisible d'un autre promptologue → 409 | idem |
 | UC-PRO-02-F10 | E6 | API | `toId` absent/identique/invalide → 422 ; pris → 409 | idem |
 | UC-PRO-02-F11 | E7 | API | Schéma 422 + détails, `id` 422, collision 409, corps vide 400 | idem |
 | UC-PRO-02-F12 | E8 | API | Brouillon d'autrui ou inconnu → 404 (GET, PUT, diff) | idem |
@@ -234,13 +255,16 @@ d'essai (UC-PRO-05), pas de ce cas.
 | UC-PRO-02-F14 | E10 | API | `diff-origin` : 422 non forké, 409 original introuvable | idem |
 | UC-PRO-02-F15 | RG7 (limite) | API | `If-Match` ignoré, dernier enregistrement gagnant | idem |
 | UC-PRO-02-F16 | AN-3 | API | Compte supprimé → brouillon orphelin, 409 pour un autre | idem |
-| UC-PRO-02-F17 | Nominal | IHM | `<App/>` : Nouvelle version → éditeur → Valider → Enregistrer (CSRF, `{document}`) | `web/test/usecases/functional/uc-pro-02-editer-brouillon-paquet.test.jsx` |
-| UC-PRO-02-F18 | A2 | IHM | « Partir du Twin6 », nom trimé, diff contre l'original | idem |
+| UC-PRO-02-F17 | Nominal | IHM | `<App/>` : Nouvelle version → éditeur (gabarit et compteur, modèle cible, variable ajoutée) → Valider → Enregistrer (CSRF, `{document}`) | `web/test/usecases/functional/uc-pro-02-editer-brouillon-paquet.test.jsx` |
+| UC-PRO-02-F18 | A2 | IHM | « Partir du Twin6 », nom trimé, diff contre l'original (version enregistrée seulement) | idem |
 | UC-PRO-02-F19 | E6 | IHM | Nom vide refusé localement, aucune requête | idem |
 | UC-PRO-02-F20 | E5 + AN-2 | IHM | Message serveur (en anglais) affiché, reste sur l'accueil | idem |
-| UC-PRO-02-F21 | E7 | IHM | Erreurs de schéma listées, aucun `PUT` | idem |
+| UC-PRO-02-F21 | E7 | IHM | Erreurs de schéma listées (dix au plus), aucun `PUT` | idem |
 | UC-PRO-02-F22 | E8 | IHM | « Brouillon introuvable » + retour à l'atelier | idem |
-| UC-PRO-02-F23 | AN-1 | IHM | « Mes brouillons » : lien « brouillon 100 » (comportement figé) | idem |
+| UC-PRO-02-F23 | AN-1 | IHM | « Mes brouillons » : lien « brouillon 100 », jamais « modifié le » (comportement figé) | idem |
+| UC-PRO-02-F24 | AN-5 | API | Version de 36 caractères : `500` à la création et à l'enregistrement ; fork réservé → nom squatté (`409`) (comportement figé) | `api/tests/UseCases/Functional/UcPro02EditerBrouillonPaquetTest.php` |
+| UC-PRO-02-F25 | AN-6 (E3, E6) | IHM | Nom de copie hors format, version « v2 » : alerte « Document invalide » seule (comportement figé) | `web/test/usecases/functional/uc-pro-02-editer-brouillon-paquet.test.jsx` |
+| UC-PRO-02-F26 | AN-2 | IHM | Session expirée après chargement : alerte « Authentication required » (comportement figé) | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -274,7 +298,10 @@ cd engine && npx vitest run test/usecases/unit/uc-pro-02
   « Published versions are immutable… », « Semver must be strictly
   increasing… ») et les `401`/`403` de `RoleGuard` (« Authentication
   required », « Forbidden ») sont affichés tels quels, contrairement à la
-  convention d'une UI en français. Figé par UC-PRO-02-F20.
+  convention d'une UI en français. Les `401`/`403` ne s'affichent que si la
+  session expire ou si le rôle est retiré après le chargement : la garde de
+  `PromptologueView` bloque le cas ordinaire, et l'accueil avale les erreurs
+  de `listDrafts`. Figé par UC-PRO-02-F20 (`409`) et UC-PRO-02-F26 (`401`).
 - **AN-3 — Brouillons orphelins après suppression du compte de l'auteur.**
   `created_by` passe à `NULL` (FK `SET NULL`) : le brouillon est conservé
   indéfiniment, invisible de tous, et **réserve toujours son numéro de
@@ -287,10 +314,35 @@ cd engine && npx vitest run test/usecases/unit/uc-pro-02
   quel échoue (`422` « l'identifiant ne peut pas changer ») et sa publication
   sert un document dont l'`id` diffère du paquet. L'IHM trime le nom, donc
   l'atelier ne déclenche pas le cas. Figé par UC-PRO-02-U12.
+- **AN-5 — Version de plus de 32 caractères : `500` au lieu de `422`, et nom
+  de fork squatté.** Le schéma et `Semver::isValid` n'imposent aucune
+  longueur, mais la colonne `prompt_versions.semver` est un `VARCHAR(32)` et
+  MySQL 8 est en mode strict : une semver valide plus longue (ex.
+  `1.0.0-experimentation-longue-duree`, saisissable dans « Version du
+  brouillon ») fait échouer l'`INSERT` (`SQLSTATE 22001`), que `createDraft`
+  ne convertit pas (seul `23000` l'est) : la route répond `500 {error:
+  "Erreur interne"}`. Le `PUT` d'une telle version (A3) répond aussi `500`.
+  Pour un fork réservé, `packageForReservedFork` a déjà inséré la ligne
+  `prompt_packages` (sans transaction) : le nom choisi reste pris par un
+  paquet vide, et tout nouvel essai répond `409` « Un paquet nommé « … »
+  existe déjà ». La garantie minimale « rien n'est écrit » est violée. Figé
+  par UC-PRO-02-U21 et UC-PRO-02-F24.
+- **AN-6 — Détails d'un `422` perdus dans l'IHM.** `apiFetch` ne lit que
+  `error` (et `fields`) : les `details` renvoyés par l'API (`/toId` :
+  « Identifiant de paquet invalide (kebab-case, ≤ 64 caractères…) »,
+  `/version` : « Version semver invalide », pointeurs de schéma à
+  l'enregistrement) ne sont jamais affichés ; l'utilisateur ne voit que
+  « Document invalide ». Figé par UC-PRO-02-F25.
 
 ## Limites
 
 - RG7 : pas de verrou ni de concurrence optimiste ; deux onglets du même
   auteur s'écrasent silencieusement (UC-PRO-02-U10, UC-PRO-02-F15).
+- Depuis l'atelier, la version d'un brouillon ne peut pas être corrigée
+  (A3 est réservé à l'API) : une version refusée à la publication (UC-PRO-03
+  E4) impose de recréer un brouillon (« Nouvelle version »), l'ancien restant
+  dans « Mes brouillons » (aucune route de suppression).
+- Le diff contre l'original (A2) porte sur la version enregistrée du
+  brouillon, pas sur les modifications en cours (UC-PRO-02-F18).
 - Le bouton « Diff contre *version* » d'un brouillon ordinaire ne fonctionne
   qu'après publication (UC-PRO-01, anomalie AN-1).

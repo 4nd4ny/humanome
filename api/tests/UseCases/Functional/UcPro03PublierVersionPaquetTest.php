@@ -33,10 +33,12 @@ final class UcPro03PublierVersionPaquetTest extends AdminTestCase
         $this->pom = $this->registerAs('pom@example.org', 'Pom', ['promptologue']);
     }
 
-    private function act(?array $user, string $method, string $path, ?array $body = null, bool $csrf = true): ResponseInterface
+    private function act(?array $user, string $method, string $path, ?array $body = null, bool $csrf = true, array $headers = []): ResponseInterface
     {
         $this->cookieSid = $user['sid'] ?? null;
-        $headers = $user !== null && $csrf && $method !== 'GET' ? ['X-CSRF-Token' => $user['csrf']] : [];
+        if ($user !== null && $csrf && $method !== 'GET') {
+            $headers['X-CSRF-Token'] = $user['csrf'];
+        }
 
         return $this->request($method, '/api' . $path, $body, $headers, ProSupport::webApp());
     }
@@ -79,7 +81,9 @@ final class UcPro03PublierVersionPaquetTest extends AdminTestCase
         self::assertSame('Extraction resserrée.', $list[1]['description']);
         $doc = self::json($this->act(null, 'GET', '/prompt-packages/aurora-demo/1.1.0'));
         self::assertEquals(['version' => '1.1.0', 'date' => date('Y-m-d'), 'description' => 'Consigne de citation renforcée.'], end($doc['changelog']));
-        self::assertArrayHasKey('publieLe', $doc['metadata']);
+        // publieLe posé à la publication (date du jour), pas celui de la version source.
+        self::assertStringStartsWith(date('Y-m-d') . 'T', $doc['metadata']['publieLe']);
+        self::assertNotSame(ProSupport::packageDoc()['metadata']['publieLe'], $doc['metadata']['publieLe']);
         self::assertStringEndsWith('Consigne de citation renforcée.', $doc['prompts'][0]['texte']);
         self::assertSame([], self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')));
 
@@ -114,43 +118,58 @@ final class UcPro03PublierVersionPaquetTest extends AdminTestCase
         self::assertTrue($reserved['twin6-ouverte']);
     }
 
-    #[TestDox('UC-PRO-03-F04 — A3 : une pré-version (1.1.0-rc.1) se publie, puis la version finale 1.1.0 qui la dépasse')]
+    #[TestDox('UC-PRO-03-F04 — A3 : une pré-version (1.1.0-rc.1) se publie, puis la version finale 1.1.0 qui la dépasse (un brouillon 2.0.0 ne compte pas, RG2)')]
     public function testF04PreReleaseThenFinal(): void
     {
+        $this->draft('2.0.0'); // brouillon supérieur, non publié : hors comparaison (RG2)
         self::assertSame(200, $this->publish($this->draft('1.1.0-rc.1'))->getStatusCode());
         self::assertSame(200, $this->publish($this->draft('1.1.0'))->getStatusCode());
 
         self::assertSame(['1.0.0', '1.1.0-rc.1', '1.1.0'], array_column(self::json($this->act(null, 'GET', '/prompt-packages')), 'version'));
     }
 
-    #[TestDox('UC-PRO-03-F05 — E1 : visiteur 401, sans rôle 403, sans jeton CSRF 403 ; le brouillon reste un brouillon')]
+    #[TestDox('UC-PRO-03-F05 — E1 : visiteur 401, sans rôle 403 (RoleGuard), jeton CSRF absent ou faux 403 ; le brouillon reste un brouillon')]
     public function testF05GuardsOnPublication(): void
     {
         $draftId = $this->draft('1.1.0');
         $apprenant = $this->registerAs('eleve@example.org', 'Élève', ['apprenant']);
+        $path = '/prompt-packages/drafts/' . $draftId . '/publish';
 
-        self::assertSame(401, $this->act(null, 'POST', '/prompt-packages/drafts/' . $draftId . '/publish', ['changelog' => 'x'])->getStatusCode());
-        self::assertSame(403, $this->publish($draftId, ['changelog' => 'x'], $apprenant)->getStatusCode());
+        $visitor = $this->act(null, 'POST', $path, ['changelog' => 'x']);
+        self::assertSame(401, $visitor->getStatusCode());
+        self::assertSame(['error' => 'Authentication required'], self::json($visitor));
+        $noRole = $this->publish($draftId, ['changelog' => 'x'], $apprenant);
+        self::assertSame(403, $noRole->getStatusCode());
+        self::assertSame(['error' => 'Forbidden'], self::json($noRole), 'refus de RoleGuard, pas du CSRF');
         $noCsrf = $this->publish($draftId, ['changelog' => 'x'], $this->pom, false);
         self::assertSame(403, $noCsrf->getStatusCode());
         self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($noCsrf));
+        $forged = $this->act($this->pom, 'POST', $path, ['changelog' => 'x'], false, ['X-CSRF-Token' => 'faux']);
+        self::assertSame(403, $forged->getStatusCode());
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($forged));
 
         self::assertSame(['1.1.0'], array_column(self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')), 'version'));
     }
 
-    #[TestDox('UC-PRO-03-F06 — E2 : changelog absent ou blanc → 422 ; corps JSON non objet → 400')]
+    #[TestDox('UC-PRO-03-F06 — E2 : changelog absent, blanc ou non textuel (y compris corps vide ou tableau JSON) → 422 ; JSON invalide ou scalaire → 400')]
     public function testF06ChangelogIsRequired(): void
     {
         $draftId = $this->draft('1.1.0');
+        $path = '/api/prompt-packages/drafts/' . $draftId . '/publish';
 
+        // [] est encodé « [] » : un tableau JSON passe le décodage et vaut « sans changelog ».
         foreach ([[], ['changelog' => '   '], ['changelog' => 42]] as $body) {
             $response = $this->publish($draftId, $body);
             self::assertSame(422, $response->getStatusCode());
             self::assertSame(['error' => 'Champ requis : changelog (résumé des changements)'], self::json($response));
         }
-        $raw = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', '/api/prompt-packages/drafts/' . $draftId . '/publish', 'pas du json');
-        self::assertSame(400, $raw->getStatusCode());
-        self::assertSame(['error' => 'Corps JSON invalide'], self::json($raw));
+        $empty = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', $path, '');
+        self::assertSame(422, $empty->getStatusCode(), 'corps vide');
+        foreach (['pas du json', '"texte"'] as $raw) {
+            $response = ProSupport::rawRequest($this->pom['sid'], $this->pom['csrf'], $this->clientIp, 'POST', $path, $raw);
+            self::assertSame(400, $response->getStatusCode(), $raw);
+            self::assertSame(['error' => 'Corps JSON invalide'], self::json($response));
+        }
         self::assertSame(404, $this->act(null, 'GET', '/prompt-packages/aurora-demo/1.1.0')->getStatusCode());
     }
 
@@ -211,6 +230,42 @@ final class UcPro03PublierVersionPaquetTest extends AdminTestCase
 
         self::assertSame(409, $response->getStatusCode());
         self::assertSame(['error' => 'Ce paquet est réservé au pipeline source-unique : forkez-le sous un nouveau nom.'], self::json($response));
+        self::assertSame(['1.0.0'], array_column(self::json($this->act(null, 'GET', '/prompt-packages')), 'version'));
+    }
+
+    #[TestDox('UC-PRO-03-F16 — anomalie AN-4 (comportement actuel figé) : changelog de plus de 64 Kio → 500 « Erreur interne » au lieu de 422 ; le brouillon reste un brouillon')]
+    public function testF16OverlongChangelogAnswers500(): void
+    {
+        $draftId = $this->draft('1.1.0');
+
+        // La colonne prompt_versions.changelog est un TEXT (65 535 octets) ; MySQL strict refuse.
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $response = $this->publish($draftId, ['changelog' => str_repeat('a', 70000)]);
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+        }
+
+        self::assertSame(500, $response->getStatusCode(), 'attendu 422, obtenu 500');
+        self::assertSame(['error' => 'Erreur interne'], self::json($response));
+        self::assertSame(['1.1.0'], array_column(self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')), 'version'));
+        self::assertSame(404, $this->act(null, 'GET', '/prompt-packages/aurora-demo/1.1.0')->getStatusCode());
+    }
+
+    #[TestDox('UC-PRO-03-F17 — E7 : contenu devenu non conforme au schéma au moment de publier → 422 « Document invalide » avec détails, jamais publié')]
+    public function testF17InvalidDocumentAtPublicationIs422(): void
+    {
+        $draftId = $this->draft('1.1.0');
+        // Précondition posée en base : un contenu qui ne passerait plus le schéma.
+        self::$pdo->prepare("UPDATE prompt_versions SET content = JSON_REMOVE(content, '$.prompts') WHERE id = ?")->execute([$draftId]);
+
+        $response = $this->publish($draftId);
+
+        self::assertSame(422, $response->getStatusCode());
+        $body = self::json($response);
+        self::assertSame('Document invalide', $body['error']);
+        self::assertNotEmpty($body['details']);
+        self::assertSame(['1.1.0'], array_column(self::json($this->act($this->pom, 'GET', '/prompt-packages/drafts')), 'version'));
         self::assertSame(['1.0.0'], array_column(self::json($this->act(null, 'GET', '/prompt-packages')), 'version'));
     }
 }

@@ -41,6 +41,9 @@ export function packageDoc(overrides = {}) {
   return structuredClone({ ...pkgFixture, ...overrides })
 }
 
+/** Motif semver 2.0.0 du schéma prompt-package (champ version). */
+const SEMVER = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
+
 /** Semver x.y.z (le format des paquets de test) : -1, 0, 1. */
 function semverCompare(a, b) {
   const pa = String(a).split('.').map(Number)
@@ -157,15 +160,21 @@ export function createPromptologueBackend({
       return me ? jsonResponse(200, { user: me, csrfToken: CSRF }) : jsonResponse(401, { error: 'Authentification requise' })
     }
     if (method === 'GET' && url === 'api/prompt-packages') {
+      // Comme listPublished : tri par paquet puis par publication (tri stable,
+      // state.published est dans l'ordre de publication) ; description = celle
+      // du PAQUET, c.-à-d. de sa dernière version publiée, sur chaque ligne.
+      const packageDescription = (id) => state.published.filter((p) => p.doc.id === id).at(-1)?.doc.description ?? null
       return jsonResponse(
         200,
-        state.published.map((p) => ({
-          id: p.doc.id,
-          version: p.doc.version,
-          description: p.doc.description,
-          publishedAt: p.publishedAt,
-          reserved: p.doc.metadata?.reserved === true,
-        })),
+        [...state.published]
+          .sort((a, b) => (a.doc.id < b.doc.id ? -1 : a.doc.id > b.doc.id ? 1 : 0))
+          .map((p) => ({
+            id: p.doc.id,
+            version: p.doc.version,
+            description: packageDescription(p.doc.id),
+            publishedAt: p.publishedAt,
+            reserved: p.doc.metadata?.reserved === true,
+          })),
       )
     }
     if (method === 'GET' && url === 'api/prompt-packages/default') {
@@ -190,11 +199,30 @@ export function createPromptologueBackend({
         if (!fromId || !fromVersion || !version) {
           return jsonResponse(422, { error: 'Champs requis : fromId, fromVersion (version source) et version (nouvelle version)' })
         }
+        // Comme createDraft : semver vérifié AVANT la recherche de la source ;
+        // un 422 porte ses `details`, que l'IHM n'affiche pas (seul `error`).
+        if (!SEMVER.test(version)) {
+          return jsonResponse(422, { error: 'Document invalide', details: { '/version': ['Version semver invalide'] } })
+        }
         const source = findPublished(fromId, fromVersion)?.doc
         if (!source) return jsonResponse(404, { error: 'Version source introuvable' })
         const doc = structuredClone(source)
         if (source.metadata?.reserved === true) {
-          if (!toId) return jsonResponse(422, { error: 'Document invalide', details: { '/toId': ['toId requis'] } })
+          // Comme packageForReservedFork : nom requis, différent de la source,
+          // kebab-case ≤ 64 caractères, jamais pris par un paquet existant.
+          const target = typeof toId === 'string' ? toId.trim() : ''
+          if (target === '') {
+            return jsonResponse(422, { error: 'Document invalide', details: { '/toId': [`Le paquet « ${fromId} » est réservé : forkez-le sous un nouveau nom (toId requis).`] } })
+          }
+          if (target === fromId) {
+            return jsonResponse(422, { error: 'Document invalide', details: { '/toId': [`Le nom du fork doit différer de « ${fromId} » (paquet réservé).`] } })
+          }
+          if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(target) || target.length > 64) {
+            return jsonResponse(422, { error: 'Document invalide', details: { '/toId': ['Identifiant de paquet invalide (kebab-case, ≤ 64 caractères : a-z, 0-9, tirets).'] } })
+          }
+          if (state.published.some((p) => p.doc.id === target) || state.drafts.some((d) => d.document.id === target)) {
+            return jsonResponse(409, { error: `Un paquet nommé « ${target} » existe déjà — choisissez un autre nom pour votre copie.` })
+          }
           doc.id = toId
           delete doc.metadata.reserved
           doc.metadata.forkedFrom = { id: fromId, version: fromVersion }

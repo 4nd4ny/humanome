@@ -51,7 +51,7 @@ describe('UC-PRO-04 — proposer une version par défaut depuis l’accueil', ()
     const [call] = backend.callsTo('POST', 'api/prompt-packages/aurora-demo/1.0.0/propose-default')
     expect(call.headers['X-CSRF-Token']).toBe(CSRF)
     expect(call.body).toBeUndefined()
-    expect(backend.state.proposal).toMatchObject({ id: 'aurora-demo', version: '1.0.0', proposedBy: PROMPTOLOGUE.id })
+    // (L'enregistrement de la proposition relève de l'API : UC-PRO-04-F01.)
     // Le défaut reste 2.0.0 tant que l'admin n'a pas validé (UC-ADM-03).
     expect(v2.querySelector('.promptologue-defaut')).not.toBeNull()
     expect(v1.querySelector('.promptologue-defaut')).toBeNull()
@@ -73,6 +73,13 @@ describe('UC-PRO-04 — proposer une version par défaut depuis l’accueil', ()
     })
 
     expect((await screen.findByRole('alert')).textContent).toBe('Version publiée introuvable')
-    expect(backend.state.proposal).toBeNull()
+    // La requête est bien partie (avec le jeton), mais l'IHM n'annonce aucune
+    // proposition et la mention « par défaut » reste sur 2.0.0.
+    const [call] = backend.callsTo('POST', 'api/prompt-packages/aurora-demo/1.0.0/propose-default')
+    expect(call.headers['X-CSRF-Token']).toBe(CSRF)
+    expect(screen.queryByText(/Proposition envoyée/)).toBeNull()
+    const [row1, row2] = await rows()
+    expect(row2.querySelector('.promptologue-defaut')).not.toBeNull()
+    expect(row1.querySelector('.promptologue-defaut')).toBeNull()
   })
 })

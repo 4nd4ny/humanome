@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Unit;
 
+use Humanome\Packages\InvalidPackageException;
 use Humanome\Packages\PackageConflictException;
 use Humanome\Packages\PromptPackageRepository;
 use Humanome\Referentiel\Semver;
 use Humanome\Tests\UseCases\Support\ProSupport;
 use PDO;
+use PDOException;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -35,6 +37,7 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
 
     protected function setUp(): void
     {
+        self::$pdo->exec('DROP TRIGGER IF EXISTS t_uc_pro_03_fail');
         ProSupport::reset(self::$pdo);
         ProSupport::publish(self::$pdo); // aurora-demo 1.0.0
         $this->pom = ProSupport::user(self::$pdo);
@@ -90,7 +93,9 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
             end($row['content']['changelog']),
         );
         self::assertCount(2, $row['content']['changelog'], 'l’historique de la source est conservé');
-        self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T/', $row['content']['metadata']['publieLe']);
+        // publieLe posé À LA PUBLICATION (date du jour), pas hérité de la source.
+        self::assertStringStartsWith(date('Y-m-d') . 'T', $row['content']['metadata']['publieLe']);
+        self::assertNotSame(ProSupport::packageDoc()['metadata']['publieLe'], $row['content']['metadata']['publieLe']);
         self::assertSame('Extraction resserrée.', self::$pdo->query("SELECT description FROM prompt_packages WHERE slug = 'aurora-demo'")->fetchColumn());
         self::assertTrue(self::repo()->isPublished(ProSupport::PKG, '1.1.0'));
         self::assertNull(self::repo()->findDraft($draftId, $this->pom), 'ce n’est plus un brouillon');
@@ -110,24 +115,33 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
         self::assertEquals([['version' => '1.1.0', 'date' => date('Y-m-d'), 'description' => 'Note définitive']], $entries);
     }
 
-    #[TestDox('UC-PRO-03-U03 — semver strictement croissant par paquet : inférieur, égal ou « égal + métadonnées de build » refusés ; pré-version acceptée')]
+    #[TestDox('UC-PRO-03-U03 — semver strictement croissant par paquet : inférieur ou « égal en précédence » (+build) refusés ; pré-version acceptée ; les brouillons n’entrent pas dans la comparaison')]
     public function testU03SemverMustBeStrictlyGreaterThanEveryPublishedVersion(): void
     {
+        // (« Égal » strict impossible : uq_prompt_versions interdit un brouillon de même semver.)
         $lower = $this->draft('0.9.0');
         self::assertSame(
             'Semver must be strictly increasing: 0.9.0 is not greater than published 1.0.0',
             self::conflict(fn () => self::repo()->publishDraft($lower, 'Retour arrière', $this->pom)),
         );
         $build = $this->draft('1.0.0+build.2'); // créneau distinct, même précédence
-        self::conflict(fn () => self::repo()->publishDraft($build, 'Build', $this->pom));
+        self::assertSame(
+            'Semver must be strictly increasing: 1.0.0+build.2 is not greater than published 1.0.0',
+            self::conflict(fn () => self::repo()->publishDraft($build, 'Build', $this->pom)),
+        );
 
+        // RG2 : un brouillon 2.0.0 (non publié) ne bloque pas la publication de 1.1.0-rc.1.
+        $this->draft('2.0.0');
         $rc = $this->draft('1.1.0-rc.1');
         self::assertSame('published', self::repo()->publishDraft($rc, 'Pré-version', $this->pom)['status']);
         $final = $this->draft('1.1.0', '1.1.0-rc.1');
         self::assertSame('published', self::repo()->publishDraft($final, 'Version finale', $this->pom)['status']);
         // 1.0.5 < 1.1.0 désormais publiée.
         $late = $this->draft('1.0.5');
-        self::conflict(fn () => self::repo()->publishDraft($late, 'Trop tard', $this->pom));
+        self::assertStringContainsString(
+            'Semver must be strictly increasing: 1.0.5 is not greater than published 1.1.0',
+            self::conflict(fn () => self::repo()->publishDraft($late, 'Trop tard', $this->pom)),
+        );
     }
 
     #[TestDox('UC-PRO-03-U04 — Semver : précédence semver 2.0.0 (pré-versions, identifiants numériques, build ignoré)')]
@@ -162,7 +176,7 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
         self::assertSame('Première', self::row($draftId)['changelog']);
     }
 
-    #[TestDox('UC-PRO-03-U06 — défense en profondeur : un brouillon marqué reserved n’est jamais publié (et reste intact)')]
+    #[TestDox('UC-PRO-03-U06 — défense en profondeur : un brouillon marqué reserved n’est jamais publié (refus avant toute écriture, brouillon intact, pas de transaction pendante)')]
     public function testU06ReservedDraftIsNeverPublished(): void
     {
         $draftId = $this->draft('1.1.0');
@@ -177,7 +191,7 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
         $row = self::row($draftId);
         self::assertSame('draft', $row['status']);
         self::assertNull($row['published_at']);
-        self::assertFalse(self::$pdo->inTransaction(), 'transaction annulée');
+        self::assertFalse(self::$pdo->inTransaction(), 'pas de transaction pendante');
     }
 
     #[TestDox('UC-PRO-03-U07 — première publication d’un fork renommé : aucune version antérieure dans SON paquet, la copie reste non réservée')]
@@ -192,5 +206,51 @@ final class UcPro03PublierVersionPaquetTest extends TestCase
         );
         $reserved = array_column(self::repo()->listPublished(), 'reserved', 'id');
         self::assertSame(['aurora-demo' => false, 'mon-twin6' => false, 'twin6-ouverte' => true], $reserved);
+    }
+
+    #[TestDox('UC-PRO-03-U10 — RG5 : publication atomique — un échec APRÈS la première écriture (mise à jour du paquet) annule aussi le passage en « published »')]
+    public function testU10PublicationIsAtomic(): void
+    {
+        $draftId = $this->draft('1.1.0');
+        // Échec simulé de la seconde écriture (UPDATE prompt_packages), en test seulement.
+        self::$pdo->exec("CREATE TRIGGER t_uc_pro_03_fail BEFORE UPDATE ON prompt_packages FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'echec simule'");
+        try {
+            try {
+                self::repo()->publishDraft($draftId, 'Publication interrompue', $this->pom);
+                self::fail('PDOException attendue');
+            } catch (PDOException $e) {
+                self::assertStringContainsString('echec simule', $e->getMessage());
+            }
+        } finally {
+            self::$pdo->exec('DROP TRIGGER IF EXISTS t_uc_pro_03_fail');
+        }
+
+        $row = self::row($draftId);
+        self::assertSame('draft', $row['status'], 'la première écriture (statut) est annulée');
+        self::assertNull($row['published_at']);
+        self::assertNull($row['changelog']);
+        self::assertSame([], array_values(array_filter($row['content']['changelog'], static fn (array $e): bool => $e['version'] === '1.1.0')));
+        self::assertArrayNotHasKey('publieLe', $row['content']['metadata']);
+        self::assertFalse(self::$pdo->inTransaction());
+        self::assertFalse(self::repo()->isPublished(ProSupport::PKG, '1.1.0'));
+    }
+
+    #[TestDox('UC-PRO-03-U11 — re-validation au schéma à la publication : un contenu devenu invalide → InvalidPackageException, brouillon intact (E7)')]
+    public function testU11PublicationRevalidatesTheDocument(): void
+    {
+        $draftId = $this->draft('1.1.0');
+        // Contenu devenu non conforme hors des routes (base modifiée, schéma durci…).
+        self::$pdo->prepare("UPDATE prompt_versions SET content = JSON_REMOVE(content, '$.prompts') WHERE id = ?")->execute([$draftId]);
+
+        try {
+            self::repo()->publishDraft($draftId, 'Publication', $this->pom);
+            self::fail('InvalidPackageException attendue');
+        } catch (InvalidPackageException $e) {
+            self::assertNotSame([], $e->getErrors());
+        }
+        $row = self::row($draftId);
+        self::assertSame('draft', $row['status']);
+        self::assertNull($row['published_at']);
+        self::assertFalse(self::$pdo->inTransaction());
     }
 }

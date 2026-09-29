@@ -50,10 +50,22 @@ final class UcPro01ConsulterPaquetsPubliesTest extends AdminTestCase
         return new PromptPackageRepository(self::$pdo);
     }
 
-    #[TestDox('UC-PRO-01-F01 — nominal : la liste publique ne montre que les versions publiées non privées')]
+    /** @return array<string, int> nombre de lignes des tables que la consultation ne doit pas toucher */
+    private static function tableCounts(): array
+    {
+        $counts = [];
+        foreach (['prompt_packages', 'prompt_versions', 'settings', 'audit_events'] as $table) {
+            $counts[$table] = (int) self::$pdo->query('SELECT COUNT(*) FROM ' . $table)->fetchColumn();
+        }
+
+        return $counts;
+    }
+
+    #[TestDox('UC-PRO-01-F01 — nominal : la liste publique ne montre que les versions publiées non privées ; les lectures n’écrivent ni ne journalisent rien')]
     public function testF01PublicListShowsPublishedVersionsOnly(): void
     {
         $this->arrangeCatalogue();
+        $before = self::tableCounts();
 
         $response = $this->consult('/api/prompt-packages');
 
@@ -66,6 +78,13 @@ final class UcPro01ConsulterPaquetsPubliesTest extends AdminTestCase
         self::assertStringNotContainsString('2.1.0', $raw, 'brouillon invisible');
         self::assertStringNotContainsString(ProSupport::GOLDEN, $raw, 'Golden privé invisible');
         self::assertStringNotContainsString('"prompts"', $raw, 'métadonnées seulement, pas le document');
+
+        // Garantie « aucune écriture » : les quatre lectures publiques ne
+        // modifient aucune table et n'écrivent aucun événement d'audit.
+        foreach (['/api/prompt-packages/aurora-demo/1.0.0', '/api/prompt-packages/default', '/api/prompt-packages/aurora-demo/diff/1.0.0/2.0.0'] as $path) {
+            self::assertSame(200, $this->consult($path)->getStatusCode(), $path);
+        }
+        self::assertSame($before, self::tableCounts(), 'ni écriture ni événement d’audit (le seul audit est l’import du Golden en précondition)');
     }
 
     #[TestDox('UC-PRO-01-F02 — nominal : le document complet d’une version publiée est servi, conforme au schéma')]
@@ -135,8 +154,10 @@ final class UcPro01ConsulterPaquetsPubliesTest extends AdminTestCase
     #[TestDox('UC-PRO-01-F06 — A2 : un paquet réservé (twin6-ouverte) est listé avec reserved = true')]
     public function testF06ReservedPackageIsFlagged(): void
     {
-        ProSupport::publish(self::$pdo);
+        // Paquet réservé publié EN PREMIER : l'ordre de la liste (par paquet)
+        // ne doit rien à l'ordre de publication.
         ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
+        ProSupport::publish(self::$pdo);
 
         $reserved = array_column(self::json($this->consult('/api/prompt-packages')), 'reserved', 'id');
 
@@ -206,5 +227,65 @@ final class UcPro01ConsulterPaquetsPubliesTest extends AdminTestCase
         $default = $this->consult('/api/prompt-packages/default');
         self::assertSame(404, $default->getStatusCode());
         self::assertSame(['error' => 'Aucun paquet publié'], self::json($default));
+    }
+
+    #[TestDox('UC-PRO-01-F19 — anomalie AN-2 (comportement actuel figé) : sans défaut validé, le repli désigne le paquet RÉSERVÉ twin6-ouverte importé après aurora au déploiement')]
+    public function testF19FallbackDefaultCanBeAReservedPackage(): void
+    {
+        // Ordre de deploy.mjs (build/prompt-packages/*.json, tri alphabétique) :
+        // le paquet « par défaut » aurora d'abord, puis le paquet réservé Twin6.
+        ProSupport::publish(self::$pdo);
+        ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
+
+        $default = $this->consult('/api/prompt-packages/default');
+
+        self::assertSame(200, $default->getStatusCode());
+        // Comportement ACTUEL figé (AN-2) : latestPublishedAnyPackage ne filtre
+        // pas metadata.reserved, le paquet réservé devient le défaut servi.
+        self::assertSame(['id' => 'twin6-ouverte', 'version' => '1.0.0'], self::json($default));
+        self::assertTrue(array_column(self::json($this->consult('/api/prompt-packages')), 'reserved', 'id')['twin6-ouverte']);
+    }
+
+    #[TestDox('UC-PRO-01-F20 — RG6 : « default » et « drafts » ne sont pas des identifiants réservés — un paquet ainsi nommé reste lisible et comparable')]
+    public function testF20DefaultAndDraftsAreOrdinaryPackageIds(): void
+    {
+        foreach (['default', 'drafts'] as $slug) {
+            ProSupport::publish(self::$pdo, ProSupport::packageDoc(['id' => $slug]));
+            ProSupport::publish(self::$pdo, ProSupport::packageDoc(['id' => $slug, 'version' => '2.0.0']));
+
+            $detail = $this->consult('/api/prompt-packages/' . $slug . '/1.0.0');
+            self::assertSame(200, $detail->getStatusCode(), $slug);
+            self::assertSame($slug, self::json($detail)['id']);
+            $diff = $this->consult('/api/prompt-packages/' . $slug . '/diff/1.0.0/2.0.0');
+            self::assertSame(200, $diff->getStatusCode(), $slug);
+            self::assertSame($slug, self::json($diff)['packageId']);
+        }
+        // La route statique /default garde son sens : la DÉSIGNATION {id, version}.
+        self::assertSame(['id' => 'drafts', 'version' => '2.0.0'], self::json($this->consult('/api/prompt-packages/default')));
+    }
+
+    #[TestDox('UC-PRO-01-F21 — RG3 : un réglage de défaut sans {id, version} textuels est ignoré → repli sur la dernière publication')]
+    public function testF21MalformedSettingFallsBackToTheLatestPublication(): void
+    {
+        $this->arrangeCatalogue();
+        $settings = new SettingsRepository(self::$pdo);
+
+        foreach ([['id' => 'aurora-demo'], ['id' => 'aurora-demo', 'version' => 100], ['version' => '1.0.0']] as $partial) {
+            $settings->set(SettingsRepository::DEFAULT_PACKAGE, $partial);
+            self::assertSame(['id' => 'aurora-demo', 'version' => '2.0.0'], self::json($this->consult('/api/prompt-packages/default')), json_encode($partial));
+        }
+    }
+
+    #[TestDox('UC-PRO-01-F22 — limite L2 (comportement figé) : le réglage validé est servi TEL QUEL, sans filtre à la lecture — la conformité ne tient qu’au contrôle d’écriture')]
+    public function testF22ValidatedSettingIsServedWithoutReadFilter(): void
+    {
+        $this->arrangeCatalogue();
+        // Écriture directe en base (hors routes, qui passent toutes par isPublished) :
+        // un réglage désignant le Golden privé.
+        (new SettingsRepository(self::$pdo))->set(SettingsRepository::DEFAULT_PACKAGE, ['id' => ProSupport::GOLDEN, 'version' => '1.0.0']);
+
+        self::assertSame(['id' => ProSupport::GOLDEN, 'version' => '1.0.0'], self::json($this->consult('/api/prompt-packages/default')));
+        // Le document, lui, reste introuvable publiquement.
+        self::assertSame(404, $this->consult('/api/prompt-packages/' . ProSupport::GOLDEN . '/1.0.0')->getStatusCode());
     }
 }

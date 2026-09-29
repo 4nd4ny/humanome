@@ -105,7 +105,7 @@ describe('UC-PRO-03 — publier depuis l’éditeur', () => {
     expect(backend.callsTo('POST', 'api/prompt-packages/drafts/100/publish')).toHaveLength(0)
   })
 
-  it('UC-PRO-03-F13 — E4 : semver non croissant → message du serveur, le brouillon reste éditable', async () => {
+  it('UC-PRO-03-F13 — E4 : semver non croissant → message du serveur ; aucun champ ne permet de corriger la version (AN-3)', async () => {
     const backend = backendWithDraft('0.9.0')
     openEditor(backend)
     await waitEditor('Brouillon aurora-demo@0.9.0')
@@ -117,6 +117,12 @@ describe('UC-PRO-03 — publier depuis l’éditeur', () => {
     expect(await editorAlert()).toBe('Semver must be strictly increasing: 0.9.0 is not greater than published 1.0.0')
     expect(screen.getByRole('form', { name: 'Publication' })).toBeDefined()
     expect(backend.state.published.map((p) => p.doc.version)).toEqual(['1.0.0'])
+    // Anomalie AN-3 (comportement figé) : l'éditeur n'expose pas la version —
+    // aucun champ ne l'affiche ni ne la modifie ; seul un PUT direct sur l'API
+    // (UC-PRO-02 A3) permettrait de la corriger.
+    expect(screen.queryByLabelText(/^Version/)).toBeNull()
+    expect(screen.queryByDisplayValue('0.9.0')).toBeNull()
+    expect(document.querySelector('.promptologue-editeur').textContent).toContain('La version est fixée à la création du brouillon')
   })
 
   it('UC-PRO-03-F14 — E5 : après publication, « Enregistrer » est refusé (version immuable)', async () => {
@@ -132,5 +138,26 @@ describe('UC-PRO-03 — publier depuis l’éditeur', () => {
 
     expect(await editorAlert()).toBe('Published versions are immutable: create a new draft instead')
     expect(backend.callsTo('PUT', 'api/prompt-packages/drafts/100')).toHaveLength(1)
+  })
+
+  it('UC-PRO-03-F15 — anomalie AN-2 (comportement actuel figé) : « Publier… » publie l’état ENREGISTRÉ, les modifications locales non enregistrées sont perdues', async () => {
+    const backend = backendWithDraft()
+    openEditor(backend)
+    await waitEditor('Brouillon aurora-demo@1.1.0')
+
+    fireEvent.change(screen.getByLabelText('Description du paquet'), { target: { value: 'Modification jamais enregistrée.' } })
+    await click(screen.getByText('Publier…'))
+    fireEvent.change(screen.getByLabelText('Changelog de la version (obligatoire)'), { target: { value: 'Publication' } })
+    await click(screen.getByText('Confirmer la publication'))
+
+    await waitFor(() => expect(screen.getByText('Version aurora-demo@1.1.0 publiée — elle est désormais immuable.')).toBeDefined())
+    // Aucun enregistrement préalable, aucun avertissement : la version publiée
+    // (immuable) porte la description d'origine…
+    expect(backend.callsTo('PUT', 'api/prompt-packages/drafts/100')).toHaveLength(0)
+    expect(backend.state.published.at(-1).doc.description).toBe(packageDoc().description)
+    // … alors que l'éditeur affiche toujours le texte modifié, désormais impossible à enregistrer.
+    expect(screen.getByLabelText('Description du paquet').value).toBe('Modification jamais enregistrée.')
+    await click(screen.getByText('Enregistrer'))
+    expect(await editorAlert()).toBe('Published versions are immutable: create a new draft instead')
   })
 })

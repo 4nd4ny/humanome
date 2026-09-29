@@ -70,7 +70,7 @@ describe('UC-ADM-03 — l’administrateur valide le paquet par défaut', () => 
     expect(backend.callsTo('GET', 'api/admin/settings')).toHaveLength(2)
   })
 
-  it('UC-ADM-03-F09 — E3 : la version n’est plus publiée côté serveur (404) → alerte, rien de validé', async () => {
+  it('UC-ADM-03-F09 — E4 : la version n’est plus publiée côté serveur (404) → alerte, rien de validé', async () => {
     const backend = createPromptologueBackend({
       me: ADMIN,
       routes: {
@@ -88,10 +88,14 @@ describe('UC-ADM-03 — l’administrateur valide le paquet par défaut', () => 
     })
 
     expect((await screen.findByRole('alert')).textContent).toBe('Version publiée introuvable')
-    expect(backend.state.stored).toBeNull()
+    // Aucun succès annoncé, défaut effectif inchangé, pas de rechargement de l'instantané.
+    expect(screen.queryByText(/Paquet par défaut :/)).toBeNull()
+    expect(block.textContent).toContain('(dernier publié, par défaut)')
+    expect(block.textContent).not.toContain('(validé)')
+    expect(backend.callsTo('GET', 'api/admin/settings')).toHaveLength(1)
   })
 
-  it('UC-ADM-03-F10 — E4 (IHM) : aucun paquet publié → « aucun paquet publié », choix impossible', async () => {
+  it('UC-ADM-03-F10 — E5 (IHM) : aucun paquet publié → « aucun paquet publié », choix impossible', async () => {
     const backend = createPromptologueBackend({ me: ADMIN, published: [] })
     openAdmin('#/admin/reglages', backend)
 
@@ -108,6 +112,7 @@ describe('UC-ADM-03 — l’administrateur valide le paquet par défaut', () => 
       'Cet espace est réservé à l’administration de la plateforme.',
     )
     expect(backend.calls.some((c) => c.url.startsWith('api/admin/'))).toBe(false)
+    expect(screen.queryByText(/Vous n’êtes pas connecté/)).toBeNull()
   })
 
   it('UC-ADM-03-F12 — A3 : état du worker de masse (jobs en file, runs actifs, dernière activité, terminés / échoués)', async () => {
@@ -128,5 +133,30 @@ describe('UC-ADM-03 — l’administrateur valide le paquet par défaut', () => 
       ['Dernière activité', new Date('2026-07-05T10:00:00').toLocaleDateString('fr-FR')],
       ['Terminés / échoués', '4 / 1'],
     ])
+  })
+
+  it('UC-ADM-03-F13 — E1 (IHM) : un visiteur sans session voit l’explication du rôle et l’invitation à se connecter, aucun réglage n’est lu', async () => {
+    const backend = createPromptologueBackend({ me: null })
+    openAdmin('#/admin/reglages', backend, null)
+
+    expect((await screen.findByTestId('admin-reserve')).textContent).toContain(
+      'Cet espace est réservé à l’administration de la plateforme.',
+    )
+    expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeDefined()
+    expect(screen.getByRole('link', { name: 'Connectez-vous' }).getAttribute('href')).toBe('#/compte')
+    expect(backend.calls.some((c) => c.url.startsWith('api/admin/'))).toBe(false)
+  })
+
+  it('UC-ADM-03-F14 — E6 (IHM) : une des trois lectures échoue (bloc démo) → toute la section est remplacée par « Chargement impossible. »', async () => {
+    const backend = createPromptologueBackend({
+      me: ADMIN,
+      routes: { 'GET api/admin/demo-config': () => jsonResponse(500, { error: 'Erreur interne' }) },
+    })
+    openAdmin('#/admin/reglages', backend)
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Chargement impossible.')
+    // Le bloc « paquet par défaut » disparaît aussi, bien que GET admin/settings ait réussi.
+    expect(screen.queryByRole('heading', { name: 'Version de prompt par défaut' })).toBeNull()
+    expect(backend.callsTo('GET', 'api/admin/settings')).toHaveLength(1)
   })
 })

@@ -11,6 +11,7 @@ use Humanome\Packages\SettingsRepository;
 use Humanome\Tests\TestDb;
 use Humanome\Tests\UseCases\Support\ProSupport;
 use PDO;
+use PDOException;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -41,6 +42,7 @@ final class UcAdm03ValiderPaquetDefautReglagesTest extends TestCase
     {
         // PlatformStatus lit aussi la démo (DemoConfig, via Db) : base de test.
         TestDb::overrideEnv();
+        self::$pdo->exec('DROP TRIGGER IF EXISTS t_uc_adm_03_audit_fail');
         ProSupport::reset(self::$pdo);
         $this->admin = ProSupport::user(self::$pdo, 'Root', ['admin']);
     }
@@ -104,12 +106,16 @@ final class UcAdm03ValiderPaquetDefautReglagesTest extends TestCase
         self::assertNull(self::settings()->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL), 'même version : proposition consommée');
     }
 
-    #[TestDox('UC-ADM-03-U03 — version inconnue, brouillon ou Golden privé → AdminException 404, rien n’est écrit ni journalisé')]
+    #[TestDox('UC-ADM-03-U03 — version inconnue, brouillon ou Golden privé → AdminException 404, rien n’est écrit ni journalisé, la proposition en attente reste')]
     public function testU03OnlyPublishedPublicVersionsCanBecomeTheDefault(): void
     {
         ProSupport::publish(self::$pdo);
-        (new PromptPackageRepository(self::$pdo))->createDraft(ProSupport::PKG, '1.0.0', '1.1.0', ProSupport::user(self::$pdo));
+        self::assertNotNull(
+            (new PromptPackageRepository(self::$pdo))->createDraft(ProSupport::PKG, '1.0.0', '1.1.0', ProSupport::user(self::$pdo)),
+            'précondition : le brouillon 1.1.0 existe',
+        );
         ProSupport::importGolden(self::$pdo, $this->admin);
+        self::propose('1.1.0'); // proposition en attente (même version que le brouillon)
 
         foreach ([[ProSupport::PKG, '9.9.9'], [ProSupport::PKG, '1.1.0'], [ProSupport::GOLDEN, '1.0.0']] as [$id, $version]) {
             try {
@@ -122,6 +128,7 @@ final class UcAdm03ValiderPaquetDefautReglagesTest extends TestCase
         }
         self::assertNull(self::settings()->get(SettingsRepository::DEFAULT_PACKAGE));
         self::assertNull(self::lastAudit('default_package_set'));
+        self::assertSame('1.1.0', self::settings()->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL)['version'], 'proposition inchangée');
     }
 
     #[TestDox('UC-ADM-03-U04 — instantané defaultPackage : rien publié, repli sur la dernière publication, défaut validé prioritaire, proposition exposée')]
@@ -193,5 +200,29 @@ final class UcAdm03ValiderPaquetDefautReglagesTest extends TestCase
         self::assertSame(['application', 'database', 'secrets', 'llm'], array_keys($snapshot['config']));
         self::assertFalse($snapshot['demo']['editableInUi']);
         self::assertSame(['defaultPackage', 'demo', 'worker', 'config'], array_keys($snapshot));
+    }
+
+    #[TestDox('UC-ADM-03-U10 — anomalie AN-1 (comportement actuel figé) : écriture non transactionnelle — un échec de l’audit laisse le défaut changé et la proposition consommée, sans trace')]
+    public function testU10AuditFailureLeavesTheDefaultChangedWithoutTrace(): void
+    {
+        ProSupport::publish(self::$pdo);
+        self::propose('1.0.0');
+        // Échec simulé de l'INSERT d'audit (dernière des trois écritures), en test seulement.
+        self::$pdo->exec("CREATE TRIGGER t_uc_adm_03_audit_fail BEFORE INSERT ON audit_events FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'audit indisponible'");
+        try {
+            try {
+                self::platform()->setDefaultPackage($this->admin, ProSupport::PKG, '1.0.0');
+                self::fail('PDOException attendue');
+            } catch (PDOException $e) {
+                self::assertStringContainsString('audit indisponible', $e->getMessage());
+            }
+        } finally {
+            self::$pdo->exec('DROP TRIGGER IF EXISTS t_uc_adm_03_audit_fail');
+        }
+
+        // Comportement ACTUEL : set() et delete() déjà validés (autocommit), aucun retour arrière.
+        self::assertSame('1.0.0', self::settings()->get(SettingsRepository::DEFAULT_PACKAGE)['version'], 'défaut changé malgré l’échec');
+        self::assertNull(self::settings()->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL), 'proposition consommée');
+        self::assertNull(self::lastAudit('default_package_set'), 'aucune trace');
     }
 }

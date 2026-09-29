@@ -7,8 +7,10 @@ namespace Humanome\Tests\UseCases\Unit;
 use Humanome\Packages\InvalidPackageException;
 use Humanome\Packages\PackageConflictException;
 use Humanome\Packages\PromptPackageRepository;
+use Humanome\Referentiel\Semver;
 use Humanome\Tests\UseCases\Support\ProSupport;
 use PDO;
+use PDOException;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -105,7 +107,11 @@ final class UcPro02EditerBrouillonPaquetTest extends TestCase
         $pom = ProSupport::user(self::$pdo, 'Pom');
         $zoe = ProSupport::user(self::$pdo, 'Zoé');
         ProSupport::importGolden(self::$pdo, ProSupport::user(self::$pdo, 'Root', ['admin']));
-        self::repo()->createDraft(ProSupport::PKG, '1.0.0', '1.1.0', $pom);
+        $own = self::repo()->createDraft(ProSupport::PKG, '1.0.0', '1.1.0', $pom);
+        // Le brouillon source est retouché : la dérivation doit copier CE contenu.
+        $retouched = $own['document'];
+        $retouched['description'] = 'Retouche 1.1.0';
+        self::repo()->updateDraft($own['draftId'], $retouched, $pom);
 
         self::assertNull(self::repo()->createDraft(ProSupport::PKG, '9.9.9', '10.0.0', $pom), 'inconnue');
         self::assertNull(self::repo()->createDraft(ProSupport::PKG, '1.1.0', '1.2.0', $zoe), 'brouillon d’autrui');
@@ -114,6 +120,7 @@ final class UcPro02EditerBrouillonPaquetTest extends TestCase
         $fromOwn = self::repo()->createDraft(ProSupport::PKG, '1.1.0', '1.2.0', $pom);
         self::assertNotNull($fromOwn);
         self::assertSame('1.2.0', $fromOwn['document']['version']);
+        self::assertSame('Retouche 1.1.0', $fromOwn['document']['description'], 'contenu copié du brouillon source, pas de la version publiée');
     }
 
     #[TestDox('UC-PRO-02-U04 — createDraft : version déjà prise dans le paquet (publiée ou brouillon) → PackageConflictException')]
@@ -152,7 +159,8 @@ final class UcPro02EditerBrouillonPaquetTest extends TestCase
         self::assertSame('mon-twin6', $draft['id']);
         self::assertSame('mon-twin6', $draft['document']['id']);
         self::assertArrayNotHasKey('reserved', $draft['document']['metadata']);
-        self::assertSame(['id' => 'twin6-ouverte', 'version' => '1.0.0'], $draft['document']['metadata']['forkedFrom']);
+        // Colonne JSON MySQL : l'ordre des clés n'est pas conservé.
+        self::assertEquals(['id' => 'twin6-ouverte', 'version' => '1.0.0'], $draft['document']['metadata']['forkedFrom']);
         self::assertSame(0, (int) self::$pdo->query(
             "SELECT COUNT(*) FROM prompt_versions pv JOIN prompt_packages pp ON pp.id = pv.package_id
               WHERE pp.slug = 'twin6-ouverte' AND pv.status = 'draft'"
@@ -291,5 +299,43 @@ final class UcPro02EditerBrouillonPaquetTest extends TestCase
         // … mais la publication passe et sert un document dont l'id diffère du paquet.
         self::repo()->publishDraft($draft['draftId'], 'Copie', $pom);
         self::assertSame(' mon-twin6 ', self::repo()->findPublished('mon-twin6', '1.0.0')['id']);
+    }
+
+    #[TestDox('UC-PRO-02-U21 — anomalie AN-5 (comportement actuel figé) : semver valide de plus de 32 caractères → PDOException ; fork réservé : paquet vide orphelin qui bloque le nom')]
+    public function testU21OverlongVersionBreaksCreationAndOrphansTheForkPackage(): void
+    {
+        $pom = ProSupport::user(self::$pdo);
+        ProSupport::publish(self::$pdo, ProSupport::reservedDoc());
+        $long = '1.0.0-' . str_repeat('a', 30); // 36 caractères
+        self::assertTrue(Semver::isValid($long), 'semver valide, aucune borne de longueur');
+
+        // Brouillon ordinaire : l'INSERT échoue (prompt_versions.semver VARCHAR(32), MySQL strict).
+        $error = self::pdoError(static fn () => self::repo()->createDraft(ProSupport::PKG, '1.0.0', $long, $pom));
+        self::assertSame('22001', (string) $error->getCode(), 'données trop longues');
+        self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM prompt_versions WHERE status = 'draft'")->fetchColumn());
+
+        // Fork réservé : le paquet « mon-twin6 » est créé AVANT l'échec (pas de transaction)…
+        self::pdoError(static fn () => self::repo()->createDraft(ProSupport::RESERVED, '1.0.0', $long, $pom, 'mon-twin6'));
+        $orphan = self::$pdo->query(
+            "SELECT COUNT(DISTINCT pp.id) AS packages, COUNT(pv.id) AS versions
+               FROM prompt_packages pp LEFT JOIN prompt_versions pv ON pv.package_id = pp.id
+              WHERE pp.slug = 'mon-twin6'"
+        )->fetch();
+        self::assertSame([1, 0], [(int) $orphan['packages'], (int) $orphan['versions']], 'paquet vide orphelin');
+        // … et le nom reste pris : un nouvel essai, même avec une version valide, est refusé.
+        self::assertSame(
+            'Un paquet nommé « mon-twin6 » existe déjà — choisissez un autre nom pour votre copie.',
+            self::conflict(static fn () => self::repo()->createDraft(ProSupport::RESERVED, '1.0.0', '1.0.1', $pom, 'mon-twin6')),
+        );
+    }
+
+    private static function pdoError(callable $call): PDOException
+    {
+        try {
+            $call();
+        } catch (PDOException $e) {
+            return $e;
+        }
+        self::fail('PDOException attendue');
     }
 }

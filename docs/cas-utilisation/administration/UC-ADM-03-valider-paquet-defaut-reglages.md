@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Administrateur |
-| **Acteurs secondaires** | Promptologue (auteur de la proposition, UC-PRO-04) ; apprenants et lanceur de runs (reçoivent la version par défaut, UC-PRO-01 / UC-APP-02) |
+| **Acteurs secondaires** | Promptologue (auteur de la proposition, UC-PRO-04) ; clients de `GET /api/prompt-packages/default` (atelier promptologue, lanceur de runs apprenant — qui reçoit la désignation mais l'ignore, UC-APP-02 A-01) |
 | **Portée** | humanome.xyz — section `#/admin/reglages` ; API de session admin `GET /api/admin/settings`, `POST /api/admin/settings/default-package` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.8 et §4.10 (interface d'administration simple), §4.3 (versions de prompts sélectionnables), §7 (Golden Prompt privé) ; plan P10 point 5 (« proposition promptologue + validation admin ») ; `docs/administration.md` §3 |
@@ -12,9 +12,12 @@
 ## Objectif
 
 Permettre à l'administrateur de **décider** quelle version publiée de paquet
-de prompts est proposée par défaut aux apprenants — le plus souvent en
-validant la proposition d'un promptologue — et de lire l'instantané des
-réglages de la plateforme (paquet par défaut, état du worker de masse).
+de prompts est désignée par défaut (`GET /api/prompt-packages/default`) — le
+plus souvent en validant la proposition d'un promptologue — et de lire
+l'instantané des réglages de la plateforme (paquet par défaut, état du worker
+de masse). En v1, cette désignation n'est pas encore exploitée par
+l'assistant de run apprenant ni par le runner de masse (voir « Anomalies
+constatées »).
 
 ## Déclencheur
 
@@ -38,7 +41,9 @@ l'administration), typiquement après une proposition de promptologue.
 
 ## Garanties minimales (en cas d'échec)
 
-- Le défaut servi et la proposition restent inchangés ; aucun audit.
+- Refus métier (`401`, `403`, `422`, `404`) : le défaut servi et la
+  proposition restent inchangés ; aucun audit. Une erreur technique pendant
+  l'écriture (`500`) ne bénéficie pas de cette garantie (anomalie AN-1).
 - L'instantané n'expose jamais la valeur d'un secret.
 
 ## Scénario nominal
@@ -68,8 +73,11 @@ l'administration), typiquement après une proposition de promptologue.
 8. L'IHM affiche « Paquet par défaut : *id version*. » et recharge
    l'instantané : « Effectif : *id version* (validé). », plus de proposition
    en attente.
-9. Les apprenants (lanceur de runs), l'atelier promptologue et toute lecture
-   de `GET /api/prompt-packages/default` reçoivent désormais cette version.
+9. `GET /api/prompt-packages/default` et l'accueil de l'atelier promptologue
+   (`AccueilSection`, mention « par défaut ») reflètent désormais cette
+   version. Le lanceur de runs apprenant la reçoit (`fetchPromptPackages`)
+   mais l'ignore (UC-APP-02, anomalie A-01) ; le runner de masse ne la
+   signale pas (UC-ETA-03).
 
 ## Scénarios alternatifs
 
@@ -82,9 +90,11 @@ l'administration), typiquement après une proposition de promptologue.
   « Jobs en file (en attente + en cours) », « Runs actifs », « Dernière
   activité » (`MAX(updated_at)` des jobs, date courte, ou « jamais ») et
   « Terminés / échoués », dérivés de `mass_jobs` / `mass_runs` (ADR-005).
-- **A4 — Chemin technique de déploiement** : sans navigateur, le script de
-  déploiement peut valider le défaut par `POST /api/admin/default-package`
-  (jeton `X-Migrate-Token`, sans session) — cas UC-SYS-02, non rejoué ici.
+- **A4 — Chemin technique de déploiement** : sans navigateur, le mainteneur
+  muni du jeton `X-Migrate-Token` peut valider le défaut par
+  `POST /api/admin/default-package` (sans session, sans audit ; aucun script
+  du dépôt ne l'appelle, c'est un appel manuel) — cas UC-SYS-02, rejoué par
+  UC-SYS-02-F04, non rejoué ici.
 
 La configuration serveur (`#/admin/config`, `ConfigSection`, même instantané
 `GET /api/admin/settings` → `config`) est décrite par UC-ADM-04 (A4) ; ce cas
@@ -99,17 +109,30 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 - **E2 — Jeton CSRF absent ou invalide** (étape 6) : `403 {error: "Jeton CSRF
   absent ou invalide"}`.
 - **E3 — Champs manquants** (étape 7) : `id` ou `version` absent, blanc ou non
-  textuel → `422 {error: "Champs requis : id et version"}`.
+  textuel, corps vide, non JSON ou scalaire → `422 {error: "Champs requis :
+  id et version"}` (cette route ne répond jamais `400`).
 - **E4 — Version non éligible** (étape 7) : inconnue, brouillon ou Golden
   privé → `404 {error: "Version publiée introuvable"}` ; l'IHM l'affiche en
   alerte ; défaut, proposition et journal inchangés.
 - **E5 — Aucun paquet publié** (étape 4) : « Effectif : aucun paquet
   publié. », la liste de choix est désactivée.
+- **E6 — Chargement impossible** (étape 2) : l'échec de **l'une** des trois
+  lectures (y compris `GET /api/admin/demo-config`, bloc démo) remplace toute
+  la section par l'alerte « Chargement impossible. », bloc « Version de
+  prompt par défaut » compris.
+
+Erreurs techniques communes à toutes les routes de session admin (mapping
+`$wrap` de `routes/admin.php`, non rejouées ici) : base non configurée →
+`503 {error: "Service indisponible"}` ; `PDOException` → `500 {error:
+"Erreur interne"}` (détail en journal serveur seulement). Côté IHM, une
+validation qui échoue hors `ApiError` (API injoignable) affiche « Validation
+impossible. ».
 
 ## Règles de gestion
 
 - **RG1** — Décision à deux mains : le promptologue propose (UC-PRO-04),
-  l'administrateur décide ; lui seul écrit `default_prompt_package`.
+  l'administrateur décide ; en session, lui seul écrit
+  `default_prompt_package` (hors outillage de déploiement à jeton, A4 et L2).
 - **RG2** — Seule une version **publiée et non privée** peut devenir le
   défaut (porte `isPublished`) : un Golden Prompt, jamais.
 - **RG3** — La validation consomme la proposition de **la même** version et
@@ -129,7 +152,7 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 | Donnée | Traitement |
 |---|---|
 | Défaut validé | `settings.default_prompt_package` : `{id, version, validatedAt}` |
-| Proposition | `settings.default_prompt_package_proposal` : identifiants seulement, supprimée à la validation de la même version |
+| Proposition | `settings.default_prompt_package_proposal` : `{id, version, proposedBy, proposedAt}` (id de compte du promptologue, sans e-mail), exposée telle quelle par l'instantané, supprimée à la validation de la même version |
 | Audit | `default_package_set` : `{id, version}` + id de l'administrateur |
 | Secrets de configuration | Jamais exposés : booléen `configured` |
 
@@ -148,6 +171,13 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 | Domaine | `api/src/Packages/PromptPackageRepository.php` — `isPublished`, `latestPublishedAnyPackage` | Porte, repli |
 | Domaine | `api/src/Packages/SettingsRepository.php` | Défaut et proposition |
 | Domaine | `api/src/Auth/Audit.php` | `default_package_set` |
+| Domaine | `api/src/Llm/DemoConfig.php` — `load` | Bloc `demo` de l'instantané |
+| Config | `api/config/app.php` | Liste des réglages et secrets de l'instantané (`configured`, RG6) |
+| Front | `web/src/api/client.js` — `apiFetch`, `ApiError` | Jeton `X-CSRF-Token`, message d'erreur affiché (E4) |
+
+`RequireRole` et `CsrfMiddleware` sont partagés : leurs tests unitaires vivent
+dans UC-ADM-01-U10 (`RequireRole::any('admin')`) et UC-CPT-02-U07
+(`CsrfMiddleware`).
 
 ## Jeux de tests
 
@@ -157,13 +187,16 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 |---|---|---|---|
 | UC-ADM-03-U01 | `PlatformStatus::setDefaultPackage` | Défaut `{id, version, validatedAt}`, audit (RG5) | `api/tests/UseCases/Unit/UcAdm03ValiderPaquetDefautReglagesTest.php` |
 | UC-ADM-03-U02 | `setDefaultPackage` | Proposition de même version consommée, autre conservée (RG3, A1) | idem |
-| UC-ADM-03-U03 | `setDefaultPackage`, `AdminException` | Inconnue, brouillon, Golden → 404, rien d'écrit (RG2, E4) | idem |
+| UC-ADM-03-U03 | `setDefaultPackage`, `AdminException` | Inconnue, brouillon (précondition vérifiée), Golden → 404, rien d'écrit, proposition intacte (RG2, E4) | idem |
 | UC-ADM-03-U04 | `snapshot` → `defaultPackage` | Rien publié, repli, validé prioritaire, proposition (RG4, E5) | idem |
 | UC-ADM-03-U05 | `snapshot` → `worker` | File, statuts, runs actifs, dernière activité (A3) | idem |
 | UC-ADM-03-U06 | `snapshot` → `config`, `demo` | Secrets en booléens, aucune valeur (RG6) | idem |
 | UC-ADM-03-U07 | `fetchSettings`, `setDefaultPackage` (front) | Routes, corps, jeton CSRF | `web/test/usecases/unit/uc-adm-03-valider-paquet-defaut-reglages.test.js` |
 | UC-ADM-03-U08 | `listPublishedPackages`, `frDate` | Repli `[]`, date courte / tiret | idem |
 | UC-ADM-03-U09 | `parseHash` | Route `#/admin/reglages` | idem |
+| UC-ADM-03-U10 | `setDefaultPackage` | Anomalie AN-1 : échec de l'audit (trigger de test) → défaut changé, proposition consommée, aucune trace (comportement figé) | `api/tests/UseCases/Unit/UcAdm03ValiderPaquetDefautReglagesTest.php` |
+| UC-ADM-03-U11 | `ReglagesSection` — `DefaultPackage`, `onValidate` | Bouton désactivé sans choix ; `id@version` découpé ; message et rechargement ; 404 en alerte sans rechargement ; « Validation impossible. » hors `ApiError` | `web/test/usecases/unit/uc-adm-03-valider-paquet-defaut-reglages.test.js` |
+| UC-ADM-03-U12 | `AdminView` | Garde : visiteur (invitation à se connecter), autre rôle, aucun appel `api/admin/*` ; admin → section chargée | idem |
 
 ### Tests fonctionnels
 
@@ -172,15 +205,17 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 | UC-ADM-03-F01 | Nominal | API | Proposition lue, validée (id trimé), consommée ; défaut servi changé ; audit | `api/tests/UseCases/Functional/UcAdm03ValiderPaquetDefautReglagesTest.php` |
 | UC-ADM-03-F02 | A1 | API | Autre version validée, proposition conservée | idem |
 | UC-ADM-03-F03 | A2 | API | Défaut épinglé malgré une publication ultérieure | idem |
-| UC-ADM-03-F04 | A3 + RG6 | API | Instantané : worker, secrets `configured`, aucune valeur secrète dans la réponse | idem |
-| UC-ADM-03-F05 | E1, E2 | API | 401 visiteur, 403 promptologue (lecture et écriture), 403 CSRF | idem |
-| UC-ADM-03-F06 | E3 | API | 422 pour id/version manquants, blancs, non textuels | idem |
-| UC-ADM-03-F07 | E4 | API | Inconnue, brouillon, Golden → 404 ; défaut et journal inchangés | idem |
+| UC-ADM-03-F04 | A3 + RG6 | API | Instantané sur des jobs et runs réels : en file, statuts, runs actifs, dernière activité ; secrets `configured`, aucune valeur secrète | idem |
+| UC-ADM-03-F05 | E1, E2 | API | 401 visiteur, 403 promptologue (lecture et écriture, corps vérifiés), 403 CSRF absent ou faux | idem |
+| UC-ADM-03-F06 | E3 | API | 422 pour id/version manquants, blancs, non textuels ; corps vide, non JSON ou scalaire | idem |
+| UC-ADM-03-F07 | E4 | API | Inconnue, brouillon, Golden → 404 ; défaut, proposition et journal inchangés | idem |
 | UC-ADM-03-F08 | Nominal | IHM | `<App/>` : effectif, proposition, bouton désactivé puis validation (CSRF), rechargement « (validé) » | `web/test/usecases/functional/uc-adm-03-valider-paquet-defaut-reglages.test.jsx` |
-| UC-ADM-03-F09 | E4 | IHM | 404 serveur → alerte, rien de validé | idem |
+| UC-ADM-03-F09 | E4 | IHM | 404 serveur → alerte, aucun succès affiché, effectif inchangé, pas de rechargement | idem |
 | UC-ADM-03-F10 | E5 | IHM | « aucun paquet publié », choix désactivé | idem |
 | UC-ADM-03-F11 | E1 | IHM | Promptologue : explication du rôle, aucune lecture `/api/admin/*` | idem |
 | UC-ADM-03-F12 | A3 | IHM | Tableau du worker (file, runs actifs, dernière activité, terminés / échoués) | idem |
+| UC-ADM-03-F13 | E1 | IHM | Visiteur : explication, « Vous n'êtes pas connecté », lien `#/compte`, aucune lecture `/api/admin/*` | idem |
+| UC-ADM-03-F14 | E6 | IHM | `GET /api/admin/demo-config` en échec → section entière « Chargement impossible. » | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -189,6 +224,8 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 - `api/tests/PackagesDefaultTest.php` — `testAdminValidationSetsTheServedDefault`
   (chemin technique à jeton, UC-SYS-02).
 - `web/src/views/admin/ReglagesSection.test.jsx`, `web/src/views/AdminView.test.jsx`.
+- `api/tests/AuthRequireRoleTest.php`, `api/tests/AuthCsrfTest.php` — gardes
+  partagées (`RequireRole`, `CsrfMiddleware`).
 
 ### Exécuter
 
@@ -196,6 +233,22 @@ vérifie seulement que l'instantané qu'il lit ne contient aucun secret.
 docker compose run --rm php vendor/bin/phpunit --filter UcAdm03 --testdox
 cd web && npx vitest run test/usecases --testNamePattern UC-ADM-03
 ```
+
+## Anomalies constatées
+
+- **AN-1 — Écriture non transactionnelle.** `PlatformStatus::setDefaultPackage`
+  écrit le défaut, supprime la proposition, puis journalise, chaque requête
+  en autocommit. Si l'`INSERT` d'audit échoue (`PDOException`), la route
+  répond `500 {error: "Erreur interne"}` alors que le défaut a déjà changé et
+  que la proposition est consommée, sans aucun événement
+  `default_package_set` : la garantie minimale et RG5 ne tiennent que pour
+  les refus métier. Figé par UC-ADM-03-U10.
+- **Désignation sans effet côté apprenant** (anomalies d'autres cas, qui
+  touchent l'effet même de celui-ci) : l'assistant de run apprenant
+  présélectionne toujours le paquet embarqué et n'affiche pas la marque
+  `defaut` (UC-APP-02, A-01) ; le sélecteur de paquet du run de masse
+  présélectionne la première version publiée et n'affiche jamais
+  « (défaut) » (UC-ETA-03, Limites).
 
 ## Limites
 
@@ -211,3 +264,6 @@ cd web && npx vitest run test/usecases --testNamePattern UC-ADM-03
   défaut. Elle ne présélectionne pas la version proposée.
 - L'instantané `demo` est obsolète (`editableInUi: false`) : voir UC-ADM-04,
   AN-1.
+- Après une validation réussie, si le rechargement de l'instantané échoue,
+  la section entière passe en « Chargement impossible. » et masque le message
+  de succès (E6).

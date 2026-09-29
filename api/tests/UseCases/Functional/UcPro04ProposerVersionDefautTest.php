@@ -53,6 +53,22 @@ final class UcPro04ProposerVersionDefautTest extends AdminTestCase
         return (new SettingsRepository(self::$pdo))->get(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL);
     }
 
+    /** Précondition : une proposition déjà en attente (celle d'un autre promptologue). */
+    private const PENDING = ['id' => 'aurora-demo', 'version' => '2.0.0', 'proposedBy' => 1, 'proposedAt' => '2026-07-01T10:00:00+00:00'];
+
+    private static function seedPendingProposal(): void
+    {
+        (new SettingsRepository(self::$pdo))->set(SettingsRepository::DEFAULT_PACKAGE_PROPOSAL, self::PENDING);
+    }
+
+    /** Garantie minimale : proposition en attente intacte, défaut servi inchangé. */
+    private function assertNothingChanged(): void
+    {
+        // Colonne JSON MySQL : l'ordre des clés n'est pas conservé.
+        self::assertEquals(self::PENDING, self::proposal(), 'la proposition en attente survit à l’échec');
+        self::assertSame(['id' => 'aurora-demo', 'version' => '2.0.0'], self::json($this->act(null, 'GET', '/prompt-packages/default')));
+    }
+
     #[TestDox('UC-PRO-04-F01 — nominal : proposer 1.0.0 → 200 « proposed », proposition enregistrée, défaut servi inchangé, visible de l’admin')]
     public function testF01ProposalIsStoredAndAwaitsTheAdmin(): void
     {
@@ -95,20 +111,29 @@ final class UcPro04ProposerVersionDefautTest extends AdminTestCase
         self::assertSame('twin6-ouverte', self::proposal()['id']);
     }
 
-    #[TestDox('UC-PRO-04-F04 — E1 : visiteur 401, apprenant ou admin sans rôle promptologue 403, sans jeton CSRF 403')]
+    #[TestDox('UC-PRO-04-F04 — E1 : visiteur 401, apprenant ou admin sans rôle promptologue 403 (RoleGuard), sans jeton CSRF 403 ; la proposition en attente et le défaut sont intacts')]
     public function testF04Guards(): void
     {
+        self::seedPendingProposal();
         $apprenant = $this->registerAs('eleve@example.org', 'Élève', ['apprenant']);
         $admin = $this->registerAdmin();
 
-        self::assertSame(401, $this->act(null, 'POST', '/prompt-packages/aurora-demo/1.0.0/propose-default')->getStatusCode());
-        self::assertSame(403, $this->propose('aurora-demo', '1.0.0', $apprenant)->getStatusCode());
-        self::assertSame(403, $this->propose('aurora-demo', '1.0.0', $admin)->getStatusCode(), 'l’admin valide, il ne propose pas');
+        $visitor = $this->act(null, 'POST', '/prompt-packages/aurora-demo/1.0.0/propose-default');
+        self::assertSame(401, $visitor->getStatusCode());
+        self::assertSame(['error' => 'Authentication required'], self::json($visitor));
+        foreach (['apprenant' => $apprenant, 'admin (il valide, il ne propose pas)' => $admin] as $who => $user) {
+            $refused = $this->propose('aurora-demo', '1.0.0', $user);
+            self::assertSame(403, $refused->getStatusCode(), $who);
+            self::assertSame(['error' => 'Forbidden'], self::json($refused), $who . ' : refus de RoleGuard, pas du CSRF');
+        }
         $noCsrf = $this->propose('aurora-demo', '1.0.0', $this->pom, false);
         self::assertSame(403, $noCsrf->getStatusCode());
         self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($noCsrf));
+        // Le CSRF (middleware global) est vérifié AVANT le rôle : sans jeton, un
+        // compte sans rôle reçoit le refus CSRF, pas celui de RoleGuard.
+        self::assertSame(['error' => 'Jeton CSRF absent ou invalide'], self::json($this->propose('aurora-demo', '1.0.0', $apprenant, false)));
 
-        self::assertNull(self::proposal());
+        $this->assertNothingChanged();
     }
 
     #[TestDox('UC-PRO-04-F05 — E2 : version inconnue, brouillon (même le sien) ou Golden privé → 404, aucune proposition')]
@@ -118,12 +143,34 @@ final class UcPro04ProposerVersionDefautTest extends AdminTestCase
         $created = $this->request('POST', '/api/prompt-packages/drafts', ['fromId' => 'aurora-demo', 'fromVersion' => '2.0.0', 'version' => '2.1.0'], ['X-CSRF-Token' => $this->pom['csrf']], ProSupport::webApp());
         self::assertSame(201, $created->getStatusCode());
         ProSupport::importGolden(self::$pdo, $this->registerAdmin()['id']);
+        // Préconditions ancrées : Golden publié mais privé, brouillon bien « draft ».
+        self::assertSame(
+            ['aurora-demo/2.1.0/draft/0', 'golden-reference/1.0.0/published/1'],
+            self::$pdo->query(
+                "SELECT CONCAT(pp.slug, '/', pv.semver, '/', pv.status, '/', pp.is_private) FROM prompt_versions pv JOIN prompt_packages pp ON pp.id = pv.package_id
+                  WHERE pv.semver = '2.1.0' OR pp.slug = 'golden-reference' ORDER BY pp.slug"
+            )->fetchAll(\PDO::FETCH_COLUMN),
+        );
+        self::seedPendingProposal();
 
         foreach ([['aurora-demo', '9.9.9'], ['aurora-demo', '2.1.0'], [ProSupport::GOLDEN, '1.0.0'], ['inconnu', '1.0.0']] as [$id, $version]) {
             $response = $this->propose($id, $version);
             self::assertSame(404, $response->getStatusCode(), $id . '@' . $version);
             self::assertSame(['error' => 'Version publiée introuvable'], self::json($response));
         }
-        self::assertNull(self::proposal());
+        $this->assertNothingChanged();
+    }
+
+    #[TestDox('UC-PRO-04-F08 — limite (comportement figé) : la proposition survit à la suppression du compte de son auteur, proposedBy désigne un compte purgé')]
+    public function testF08ProposalOutlivesItsAuthorAccount(): void
+    {
+        self::assertSame(200, $this->propose('aurora-demo', '1.0.0')->getStatusCode());
+
+        self::assertSame(204, $this->act($this->pom, 'DELETE', '/auth/account')->getStatusCode());
+
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM users WHERE id = ' . (int) $this->pom['id'])->fetchColumn(), 'compte purgé');
+        $admin = $this->registerAdmin();
+        $proposal = self::json($this->act($admin, 'GET', '/admin/settings'))['defaultPackage']['proposal'];
+        self::assertSame(['aurora-demo', '1.0.0', $this->pom['id']], [$proposal['id'], $proposal['version'], $proposal['proposedBy']]);
     }
 }
