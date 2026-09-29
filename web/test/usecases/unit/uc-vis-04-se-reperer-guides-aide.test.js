@@ -129,6 +129,192 @@ describe('UC-VIS-04 — navigation par familles d’intention', () => {
   })
 })
 
+// --- UC-VIS-04-U13 : catalogue ATTENDU du plan du site, écrit à la main -------
+// Chaque item tel que la fiche le décrit (href, libellé, route/section du
+// marquage aria-current, badge de l'échelle de valeur, précision « hint » des
+// tuiles, restriction de rôle dans une famille multi-rôles). Le test compare
+// navGroups à ces attentes, combinaison de rôles par combinaison de rôles :
+// toute dérive de nav.js (lien, badge, hint, visibilité) le fait échouer.
+const ITEM = {
+  accueil: { href: '#/', label: 'Accueil', route: 'home' },
+  demo: { href: '#/cartographie', label: 'Cartographie (démonstration)', route: 'cartographie' },
+  essayer: { href: '#/essayer', label: 'Essayer', route: 'essayer', badge: 'gratuit', hint: 'sans compte' },
+  referentiel: { href: '#/referentiel', label: 'Référentiel', route: 'referentiel', hint: '7 pôles, 61 compétences' },
+  guides: { href: '#/guides', label: 'Guides', route: 'guides', hint: 'prise en main par profil' },
+  tableau: { href: '#/espace', label: 'Tableau de bord', route: 'espace', hint: 'portfolios, cartographies, formation' },
+  portfolio: { href: '#/portfolio', label: 'Mon portfolio', route: 'portfolio', hint: 'local, matière première d’un run' },
+  cartographier: {
+    href: '#/espace/nouveau-run',
+    label: 'Cartographier mes écrits',
+    route: 'espace',
+    section: 'nouveau-run',
+    badge: 'standard',
+  },
+  ouverte: { href: '#/twin6-ouverte', label: 'Cartographie ouverte', route: 'twin6ouverte', badge: 'gratuit', hint: 'Twin6 — open source' },
+  approfondie: { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin9' },
+  partager: { href: '#/espace', label: 'Partager ma cartographie', hint: 'lien protégé par mot de passe' },
+  file: { href: '#/cartographe', label: 'Ma file de relecture', route: 'cartographe' },
+  comparer: { href: '#/cartographe/comparer', label: 'Comparer', route: 'cartographe', section: 'comparer' },
+  consistance: {
+    href: '#/cartographe/consistance',
+    label: 'Consistance',
+    route: 'cartographe',
+    section: 'consistance',
+    hint: 'multi-run',
+  },
+  cohortes: { href: '#/etablissement', label: 'Mes cohortes', route: 'etablissement', hint: 'budget, runs de masse, membres' },
+  prompts: {
+    href: '#/promptologue',
+    label: 'Atelier de prompts',
+    route: 'promptologue',
+    roles: ['promptologue'],
+    hint: 'éditeur, banc d’essai, rétrospective',
+  },
+  atelierTwin9: {
+    href: '#/twin9-atelier',
+    label: 'Atelier Twin9',
+    route: 'twin9atelier',
+    allRoles: ['admin', 'promptologue'],
+    hint: 'gabarits du Golden Prompt — admin ∧ promptologue',
+  },
+  referentielEdit: {
+    href: '#/epistemiarque',
+    label: 'Édition du référentiel',
+    route: 'epistemiarque',
+    roles: ['epistemiarque'],
+    hint: 'éditer, voter, entériner — débats sur Decidim',
+  },
+  roles: { href: '#/admin/roles', label: 'Rôles et comptes', route: 'admin', section: 'roles' },
+  golden: { href: '#/admin/golden', label: 'Golden Prompt', route: 'admin', section: 'golden' },
+  reglages: { href: '#/admin/reglages', label: 'Réglages', route: 'admin', section: 'reglages' },
+  config: { href: '#/admin/config', label: 'Configuration serveur', route: 'admin', section: 'config' },
+  supervision: { href: '#/admin/twin9', label: 'Supervision Twin9', route: 'admin', section: 'twin9' },
+  profil: { href: '#/compte', label: 'Profil et rôles', route: 'account' },
+  credit: { href: '#/compte/credit', label: 'Crédit et factures', route: 'account', section: 'credit' },
+  connexion: { href: '#/compte', label: 'Se connecter', route: 'account' },
+  confidentialite: { href: '#/confidentialite', label: 'Confidentialité', route: 'confidentialite', hint: 'RGPD' },
+}
+
+const FAMILY_HEAD = {
+  decouvrir: { label: 'Découvrir', intent: 'Comprendre et essayer', audience: 'Tous — visiteur compris' },
+  cartographie: { label: 'Ma cartographie', intent: 'Construire et partager la mienne', audience: 'Apprenant' },
+  encadrer: { label: 'Encadrer et garantir', intent: 'Relire, corriger, garantir', audience: 'Cartographe' },
+  piloter: { label: 'Piloter mon organisation', intent: 'Cartographier des classes en masse', audience: 'Établissement (B2B)' },
+  evoluer: { label: 'Faire évoluer', intent: 'Prompts et référentiel', audience: 'Promptologue · Épistémiarque' },
+  administrer: { label: 'Administrer', intent: 'Gouvernance de la plateforme', audience: 'Administrateur' },
+}
+
+const DECOUVRIR = ['accueil', 'demo', 'essayer', 'referentiel', 'guides']
+const CARTOGRAPHIE = ['tableau', 'portfolio', 'cartographier', 'ouverte', 'approfondie', 'partager']
+const ENCADRER = ['file', 'comparer', 'consistance']
+const ADMINISTRER = ['roles', 'golden', 'reglages', 'config', 'supervision']
+const COMPTE_CONNECTE = ['profil', 'credit', 'confidentialite']
+
+/** Structure attendue : [[idFamille, [clés d'items]], …] + famille compte. */
+function expected(families, connected) {
+  return [
+    ...families.map(([id, keys]) => ({ id, ...FAMILY_HEAD[id], items: keys.map((k) => ITEM[k]) })),
+    {
+      id: 'compte',
+      label: connected ? 'Mon compte' : 'Compte',
+      intent: 'Qui je suis et ce que je paie',
+      audience: 'Tous',
+      items: (connected ? COMPTE_CONNECTE : ['connexion', 'confidentialite']).map((k) => ITEM[k]),
+    },
+  ]
+}
+
+/** Retire la clé `roles` de famille (propre à FAMILIES, hors contrat d'affichage). */
+const shown = (groups) => groups.map(({ roles: _roles, ...family }) => family)
+
+const COMBINATIONS = [
+  ['visiteur', [], expected([['decouvrir', DECOUVRIR]], false)],
+  ['apprenant seul', ['apprenant'], expected([['decouvrir', DECOUVRIR], ['cartographie', CARTOGRAPHIE]], true)],
+  ['cartographe seul', ['cartographe'], expected([['decouvrir', DECOUVRIR], ['encadrer', ENCADRER]], true)],
+  ['promptologue seul', ['promptologue'], expected([['decouvrir', DECOUVRIR], ['evoluer', ['prompts']]], true)],
+  ['épistémiarque seul', ['epistemiarque'], expected([['decouvrir', DECOUVRIR], ['evoluer', ['referentielEdit']]], true)],
+  ['établissement seul', ['etablissement'], expected([['decouvrir', DECOUVRIR], ['piloter', ['cohortes']]], true)],
+  // Rôle attribuable (migration 001) sans famille de travail : compte seulement.
+  ['employeur seul', ['employeur'], expected([['decouvrir', DECOUVRIR]], true)],
+  // Admin seul : ni « Faire évoluer » ni, donc, l'Atelier Twin9 (famille invisible).
+  ['admin seul', ['admin'], expected([['decouvrir', DECOUVRIR], ['administrer', ADMINISTRER]], true)],
+  [
+    'admin + promptologue',
+    ['promptologue', 'admin'],
+    expected([['decouvrir', DECOUVRIR], ['evoluer', ['prompts', 'atelierTwin9']], ['administrer', ADMINISTRER]], true),
+  ],
+  // Famille visible (épistémiarque) mais conjonction incomplète : pas d'Atelier Twin9.
+  [
+    'admin + épistémiarque',
+    ['admin', 'epistemiarque'],
+    expected([['decouvrir', DECOUVRIR], ['evoluer', ['referentielEdit']], ['administrer', ADMINISTRER]], true),
+  ],
+  [
+    'cumul de tous les rôles',
+    ['admin', 'etablissement', 'employeur', 'epistemiarque', 'promptologue', 'cartographe', 'apprenant'],
+    expected(
+      [
+        ['decouvrir', DECOUVRIR],
+        ['cartographie', CARTOGRAPHIE],
+        ['encadrer', ENCADRER],
+        ['piloter', ['cohortes']],
+        ['evoluer', ['prompts', 'atelierTwin9', 'referentielEdit']],
+        ['administrer', ADMINISTRER],
+      ],
+      true,
+    ),
+  ],
+]
+
+describe('UC-VIS-04 — plan du site exhaustif par combinaison de rôles', () => {
+  it('UC-VIS-04-U13 — navGroups : href, badges, hints et visibilité de CHAQUE lien, du visiteur au cumul de tous les rôles ; chaque href mène à sa route', () => {
+    for (const [name, roles, want] of COMBINATIONS) {
+      expect(shown(navGroups({ roles })), name).toEqual(want)
+    }
+    // Couverture : le cumul expose chaque item de FAMILIES exactement une fois.
+    const all = navGroups({ roles: COMBINATIONS.at(-1)[1] })
+    const fromFamilies = FAMILIES.flatMap((f) => f.items)
+    expect(all.slice(0, -1).flatMap((f) => f.items)).toEqual(fromFamilies)
+    expect(fromFamilies).toHaveLength(Object.keys(ITEM).length - 4) // hors les 4 items de la famille compte
+
+    // Échelle de valeur : un badge par échelle de « cartographier un texte » (gratuit / standard /
+    // premium), plus « Essayer » (gratuit) ; aucun autre lien n'en porte.
+    const badged = Object.fromEntries(all.flatMap((f) => f.items).filter((i) => i.badge).map((i) => [i.label, i.badge]))
+    expect(badged).toEqual({
+      Essayer: 'gratuit',
+      'Cartographier mes écrits': 'standard',
+      'Cartographie ouverte': 'gratuit',
+      'Analyse approfondie': 'premium',
+    })
+
+    // Session explicite sans rôle (paramètre `authenticated`) : famille de compte connecté.
+    expect(navGroups({ roles: [], authenticated: true }).at(-1).items.map((i) => i.label)).toEqual([
+      'Profil et rôles',
+      'Crédit et factures',
+      'Confidentialité',
+    ])
+    // Sens inverse : des rôles avec une session explicitement NON authentifiée
+    // → famille « Compte » d'un visiteur (la famille du compte ne suit que `authenticated`).
+    expect(navGroups({ roles: ['admin'], authenticated: false }).at(-1)).toEqual(expected([], false).at(-1))
+    // Un appel sans argument vaut visiteur.
+    expect(shown(navGroups())).toEqual(COMBINATIONS[0][2])
+
+    // Cohérence href ↔ route : le routeur réel conduit chaque lien à la route
+    // (et sous-section) qui le marque « page courante » ; l'alias sans route
+    // (« Partager ma cartographie ») mène au tableau de bord sans jamais être marqué.
+    for (const item of [...fromFamilies, ...Object.values(ITEM).slice(-4)]) {
+      const reached = parseHash(item.href)
+      if (item.route) {
+        expect(isCurrentItem(item, reached), item.label).toBe(true)
+      } else {
+        expect(reached).toEqual({ name: 'espace', section: null })
+        expect(isCurrentItem(item, reached)).toBe(false)
+        expect(isCurrentItem(ITEM.tableau, reached)).toBe(true)
+      }
+    }
+  })
+})
+
 describe('UC-VIS-04 — thème clair / sombre', () => {
   it('UC-VIS-04-U07 — sans choix : suit le système (et ses changements) ; un choix explicite est persisté et prime', () => {
     const system = stubMatchMedia(true)

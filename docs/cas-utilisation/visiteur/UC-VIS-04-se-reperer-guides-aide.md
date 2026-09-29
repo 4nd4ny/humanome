@@ -82,6 +82,19 @@ statique, sans API.
   l'application (ou rafraîchissement de session, événement `humanome:auth`),
   sans reconnexion : le serveur relit les rôles à chaque appel. L'aide de l'accueil
   rappelle au cartographe ou à l'établissement où est son espace.
+  Un compte qui cumule les rôles voit les familles de travail dans un ordre
+  fixe (Ma cartographie, Encadrer et garantir, Piloter mon organisation,
+  Faire évoluer, Administrer) ; chaque lien du panneau mène à sa rubrique,
+  marquée `aria-current="page"`, et le tiroir se referme au clic même quand
+  seule la sous-section change (`#/admin/golden` → `#/admin/reglages`). Les
+  trois échelles de « cartographier un texte » portent un badge de valeur
+  (« Cartographie ouverte » gratuit, « Cartographier mes écrits » standard,
+  « Analyse approfondie » premium). « Partager ma cartographie » est un alias
+  du tableau de bord (`#/espace`, bloc « Mes cartographies ») : il n'est
+  jamais marqué courant, c'est « Tableau de bord » qui l'est. Les précisions
+  (« Twin9 », « multi-run »…) ne s'affichent que sur les tuiles de l'accueil,
+  jamais dans le menu. Le rôle `employeur`, attribuable, n'ajoute aucune
+  famille (« Découvrir » + « Mon compte »).
 - **A2 — Explorer les profils** (étape 2) : « Voir les profils d'utilisateurs »
   révèle une barre de 8 profils (Visiteur, Apprenant, Employeur, Cartographe,
   Promptologue, Épistémiarque, Établissement, Administrateur) ; chacun des
@@ -130,8 +143,14 @@ statique, sans API.
   indépendamment, et les tuiles combinent les deux. Le niveau 1 nomme des
   **buts**, pas des rôles.
 - **RG2** — Navigation additive : une famille apparaît si **au moins un** rôle
-  de la famille est détenu ; un item `allRoles` exige **tous** ses rôles
-  (Atelier Twin9 : admin ∧ promptologue).
+  de la famille est détenu ; dans une famille multi-rôles, un item `roles`
+  exige au moins un de ses rôles (« Atelier de prompts » : promptologue ;
+  « Édition du référentiel » : épistémiarque) et un item `allRoles` les exige
+  **tous** (Atelier Twin9 : admin ∧ promptologue) — encore faut-il que sa
+  famille soit visible : un administrateur seul n'a pas « Faire évoluer », un
+  administrateur épistémiarque l'a, sans l'Atelier Twin9. La famille du
+  compte (`compteFamily`) ne dépend que du paramètre `authenticated` de
+  `navGroups` (par défaut : au moins un rôle — d'où l'anomalie AN2).
 - **RG3** — La navigation n'est qu'un confort : l'accès est garanti côté
   serveur (garde de rôle des routes API) ; la plupart des vues relisent aussi
   la session (ex. `#/cartographe` : « Cet espace de travail est réservé aux
@@ -153,10 +172,11 @@ statique, sans API.
 | Couche | Élément | Rôle |
 |---|---|---|
 | Front | `web/src/router.js` — `parseHash`, `guidesHash` | Accueil, guides, confidentialité, introuvable |
-| Front | `web/src/App.jsx` ; `web/src/main.jsx` (point d'entrée : rendu de `<App/>` seulement) | Shell : session, menu (tiroir, épinglage), aide, thème, page introuvable |
+| Front | `web/src/App.jsx` — dont `handleNavClick` ; `web/src/main.jsx` (point d'entrée : rendu de `<App/>` seulement) | Shell : session, menu (tiroir, épinglage, fermeture au clic d'un lien), aide, thème, page introuvable |
 | Front | `web/src/api/client.js` — `fetchMe`, `apiFetch` | Sonde de session : `401` → visiteur, autre erreur → `ApiError`, réseau/`file://` → `ApiUnavailableError` (étape 1, E3) |
 | Front | `web/index.html` (script anti-FOUC) | Thème mémorisé appliqué avant le premier affichage (A5, RG5) |
-| Front | `web/src/nav.js` — `FAMILIES`, `navGroups`, `isCurrentItem` | Plan du site par familles (RG1, RG2) |
+| Front | `web/src/nav.js` — `FAMILIES`, `navGroups` (et `compteFamily`, interne), `isCurrentItem` | Plan du site par familles : liens, badges, précisions, visibilité par rôle, page courante (RG1, RG2) |
+| Front | Vues atteintes depuis le panneau : `web/src/views/EspaceView.jsx` (`espace/DashboardSection.jsx`), `web/src/components/RunWizard.jsx`, `Twin6OuverteView.jsx`, `Twin9View.jsx`, `PromptologueView.jsx`, `Twin9AtelierView.jsx`, `AdminView.jsx` (`admin/GoldenSection.jsx`, `admin/ReglagesSection.jsx`, `admin/ConfigSection.jsx`), `CartographeView.jsx` (`cartographe/ConsistanceSection.jsx`) | Destination de chaque lien des familles de travail (A1) ; leur fonctionnement relève de leurs UC (UC-APP-02, 05, 09, 10 ; UC-PRO-01, 08 ; UC-ADM-02, 03, 04 ; UC-CAR-07) |
 | Front | `web/src/views/HomeView.jsx`, `web/src/components/FamilyTiles.jsx` — `PERSONAS` | Accueil, tuiles, profils, encart d'aide |
 | Front | `web/src/help/Help.jsx`, `web/src/help/registry.js` — `helpFor` | Aide contextuelle |
 | Front | `web/src/lib/theme.js` — `storedTheme`, `resolvedTheme`, `applyTheme`, `subscribeSystemTheme` | Thème (RG5) |
@@ -187,6 +207,7 @@ statique, sans API.
 | UC-VIS-04-U10 | `createTrainingStore` | **Comportement actuel figé** — anomalie AN1 | idem |
 | UC-VIS-04-U11 | `renderMarkdown` | Page légale : titres, liens de l'app, rien d'exécutable (RG4) | idem |
 | UC-VIS-04-U12 | `fetchMe` | `401` → `{user: null}` ; `500` → `ApiError` ; réseau et `file://` → `ApiUnavailableError` (étape 1, E3) | idem |
+| UC-VIS-04-U13 | `navGroups`, `FAMILIES`, `isCurrentItem`, `parseHash` | Plan du site exhaustif par combinaison de rôles (visiteur ; chaque rôle seul, dont employeur ; admin seul, admin + promptologue, admin + épistémiarque ; cumul) : href, libellé, route/section, badge, précision et visibilité de chaque item, famille du compte selon le seul paramètre `authenticated` (sans rôle mais authentifié → « Mon compte » ; avec rôle mais non authentifié → « Compte ») ; chaque href conduit, par le routeur réel, à la route qui le marque courant ; alias « Partager ma cartographie » jamais courant (RG1, RG2) | idem |
 
 ### Tests fonctionnels
 
@@ -211,6 +232,7 @@ statique, sans API.
 | UC-VIS-04-F17 | A1 | IHM | Rôle ajouté → famille « Faire évoluer » après l'événement `humanome:auth`, sans recharger | idem |
 | UC-VIS-04-F18 | RG3 | IHM | Visiteur sur `#/cartographe` → « Cet espace de travail est réservé aux cartographes. », aucune donnée demandée | idem |
 | UC-VIS-04-F19 | Anomalie AN2 | IHM | **Comportement actuel figé** — session d'un compte sans rôle → navigation de visiteur, pas de « Se déconnecter » | idem |
+| UC-VIS-04-F20 | A1, RG2 | IHM | Compte portant tous les rôles attribuables (employeur compris) : tuiles (href, badge, précision), puis clic depuis le panneau sur « Partager ma cartographie », « Cartographier mes écrits », « Cartographie ouverte », « Analyse approfondie », « Atelier de prompts », « Atelier Twin9 », « Golden Prompt », « Réglages », « Configuration serveur », « Consistance » → adresse, titre et section de la vue atteinte, session reconnue par la vue, `aria-current` (alias : « Tableau de bord »), menu sans précision, tiroir refermé et focus retiré du lien | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -218,6 +240,7 @@ statique, sans API.
 - `web/src/nav.test.js`, `web/src/help/registry.test.js`, `web/src/help/Help.test.jsx`, `web/src/lib/theme.test.js`, `web/src/anti-fouc.test.js`.
 - `web/src/components/FamilyTiles.test.jsx`, `web/src/views/HomeView.test.jsx`, `web/src/views/GuidesView.test.jsx`, `web/src/views/ConfidentialiteView.test.jsx`, `web/src/lib/training-store.test.js`, `web/src/lib/md.test.js`.
 - `api/tests/AuthRoutesTest.php` (`/auth/me`), `web/e2e/guides-public.e2e.js`, `web/e2e/navigation-burger.e2e.js`.
+- `web/test/usecases/unit/uc-pro-08-editer-gabarits-twin9.test.jsx` (UC-PRO-08-U02 : lien « Atelier Twin9 »), `web/src/views/AdminView.test.jsx` (onglets de sections), `web/src/views/Twin9AtelierView.test.jsx` (réserve admin ∧ promptologue).
 
 ### Exécuter
 
@@ -225,6 +248,25 @@ statique, sans API.
 docker compose run --rm -e DB_TEST_NAME=humanome_test_vis php vendor/bin/phpunit --filter UcVis04 --testdox
 cd web && npx vitest run test/usecases/unit/uc-vis-04 test/usecases/functional/uc-vis-04
 ```
+
+## Limites
+
+- **Affichage du tiroir** : jsdom n'applique pas les feuilles de style ; les
+  tests IHM (F05, F20) vérifient l'état du menu (`aria-expanded`), pas sa
+  visibilité réelle. F20 vérifie en outre que le lien cliqué perd le focus
+  (`link.blur()` de `handleNavClick`, qui déjoue `:focus-within`). La
+  fermeture **visuelle** après clic d'un lien n'est couverte par aucun test
+  e2e : `web/e2e/navigation-burger.e2e.js` (Playwright, local uniquement) ne
+  couvre que le survol, l'épinglage et le tap extérieur.
+- **Destinations des liens** : F20 vérifie que chaque lien atteint sa vue
+  (adresse, titre, section, garde de session levée) avec un réseau réduit à
+  la session et à quelques réponses vides ; les autres appels répondent 404
+  et certaines vues atteintes affichent leur état d'erreur. Le
+  fonctionnement de chaque rubrique relève de son UC.
+- **Famille vidée par le filtre** : `navGroups` omet une famille dont aucun
+  item ne reste visible ; aucune combinaison de rôles ne produit ce cas avec
+  le plan actuel (toute famille visible garde au moins un item), la branche
+  n'est donc pas exercée.
 
 ## Anomalies constatées
 
