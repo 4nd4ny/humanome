@@ -12,27 +12,34 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import EspaceView from '../../../src/views/EspaceView.jsx'
 import { createMemoryAdapter, createPortfolioStore } from '../../../src/lib/portfolio-store.js'
-import { resetApiClient } from '../../../src/api/client.js'
+import { ApiUnavailableError, resetApiClient } from '../../../src/api/client.js'
 import { APPS_CSRF, createFakeApi, jsonResponse, meRoute, mutations, noContentResponse } from '../support/apps.js'
 
 const CODE = 'K7TQZ2M9RC'
 const ELISE = { id: 12, email: 'elise@example.org', displayName: 'Élise', roles: ['apprenant'] }
 
-/** Serveur factice à état : une cohorte « BTS SIO 2026 » du Lycée Astrolabe. */
+/**
+ * Serveur factice à état : une cohorte « BTS SIO 2026 » du Lycée Astrolabe.
+ * Comme l'API, les routes /cohortes… exigent le rôle apprenant (403 « Rôle
+ * insuffisant » sinon, après le contrôle CSRF des mutations).
+ */
 function createServer({ user = ELISE, member = false, deposited = false, onDeposit = null } = {}) {
   const state = {
     member,
     joinedAt: member ? '2026-07-02T10:00:00' : null,
     portfolio: deposited ? { titre: 'Ancien dépôt', journees: 1, deposeLe: '2026-07-03T10:00:00' } : null,
   }
+  const role = () =>
+    user && !user.roles?.includes('apprenant') ? jsonResponse(403, { error: 'Rôle insuffisant' }) : null
   const csrf = (headers) =>
-    headers['X-CSRF-Token'] === APPS_CSRF ? null : jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
+    headers['X-CSRF-Token'] === APPS_CSRF ? role() : jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
   const api = createFakeApi([
     meRoute(user),
     [
       'GET',
       'cohortes',
       () =>
+        role() ??
         jsonResponse(
           200,
           state.member
@@ -219,10 +226,12 @@ describe('UC-APP-08 — l’apprenante rejoint la cohorte de son établissement,
     const server = createServer({ user: null })
     const { store } = await localPortfolios()
     openCohortes(store)
-
-    expect((await screen.findByTestId('cohortes-anonyme')).textContent).toContain('nécessite un compte')
-    expect(screen.queryByLabelText('Code d’invitation')).toBeNull()
+    // D'abord la session résolue « anonyme » : le bloc anonyme s'affiche aussi
+    // pendant le chargement (anomalie 4), il ne prouve rien avant.
     await screen.findByTestId('espace-anonyme')
+
+    expect(screen.getByTestId('cohortes-anonyme').textContent).toContain('nécessite un compte')
+    expect(screen.queryByLabelText('Code d’invitation')).toBeNull()
     expect(server.requests.map((r) => r.path)).toEqual(['auth/me'])
   })
 
@@ -275,5 +284,41 @@ describe('UC-APP-08 — l’apprenante rejoint la cohorte de son établissement,
     expect((await screen.findByRole('alert')).textContent).toBe('Validation échouée')
     expect(screen.getByTestId('cohorte-liste').textContent).toContain('Portfolio non déposé')
     expect(screen.queryByTestId('cohorte-info')).toBeNull()
+  })
+
+  it('UC-APP-08-F24 — anomalie 4 figée : pendant la vérification de session, et sur la copie statique, la vue invite à se connecter', async () => {
+    // Comportement ACTUEL (fiche, anomalie 4) : CohorteSection traite les
+    // états « loading » et « unavailable » comme l'état anonyme.
+    const { store } = await localPortfolios()
+    const pending = vi.fn(() => new Promise(() => {}))
+    render(<EspaceView section="cohortes" deps={{ portfolioStore: store, fetchMeFn: pending }} />)
+    expect(screen.getByTestId('cohortes-anonyme').textContent).toContain('nécessite un compte : connectez-vous')
+    expect(pending).toHaveBeenCalled()
+    expect(screen.queryByTestId('espace-connecte')).toBeNull()
+    expect(screen.queryByTestId('espace-anonyme')).toBeNull() // la session n'est pas encore connue
+    cleanup()
+
+    // Copie statique (API absente) : se connecter y est impossible, l'invitation demeure.
+    render(
+      <EspaceView
+        section="cohortes"
+        deps={{ portfolioStore: store, fetchMeFn: () => Promise.reject(new ApiUnavailableError()) }}
+      />,
+    )
+    await waitFor(() => expect(screen.getByTestId('cohortes-anonyme')).toBeDefined())
+    expect(screen.getByTestId('cohortes-anonyme').textContent).toContain('connectez-vous')
+    expect(screen.getByRole('link', { name: 'connectez-vous' }).getAttribute('href')).toBe('#/compte')
+  })
+
+  it('UC-APP-08-F25 — E7 : compte sans rôle apprenant (établissement) → formulaire affiché, liste vide et alerte « Rôle insuffisant », aucune mutation', async () => {
+    const server = createServer({ user: { ...ELISE, displayName: 'Lycée Astrolabe', roles: ['etablissement'] } })
+    const { store } = await localPortfolios()
+    openCohortes(store)
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Rôle insuffisant')
+    expect(screen.getByLabelText('Code d’invitation')).toBeDefined()
+    expect(screen.getByText('Vous n’avez rejoint aucune cohorte pour l’instant.')).toBeDefined()
+    expect(server.requests.map((r) => `${r.method} ${r.path}`)).toEqual(['GET auth/me', 'GET cohortes'])
+    expect(mutations(server.requests)).toEqual([])
   })
 })

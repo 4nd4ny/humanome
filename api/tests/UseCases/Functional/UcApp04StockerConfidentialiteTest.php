@@ -80,14 +80,18 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
             'referentielId' => 'respire',
             'referentielVersion' => '7.0.0',
             'runMeta' => ['modele' => 'mock', 'dateRun' => '2026-07-01T10:00:00Z'],
+            // RG1 : une date d'opt-in fournie par le client est ignorée.
+            'optInAt' => '2000-01-01T00:00:00',
+            'opt_in_at' => '2000-01-01 00:00:00',
         ]));
         self::assertSame(201, $created->getStatusCode(), (string) $created->getBody());
         $id = self::json($created)['id'];
         self::assertIsInt($id);
         self::assertSame(['id'], array_keys(self::json($created)));
-        self::assertNotNull(
-            self::$pdo->query('SELECT opt_in_at FROM cartographies WHERE id = ' . $id)->fetchColumn(),
-            'opt_in_at posé par l’INSERT (§6.2)',
+        self::assertLessThanOrEqual(
+            5,
+            (int) self::$pdo->query('SELECT ABS(TIMESTAMPDIFF(SECOND, opt_in_at, NOW())) FROM cartographies WHERE id = ' . $id)->fetchColumn(),
+            'opt_in_at posé par l’INSERT (§6.2), jamais par le client (RG1)',
         );
 
         // 5. La liste : métadonnées seulement, jamais le document.
@@ -173,30 +177,62 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
         $noop = $this->as_($this->maya, 'PATCH', '/api/cartographies/' . $id, []);
         self::assertSame(200, $noop->getStatusCode());
         self::assertSame('Journée clé', self::json($noop)['titre']);
+
+        // RG7 : le PATCH ne lit que titre et visibility ; type et document sont ignorés.
+        $ignored = $this->as_($this->maya, 'PATCH', '/api/cartographies/' . $id, ['type' => 'merge', 'document' => ['k' => 'v']]);
+        self::assertSame(200, $ignored->getStatusCode());
+        self::assertSame('jour', self::json($ignored)['type']);
+        self::assertEquals(
+            ['kind' => 'cartographie-jour', 'date' => '2026-01-05', 'poles' => []],
+            self::json($this->as_($this->maya, 'GET', '/api/cartographies/' . $id))['document'],
+        );
     }
 
-    #[TestDox('UC-APP-04-F06 — A4 : retirer du serveur → purge réelle (ligne + liens), le lien employeur meurt, 404 ensuite')]
-    public function testF06RemoveFromServerPurgesRowAndLinks(): void
+    #[TestDox('UC-APP-04-F06 — A4 : retirer du serveur → purge réelle (ligne, liens, travail du cartographe lié), le lien employeur meurt, 404 ensuite')]
+    public function testF06RemoveFromServerPurgesRowLinksAndReviewWork(): void
     {
-        $id = $this->createCarto($this->maya, ['visibility' => 'publique']);
-        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $id . '/share', ['password' => 'sesame-employeur']);
+        $camille = $this->registerAs('camille@example.org', 'Camille', ['cartographe']);
+        $this->link($this->maya, $camille);
+        $id = $this->createCarto($this->maya, ['titre' => 'Journée du 05/01/2026', 'visibility' => 'cartographe']);
+
+        // Le cartographe lié a travaillé sur la copie (UC-CAR-03/04/05).
+        $cartoPath = '/api/cartographies/' . $id;
+        self::assertSame(201, $this->as_($camille, 'POST', $cartoPath . '/annotations', ['competenceCode' => '1.01', 'type' => 'commentaire', 'texte' => 'Bien vu.'])->getStatusCode());
+        $revision = $this->as_($camille, 'POST', $cartoPath . '/revisions', ['document' => self::jourDocument(), 'note' => 'Correction']);
+        self::assertSame(201, $revision->getStatusCode(), (string) $revision->getBody());
+        self::assertSame(201, $this->as_($camille, 'POST', $cartoPath . '/garantie', ['revisionId' => self::json($revision)['revisionId']])->getStatusCode());
+
+        $share = $this->as_($this->maya, 'POST', $cartoPath . '/share', ['password' => 'sesame-employeur']);
         self::assertSame(201, $share->getStatusCode());
         $token = (string) self::json($share)['token'];
+        // Contrôle positif : avant le retrait, le lien s'ouvre chez l'employeur.
+        $this->cookieSid = null;
+        $this->clientIp = '198.51.100.7';
+        $before = $this->request('POST', '/api/share/' . $token, ['password' => 'sesame-employeur']);
+        self::assertSame(200, $before->getStatusCode());
+        self::assertSame('Journée du 05/01/2026', self::json($before)['titre']);
 
-        $deleted = $this->as_($this->maya, 'DELETE', '/api/cartographies/' . $id);
+        $deleted = $this->as_($this->maya, 'DELETE', $cartoPath);
         self::assertSame(204, $deleted->getStatusCode());
         self::assertSame('', (string) $deleted->getBody());
 
         self::assertSame(0, self::countCartographies());
-        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM share_links')->fetchColumn());
+        foreach (['share_links', 'cartography_annotations', 'cartography_revisions', 'cartography_garanties'] as $table) {
+            // Cascade (migrations 004 et 008) : le travail du cartographe part avec la copie.
+            self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM ' . $table)->fetchColumn(), $table);
+        }
         self::assertSame([], self::json($this->as_($this->maya, 'GET', '/api/cartographies')));
-        self::assertSame(404, $this->as_($this->maya, 'GET', '/api/cartographies/' . $id)->getStatusCode());
-        self::assertSame(404, $this->as_($this->maya, 'DELETE', '/api/cartographies/' . $id)->getStatusCode());
+        self::assertSame(404, $this->as_($this->maya, 'GET', $cartoPath)->getStatusCode());
+        self::assertSame(404, $this->as_($this->maya, 'DELETE', $cartoPath)->getStatusCode());
+        self::assertSame([], self::json($this->as_($camille, 'GET', '/api/cartographe/cartographies')));
+        self::assertSame(404, $this->as_($camille, 'GET', '/api/cartographe/cartographies/' . $id)->getStatusCode());
 
         // Le lien transmis à un employeur ne sert plus rien (même 404 que UC-EMP-01 E3).
         $this->cookieSid = null;
-        $this->clientIp = '198.51.100.7';
-        self::assertSame(404, $this->request('POST', '/api/share/' . $token, ['password' => 'sesame-employeur'])->getStatusCode());
+        $this->clientIp = '198.51.100.8';
+        $after = $this->request('POST', '/api/share/' . $token, ['password' => 'sesame-employeur']);
+        self::assertSame(404, $after->getStatusCode());
+        self::assertSame('Lien de partage introuvable ou expiré', self::json($after)['error']);
     }
 
     #[TestDox('UC-APP-04-F07 — E1 : sans session → 401 sur chaque route, rien n’est stocké')]
@@ -232,26 +268,30 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
         self::assertSame(0, self::countCartographies());
     }
 
-    #[TestDox('UC-APP-04-F09 — E3 : mutation sans jeton CSRF → 403, rien ne change')]
+    #[TestDox('UC-APP-04-F09 — E3 : mutation sans jeton CSRF ou avec un jeton faux → 403, rien ne change')]
     public function testF09MutationsWithoutCsrfAreRefused(): void
     {
         $id = $this->createCarto($this->maya, ['visibility' => 'privee']);
         $this->cookieSid = $this->maya['sid'];
 
-        foreach ([
-            ['POST', '/api/cartographies', self::optInBody()],
-            ['PATCH', '/api/cartographies/' . $id, ['visibility' => 'publique']],
-            ['DELETE', '/api/cartographies/' . $id, null],
-        ] as [$method, $path, $body]) {
-            $response = $this->request($method, $path, $body);
-            self::assertSame(403, $response->getStatusCode(), $method . ' ' . $path);
-            self::assertSame('Jeton CSRF absent ou invalide', self::json($response)['error']);
+        foreach ([[], ['X-CSRF-Token' => 'faux-jeton']] as $headers) {
+            foreach ([
+                ['POST', '/api/cartographies', self::optInBody()],
+                ['PATCH', '/api/cartographies/' . $id, ['visibility' => 'publique']],
+                ['DELETE', '/api/cartographies/' . $id, null],
+            ] as [$method, $path, $body]) {
+                $this->cookieSid = $this->maya['sid'];
+                $response = $this->request($method, $path, $body, $headers);
+                $label = $method . ' ' . $path . ($headers === [] ? ' (sans jeton)' : ' (jeton faux)');
+                self::assertSame(403, $response->getStatusCode(), $label);
+                self::assertSame('Jeton CSRF absent ou invalide', self::json($response)['error'], $label);
+            }
         }
         self::assertSame(1, self::countCartographies());
         self::assertSame('privee', self::$pdo->query('SELECT visibility FROM cartographies')->fetchColumn());
     }
 
-    #[TestDox('UC-APP-04-F10 — E4 : corps de copie invalide → 422 avec le champ fautif, aucune ligne créée')]
+    #[TestDox('UC-APP-04-F10 — E4 : corps de copie invalide (dont document absent, paire de versions incomplète) → 422 avec le champ fautif, aucune ligne créée')]
     public function testF10InvalidOptInBodyIsRejectedFieldByField(): void
     {
         self::publishVersions();
@@ -267,6 +307,7 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
             'promptPackageId' => ['promptPackageId' => 'aurora-demo'],
             'promptPackageId ' => ['promptPackageId' => 'aurora-demo', 'promptPackageVersion' => '2.0.0'],
             'referentielId' => ['referentielId' => 'respire', 'referentielVersion' => '9.9.9'],
+            'referentielId ' => ['referentielId' => 'respire'], // paire incomplète
         ];
         foreach ($cases as $field => $overrides) {
             $response = $this->as_($this->maya, 'POST', '/api/cartographies', self::optInBody($overrides));
@@ -280,6 +321,12 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
             self::json($this->as_($this->maya, 'POST', '/api/cartographies', self::optInBody($cases['promptPackageId '])))['fields']['promptPackageId'],
             'une version brouillon n’est pas rejouable',
         );
+        // Document absent (clé retirée du corps).
+        $body = self::optInBody();
+        unset($body['document']);
+        $missing = $this->as_($this->maya, 'POST', '/api/cartographies', $body);
+        self::assertSame(422, $missing->getStatusCode());
+        self::assertSame('Document requis (objet JSON de cartographie)', self::json($missing)['fields']['document']);
         self::assertSame(0, self::countCartographies());
     }
 
@@ -352,5 +399,50 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
         $stored = self::json($this->as_($this->maya, 'GET', '/api/cartographies/' . self::json($mismatch)['id']));
         self::assertSame('merge', $stored['type']);
         self::assertSame('cartographie-jour', $stored['document']['kind']);
+    }
+
+    #[TestDox('UC-APP-04-F23 — E1/E3 : cookie de session expiré (ligne purgée) → 403 CSRF sur les mutations (le CSRF global passe avant RequireRole), 401 sur les lectures')]
+    public function testF23StaleSessionCookieAnswersCsrfBeforeAuthentication(): void
+    {
+        $id = $this->createCarto($this->maya, ['visibility' => 'privee']);
+        // Session purgée côté serveur (expiration, GC) ; le navigateur garde son cookie.
+        self::$pdo->prepare('DELETE FROM sessions WHERE id = ?')->execute([$this->maya['sid']]);
+
+        foreach ([
+            ['POST', '/api/cartographies', self::optInBody()],
+            ['PATCH', '/api/cartographies/' . $id, ['visibility' => 'publique']],
+            ['DELETE', '/api/cartographies/' . $id, null],
+        ] as [$method, $path, $body]) {
+            // Même avec le jeton CSRF d'origine : la session qui le portait n'existe plus.
+            $response = $this->as_($this->maya, $method, $path, $body);
+            self::assertSame(403, $response->getStatusCode(), $method . ' ' . $path);
+            self::assertSame('Jeton CSRF absent ou invalide', self::json($response)['error'], 'pas « Authentification requise »');
+        }
+        foreach (['/api/cartographies', '/api/cartographies/' . $id] as $path) {
+            $response = $this->as_($this->maya, 'GET', $path);
+            self::assertSame(401, $response->getStatusCode(), 'GET ' . $path);
+            self::assertSame('Authentification requise', self::json($response)['error']);
+        }
+        self::assertSame(1, self::countCartographies());
+        self::assertSame('privee', self::$pdo->query('SELECT visibility FROM cartographies')->fetchColumn());
+    }
+
+    #[TestDox('UC-APP-04-F24 — RG3 : bornes acceptées — type twin9, titre rogné de 190 caractères multi-octets')]
+    public function testF24AcceptedBoundsTwin9AndMultibyteTitle(): void
+    {
+        $twin9 = $this->as_($this->maya, 'POST', '/api/cartographies', self::optInBody([
+            'type' => 'twin9',
+            'titre' => 'Analyse Twin9',
+            'document' => ['journal_id' => 'journal-1', 'carto_evolutive' => ['version' => 1]],
+        ]));
+        self::assertSame(201, $twin9->getStatusCode(), (string) $twin9->getBody());
+        self::assertSame('twin9', self::json($this->as_($this->maya, 'GET', '/api/cartographies/' . self::json($twin9)['id']))['type']);
+
+        // 190 caractères (380 octets) : la limite est comptée en caractères (mb_strlen).
+        $long = str_repeat('é', 190);
+        $titled = $this->as_($this->maya, 'POST', '/api/cartographies', self::optInBody(['titre' => '  ' . $long . '  ']));
+        self::assertSame(201, $titled->getStatusCode(), (string) $titled->getBody());
+        self::assertSame($long, self::json($this->as_($this->maya, 'GET', '/api/cartographies/' . self::json($titled)['id']))['titre']);
+        self::assertSame(2, self::countCartographies());
     }
 }

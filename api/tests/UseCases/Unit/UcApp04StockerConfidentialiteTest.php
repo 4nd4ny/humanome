@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Humanome\Tests\UseCases\Unit;
 
 use Humanome\Auth\Users;
+use Humanome\Cartographe\Annotations;
+use Humanome\Cartographe\Garanties;
 use Humanome\Cartographe\Links;
+use Humanome\Cartographe\Revisions;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\MigrationRunner;
 use Humanome\Share\ShareLinks;
@@ -25,8 +28,9 @@ use PHPUnit\Framework\TestCase;
  * directement (sans couche HTTP) : CartographyRepository (opt-in daté,
  * projection de liste sans document, propriété, PATCH, purge réelle,
  * résolution des versions publiées) et Links (effet de la visibilité côté
- * cartographe lié). Le dernier test documente l'écart constaté : le document
- * stocké n'est pas validé au schéma (voir « Anomalies constatées »).
+ * cartographe lié). La purge (U05) emporte aussi le travail du cartographe
+ * (annotations, révisions, garantie). Le dernier test établit que le
+ * Repository stocke le document sans le valider au schéma (par conception).
  */
 final class UcApp04StockerConfidentialiteTest extends TestCase
 {
@@ -215,20 +219,33 @@ final class UcApp04StockerConfidentialiteTest extends TestCase
         self::assertSame(['titre' => 'Après', 'visibility' => 'cartographe'], $row, 'rien n’a bougé');
     }
 
-    #[TestDox('UC-APP-04-U05 — deleteForUser : purge réelle de la ligne et de ses liens de partage ; id étranger = false')]
-    public function testU05DeleteForUserPurgesRowAndShareLinks(): void
+    #[TestDox('UC-APP-04-U05 — deleteForUser : purge réelle de la ligne, de ses liens de partage ET du travail du cartographe (annotations, révisions, garantie) ; id étranger = false')]
+    public function testU05DeleteForUserPurgesRowAndEverythingHangingOnIt(): void
     {
         $maya = self::user();
         $intrus = self::user('Intrus');
-        $id = self::create($maya);
+        $camille = self::user('Camille');
+        $id = self::create($maya, 'Feuille', 'cartographe');
         (new ShareLinks(self::$pdo))->create($id, 'sesame-employeur', 30);
+        // Travail du cartographe lié posé sur la copie serveur (UC-CAR-03/04/05).
+        (new Annotations(self::$pdo))->create($id, $camille, '1.01', 'commentaire', 'Bien vu.');
+        ['revisionId' => $revisionId] = (new Revisions(self::$pdo))->create($id, $camille, self::doc(), 'Correction');
+        self::assertNotNull((new Garanties(self::$pdo))->pose($id, $camille, 'Camille', $revisionId));
+        $tables = ['share_links', 'cartography_annotations', 'cartography_revisions', 'cartography_garanties'];
+        foreach ($tables as $table) {
+            self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM ' . $table)->fetchColumn(), $table);
+        }
 
         self::assertFalse(self::repo()->deleteForUser($id, $intrus));
         self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographies')->fetchColumn());
 
         self::assertTrue(self::repo()->deleteForUser($id, $maya));
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographies')->fetchColumn());
-        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM share_links')->fetchColumn(), 'FK ON DELETE CASCADE');
+        foreach ($tables as $table) {
+            // FK ON DELETE CASCADE (migrations 004 et 008) : rien ne survit à la copie.
+            self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM ' . $table)->fetchColumn(), $table);
+        }
+        self::assertSame(3, (int) self::$pdo->query('SELECT COUNT(*) FROM users')->fetchColumn(), 'les comptes, eux, restent');
         self::assertFalse(self::repo()->deleteForUser($id, $maya), 'déjà purgée');
     }
 
@@ -287,12 +304,14 @@ final class UcApp04StockerConfidentialiteTest extends TestCase
         self::assertNull($links->findForCartographe($partagee, $camille));
     }
 
-    #[TestDox('UC-APP-04-U10 — écart documenté : le document minimal accepté au stockage n’est pas conforme au schéma')]
-    public function testU10StoredDocumentIsNotSchemaValidated(): void
+    #[TestDox('UC-APP-04-U10 — create stocke le document tel quel (sans validation au schéma, par conception) ; le document minimal des tests n’est pas conforme')]
+    public function testU10CreateStoresTheDocumentWithoutSchemaValidation(): void
     {
-        // Validation.php sert aux révisions (UC-CAR-04) et au worker, pas au
-        // POST /api/cartographies : le document minimal ci-dessous est stocké
-        // tel quel par create() (cf. fiche, « Anomalies constatées »).
+        // Ce test ne fige PAS l'anomalie 1 (la route POST, seule fautive, est
+        // figée par UC-APP-04-F14) : il établit que le Repository stocke sans
+        // valider — la validation, si elle devait exister, reviendrait à la
+        // route — et que le document minimal des fixtures de test n'est pas
+        // conforme au schéma (oracle : Validation.php, non sollicité par ce cas).
         $fixture = json_decode(
             (string) file_get_contents(dirname(__DIR__, 4) . '/schemas/fixtures/cartographie-jour-2026-01-05.json'),
             true,

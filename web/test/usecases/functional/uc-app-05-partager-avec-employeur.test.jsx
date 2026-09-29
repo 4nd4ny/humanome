@@ -35,21 +35,31 @@ const PASSWORD = 'sesame-employeur'
 
 /**
  * Serveur factice à état : liens de partage de la copie serveur 42
- * (contrat de api/src/routes/share.php côté apprenant).
+ * (contrat de api/src/routes/share.php côté apprenant : 401 sans session sur
+ * les trois routes, 403 sans jeton CSRF, 404 hors propriété, 422 selon les
+ * règles serveur du mot de passe — points de code via mb_strlen, octets).
  */
 function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevoke = false } = {}) {
   const shares = links.map((l) => ({ ...l }))
   let seq = shares.length
   const known = (id) => cartoIds.includes(Number(id))
+  const anonymous = () => (user ? null : jsonResponse(401, { error: 'Authentification requise' }))
+  const passwordError = (password) => {
+    if (typeof password !== 'string' || [...password].length < 8) {
+      return 'Le mot de passe doit contenir au moins 8 caractères'
+    }
+    return new TextEncoder().encode(password).length > 1024 ? 'Mot de passe trop long' : null
+  }
   const api = createFakeApi([
     meRoute(user),
     [
       'GET',
       /^cartographies\/(\d+)\/shares$/,
       ({ match }) =>
-        known(match[1])
+        anonymous() ??
+        (known(match[1])
           ? jsonResponse(200, shares.map(({ token, ...rest }) => rest))
-          : jsonResponse(404, { error: 'Cartographie introuvable' }),
+          : jsonResponse(404, { error: 'Cartographie introuvable' })),
     ],
     [
       'POST',
@@ -58,6 +68,8 @@ function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevok
         if (!user) return jsonResponse(401, { error: 'Authentification requise' })
         if (headers['X-CSRF-Token'] !== APPS_CSRF) return jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
         if (!known(match[1])) return jsonResponse(404, { error: 'Cartographie introuvable' })
+        const refused = passwordError(body.password)
+        if (refused) return jsonResponse(422, { error: 'Validation échouée', fields: { password: refused } })
         seq += 1
         const token = String(seq).repeat(32).slice(0, 32).replace(/[^0-9a-f]/g, 'a')
         const created = new Date(Date.UTC(2026, 6, 1, 10, 0, 0))
@@ -76,6 +88,8 @@ function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevok
       'DELETE',
       /^shares\/(\d+)$/,
       ({ headers, match }) => {
+        const refused = anonymous()
+        if (refused) return refused
         if (headers['X-CSRF-Token'] !== APPS_CSRF) return jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
         const link = shares.find((s) => s.shareId === Number(match[1]))
         if (!link || failRevoke) return jsonResponse(404, { error: 'Lien de partage introuvable' })
@@ -266,19 +280,28 @@ describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de parta
 
     const input = within(dialog).getByLabelText('Expiration (jours)')
     expect(input.validity[flag]).toBe(true) // validation native du navigateur
+    // Pas d'alerte « L’expiration doit être comprise… » : handleCreate n'a pas
+    // été appelé — c'est bien la validation native qui a bloqué la soumission.
+    expect(within(dialog).queryByRole('alert')).toBeNull()
     expect(within(dialog).queryByTestId('share-url')).toBeNull()
     expect(mutations(server.requests)).toEqual([])
   })
 
-  it('UC-APP-05-F18 — E3 : session expirée (401) → invitation à se reconnecter', async () => {
+  it('UC-APP-05-F18 — E3 : session expirée (401) → la création invite à se reconnecter ; la liste affiche le message brut du serveur', async () => {
     createServer({ user: null })
     await openEspace([SHARED_ENTRY])
     const dialog = await openDialog()
+    // Chargement de la liste en 401 : message brut, sans traduction.
+    expect((await within(dialog).findByRole('alert')).textContent).toBe('Authentification requise')
 
     fillAndCreate(dialog)
 
-    expect((await within(dialog).findByRole('alert')).textContent).toBe(
-      'Session expirée : reconnectez-vous puis réessayez.',
+    // Seule la création traduit le 401 (fiche, E3).
+    await waitFor(() =>
+      expect(within(dialog).getAllByRole('alert').map((a) => a.textContent)).toEqual([
+        'Session expirée : reconnectez-vous puis réessayez.',
+        'Authentification requise',
+      ]),
     )
     expect(within(dialog).queryByTestId('share-url')).toBeNull()
   })
@@ -339,5 +362,22 @@ describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de parta
     expect(within(dialog).getByText(/expire le 02\/01\/2026/)).toBeDefined()
     expect(within(dialog).getByRole('button', { name: 'Révoquer' })).toBeDefined()
     expect(dialog.textContent).not.toMatch(/expiré/)
+  })
+
+  it.each([
+    ['4 caractères astraux (8 unités UTF-16, 4 points de code)', '😀😀😀😀'],
+    ['plus de 1024 octets', 'x'.repeat(1025)],
+  ])('UC-APP-05-F23 — E1 : mot de passe admis localement mais refusé par l’API (%s) → « Validation échouée » seul', async (_label, password) => {
+    const server = createServer()
+    await openEspace([SHARED_ENTRY])
+    const dialog = await openDialog()
+
+    fillAndCreate(dialog, { password })
+
+    expect((await within(dialog).findByRole('alert')).textContent).toBe('Validation échouée')
+    expect(mutations(server.requests)).toHaveLength(1) // le contrôle local a laissé passer
+    expect(mutations(server.requests)[0].body.password).toBe(password)
+    expect(within(dialog).queryByTestId('share-url')).toBeNull()
+    expect(server.shares).toEqual([])
   })
 })

@@ -134,9 +134,12 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         );
         self::assertSame(404, $this->employeurStatus($share['token']));
 
-        // Idempotent : 204, date de révocation d'origine conservée.
+        // Idempotent : 204, date de révocation d'origine conservée. La date est
+        // d'abord reculée : deux appels dans la même seconde ne distingueraient
+        // pas une conservation d'un re-datage.
+        self::$pdo->exec("UPDATE share_links SET revoked_at = '2026-01-01 08:00:00'");
         self::assertSame(204, $this->as_($this->maya, 'DELETE', '/api/shares/' . $share['shareId'])->getStatusCode());
-        self::assertSame($list[0]['revokedAt'], $this->links()[0]['revokedAt']);
+        self::assertSame('2026-01-01T08:00:00', $this->links()[0]['revokedAt']);
         // Comportement actuel (fiche, « Limites ») : la re-révocation est de
         // nouveau journalisée.
         self::assertSame(2, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'share_revoked'")->fetchColumn());
@@ -174,7 +177,7 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         self::assertSame(404, $this->employeurStatus($share['token']));
     }
 
-    #[TestDox('UC-APP-05-F06 — E1 : mot de passe absent, de moins de 8 caractères (comptés en Unicode) ou de plus de 1024 octets → 422')]
+    #[TestDox('UC-APP-05-F06 — E1 : mot de passe absent, de moins de 8 caractères (comptés en points de code, y compris astraux) ou de plus de 1024 octets → 422 ; 1024 octets acceptés')]
     public function testF06PasswordRules(): void
     {
         foreach ([
@@ -182,6 +185,9 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
             ['password' => 12345678],
             ['password' => 'court77'],
             ['password' => 'ééééééé'], // 7 caractères, 14 octets
+            // 4 caractères astraux : 4 points de code (mb_strlen), mais 8 unités
+            // UTF-16 — le contrôle local du navigateur (length) le laisse passer.
+            ['password' => '😀😀😀😀'],
             ['password' => str_repeat('x', 1025)],
         ] as $i => $body) {
             $response = $this->share($body);
@@ -192,6 +198,7 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         self::assertSame(0, self::countLinks());
 
         self::assertSame(201, $this->share(['password' => 'éééééééé'])->getStatusCode(), '8 caractères multi-octets suffisent');
+        self::assertSame(201, $this->share(['password' => str_repeat('x', 1024)])->getStatusCode(), 'borne : 1024 octets acceptés');
     }
 
     #[TestDox('UC-APP-05-F07 — E2 : expiration hors 1..365 ou non entière → 422, aucun lien')]
@@ -205,7 +212,7 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         self::assertSame(0, self::countLinks());
     }
 
-    #[TestDox('UC-APP-05-F08 — E3 : cartographie ou lien d’autrui (ou inconnu) → 404, rien n’est créé ni révoqué')]
+    #[TestDox('UC-APP-05-F08 — E4 : cartographie ou lien d’autrui (ou inconnu) → 404, rien n’est créé ni révoqué')]
     public function testF08ForeignResourcesAnswer404(): void
     {
         $share = self::json($this->share());
@@ -228,7 +235,7 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         self::assertSame(200, $this->employeurStatus($share['token']), 'le lien de Maya fonctionne toujours');
     }
 
-    #[TestDox('UC-APP-05-F09 — E4 : sans session → 401, sans jeton CSRF → 403, sans rôle apprenant → 403')]
+    #[TestDox('UC-APP-05-F09 — E3 : sans session → 401, sans jeton CSRF → 403, sans rôle apprenant → 403 « Rôle insuffisant » sur les trois routes')]
     public function testF09AuthenticationCsrfAndRole(): void
     {
         $share = self::json($this->share());
@@ -253,7 +260,19 @@ final class UcApp05PartagerEmployeurTest extends CartographeTestCase
         }
 
         self::setRoles($this->maya['id'], ['cartographe']);
-        self::assertSame(403, $this->share()->getStatusCode(), 'rôle relu à chaque requête');
+        foreach ([
+            ['POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => self::LINK_PASSWORD]],
+            ['GET', '/api/cartographies/' . $this->cartoId . '/shares', null],
+            ['DELETE', '/api/shares/' . $share['shareId'], null],
+        ] as [$method, $path, $body]) {
+            $response = $this->as_($this->maya, $method, $path, $body);
+            self::assertSame(403, $response->getStatusCode(), 'rôle relu à chaque requête : ' . $method . ' ' . $path);
+            self::assertSame('Rôle insuffisant', self::json($response)['error'], $method . ' ' . $path);
+        }
+        // Ordre des gardes : le CSRF global passe AVANT RequireRole — sans jeton,
+        // ce compte sans rôle reçoit le 403 CSRF, pas « Rôle insuffisant ».
+        $this->cookieSid = $this->maya['sid'];
+        self::assertSame('Jeton CSRF absent ou invalide', self::json($this->request('POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => self::LINK_PASSWORD]))['error']);
 
         self::assertSame(1, self::countLinks());
         self::assertNull(self::$pdo->query('SELECT revoked_at FROM share_links')->fetchColumn());

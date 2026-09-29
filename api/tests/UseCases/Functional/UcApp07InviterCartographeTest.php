@@ -53,15 +53,16 @@ final class UcApp07InviterCartographeTest extends CartographeTestCase
     public function testF01NominalMintFollowAndSeeAcceptance(): void
     {
         // 1-3. Émission.
+        $auditsBefore = (int) self::$pdo->query('SELECT COUNT(*) FROM audit_events')->fetchColumn();
         $response = $this->mint();
         self::assertSame(201, $response->getStatusCode(), (string) $response->getBody());
         $created = self::json($response);
         self::assertSame(['code', 'expiresAt'], array_keys($created));
         self::assertMatchesRegularExpression('/^[A-Z2-9]{10}$/', $created['code']);
         self::assertSame(
-            0,
-            (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type LIKE '%invitation%'")->fetchColumn(),
-            'l’émission n’est pas journalisée (seule l’acceptation l’est, UC-CAR-01)',
+            $auditsBefore,
+            (int) self::$pdo->query('SELECT COUNT(*) FROM audit_events')->fetchColumn(),
+            'l’émission n’est pas journalisée, sous aucun type (seule l’acceptation l’est, UC-CAR-01)',
         );
 
         // 4. Suivi : le code apparaît « en attente », valable 30 jours.
@@ -160,7 +161,7 @@ final class UcApp07InviterCartographeTest extends CartographeTestCase
         self::assertCount(10, $this->mine(), 'le suivi reste disponible');
     }
 
-    #[TestDox('UC-APP-07-F06 — E2 : sans session → 401 ; sans jeton CSRF → 403 ; sans rôle apprenant → 403')]
+    #[TestDox('UC-APP-07-F06 — E2 : sans session → 401 ; sans jeton CSRF → 403 ; sans rôle apprenant → 403 ; CSRF contrôlé avant le rôle ; cookie périmé → 403 CSRF (POST) / 401 (GET)')]
     public function testF06AuthenticationCsrfAndRole(): void
     {
         $this->cookieSid = null;
@@ -173,8 +174,23 @@ final class UcApp07InviterCartographeTest extends CartographeTestCase
         self::assertSame('Jeton CSRF absent ou invalide', self::json($noCsrf)['error']);
 
         $camille = $this->registerAs('camille@example.org', 'Camille', ['cartographe']);
-        self::assertSame(403, $this->mint($camille)->getStatusCode());
-        self::assertSame(403, $this->as_($camille, 'GET', '/api/cartographe/invitations')->getStatusCode());
+        foreach ([$this->mint($camille), $this->as_($camille, 'GET', '/api/cartographe/invitations')] as $response) {
+            self::assertSame(403, $response->getStatusCode());
+            self::assertSame('Rôle insuffisant', self::json($response)['error']);
+        }
+        // Ordre des gardes : le CSRF global passe AVANT RequireRole. Sans jeton,
+        // le compte cartographe seul reçoit le 403 CSRF, pas « Rôle insuffisant ».
+        $this->cookieSid = $camille['sid'];
+        self::assertSame('Jeton CSRF absent ou invalide', self::json($this->request('POST', '/api/cartographe/invitations'))['error']);
+
+        // Cookie de session périmé (ligne purgée) : 403 CSRF sur POST, 401 sur GET.
+        self::$pdo->prepare('DELETE FROM sessions WHERE id = ?')->execute([$this->maya['sid']]);
+        $stale = $this->mint();
+        self::assertSame(403, $stale->getStatusCode());
+        self::assertSame('Jeton CSRF absent ou invalide', self::json($stale)['error']);
+        $staleGet = $this->as_($this->maya, 'GET', '/api/cartographe/invitations');
+        self::assertSame(401, $staleGet->getStatusCode());
+        self::assertSame('Authentification requise', self::json($staleGet)['error']);
 
         self::assertSame(0, self::countCodes());
     }
@@ -207,5 +223,21 @@ final class UcApp07InviterCartographeTest extends CartographeTestCase
         self::assertNull($item['acceptedBy'], 'accepted_by SET NULL : plus de nom affiché');
         self::assertNotNull($item['acceptedAt']);
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_links')->fetchColumn());
+    }
+
+    #[TestDox('UC-APP-07-F10 — A5 : l’apprenant supprime son compte → ses codes sont purgés et le cartographe perd le rattachement')]
+    public function testF10LearnerAccountDeletionPurgesCodesAndLink(): void
+    {
+        $camille = $this->registerAs('camille@example.org', 'Camille', ['cartographe']);
+        $code = (string) self::json($this->mint())['code'];
+        $this->mint(); // un second code, encore en attente
+        self::assertSame(201, $this->as_($camille, 'POST', '/api/cartographe/invitations/' . $code . '/accept')->getStatusCode());
+        self::assertCount(1, self::json($this->as_($camille, 'GET', '/api/cartographe/apprentis')));
+
+        self::assertSame(204, $this->as_($this->maya, 'DELETE', '/api/auth/account')->getStatusCode());
+
+        self::assertSame(0, self::countCodes(), 'CASCADE sur apprenant_id');
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_links')->fetchColumn());
+        self::assertSame([], self::json($this->as_($camille, 'GET', '/api/cartographe/apprentis')));
     }
 }

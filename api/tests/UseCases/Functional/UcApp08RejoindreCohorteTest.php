@@ -153,7 +153,7 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'cohorte_joined'")->fetchColumn());
     }
 
-    #[TestDox('UC-APP-08-F03 — A2 : re-dépôt → remplacement complet du portfolio déposé (même dépôt)')]
+    #[TestDox('UC-APP-08-F03 — A2 : re-dépôt → remplacement complet du portfolio déposé (même dépôt), chaque dépôt journalisé')]
     public function testF03RedepositReplaces(): void
     {
         $this->join();
@@ -166,6 +166,9 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         self::assertSame(1, self::rows('cohorte_portfolios'));
         $item = self::json($this->as_($this->elise, 'GET', '/api/cohortes'))[0];
         self::assertSame(['Journal corrigé', 1], [$item['portfolio']['titre'], $item['portfolio']['journees']]);
+        // Chaque dépôt est journalisé (compteurs seulement).
+        self::assertSame(2, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'cohorte_portfolio_deposited'")->fetchColumn());
+        self::assertEquals(['cohorteId' => $this->cohorte['id'], 'segments' => 1], self::lastAudit('cohorte_portfolio_deposited')['details']);
     }
 
     #[TestDox('UC-APP-08-F04 — A3 : code saisi en minuscules → normalisé, adhésion créée')]
@@ -194,9 +197,10 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
 
         // Revenir reste possible : nouveau consentement, nouvel audit.
         self::assertSame(201, $this->join()->getStatusCode());
+        self::assertSame(2, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'cohorte_joined'")->fetchColumn());
     }
 
-    #[TestDox('UC-APP-08-F06 — A4 : quitter après production → jobs en attente annulés, documents produits gardés par l’apprenant seul')]
+    #[TestDox('UC-APP-08-F06 — A4 : quitter après production → jobs en attente annulés, documents produits gardés par l’apprenant seul ; une nouvelle jointure les rouvre à l’établissement (figé)')]
     public function testF06QuitAfterProductionKeepsLearnerDocuments(): void
     {
         $this->join();
@@ -213,6 +217,14 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         self::assertSame(404, $this->as_($this->etab, 'GET', '/api/etablissement/membres/' . $this->elise['id'] . '/documents')->getStatusCode());
         $mine = self::json($this->as_($this->elise, 'GET', '/api/mes-documents-masse'))['documents'];
         self::assertSame(['2026-01-05'], array_column($mine, 'date'));
+
+        // Comportement ACTUEL (fiche, A4 et Limites) : une nouvelle jointure rend
+        // à l'établissement l'accès aux documents produits AVANT le départ — la
+        // route ne contrôle que l'adhésion courante, sans condition de date.
+        self::assertSame(201, $this->join()->getStatusCode());
+        $again = $this->as_($this->etab, 'GET', '/api/etablissement/membres/' . $this->elise['id'] . '/documents');
+        self::assertSame(200, $again->getStatusCode());
+        self::assertSame(['2026-01-05'], array_column(self::json($again)['documents'], 'date'));
     }
 
     #[TestDox('UC-APP-08-F07 — A5 : l’apprenant récupère SES documents de masse terminés, avec cohorte et versions')]
@@ -296,7 +308,7 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         self::assertSame(0, self::rows('cohorte_portfolios'));
     }
 
-    #[TestDox('UC-APP-08-F11 — E5 : portfolio invalide (titre, texte, segments, dates absentes ou mal formées, doublons, 366 jours, 4 Mo) → 422')]
+    #[TestDox('UC-APP-08-F11 — E5 : portfolio invalide (titre, texte, segments, dates absentes ou mal formées, doublons, 366 jours, 4 Mo — texte intégral compris) → 422')]
     public function testF11InvalidDepositIsRejected(): void
     {
         $this->join();
@@ -326,8 +338,18 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         }
         self::assertSame('date en double dans les segments : 2026-01-05', self::json($this->deposit($cases['segments      ']))['fields']['segments']);
         self::assertSame('Portfolio trop volumineux (4 Mo maximum)', self::json($this->deposit($cases['segments       ']))['fields']['segments']);
+
+        // Anomalie 2 (fiche) : le texte intégral compte AUSSI dans le plafond.
+        // Comme l'IHM envoie le texte ET ses tranches, ~2,2 Mo de portfolio
+        // réel suffisent à dépasser les 4 Mo.
+        $half = str_repeat('x', (int) (2.2 * 1024 * 1024));
+        $doubled = $this->deposit(['titre' => 'T', 'texte' => $half, 'segments' => [['date' => '2026-01-05', 'texte' => $half]]]);
+        self::assertSame(422, $doubled->getStatusCode());
+        self::assertSame('Portfolio trop volumineux (4 Mo maximum)', self::json($doubled)['fields']['segments']);
         self::assertSame(0, self::rows('cohorte_portfolios'));
         self::assertNull(self::lastAudit('cohorte_portfolio_deposited'));
+        // Les mêmes segments, sans le texte intégral, passent.
+        self::assertSame(201, $this->deposit(['titre' => 'T', 'segments' => [['date' => '2026-01-05', 'texte' => $half]]])->getStatusCode());
     }
 
     #[TestDox('UC-APP-08-F12 — E6 : quitter une cohorte dont on n’est pas membre (ou inconnue) → 404')]
@@ -386,5 +408,22 @@ final class UcApp08RejoindreCohorteTest extends CartographeTestCase
         $response = $this->deposit(['titre' => 'T', 'segments' => [['date' => '2026-02-30', 'texte' => 'x']]]);
 
         self::assertSame(201, $response->getStatusCode());
+    }
+
+    #[TestDox('UC-APP-08-F23 — anomalie 3 figée : l’établissement supprime la cohorte → les documents déjà produits pour l’apprenant disparaissent aussi')]
+    public function testF23CohortDeletionWipesTheLearnerMassDocuments(): void
+    {
+        // Comportement ACTUEL (fiche, anomalie 3 ; UC-ETA-01) : mass_runs est en
+        // CASCADE sur la cohorte, mass_jobs en CASCADE sur mass_runs.
+        $this->join();
+        $this->deposit(self::portfolio());
+        $this->produce(['2026-01-05' => 'done']);
+        self::assertCount(1, self::json($this->as_($this->elise, 'GET', '/api/mes-documents-masse'))['documents']);
+
+        self::assertSame(204, $this->as_($this->etab, 'DELETE', '/api/etablissement/cohortes/' . $this->cohorte['id'])->getStatusCode());
+
+        self::assertSame(['documents' => []], self::json($this->as_($this->elise, 'GET', '/api/mes-documents-masse')));
+        self::assertSame(0, self::rows('mass_jobs'));
+        self::assertSame([], self::json($this->as_($this->elise, 'GET', '/api/cohortes')));
     }
 }

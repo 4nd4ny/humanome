@@ -5,13 +5,15 @@
 // Code sollicité appelé directement : le texte de consentement affiché, et le
 // composant CohorteSection rendu isolément (lecture de GET api/cohortes dans
 // la forme RÉELLE de l'API, contrôles locaux avant jointure, garde du dépôt
-// quand le portfolio local a disparu).
+// quand le portfolio local a disparu, départ en deux temps). La lecture des
+// documents de masse pour l'export (archive.js, defaultGetMassDocuments) est
+// testée unitairement par UC-APP-06-U09.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import CohorteSection, { CONSENT_TEXT } from '../../../src/views/espace/CohorteSection.jsx'
 import { createMemoryAdapter, createPortfolioStore } from '../../../src/lib/portfolio-store.js'
 import { resetApiClient } from '../../../src/api/client.js'
-import { createFakeApi, jsonResponse } from '../support/apps.js'
+import { createFakeApi, jsonResponse, noContentResponse } from '../support/apps.js'
 
 const connecte = { status: 'authenticated', user: { email: 'elise@example.org', displayName: 'Élise' } }
 
@@ -110,5 +112,33 @@ describe('UC-APP-08 — CohorteSection isolé', () => {
     expect((await screen.findByRole('alert')).textContent).toBe('Portfolio local introuvable.')
     expect(portfolioStore.get).toHaveBeenCalledWith('p1')
     expect(api.requests.filter((r) => r.method === 'POST')).toEqual([])
+  })
+
+  it('UC-APP-08-U12 — onQuit : premier clic = armement sans requête ; l’armement suit la dernière cohorte cliquée ; la confirmation envoie DELETE', async () => {
+    const cohortes = [
+      { id: 7, nom: 'BTS SIO 2026', etablissement: 'Lycée Astrolabe', joinedAt: null, portfolioDepose: true },
+      { id: 9, nom: 'Terminale B', etablissement: 'Lycée Astrolabe', joinedAt: null, portfolioDepose: true },
+    ]
+    const api = createFakeApi([
+      ['GET', 'cohortes', () => jsonResponse(200, cohortes)],
+      ['DELETE', 'cohortes/9/quitter', () => noContentResponse()],
+    ])
+    render(<CohorteSection session={connecte} portfolioStore={createPortfolioStore(createMemoryAdapter())} fetchFn={api.fetch} />)
+    const [bts, terminale] = within(await screen.findByTestId('cohorte-liste')).getAllByRole('listitem')
+    const deletes = () => api.requests.filter((r) => r.method === 'DELETE')
+
+    fireEvent.click(within(bts).getByRole('button', { name: 'Quitter la cohorte' }))
+    expect(within(bts).getByRole('button', { name: 'Confirmer le départ' })).toBeDefined()
+    expect(deletes()).toEqual([])
+
+    // Un clic sur l'autre cohorte déplace l'armement (une seule armée à la fois).
+    fireEvent.click(within(terminale).getByRole('button', { name: 'Quitter la cohorte' }))
+    expect(within(bts).getByRole('button', { name: 'Quitter la cohorte' })).toBeDefined()
+    expect(within(terminale).getByRole('button', { name: 'Confirmer le départ' })).toBeDefined()
+    expect(deletes()).toEqual([])
+
+    fireEvent.click(within(terminale).getByRole('button', { name: 'Confirmer le départ' }))
+    expect((await screen.findByTestId('cohorte-info')).textContent).toContain('Vous avez quitté la cohorte « Terminale B »')
+    expect(deletes().map((r) => r.path)).toEqual(['cohortes/9/quitter'])
   })
 })

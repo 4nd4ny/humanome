@@ -148,7 +148,7 @@ final class UcApp05PartagerEmployeurTest extends TestCase
         );
     }
 
-    #[TestDox('UC-APP-05-U05 — garde de propriété et compteur « shares » : seuls les liens actifs du propriétaire comptent')]
+    #[TestDox('UC-APP-05-U05 — garde de propriété et compteur « shares » : seuls les liens actifs (ni révoqués, ni expirés) du propriétaire comptent')]
     public function testU05OwnershipGuardAndActiveShareCounter(): void
     {
         $maya = self::user();
@@ -166,11 +166,21 @@ final class UcApp05PartagerEmployeurTest extends TestCase
         $links->revokeForUser($a, $maya);
         self::assertSame(1, $repo->listForUser($maya)[0]['shares']);
         self::assertSame(1, $repo->findForUser($cartoId, $maya)['shares']);
+
+        // Un lien expiré (ni révoqué) ne compte plus non plus.
+        ['shareId' => $expired] = $links->create($cartoId, 'sesame-employeur', 90);
+        self::assertSame(2, $repo->listForUser($maya)[0]['shares']);
+        self::$pdo->exec('UPDATE share_links SET expires_at = NOW() - INTERVAL 1 MINUTE WHERE id = ' . $expired);
+        self::assertSame(1, $repo->listForUser($maya)[0]['shares'], 'listForUser : expiré exclu');
+        self::assertSame(1, $repo->findForUser($cartoId, $maya)['shares'], 'findForUser : expiré exclu');
     }
 
-    #[TestDox('UC-APP-05-U06 — Audit::record : identifiants seulement, anonymisé à la purge du compte (§6.5)')]
+    #[TestDox('UC-APP-05-U06 — Audit::record : stocke les détails fournis tels quels (JSON), anonymisé à la purge du compte')]
     public function testU06AuditRecordsIdsOnlyAndIsAnonymizedOnPurge(): void
     {
+        // Audit::record enregistre ce qu'on lui donne : la garantie « identifiants
+        // seulement, jamais de jeton ni de mot de passe » est celle de la route,
+        // vérifiée par UC-APP-05-F01.
         $maya = self::user();
         Audit::record(self::$pdo, $maya, 'share_created', ['cartographieId' => 3, 'shareId' => 9, 'expiresInDays' => 90]);
 

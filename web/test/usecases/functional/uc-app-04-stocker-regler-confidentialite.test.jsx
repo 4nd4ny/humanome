@@ -52,9 +52,10 @@ function makeStore() {
 /**
  * Serveur factice À ÉTAT reproduisant le contrat des routes
  * /api/cartographies (401 sans session, 403 sans jeton CSRF, 404 id inconnu).
- * `onPost` permet de forcer une réponse d'erreur.
+ * `onPost` / `onDelete` permettent de forcer une réponse d'erreur ; `onDelete`
+ * reçoit l'id visé et peut observer l'état local au moment de la requête.
  */
-function createServer({ user = APPS_USER, existing = [], onPost = null } = {}) {
+function createServer({ user = APPS_USER, existing = [], onPost = null, onDelete = null } = {}) {
   const cartos = new Map(existing.map((c) => [c.id, { ...c }]))
   let nextId = 42
   const guard = (headers) => {
@@ -99,8 +100,8 @@ function createServer({ user = APPS_USER, existing = [], onPost = null } = {}) {
     [
       'DELETE',
       /^cartographies\/(\d+)$/,
-      ({ headers, match }) => {
-        const refused = guard(headers)
+      async ({ headers, match }) => {
+        const refused = guard(headers) ?? (await onDelete?.(Number(match[1])))
         if (refused) return refused
         return cartos.delete(Number(match[1]))
           ? noContentResponse()
@@ -220,21 +221,48 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
     ])
   })
 
-  it('UC-APP-04-F18 — A5 : « Supprimer » en deux temps efface la copie serveur puis la cartographie locale', async () => {
+  it('UC-APP-04-F18 — A5 : « Supprimer » en deux temps efface la copie serveur PUIS la cartographie locale (404 toléré, sans copie = sans requête)', async () => {
     const store = makeStore()
     const { id } = await store.saveCartography({ ...RUN_ENTRY, serverId: 42 })
-    const server = createServer({ existing: [{ id: 42, titre: TITRE }] })
+    const { id: locale } = await store.saveCartography({ ...RUN_ENTRY, titre: 'Locale seulement' })
+    const { id: orphan } = await store.saveCartography({ ...RUN_ENTRY, titre: 'Copie disparue', serverId: 43 })
+    const localAtDelete = {}
+    const server = createServer({
+      existing: [{ id: 42, titre: TITRE }],
+      onDelete: async (serverId) => {
+        // Ordre : la cartographie locale existe encore quand le DELETE part.
+        localAtDelete[serverId] = (await store.getCartography(serverId === 42 ? id : orphan)) !== undefined
+        return null
+      },
+    })
     await openEspace(store)
 
     fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Supprimer' }))
     expect(mutations(server.requests)).toEqual([]) // premier clic = armement
     fireEvent.click(await screen.findByRole('button', { name: 'Confirmer la suppression' }))
 
-    expect(await screen.findByText(/Aucune cartographie pour l’instant/)).toBeDefined()
-    expect(screen.getByText(`« ${TITRE} » supprimée.`)).toBeDefined()
+    expect(await screen.findByText(`« ${TITRE} » supprimée.`)).toBeDefined()
     expect(await store.getCartography(id)).toBeUndefined()
     expect(server.cartos.size).toBe(0)
-    expect(mutations(server.requests).map((r) => `${r.method} ${r.path}`)).toEqual(['DELETE cartographies/42'])
+    expect(localAtDelete[42]).toBe(true)
+
+    // Sans copie serveur : suppression purement locale, aucune requête.
+    fireEvent.click(within(itemOf('Locale seulement')).getByRole('button', { name: 'Supprimer' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirmer la suppression' }))
+    expect(await screen.findByText('« Locale seulement » supprimée.')).toBeDefined()
+    expect(await store.getCartography(locale)).toBeUndefined()
+
+    // Copie serveur déjà absente (404) : tolérée, la cartographie locale part quand même.
+    fireEvent.click(within(itemOf('Copie disparue')).getByRole('button', { name: 'Supprimer' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirmer la suppression' }))
+    expect(await screen.findByText(/Aucune cartographie pour l’instant/)).toBeDefined()
+    expect(await store.getCartography(orphan)).toBeUndefined()
+    expect(localAtDelete[43]).toBe(true)
+    expect(screen.queryByRole('alert')).toBeNull()
+    expect(mutations(server.requests).map((r) => `${r.method} ${r.path}`)).toEqual([
+      'DELETE cartographies/42',
+      'DELETE cartographies/43',
+    ])
   })
 
   it('UC-APP-04-F19 — E1 : visiteur non connecté → invitation à se connecter, rien n’est copié', async () => {
@@ -263,7 +291,7 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
       { error: 'Validation échouée', fields: { document: 'Document trop volumineux (8 Mo maximum)' } },
       'Validation échouée',
     ],
-  ])('UC-APP-04-F20 — %s : message du serveur affiché, pas de badge', async (_label, status, payload, message) => {
+  ])('UC-APP-04-F20 — %s : seul le message général du serveur est affiché (pas le détail des champs), pas de badge', async (_label, status, payload, message) => {
     const store = makeStore()
     const { id } = await store.saveCartography(RUN_ENTRY)
     createServer({ onPost: () => jsonResponse(status, payload) })
@@ -272,13 +300,17 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
     fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Copier sur le serveur' }))
     fireEvent.click(await screen.findByRole('button', { name: 'Je confirme la copie sur le serveur' }))
 
-    expect((await screen.findByRole('alert')).textContent).toBe(message)
+    // Seul `error` est affiché : le détail `fields` (ex. « Document trop
+    // volumineux (8 Mo maximum) ») n'est jamais montré (fiche, E4 et Limites).
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toBe(message)
+    expect(alert.textContent).not.toContain('8 Mo')
     expect((await store.getCartography(id)).serverId).toBeNull()
     // L'encart reste ouvert : l'apprenant peut annuler.
     expect(screen.getByTestId('carto-optin')).toBeDefined()
   })
 
-  it('UC-APP-04-F21 — E7 : le PATCH serveur échoue → confidentialité locale inchangée et message', async () => {
+  it('UC-APP-04-F21 — E7 + anomalie 4 : le PATCH échoue (404) → confidentialité locale inchangée, message, serverId périmé conservé (comportement actuel figé)', async () => {
     const store = makeStore()
     const { id } = await store.saveCartography({ ...RUN_ENTRY, serverId: 42 })
     // Copie supprimée entre-temps (autre appareil) : le serveur répond 404.
@@ -291,6 +323,18 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
     expect((await store.getCartography(id)).visibility).toBe('privee')
     expect(screen.getByLabelText(`Confidentialité de ${TITRE}`).value).toBe('privee')
     expect(mutations(server.requests)).toHaveLength(1)
+
+    // Comportement ACTUEL (fiche, anomalie 4) : contrairement au retrait et à
+    // la suppression, le 404 du PATCH n'est pas réaligné — serverId reste
+    // périmé, le badge demeure, et chaque nouveau réglage échoue de même.
+    expect((await store.getCartography(id)).serverId).toBe(42)
+    expect(within(itemOf(TITRE)).getByText('copie serveur')).toBeDefined()
+    await waitFor(() => expect(screen.getByLabelText(`Confidentialité de ${TITRE}`).disabled).toBe(false))
+    fireEvent.change(screen.getByLabelText(`Confidentialité de ${TITRE}`), { target: { value: 'cartographe' } })
+    await waitFor(() => expect(mutations(server.requests)).toHaveLength(2))
+    expect((await screen.findByRole('alert')).textContent).toBe('Cartographie introuvable')
+    expect((await store.getCartography(id)).visibility).toBe('privee')
+    expect((await store.getCartography(id)).serverId).toBe(42)
   })
 
   it('UC-APP-04-F22 — anomalie figée : sur un autre appareil, les copies serveur ne sont ni listées ni récupérables', async () => {
@@ -316,5 +360,89 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
     expect(await screen.findByText(/Aucune cartographie pour l’instant/)).toBeDefined()
     await screen.findByTestId('espace-connecte')
     expect(server.requests.map((r) => `${r.method} ${r.path}`)).toEqual(['GET auth/me'])
+  })
+
+  it('UC-APP-04-F25 — E8 : « Retirer du serveur » échoue (500, puis 401) → message, serverId et badge conservés, bouton réarmé', async () => {
+    const store = makeStore()
+    const { id } = await store.saveCartography({ ...RUN_ENTRY, serverId: 42 })
+    const failures = [
+      jsonResponse(500, { error: 'Erreur interne' }),
+      jsonResponse(401, { error: 'Authentification requise' }),
+    ]
+    const server = createServer({ existing: [{ id: 42, titre: TITRE }], onDelete: () => failures.shift() ?? null })
+    await openEspace(store)
+
+    fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Retirer du serveur' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect((await store.getCartography(id)).serverId).toBe(42)
+    expect(within(itemOf(TITRE)).getByText('copie serveur')).toBeDefined()
+
+    // Session expirée entre-temps : invitation à se connecter.
+    await waitFor(() =>
+      expect(within(itemOf(TITRE)).getByRole('button', { name: 'Retirer du serveur' }).disabled).toBe(false),
+    )
+    fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Retirer du serveur' }))
+    await waitFor(() =>
+      expect(screen.getByRole('alert').textContent).toBe(
+        'Connectez-vous (espace compte) pour retirer une cartographie du serveur.',
+      ),
+    )
+    expect((await store.getCartography(id)).serverId).toBe(42)
+    expect(server.cartos.has(42)).toBe(true)
+    expect(screen.queryByText(/supprimée \(les liens de partage sont purgés\)/)).toBeNull()
+  })
+
+  it('UC-APP-04-F26 — E8 : la suppression échoue côté serveur (500) → message, cartographie locale conservée, « Supprimer » réarmé', async () => {
+    const store = makeStore()
+    const { id } = await store.saveCartography({ ...RUN_ENTRY, serverId: 42 })
+    const server = createServer({
+      existing: [{ id: 42, titre: TITRE }],
+      onDelete: () => jsonResponse(500, { error: 'Erreur interne' }),
+    })
+    await openEspace(store)
+
+    fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Supprimer' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Confirmer la suppression' }))
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Erreur interne')
+    expect((await store.getCartography(id)).serverId).toBe(42)
+    expect(within(itemOf(TITRE)).getByRole('button', { name: 'Supprimer' })).toBeDefined()
+    expect(screen.queryByText(`« ${TITRE} » supprimée.`)).toBeNull()
+    expect(server.cartos.has(42)).toBe(true)
+  })
+
+  it('UC-APP-04-F27 — anomalie 3 figée : la copie transmet des extraits verbatim du portfolio et, dans runMeta, son titre', async () => {
+    // Comportement ACTUEL (fiche, anomalie 3) : l'encart promet « jamais votre
+    // portfolio », mais le document porte des citations exactes du portfolio
+    // (poles[].passagesSaillants[].extraitVerbatim) et le runMeta produit par
+    // l'assistant de run (UC-APP-02-F01) porte l'id et le titre du portfolio.
+    const store = makeStore()
+    const runMeta = {
+      portfolioId: 'p-1',
+      portfolioTitre: 'Journal de Maya',
+      mode: 'humanome',
+      provider: 'humanome',
+      model: 'impose par la plateforme',
+      jours: 1,
+      generatedAt: '2026-07-01T10:00:00Z',
+    }
+    const titre = 'Journée 2026-01-05 — Journal de Maya'
+    await store.saveCartography({ ...RUN_ENTRY, titre, runMeta })
+    const server = createServer()
+    await openEspace(store)
+
+    fireEvent.click(within(itemOf(titre)).getByRole('button', { name: 'Copier sur le serveur' }))
+    const optin = await screen.findByTestId('carto-optin')
+    expect(optin.textContent).toContain('le document de la cartographie (jamais votre portfolio)')
+    expect(optin.textContent).not.toMatch(/extrait|citation/i)
+    fireEvent.click(within(optin).getByRole('button', { name: 'Je confirme la copie sur le serveur' }))
+    await within(itemOf(titre)).findByText('copie serveur')
+
+    const [post] = mutations(server.requests)
+    const extrait = dayFixture.poles[0].passagesSaillants[0].extraitVerbatim
+    expect(extrait.length).toBeGreaterThan(20)
+    expect(post.body.document.poles[0].passagesSaillants[0].extraitVerbatim).toBe(extrait)
+    expect(post.body.runMeta).toMatchObject({ portfolioId: 'p-1', portfolioTitre: 'Journal de Maya' })
+    expect(post.body.titre).toContain('Journal de Maya')
   })
 })

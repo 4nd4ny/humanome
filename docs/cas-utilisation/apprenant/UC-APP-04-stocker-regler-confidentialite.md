@@ -40,16 +40,26 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   porte le badge « copie serveur » et devient partageable (UC-APP-05).
 - La visibilité serveur est celle choisie ; un cartographe **lié** voit la
   cartographie dans sa file si, et seulement si, elle est `cartographe` ou
-  `publique` — un retour à `privee` coupe son accès immédiatement.
-- « Retirer du serveur » purge réellement la ligne **et ses liens de partage**
-  (FK `ON DELETE CASCADE`) ; la copie locale demeure.
+  `publique` — un retour à `privee` coupe son accès immédiatement. La
+  visibilité ne gouverne **pas** le partage employeur : un retour à `privee`
+  ne révoque pas les liens de partage actifs (RG9, UC-APP-05 anomalie 1).
+- « Retirer du serveur » purge réellement la ligne, **ses liens de partage**
+  et **tout le travail du cartographe lié** posé dessus — annotations,
+  révisions et garantie (UC-CAR-03, UC-CAR-04, UC-CAR-05) — par les FK
+  `ON DELETE CASCADE` (migrations 004 et 008) ; la copie locale demeure.
 
 ## Garanties minimales (en cas d'échec)
 
 - Rien ne part au serveur avant la confirmation de l'encart RGPD ; le
-  portfolio n'est **jamais** envoyé (seul le document de cartographie l'est).
-- Un échec serveur laisse la copie locale inchangée (pas de `serverId`, ou
-  visibilité locale inchangée) et affiche un message en français.
+  portfolio **complet** n'est jamais envoyé. Le document transmis contient
+  toutefois des **extraits verbatim** du portfolio
+  (`poles[].passagesSaillants[].extraitVerbatim`), et le `runMeta` comme le
+  titre produits par l'assistant de run portent l'identifiant et le titre du
+  portfolio (anomalie 3).
+- Un échec serveur laisse la copie locale inchangée (pas de `serverId`,
+  visibilité locale inchangée, `serverId` et cartographie locale conservés
+  après un retrait ou une suppression en échec) et affiche un message en
+  français.
 - Aucune réponse ne révèle l'existence d'une cartographie d'un autre compte
   (même `404`).
 
@@ -68,7 +78,9 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
    `{type, titre, visibility, document}`, complété de
    `promptPackageId`/`promptPackageVersion`, `referentielId`/
    `referentielVersion` et `runMeta` quand la cartographie locale les connaît.
-4. Le serveur vérifie la session et le rôle (`RequireRole`), le jeton CSRF,
+4. Le serveur contrôle d'abord le jeton CSRF (middleware **global**
+   `CsrfMiddleware`, exécuté avant les gardes de route, et seulement si un
+   cookie de session est présent), puis la session et le rôle (`RequireRole`),
    valide le corps (RG3 à RG6), résout les versions **publiées**, insère la
    ligne avec `opt_in_at = NOW()` et répond `201 {id}`.
 5. Le navigateur enregistre `serverId = id` dans le carto-store et affiche le
@@ -96,29 +108,41 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   `cartographe` ou `publique`, un cartographe **lié** (UC-CAR-01) voit la
   cartographie dans `GET /api/cartographe/cartographies` et peut l'ouvrir ; un
   cartographe non lié ne voit rien ; le retour à `privee` fait disparaître la
-  cartographie de sa file et son détail répond `404` immédiatement.
+  cartographie de sa file et son détail répond `404` immédiatement
+  (`api/src/routes/cartographe.php`).
 - **A3 — Renommer ou PATCH sans changement** (étape 6, API seulement) :
   `PATCH {titre}` renomme (espaces de bord rognés) sans toucher la
   visibilité ; un `PATCH {}` ou aux mêmes valeurs répond `200` sans effet.
 - **A4 — Retirer du serveur** (après l'étape 5) : « Retirer du serveur » envoie
-  `DELETE /api/cartographies/{serverId}` → `204` ; la ligne et ses liens de
-  partage sont purgés (un lien transmis à un employeur répond désormais le
-  `404` de UC-EMP-01), puis `GET`/`DELETE` répondent `404`. Le navigateur
+  `DELETE /api/cartographies/{serverId}` → `204` ; la ligne, ses liens de
+  partage et le travail du cartographe lié (annotations, révisions, garantie)
+  sont purgés par cascade : un lien transmis à un employeur répond désormais
+  le `404` de UC-EMP-01 (`api/src/routes/share.php`), la cartographie sort de
+  la file du cartographe et son détail répond `404`, puis `GET`/`DELETE`
+  répondent `404`. Aucun avertissement n'indique à l'apprenant que la
+  relecture et la garantie seront perdues (voir Limites). Le navigateur
   efface `serverId` (« Copie serveur de « *titre* » supprimée (les liens de
   partage sont purgés). »). Si la copie n'existait déjà plus (`404`), le local
   est réaligné sans erreur.
 - **A5 — Supprimer la cartographie** (étape 1) : « Supprimer » s'arme au
-  premier clic, « Confirmer la suppression » supprime la copie serveur (si
-  `serverId`, `404` toléré) **puis** la cartographie locale.
+  premier clic (« Annuler » désarme), « Confirmer la suppression » supprime la
+  copie serveur (si `serverId` ; `404` toléré ; aucune requête sans
+  `serverId`) **puis** la cartographie locale ; mêmes effets de cascade que A4.
 - **A6 — Visibilité omise** (étape 3, API) : sans `visibility`, la copie est
   créée `privee`.
 
 ## Scénarios d'erreur
 
-- **E1 — Pas de session** (étape 4) : `401 {"error": "Authentification
-  requise"}` sur chaque route ; l'IHM affiche « Connectez-vous (espace compte)
-  pour copier une cartographie sur le serveur. » et ne mémorise aucun
-  `serverId`.
+- **E1 — Pas de session** (étape 4) : **sans cookie de session**, `401
+  {"error": "Authentification requise"}` sur chaque route ; l'IHM affiche
+  « Connectez-vous (espace compte) pour copier une cartographie sur le
+  serveur. » (ou « … pour changer la confidentialité de la copie serveur. »,
+  « … pour retirer une cartographie du serveur. », « … pour supprimer la
+  copie serveur. » selon l'action) et ne mémorise aucun `serverId`. Avec un
+  cookie de session **expiré** (ligne `sessions` purgée, cookie encore
+  présent), le CSRF global passe avant `RequireRole` : `POST`/`PATCH`/`DELETE`
+  répondent `403 {"error": "Jeton CSRF absent ou invalide"}` — affiché tel
+  quel par l'IHM — et seuls les `GET` répondent `401`.
 - **E2 — Rôle `apprenant` absent** (étape 4) : `403 {"error": "Rôle
   insuffisant"}` ; message du serveur affiché.
 - **E3 — Jeton CSRF absent ou invalide** (étapes 4 et 7) : `403 {"error":
@@ -128,7 +152,8 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   190 caractères, visibilité inconnue, document absent / vide / liste / > 8 Mo,
   `runMeta` non objet ou > 64 Ko, paire de versions incomplète ou version non
   publiée (message `Paquet de prompts publié introuvable : id@version`).
-  Aucune ligne créée ; l'IHM affiche le message et laisse l'encart ouvert.
+  Aucune ligne créée ; l'IHM n'affiche que le message général « Validation
+  échouée » (le détail `fields` n'est pas montré) et laisse l'encart ouvert.
 - **E5 — PATCH invalide** (étape 7) : `422` (titre vide, non chaîne ou > 190
   caractères, visibilité inconnue) ; **tout ou rien** : aucun champ n'est
   appliqué.
@@ -137,7 +162,15 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   `DELETE` ; la ligne d'autrui reste intacte.
 - **E7 — Échec du PATCH vu de l'IHM** (étape 7) : message d'erreur (ex.
   « Cartographie introuvable ») ; la visibilité locale et le menu restent sur
-  l'ancienne valeur.
+  l'ancienne valeur. Sur un `404`, `serverId` n'est **pas** réaligné
+  (anomalie 4) : chaque nouveau réglage échoue de même.
+- **E8 — Échec du retrait ou de la suppression vu de l'IHM** (A4, A5) : toute
+  erreur autre que `404` (`401` hors session, `403`, `500`…) affiche un
+  message (`401` → « Connectez-vous (espace compte) pour retirer une
+  cartographie du serveur. » ou « … pour supprimer la copie serveur. »,
+  sinon le message du serveur) ; `serverId`, le badge et la cartographie
+  locale sont conservés, les boutons redeviennent actifs (« Supprimer »
+  désarmé).
 
 ## Règles de gestion
 
@@ -146,8 +179,8 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
 - **RG2** — Propriété : toute requête est filtrée par `user_id` ; un id
   étranger se comporte exactement comme un id inexistant (`404`).
 - **RG3** — `type ∈ {jour, merge, twin9}` ; `titre` rogné, 1 à 190
-  caractères ; `visibility ∈ {privee, cartographe, publique}`, défaut
-  `privee`.
+  caractères (comptés en caractères, `mb_strlen`) ; `visibility ∈ {privee,
+  cartographe, publique}`, défaut `privee`.
 - **RG4** — `document` : objet JSON non vide d'au plus 8 Mo (encodage JSON) ;
   `runMeta` : objet JSON d'au plus 64 Ko.
 - **RG5** — Références de versions : chaque paire (`promptPackageId` +
@@ -158,21 +191,26 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   voyage que sur le `GET` unitaire du propriétaire. Le `PATCH` ne répond que
   des métadonnées.
 - **RG7** — `PATCH` ne modifie que `titre` et `visibility`.
-- **RG8** — La suppression est une purge réelle : ligne + `share_links`
-  (cascade). La suppression du compte purge aussi toutes les copies (UC-CPT-06).
+- **RG8** — La suppression est une purge réelle : ligne + `share_links` +
+  `cartography_annotations` + `cartography_revisions` +
+  `cartography_garanties` (cascade, migrations 004 et 008). La suppression du
+  compte purge aussi toutes les copies (UC-CPT-06).
 - **RG9** — Seuls `cartographe` et `publique` ouvrent la lecture au
   cartographe **lié** ; `publique` n'ouvre rien de plus côté serveur (le
-  partage employeur passe par un lien, UC-APP-05).
+  partage employeur passe par un lien, UC-APP-05). Réciproquement, la
+  visibilité n'est pas une condition du partage : « Partager » est offert dès
+  qu'une copie serveur existe, et le passage à `privee` ne révoque pas les
+  liens actifs (UC-APP-05, anomalie 1).
 
 ## Données et RGPD
 
 | Donnée | Traitement |
 |---|---|
-| Portfolio | Jamais transmis par ce cas (seul le document de cartographie l'est) |
+| Portfolio | Jamais transmis **en entier** ; le document contient des extraits verbatim (`passagesSaillants[].extraitVerbatim`), et `runMeta`/titre produits par l'assistant de run portent l'id et le titre du portfolio (anomalie 3) |
 | Document de cartographie | Colonne JSON `cartographies.document`, uniquement après confirmation explicite |
 | Consentement | `opt_in_at` (date de l'opt-in), `created_at`/`updated_at` |
 | Copie locale | IndexedDB du navigateur ; `serverId` relie la copie locale à la copie serveur |
-| Retrait | `DELETE` = purge réelle (ligne + liens de partage) ; pas d'événement d'audit dédié |
+| Retrait | `DELETE` = purge réelle (ligne, liens de partage, annotations, révisions, garantie) ; pas d'événement d'audit dédié |
 
 ## Code sollicité
 
@@ -182,14 +220,18 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
 | Front | `web/src/views/espace/CartographiesPanel.jsx` — encart d'opt-in, `toServerPayload`, `handleCopyToServer`, `handleVisibilityChange`, `handleRemoveFromServer`, `handleDelete`, `serverErrorMessage` | Parcours IHM, corps du POST, messages |
 | Front | `web/src/views/espace/cartographies-panel-bridge.js`, `carto-store-bridge.js` | Chargement du panneau et du store (ponts chantier C) |
 | Front | `web/src/lib/carto-store.js` — `createCartoStore`, `VISIBILITIES`, `updateCartography` | Copie locale, défaut `privee`, trace `serverId` |
-| Front | `web/src/api/client.js` — `fetchMe`, `apiFetch`, `ApiError` | Jeton CSRF en mémoire, erreurs typées |
+| Front | `web/src/api/client.js` — `fetchMe`, `apiFetch`, `ApiError` | Session (401 = non connecté), jeton CSRF en mémoire, erreurs typées |
 | API | `api/src/routes/cartographies.php` — `POST/GET /api/cartographies`, `GET/PATCH/DELETE /api/cartographies/{id}` | Validation, opt-in, propriété |
-| API | `api/src/Middleware/RequireRole.php`, `api/src/Middleware/CsrfMiddleware.php` | 401/403, jeton CSRF |
+| API | `api/src/Middleware/CsrfMiddleware.php` (global, avant les gardes de route), `api/src/Middleware/RequireRole.php` | 403 CSRF, 401/403 — logique unitaire couverte par UC-CPT-02-U07 (`CsrfMiddleware`) et UC-ADM-01-U10 (`RequireRole`) |
+| API | `api/src/routes/cartographe.php` — `GET /api/cartographe/cartographies[/{id}]` | Effet de la visibilité pour le cartographe lié (A2), disparition après purge (A4) |
+| API | `api/src/routes/share.php` — `POST /api/share/{token}` | Lien employeur mort après la purge (A4, UC-EMP-01) |
 | Domaine | `api/src/Cartographies/CartographyRepository.php` — `create`, `listForUser`, `findForUser`, `updateForUser`, `deleteForUser`, `ownedBy`, `resolvePromptVersion`, `resolveReferentielVersion` | Stockage, projection, propriété, versions publiées |
 | Domaine | `api/src/Cartographe/Links.php` — `queueFor`, `findForCartographe` | Effet de la visibilité pour le cartographe lié |
-| Données | `scripts/migrations/004_cartographies_share_links.sql`, `007_cartographies_run_meta.sql`, `021_cartographies_twin9.sql` | Tables, cascade vers `share_links` |
+| Données | `scripts/migrations/004_cartographies_share_links.sql`, `007_cartographies_run_meta.sql`, `008_cartographe_garanties_settings.sql`, `021_cartographies_twin9.sql` | Tables ; cascade vers `share_links`, `cartography_annotations`, `cartography_revisions`, `cartography_garanties` |
 
 La visionneuse « Voir » (`CartographyViewer`) relève de UC-APP-03.
+`api/src/Validation.php` n'est **pas** sollicité par ce cas (anomalie 1) : il
+ne sert que d'oracle au test UC-APP-04-U10.
 
 ## Jeux de tests
 
@@ -201,45 +243,59 @@ La visionneuse « Voir » (`CartographyViewer`) relève de UC-APP-03.
 | UC-APP-04-U02 | `CartographyRepository::listForUser` | Clés de métadonnées exactes, pas de document, tri, `shares` = liens actifs (RG6) | idem |
 | UC-APP-04-U03 | `CartographyRepository::findForUser` | Tout pour le propriétaire, `null` pour autrui ou id inconnu (RG2) | idem |
 | UC-APP-04-U04 | `CartographyRepository::updateForUser` | Titre/visibilité, no-op = propriété, étranger = `false` sans effet (RG7) | idem |
-| UC-APP-04-U05 | `CartographyRepository::deleteForUser` | Purge ligne + liens, étranger = `false` (RG8) | idem |
+| UC-APP-04-U05 | `CartographyRepository::deleteForUser` | Purge ligne + liens + annotations, révisions, garantie ; comptes intacts ; étranger = `false` (RG8) | idem |
 | UC-APP-04-U06 | `CartographyRepository::ownedBy` | Propriétaire seulement | idem |
 | UC-APP-04-U07 | `CartographyRepository::resolvePromptVersion` | Publiée → id ; brouillon ou inconnue → `null` (RG5) | idem |
 | UC-APP-04-U08 | `CartographyRepository::resolveReferentielVersion` | Idem pour le référentiel (RG5) | idem |
 | UC-APP-04-U09 | `Links::queueFor`, `findForCartographe` | Seules `cartographe`/`publique` sont lisibles ; retour à `privee` coupe (RG9) | idem |
-| UC-APP-04-U10 | `Validation::validate` | Écart : le document minimal stocké n'est pas conforme au schéma (anomalie 1) | idem |
+| UC-APP-04-U10 | `CartographyRepository::create` (oracle `Validation::validate`) | Le Repository stocke le document sans le valider (par conception) ; le document minimal des tests n'est pas conforme au schéma | idem |
 | UC-APP-04-U11 | `carto-store` — `VISIBILITIES`, `saveCartography` | Trois niveaux alignés sur l'API, défaut `privee`, `serverId` nul | `web/test/usecases/unit/uc-app-04-stocker-regler-confidentialite.test.jsx` |
 | UC-APP-04-U12 | `carto-store` — `updateCartography` | `serverId` puis visibilité consignés, `updatedAt` avancé, id inconnu → erreur française | idem |
 | UC-APP-04-U13 | Ponts `cartographies-panel-bridge`, `carto-store-bridge` | Panneau et store présents, contrat de fonctions exposé | idem |
 | UC-APP-04-U14 | `apiFetch` | Jeton CSRF de `auth/me` rejoué sur POST/PATCH/DELETE, jamais sur GET | idem |
 | UC-APP-04-U15 | `CartographiesPanel` (isolé) — `toServerPayload` | Corps du POST avec/sans références de versions et `runMeta` | idem |
 | UC-APP-04-U16 | `CartographiesPanel` (isolé) | Exactement trois niveaux libellés en français, type Twin9 étiqueté | idem |
+| UC-APP-04-U17 | `CartographiesPanel` (isolé) — `serverErrorMessage` | `401` sur PATCH, retrait, suppression, POST → invitation propre à chaque action ; autre statut → message du serveur | idem |
+| UC-APP-04-U18 | `CartographiesPanel` (isolé) — `handleVisibilityChange` | Sans `serverId` aucune requête ; avec, `PATCH` avant le report local | idem |
+| UC-APP-04-U19 | `CartographiesPanel` (isolé) — `handleRemoveFromServer` | `404` toléré (`serverId` effacé) ; autre erreur affichée, `serverId` conservé | idem |
+| UC-APP-04-U20 | `CartographiesPanel` (isolé) — `handleDelete` | Armement, annulation, confirmation ; sans `serverId` aucune requête ; `404` toléré ; autre erreur = local conservé | idem |
+| UC-APP-04-U21 | `fetchMe` | `200` → `{user}` + jeton CSRF mémorisé ; `401` → `{user: null}` ; `500` relancé ; réponse non JSON → API indisponible | idem |
+
+`RequireRole` et `CsrfMiddleware` : logique unitaire couverte par
+UC-ADM-01-U10 et UC-CPT-02-U07. `EspaceView`/`DashboardSection` (vérification
+de session au montage) sont exercés par les tests fonctionnels IHM.
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-APP-04-F01 | Nominal | API | `201 {id}`, `opt_in_at`, liste sans document, détail complet, `PATCH` → métadonnées | `api/tests/UseCases/Functional/UcApp04StockerConfidentialiteTest.php` |
+| UC-APP-04-F01 | Nominal | API | `201 {id}`, `opt_in_at` posé par l'INSERT (un `optInAt`/`opt_in_at` client est ignoré, RG1), liste sans document, détail complet, `PATCH` → métadonnées | `api/tests/UseCases/Functional/UcApp04StockerConfidentialiteTest.php` |
 | UC-APP-04-F02 | A6 | API | Visibilité omise → `privee` | idem |
 | UC-APP-04-F03 | A2 | API | `cartographe` ouvre la file du cartographe lié, `privee` la coupe (404) | idem |
 | UC-APP-04-F04 | A2 | API | `publique` : lié oui, non lié non | idem |
-| UC-APP-04-F05 | A3 | API | Renommage rogné, `PATCH {}` sans effet | idem |
-| UC-APP-04-F06 | A4 | API | `204`, purge ligne + liens, lien employeur mort, `404` ensuite | idem |
+| UC-APP-04-F05 | A3 | API | Renommage rogné, `PATCH {}` sans effet, `type`/`document` ignorés (RG7) | idem |
+| UC-APP-04-F06 | A4 | API | Lien employeur opérant avant ; `204`, purge ligne + liens + annotation, révision et garantie du cartographe lié ; file et détail du cartographe vides/`404` ; lien employeur mort (`404` + message) | idem |
 | UC-APP-04-F07 | E1 | API | `401` sur les cinq routes, rien de stocké ni modifié | idem |
 | UC-APP-04-F08 | E2 | API | `403 Rôle insuffisant` | idem |
-| UC-APP-04-F09 | E3 | API | `403` CSRF sur POST/PATCH/DELETE, rien ne change | idem |
-| UC-APP-04-F10 | E4 | API | `422` champ par champ (type, titre, visibilité, document, runMeta, versions) | idem |
+| UC-APP-04-F09 | E3 | API | `403` CSRF sur POST/PATCH/DELETE, sans jeton ou avec un jeton faux, rien ne change | idem |
+| UC-APP-04-F10 | E4 | API | `422` champ par champ (type, titre, visibilité, document absent/liste/vide, runMeta, paires de versions incomplètes ou non publiées) | idem |
 | UC-APP-04-F11 | E4 | API | Document > 8 Mo → `422` | idem |
 | UC-APP-04-F12 | E5 | API | `PATCH` invalide → `422`, tout ou rien | idem |
 | UC-APP-04-F13 | E6 | API | Id étranger ou inconnu → corps `404` identiques | idem |
 | UC-APP-04-F14 | Anomalie 1 | API | Document non conforme ou de type croisé stocké (`201`) — comportement actuel figé | idem |
+| UC-APP-04-F23 | E1, E3 | API | Cookie de session expiré : `403` CSRF sur POST/PATCH/DELETE (même avec l'ancien jeton), `401` sur les GET, rien ne change | idem |
+| UC-APP-04-F24 | Nominal (RG3) | API | Bornes acceptées : type `twin9`, titre rogné de 190 caractères multi-octets relu à l'identique | idem |
 | UC-APP-04-F15 | Nominal | IHM | Encart sans requête, POST avec CSRF, badge, `serverId`, PATCH synchronisé | `web/test/usecases/functional/uc-app-04-stocker-regler-confidentialite.test.jsx` |
 | UC-APP-04-F16 | A1 | IHM | Confidentialité locale sans aucune requête | idem |
 | UC-APP-04-F17 | A4 | IHM | Retrait → message, badge ôté ; copie déjà absente (404) réalignée | idem |
-| UC-APP-04-F18 | A5 | IHM | Suppression en deux temps : DELETE serveur puis local | idem |
+| UC-APP-04-F18 | A5 | IHM | Suppression en deux temps : DELETE serveur **avant** le local ; sans copie, aucune requête ; copie déjà absente (`404`) tolérée | idem |
 | UC-APP-04-F19 | E1 | IHM | Anonyme : « Connectez-vous… », pas de `serverId` | idem |
-| UC-APP-04-F20 | E2, E4 | IHM | Message serveur affiché, encart ouvert, pas de badge | idem |
-| UC-APP-04-F21 | E7 | IHM | PATCH en échec : visibilité locale inchangée + message | idem |
+| UC-APP-04-F20 | E2, E4 | IHM | Seul le message général du serveur est affiché (pas `fields`), encart ouvert, pas de badge | idem |
+| UC-APP-04-F21 | E7, anomalie 4 | IHM | PATCH en échec : visibilité locale inchangée + message ; `serverId` périmé conservé, nouvel échec au réglage suivant — comportement actuel figé | idem |
 | UC-APP-04-F22 | Anomalie 2 | IHM | Autre appareil : copies serveur ni listées ni demandées — comportement actuel figé | idem |
+| UC-APP-04-F25 | E8 | IHM | Retrait en échec (`500`, puis `401`) : message, `serverId` et badge conservés, bouton réarmé | idem |
+| UC-APP-04-F26 | E8 | IHM | Suppression en échec (`500`) : message, cartographie locale conservée, « Supprimer » réarmé | idem |
+| UC-APP-04-F27 | Anomalie 3 | IHM | Le POST porte des extraits verbatim du portfolio, et `runMeta`/titre son titre, alors que l'encart dit « jamais votre portfolio » — comportement actuel figé | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -268,7 +324,8 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
    `cartographie-jour`), est stocké (`201`). `api/src/Validation.php` n'est
    appliqué qu'aux révisions (UC-CAR-04) et aux résultats du worker. Risque :
    un document stocké peut ne pas être affichable par la vue partagée
-   (UC-EMP-01) ni par la relecture. Figé par UC-APP-04-U10 et UC-APP-04-F14.
+   (UC-EMP-01) ni par la relecture. Figé par UC-APP-04-F14 (UC-APP-04-U10
+   établit seulement que le Repository, par conception, ne valide pas).
 2. **« Retrouver depuis un autre appareil » : promesse non tenue par l'IHM.**
    L'encart d'opt-in (« … afin de pouvoir le partager par lien et le
    retrouver depuis un autre appareil ») et le chapitre de formation apprenant
@@ -277,6 +334,24 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
    /api/cartographies` (utilisé seulement par l'atelier promptologue) : sur un
    autre navigateur, les copies serveur restent invisibles et irrécupérables
    par l'IHM. Figé par UC-APP-04-F22.
+3. **« Jamais votre portfolio » : des extraits du portfolio partent quand
+   même.** L'encart d'opt-in affirme que seul « le document de la cartographie
+   (jamais votre portfolio) » est stocké ; or ce document contient, par
+   construction, des **citations exactes** du portfolio
+   (`poles[].passagesSaillants[].extraitVerbatim`, « Citation exacte du
+   portfolio de l'apprenant » selon `schemas/cartographie-jour.schema.json`),
+   et le `runMeta` produit par l'assistant de run (`RunWizard`,
+   UC-APP-02-F01) porte `portfolioId` et `portfolioTitre`, repris dans le
+   titre des cartographies — alors que la migration 007 réserve `run_meta` aux
+   compteurs et identifiants, « jamais de texte de portfolio ». L'information
+   RGPD donnée à l'apprenant est donc incomplète. Figé par UC-APP-04-F27.
+4. **`serverId` périmé après un `404` sur le `PATCH`.** Le retrait et la
+   suppression tolèrent le `404` et réalignent la copie locale ; le changement
+   de confidentialité, lui, ne traite aucun statut : si la copie serveur a
+   disparu (autre appareil, purge), `serverId` reste en local, le badge
+   « copie serveur » demeure et **chaque** réglage de confidentialité échoue
+   avec « Cartographie introuvable », jusqu'à ce que l'apprenant pense à
+   cliquer « Retirer du serveur ». Figé par UC-APP-04-F21.
 
 ## Limites
 
@@ -285,3 +360,16 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
   trace du consentement est `opt_in_at`, et le retrait efface la ligne.
 - Une erreur du carto-store local **après** un `PATCH` réussi laisserait la
   visibilité serveur en avance sur la locale (ordre : serveur puis local).
+- De même, un `POST` réussi suivi d'un échec du carto-store (enregistrement de
+  `serverId`) laisserait une copie serveur **orpheline** : invisible dans
+  l'IHM (anomalie 2), non retirable par elle, et un nouveau clic en créerait
+  une seconde.
+- Le retrait et la suppression détruisent sans avertissement le travail du
+  cartographe lié (annotations, révisions) et la garantie (RG8).
+- La visibilité `privee` ne coupe pas les liens de partage employeur actifs ;
+  le libellé « Publique (partageable) » laisse croire le contraire (voir
+  UC-APP-05, anomalie 1).
+- Un refus `422` n'est affiché que « Validation échouée » : l'apprenant ne
+  voit pas le champ en cause (`fields`).
+- Avec un cookie de session expiré, une mutation affiche « Jeton CSRF absent
+  ou invalide » au lieu de l'invitation à se connecter (E1).

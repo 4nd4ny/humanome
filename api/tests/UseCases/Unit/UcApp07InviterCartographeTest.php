@@ -9,6 +9,8 @@ use Humanome\Cartographe\Invitations;
 use Humanome\MigrationRunner;
 use Humanome\Tests\TestDb;
 use PDO;
+use PDOException;
+use PDOStatement;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 
@@ -19,10 +21,11 @@ use PHPUnit\Framework\TestCase;
  * Fiche : docs/cas-utilisation/apprenant/UC-APP-07-inviter-cartographe.md
  *
  * La classe sollicitée par POST/GET /api/cartographe/invitations est appelée
- * directement : Invitations (format du code, validité de 30 jours, plafond
- * des codes en attente, statuts calculés). L'acceptation par le cartographe
- * (Invitations::accept) relève de UC-CAR-01 ; elle n'est utilisée ici que
- * pour préparer le statut « acceptee ».
+ * directement : Invitations (générateur et alphabet du code, nouvel essai sur
+ * collision — PDO simulé —, validité de 30 jours, plafond des codes en
+ * attente, statuts calculés, effets des purges de comptes). isWellFormedCode
+ * et accept relèvent de la route d'acceptation (UC-CAR-01) : ils ne servent
+ * ici que d'oracle ou à préparer le statut « acceptee ».
  */
 final class UcApp07InviterCartographeTest extends TestCase
 {
@@ -52,7 +55,7 @@ final class UcApp07InviterCartographeTest extends TestCase
         return new Invitations(self::$pdo);
     }
 
-    #[TestDox('UC-APP-07-U01 — isWellFormedCode : exactement 10 caractères A-Z et 2-9 (ni 0, ni 1, ni minuscule)')]
+    #[TestDox('UC-APP-07-U01 — isWellFormedCode (validateur de la route d’acceptation, UC-CAR-01) : exactement 10 caractères A-Z et 2-9 (ni 0, ni 1, ni minuscule)')]
     public function testU01IsWellFormedCode(): void
     {
         self::assertTrue(Invitations::isWellFormedCode('K7TQZ2M9RC'));
@@ -152,5 +155,124 @@ final class UcApp07InviterCartographeTest extends TestCase
         $item = self::invitations()->listForApprenant($maya)[0];
         self::assertSame('acceptee', $item['statut']);
         self::assertNull($item['acceptedBy'], 'accepted_by SET NULL (migration 008)');
+    }
+
+    #[TestDox('UC-APP-07-U06 — générateur : alphabet exact A-Z2-9 (O et I compris, ni 0 ni 1), 10 caractères')]
+    public function testU06GeneratorUsesTheExactAlphabet(): void
+    {
+        self::assertSame(
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789',
+            (new \ReflectionClassConstant(Invitations::class, 'ALPHABET'))->getValue(),
+        );
+        self::assertSame(10, (new \ReflectionClassConstant(Invitations::class, 'CODE_LENGTH'))->getValue());
+        self::assertSame(30, (new \ReflectionClassConstant(Invitations::class, 'VALIDITY_DAYS'))->getValue());
+
+        // Le tirage lui-même : 2 000 codes (20 000 caractères) couvrent les 34
+        // symboles, et eux seuls. Probabilité d'un faux échec : 34 × (33/34)^20000,
+        // négligeable.
+        $generator = new \ReflectionMethod(Invitations::class, 'randomCode');
+        $codes = [];
+        for ($i = 0; $i < 2000; $i++) {
+            $codes[] = (string) $generator->invoke(null);
+        }
+        self::assertSame([10], array_values(array_unique(array_map('strlen', $codes))));
+        self::assertSame('23456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', count_chars(implode('', $codes), 3));
+    }
+
+    /**
+     * PDO simulé : l'INSERT échoue selon `$failures` (une exception par
+     * tentative, dans l'ordre), puis réussit ; le SELECT relit l'expiration.
+     *
+     * @param list<PDOException> $failures
+     * @param list<string> $attempted codes tentés, dans l'ordre
+     */
+    private function collidingPdo(array $failures, array &$attempted): PDO
+    {
+        $insert = $this->createMock(PDOStatement::class);
+        $insert->method('execute')->willReturnCallback(static function (?array $params = null) use (&$failures, &$attempted): bool {
+            $attempted[] = (string) $params[1];
+            $failure = array_shift($failures);
+            if ($failure !== null) {
+                throw $failure;
+            }
+
+            return true;
+        });
+        $select = $this->createMock(PDOStatement::class);
+        $select->method('execute')->willReturn(true);
+        $select->method('fetchColumn')->willReturn('2026-10-29 10:00:00');
+        $pdo = $this->createMock(PDO::class);
+        $pdo->method('prepare')->willReturnCallback(
+            static fn (string $sql): PDOStatement => str_contains($sql, 'INSERT') ? $insert : $select,
+        );
+
+        return $pdo;
+    }
+
+    private static function sqlError(int $code): PDOException
+    {
+        $e = new PDOException('SQLSTATE[23000]: erreur ' . $code);
+        $e->errorInfo = ['23000', $code, 'erreur ' . $code];
+
+        return $e;
+    }
+
+    #[TestDox('UC-APP-07-U07 — create : collision sur la clé unique (1062) → nouveau tirage, le code retenu est celui inséré')]
+    public function testU07CreateRetriesOnDuplicateKey(): void
+    {
+        $attempted = [];
+        $pdo = $this->collidingPdo([self::sqlError(1062)], $attempted);
+
+        $created = (new Invitations($pdo))->create(7);
+
+        self::assertCount(2, $attempted, 'une collision, puis un second tirage');
+        self::assertSame($attempted[1], $created['code']);
+        self::assertSame('2026-10-29T10:00:00', $created['expiresAt']);
+        foreach ($attempted as $code) {
+            self::assertMatchesRegularExpression('/^[A-Z2-9]{10}$/', $code);
+        }
+    }
+
+    #[TestDox('UC-APP-07-U08 — create : abandon après 4 collisions ; toute autre erreur SQL remonte dès la première tentative (→ 500 côté route)')]
+    public function testU08CreateGivesUpAfterFourCollisionsOrOnOtherErrors(): void
+    {
+        $attempted = [];
+        $pdo = $this->collidingPdo(array_map(static fn (): PDOException => self::sqlError(1062), range(1, 5)), $attempted);
+        try {
+            (new Invitations($pdo))->create(7);
+            self::fail('4 collisions : l’exception doit remonter');
+        } catch (PDOException $e) {
+            self::assertSame(1062, $e->errorInfo[1]);
+        }
+        self::assertCount(4, $attempted, 'tentatives 0 à 3, puis abandon');
+
+        $attempted = [];
+        $pdo = $this->collidingPdo([self::sqlError(1452)], $attempted);
+        try {
+            (new Invitations($pdo))->create(7);
+            self::fail('erreur non 1062 : l’exception doit remonter');
+        } catch (PDOException $e) {
+            self::assertSame(1452, $e->errorInfo[1]);
+        }
+        self::assertCount(1, $attempted, 'aucun nouvel essai hors collision');
+    }
+
+    #[TestDox('UC-APP-07-U09 — purge du compte apprenant → ses codes et ses rattachements disparaissent (CASCADE)')]
+    public function testU09LearnerPurgeCascadesToCodesAndLinks(): void
+    {
+        $maya = self::user('Maya');
+        $noe = self::user('Noé');
+        $camille = self::user('Camille');
+        $accepted = self::invitations()->create($maya)['code'];
+        self::invitations()->create($maya);
+        self::invitations()->create($noe);
+        self::invitations()->accept($accepted, $camille);
+
+        self::$pdo->exec('DELETE FROM users WHERE id = ' . $maya);
+
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_invitations WHERE apprenant_id = ' . $maya)->fetchColumn());
+        self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_invitations')->fetchColumn(), 'le code de Noé reste');
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM cartographe_links')->fetchColumn());
+        self::assertSame([], self::invitations()->listForApprenant($maya));
     }
 }

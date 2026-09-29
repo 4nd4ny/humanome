@@ -46,11 +46,15 @@ L'apprenant demande un nouveau code d'invitation (`POST
 
 1. L'apprenant connecté demande un code : `POST
    /api/cartographe/invitations` (sans corps, avec `X-CSRF-Token`).
-2. Le serveur vérifie la session et le rôle `apprenant`, le jeton CSRF, puis
-   compte les codes en attente de l'apprenant (moins de 10 requis).
-3. Il tire un code aléatoire (10 caractères `A-Z2-9`, nouvel essai en cas de
-   collision sur la clé unique), l'enregistre avec `expires_at = NOW() + 30
-   jours` et répond `201 {code, expiresAt}`.
+2. Le serveur contrôle le jeton CSRF (middleware **global**, exécuté avant
+   les gardes de route, et seulement si un cookie de session est présent),
+   puis la session et le rôle `apprenant` (`RequireRole`), puis compte les
+   codes en attente de l'apprenant (moins de 10 requis).
+3. Il tire un code aléatoire (10 caractères `A-Z2-9`, nouveau tirage en cas
+   de collision sur la clé unique — erreur MySQL 1062 —, au plus 4 tentatives ;
+   au-delà, ou sur toute autre erreur SQL, la route répond `500 {"error":
+   "Erreur interne"}`), l'enregistre avec `expires_at = NOW() + 30 jours` et
+   répond `201 {code, expiresAt}`.
 4. L'apprenant transmet le code, hors plateforme, au cartographe de son choix.
 5. Il suit ses codes : `GET /api/cartographe/invitations` →
    `[{code, statut, createdAt, expiresAt, acceptedAt, acceptedBy}]`, du plus
@@ -73,15 +77,24 @@ L'apprenant demande un nouveau code d'invitation (`POST
 - **A4 — Le cartographe supprime son compte** (après l'étape 7) : le code
   reste `acceptee` (date conservée) mais `acceptedBy` devient `null`
   (anonymisation, `accepted_by` SET NULL) et le lien est rompu.
+- **A5 — L'apprenant supprime son compte** (UC-CPT-06) : tous ses codes, en
+  attente ou acceptés, sont purgés (`apprenant_id` CASCADE) et ses
+  rattachements rompus : le cartographe ne le voit plus dans `GET
+  /api/cartographe/apprentis`.
 
 ## Scénarios d'erreur
 
 - **E1 — Plafond atteint** (étape 2) : 10 codes en attente → `429 {"error":
   "Trop d'invitations en attente (10 maximum) — attendez une acceptation ou
-  une expiration"}` ; aucun code créé, le suivi reste disponible.
-- **E2 — Session, CSRF, rôle** (étape 2) : sans session `401` (émission et
-  suivi) ; sans jeton CSRF `403` ; compte sans rôle `apprenant` (ex.
-  cartographe seul) `403` sur l'émission **et** le suivi.
+  une expiration"}` ; aucun code créé, le suivi reste disponible. Le plafond
+  est **souple** (RG4) : il n'est pas garanti face à des requêtes simultanées.
+- **E2 — Session, CSRF, rôle** (étape 2) : **sans cookie de session** `401
+  "Authentification requise"` (émission et suivi) ; sans jeton CSRF `403
+  "Jeton CSRF absent ou invalide"` ; compte sans rôle `apprenant` (ex.
+  cartographe seul) `403 "Rôle insuffisant"` sur l'émission **et** le suivi.
+  Le CSRF passant avant le rôle, un compte cartographe seul qui poste sans
+  jeton reçoit le `403` CSRF ; un cookie de session périmé (ligne purgée)
+  donne `403` CSRF sur le `POST` et `401` sur le `GET`.
 - **E3 — Autre apprenant** (étape 5) : sa liste ne contient que ses propres
   codes (vide s'il n'en a pas) ; le plafond est compté par apprenant.
 
@@ -89,13 +102,17 @@ L'apprenant demande un nouveau code d'invitation (`POST
 
 - **RG1** — Seul l'apprenant **invite** : le cartographe ne peut pas se
   rattacher de lui-même (§6 : l'apprenant contrôle qui le lit).
-- **RG2** — Code : 10 caractères de `ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789`
-  (les chiffres 0 et 1 sont exclus ; les lettres O et I font partie de
-  l'alphabet), unique en base.
+- **RG2** — Code : 10 caractères tirés de l'alphabet du générateur
+  `ABCDEFGHIJKLMNOPQRSTUVWXYZ23456789` (les chiffres 0 et 1 sont exclus ; les
+  lettres O et I font partie de l'alphabet), unique en base (nouveau tirage
+  sur collision, 4 tentatives au plus).
 - **RG3** — Validité : 30 jours à partir de l'émission, posée par le serveur ;
   usage unique.
-- **RG4** — Plafond anti-inondation : `Invitations::MAX_PENDING = 10` codes
-  non acceptés et non expirés par apprenant.
+- **RG4** — Plafond anti-inondation **souple** : `Invitations::MAX_PENDING =
+  10` codes non acceptés et non expirés par apprenant, vérifié par un
+  comptage **avant** l'insertion, sans verrou ni transaction (« Soft cap »
+  dans le code) : des requêtes simultanées du même apprenant peuvent le
+  dépasser.
 - **RG5** — Statut calculé à la lecture : `acceptee` si `accepted_at` est
   posé (même après la date d'expiration), sinon `expiree` si `expires_at` est
   passé, sinon `en_attente`.
@@ -115,9 +132,13 @@ L'apprenant demande un nouveau code d'invitation (`POST
 | Couche | Élément | Rôle |
 |---|---|---|
 | API | `api/src/routes/cartographe.php` — `POST /api/cartographe/invitations`, `GET /api/cartographe/invitations` | Plafond, émission, suivi |
-| API | `api/src/Middleware/RequireRole.php`, `api/src/Middleware/CsrfMiddleware.php` | 401/403 |
-| Domaine | `api/src/Cartographe/Invitations.php` — `isWellFormedCode`, `create`, `countPending`, `listForApprenant`, `MAX_PENDING` | Format, validité, plafond, statuts |
+| API | `api/src/Middleware/CsrfMiddleware.php` (global, avant les gardes de route), `api/src/Middleware/RequireRole.php` | 403 CSRF ; 401/403 — logique unitaire couverte par UC-CPT-02-U07 et UC-ADM-01-U10 |
+| Domaine | `api/src/Cartographe/Invitations.php` — `create` (avec `randomCode` privé, `ALPHABET`, `CODE_LENGTH`, `VALIDITY_DAYS`, nouvel essai sur 1062), `countPending`, `listForApprenant`, `MAX_PENDING` | Génération, validité, plafond, statuts |
 | Données | `scripts/migrations/008_cartographe_garanties_settings.sql` — `cartographe_invitations`, `cartographe_links` | Unicité du code, CASCADE / SET NULL |
+
+`Invitations::isWellFormedCode` n'est appelé par aucune des deux routes de ce
+cas : c'est le validateur de la route d'acceptation (UC-CAR-01) ; il sert ici
+d'oracle de format (UC-APP-07-U01, U02).
 
 ## Jeux de tests
 
@@ -125,25 +146,33 @@ L'apprenant demande un nouveau code d'invitation (`POST
 
 | ID | Cible | Vérifie | Fichier |
 |---|---|---|---|
-| UC-APP-07-U01 | `Invitations::isWellFormedCode` | 10 caractères `A-Z2-9`, ni 0/1 ni minuscule ; O et I admis (RG2) | `api/tests/UseCases/Unit/UcApp07InviterCartographeTest.php` |
+| UC-APP-07-U01 | `Invitations::isWellFormedCode` | Validateur de format (consommé par UC-CAR-01) : 10 caractères `A-Z2-9`, ni 0/1 ni minuscule | `api/tests/UseCases/Unit/UcApp07InviterCartographeTest.php` |
 | UC-APP-07-U02 | `Invitations::create` | Codes bien formés et distincts, 30 jours, non acceptés (RG2, RG3) | idem |
 | UC-APP-07-U03 | `Invitations::countPending`, `MAX_PENDING` | Ni acceptés, ni expirés, ni ceux d'autrui ; plafond 10 (RG4) | idem |
 | UC-APP-07-U04 | `Invitations::listForApprenant` | Trois statuts, ordre, clés, nom du cartographe (RG5) | idem |
 | UC-APP-07-U05 | `Invitations::listForApprenant` | Accepté puis expiré reste `acceptee` ; nom anonymisé à la purge (RG5, RG6) | idem |
+| UC-APP-07-U06 | `Invitations::randomCode` (privé), `ALPHABET`, `CODE_LENGTH`, `VALIDITY_DAYS` | Alphabet exact du générateur (2 000 tirages couvrent les 34 symboles, O et I compris, et eux seuls), 10 caractères, 30 jours (RG2, RG3) | idem |
+| UC-APP-07-U07 | `Invitations::create` (PDO simulé) | Collision 1062 → nouveau tirage, le code rendu est celui inséré (RG2) | idem |
+| UC-APP-07-U08 | `Invitations::create` (PDO simulé) | Abandon après 4 collisions ; erreur SQL non 1062 remontée sans nouvel essai | idem |
+| UC-APP-07-U09 | FK `apprenant_id` CASCADE | Purge de l'apprenant → ses codes et rattachements supprimés, ceux d'autrui intacts (RG6) | idem |
+
+`RequireRole` et `CsrfMiddleware` : logique unitaire couverte par
+UC-ADM-01-U10 et UC-CPT-02-U07.
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-APP-07-F01 | Nominal | API | `201 {code, expiresAt}`, 30 jours, pas d'audit à l'émission, `en_attente` puis `acceptee` par Camille, file ouverte | `api/tests/UseCases/Functional/UcApp07InviterCartographeTest.php` |
+| UC-APP-07-F01 | Nominal | API | `201 {code, expiresAt}`, 30 jours, aucun événement d'audit (de quelque type que ce soit) à l'émission, `en_attente` puis `acceptee` par Camille, file ouverte | `api/tests/UseCases/Functional/UcApp07InviterCartographeTest.php` |
 | UC-APP-07-F02 | A1 | API | Trois codes distincts, plus récent d'abord | idem |
 | UC-APP-07-F03 | A2 | API | `expiree`, inacceptable, place libérée dans le plafond | idem |
 | UC-APP-07-F04 | A3 | API | Code accepté hors plafond | idem |
 | UC-APP-07-F05 | E1 | API | 11ᵉ code en attente → `429` + message, 10 codes en base | idem |
-| UC-APP-07-F06 | E2 | API | `401` sans session, `403` sans CSRF, `403` sans rôle | idem |
+| UC-APP-07-F06 | E2 | API | `401` sans session, `403` sans CSRF, `403 "Rôle insuffisant"` sans rôle ; CSRF contrôlé avant le rôle ; cookie périmé → `403` CSRF (POST) / `401` (GET) | idem |
 | UC-APP-07-F07 | E3 | API | Listes et plafonds cloisonnés par apprenant | idem |
-| UC-APP-07-F08 | Anomalie 1 | IHM | `<App/>` sur `#/espace` et `#/compte` (apprenant connecté) : aucune commande d'invitation — comportement actuel figé | `web/test/usecases/functional/uc-app-07-inviter-cartographe.test.jsx` |
+| UC-APP-07-F08 | Anomalie 1 | IHM | `<App/>` sur `#/espace` (panneau « Mes cartographies » chargé), `#/espace/cohortes` et `#/compte`, session connectée prouvée par une requête réservée au compte : aucune commande d'invitation, aucun appel `cartographe/…` — comportement actuel figé | `web/test/usecases/functional/uc-app-07-inviter-cartographe.test.jsx` |
 | UC-APP-07-F09 | A4 | API | Compte du cartographe supprimé : `acceptee`, `acceptedBy` nul, lien rompu | `api/tests/UseCases/Functional/UcApp07InviterCartographeTest.php` |
+| UC-APP-07-F10 | A5 | API | Compte de l'apprenant supprimé : codes purgés, rattachement rompu, `apprentis` du cartographe vide | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -165,8 +194,9 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-07
    cartographe (chapitre 1 : « Depuis son espace, il génère un code
    d'invitation ») et l'accueil de l'espace cartographe (« Un apprenant génère
    un code d'invitation depuis son espace ») annoncent un geste que l'IHM
-   n'offre pas : ni le tableau de bord `#/espace` ni l'espace compte `#/compte`
-   ne permettent d'émettre ou de suivre un code (`docs/tests-e2e.md` : « l'UI
+   n'offre pas : ni le tableau de bord `#/espace`, ni « Mes cohortes »
+   `#/espace/cohortes`, ni l'espace compte `#/compte` ne permettent d'émettre
+   ou de suivre un code (`docs/tests-e2e.md` : « l'UI
    apprenant dédiée reste au backlog M7 » ; le parcours e2e appelle l'API par
    `fetch`). Conséquence : sans outil de développement, un apprenant ne peut
    pas se rattacher un cartographe, donc ni relecture, ni correction, ni
@@ -182,3 +212,7 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-07
 - La formation cartographe écrit « sans les ambigus 0/O ni 1/I » : seuls les
   **chiffres** 0 et 1 sont exclus, les lettres O et I restent possibles.
 - L'émission d'un code n'est pas journalisée.
+- Le plafond de 10 codes en attente est souple (comptage puis insertion, sans
+  verrou) : des émissions simultanées peuvent le dépasser.
+- L'échec répété du tirage (4 collisions, hautement improbable sur 34^10
+  codes) ou une autre erreur SQL se traduit par un `500 "Erreur interne"`.
