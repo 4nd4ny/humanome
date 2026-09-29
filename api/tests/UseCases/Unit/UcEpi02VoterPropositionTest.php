@@ -13,10 +13,16 @@ use Humanome\Referentiel\InvalidDocumentException;
 use Humanome\Referentiel\MajorityTally;
 use Humanome\Referentiel\ReferentielGovernance;
 use Humanome\Referentiel\ReferentielRepository;
+use Humanome\Referentiel\RoleGuard;
 use Humanome\Tests\TestDb;
 use PDO;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Slim\Psr7\Factory\ResponseFactory;
+use Slim\Psr7\Factory\ServerRequestFactory;
 
 /**
  * UC-EPI-02 — Voter sur une proposition : tests UNITAIRES.
@@ -36,6 +42,16 @@ final class UcEpi02VoterPropositionTest extends TestCase
     {
         self::$pdo = TestDb::fresh();
         (new MigrationRunner(self::$pdo, MigrationRunner::defaultMigrationsDir()))->run();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        TestDb::restoreEnv();
+    }
+
+    protected function tearDown(): void
+    {
+        $_SESSION = [];
     }
 
     protected function setUp(): void
@@ -132,6 +148,8 @@ final class UcEpi02VoterPropositionTest extends TestCase
         $b = self::createUser('Bao', 'apprenant', 'epistemiarque');
         self::createUser('Admin', 'admin');
         self::createUser('Maya', 'apprenant', 'cartographe');
+        // Branche DÉFENSIVE : la production ne pose jamais deleted_at (la purge
+        // de compte est un DELETE réel, bulletins en cascade : UC-EPI-02-F20).
         $gone = self::createUser('Parti', 'epistemiarque');
         self::$pdo->exec('UPDATE users SET deleted_at = NOW() WHERE id = ' . $gone);
 
@@ -165,6 +183,11 @@ final class UcEpi02VoterPropositionTest extends TestCase
 
         $tally = $governance->castVote($id, $alix, 'pour', '  Bien instruit.  ');
         self::assertSame([1, 2, 'pending'], [$tally['pour'], $tally['threshold'], $tally['outcome']]);
+        self::assertSame(
+            'Bien instruit.',
+            self::$pdo->query('SELECT comment FROM competence_votes WHERE competence_version_id = ' . $id)->fetchColumn(),
+            'commentaire rogné',
+        );
         $tally = $governance->castVote($id, $alix, 'contre', '   ');
         self::assertSame([0, 1], [$tally['pour'], $tally['contre']], 'le vote est remplacé, pas ajouté');
         $row = self::$pdo->query('SELECT COUNT(*) AS n, MAX(comment) AS c FROM competence_votes WHERE competence_version_id = ' . $id)->fetch();
@@ -176,7 +199,7 @@ final class UcEpi02VoterPropositionTest extends TestCase
         $governance->castVote($draft['id'], $alix, 'pour', null);
     }
 
-    #[TestDox('UC-EPI-02-U05 — CompetenceGovernance::tally : seuls comptent les bulletins des membres COURANTS, contre l’électorat courant')]
+    #[TestDox('UC-EPI-02-U05 — CompetenceGovernance::tally : seuls comptent les bulletins des membres COURANTS, seuil recalculé contre l’électorat courant (3→4 membres : 2→3)')]
     public function testU05CompetenceTallyUsesTheCurrentElectorate(): void
     {
         $id = self::competenceProposal();
@@ -186,17 +209,25 @@ final class UcEpi02VoterPropositionTest extends TestCase
         $governance = new CompetenceGovernance(self::$pdo);
         $governance->castVote($id, $alix, 'pour', null);
         $governance->castVote($id, $bao, 'pour', null);
-        self::assertSame('adopted', $governance->tally($id)['outcome']);
+        $tally = $governance->tally($id);
+        self::assertSame([3, 2, 'adopted'], [$tally['electorateSize'], $tally['threshold'], $tally['outcome']]);
 
+        // Un 4e membre : N devient pair, le seuil MONTE (2 → 3) et l'adoption est perdue.
+        $dan = self::createUser('Dan', 'epistemiarque');
+        $tally = $governance->tally($id);
+        self::assertSame([4, 3, 2, 'pending'], [$tally['electorateSize'], $tally['threshold'], $tally['pour'], $tally['outcome']]);
+
+        // Bao perd le rôle : son bulletin est écarté, le seuil redescend (3 membres → 2).
         self::revokeRole($bao, 'epistemiarque');
         $tally = $governance->tally($id);
-        self::assertSame([2, 2, 1, 'pending'], [$tally['electorateSize'], $tally['threshold'], $tally['pour'], $tally['outcome']]);
+        self::assertSame([3, 2, 1, 'pending'], [$tally['electorateSize'], $tally['threshold'], $tally['pour'], $tally['outcome']]);
 
-        self::createUser('Dan', 'epistemiarque');
-        self::assertSame([3, 2], [$governance->tally($id)['electorateSize'], $governance->tally($id)['threshold']]);
+        // 3 → 2 membres : seuil inchangé (floor(N/2)+1 vaut 2 dans les deux cas).
+        self::revokeRole($dan, 'epistemiarque');
+        self::assertSame([2, 2], [$governance->tally($id)['electorateSize'], $governance->tally($id)['threshold']]);
     }
 
-    #[TestDox('UC-EPI-02-U06 — CompetenceGovernance::votes : bulletins des membres courants, nom affiché, commentaire, ordre de dépôt')]
+    #[TestDox('UC-EPI-02-U06 — CompetenceGovernance::votes : bulletins des membres courants, nom affiché, commentaire, ordre de dernière modification (updated_at)')]
     public function testU06CompetenceVotesListing(): void
     {
         $id = self::competenceProposal();
@@ -242,6 +273,7 @@ final class UcEpi02VoterPropositionTest extends TestCase
         self::assertNull($governance->castVote(999999, $alix, 'pour', null));
 
         $governance->castVote($id, $alix, 'contre', ' Trop tôt ');
+        self::assertSame('Trop tôt', array_column($governance->votes($id), 'comment', 'displayName')['Alix'], 'commentaire rogné');
         $tally = $governance->castVote($id, $alix, 'pour', null);
         self::assertSame([1, 0, 2, 'pending'], [$tally['pour'], $tally['contre'], $tally['threshold'], $tally['outcome']]);
         self::assertSame('adopted', $governance->castVote($id, $bao, 'pour', null)['outcome']);
@@ -258,5 +290,41 @@ final class UcEpi02VoterPropositionTest extends TestCase
         $this->expectException(ConflictException::class);
         $this->expectExceptionMessage('Voting is only open on a proposal submitted for a vote');
         $governance->castVote($id, $alix, 'pour', null);
+    }
+
+    #[TestDox('UC-EPI-02-U15 — RoleGuard : le vote exige le rôle épistémiarque (admin seul → 403), la consultation accepte aussi l’admin ; 401 sans session')]
+    public function testU15VoteAndConsultationGuards(): void
+    {
+        // RoleGuard lit la base par le singleton Db : on le pointe sur la base de test.
+        TestDb::overrideEnv();
+        $vote = RoleGuard::any('epistemiarque');
+        $consult = RoleGuard::any('epistemiarque', 'admin');
+        $handler = new class implements RequestHandlerInterface {
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                return (new ResponseFactory())->createResponse(204);
+            }
+        };
+        $status = static fn (RoleGuard $guard): int => $guard
+            ->process((new ServerRequestFactory())->createServerRequest('POST', '/api/competences/proposals/1/votes'), $handler)
+            ->getStatusCode();
+
+        $_SESSION = [];
+        self::assertSame([401, 401], [$status($vote), $status($consult)], 'sans session');
+
+        $_SESSION['user_id'] = self::createUser('Admin', 'apprenant', 'admin');
+        self::assertSame([403, 204], [$status($vote), $status($consult)], 'admin non membre : consulte, ne vote pas (A4)');
+
+        $_SESSION['user_id'] = (string) self::createUser('Alix', 'epistemiarque');
+        self::assertSame([204, 204], [$status($vote), $status($consult)], 'membre (identifiant de session en chaîne numérique)');
+
+        $_SESSION['user_id'] = self::createUser('Admin membre', 'admin', 'epistemiarque');
+        self::assertSame([204, 204], [$status($vote), $status($consult)], 'admin ET membre vote');
+
+        // Branche défensive : deleted_at n'est jamais posé par la production.
+        $gone = self::createUser('Parti', 'epistemiarque');
+        self::$pdo->exec('UPDATE users SET deleted_at = NOW() WHERE id = ' . $gone);
+        $_SESSION['user_id'] = $gone;
+        self::assertSame([403, 403], [$status($vote), $status($consult)]);
     }
 }

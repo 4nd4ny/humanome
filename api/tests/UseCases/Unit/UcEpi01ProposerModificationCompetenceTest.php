@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Unit;
 
+use Humanome\Env;
 use Humanome\MigrationRunner;
 use Humanome\Referentiel\CompetenceGovernance;
 use Humanome\Referentiel\CompetenceHash;
@@ -15,6 +16,8 @@ use Humanome\Referentiel\RoleGuard;
 use Humanome\Referentiel\Semver;
 use Humanome\Tests\TestDb;
 use PDO;
+use PDOException;
+use PDOStatement;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -129,9 +132,13 @@ final class UcEpi01ProposerModificationCompetenceTest extends TestCase
     #[TestDox('UC-EPI-01-U01 — createDraft forke la DERNIÈRE version publiée (précédence semver, pas ordre alphabétique)')]
     public function testU01CreateDraftForksTheLatestPublishedVersion(): void
     {
-        self::publish('1.01', 'Pensée Critique', 1, '1.0.0');
+        // Insertion dans un ordre NON monotone : 1.10.0 n'est ni la première
+        // insérée (ORDER BY id ASC), ni la dernière (ORDER BY id DESC / end()),
+        // ni la plus grande par ordre alphabétique (« 1.9.0 ») : seule la
+        // précédence semver la désigne.
         self::publish('1.01', 'Pensée Critique', 1, '1.9.0');
         $latest = self::publish('1.01', 'Pensée Critique & Anti-Hallucination', 1, '1.10.0', 'Définition la plus récente.');
+        self::publish('1.01', 'Pensée Critique', 1, '1.0.0');
         $author = self::createUser('epistemiarque');
 
         $draft = self::repo()->createDraft('1.01', '1.11.0', $author);
@@ -309,7 +316,7 @@ final class UcEpi01ProposerModificationCompetenceTest extends TestCase
         self::assertNull(self::governance()->submit($other['id'], null, null)['decidimUrl'], 'lien facultatif');
     }
 
-    #[TestDox('UC-EPI-01-U07 — submit refuse : inconnue (null), déjà au vote, publiée, semver non strictement croissante, lien Decidim invalide')]
+    #[TestDox('UC-EPI-01-U07 — submit refuse : inconnue (null), déjà au vote, publiée, semver non strictement croissante, lien Decidim invalide, contenu revalidé hors schéma (422)')]
     public function testU07SubmitRefusals(): void
     {
         $publishedId = self::publish('1.01', 'Pensée Critique', 1, '1.0.0');
@@ -333,6 +340,22 @@ final class UcEpi01ProposerModificationCompetenceTest extends TestCase
             }
         }
         self::assertSame('draft', self::repo()->findById($junk['id'])['status'], 'aucune écriture partielle');
+
+        // Étape 9 : la soumission REVALIDE le contenu (défensif : le PUT valide
+        // déjà, mais un brouillon écrit avant un durcissement du schéma peut
+        // être devenu invalide). Contenu posé en base sans « nom » obligatoire.
+        $stale = self::repo()->createDraft('1.01', '1.2.0');
+        self::$pdo->prepare('UPDATE competence_versions SET content = ? WHERE id = ?')
+            ->execute(['{"identite":{"code":"1.01"}}', $stale['id']]);
+        try {
+            self::governance()->submit($stale['id'], null, null);
+            self::fail('contenu hors schéma soumis au vote');
+        } catch (InvalidDocumentException $e) {
+            self::assertStringContainsString('ne se conforme pas au schéma competence', $e->getMessage());
+            self::assertNotSame([], $e->getErrors(), 'erreurs par pointeur JSON');
+        }
+        $row = self::$pdo->query('SELECT status, submitted_at FROM competence_versions WHERE id = ' . (int) $stale['id'])->fetch();
+        self::assertSame(['draft', null], [$row['status'], $row['submitted_at']], 'rien n’est écrit');
 
         self::governance()->submit($junk['id'], null, null);
         $this->expectException(ConflictException::class);
@@ -409,7 +432,7 @@ final class UcEpi01ProposerModificationCompetenceTest extends TestCase
         );
     }
 
-    #[TestDox('UC-EPI-01-U11 — RoleGuard : 401 sans session, 403 sans rôle ou compte supprimé, passage pour épistémiarque ou admin')]
+    #[TestDox('UC-EPI-01-U11 — RoleGuard : 401 sans session, 403 sans rôle ou rôle retiré (relu à chaque requête), passage pour épistémiarque ou admin')]
     public function testU11RoleGuard(): void
     {
         $guard = RoleGuard::any('epistemiarque', 'admin');
@@ -433,14 +456,106 @@ final class UcEpi01ProposerModificationCompetenceTest extends TestCase
         $denied = $guard->process($request, $handler);
         self::assertSame('{"error":"Forbidden"}', (string) $denied->getBody());
 
-        $_SESSION['user_id'] = self::createUser('epistemiarque');
+        $member = self::createUser('epistemiarque');
+        $_SESSION['user_id'] = $member;
         self::assertSame(204, $status());
+        // Même session, rôle retiré par l'administration (UC-ADM-01) : les rôles
+        // sont relus en base à CHAQUE requête, le retrait prend effet aussitôt.
+        self::$pdo->prepare('DELETE FROM user_roles WHERE user_id = ?')->execute([$member]);
+        self::assertSame(403, $status(), 'rôle retiré : refusé dès la requête suivante');
+
         $_SESSION['user_id'] = (string) self::createUser('admin');
         self::assertSame(204, $status(), 'identifiant de session en chaîne numérique accepté');
 
+        // Branche DÉFENSIVE : la production ne pose jamais users.deleted_at (la
+        // purge de compte est un DELETE réel qui emporte les sessions → 401).
         $deleted = self::createUser('epistemiarque');
         self::$pdo->exec('UPDATE users SET deleted_at = NOW() WHERE id = ' . $deleted);
         $_SESSION['user_id'] = $deleted;
-        self::assertSame(403, $status(), 'rôle relu en base à chaque requête : compte supprimé = refusé');
+        self::assertSame(403, $status(), 'branche défensive : compte marqué deleted_at refusé (état jamais produit par la purge)');
+    }
+
+    /**
+     * Seconde connexion à la base de test dont prepare() exécute une fois un
+     * « crochet » juste avant la requête visée : simule, de façon
+     * déterministe, une requête concurrente intercalée entre la vérification et
+     * l'écriture d'une transition (fenêtre de course).
+     */
+    private static function racingConnection(string $sqlPrefix, callable $concurrent): PDO
+    {
+        $dsn = sprintf(
+            'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
+            Env::get('DB_HOST', 'mysql'),
+            Env::get('DB_PORT', '3306'),
+            TestDb::name(),
+        );
+
+        return new class ($dsn, $sqlPrefix, $concurrent) extends PDO {
+            /** @var callable|null */
+            private $concurrent;
+
+            public function __construct(string $dsn, private readonly string $sqlPrefix, callable $concurrent)
+            {
+                parent::__construct($dsn, 'root', Env::get('DB_ROOT_PASSWORD', 'root_dev'), [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_EMULATE_PREPARES => false,
+                ]);
+                $this->concurrent = $concurrent;
+            }
+
+            public function prepare(string $query, array $options = []): PDOStatement|false
+            {
+                if ($this->concurrent !== null && str_starts_with(ltrim($query), $this->sqlPrefix)) {
+                    $concurrent = $this->concurrent;
+                    $this->concurrent = null;
+                    $concurrent();
+                }
+
+                return parent::prepare($query, $options);
+            }
+        };
+    }
+
+    #[TestDox('UC-EPI-01-U22 — Anomalie AN1 (comportement actuel figé) : fork et soumission ne sont pas atomiques — fork concurrent → PDOException (500, pas 409) ; double soumission acceptée, bulletins effacés')]
+    public function testU22ForkAndSubmitAreNotAtomic(): void
+    {
+        self::publish('1.01', 'Pensée Critique', 1, '1.0.0');
+
+        // (1) createDraft : SELECT de doublon PUIS INSERT. Un fork concurrent du
+        // même (code, semver) passé entre les deux fait lever la contrainte
+        // UNIQUE : PDOException, que routes/competences.php ($wrap) rend en
+        // 500 « Internal error » au lieu du 409 attendu (E5).
+        $racing = self::racingConnection('INSERT INTO competence_versions', static function (): void {
+            self::repo()->createDraft('1.01', '1.1.0');
+        });
+        try {
+            (new CompetenceRepository($racing))->createDraft('1.01', '1.1.0');
+            self::fail('le doublon concurrent aurait dû échouer');
+        } catch (ConflictException $e) {
+            self::fail('comportement corrigé (409) : inverser ce test et mettre à jour AN1 — ' . $e->getMessage());
+        } catch (PDOException $e) {
+            self::assertSame(1062, $e->errorInfo[1] ?? null, 'violation de la clé unique (code, semver)');
+        }
+        self::assertSame(1, (int) self::$pdo->query("SELECT COUNT(*) FROM competence_versions WHERE semver = '1.1.0'")->fetchColumn());
+
+        // (2) submit : statut vérifié sur une lecture ANTÉRIEURE, puis
+        // UPDATE … WHERE id = ? sans « AND status = 'draft' ». Une soumission
+        // concurrente (Bao) et un premier bulletin passés dans la fenêtre ne
+        // bloquent pas la seconde soumission : elle réussit (pas de 409) et
+        // efface le bulletin, écrasant submitted_by et decidim_url.
+        $alix = self::createUser('epistemiarque');
+        $bao = self::createUser('epistemiarque');
+        $draft = self::repo()->createDraft('1.01', '1.2.0', $alix);
+        $racing = self::racingConnection('DELETE FROM competence_votes', static function () use ($draft, $bao): void {
+            self::governance()->submit($draft['id'], 'https://participer.harmonia.education/d/bao', $bao);
+            self::governance()->castVote($draft['id'], $bao, 'pour', 'Premier bulletin');
+        });
+
+        $second = (new CompetenceGovernance($racing))->submit($draft['id'], null, $alix);
+
+        self::assertSame('review', $second['status'], 'seconde soumission acceptée (aucun 409 « déjà ouverte au vote »)');
+        self::assertSame(0, self::ballots($draft['id']), 'le bulletin déposé entre-temps est effacé');
+        self::assertSame([$alix, null], [$second['submittedBy'], $second['decidimUrl']], 'soumissionnaire et lien de la première soumission écrasés');
     }
 }

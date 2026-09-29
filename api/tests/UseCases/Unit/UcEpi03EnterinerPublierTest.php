@@ -22,6 +22,7 @@ use Humanome\Validation;
 use PDO;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * UC-EPI-03 — Entériner et publier (compétence, release du référentiel) :
@@ -152,7 +153,7 @@ final class UcEpi03EnterinerPublierTest extends TestCase
         self::assertEquals($old, self::repo()->findById($old['id']), 'la version précédente est intacte');
     }
 
-    #[TestDox('UC-EPI-03-U02 — publish refuse : inconnue (null), brouillon jamais soumis, déjà publiée, majorité non atteinte / rejetée / bloquée (409)')]
+    #[TestDox('UC-EPI-03-U02 — publish refuse : inconnue (null), brouillon jamais soumis, déjà publiée, majorité non atteinte / rejetée / bloquée (409) ; transaction annulée, rien d’écrit')]
     public function testU02PublishRefusals(): void
     {
         self::seedSmall();
@@ -179,8 +180,13 @@ final class UcEpi03EnterinerPublierTest extends TestCase
             } catch (ConflictException $e) {
                 self::assertStringContainsString($message, $e->getMessage(), $label);
             }
+            // publish() ouvre une transaction (SELECT … FOR UPDATE) : chaque refus
+            // doit l'annuler — sans rollBack, elle resterait ouverte sur la connexion.
+            self::assertFalse(self::$pdo->inTransaction(), 'transaction annulée : ' . $label);
         }
-        self::assertSame('review', self::repo()->findById($pending)['status'], 'transaction annulée');
+        // Les refus précèdent toute écriture : rien n'est publié.
+        self::assertSame('review', self::repo()->findById($pending)['status']);
+        self::assertNull(self::repo()->findById($pending)['publishedAt']);
 
         self::$pdo->exec('DELETE FROM user_roles');
         try {
@@ -189,6 +195,7 @@ final class UcEpi03EnterinerPublierTest extends TestCase
         } catch (ConflictException $e) {
             self::assertStringContainsString('Aucun membre épistémiarque ne peut valider', $e->getMessage());
         }
+        self::assertFalse(self::$pdo->inTransaction(), 'transaction annulée : électorat vide');
     }
 
     #[TestDox('UC-EPI-03-U03 — publish : semver plus strictement croissante (autre version entérinée entre-temps) → 409, rien n’est publié')]
@@ -396,6 +403,52 @@ final class UcEpi03EnterinerPublierTest extends TestCase
             '1.02' => "## 1.02\n\nCuriosité.",
             '2.01' => "## 2.01\n\nÉcoute.",
         ]], $generator->corpus());
-        self::assertSame(['1.01', '1.02'], array_column($generator->fichesStructure()[0]['competences'], 'code'));
+        // Structure du setting twin9_fiches (FicheStore::store) : pôles, en-têtes, fiche_md par code.
+        self::assertSame(
+            [
+                ['num' => 1, 'header' => "# Pôle 1\n\n---\n\n", 'competences' => [
+                    ['code' => '1.01', 'fiche_md' => "## 1.01\n\nDouter, y compris de soi.\n\n---"],
+                    ['code' => '1.02', 'fiche_md' => "## 1.02\n\nCuriosité."],
+                ]],
+                ['num' => 2, 'header' => "# Pôle 2\n\n---\n\n", 'competences' => [
+                    ['code' => '2.01', 'fiche_md' => "## 2.01\n\nÉcoute."],
+                ]],
+            ],
+            $generator->fichesStructure(),
+        );
+    }
+
+    #[TestDox('UC-EPI-03-U15 — Anomalie AN2 (comportement actuel figé) : après un renommage entériné, le seeder du déploiement échoue au gate de parité (RuntimeException)')]
+    public function testU15SeederParityGateFailsAfterAnEnterinedRename(): void
+    {
+        self::seedFullCorpus();
+        $root = \dirname(__DIR__, 4);
+        $rich = json_decode((string) file_get_contents($root . '/scripts/data/competences-v7.json'), true, 512, JSON_THROW_ON_ERROR)['competences'];
+        $fiches = json_decode((string) file_get_contents($root . '/scripts/data/fiches-v7.json'), true, 512, JSON_THROW_ON_ERROR);
+        $member = self::createMember();
+
+        // Re-seed idempotent tant que seule une DÉFINITION a été entérinée.
+        self::repo()->publish(self::proposal('2.01', '1.1.0', static function (array $c): array {
+            $c['identite']['definition'] = 'Définition entérinée.';
+
+            return $c;
+        }, [[$member, 'pour']]));
+        self::assertSame(61, (new CompetenceSeeder(self::$pdo))->seed($rich, $fiches)['unchanged']);
+
+        // Scénario A4 : un RENOMMAGE entériné change le hash structurel assemblé…
+        self::repo()->publish(self::proposal('1.01', '1.1.0', static function (array $c): array {
+            $c['identite']['nom'] = 'Pensée critique et vigilance face aux IA';
+
+            return $c;
+        }, [[$member, 'pour']]));
+
+        // … or le gate compare toujours au contentHash de la release 7.0.0 :
+        // chaque seed-competences suivant (deploy.mjs) échoue.
+        try {
+            (new CompetenceSeeder(self::$pdo))->seed($rich, $fiches);
+            self::fail('comportement corrigé : inverser ce test et retirer AN2 de la fiche');
+        } catch (RuntimeException $e) {
+            self::assertStringContainsString('Gate de parité ÉCHOUÉ', $e->getMessage());
+        }
     }
 }

@@ -69,6 +69,9 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
     expect(screen.getByRole('heading', { name: /1\.01 Édition — v1\.1\.0/ })).toBeDefined()
     const draftId = Number(window.location.hash.split('/').pop())
     const baseHash = backend.versions.get(draftId).contentHash
+    // Oracle INDÉPENDANT du PUT : le contenu tel que chargé, capturé AVANT l'enregistrement.
+    const base = structuredClone(backend.versions.get(draftId).content)
+    expect(base.fiche).toMatch(/^## 1\.01/)
 
     // 6-7. Édition puis « Enregistrer » avec If-Match = empreinte chargée.
     fireEvent.change(screen.getByLabelText('Nom de la compétence'), { target: { value: 'Pensée Critique & Anti-Hallucination' } })
@@ -79,7 +82,12 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
     expect(put.headers['If-Match']).toBe(baseHash)
     expect(put.body.identite.nom).toBe('Pensée Critique & Anti-Hallucination')
     expect(put.body.identite.definition).toBe('Douter méthodiquement, y compris de soi.')
-    expect(put.body.fiche).toBe(backend.versions.get(draftId).content.fiche)
+    // Contenu COMPLET : les champs non édités repartent intacts (fiche de scan comprise).
+    expect(put.body.fiche).toBe(base.fiche)
+    expect(put.body.protocole).toEqual(base.protocole)
+    expect(put.body.identite.marqueurs_fondamentaux).toEqual(base.identite.marqueurs_fondamentaux)
+    expect(put.body.identite.argument_employeur).toBe(base.identite.argument_employeur)
+    expect(put.body.identite.code).toBe('1.01')
 
     // 8-9. Lien Decidim puis « Soumettre au vote ».
     fireEvent.change(screen.getByLabelText('Lien Decidim (optionnel)'), {
@@ -146,12 +154,17 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
     expect(backend.callsTo('PUT', /drafts/)[0].body.fiche).toBe('## 2.01 — Écoute\n\nÉcouter activement.\n\n---')
     expect(backend.callsTo('POST', /\/submit$/)[0].body).toEqual({})
     expect(screen.queryByText(/\(fil joint\)/)).toBeNull()
+    // Sans lien, la proposition renvoie à l'espace Decidim général.
+    expect(screen.getByRole('link', { name: 'Débattre sur Decidim' }).getAttribute('href')).toBe(
+      'https://participer.harmonia.education',
+    )
   })
 
   it('UC-EPI-01-F18 — E1/E2 : sans session, sans rôle, ou copie statique sans API → l’atelier est refusé avec un message', async () => {
     let backend = createEpiBackend({ me: null, published: PUBLISHED })
     start(backend)
     expect((await screen.findByTestId('epi-anonyme')).textContent).toContain('nécessite une session')
+    expect(backend.callsTo('GET', /^api\/competences/)).toHaveLength(0)
     cleanup()
 
     backend = createEpiBackend({ me: { id: 3, displayName: 'Maya', roles: ['apprenant'] }, published: PUBLISHED })
@@ -164,6 +177,7 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
     backend.override('GET', /^api\/auth\/me$/, () => htmlResponse(404))
     start(backend)
     expect((await screen.findByTestId('epi-indisponible')).textContent).toContain('Copie statique du site')
+    expect(backend.callsTo('GET', /^api\/competences/)).toHaveLength(0)
   })
 
   it('UC-EPI-01-F19 — E7 : un autre épistémiarque a enregistré entre-temps → 409, message et bouton « Recharger »', async () => {
@@ -185,6 +199,9 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
   })
 
   it('UC-EPI-01-F20 — E5/E10 : fork refusé (409) signalé sur la ligne ; lien Decidim refusé (422) sans quitter l’éditeur', async () => {
+    // Anomalie AN2 (comportement actuel figé) : le 409 de doublon porte un
+    // message serveur ANGLAIS (CompetenceRepository::createDraft), que
+    // l'atelier affiche tel quel (errorMessage → serverMessage).
     const backend = createEpiBackend({ me: IRIS, published: PUBLISHED })
     backend.override('POST', /^api\/competences\/2\.01\/drafts$/, () =>
       jsonResponse(409, { error: 'Competence 2.01@1.1.0 already exists' }),

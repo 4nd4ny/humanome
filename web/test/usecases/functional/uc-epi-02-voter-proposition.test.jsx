@@ -99,8 +99,11 @@ describe('UC-EPI-02 — un membre vote sur une proposition de compétence', () =
       { vote: 'pour', comment: null },
       { vote: 'contre', comment: null },
     ])
-    expect(within(screen.getByRole('region', { name: 'Votes exprimés' })).getAllByRole('listitem')).toHaveLength(1)
+    // L'unicité du bulletin est une règle SERVEUR (upsert), prouvée par
+    // UC-EPI-02-F02 côté API : le faux serveur l'impose par construction, on
+    // ne la revérifie donc pas ici. On vérifie ce que l'IHM affiche.
     expect(tallyText()).toContain('Contre : 1')
+    expect(tallyText()).toContain('Pour : 0')
   })
 
   it('UC-EPI-02-F15 — A2 : majorité « contre » → « rejetée », pas de bouton d’entérinement', async () => {
@@ -159,17 +162,22 @@ describe('UC-EPI-02 — un membre vote sur une proposition de compétence', () =
     )
   })
 
-  it('UC-EPI-02-F19 — E3 : bulletin refusé par le serveur (422) → message affiché, décompte inchangé', async () => {
+  it('UC-EPI-02-F19 — A3/E2 : le membre a perdu son rôle pendant qu’il était sur la page → vote refusé (403), message affiché, pas de rechargement', async () => {
+    // Cas ATTEIGNABLE depuis l'IHM (les trois boutons n'émettent que des
+    // valeurs valides : E3 ne concerne que l'API, UC-EPI-02-F09). La garde
+    // RoleGuard::any('epistemiarque') répond {error: 'Forbidden'} — message
+    // anglais affiché tel quel (anomalie AN2, comportement figé).
     const { backend, id } = backendWithProposal()
-    backend.override('POST', /votes$/, () =>
-      jsonResponse(422, { error: 'Invalid vote "pour": expected one of pour, contre, abstention', errors: { '/vote': ['Vote invalide'] } }),
-    )
     start(backend, `#/epistemiarque/proposition/${id}`)
+    const pour = await screen.findByRole('button', { name: 'Pour' })
+    backend.override('POST', /votes$/, () => jsonResponse(403, { error: 'Forbidden' }))
 
-    await click(await screen.findByRole('button', { name: 'Pour' }))
+    await click(pour)
 
-    expect((await screen.findByRole('alert')).textContent).toContain('Invalid vote')
+    expect((await screen.findByRole('alert')).textContent).toBe('Forbidden')
+    expect(backend.callsTo('POST', new RegExp(`proposals/${id}/votes$`))).toHaveLength(1)
+    expect(backend.callsTo('GET', new RegExp(`proposals/${id}$`))).toHaveLength(1) // pas de rechargement après l'échec
     expect(screen.getByRole('heading', { name: 'Mon vote' })).toBeDefined()
-    expect(tallyText()).toContain('0 voix « pour » sur 2 requises')
+    expect(screen.getByRole('button', { name: 'Pour' }).disabled).toBe(false)
   })
 })

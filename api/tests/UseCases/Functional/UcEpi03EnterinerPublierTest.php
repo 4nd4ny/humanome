@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Env;
+use Humanome\Packages\SettingsRepository;
 use Humanome\Tests\TestDb;
+use Humanome\Twin9\FicheStore;
 use Humanome\Tests\UseCases\Support\EpiSupport;
 use PHPUnit\Framework\Attributes\TestDox;
 use Psr\Http\Message\ResponseInterface;
@@ -21,8 +23,10 @@ use Psr\Http\Message\ResponseInterface;
  * réels (Alix, Bao : seuil 2) mènent une proposition jusqu'à la majorité, puis
  * l'entérinent et coupent une release par l'API HTTP. La propagation est
  * rejouée par ses interfaces publiques : le script CLI d'export statique
- * (sortie dans un dossier TEMPORAIRE, jamais web/public/data) et l'endpoint
- * de déploiement /api/admin/dump-fiches.
+ * (sortie dans un dossier TEMPORAIRE, jamais web/public/data) et les
+ * endpoints d'exploitation /api/admin/dump-fiches (resynchronisation manuelle
+ * du corpus), /api/admin/generate-fiches et /api/admin/seed-competences
+ * (appelés par deploy.mjs), avec le jeton de migration et sans session.
  */
 final class UcEpi03EnterinerPublierTest extends EpiSupport
 {
@@ -64,6 +68,15 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
 
             return $content;
         };
+    }
+
+    /** Appel d'exploitation (deploy.mjs, scripts/dump-fiches.mjs) : jeton de migration, aucune session. */
+    private function tool(string $method, string $path, ?array $body = null): ResponseInterface
+    {
+        TestDb::setEnv('MIGRATE_TOKEN', self::MIGRATE_TOKEN);
+        $this->cookieSid = null;
+
+        return $this->request($method, $path, $body, ['X-Migrate-Token' => self::MIGRATE_TOKEN]);
     }
 
     /** @param array{id: int, csrf: string, sid: string} $who */
@@ -130,7 +143,7 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         self::assertSame(201, $this->release($admin, ['semver' => '7.1.0'])->getStatusCode());
     }
 
-    #[TestDox('UC-EPI-03-F03 — A2/A3 : entérinement sans note (NULL), release sans libellé (« RESPIRE v<semver> » par défaut)')]
+    #[TestDox('UC-EPI-03-F03 — A2/A3 : entérinement sans note ou avec une note non textuelle (NULL), release sans libellé (« RESPIRE v<semver> » par défaut)')]
     public function testF03DefaultNoteAndLabel(): void
     {
         self::seedFullCorpus();
@@ -139,6 +152,10 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         $published = $this->publish($this->alix, $id, null);
         self::assertSame(200, $published->getStatusCode());
         self::assertNull(self::json($published)['releaseNote']);
+        // Une note NON textuelle est ignorée en silence (NULL), comme le corps non JSON (AN1).
+        $other = $this->adoptedProposal('2.01', '1.1.0', self::newDefinition('Écouter activement.'), [$this->alix, $this->bao]);
+        $numeric = $this->publish($this->alix, $other, ['releaseNote' => 42]);
+        self::assertSame([200, 'published', null], [$numeric->getStatusCode(), self::json($numeric)['status'], self::json($numeric)['releaseNote']]);
 
         self::assertSame(201, $this->release($this->alix, ['semver' => '7.1.0'])->getStatusCode());
         $versions = self::json($this->anonymous('GET', '/api/referentiel/versions'));
@@ -166,10 +183,12 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         self::assertSame([['code' => '1.01', 'pole' => 1, 'from' => $before, 'to' => 'Pensée critique et vigilance face aux IA']], $diff['competences']['renamed']);
     }
 
-    #[TestDox('UC-EPI-03-F05 — E1 : majorité non atteinte → 409 avec le décompte en clair, la proposition reste au vote')]
+    #[TestDox('UC-EPI-03-F05 — E1 : majorité non atteinte, proposition rejetée ou électorat vide → 409 avec le message du décompte, la proposition reste au vote')]
     public function testF05MajorityNotReached(): void
     {
         self::seedCompetence('1.01', 'Pensée Critique', 1);
+        self::seedCompetence('2.01', 'Écoute', 2);
+        self::seedCompetence('3.01', 'Créativité', 3);
         $id = $this->adoptedProposal('1.01', '1.1.0', self::newDefinition('x'), [$this->alix]);
 
         $response = $this->publish($this->alix, $id);
@@ -178,6 +197,25 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         self::assertSame('Majorité non atteinte : 1 voix « pour » sur 2 requises (2 membres).', self::json($response)['error']);
         self::assertSame('review', self::competenceRow($id)['status']);
         self::assertSame('1.0.0', self::json($this->anonymous('GET', '/api/competences/1.01'))['semver']);
+
+        // Rejetée : les deux membres votent « contre ».
+        $rejected = $this->openCompetenceProposal($this->alix, '2.01', '1.1.0', self::newDefinition('y'));
+        foreach ([$this->alix, $this->bao] as $voter) {
+            $this->as_($voter, 'POST', '/api/competences/proposals/' . $rejected . '/votes', ['vote' => 'contre']);
+        }
+        $refused = $this->publish($this->alix, $rejected);
+        self::assertSame([409, 'Cette proposition a été rejetée par la majorité des membres épistémiarques.'], [$refused->getStatusCode(), self::json($refused)['error']]);
+
+        // Électorat vide : proposition adoptée, puis plus aucun membre (Alix
+        // devient admin non membre et entérine, Bao perd le rôle).
+        $orphan = $this->adoptedProposal('3.01', '1.1.0', self::newDefinition('z'), [$this->alix, $this->bao]);
+        self::setRoles($this->alix['id'], ['admin']);
+        self::setRoles($this->bao['id'], ['apprenant']);
+        $blocked = $this->publish($this->alix, $orphan);
+        self::assertSame(409, $blocked->getStatusCode());
+        self::assertStringStartsWith('Aucun membre épistémiarque ne peut valider', self::json($blocked)['error']);
+
+        self::assertSame(['review', 'review', 'review'], array_map(static fn (int $v): string => self::competenceRow($v)['status'], [$id, $rejected, $orphan]));
     }
 
     #[TestDox('UC-EPI-03-F06 — E2 : brouillon jamais soumis ou version déjà publiée → 409 ; brouillon inconnu → 404')]
@@ -225,7 +263,7 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         self::assertSame('Majorité non atteinte : 1 voix « pour » sur 2 requises (2 membres).', self::json($response)['error']);
     }
 
-    #[TestDox('UC-EPI-03-F09 — E5/E7 : release — semver absente ou invalide (422), corps non JSON (400), version existante ou non croissante (409)')]
+    #[TestDox('UC-EPI-03-F09 — E5/E7 : release — semver absente ou invalide (422), corps non JSON (400), libellé vide (422 /label), version existante ou non croissante (409)')]
     public function testF09ReleaseRefusals(): void
     {
         self::seedFullCorpus();
@@ -236,6 +274,10 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         self::assertSame(422, $invalid->getStatusCode());
         self::assertArrayHasKey('/version', self::json($invalid)['errors']);
         self::assertSame(400, $this->rawAs($this->alix, 'POST', '/api/competences/release', 'semver=7.1.0')->getStatusCode());
+        // Libellé vide : transmis tel quel et refusé par le schéma (label minLength 1).
+        $emptyLabel = $this->release($this->alix, ['semver' => '7.1.0', 'label' => '']);
+        self::assertSame(422, $emptyLabel->getStatusCode());
+        self::assertArrayHasKey('/label', self::json($emptyLabel)['errors']);
 
         $existing = $this->release($this->alix, ['semver' => '7.0.0']);
         self::assertSame(409, $existing->getStatusCode());
@@ -318,11 +360,10 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
         }
     }
 
-    #[TestDox('UC-EPI-03-F13 — propagation : après entérinement, la fiche de scan servie au déploiement (dump-fiches) est la nouvelle')]
-    public function testF13EnterinedFicheReachesTheDeployDump(): void
+    #[TestDox('UC-EPI-03-F13 — propagation : après entérinement, la fiche servie par dump-fiches (resynchronisation MANUELLE du corpus, scripts/dump-fiches.mjs) est la nouvelle')]
+    public function testF13EnterinedFicheReachesTheManualDump(): void
     {
         self::seedFullCorpus();
-        TestDb::setEnv('MIGRATE_TOKEN', self::MIGRATE_TOKEN);
         $newFiche = "## 1.01 — Pensée Critique\n\n**Essence** — Douter, y compris de soi.\n\n---";
         $id = $this->adoptedProposal('1.01', '1.1.0', static function (array $content) use ($newFiche): array {
             $content['fiche'] = $newFiche;
@@ -330,12 +371,9 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
             return $content;
         }, [$this->alix, $this->bao]);
 
-        // Appel du script de déploiement : jeton de migration, aucune session.
-        $dump = function (): array {
-            $this->cookieSid = null;
-
-            return self::json($this->request('GET', '/api/admin/dump-fiches', null, ['X-Migrate-Token' => self::MIGRATE_TOKEN]));
-        };
+        // Appel de scripts/dump-fiches.mjs (lancé à la main, pas par deploy.mjs) :
+        // jeton de migration, aucune session.
+        $dump = fn (): array => self::json($this->tool('GET', '/api/admin/dump-fiches'));
         self::assertNotSame($newFiche, $dump()['fiches']['1.01'], 'une proposition au vote ne se propage pas');
 
         self::assertSame(200, $this->publish($this->alix, $id)->getStatusCode());
@@ -357,5 +395,65 @@ final class UcEpi03EnterinerPublierTest extends EpiSupport
 
         self::assertSame(200, $response->getStatusCode());
         self::assertSame(['published', null], [self::json($response)['status'], self::json($response)['releaseNote']]);
+    }
+
+    #[TestDox('UC-EPI-03-F19 — Anomalie AN2 (comportement actuel figé) : après un renommage entériné, POST /api/admin/seed-competences du déploiement suivant échoue (500, gate de parité)')]
+    public function testF19SeedCompetencesFailsAfterAnEnterinedRename(): void
+    {
+        self::seedFullCorpus();
+        // Avant tout renommage, le seed du déploiement est idempotent.
+        self::assertSame(200, $this->tool('POST', '/api/admin/seed-competences')->getStatusCode());
+
+        // Scénario A4 : renommage entériné (puis release coupée, comme en production).
+        $id = $this->adoptedProposal('1.01', '1.1.0', static function (array $content): array {
+            $content['identite']['nom'] = 'Pensée critique et vigilance face aux IA';
+
+            return $content;
+        }, [$this->alix, $this->bao]);
+        self::assertSame(200, $this->publish($this->alix, $id)->getStatusCode());
+        self::assertSame(201, $this->release($this->alix, ['semver' => '7.1.0'])->getStatusCode());
+
+        // deploy.mjs rejoue seed-competences à chaque déploiement, APRÈS la
+        // bascule de current.txt : le gate compare le corps assemblé (nouveau
+        // nom) au contentHash de la 7.0.0 et échoue ; deploy.mjs s'arrête.
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $seed = $this->tool('POST', '/api/admin/seed-competences');
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+        }
+        self::assertSame(500, $seed->getStatusCode(), 'comportement corrigé : inverser ce test et retirer AN2');
+        self::assertStringContainsString('Gate de parité ÉCHOUÉ', self::json($seed)['error']);
+    }
+
+    #[TestDox('UC-EPI-03-F20 — propagation Twin9 : après entérinement d’une fiche, generate-fiches refuse l’écrasement (409 diff) sans force, puis l’applique avec force')]
+    public function testF20GenerateFichesAfterAnEnterinedFiche(): void
+    {
+        self::seedFullCorpus();
+        $settings = new SettingsRepository(self::$pdo);
+        $settings->delete(FicheStore::SETTING_KEY);
+        // Alignement initial (premier déploiement : FICHES_FORCE=1), puis idempotence.
+        self::assertSame(200, $this->tool('POST', '/api/admin/generate-fiches', ['force' => true])->getStatusCode());
+        $aligned = $this->tool('POST', '/api/admin/generate-fiches', ['force' => false]);
+        self::assertSame([200, 'unchanged', []], [$aligned->getStatusCode(), self::json($aligned)['status'], self::json($aligned)['changed']]);
+
+        $newFiche = "## 1.01 — Pensée Critique\n\n**Essence** — Douter, y compris de soi.\n\n---";
+        $id = $this->adoptedProposal('1.01', '1.1.0', static function (array $content) use ($newFiche): array {
+            $content['fiche'] = $newFiche;
+
+            return $content;
+        }, [$this->alix, $this->bao]);
+        self::assertSame(200, $this->publish($this->alix, $id)->getStatusCode());
+
+        // Étape 8 : le déploiement suivant (sans FICHES_FORCE) est arrêté par le garde-fou.
+        $guarded = $this->tool('POST', '/api/admin/generate-fiches', ['force' => false]);
+        self::assertSame(409, $guarded->getStatusCode());
+        self::assertSame(['diff', ['1.01']], [self::json($guarded)['status'], self::json($guarded)['changed']]);
+        self::assertNotSame($newFiche, FicheStore::fromSettings($settings)->competenceFiche('1.01'), 'rien n’est écrit sans force');
+
+        // Relance assumée (FICHES_FORCE=1) : la fiche entérinée atteint Twin9.
+        $forced = $this->tool('POST', '/api/admin/generate-fiches', ['force' => true]);
+        self::assertSame([200, 'applied', ['1.01']], [$forced->getStatusCode(), self::json($forced)['status'], self::json($forced)['changed']]);
+        self::assertSame($newFiche, FicheStore::fromSettings($settings)->competenceFiche('1.01'));
     }
 }

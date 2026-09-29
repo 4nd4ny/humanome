@@ -5,7 +5,7 @@
 // (competence-api.js et api.js : chemins et corps des routes de vote) et le
 // composant EpistemiarqueView ISOLÉ (coutures deps.fetchMeFn / deps.api) pour
 // les éléments de présentation du vote : panneau de décompte, puce de
-// l'atelier, messages d'issue, aperçu des changements, « Mon vote ».
+// l'atelier, messages d'issue, aperçu des changements, « Mon vote », lien Decidim.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render, screen, within } from '@testing-library/react'
 import EpistemiarqueView from '../../../src/views/EpistemiarqueView.jsx'
@@ -163,6 +163,20 @@ describe('UC-EPI-02 — présentation du vote (EpistemiarqueView isolée)', () =
     expect(screen.queryByRole('region', { name: 'Mon vote' })).toBeNull()
     expect(screen.queryByRole('button', { name: 'Pour' })).toBeNull()
     expect(screen.getByText(/seuls les membres épistémiarques y prennent part/)).toBeDefined()
+  })
+
+  it('UC-EPI-02-U16 — lien « Débattre sur Decidim » : fil joint (« (fil joint) ») ou, sans lien, espace Decidim général', async () => {
+    const thread = 'https://participer.harmonia.education/processes/referentiel/f/12/debates/7'
+    renderProposal(proposal({ decidimUrl: thread }))
+    const link = await screen.findByRole('link', { name: 'Débattre sur Decidim' })
+    expect(link.getAttribute('href')).toBe(thread)
+    expect(link.parentElement.textContent).toContain('Débattre sur Decidim (fil joint).')
+    cleanup()
+
+    renderProposal(proposal({ decidimUrl: null }))
+    const general = await screen.findByRole('link', { name: 'Débattre sur Decidim' })
+    expect(general.getAttribute('href')).toBe('https://participer.harmonia.education')
+    expect(general.parentElement.textContent).not.toContain('(fil joint)')
   })
 
   it('UC-EPI-02-U14 — atelier : puce de décompte « pour/seuil · issue » et lien Voter / voir (Voir le vote pour un non-membre)', async () => {

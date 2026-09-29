@@ -96,12 +96,16 @@ describe('UC-EPI-03 — entériner une compétence puis couper une release', () 
 
     await click(await screen.findByRole('button', { name: 'Entériner cette compétence' }))
 
-    expect(backend.callsTo('POST', /\/publish$/)[0].body).toEqual({ releaseNote: 'Entérinée par le vote des membres.' })
+    const publishes = backend.callsTo('POST', /\/publish$/)
+    expect(publishes).toHaveLength(1)
+    expect(publishes[0].url).toBe(`api/competences/drafts/${id}/publish`)
+    expect(publishes[0].body).toEqual({ releaseNote: 'Entérinée par le vote des membres.' })
+    // Retour à l'atelier (étape 4), qui recharge les compétences.
     expect(await screen.findByRole('region', { name: 'Les 61 compétences' })).toBeDefined()
-    expect(backend.versions.get(id).status).toBe('published')
+    expect(window.location.hash).toBe('#/epistemiarque')
   })
 
-  it('UC-EPI-03-F17 — E1 : la majorité a été perdue entre-temps (409) → message, on reste sur la proposition', async () => {
+  it('UC-EPI-03-F17 — E1/E4 : un votant « pour » a perdu le rôle entre-temps (409) → message, on reste sur la proposition', async () => {
     const { backend, id } = adoptedProposal()
     backend.castBallot(id, IRIS, 'pour')
     start(backend, `#/epistemiarque/proposition/${id}`)
@@ -112,7 +116,10 @@ describe('UC-EPI-03 — entériner une compétence puis couper une release', () 
 
     expect((await screen.findByRole('alert')).textContent).toBe('Majorité non atteinte : 1 voix « pour » sur 2 requises (2 membres).')
     expect(window.location.hash).toBe(`#/epistemiarque/proposition/${id}`)
-    expect(backend.versions.get(id).status).toBe('review')
+    expect(backend.callsTo('POST', /\/publish$/)).toHaveLength(1)
+    // La section « Décision » reste affichée, le bouton est réactivé pour réessayer.
+    const decision = screen.getByRole('region', { name: 'Décision' })
+    expect(within(decision).getByRole('button', { name: 'Entériner cette compétence' }).disabled).toBe(false)
   })
 
   it('UC-EPI-03-F18 — E6/E7 : release refusée — corpus incomplet (422), version déjà publiée (409) — message affiché', async () => {
@@ -131,7 +138,13 @@ describe('UC-EPI-03 — entériner une compétence puis couper une release', () 
     card = await cut('7.1.0')
     expect(within(card).getByRole('status').textContent).toBe('Release 7.1.0 publiée (snapshot du référentiel).')
     card = await cut('7.1.0')
+    // Message serveur anglais affiché tel quel (UC-EPI-01 AN2, comportement figé).
     expect(within(card).getByRole('alert').textContent).toBe('Version 7.1.0 of referentiel "respire" already exists')
-    expect(backend.releases).toHaveLength(1)
+    // Trois demandes identiques envoyées par l'IHM, une par clic.
+    expect(backend.callsTo('POST', /^api\/competences\/release$/).map((c) => c.body)).toEqual([
+      { semver: '7.1.0', label: 'RESPIRE v7.1.0' },
+      { semver: '7.1.0', label: 'RESPIRE v7.1.0' },
+      { semver: '7.1.0', label: 'RESPIRE v7.1.0' },
+    ])
   })
 })

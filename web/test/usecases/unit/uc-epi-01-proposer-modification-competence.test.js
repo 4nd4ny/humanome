@@ -4,15 +4,16 @@
 // Code sollicité appelé directement : le routeur (#/epistemiarque[/<section>]),
 // le client fin des compétences atomiques (competence-api.js : chemins,
 // méthodes, corps, en-tête If-Match), la suggestion de version et le client API
-// générique (en-têtes additionnels, jeton CSRF appris de auth/me, erreurs typées).
+// générique (en-têtes additionnels, jeton CSRF appris de auth/me, erreurs typées)
+// et la sonde de session fetchMe.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { parseHash } from '../../../src/router.js'
-import { ApiError, apiFetch, getCsrfToken, resetApiClient } from '../../../src/api/client.js'
+import { ApiError, ApiUnavailableError, apiFetch, fetchMe, getCsrfToken, resetApiClient } from '../../../src/api/client.js'
 import {
   createCompetenceApi,
   nextCompetenceVersion,
 } from '../../../src/views/epistemiarque/competence-api.js'
-import { jsonResponse } from '../support/epi.js'
+import { htmlResponse, jsonResponse } from '../support/epi.js'
 
 afterEach(() => resetApiClient())
 
@@ -114,5 +115,22 @@ describe('UC-EPI-01 — client API générique', () => {
     const precondition = await apiFetch('competences/drafts/12', { method: 'PUT', body: {}, fetchFn }).catch((e) => e)
     expect(precondition.status).toBe(428)
     expect(precondition.serverMessage).toBeNull()
+  })
+
+  it('UC-EPI-01-U20 — fetchMe (étape 1) : session → {user} ; 401 → {user: null} ; 500 → ApiError ; réponse non JSON → ApiUnavailableError', async () => {
+    const fetchFn = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse(200, { user: { id: 7, roles: ['epistemiarque'] }, csrfToken: 'jeton' }))
+      .mockResolvedValueOnce(jsonResponse(401, { error: 'Authentication required' }))
+      .mockResolvedValueOnce(jsonResponse(500, { error: 'Internal error' }))
+      .mockResolvedValueOnce(htmlResponse(404))
+
+    expect(await fetchMe({ fetchFn })).toEqual({ user: { id: 7, roles: ['epistemiarque'] } })
+    expect(fetchFn.mock.calls[0][0]).toBe('api/auth/me')
+    expect(await fetchMe({ fetchFn })).toEqual({ user: null })
+    const serverError = await fetchMe({ fetchFn }).catch((e) => e)
+    expect(serverError).toBeInstanceOf(ApiError)
+    expect(serverError.status).toBe(500)
+    expect(await fetchMe({ fetchFn }).catch((e) => e)).toBeInstanceOf(ApiUnavailableError)
   })
 })

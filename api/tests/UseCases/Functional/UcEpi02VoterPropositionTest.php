@@ -126,26 +126,31 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
         self::assertSame('pending', self::json($this->vote($this->chloe, $id, 'abstention'))['tally']['outcome']);
     }
 
-    #[TestDox('UC-EPI-02-F04 — A3 : l’électorat change pendant le vote → bulletin d’un ex-membre écarté, seuil recalculé')]
+    #[TestDox('UC-EPI-02-F04 — A3 : l’électorat change pendant le vote → un nouveau membre relève le seuil (3→4 : 2→3), le bulletin d’un ex-membre est écarté et le seuil recalculé')]
     public function testF04ElectorateChangesDuringTheVote(): void
     {
         $id = $this->proposal();
         $this->vote($this->bao, $id, 'pour');
-        self::assertSame('adopted', self::json($this->vote($this->chloe, $id, 'pour'))['tally']['outcome']);
+        $adopted = self::json($this->vote($this->chloe, $id, 'pour'))['tally'];
+        self::assertSame([3, 2, 'adopted'], [$adopted['electorateSize'], $adopted['threshold'], $adopted['outcome']]);
 
-        // L'administration retire le rôle à Chloé (UC-ADM-01).
+        // Dan rejoint l'électorat : 4 membres, N pair → le seuil MONTE à 3 et
+        // l'adoption acquise à 2 voix est perdue (seuil recalculé, pas mémorisé).
+        $dan = $this->member('dan@example.org', 'Dan');
+        $detail = self::json($this->as_($this->alix, 'GET', '/api/competences/proposals/' . $id));
+        self::assertSame([4, 3, 2, 'pending'], [$detail['tally']['electorateSize'], $detail['tally']['threshold'], $detail['tally']['pour'], $detail['tally']['outcome']]);
+
+        // L'administration retire le rôle à Chloé (UC-ADM-01) : 3 membres, seuil 2,
+        // son bulletin est écarté du décompte et de la liste.
         self::setRoles($this->chloe['id'], ['apprenant']);
         $detail = self::json($this->as_($this->alix, 'GET', '/api/competences/proposals/' . $id));
-        self::assertSame([2, 2, 1, 'pending'], [$detail['tally']['electorateSize'], $detail['tally']['threshold'], $detail['tally']['pour'], $detail['tally']['outcome']]);
+        self::assertSame([3, 2, 1, 'pending'], [$detail['tally']['electorateSize'], $detail['tally']['threshold'], $detail['tally']['pour'], $detail['tally']['outcome']]);
         self::assertSame(['Bao'], array_column($detail['votes'], 'displayName'));
         self::assertSame(403, $this->vote($this->chloe, $id, 'pour')->getStatusCode(), 'plus membre, plus de vote');
 
-        // Un nouveau membre rejoint l'électorat : le seuil suit.
-        $dan = $this->member('dan@example.org', 'Dan');
-        self::assertSame([3, 2], array_values(array_intersect_key(
-            self::json($this->vote($dan, $id, 'abstention'))['tally'],
-            ['electorateSize' => 0, 'threshold' => 0],
-        )));
+        // Le nouveau membre vote : son bulletin compte aussitôt.
+        $tally = self::json($this->vote($dan, $id, 'pour'))['tally'];
+        self::assertSame([3, 2, 2, 'adopted'], [$tally['electorateSize'], $tally['threshold'], $tally['pour'], $tally['outcome']]);
     }
 
     #[TestDox('UC-EPI-02-F05 — A4 : un administrateur non membre consulte le vote mais ne vote pas (403) ; admin ET membre vote')]
@@ -214,7 +219,7 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
         self::assertSame(0, self::competenceBallots($id));
     }
 
-    #[TestDox('UC-EPI-02-F08 — E2 : compte sans rôle épistémiarque → 403 sur la consultation et le vote, aux deux grains')]
+    #[TestDox('UC-EPI-02-F08 — E2 : compte sans rôle épistémiarque → 403 sur la consultation (liste et détail) et le vote, aux deux grains, aucun bulletin')]
     public function testF08NonMemberIsForbidden(): void
     {
         $id = $this->proposal();
@@ -224,13 +229,15 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
             ['GET', '/api/competences/proposals/' . $id, null],
             ['POST', '/api/competences/proposals/' . $id . '/votes', ['vote' => 'pour']],
             ['GET', '/api/referentiel/proposals', null],
+            ['GET', '/api/referentiel/proposals/1', null],
             ['POST', '/api/referentiel/proposals/1/votes', ['vote' => 'pour']],
         ] as [$method, $path, $body]) {
             self::assertSame(403, $this->as_($maya, $method, $path, $body)->getStatusCode(), $method . ' ' . $path);
         }
+        self::assertSame(0, self::competenceBallots($id), 'aucun bulletin pour un non-membre');
     }
 
-    #[TestDox('UC-EPI-02-F09 — E3/E6 : bulletin absent, non textuel ou hors {pour, contre, abstention} → 422 ; corps non JSON → 400')]
+    #[TestDox('UC-EPI-02-F09 — E3/E6 : bulletin absent, non textuel ou hors {pour, contre, abstention} → 422 ; corps non JSON → 400 ; aux deux grains, aucun bulletin')]
     public function testF09InvalidBallots(): void
     {
         $id = $this->proposal();
@@ -247,13 +254,20 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
 
         self::importRespire();
         $version = self::json($this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0']));
-        $this->as_($this->alix, 'POST', '/api/referentiel/drafts/' . $version['id'] . '/submit', []);
-        $refMissing = $this->as_($this->bao, 'POST', '/api/referentiel/proposals/' . $version['id'] . '/votes', []);
+        $submitted = $this->as_($this->alix, 'POST', '/api/referentiel/drafts/' . $version['id'] . '/submit', []);
+        self::assertSame(200, $submitted->getStatusCode(), 'la version est bien au vote : les refus suivants portent sur le bulletin');
+        $refPath = '/api/referentiel/proposals/' . $version['id'] . '/votes';
+        $refMissing = $this->as_($this->bao, 'POST', $refPath, []);
         self::assertSame([422, 'Field "vote" is required'], [$refMissing->getStatusCode(), self::json($refMissing)['error']]);
-        self::assertSame(422, $this->vote($this->bao, $version['id'], 'Pour', null, 'referentiel')->getStatusCode());
+        self::assertSame(422, $this->vote($this->bao, $version['id'], 1, null, 'referentiel')->getStatusCode(), 'valeur non textuelle');
+        $refUnknown = $this->vote($this->bao, $version['id'], 'Pour', null, 'referentiel');
+        self::assertSame(422, $refUnknown->getStatusCode(), 'casse comprise');
+        self::assertSame(['/vote' => ['Vote invalide']], self::json($refUnknown)['errors']);
+        self::assertSame(400, $this->rawAs($this->bao, 'POST', $refPath, 'vote=pour')->getStatusCode());
+        self::assertSame(0, self::referentielBallots($version['id']));
     }
 
-    #[TestDox('UC-EPI-02-F10 — E4 : proposition inconnue ou pas au vote → 404 en consultation ; vote → 404 (inconnue) ou 409 (brouillon, publiée)')]
+    #[TestDox('UC-EPI-02-F10 — E4 : proposition inconnue ou pas au vote → 404 en consultation ; vote → 404 (inconnue) ou 409 (brouillon, publiée), aux deux grains, aucun bulletin')]
     public function testF10UnknownOrClosedProposal(): void
     {
         $draft = self::json($this->as_($this->alix, 'POST', '/api/competences/1.01/drafts', ['semver' => '1.1.0']));
@@ -269,10 +283,22 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
         self::assertSame('Le vote n\'est ouvert que sur une proposition soumise au vote.', self::json($closed)['error']);
         self::assertSame(409, $this->vote($this->bao, $published['id'], 'pour')->getStatusCode());
 
+        self::assertSame(0, self::competenceBallots($draft['id']) + self::competenceBallots($published['id']), 'aucun bulletin hors vote');
+
+        // Grain version : publiée, brouillon jamais soumis, inconnue.
         $imported = self::importRespire();
-        self::assertSame(404, $this->as_($this->bao, 'GET', '/api/referentiel/proposals/' . $imported['id'])->getStatusCode());
+        $refDraft = self::json($this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0']));
+        foreach ([$imported['id'], $refDraft['id'], 999999] as $notUnderVote) {
+            $response = $this->as_($this->bao, 'GET', '/api/referentiel/proposals/' . $notUnderVote);
+            self::assertSame([404, 'Unknown proposal'], [$response->getStatusCode(), self::json($response)['error']], (string) $notUnderVote);
+        }
         self::assertSame(409, $this->vote($this->bao, $imported['id'], 'pour', null, 'referentiel')->getStatusCode());
-        self::assertSame(404, $this->vote($this->bao, 999999, 'pour', null, 'referentiel')->getStatusCode());
+        $refClosed = $this->vote($this->bao, $refDraft['id'], 'pour', null, 'referentiel');
+        self::assertSame(409, $refClosed->getStatusCode());
+        self::assertStringContainsString('Voting is only open on a proposal submitted for a vote', self::json($refClosed)['error']);
+        $refUnknown = $this->vote($this->bao, 999999, 'pour', null, 'referentiel');
+        self::assertSame([404, 'Unknown proposal'], [$refUnknown->getStatusCode(), self::json($refUnknown)['error']]);
+        self::assertSame(0, self::referentielBallots($imported['id']) + self::referentielBallots($refDraft['id']), 'aucun bulletin hors vote');
     }
 
     #[TestDox('UC-EPI-02-F11 — E7 : vote avec cookie de session mais sans jeton CSRF → 403, aucun bulletin')]
@@ -303,5 +329,57 @@ final class UcEpi02VoterPropositionTest extends EpiSupport
         );
         self::assertSame(403, $this->vote($admin, $id, 'pour')->getStatusCode());
         self::assertSame(403, $this->vote($this->bao, $id, 'pour')->getStatusCode());
+    }
+
+    #[TestDox('UC-EPI-02-F20 — A3 : un membre supprime son compte (purge réelle) → son bulletin disparaît en cascade, l’électorat se réduit, son ancienne session n’est plus authentifiée (401, CSRF 403)')]
+    public function testF20AccountPurgeRemovesTheBallot(): void
+    {
+        $id = $this->proposal();
+        $this->vote($this->bao, $id, 'pour');
+        self::assertSame('adopted', self::json($this->vote($this->chloe, $id, 'pour', 'Je pars bientôt'))['tally']['outcome']);
+
+        // UC-CPT : suppression de compte = DELETE réel (FK ON DELETE CASCADE),
+        // jamais un marquage deleted_at.
+        $purge = $this->as_($this->chloe, 'DELETE', '/api/auth/account');
+        self::assertSame(204, $purge->getStatusCode(), (string) $purge->getBody());
+
+        self::assertSame(1, self::competenceBallots($id), 'bulletin de Chloé supprimé en cascade');
+        $detail = self::json($this->as_($this->alix, 'GET', '/api/competences/proposals/' . $id));
+        self::assertSame([2, 2, 1, 'pending'], [$detail['tally']['electorateSize'], $detail['tally']['threshold'], $detail['tally']['pour'], $detail['tally']['outcome']]);
+        self::assertSame(['Bao'], array_column($detail['votes'], 'displayName'));
+        // Sessions purgées avec le compte : le navigateur de Chloé n'est plus
+        // authentifié (401 en consultation) ; sur une mutation, son jeton CSRF
+        // (attaché à la session disparue) est refusé d'abord (403).
+        self::assertSame(401, $this->as_($this->chloe, 'GET', '/api/competences/proposals/' . $id)->getStatusCode());
+        $late = $this->vote($this->chloe, $id, 'pour');
+        self::assertSame([403, 'Jeton CSRF absent ou invalide'], [$late->getStatusCode(), self::json($late)['error']]);
+        self::assertSame(1, self::competenceBallots($id));
+    }
+
+    #[TestDox('UC-EPI-02-F21 — Anomalie AN1 (comportement actuel figé) : un commentaire de vote de plus de 64 Ko → 500 « Internal error » (MySQL strict), aucun bulletin, aux deux grains')]
+    public function testF21OversizedCommentIsAServerError(): void
+    {
+        $id = $this->proposal();
+        self::importRespire();
+        $version = self::json($this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0']));
+        self::assertSame(200, $this->as_($this->alix, 'POST', '/api/referentiel/drafts/' . $version['id'] . '/submit', [])->getStatusCode());
+        // Colonne `comment TEXT` (65 535 octets) et aucune borne côté API : le
+        // dépassement lève une PDOException (sql_mode strict par défaut de
+        // MySQL 8), journalisée puis rendue en 500 — on fait taire error_log.
+        $tooLong = str_repeat('a', 70000);
+
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $competence = $this->vote($this->bao, $id, 'pour', $tooLong);
+            $referentiel = $this->vote($this->bao, $version['id'], 'pour', $tooLong, 'referentiel');
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+        }
+
+        foreach ([$competence, $referentiel] as $response) {
+            self::assertSame([500, 'Internal error'], [$response->getStatusCode(), self::json($response)['error']], 'à inverser en 422 quand une borne sera ajoutée');
+        }
+        self::assertSame(0, self::competenceBallots($id));
+        self::assertSame(0, self::referentielBallots($version['id']));
     }
 }

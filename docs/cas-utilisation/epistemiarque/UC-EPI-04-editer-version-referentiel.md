@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Épistémiarque (ou administrateur : garde « épistémiarque ou admin ») |
-| **Acteurs secondaires** | Membres épistémiarques (vote, UC-EPI-02 A5) ; espace Decidim (lien facultatif) ; visiteurs et applications (lectures publiques des versions et du diff, partagées avec UC-VIS-02) |
+| **Acteurs secondaires** | Membres épistémiarques (vote, UC-EPI-02 A5) ; espace Decidim (lien facultatif) ; visiteurs et applications qui lisent l'**API** (lectures publiques des versions et du diff) — la page publique `#/referentiel` (UC-VIS-02) lit, elle, l'export statique (L5) |
 | **Portée** | API `/api/referentiel/drafts…`, `/api/referentiel/proposals…`, `/api/referentiel[/versions[/{semver}]]`, `/api/referentiel/diff/{from}/{to}` — **aucune IHM** |
 | **Niveau** | Objectif utilisateur (sous-fonction technique en l'absence d'interface) |
 | **Cahier des charges** | §3.5, §4.1 (référentiel historisé, versions immuables) ; migrations 003 (`referentiel_versions`) et 015 (gouvernance au grain document) |
@@ -85,7 +85,8 @@ nom d'un pôle, renommages groupés).
 - **A3 — Retrait** (après l'étape 4) : `POST /api/referentiel/drafts/{id}/withdraw`
   → `draft`, bulletins effacés, lien Decidim retiré ; l'édition est rouverte.
 - **A4 — Administrateur** (étapes 1, 3, 4, 6) : un `admin` non membre forke,
-  édite, soumet et publie ; il ne vote pas.
+  édite, soumet et publie ; il ne vote pas (`403` au grain version aussi) et
+  ne compte pas dans l'électorat.
 - **A5 — Libellé omis** (étape 1) : le libellé de la source est conservé.
 
 ## Scénarios d'erreur
@@ -97,8 +98,10 @@ nom d'un pôle, renommages groupés).
 - **E3 — Champs requis** (étape 1) : `from` ou `semver` absent → `422` ;
   semver invalide → `422` (`/semver`).
 - **E4 — Inconnu** (étapes 1 à 6) : source inconnue → `404` « Unknown source
-  version » ; brouillon inconnu (ou version publiée demandée comme brouillon)
-  → `404` « Unknown draft ».
+  version » ; aux étapes 1 à 4 et 6, brouillon inconnu (ou version publiée
+  demandée comme brouillon) → `404` « Unknown draft » ; à l'étape 5,
+  proposition inconnue ou pas au vote → `404` « Unknown proposal »
+  (UC-EPI-02 E4).
 - **E5 — Version existante** (étapes 1 et 3) : `409`.
 - **E6 — Document invalide** (étape 3) : hors schéma (par exemple 60
   compétences) → `422` ; incohérent (numéro de pôle ou code dupliqué, pôle
@@ -108,12 +111,20 @@ nom d'un pôle, renommages groupés).
   publiée → `409` (immuable) ; édition d'une proposition au vote → `409` ;
   double soumission → `409` ; retrait d'un brouillon → `409`.
 - **E8 — Publication refusée** (étape 6) : jamais soumise → `409` ; majorité
-  non atteinte → `409` (message du décompte) ; semver dépassée par une autre
-  publication → `409` ; soumission d'une semver non croissante (étape 4) → `409`.
+  non atteinte → `409` (message du décompte) ; proposition rejetée (majorité
+  « contre ») ou aucun membre épistémiarque → `409` avec le message
+  correspondant (`MajorityMessage`, UC-EPI-03-U04) ; semver dépassée par une
+  autre publication → `409` ; soumission d'une semver non croissante
+  (étape 4) → `409`.
 - **E9 — Lecture publique inconnue** (étape 7) : version ou diff entre versions
   non publiées → `404` « Unknown published version ».
-- **E10 — Lien Decidim invalide** (étape 4) : `422` (`/decidimUrl`), le
-  brouillon reste `draft`.
+- **E10 — Lien Decidim invalide** (étape 4) : URL qui n'est pas http(s)
+  valide → `422` (`/decidimUrl` « URL invalide »), ou lien de plus de 500
+  caractères → `422` (`/decidimUrl` « URL trop longue ») ; le brouillon reste
+  `draft`.
+- **E11 — Libellé ou semver trop longs** (étapes 1 et 3) : libellé de plus de
+  190 caractères ou semver valide de plus de 32 → `500` « Internal error »
+  (anomalie AN2).
 
 ## Règles de gestion
 
@@ -126,7 +137,10 @@ nom d'un pôle, renommages groupés).
   ignoré et recalculé ; les clés de premier niveau inconnues sont écartées.
 - **RG3** — `contentHash` structurel : `{pôles (num, nom, couleur),
   compétences (code, nom, pôle)}` ; les descriptions sont conservées mais hors
-  hash (parité octet avec le moteur et Twin9).
+  hash. Le hash est identique octet par octet à celui de l'extracteur Node
+  `scripts/extract-referentiel.mjs`, si bien qu'aucune empreinte épinglée
+  (oracles moteur, vecteurs Twin9) ne change ; le moteur ne calcule pas de
+  `contentHash`.
 - **RG4** — Gouvernance identique au grain compétence : gel pendant le vote,
   retrait, tours vierges, majorité des membres recalculée à la publication,
   lien Decidim facultatif.
@@ -134,6 +148,13 @@ nom d'un pôle, renommages groupés).
   publication (versions publiées verrouillées `FOR UPDATE`).
 - **RG6** — Versions publiées immuables et servies à l'identique ; précédence
   semver pour « la dernière » (7.10.0 > 7.9.0).
+- **RG7** — Pas de propriété du brouillon : toute personne portant le rôle
+  `epistemiarque` ou `admin` peut éditer, soumettre, retirer et publier
+  n'importe quel brouillon (aucune route ne compare la session à
+  `created_by` ou `submitted_by`) ; l'auteur (`created_by`) et le
+  soumissionnaire (`submitted_by`) sont seulement tracés. Les étapes 3, 4 et
+  6 peuvent donc être jouées par un autre membre que l'auteur (F01 : Bao
+  publie le brouillon d'Alix ; F15 : Bao écrase le brouillon d'Alix).
 
 ## Données et RGPD
 
@@ -178,12 +199,12 @@ nom d'un pôle, renommages groupés).
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-EPI-04-F01 | Nominal | API | Fork 201, liste, rechargement, `PUT` (renommage, couleur, description), soumission, votes, publication, `GET /referentiel`, versions, 7.0.0 intacte, diff | `api/tests/UseCases/Functional/UcEpi04EditerVersionReferentielTest.php` |
+| UC-EPI-04-F01 | Nominal | API | Fork 201, liste, rechargement, `PUT` (renommage, couleur, description), soumission, liste avec décompte, consultation de la proposition (`baseVersion`, diff, lien Decidim), votes, publication par un autre membre (RG7), `GET /referentiel`, versions, 7.0.0 servie à l'identique (document et empreinte), diff | `api/tests/UseCases/Functional/UcEpi04EditerVersionReferentielTest.php` |
 | UC-EPI-04-F02 | A1, A5 | API | Fork depuis un brouillon, libellé de la source conservé | idem |
 | UC-EPI-04-F03 | A2 | API | `version` modifiée → semver du brouillon | idem |
-| UC-EPI-04-F04 | A3 | API | Retrait : brouillon, bulletins effacés, réédition | idem |
-| UC-EPI-04-F05 | A4 | API | Admin non membre : fork, soumission, publication | idem |
-| UC-EPI-04-F06 | E1 | API | 401 / 403 / CSRF 403 sur les 7 routes d'atelier ; lectures publiques ouvertes | idem |
+| UC-EPI-04-F04 | A3 | API | Retrait : brouillon, bulletins effacés, lien Decidim (présent avant) retiré, réédition | idem |
+| UC-EPI-04-F05 | A4 | API | Admin non membre : fork, édition, soumission (électorat 2, sans l'admin), vote refusé 403 sans bulletin, publication | idem |
+| UC-EPI-04-F06 | E1 | API | 401 / 403 sur les 7 routes d'atelier, CSRF 403 sur les 5 routes d'écriture ; lectures publiques ouvertes | idem |
 | UC-EPI-04-F07 | E2, E3 | API | 400 (JSON invalide ×3, `PUT` vide), 422 champs manquants, 422 `/semver` | idem |
 | UC-EPI-04-F08 | E4 | API | 404 source inconnue ; 404 « Unknown draft » sur 5 routes et pour une version publiée | idem |
 | UC-EPI-04-F09 | E5 | API | 409 à la création et à la renumérotation | idem |
@@ -192,8 +213,9 @@ nom d'un pôle, renommages groupés).
 | UC-EPI-04-F12 | E8 | API | 409 sans vote, sans majorité, semver dépassée, soumission non croissante | idem |
 | UC-EPI-04-F13 | E9 | API | 404 diff/version inconnue ou non publiée | idem |
 | UC-EPI-04-F14 | E10 | API | 422 lien Decidim, brouillon inchangé | idem |
-| UC-EPI-04-F15 | Limite L2 | API | Deux enregistrements concurrents : le dernier gagne, sans avertissement (comportement figé) | idem |
+| UC-EPI-04-F15 | Limite L2 | API | Deux enregistrements concurrents (Bao écrase le brouillon d'Alix, RG7) : le dernier gagne, sans avertissement (comportement figé) | idem |
 | UC-EPI-04-F16 | Anomalie AN1 | API | Publication au grain version ignorée des compétences atomiques, sans lockfile ; la release suivante l'annule (comportement figé) | idem |
+| UC-EPI-04-F17 | E11, AN2 | API | Libellé de 191 caractères ou semver de 36 caractères → 500 « Internal error », aucun brouillon ; 190 caractères acceptés (comportement figé) | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -202,6 +224,8 @@ nom d'un pôle, renommages groupés).
 - `api/tests/ReferentielGovernanceTest.php` — majorité, rejet, électorat, gel/retrait, tours de vote, lien Decidim.
 - `api/tests/ReferentielUnitTest.php` — parité du hash avec l'extracteur Node, normalisation, descriptions hors hash, `Semver`, diff.
 - `api/tests/ReferentielImportExportTest.php` — import idempotent, contrôle du `contentHash`, export statique.
+- `api/tests/RgpdAuditTest.php` — règles FK de purge (`referentiel_versions.created_by` / `submitted_by` → `SET NULL`, `referentiel_votes` → `CASCADE`).
+- Tests UC du même lot qui ciblent du code sollicité ici : UC-EPI-01-U09 (`DecidimLink`), UC-EPI-01-U11 et UC-EPI-02-U15 (`RoleGuard`), UC-EPI-02-U07 (`ReferentielGovernance` : vote, décompte, retrait), UC-EPI-02-F06 (consultation et vote au grain version, étape 5), UC-EPI-03-U04 (`MajorityMessage`, trois messages).
 
 ### Exécuter
 
@@ -215,12 +239,26 @@ cd web && npx vitest run test/usecases/unit/uc-epi-04
 - **AN1 — Deux sources de vérité divergentes.** Une version publiée au grain
   document (ce cas) n'est répercutée ni dans les compétences atomiques
   (`competence_versions`), ni dans le lockfile (`referentiel_snapshot_competences`,
-  aucune ligne pour cette version : provenance non résoluble). La coupe de
+  aucune ligne pour cette version : la version de référentiel reste
+  résoluble — une cartographie épingle `referentiel_version_id` et le
+  document complet reste servi — mais pas le lien vers les versions de
+  compétence atomiques qui la composeraient ; aucun code ne lit encore ce
+  lockfile). La coupe de
   release suivante (UC-EPI-03), qui repart des compétences atomiques, **annule
   silencieusement** les changements structurels entérinés ici (le diff montre
   le renommage inversé). Figé par UC-EPI-04-F16. À trancher : désactiver les
   écritures du grain document, ou répercuter la publication sur les
   compétences atomiques.
+
+- **AN2 — Libellé ou semver trop longs : erreur serveur.** Les colonnes
+  `label VARCHAR(190)` et `semver VARCHAR(32)` (migration 003) ne sont bornées
+  ni par le schéma `referentiel` (`label` sans `maxLength`) ni par
+  `Semver::isValid` (une pré-version longue reste valide). En MySQL 8 strict
+  (défaut de `docker-compose`), l'`INSERT` lève une `PDOException` : `500`
+  « Internal error » au lieu d'un `422`, aucun brouillon. En mode non strict,
+  la colonne serait tronquée et divergerait de `content.label` /
+  `content.version`. Correctif attendu : `maxLength` 190 sur `label` et
+  longueur maximale de semver (schéma ou `Semver`). Figé par UC-EPI-04-F17.
 
 ## Limites
 
@@ -234,3 +272,9 @@ cd web && npx vitest run test/usecases/unit/uc-epi-04
 - **L3** — Le schéma fige 7 pôles et 61 compétences : ajout, retrait, fusion
   ou scission de compétences sont impossibles à ce grain aussi (UC-EPI-03 L2).
 - **L4** — Aucune route ne supprime un brouillon abandonné.
+- **L5** — La publication ne régénère pas l'export statique lu par la page
+  publique `#/referentiel` (UC-VIS-02 RG4) : `StaticExporter::export` n'est
+  appelé que par `scripts/export-referentiel-static.php`. La version publiée
+  ici n'est visible sur la page qu'après ré-export et redéploiement
+  (UC-EPI-03 étape 8 et L1, UC-SYS-02) ; elle est en revanche servie aussitôt
+  par l'API.

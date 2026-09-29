@@ -78,9 +78,11 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
         return $this->as_($who, 'POST', '/api/referentiel/drafts/' . $id . '/publish', $body);
     }
 
-    #[TestDox('UC-EPI-04-F01 — nominal : fork 7.0.0 → 7.1.0, édition du document, soumission, votes, publication, historique et diff')]
+    #[TestDox('UC-EPI-04-F01 — nominal : fork 7.0.0 → 7.1.0, édition du document, soumission, liste avec décompte, consultation (diff), votes, publication, historique intact et diff')]
     public function testF01NominalVersionEdition(): void
     {
+        $v7Before = self::json($this->anonymous('GET', '/api/referentiel/versions/7.0.0'));
+
         // 1. Fork de la version publiée.
         $draft = $this->fork('7.0.0', '7.1.0', 'RESPIRE v7.1');
         self::assertSame(['draft', '7.1.0', 'RESPIRE v7.1', 'respire'], [$draft['status'], $draft['semver'], $draft['label'], $draft['referentielId']]);
@@ -105,6 +107,13 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
             'decidimUrl' => 'https://participer.harmonia.education/processes/referentiel/f/12/debates/9',
         ]));
         self::assertSame(['review', 'pending', 2], [$submitted['status'], $submitted['tally']['outcome'], $submitted['tally']['threshold']]);
+        // 2 (liste) : l'entrée au vote porte son décompte.
+        $listed = self::json($this->as_($this->alix, 'GET', '/api/referentiel/drafts'));
+        self::assertSame([[$draft['id'], 'review', 'pending']], array_map(static fn (array $d): array => [$d['id'], $d['status'], $d['tally']['outcome']], $listed));
+        // 5. Les membres consultent la proposition : version de base et diff structurel.
+        $proposal = self::json($this->as_($this->bao, 'GET', '/api/referentiel/proposals/' . $draft['id']));
+        self::assertSame(['7.0.0', 1, 1], [$proposal['baseVersion'], $proposal['diff']['summary']['competencesRenamed'], $proposal['diff']['summary']['polesModified']]);
+        self::assertSame('https://participer.harmonia.education/processes/referentiel/f/12/debates/9', $proposal['decidimUrl']);
         foreach ([$this->alix, $this->bao] as $voter) {
             $this->as_($voter, 'POST', '/api/referentiel/proposals/' . $draft['id'] . '/votes', ['vote' => 'pour']);
         }
@@ -119,7 +128,10 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
         self::assertSame(['7.1.0', 'Pensée critique et vigilance face aux IA'], [$latest['version'], $latest['competences'][0]['nom']]);
         self::assertSame('Définition ajoutée.', $latest['competences'][1]['description']);
         self::assertSame(['7.1.0', '7.0.0'], array_column(self::json($this->anonymous('GET', '/api/referentiel/versions')), 'semver'));
-        self::assertNotSame('Pensée critique et vigilance face aux IA', self::json($this->anonymous('GET', '/api/referentiel/versions/7.0.0'))['competences'][0]['nom']);
+        // RG6 : la 7.0.0 est servie À L'IDENTIQUE (document complet, empreinte).
+        $v7After = self::json($this->anonymous('GET', '/api/referentiel/versions/7.0.0'));
+        self::assertEquals($v7Before, $v7After);
+        self::assertSame($this->v7['contentHash'], $v7After['contentHash']);
         $diff = self::json($this->anonymous('GET', '/api/referentiel/diff/7.0.0/7.1.0'));
         self::assertSame([1, 1, 0], [$diff['summary']['competencesRenamed'], $diff['summary']['polesModified'], $diff['summary']['competencesAdded']]);
         self::assertSame([], self::json($this->as_($this->alix, 'GET', '/api/referentiel/drafts')));
@@ -149,12 +161,17 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
         self::assertSame('8.0.0', self::json($this->as_($this->alix, 'GET', '/api/referentiel/drafts/' . $draft['id']))['content']['version']);
     }
 
-    #[TestDox('UC-EPI-04-F04 — A3 : retrait → brouillon rééditable, bulletins effacés')]
+    #[TestDox('UC-EPI-04-F04 — A3 : retrait → brouillon rééditable, bulletins effacés, lien Decidim retiré')]
     public function testF04WithdrawReopensEditing(): void
     {
         $draft = $this->fork();
-        $this->adopt($draft['id']);
+        $decidim = 'https://participer.harmonia.education/d/4';
+        self::assertSame(200, $this->as_($this->alix, 'POST', '/api/referentiel/drafts/' . $draft['id'] . '/submit', ['decidimUrl' => $decidim])->getStatusCode());
+        foreach ([$this->alix, $this->bao] as $voter) {
+            self::assertSame(200, $this->as_($voter, 'POST', '/api/referentiel/proposals/' . $draft['id'] . '/votes', ['vote' => 'pour'])->getStatusCode());
+        }
         self::assertSame(2, self::referentielBallots($draft['id']));
+        self::assertSame($decidim, self::json($this->as_($this->alix, 'GET', '/api/referentiel/drafts/' . $draft['id']))['decidimUrl'], 'lien présent avant le retrait');
 
         $withdrawn = $this->as_($this->alix, 'POST', '/api/referentiel/drafts/' . $draft['id'] . '/withdraw');
 
@@ -164,19 +181,32 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
         self::assertSame(200, $this->as_($this->alix, 'PUT', '/api/referentiel/drafts/' . $draft['id'], self::rename($draft['content'], '2.01', 'Écoute active'))->getStatusCode());
     }
 
-    #[TestDox('UC-EPI-04-F05 — A4 : un administrateur non membre forke, soumet et publie (les membres votent)')]
+    #[TestDox('UC-EPI-04-F05 — A4 : un administrateur non membre forke, édite, soumet et publie ; il ne vote pas (403) et ne compte pas dans l’électorat')]
     public function testF05AdminDrivesTheVersion(): void
     {
         $admin = $this->member('admin@example.org', 'Admin', ['admin']);
         $created = $this->as_($admin, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0']);
         self::assertSame(201, $created->getStatusCode());
-        $id = self::json($created)['id'];
-        self::assertSame(200, $this->as_($admin, 'POST', '/api/referentiel/drafts/' . $id . '/submit', [])->getStatusCode());
+        $draft = self::json($created);
+        $id = $draft['id'];
+
+        $edited = $this->as_($admin, 'PUT', '/api/referentiel/drafts/' . $id, self::rename($draft['content'], '2.01', 'Écoute active'));
+        self::assertSame(200, $edited->getStatusCode(), (string) $edited->getBody());
+
+        $submitted = $this->as_($admin, 'POST', '/api/referentiel/drafts/' . $id . '/submit', []);
+        self::assertSame(200, $submitted->getStatusCode());
+        self::assertSame([2, 2], [self::json($submitted)['tally']['electorateSize'], self::json($submitted)['tally']['threshold']], 'électorat = Alix et Bao, sans l’admin');
+
+        $denied = $this->as_($admin, 'POST', '/api/referentiel/proposals/' . $id . '/votes', ['vote' => 'pour']);
+        self::assertSame(403, $denied->getStatusCode(), 'le vote est un acte de membre');
+        self::assertSame(0, self::referentielBallots($id));
+
         foreach ([$this->alix, $this->bao] as $voter) {
             $this->as_($voter, 'POST', '/api/referentiel/proposals/' . $id . '/votes', ['vote' => 'pour']);
         }
 
         self::assertSame(200, $this->publish($admin, $id)->getStatusCode());
+        self::assertSame('Écoute active', array_column(self::json($this->anonymous('GET', '/api/referentiel'))['competences'], 'nom', 'code')['2.01']);
     }
 
     #[TestDox('UC-EPI-04-F06 — E1 : sans session → 401, sans rôle → 403, sans jeton CSRF → 403 (lectures d’atelier et écritures)')]
@@ -387,5 +417,28 @@ final class UcEpi04EditerVersionReferentielTest extends EpiSupport
         self::assertSame(201, $this->as_($this->alix, 'POST', '/api/competences/release', ['semver' => '7.2.0'])->getStatusCode());
         $diff = self::json($this->anonymous('GET', '/api/referentiel/diff/7.1.0/7.2.0'));
         self::assertSame([['code' => '1.01', 'pole' => 1, 'from' => 'Renommée au grain version', 'to' => $before]], $diff['competences']['renamed']);
+    }
+
+    #[TestDox('UC-EPI-04-F17 — Anomalie AN2 (comportement actuel figé) : libellé de plus de 190 caractères ou semver de plus de 32 → 500 « Internal error » au lieu de 422, aucun brouillon créé')]
+    public function testF17OversizedLabelOrSemverIsAServerError(): void
+    {
+        // Colonnes label VARCHAR(190) et semver VARCHAR(32) (migration 003) ;
+        // ni le schéma (label sans maxLength) ni Semver::isValid ne bornent la
+        // longueur : l'INSERT échoue en MySQL strict (PDOException → 500).
+        // Slim/$wrap journalisent l'erreur : on fait taire error_log.
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $longLabel = $this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0', 'label' => str_repeat('x', 191)]);
+            $longSemver = $this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0-' . str_repeat('a', 30)]);
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+        }
+
+        foreach (['label' => $longLabel, 'semver' => $longSemver] as $field => $response) {
+            self::assertSame([500, 'Internal error'], [$response->getStatusCode(), self::json($response)['error']], $field . ' : à inverser en 422 quand une borne sera ajoutée');
+        }
+        self::assertSame([], self::json($this->as_($this->alix, 'GET', '/api/referentiel/drafts')), 'aucun brouillon créé');
+        // Limite exacte : 190 caractères passent.
+        self::assertSame(201, $this->as_($this->alix, 'POST', '/api/referentiel/drafts', ['from' => '7.0.0', 'semver' => '7.1.0', 'label' => str_repeat('x', 190)])->getStatusCode());
     }
 }

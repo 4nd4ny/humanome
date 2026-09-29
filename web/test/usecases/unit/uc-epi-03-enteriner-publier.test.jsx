@@ -82,6 +82,11 @@ describe('UC-EPI-03 — carte « Publier une version du référentiel »', () =>
     fireEvent.change(input, { target: { value: '   ' } })
     expect(button.disabled).toBe(true)
     expect(card.textContent).toContain('prochain déploiement/ré-export')
+    // Anomalie AN3 (comportement actuel figé) : la carte promet un snapshot
+    // « immédiatement épinglable par les cartographies », alors que la
+    // cartographie standard (RunWizard) épingle l'export STATIQUE ; seul le run
+    // de masse (UC-ETA-03) lit la dernière version servie par l'API.
+    expect(card.textContent).toContain('immédiatement épinglable par les cartographies')
 
     fireEvent.change(input, { target: { value: ' 7.1.0 ' } })
     await click(button)
