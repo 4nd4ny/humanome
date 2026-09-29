@@ -37,6 +37,34 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
   (`data/demo/jours/index.json` + un document `cartographie-jour` par journée)
   est à côté de `index.html` (ADR-003). Sur une copie ouverte en `file://`,
   seule la vue journée signale explicitement l'impossibilité.
+- Les données de démonstration sont des **artefacts dérivés**, non versionnés
+  (`web/public/data/` est ignoré par git) : ils sont générés localement, en
+  exécutant les scripts de conversion avant le build, à partir des sources de
+  `assets-existants/merge-prototype/` (lecture seule) :
+  `scripts/convert/extracted-to-day-json.mjs` produit
+  `web/public/data/demo/jours/<date>.json` et `index.json` (corpus de la V3 et
+  de la vue journée) ; `scripts/convert/carto-data-to-merge-json.mjs`, avec
+  l'analyseur `scripts/convert/lib/carto-data-parser.mjs` (lecture des `const`
+  de `carto-data.js` sans évaluation), produit `web/public/data/demo/merge.json`
+  (merge **embarqué** au build, source des journées voisines — RG7) ;
+  `scripts/extract-referentiel.mjs` produit
+  `web/public/data/referentiel/respire-v7.json` (référentiel **embarqué**,
+  repli de l'étape 2 et référentiel des vues historiques). Leur
+  construction relève de
+  [UC-SYS-04](../systeme/UC-SYS-04-construire-artefacts-derives.md)
+  (construction des artefacts dérivés) et n'est pas testée ici. Les suites web
+  de ce cas en dépendent néanmoins : `web/src/data/load.js` importe
+  statiquement `data/demo/merge.json` et `data/referentiel/respire-v7.json`,
+  à générer avant `npm test` — c'est pourquoi la suite front ne tourne pas en
+  CI (`.github/workflows/publiable.yml`). Seuls les documents fournis par les
+  tests — journées servies par le réseau simulé, documents chargés depuis
+  l'accueil — sont les fixtures versionnées de `schemas/fixtures/`. Dans les
+  tests fonctionnels, le référentiel affiché est l'embarqué (repli de
+  `loadPublishedReferentiel` pour la V3 quand l'index publié est absent ;
+  `getReferentiel()` passé tel quel par `App.jsx` aux vues historiques, dont
+  F21 à F24), sauf F18 (référentiel publié simulé) ; les tests unitaires
+  passent `schemas/fixtures/referentiel-respire-v7.json` au code sollicité,
+  hormis U04 qui vérifie le repli embarqué lui-même.
 - Aucune session n'est requise ; une session éventuelle ne change rien au cas.
 
 ## Garanties en cas de succès
@@ -127,9 +155,24 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
 - **A3 — Vue journée** (déclencheur) : `#/jour/<iso>` affiche la journée
   (`DayView`) : badge « Journée du JJ/MM/AAAA », liens vers les journées
   précédente et suivante du corpus, « ← Retour à la cartographie » (`#/merge`),
-  soleil du jour, liste des compétences « Hors diagramme ce jour » (non
-  établies, court-circuits). Toucher une compétence affiche son verdict, l'examen
-  adversarial du pédagogue et les traces retenues.
+  soleil du jour dessiné par la bibliothèque sunburst (RG8 : un anneau de
+  pôles, un anneau de compétences ; renvois au cartographe hachurés et
+  raccourcis), liste des compétences « Hors diagramme ce jour » (« Présences
+  non établies (n) », « Court-circuits (aucune pièce extraite) (n) », chacune
+  avec son nom et son motif). Avant toute sélection, le panneau invite à
+  toucher un secteur et affiche le portrait et la forme du profil du jour
+  (kaïros). Toucher une compétence l'affiche en titre et atténue les autres
+  secteurs ; le panneau montre son **verdict** (statut, « Confiance N % ·
+  n preuve(s) · n indice(s) », motif, prescription), l'**examen adversarial du
+  pédagogue** (trois blocs repliés : présomption d'absence, présomption de
+  sycophantie, conclusion adversariale — seule la conclusion porte la
+  « Confiance finale ») et les **traces retenues** (« Pièce N — type (rôle) ·
+  contexte de la pièce »). Le disque central « Réinitialiser la sélection »
+  revient à l'invitation. Toucher un **pôle** devrait afficher l'audit du pôle
+  (décompte présences / renvois / non établies / court-circuits), son rapport
+  (portrait, territoires denses et non visités, émergences, pistes) et ses
+  passages saillants : ce panneau n'est jamais atteint sur un document conforme
+  (anomalie AN1).
 - **A4 — Lien ciblé** (A3) : `?focus=<code>` présélectionne la compétence dès
   que le diagramme est prêt.
 - **A5 — Accessibilité et confort** (étape 5) : « Renforcer les distinctions
@@ -147,10 +190,21 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
   `cartographie-merge` ou `cartographie-jour` **dans le navigateur** et le
   valide contre son schéma. Un merge ouvre la vue chronologique historique
   (`MergeView`, `#/merge`) : badges (feuilles, période, compétences établies),
-  lecteur de construction feuille par feuille, calendrier synchronisé (les
-  feuilles « à venir » sont inertes, un clic ouvre la journée), panneau de
-  détails avec le narratif assaini. Une journée ouvre directement
-  `#/jour/<date>`, servie depuis la mémoire.
+  soleil cumulé (RG8), lecteur de construction feuille par feuille (RG9),
+  calendrier synchronisé (les feuilles « à venir » sont inertes, un clic ouvre
+  la journée), panneau de détails avec le narratif assaini. Sans sélection, le
+  panneau résume le profil (`profilMeta`) : « Compétences établies n / 61 »,
+  « En renvoi (entretien) », « Compétences émergentes », « Score total »
+  (arrondi) et, si le document la déclare, « Pondération temporelle -X %/an ».
+  Toucher une compétence affiche son libellé, sa description, « Niveau N —
+  <nom du niveau> · P points » (sans accord au singulier : « 1 points », AN5),
+  son archétype et son retour narratif ; toucher un pôle affiche « n
+  compétences dans ce pôle[ — k établie(s)][, r en renvoi]. Sélectionnez une
+  compétence pour le détail. » (segment « établie(s) » absent si k = 0 ;
+  « 1 compétences » sans accord, AN5), sa tendance temporelle et son
+  rapport évolutif. Sur une feuille antérieure, le détail est celui de la
+  **trame** (agrégats cumulés à cette date), pas celui du document final. Une
+  journée ouvre directement `#/jour/<date>`, servie depuis la mémoire.
 
 ## Scénarios d'erreur
 
@@ -197,6 +251,43 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
   journées voisines viennent des feuilles du merge (merge de démonstration
   **embarqué** au build — `web/public/data/demo/merge.json`, données générées —
   ou document chargé) complétées des journées chargées localement.
+- **RG8** — Soleil des vues historiques (`web/src/lib/sunburst/`, portage à
+  l'identique du prototype `cartographie.html`, parité géométrique vérifiée par
+  `parity.test.js`) — distinct du soleil V3 (RG2, RG3) : racine → pôles →
+  compétences, soit deux anneaux (diagramme de taille S : disque central
+  0,08 S, rayon extérieur 0,48 S). Les secteurs partent de -90° (midi) dans le
+  sens horaire, jointifs, avec une ouverture **proportionnelle aux points**.
+  Vue journée (`buildDayTree`) : points d'une compétence =
+  `max(1, 2 × nombrePreuves + nombreIndices)`, niveau = quintile de
+  `verdict.confiance` (`confidenceQuintile` : [0 ; 0,2) → 1 … [0,8 ; 1] → 5) —
+  ici, contrairement à la V3, la confiance fixe la **longueur** du secteur ;
+  court-circuits et « présence non établie » sont exclus du diagramme et listés
+  à part. Vue chronologique (`buildMergeTree`) : points et niveau du document.
+  Secteur coloré d'une compétence de niveau N : du bord intérieur de l'anneau à
+  `NIVEAUX[N].radiusFactor` (0,2 · 0,4 · 0,6 · 0,8 · 1) de sa largeur, sur
+  5 bandes grises de fond (`GRAY_LEVELS`, du noir au gris clair). Renvoi au
+  cartographe (niveau -1) : hachures, bordure pointillée, sans bandes grises,
+  rayon réduit à `RENVOI_RADIUS_FACTOR` = 0,35. Compétence « orpheline »
+  (émergente) : translucide (0,7) et pointillée. Pôle : points = somme, niveau
+  = max des |niveaux|, niveau moyen = moyenne des niveaux > 0. Sinus et cosinus
+  sont correctement arrondis (`crSin`/`crCos`) : les tracés ne dépendent pas du
+  moteur JavaScript.
+- **RG9** — Lecteur de construction de la vue chronologique
+  (`TimelinePlayer`, composant contrôlé indexé sur les feuilles) : lecture
+  automatique à « Rapide » 150, « Normale » 400 (défaut) ou « Lente » 800 ms
+  par feuille ; arrêt de lui-même sur la dernière feuille ; relancer depuis la
+  dernière repart de la première ; le scrubber et les boutons (première,
+  précédente, suivante, dernière — bornés) mettent en pause. La lecture est
+  mise en pause, et ne peut être relancée, tant qu'un secteur est choisi ou
+  survolé. La préférence système « mouvement réduit »
+  (`prefers-reduced-motion: reduce`) désactive la lecture automatique (bouton
+  inactif, avec une explication en infobulle) ; la navigation manuelle reste
+  possible. Une région `aria-live` annonce la feuille et le cumul « n
+  compétences sur la carte » à la pause par le bouton, à chaque déplacement
+  manuel (boutons, scrubber) et en fin de lecture ; jamais à chaque tick de la
+  lecture automatique. La pause imposée par la sélection ou le survol d'un
+  secteur n'est pas annoncée (pas plus que l'arrêt dû au « mouvement réduit »,
+  AN4). Moins de deux feuilles : pas de lecteur.
 
 ## Données et RGPD
 
@@ -223,10 +314,15 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
 | Front | `web/src/v3/core/state.js` — `initialState`, `availablePanels`, `renderedPanels`, `inspectDay`, `setPlayhead`, `play`, `pause`, `selectScope`, `clearScope` | États séparés (RG4) |
 | Front | `web/src/data/load.js` — `loadDay`, `frenchDate`, `parseUserDocument` | Journées de démo, documents locaux |
 | Front | `web/src/data/referentiel.js` — `loadPublishedReferentiel` | Référentiel publié, repli embarqué |
-| Front | `web/src/views/DayView.jsx` — `findDayNode` ; `web/src/views/MergeView.jsx` — `findMergeNode` | Vues historiques, résolution d'un secteur |
+| Front | `web/src/views/DayView.jsx` — `findDayNode` ; panneaux internes `VerdictBlock`, `PedagogueBlocks`, `TracesList`, `PoleRapport`, `PassagesSaillants`, `ExclusLists` | Vue journée (A3) : résolution d'un secteur, verdict, examen du pédagogue, traces retenues, rapport et passages d'un pôle (AN1), exclus |
+| Front | `web/src/views/MergeView.jsx` — `findMergeNode`, `ProfileSummary` | Vue chronologique (A7) : résolution d'un secteur dans la trame courante, détail compétence / pôle (anomalie AN5), résumé du profil |
 | Front | `web/src/lib/sunburst/as-of.js` — `finalThresholds`, `mergeDocAsOf` | Trames de la vue chronologique |
-| Front | `web/src/lib/sunburst/build-tree.js`, `layout.js` | Vraie bibliothèque sunburst des vues historiques (A3, anomalie AN1 : méta d'un pôle `{kind: 'pole', id, domainId}`) |
-| Front | `web/src/components/{Sunburst,TimelinePlayer,HeatmapCalendar,StatBadges,DetailsPanel,ViewToolbar}.jsx` — `buildCalendarGrid`, `scoreLevel` | Rendu, calendrier, onglets mobiles, impression |
+| Front | `web/src/lib/sunburst/geometry.js` — `NIVEAUX`, `RENVOI_RADIUS_FACTOR`, `GRAY_LEVELS`, `crCos`, `crSin`, `createSectorPath`, `getMaxDepth` | Géométrie des secteurs annulaires, niveaux radiaux, bandes grises, rayon de renvoi, trigonométrie correctement arrondie (RG8) |
+| Front | `web/src/lib/sunburst/build-tree.js` — `buildMergeTree`, `buildDayTree`, `confidenceQuintile` ; `layout.js` — `layoutSunburst` ; `index.js` (API publique) | Vraie bibliothèque sunburst des vues historiques : arbres, quintile de confiance, secteurs émis dans l'ordre de l'original (RG8 ; anomalie AN1 : méta d'un pôle `{kind: 'pole', id, domainId}`) |
+| Front | `web/src/data/sunburst.js` — `loadSunburstLib` ; `web/src/views/view-helpers.js` — `useSunburstLib` | Fournit la bibliothèque de production aux vues quand aucun module n'est injecté |
+| Front | `web/src/components/TimelinePlayer.jsx` — `SPEEDS`, lecture automatique, scrubber, `prefers-reduced-motion` | Lecteur de construction de la vue chronologique (RG9, anomalie AN4) |
+| Front | `web/src/components/{Sunburst,HeatmapCalendar,StatBadges,DetailsPanel,ViewToolbar}.jsx` — `buildCalendarGrid`, `scoreLevel` | Rendu SVG (sélection, atténuation, disque central), calendrier, onglets mobiles, impression |
+| Outils (préconditions) | `scripts/convert/extracted-to-day-json.mjs`, `scripts/convert/carto-data-to-merge-json.mjs`, `scripts/convert/lib/carto-data-parser.mjs`, `scripts/extract-referentiel.mjs` | Génèrent le corpus `data/demo/jours/`, le merge embarqué et le référentiel embarqué (requis par les suites web via `data/load.js`) — relèvent d'UC-SYS-04, non testés ici |
 | Front | `web/src/lib/narrative.js` — `renderNarrativeHtml`, `dayHrefToRoute` | DOMPurify + réécriture des liens (RG6) |
 
 ## Jeux de tests
@@ -252,6 +348,18 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
 | UC-VIS-01-U15 | `findDayNode`, `findMergeNode` | Résolution des secteurs compétence/pôle | idem |
 | UC-VIS-01-U16 | `parseUserDocument` | Lecture et validation locales, messages d'erreur (E4) | idem |
 | UC-VIS-01-U17 | `findDayNode` | **Comportement actuel figé** — anomalie AN1 (pôle à `poleNum` chaîne non résolu) | idem |
+| UC-VIS-01-U18 | `NIVEAUX`, `GRAY_LEVELS`, `RENVOI_RADIUS_FACTOR`, `createSectorPath`, `crCos`, `crSin`, `getMaxDepth` | Niveaux radiaux et gris de fond ; les 4 coins du secteur (intérieurs et extérieurs) sur leurs cercles aux angles demandés, sens des arcs, grand arc des deux arcs au-delà de 180° ; trigonométrie correctement arrondie ; profondeur 2 (RG8) | `web/test/usecases/unit/uc-vis-01-vues-historiques-sunburst.test.jsx` |
+| UC-VIS-01-U19 | `confidenceQuintile` | Quintiles de confiance (bornes 0,2 · 0,4 · 0,6 · 0,8 incluses à gauche, 1 → 5, bornage 1..5) | idem |
+| UC-VIS-01-U20 | `buildDayTree` | Trois journées de fixtures : 7 pôles nommés/colorés par le référentiel, présences établies = celles du moteur V3, points `max(1, 2·preuves + indices)`, niveau = quintile, renvoi = -1, agrégats de pôle, exclus (non établies vs court-circuits), replis pôle/compétence inconnus | idem |
+| UC-VIS-01-U21 | `buildMergeTree` | Merge 3 jours : 7 pôles, 10 compétences, points/niveau/niveau moyen des pôles, renvoi hors moyenne mais dans le max, statut par défaut, document sans domaines → `null` | idem |
+| UC-VIS-01-U22 | `layoutSunburst` | Merge 3 jours : anneaux 32/112/192 px, ordre d'émission, ouverture ∝ points depuis -90°, secteurs jointifs, rayon coloré = niveau, 5 bandes grises jointives, mise à l'échelle, arbre vide | idem |
+| UC-VIS-01-U23 | `layoutSunburst` | Journée du 7 : renvoi hachuré à 0,35 sans gris, longueur = quintile de confiance (0,8 → plein, 0,78 → 0,8, 0,58 → 0,6), ouverture d'un pôle ; compétence orpheline du merge translucide et pointillée | idem |
+| UC-VIS-01-U24 | `index.js`, `loadSunburstLib`, `useSunburstLib` | API publique exacte (crCos/crSin internes) ; `loadSunburstLib` fournit cette bibliothèque et `useSunburstLib(undefined)` (hook des vues, sans injection) la reçoit | idem |
+| UC-VIS-01-U25 | `TimelinePlayer` | Lecture automatique à 400 ms (défaut) : une feuille par tick, compteur cumulé 4 → 7 → 10, aucune annonce par tick, région annoncée `role="status"` de classe `timeline-sr-only`, arrêt et annonce en fin de lecture, relance depuis la fin → première feuille (RG9) | idem |
+| UC-VIS-01-U26 | `TimelinePlayer` — `SPEEDS` | Vitesses Rapide 150 / Normale 400 / Lente 800 ms : libellés et cadence effective ; changement en cours de lecture = nouveau tick complet | idem |
+| UC-VIS-01-U27 | `TimelinePlayer` | Pause par le bouton (annoncée) ou imposée par le parent (non annoncée, relance refusée), scrubber (`aria-valuetext`) et pas à pas bornés, annoncés à chaque déplacement ; moins de deux feuilles → pas de lecteur | idem |
+| UC-VIS-01-U28 | `TimelinePlayer` — `prefers-reduced-motion` | Bouton inactif et expliqué, aucune lecture, navigation manuelle conservée ; **comportement actuel figé** — anomalie AN4 (préférence activée en cours de lecture) | idem |
+| UC-VIS-01-U29 | `DayView` — `PoleRapport`, `PassagesSaillants` | Panneau d'un pôle rendu (poleNum numérique, hors schéma — AN1) : audit, portrait, territoires denses et non visités, émergences, pistes, passages saillants ; pôle sans rapport | idem |
 
 ### Tests fonctionnels
 
@@ -277,6 +385,10 @@ journée (`#/jour/<iso>`, éventuellement `?focus=<code>`).
 | UC-VIS-01-F18 | Nominal (2) | IHM | Référentiel publié (index → `respire-v7.1.json`) lu et utilisé : libellé publié sur le secteur 2.01 | idem |
 | UC-VIS-01-F19 | Anomalie AN3 | IHM | **Comportement actuel figé** — journée du corpus en HTTP 500 (corps JSON) → démonstration partielle (7 secteurs, 2 journées), « 1 anomalie(s) à traiter » | idem |
 | UC-VIS-01-F20 | A7 | IHM | Glisser-déposer d'un document-jour sur la zone de dépôt → vue journée servie depuis la mémoire | idem |
+| UC-VIS-01-F21 | A3 | IHM | Vraie bibliothèque (sans injection) : `#/jour/2026-01-07` → secteurs réels (7 pôles, 7 compétences, 30 bandes grises, renvoi 1.01 hachuré), portrait kaïros, verdict complet, 3 blocs du pédagogue et confiance finale, traces avec contexte, atténuation, renvoi, disque central ; exclus du 6 janvier (4.06 non établie avec motif) | `web/test/usecases/functional/uc-vis-01-vues-historiques-sunburst.test.jsx` |
+| UC-VIS-01-F22 | A7 | IHM | Vraie bibliothèque : merge 3 jours chargé → résumé du profil (10 / 61, 2 renvois, 1 émergente, score 23), détail d'une compétence (niveau nommé, points, archétype, retour) et d'un pôle (décompte, tendance, rapport), retour au résumé ; à la première feuille, détail de la trame ; pondération temporelle « -15 %/an » ; **comportement actuel figé** — anomalie AN5 (« 1 compétences dans ce pôle », « 1 points ») | idem |
+| UC-VIS-01-F23 | A7 (RG9) | IHM | Vraie bibliothèque, faux minuteurs : lecture « Rapide » (150 ms) → soleil et calendrier construits feuille par feuille (4 → 7 → 10 compétences, 2 → 1 → 0 journées à venir), arrêt et annonce en fin ; relance depuis la fin ; toucher un secteur met en pause et bloque la relance | idem |
+| UC-VIS-01-F24 | A7 (RG9) | IHM | Préférence « mouvement réduit » : lecture automatique désactivée et expliquée (faux minuteurs : un clic ne lance rien), construction pas à pas (bouton, scrubber) toujours possible | idem |
 
 Les tests fonctionnels servent un corpus réduit et stable : les trois journées
 de `schemas/fixtures/cartographie-jour-2026-01-0{5,6,7}.json` (10 compétences
@@ -286,12 +398,25 @@ journée s'appuie, elle, sur le merge de démonstration **embarqué** au build
 (`getDemoMerge()`, données générées) : F09 et F15 calculent les voisines
 attendues depuis ce document plutôt que de les coder en dur.
 
+F01 à F20 injectent le faux module sunburst (`web/src/test/fake-sunburst-lib.js`,
+géométrie factice) sauf F17 ; F21 à F24, U18 à U24 et U29 exercent la **vraie**
+bibliothèque (`web/src/lib/sunburst/`) — F21 à F24 sans aucune injection, par
+`loadSunburstLib` comme en production — sur les fixtures
+`schemas/fixtures/cartographie-jour-2026-01-0{5,6,7}.json` et
+`cartographie-merge-3-jours.json` ; U25 à U28 exercent le composant
+`TimelinePlayer` seul (l'outillage du test calcule le cumul par trame avec
+`as-of.js`). Le lecteur de construction est piloté par de faux minuteurs (U25 à
+U28, F23, F24) et `matchMedia` simulé (U28, F24). Les suites de ce cas
+dépendent aussi des données générées importées par `data/load.js` (voir
+Préconditions).
+
 ### Tests existants liés (non-régression)
 
 - `web/src/v3/ui/V3View.test.jsx` — chargement, inspection vs tête de lecture, bascule de mode, « Pourquoi ce rayon ? ».
 - `web/src/v3/core/import.test.js`, `web/src/v3/core/share.test.js` (bloc « state ») — import, admissibilité, métriques, panneaux.
 - `web/src/views/DayView.test.jsx`, `web/src/views/MergeView.test.jsx`, `web/src/views/MergeView.integration.test.jsx`, `web/src/integration.test.jsx` — vues historiques (lib factice et réelle, corpus réel).
-- `web/src/components/{TimelinePlayer,HeatmapCalendar,Sunburst,DetailsPanel,StatBadges}.test.jsx`, `web/src/lib/narrative.test.js`, `web/src/lib/sunburst/*.test.js`, `web/src/data/load.test.js`, `web/src/router.test.js`, `web/src/App.test.jsx`.
+- `web/src/components/{TimelinePlayer,HeatmapCalendar,Sunburst,DetailsPanel,StatBadges}.test.jsx`, `web/src/lib/narrative.test.js`, `web/src/data/load.test.js`, `web/src/router.test.js`, `web/src/App.test.jsx`.
+- `web/src/lib/sunburst/{geometry,build-tree,as-of}.test.js` — primitives de la bibliothèque ; `web/src/lib/sunburst/parity.test.js` — parité octet pour octet des tracés avec le rendu de référence du prototype (`reference/original-render-400x400.json`).
 - `web/e2e/timeline-demo.e2e.js` — voir anomalie AN2.
 
 ### Exécuter
@@ -309,7 +434,9 @@ cd web && npx vitest run test/usecases/unit/uc-vis-01 test/usecases/functional/u
   (nombre). Toucher un pôle laisse le panneau sur « Touchez un secteur… » : le
   rapport du pôle, l'audit et les passages saillants ne sont jamais montrés.
   Le test existant `DayView.test.jsx` ne le voit pas (document synthétique à
-  `poleNum` numérique). Comportement actuel figé par UC-VIS-01-U17 et F17.
+  `poleNum` numérique). Comportement actuel figé par UC-VIS-01-U17 et F17 ; le
+  rendu du panneau qui s'afficherait après correction est exercé hors schéma
+  (poleNum numérique) par UC-VIS-01-U29.
 - **AN2 — Test e2e obsolète.** `web/e2e/timeline-demo.e2e.js` joue la timeline
   « de la démo » sur `#/merge` (59 feuilles, `svg.sunburst`) ; depuis D14,
   `#/merge` sans document chargé affiche l'interface V3 (`App.jsx`), qui n'a
@@ -324,6 +451,24 @@ cd web && npx vitest run test/usecases/unit/uc-vis-01 test/usecases/functional/u
   traiter » ; un index en erreur HTTP à corps JSON donne « Chargement
   impossible : index.map is not a function ». Comportement actuel figé par
   UC-VIS-01-F19.
+- **AN4 — Lecteur de construction : « mouvement réduit » activé pendant une
+  lecture (mineure).** `TimelinePlayer` (`web/src/components/TimelinePlayer.jsx`)
+  suit les changements de `prefers-reduced-motion` : quand la préférence
+  s'active en cours de lecture, le minuteur s'arrête bien, mais l'état
+  `playing` n'est pas remis à faux. Le bouton, désormais inactif, reste
+  annoncé « Mettre la lecture en pause » avec `aria-pressed="true"` alors que
+  rien ne défile, et la lecture **reprend d'elle-même**, sans action du
+  visiteur, dès que la préférence est levée. Attendu : l'activation de la
+  préférence met la lecture en pause (comme la sélection d'un secteur).
+  Comportement actuel figé par UC-VIS-01-U28.
+- **AN5 — Vue chronologique : accord au singulier absent (mineure).**
+  `MergeView` (`web/src/views/MergeView.jsx`) compose « `${points} points` »
+  et « `${n} compétences dans ce pôle` » sans accord : une compétence à un
+  point affiche « Niveau 4 — Expertise · 1 points », un pôle à une seule
+  compétence « 1 compétences dans ce pôle — 1 établie. » (le segment
+  « établie(s) », lui, est accordé ; `TimelinePlayer` accorde aussi ses
+  compteurs). Attendu : « 1 point », « 1 compétence ». Comportement actuel
+  figé par UC-VIS-01-F22.
 
 ## Limites
 
@@ -331,3 +476,14 @@ cd web && npx vitest run test/usecases/unit/uc-vis-01 test/usecases/functional/u
   référentiel a un repli embarqué.
 - Les annotations et revues faites sur la démonstration (UC-APP-12) restent en
   mémoire et sont perdues au rechargement.
+- Limites des tests (jsdom) : la mise en page CSS n'est pas appliquée — le
+  masquage de la zone inactive sous 768 px (onglets « Diagramme » /
+  « Détails »), les styles `:hover` des secteurs, l'aspect des hachures et le
+  masquage visuel de la région `aria-live` ne sont vérifiés qu'au niveau des
+  attributs (`data-tab`, classes — dont `timeline-sr-only`, U25 —, `fill`,
+  `stroke-dasharray`), jamais à l'écran ; la géométrie est vérifiée sur les
+  chemins SVG produits (rayons, angles), pas sur un rendu en pixels. La
+  préférence `prefers-reduced-motion` est simulée (`matchMedia`) et le temps
+  par de faux minuteurs. La génération des artefacts dérivés
+  (`scripts/convert/*`, `scripts/extract-referentiel.mjs`) n'est pas testée ici
+  (UC-SYS-04), alors que les suites web en dépendent (Préconditions).
