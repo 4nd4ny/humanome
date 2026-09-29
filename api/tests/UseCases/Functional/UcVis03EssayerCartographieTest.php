@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Humanome\Tests\UseCases\Functional;
 
 use Humanome\Llm\HttpClientException;
+use Humanome\Llm\PowChallenge;
 use Humanome\Tests\LlmTestCase;
 use Humanome\Tests\TestDb;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -79,12 +80,27 @@ final class UcVis03EssayerCartographieTest extends LlmTestCase
     #[TestDox('UC-VIS-03-F02 — RGPD : ni le texte ni la réponse ne sont stockés, ni l’IP en clair (compteurs et empreintes seulement)')]
     public function testF02NothingButCountersIsStored(): void
     {
-        $this->engineCall(3, '203.0.113.77');
+        $response = $this->engineCall(3, '203.0.113.77');
+        self::assertSame(200, $response->getStatusCode());
+        // Un extrait distinctif de la RÉPONSE du modèle (mock : fixture du pôle 3).
+        $answer = json_decode(self::json($response)['text'], true, 512, JSON_THROW_ON_ERROR);
+        $fromAnswer = (string) $answer['competences'][0]['verdict']['prescriptionMinimale'];
+        self::assertGreaterThan(30, mb_strlen($fromAnswer));
 
-        foreach (['llm_usage_daily', 'llm_pow_challenges', 'rate_limits', 'audit_events'] as $table) {
-            $dump = json_encode(self::$pdo->query('SELECT * FROM ' . $table)->fetchAll(), JSON_UNESCAPED_UNICODE);
-            self::assertStringNotContainsString('atelier vélo', (string) $dump, $table);
-            self::assertStringNotContainsString('203.0.113.77', (string) $dump, $table);
+        // Toutes les tables de la base, pas seulement celles de la démo.
+        $tables = self::$pdo->query('SHOW TABLES')->fetchAll(\PDO::FETCH_COLUMN);
+        self::assertGreaterThan(10, \count($tables));
+        foreach ($tables as $table) {
+            $values = [];
+            foreach (self::$pdo->query('SELECT * FROM `' . $table . '`')->fetchAll(\PDO::FETCH_NUM) as $row) {
+                foreach ($row as $value) {
+                    $values[] = (string) $value;
+                }
+            }
+            $dump = implode("\n", $values);
+            self::assertStringNotContainsString('atelier vélo', $dump, $table);
+            self::assertStringNotContainsString($fromAnswer, $dump, $table);
+            self::assertStringNotContainsString('203.0.113.77', $dump, $table);
         }
         $bucket = (string) self::$pdo->query('SELECT bucket FROM rate_limits')->fetchColumn();
         self::assertMatchesRegularExpression('/^llm:[0-9a-f]{64}$/', $bucket);
@@ -125,7 +141,7 @@ final class UcVis03EssayerCartographieTest extends LlmTestCase
         self::assertSame(200, $human->getStatusCode());
     }
 
-    #[TestDox('UC-VIS-03-F05 — E2 : preuve de travail absente, falsifiée, trop faible ou rejouée → refus codés (400/429)')]
+    #[TestDox('UC-VIS-03-F05 — E2 : preuve de travail absente, falsifiée, trop faible, expirée ou rejouée → refus codés (400/429)')]
     public function testF05ProofOfWorkFailures(): void
     {
         $missing = $this->request('POST', '/api/llm', ['prompt' => 'x']);
@@ -137,6 +153,14 @@ final class UcVis03EssayerCartographieTest extends LlmTestCase
         self::assertSame('pow_invalid', self::json($this->request('POST', '/api/llm', ['prompt' => 'x', 'challenge' => $forged, 'nonce' => '1']))['code']);
         $weak = $this->request('POST', '/api/llm', ['prompt' => 'x', 'challenge' => $issued['challenge'], 'nonce' => $this->weakNonce($issued['challenge'], 8)]);
         self::assertSame('pow_invalid', self::json($weak)['code']);
+
+        // Défi expiré (signé avec le bon secret, émis il y a plus de 5 minutes) :
+        // refusé sans être consommé.
+        $expiredChallenge = (new PowChallenge(self::POW_SECRET, 8))->issue(time() - 400)['challenge'];
+        $expired = $this->request('POST', '/api/llm', ['prompt' => 'x', 'challenge' => $expiredChallenge, 'nonce' => $this->solve($expiredChallenge, 8)]);
+        self::assertSame(400, $expired->getStatusCode());
+        self::assertSame('pow_expired', self::json($expired)['code']);
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM llm_pow_challenges')->fetchColumn());
 
         $nonce = $this->solve($issued['challenge'], 8);
         self::assertSame(200, $this->request('POST', '/api/llm', ['prompt' => 'x', 'challenge' => $issued['challenge'], 'nonce' => $nonce])->getStatusCode());

@@ -71,13 +71,17 @@ final class UcVis02ConsulterReferentielTest extends TestCase
         ]);
     }
 
-    #[TestDox('UC-VIS-02-U01 — versions publiées : la plus récente d’abord (précédence semver), brouillon exclu')]
+    #[TestDox('UC-VIS-02-U01 — versions publiées : la plus récente d’abord (précédence semver, ni ordre lexical, ni id, ni date), brouillon exclu')]
     public function testU01PublishedVersionsNewestFirstDraftExcluded(): void
     {
         VisSupport::publishTwoVersionsAndADraft(self::$pdo);
         // 7.10.0 doit passer devant 7.9.0 (précédence numérique, pas lexicale).
-        self::repo()->cutReleaseFromDocument(VisSupport::respireVersion('7.9.0'));
-        self::repo()->cutReleaseFromDocument(VisSupport::respireVersion('7.10.0'));
+        // Insérées dans l'ordre INVERSE (7.10.0 d'abord : id plus petit) et
+        // avec une date de publication plus ancienne pour 7.10.0 : un tri par
+        // id ou par date donnerait un autre ordre que la précédence semver.
+        self::repo()->importPublishedDocument(VisSupport::respireVersion('7.10.0'), 'r');
+        self::repo()->importPublishedDocument(VisSupport::respireVersion('7.9.0'), 'r');
+        self::$pdo->exec("UPDATE referentiel_versions SET published_at = '2020-01-01 00:00:00' WHERE semver = '7.10.0'");
 
         $semvers = array_column(self::repo()->publishedVersions(ReferentielRepository::DEFAULT_REFERENTIEL_ID), 'semver');
         self::assertSame(['7.10.0', '7.9.0', '7.1.0', '7.0.0'], $semvers);
@@ -103,8 +107,20 @@ final class UcVis02ConsulterReferentielTest extends TestCase
         VisSupport::publishTwoVersionsAndADraft(self::$pdo);
         $v700 = self::repo()->findPublished('respire', '7.0.0');
 
-        // Colonne JSON MySQL : l'ordre des clés est restauré (ContentHash::normalize).
+        // Colonne JSON MySQL : l'ordre des clés n'est pas conservé par la base ;
+        // assertEquals compare le contenu, les array_keys prouvent la forme
+        // CANONIQUE restaurée par ContentHash::normalize (RG3).
         self::assertEquals(VisSupport::respireV7(), $v700['content']);
+        self::assertSame(
+            ['schemaVersion', 'kind', 'id', 'version', 'label', 'contentHash', 'source', 'poles', 'competences'],
+            array_keys($v700['content']),
+        );
+        self::assertSame(['num', 'nom', 'couleur'], array_keys($v700['content']['poles'][0]));
+        self::assertSame(['code', 'nom', 'pole'], array_keys($v700['content']['competences'][0]));
+        // Clés annexes conservées APRÈS les clés cœur (définition de 1.01 en 7.1.0).
+        $c101 = self::repo()->findPublished('respire', '7.1.0')['content']['competences'][0];
+        self::assertSame('1.01', $c101['code']);
+        self::assertSame(['code', 'nom', 'pole', 'description'], array_keys($c101));
         self::assertSame(VisSupport::respireV7()['contentHash'], $v700['contentHash']);
         self::assertSame($v700['contentHash'], $v700['content']['contentHash']);
         self::assertCount(7, $v700['content']['poles']);
@@ -153,6 +169,9 @@ final class UcVis02ConsulterReferentielTest extends TestCase
             return $doc;
         });
         self::assertTrue(ReferentielDiff::compute($from, $descriptionOnly)['identical']);
+        // RG3 : l'empreinte ne porte que sur le corps STRUCTUREL — une version qui
+        // ne diffère que par ses définitions partage l'empreinte de la 7.0.0.
+        self::assertSame(VisSupport::respireV7()['contentHash'], $descriptionOnly['contentHash']);
     }
 
     #[TestDox('UC-VIS-02-U05 — StaticExporter : un fichier par version publiée + index.json (plus récente d’abord), brouillon non exporté')]
@@ -197,6 +216,9 @@ final class UcVis02ConsulterReferentielTest extends TestCase
         self::assertSame([], $repo->publishedVersions('9.99'));
     }
 
+    // La garde des codes est le motif de route {code:[0-9]\.[0-9]{2}} de
+    // routes/competences.php (couvert par F07) ; CompetenceRepository::CODE_RE
+    // n'est branchée sur aucun code de production et n'est donc pas testée ici.
     #[TestDox('UC-VIS-02-U07 — CompetenceRepository : contenu riche relu, metadata sans contenu')]
     public function testU07CompetenceContentAndMetadata(): void
     {
@@ -209,7 +231,5 @@ final class UcVis02ConsulterReferentielTest extends TestCase
         $meta = CompetenceRepository::metadata($competence);
         self::assertArrayNotHasKey('content', $meta);
         self::assertSame(['id', 'code', 'semver', 'pole', 'nom', 'status', 'contentHash', 'releaseNote', 'publishedAt', 'submittedAt', 'decidimUrl'], array_keys($meta));
-        self::assertMatchesRegularExpression(CompetenceRepository::CODE_RE, '3.04');
-        self::assertDoesNotMatchRegularExpression(CompetenceRepository::CODE_RE, '3.4');
     }
 }

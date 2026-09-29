@@ -3,7 +3,8 @@
 //
 // Code du moteur sollicité par la page « Essayer », appelé directement dans
 // la configuration de la démo : transport « proxy » vers api/llm (aucune clé
-// côté navigateur, pas de nouvel essai automatique : maxAttempts 1) et
+// côté navigateur, pas de nouvel essai automatique DU FOURNISSEUR :
+// maxAttempts 1 — extractDay, lui, refait une fois chaque appel en échec) et
 // extractDay (7 pôles + synthèse kairos facultative). Fixtures VERSIONNÉES
 // lues paresseusement dans les tests (contrainte CI du moteur).
 import { describe, expect, it, vi } from 'vitest'
@@ -79,7 +80,9 @@ describe('UC-VIS-03 — transport « proxy » de la démo', () => {
     expect(result).toEqual({ text: '{"ok":true}', usage: { inputTokens: 12, outputTokens: 3 }, model: 'claude-haiku-4-5-20251001', stopReason: 'end_turn' })
   })
 
-  it('UC-VIS-03-U17 — quota de la démo (429) : aucun nouvel essai automatique, statut et Retry-After portés par l’erreur', async () => {
+  // Couche FOURNISSEUR seule (maxAttempts 1) : ne couvre pas RG5 de bout en
+  // bout — dans la page, extractDay refait l'appel (anomalie AN2, UC-VIS-03-U22).
+  it('UC-VIS-03-U17 — couche fournisseur seule : un 429 n’est pas réessayé par createProvider (maxAttempts 1), statut et Retry-After portés par l’erreur', async () => {
     const { provider, fetchFn } = demoProvider(() => response(429, { error: 'Quota horaire atteint, réessayez plus tard.' }, { 'retry-after': '120' }))
     const failure = await provider.complete({ model: 'demo', prompt: 'x' }).catch((e) => e)
 

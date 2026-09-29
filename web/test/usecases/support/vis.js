@@ -185,20 +185,27 @@ export function browserFile(content, name, type = 'application/json') {
 // --- Faux serveur de la démo LLM (contrat de api/src/routes/llm.php) ---------
 
 /**
- * Émule le contrat HTTP de la démo publique, avec les MÊMES règles que le
- * serveur PHP : défi à usage unique au format v1.<exp>.<aléa>.<mac>, preuve
- * vérifiée par sha256(challenge + ':' + nonce) (node:crypto, comme PHP),
- * champ piège « website » vide, quota optionnel. Les réponses LLM sont
- * fournies par `answer(body, n, init)` ; `challengeAnswer(n)` peut surcharger le défi.
+ * Émule le contrat HTTP de la démo publique, avec les règles du serveur PHP
+ * (api/src/routes/llm.php) dans le MÊME ordre : champ piège « website » vide
+ * (400), puis — pour api/llm — prompt présent et `system` textuel (422) et
+ * taille system + prompt ≤ `maxInputChars` (413, 20 000 par défaut comme
+ * api/config/demo.php) ; enfin défi à usage unique au format
+ * v1.<exp>.<aléa>.<mac> et preuve vérifiée par sha256(challenge + ':' + nonce)
+ * (node:crypto, comme PHP). Aucun quota ni budget n'est simulé : un test qui
+ * en a besoin répond 429/503 par `answer`. Les réponses LLM sont fournies par
+ * `answer(body, n, init)` ; `challengeAnswer(n)` peut surcharger le défi.
+ * `stamps[i]` = horodatage (Date.now) du POST accepté `posts[i]`.
  *
- * @param {{difficultyBits?: number, answer: (body: object, n: number, init: object) => object,
+ * @param {{difficultyBits?: number, maxInputChars?: number,
+ *   answer: (body: object, n: number, init: object) => object,
  *   challengeAnswer?: (n: number) => object | undefined, createHash: Function,
  *   extra?: (url: string, init?: object) => any}} opts
  */
-export function fakeDemoServer({ difficultyBits = 4, answer, challengeAnswer, createHash, extra }) {
+export function fakeDemoServer({ difficultyBits = 4, maxInputChars = 20000, answer, challengeAnswer, createHash, extra }) {
   const issued = new Set()
   const redeemed = new Set()
   const posts = []
+  const stamps = []
   const rejected = []
   let challenges = 0
   const zeroBits = (hex) => {
@@ -235,6 +242,21 @@ export function fakeDemoServer({ difficultyBits = 4, answer, challengeAnswer, cr
         rejected.push('honeypot')
         return jsonResponse(400, { error: 'Requête invalide' })
       }
+      if (u === 'api/llm') {
+        if (typeof body.prompt !== 'string' || body.prompt.trim() === '') {
+          rejected.push('prompt_required')
+          return jsonResponse(422, { error: 'Le champ « prompt » est requis' })
+        }
+        if (body.system != null && typeof body.system !== 'string') {
+          rejected.push('system_invalid')
+          return jsonResponse(422, { error: 'Le champ « system » doit être une chaîne' })
+        }
+        // mb_strlen côté PHP : on compte les points de code, pas les unités UTF-16.
+        if ([...((body.system ?? '') + body.prompt)].length > maxInputChars) {
+          rejected.push('too_long')
+          return jsonResponse(413, { error: `Texte trop long : ${maxInputChars} caractères maximum pour la démonstration.` })
+        }
+      }
       if (!issued.has(body.challenge)) {
         rejected.push('pow_invalid')
         return jsonResponse(400, { error: 'Preuve de travail invalide.', code: 'pow_invalid' })
@@ -250,10 +272,11 @@ export function fakeDemoServer({ difficultyBits = 4, answer, challengeAnswer, cr
       }
       redeemed.add(body.challenge)
       posts.push(body)
+      stamps.push(Date.now())
       return answer(body, posts.length, init)
     }
     return jsonResponse(404, { error: 'absent' })
   })
   vi.stubGlobal('fetch', mock)
-  return { mock, posts, rejected, issuedCount: () => challenges }
+  return { mock, posts, stamps, rejected, issuedCount: () => challenges }
 }

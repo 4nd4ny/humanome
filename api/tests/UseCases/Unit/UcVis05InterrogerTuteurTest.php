@@ -55,7 +55,7 @@ final class UcVis05InterrogerTuteurTest extends TestCase
         self::assertSame(['usage_date'], $key, 'aucune colonne utilisateur, IP ou contenu');
     }
 
-    #[TestDox('UC-VIS-05-U02 — compteurs du tuteur : budget propre (1 $/jour par défaut), sans effet sur ceux de la démo')]
+    #[TestDox('UC-VIS-05-U02 — compteurs du tuteur : budget propre (plafond de 1 $ passé en paramètre), sans effet sur ceux de la démo')]
     public function testU02DedicatedCountersAndBudget(): void
     {
         $tuteur = new UsageCounters(self::$pdo, 'tuteur_usage_daily');

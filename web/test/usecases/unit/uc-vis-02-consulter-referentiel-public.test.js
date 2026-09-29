@@ -32,6 +32,18 @@ describe('UC-VIS-02 — routes et permaliens', () => {
     expect(referentielHash('7.03')).toBe('#/referentiel/7.03')
     expect(parseHash(referentielHash('a b'))).toEqual({ name: 'referentiel', code: 'a b' })
   })
+
+  // ANOMALIE AN1 de la fiche — test qui FIGE le comportement ACTUEL :
+  // parseHash applique decodeURIComponent au segment du permalien sans
+  // try/catch ; un pourcentage mal formé lève une URIError, et comme App
+  // calcule sa route initiale avec parseHash (sans frontière d'erreur), toute
+  // l'application plante au premier rendu. À inverser après correction.
+  it('UC-VIS-02-U11 — [comportement actuel, anomalie AN1] permalien au pourcentage mal formé → parseHash lève URIError', () => {
+    for (const hash of ['#/referentiel/%', '#/referentiel/100%', '#/referentiel/%E9']) {
+      expect(() => parseHash(hash)).toThrow(URIError)
+    }
+    expect(parseHash('#/referentiel/%C3%A9')).toEqual({ name: 'referentiel', code: 'é' }) // bien encodé : lu
+  })
 })
 
 describe('UC-VIS-02 — chargement de l’export statique publié', () => {
@@ -48,6 +60,17 @@ describe('UC-VIS-02 — chargement de l’export statique publié', () => {
     // Un seul chargement par session (cache module).
     await loadPublishedReferentiel({ fetchFn, protocol: 'https:' })
     expect(fetchFn).toHaveBeenCalledTimes(2)
+
+    // Sans entrée « respire » : la PREMIÈRE entrée de l'index est retenue.
+    clearReferentielCache()
+    const autre = { ...respire, id: 'autre', version: '1.0.0', label: 'Autre' }
+    const onlyOther = vi.fn(async (url) =>
+      url === 'data/referentiel/index.json'
+        ? jsonResponse(200, [staticIndex[0]])
+        : url === 'data/referentiel/autre-v1.0.0.json' ? jsonResponse(200, autre) : jsonResponse(404, {}),
+    )
+    const other = await loadPublishedReferentiel({ fetchFn: onlyOther, protocol: 'https:' })
+    expect(other).toMatchObject({ origin: 'published', doc: { id: 'autre', version: '1.0.0' } })
   })
 
   it.each([
@@ -61,5 +84,29 @@ describe('UC-VIS-02 — chargement de l’export statique publié', () => {
     expect(result.origin).toBe('bundled')
     expect(result.doc.version).toBe('7.0.0')
     expect(result.doc.competences).toHaveLength(61)
+  })
+
+  it('UC-VIS-02-U10 — file://, nom de fichier dangereux ou index au JSON invalide → repli embarqué (A6)', async () => {
+    // file:// : aucune lecture tentée.
+    const neverCalled = vi.fn()
+    expect((await loadPublishedReferentiel({ fetchFn: neverCalled, protocol: 'file:' })).origin).toBe('bundled')
+    expect(neverCalled).not.toHaveBeenCalled()
+
+    // Garde SAFE_FILE_RE : un fichier hors du dossier n'est jamais lu.
+    clearReferentielCache()
+    const traversal = vi.fn(async (url) =>
+      url === 'data/referentiel/index.json'
+        ? jsonResponse(200, [{ ...staticIndex[1], fichier: '../../etc/passwd.json' }])
+        : jsonResponse(200, v710),
+    )
+    expect((await loadPublishedReferentiel({ fetchFn: traversal, protocol: 'https:' })).origin).toBe('bundled')
+    expect(traversal).toHaveBeenCalledTimes(1)
+
+    // Index illisible : réponse 200 dont le JSON ne se parse pas.
+    clearReferentielCache()
+    const garbled = vi.fn(async () => ({ ...jsonResponse(200, null), json: async () => { throw new SyntaxError('Unexpected token') } }))
+    const fallback = await loadPublishedReferentiel({ fetchFn: garbled, protocol: 'https:' })
+    expect(fallback.origin).toBe('bundled')
+    expect(fallback.doc.version).toBe('7.0.0')
   })
 })

@@ -121,6 +121,20 @@ final class UcVis03EssayerCartographieTest extends TestCase
     #[TestDox('UC-VIS-03-U04 — UsageCounters : incrément atomique par jour UTC, coupe-circuit tokens OU budget, table sur liste blanche')]
     public function testU04UsageCountersDailyBreaker(): void
     {
+        // Jour UTC, quel que soit le fuseau du serveur : à Kiritimati (UTC+14),
+        // 23 h 30 UTC le 10 mars est déjà le 11 mars en heure locale.
+        $timezone = date_default_timezone_get();
+        date_default_timezone_set('Pacific/Kiritimati');
+        try {
+            $lateUtc = gmmktime(23, 30, 0, 3, 10, 2026);
+            self::assertSame('2026-03-11', date('Y-m-d', $lateUtc));
+            (new UsageCounters(self::$pdo))->record(1, 1, 0.0, $lateUtc);
+            self::assertSame('2026-03-10', (string) self::$pdo->query('SELECT usage_date FROM llm_usage_daily')->fetchColumn());
+        } finally {
+            date_default_timezone_set($timezone);
+        }
+        self::$pdo->exec('DELETE FROM llm_usage_daily');
+
         $counters = new UsageCounters(self::$pdo);
         $day = gmmktime(12, 0, 0, 3, 10, 2026);
         $counters->record(100, 50, 0.25, $day);
@@ -179,7 +193,22 @@ final class UcVis03EssayerCartographieTest extends TestCase
         self::assertSame('mock', $base->provider, 'provider : env/fichier seulement');
         self::assertNotContains('provider', DemoConfig::OVERRIDABLE_FIELDS);
 
-        // Base indisponible : couche « base » ignorée en silence (fail-safe).
+        // Base configurée mais injoignable (connexion refusée) : la branche
+        // catch(\Throwable) ignore la couche « base » en silence (fail-safe).
+        TestDb::setEnv('DB_NAME', 'uc_vis_03_base_inexistante');
+        Db::reset();
+        $previousLog = ini_set('error_log', '/dev/null');
+        try {
+            $down = DemoConfig::load();
+            self::assertSame(7, $down->perIpPerHour);
+            self::assertSame('env', $down->sources['perIpPerHour']);
+            self::assertTrue($down->enabled, 'le « enabled: false » de la base n’est plus lu');
+        } finally {
+            ini_set('error_log', (string) $previousLog);
+            TestDb::setEnv('DB_NAME', TestDb::name());
+            Db::reset();
+        }
+        // Base non configurée (DB_HOST vide) : couche ignorée aussi.
         TestDb::setEnv('DB_HOST', '');
         self::assertSame(7, DemoConfig::load()->perIpPerHour);
     }
@@ -225,6 +254,8 @@ final class UcVis03EssayerCartographieTest extends TestCase
         self::assertSame('sk-ant-secret', $sent['headers']['x-api-key']);
         self::assertSame(5, $sent['timeout']);
         $payload = json_decode((string) $sent['body'], true);
+        self::assertSame('claude-haiku-4-5-20251001', $payload['model']);
+        self::assertSame(['type' => 'disabled'], $payload['thinking']);
         self::assertSame(512, $payload['max_tokens']);
         self::assertSame('Consigne', $payload['system']);
         self::assertSame('emettre_document', $payload['tool_choice']['name']);

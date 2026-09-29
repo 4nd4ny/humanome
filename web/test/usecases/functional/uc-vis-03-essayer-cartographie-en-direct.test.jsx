@@ -5,15 +5,15 @@
 // « Essayer », texte collé, cartographie en direct par le VRAI moteur
 // (extractDay : 7 appels pôle + 1 kairos). Le réseau est un faux serveur qui
 // applique les RÈGLES du serveur PHP (défi à usage unique, preuve vérifiée par
-// sha256 via node:crypto, champ piège vide) : si le navigateur trichait ou
-// réutilisait un défi, le faux serveur le refuserait. Aucun appel LLM réel.
+// sha256 via node:crypto, champ piège vide, prompt requis, plafond de taille
+// 413) : si le navigateur trichait ou réutilisait un défi, le faux serveur le
+// refuserait. Quotas et budget sont simulés par les réponses. Aucun appel LLM réel.
 import { createHash } from 'node:crypto'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import { clearReferentielCache } from '../../../src/data/referentiel.js'
-import { localIsoToday } from '../../../src/lib/demo-llm.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import { FIXTURE_DAYS, fakeDemoServer, jsonResponse } from '../support/vis.js'
 
@@ -46,6 +46,16 @@ function modelAnswer(body) {
   const num = Number(/"poleNum": "(\d)"/.exec(body.prompt)[1])
   return jsonResponse(200, { text: JSON.stringify(POLES[num - 1]), usage: { inputTokens: 9, outputTokens: 9 }, model: 'mock' })
 }
+
+/** Date locale attendue, écrite indépendamment de localIsoToday (code de production). */
+function expectedLocalDate(now = new Date()) {
+  return {
+    iso: `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`,
+    fr: `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`,
+  }
+}
+
+const isKairos = (body) => body.prompt.includes('SYNTHÈSE KAIROS')
 
 function withHeaders(response, headers) {
   return { ...response, headers: { get: (n) => headers[String(n).toLowerCase()] ?? response.headers.get(n) } }
@@ -97,8 +107,7 @@ describe('UC-VIS-03 — le visiteur cartographie son texte en direct', () => {
     expect(await screen.findByTestId('essayer-progress')).toBeDefined()
     const banner = await screen.findByTestId('demo-banner', undefined, { timeout: 10_000 })
     expect(banner.textContent).toContain('ce résultat n’est pas conservé')
-    const [y, m, d] = localIsoToday().split('-')
-    expect(screen.getByTestId('day-badge').textContent).toBe(`Journée du ${d}/${m}/${y}`)
+    expect(screen.getByTestId('day-badge').textContent).toBe(`Journée du ${expectedLocalDate().fr}`)
 
     // Le faux serveur n'a RIEN refusé : 8 défis distincts, 8 preuves valides.
     expect(server.rejected).toEqual([])
@@ -130,7 +139,7 @@ describe('UC-VIS-03 — le visiteur cartographie son texte en direct', () => {
     })
     fireEvent.click(screen.getByTestId('essayer-export'))
     expect(createObjectURL).toHaveBeenCalledTimes(1)
-    expect(click.mock.contexts[0].download).toBe(`cartographie-jour-${localIsoToday()}.json`)
+    expect(click.mock.contexts[0].download).toBe(`cartographie-jour-${expectedLocalDate().iso}.json`)
 
     fireEvent.click(screen.getByRole('button', { name: 'Cartographier un autre texte' }))
     expect(screen.getByLabelText('Texte à cartographier').value).toBe(TEXT)
@@ -154,14 +163,16 @@ describe('UC-VIS-03 — le visiteur cartographie son texte en direct', () => {
     expect(screen.getByTestId('day-badge')).toBeDefined()
   })
 
-  it('UC-VIS-03-F14 — A4 : incident amont transitoire (504) → un seul nouvel essai automatique, avec un défi neuf', async () => {
+  it('UC-VIS-03-F14 — A4 : incident amont transitoire (504) → un seul nouvel essai automatique, APRÈS 2,5 s, avec un défi neuf', async () => {
     let failed = false
+    let failedIndex = null
     const server = fakeDemoServer({
       createHash,
       difficultyBits: 2,
-      answer: (body) => {
+      answer: (body, n) => {
         if (!failed && /"poleNum": "3"/.test(body.prompt)) {
           failed = true
+          failedIndex = n - 1
           return jsonResponse(504, { error: 'Le fournisseur LLM est injoignable, réessayez plus tard.' })
         }
         return modelAnswer(body)
@@ -170,10 +181,18 @@ describe('UC-VIS-03 — le visiteur cartographie son texte en direct', () => {
     openApp()
     await pasteAndRun()
 
+    // Pendant la pause, la phase « retry » n'a pas de libellé : un « — »
+    // orphelin s'affiche (anomalie AN4, comportement actuel).
+    await waitFor(() => expect(document.querySelector('.essayer-step-phase')?.textContent).toBe(' — '), { timeout: 3000 })
+
     await screen.findByTestId('demo-banner', undefined, { timeout: 15_000 })
     expect(server.posts).toHaveLength(9) // 8 + le nouvel essai du pôle 3
     expect(new Set(server.posts.map((p) => p.challenge)).size).toBe(9)
     expect(server.rejected).toEqual([])
+    // Le nouvel essai du pôle 3 vient du fournisseur de la démo (pause de
+    // 2,5 s), pas du nouvel essai immédiat d'extractDay.
+    expect(server.posts[failedIndex + 1].prompt).toMatch(/"poleNum": "3"/)
+    expect(server.stamps[failedIndex + 1] - server.stamps[failedIndex]).toBeGreaterThanOrEqual(2400)
   }, 20_000)
 
   it('UC-VIS-03-F15 — A5 : annuler pendant l’analyse → retour au texte, aucun appel supplémentaire', async () => {
@@ -215,7 +234,7 @@ describe('UC-VIS-03 — refus et limites vus par le visiteur', () => {
   })
 
   it('UC-VIS-03-F17 — E4 : quota horaire atteint (429, Retry-After 120 s) → « réessayez dans 2 minutes », bouton Réessayer', async () => {
-    fakeDemoServer({
+    const server = fakeDemoServer({
       createHash,
       difficultyBits: 2,
       answer: () => withHeaders(jsonResponse(429, { error: 'Quota horaire atteint, réessayez plus tard.' }), { 'retry-after': '120' }),
@@ -226,9 +245,12 @@ describe('UC-VIS-03 — refus et limites vus par le visiteur', () => {
     const alert = await screen.findByRole('alert')
     expect(alert.textContent).toContain('La démo est très demandée en ce moment : réessayez dans 2 minutes.')
     expect(within(alert).getByRole('button', { name: 'Réessayer' })).toBeDefined()
+    // Comportement actuel figé (anomalie AN2) : extractDay a refait l'appel
+    // aussitôt, avec un second défi — attendu : 1 seul POST contre un quota.
+    expect(server.posts).toHaveLength(2)
   })
 
-  it('UC-VIS-03-F18 — E5/E6 : démo épuisée ou désactivée (503 dès le premier défi) → message, sans réessai, aucun appel LLM', async () => {
+  it('UC-VIS-03-F18 — E6 : démo désactivée ou sans secret (503 dès le premier défi) → message, sans réessai, aucun appel LLM', async () => {
     const server = fakeDemoServer({
       createHash,
       answer: modelAnswer,
@@ -243,10 +265,10 @@ describe('UC-VIS-03 — refus et limites vus par le visiteur', () => {
     expect(server.posts).toHaveLength(0)
   })
 
-  // ANOMALIE A1 — comportement ACTUEL figé : une difficulté de 23 bits, que
+  // ANOMALIE AN1 — comportement ACTUEL figé : une difficulté de 23 bits, que
   // l'administration peut régler (bornes 8–24), est insoluble pour le
   // navigateur (22 bits max) : la démo échoue avec un message générique.
-  it('UC-VIS-03-F19 — [comportement actuel, anomalie A1] difficulté 23 bits servie → échec générique, aucun appel LLM', async () => {
+  it('UC-VIS-03-F19 — [comportement actuel, anomalie AN1] difficulté 23 bits servie → échec générique, aucun appel LLM', async () => {
     const server = fakeDemoServer({ createHash, difficultyBits: 23, answer: modelAnswer })
     openApp()
     await pasteAndRun()
@@ -254,6 +276,77 @@ describe('UC-VIS-03 — refus et limites vus par le visiteur', () => {
     const alert = await screen.findByRole('alert')
     expect(alert.textContent).toContain('L’analyse a échoué en cours de route')
     expect(alert.textContent).toContain('entre 0 et 22')
+    expect(server.posts).toHaveLength(0)
+  })
+
+  it('UC-VIS-03-F20 — E5 : budget du jour épuisé, découvert au POST (défi émis, 503) → « démo épuisée », sans bouton Réessayer', async () => {
+    const server = fakeDemoServer({
+      createHash,
+      difficultyBits: 2,
+      answer: () => jsonResponse(503, { error: 'Démo épuisée pour aujourd’hui, revenez demain.' }),
+    })
+    openApp()
+    await pasteAndRun()
+
+    const alert = await screen.findByRole('alert')
+    expect(alert.textContent).toContain('La démo est épuisée pour aujourd’hui ou momentanément désactivée.')
+    expect(within(alert).queryByRole('button', { name: 'Réessayer' })).toBeNull()
+    expect(screen.getByLabelText('Texte à cartographier').value).toBe(TEXT)
+    // Comportement actuel figé (anomalie AN2) : deux défis résolus, deux POST.
+    expect(server.issuedCount()).toBe(2)
+    expect(server.posts).toHaveLength(2)
+  })
+
+  it('UC-VIS-03-F21 — A3 : quota ou budget atteint sur l’appel KAIROS seulement → résultat à 7 pôles avec la note kairos (aucun message de quota)', async () => {
+    const server = fakeDemoServer({
+      createHash,
+      difficultyBits: 2,
+      answer: (body) => (isKairos(body) ? jsonResponse(503, { error: 'Démo épuisée pour aujourd’hui, revenez demain.' }) : modelAnswer(body)),
+    })
+    openApp()
+    await pasteAndRun()
+
+    const banner = await screen.findByTestId('demo-banner', undefined, { timeout: 10_000 })
+    expect(banner.textContent).toContain('La synthèse transversale (kairos) n’a pas pu être produite cette fois')
+    expect(screen.queryByRole('alert')).toBeNull()
+    // 7 pôles + kairos (503) + nouvel essai immédiat du moteur (503) : comportement actuel.
+    expect(server.posts).toHaveLength(9)
+    expect(server.posts.filter(isKairos)).toHaveLength(2)
+  })
+
+  it('UC-VIS-03-F22 — E7 : réponse inexploitable d’un pôle, même après le nouvel essai du moteur → « L’analyse a échoué en cours de route (détail technique : …) », Réessayer, texte conservé', async () => {
+    const server = fakeDemoServer({
+      createHash,
+      difficultyBits: 2,
+      answer: (body) =>
+        /"poleNum": "2"/.test(body.prompt)
+          ? jsonResponse(200, { text: 'pas du JSON', usage: { inputTokens: 1, outputTokens: 1 }, model: 'mock' })
+          : modelAnswer(body),
+    })
+    openApp()
+    await pasteAndRun()
+
+    const alert = await screen.findByRole('alert', undefined, { timeout: 5000 })
+    expect(alert.textContent).toContain('L’analyse a échoué en cours de route (détail technique : extractDay : pôle 2')
+    expect(within(alert).getByRole('button', { name: 'Réessayer' })).toBeDefined()
+    expect(screen.getByLabelText('Texte à cartographier').value).toBe(TEXT)
+    expect(server.posts).toHaveLength(3) // pôle 1 + 2 essais du pôle 2
+  })
+
+  // ANOMALIE AN3 — comportement ACTUEL figé : 12 000 caractères sont acceptés
+  // par la page, mais le prompt d'un pôle (texte + gabarit ≈ 8 600) dépasse le
+  // plafond serveur de 20 000 : le serveur répond 413 avant toute preuve.
+  it('UC-VIS-03-F23 — [comportement actuel, anomalie AN3] texte de 12 000 caractères accepté par la page → 413 du serveur sur le pôle 1, échec générique', async () => {
+    const server = fakeDemoServer({ createHash, difficultyBits: 2, answer: modelAnswer })
+    openApp()
+    const long = `${TEXT} ${'x'.repeat(12000 - TEXT.length - 1)}`
+    expect(long).toHaveLength(12000)
+    await pasteAndRun(long)
+
+    const alert = await screen.findByRole('alert', undefined, { timeout: 5000 })
+    expect(alert.textContent).toContain('L’analyse a échoué en cours de route') // attendu : cartographie produite
+    expect(alert.textContent).toContain('413')
+    expect(server.rejected).toEqual(['too_long', 'too_long']) // essai + nouvel essai du moteur
     expect(server.posts).toHaveLength(0)
   })
 })

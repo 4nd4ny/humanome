@@ -5,9 +5,10 @@
 // page introuvable), plan du site par familles d'intention (nav.js), registre
 // d'aide contextuelle, thème clair/sombre, contenu des guides embarqué au
 // build, progression locale d'un visiteur, rendu Markdown assaini de la page
-// confidentialité. L'anomalie A1 (progression locale écrasée d'un parcours à
-// l'autre) est figée ici.
+// confidentialité, sonde de session du shell (fetchMe). L'anomalie AN1
+// (progression locale écrasée d'un parcours à l'autre) est figée ici.
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { ApiError, ApiUnavailableError, fetchMe } from '../../../src/api/client.js'
 import { guidesHash, parseHash } from '../../../src/router.js'
 import { FAMILIES, isCurrentItem, navGroups } from '../../../src/nav.js'
 import { helpFor } from '../../../src/help/registry.js'
@@ -93,15 +94,30 @@ describe('UC-VIS-04 — navigation par familles d’intention', () => {
     expect(isCurrentItem({ href: '#/espace', label: 'Partager' }, { name: 'espace', section: null })).toBe(false)
   })
 
-  it('UC-VIS-04-U05 — aide contextuelle : une entrée par rubrique « Découvrir », repli « Aide », astuce ciblée par rôle', () => {
-    for (const route of ['home', 'cartographie', 'essayer', 'referentiel', 'guides', 'confidentialite', 'day']) {
-      expect(helpFor(route).titre).not.toBe('Aide')
+  it('UC-VIS-04-U05 — aide contextuelle : une entrée par rubrique du menu (tous rôles), repli « Aide », astuce ciblée par rôle', () => {
+    // Toutes les rubriques atteignables depuis le menu, pour le cumul de tous les rôles.
+    const everyRoute = navGroups({
+      roles: ['apprenant', 'cartographe', 'promptologue', 'epistemiarque', 'etablissement', 'admin'],
+      authenticated: true,
+    })
+      .flatMap((f) => f.items)
+      .filter((i) => i.route)
+      .map((i) => i.route)
+    expect(everyRoute.length).toBeGreaterThan(10)
+    for (const route of new Set([...everyRoute, 'day'])) {
+      expect(helpFor(route).titre, route).not.toBe('Aide')
     }
     expect(helpFor('referentiel').titre).toBe('Le référentiel de compétences')
     expect(helpFor('not-found')).toEqual(expect.objectContaining({ titre: 'Aide' }))
     const cartographe = helpFor('home', { roles: ['apprenant', 'cartographe'] })
     expect(cartographe.points.at(-1)).toContain('« Ma file de relecture » est dans le menu')
     expect(helpFor('home', {}).points).not.toContain(cartographe.points.at(-1))
+    // Établissement : son astuce ; cartographe ET établissement : seule celle du cartographe.
+    const etablissement = helpFor('home', { roles: ['etablissement'] })
+    expect(etablissement.points.at(-1)).toContain('« Mes cohortes » est dans le menu')
+    const both = helpFor('home', { roles: ['cartographe', 'etablissement'] })
+    expect(both.points.at(-1)).toContain('« Ma file de relecture »')
+    expect(both.points.join(' ')).not.toContain('« Mes cohortes »')
   })
 
   it('UC-VIS-04-U06 — profils explorables par un visiteur : 8 personas, l’employeur sans compte', () => {
@@ -159,9 +175,10 @@ describe('UC-VIS-04 — guides publics', () => {
     const storage = memoryStorage()
     const api = { get: vi.fn(), put: vi.fn() }
     const store = createTrainingStore({ storage, api, parcours: 'visiteur' })
-    store.setLocal('01-qu-est-ce-qu-une-cartographie', true)
-    store.setLocal('02-explorer-la-demonstration', true)
-    store.setLocal('01-qu-est-ce-qu-une-cartographie', false)
+    // Aiguillage de setChapter selon la session (comme FormationSection).
+    await store.setChapter('01-qu-est-ce-qu-une-cartographie', true, { connected: false })
+    await store.setChapter('02-explorer-la-demonstration', true, { connected: false })
+    await store.setChapter('01-qu-est-ce-qu-une-cartographie', false, { connected: false })
 
     expect(await store.load({ connected: false })).toEqual({ chapitres: ['02-explorer-la-demonstration'], source: 'local' })
     expect(api.get).not.toHaveBeenCalled()
@@ -169,13 +186,17 @@ describe('UC-VIS-04 — guides publics', () => {
     expect(JSON.parse(storage.getItem(TRAINING_STORAGE_KEY))).toEqual({
       visiteur: { chapitresTermines: ['02-explorer-la-demonstration'] },
     })
+    // Contre-exemple : connecté, la coche part au serveur (et pas en local).
+    await store.setChapter('03-le-referentiel-respire', true, { connected: true })
+    expect(api.put).toHaveBeenCalledWith({ parcours: 'visiteur', chapitre: '03-le-referentiel-respire', completed: true })
+    expect(store.listLocal()).toEqual(['02-explorer-la-demonstration'])
   })
 
-  // ANOMALIE A1 de la fiche — test qui FIGE le comportement ACTUEL : la clé
+  // ANOMALIE AN1 de la fiche — test qui FIGE le comportement ACTUEL : la clé
   // locale « humanome-training » est RÉÉCRITE avec le seul parcours courant
   // (writeLocal), si bien que cocher un chapitre d'un parcours efface la
   // progression locale des autres parcours. À inverser après correction.
-  it('UC-VIS-04-U10 — [comportement actuel, anomalie A1] cocher un chapitre d’un autre parcours efface la progression locale du premier', async () => {
+  it('UC-VIS-04-U10 — [comportement actuel, anomalie AN1] cocher un chapitre d’un autre parcours efface la progression locale du premier', async () => {
     const storage = memoryStorage()
     const api = { get: vi.fn(), put: vi.fn() }
     createTrainingStore({ storage, api, parcours: 'visiteur' }).setLocal('01-qu-est-ce-qu-une-cartographie', true)
@@ -196,5 +217,31 @@ describe('UC-VIS-04 — page confidentialité', () => {
     }
     expect(html).toMatch(/href="#\/(compte|espace)/)
     expect(renderMarkdown('# T\n\n<script>alert(1)</script>\n\n[x](javascript:alert(1))')).not.toMatch(/<script|javascript:/)
+  })
+})
+
+describe('UC-VIS-04 — sonde de session du shell', () => {
+  it('UC-VIS-04-U12 — fetchMe : 401 → visiteur ({user: null}) ; autre erreur → ApiError ; réseau → ApiUnavailableError', async () => {
+    const json = (status, data) => ({
+      ok: status >= 200 && status < 300,
+      status,
+      headers: { get: () => 'application/json' },
+      json: async () => data,
+    })
+    const unauthorized = vi.fn().mockResolvedValue(json(401, { error: 'Authentification requise' }))
+    expect(await fetchMe({ fetchFn: unauthorized, protocol: 'https:' })).toEqual({ user: null })
+    expect(unauthorized).toHaveBeenCalledWith('api/auth/me', expect.objectContaining({ method: 'GET', body: undefined }))
+
+    const user = { id: 7, displayName: 'Ada', roles: ['apprenant'] }
+    expect(await fetchMe({ fetchFn: vi.fn().mockResolvedValue(json(200, { user, csrfToken: 'x' })), protocol: 'https:' })).toEqual({ user })
+
+    const serverError = fetchMe({ fetchFn: vi.fn().mockResolvedValue(json(500, { error: 'Internal error' })), protocol: 'https:' })
+    await expect(serverError).rejects.toBeInstanceOf(ApiError)
+    const offline = fetchMe({ fetchFn: vi.fn().mockRejectedValue(new TypeError('Failed to fetch')), protocol: 'https:' })
+    await expect(offline).rejects.toBeInstanceOf(ApiUnavailableError)
+    // Copie statique (file://) : l'API n'est même pas appelée.
+    const never = vi.fn()
+    await expect(fetchMe({ fetchFn: never, protocol: 'file:' })).rejects.toBeInstanceOf(ApiUnavailableError)
+    expect(never).not.toHaveBeenCalled()
   })
 })

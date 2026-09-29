@@ -93,7 +93,27 @@ describe('UC-VIS-01 — chargement des données statiques', () => {
     expect(frenchDate('2026-01-06')).toBe('06/01/2026')
   })
 
-  it('UC-VIS-01-U04 — loadPublishedReferentiel : hors ligne ou sur file://, repli sur le référentiel embarqué (jamais de rejet)', async () => {
+  it('UC-VIS-01-U04 — loadPublishedReferentiel : index publié → fichier indiqué (étape 2) ; hors ligne, file:// ou nom de fichier dangereux → repli embarqué (jamais de rejet)', async () => {
+    // Chemin nominal (étape 2) : index.json, préférence « respire », fichier sûr, forme contrôlée.
+    const published = { ...referentielDoc, version: '7.1.0', label: 'RESPIRE v7.1' }
+    const index = [{ referentielId: 'respire', semver: '7.1.0', label: 'RESPIRE v7.1', publishedAt: '2026-07-15T09:00:00', fichier: 'respire-v7.1.json' }]
+    const online = vi.fn(async (url) =>
+      url === 'data/referentiel/index.json' ? jsonResponse(200, index) : url === 'data/referentiel/respire-v7.1.json' ? jsonResponse(200, published) : jsonResponse(404, {}),
+    )
+    const loaded = await loadPublishedReferentiel({ fetchFn: online, protocol: 'https:' })
+    expect(loaded.origin).toBe('published')
+    expect(loaded.doc.version).toBe('7.1.0')
+    expect(online.mock.calls.map(([u]) => u)).toEqual(['data/referentiel/index.json', 'data/referentiel/respire-v7.1.json'])
+
+    // Garde SAFE_FILE_RE : un « fichier » qui sort du dossier n'est jamais lu.
+    clearReferentielCache()
+    const traversal = vi.fn(async (url) =>
+      url === 'data/referentiel/index.json' ? jsonResponse(200, [{ ...index[0], fichier: '../x.json' }]) : jsonResponse(200, published),
+    )
+    expect((await loadPublishedReferentiel({ fetchFn: traversal, protocol: 'https:' })).origin).toBe('bundled')
+    expect(traversal).toHaveBeenCalledTimes(1)
+
+    clearReferentielCache()
     const offline = vi.fn().mockRejectedValue(new TypeError('Failed to fetch'))
     const fallback = await loadPublishedReferentiel({ fetchFn: offline, protocol: 'https:' })
     expect(fallback.origin).toBe('bundled')
@@ -132,7 +152,7 @@ describe('UC-VIS-01 — moteur de l’interface V3 (démonstration)', () => {
     expect(summary.arbitrate).toBe(0)
   })
 
-  it('UC-VIS-01-U07 — computeEvents : seules les présences établies avec preuve résolue font un événement', () => {
+  it('UC-VIS-01-U07 — computeEvents : seules les présences établies, non court-circuitées, d’une variante active, avec un lien résolu non contesté font un événement (RG2)', () => {
     const { master } = demoMaster()
     const events = computeEvents(master)
     expect(events.admissible).toHaveLength(FIXTURE_FACTS.admissible)
@@ -143,9 +163,39 @@ describe('UC-VIS-01 — moteur de l’interface V3 (démonstration)', () => {
     // « renvoi au cartographe » : en attente de révision, jamais au soleil.
     expect(events.needsReview).toHaveLength(FIXTURE_FACTS.needsReview)
     expect(events.daysByCompetency.has('1.03')).toBe(false)
+
+    // Chaque condition de RG2 est discriminée par une variante du corpus
+    // (1.01, 2.06 et 5.01 ne sont documentées que le 6 janvier).
+    const withDay06 = (mutate) => {
+      const days = structuredClone(FIXTURE_DAYS)
+      const comp = (code) => days['2026-01-06'].poles.flatMap((p) => p.competences).find((c) => c.code === code)
+      mutate(comp)
+      const entries = FIXTURE_FACTS.dates.map((date) => ({ run: 'démonstration', sourceDate: date, payload: days[date] }))
+      return importJourDocuments(entries, { referential: REF, now: '2026-07-17T12:00:00Z' }).master
+    }
+    // Court-circuit : la présence établie ne compte pas.
+    expect(computeEvents(withDay06((c) => { c('2.06').courtCircuit = true })).daysByCompetency.has('2.06')).toBe(false)
+    // Aucune pièce : les traces restent pendantes (aucun lien résolu).
+    expect(computeEvents(withDay06((c) => { c('5.01').pieces = [] })).daysByCompetency.has('5.01')).toBe(false)
+    // verdict.confiance n'entre ni dans l'admissibilité ni dans le rayon.
+    const lowConfidence = computeEvents(withDay06((c) => { c('2.01').verdict.confiance = 0.01 }))
+    expect(lowConfidence.daysByCompetency.get('2.01').size).toBe(3)
+    expect(lowConfidence.admissible).toHaveLength(FIXTURE_FACTS.admissible)
+    // Tous les liens contestés : l'observation sort du soleil.
+    const contested = structuredClone(master)
+    const obs101 = contested.observations.find((o) => o.rawCode === '1.01' && o.normalizedStatus === 'established')
+    for (const link of contested.evidenceLinks) if (link.observationId === obs101.id) link.reviewState = 'contested'
+    expect(computeEvents(contested).daysByCompetency.has('1.01')).toBe(false)
+    // Deux variantes pour le 5 janvier : journée à arbitrer, aucune ne compte.
+    const entries = FIXTURE_FACTS.dates.map((date) => ({ run: 'démonstration', sourceDate: date, payload: FIXTURE_DAYS[date] }))
+    entries.push({ run: 'autre', sourceDate: '2026-01-05', payload: FIXTURE_DAYS['2026-01-05'] })
+    const concurrent = computeEvents(importJourDocuments(entries, { referential: REF, now: '2026-07-17T12:00:00Z' }).master)
+    expect(concurrent.competenciesByDate.has('2026-01-05')).toBe(false)
+    expect(concurrent.daysByCompetency.has('3.04')).toBe(false) // documentée le 5 seulement
+    expect(concurrent.daysByCompetency.get('2.01').size).toBe(2) // encore documentée le 6 et le 7
   })
 
-  it('UC-VIS-01-U08 — rayon du soleil : journées distinctes ≤ tête de lecture (log2 plafonné à 64), le reste devient fantôme', () => {
+  it('UC-VIS-01-U08 — rayon du soleil : journées distinctes ≤ tête de lecture (log2 plafonné à 64) ; futureCount est calculé, seul un secteur déjà visible est prolongé d’un fantôme', () => {
     const { master } = demoMaster()
     const { daysByCompetency } = computeEvents(master)
     const metric = metricForPrecision('day')
@@ -153,7 +203,13 @@ describe('UC-VIS-01 — moteur de l’interface V3 (démonstration)', () => {
     expect(complete.get('2.01')).toEqual({ count: 3, proportion: radialProportion(3, 64), futureCount: 0 })
     const early = sunValues(daysByCompetency, { playheadDay: '2026-01-05', metric })
     expect(early.get('2.01')).toMatchObject({ count: 1, futureCount: 2 })
+    // 4.05 (documentée le 7 seulement) a un futureCount, mais count = 0 : le
+    // soleil (SunPanel) ne la dessine pas du tout — pas de fantôme pour elle.
     expect(early.get('4.05')).toEqual({ count: 0, proportion: 0, futureCount: 1 })
+    // Formule RG3 figée : log2(1 + n) / log2(65), plafonnée à 1.
+    expect(radialProportion(3, 64)).toBeCloseTo(2 / Math.log2(65), 10)
+    expect(radialProportion(1, 64)).toBeCloseTo(1 / Math.log2(65), 10)
+    expect(radialProportion(0, 64)).toBe(0)
     expect(radialProportion(64, 64)).toBe(1)
     expect(radialProportion(200, 64)).toBe(1)
     expect(countLabel(3, metric)).toBe('3 journées documentées')
@@ -174,8 +230,13 @@ describe('UC-VIS-01 — moteur de l’interface V3 (démonstration)', () => {
     expect(whyRadius('2.01', dates, { playheadDay: '2026-01-06', metric }).units).toEqual(['2026-01-05', '2026-01-06'])
     // Densité de la heatmap : seuils fixes (4 compétences le 05, 6 le 07 → « forte »).
     expect(heatmapLevel(FIXTURE_FACTS.byDate['2026-01-05'].length)).toBe(3)
-    expect(heatmapLevel(1)).toBe(1)
     expect(heatmapLevel(0)).toBe(0)
+    expect(heatmapLevel(1)).toBe(1)
+    expect(heatmapLevel(2)).toBe(2)
+    expect(heatmapLevel(3)).toBe(2)
+    expect(heatmapLevel(4)).toBe(3)
+    expect(heatmapLevel(7)).toBe(3)
+    expect(heatmapLevel(8)).toBe(4)
   })
 
   it('UC-VIS-01-U10 — état initial du visiteur : mode simplifié, panneaux par défaut, audience apprenant (privé)', () => {
@@ -184,7 +245,10 @@ describe('UC-VIS-01 — moteur de l’interface V3 (démonstration)', () => {
     expect(state.playheadDay).toBeNull() // état complet
     expect(state.activeScopeNodeId).toBeNull() // toutes les compétences
     const available = availablePanels({ format: { temporalPrecision: 'day' }, audience: 'learner', interfaceMode: 'simplified' })
-    // En simplifié : jamais d'éditeur JSON, d'audit d'import ni de constructeur de partage.
+    // En simplifié : ni éditeur JSON, ni audit d'import, ni constructeur de
+    // partage parmi les panneaux DISPONIBLES. (V3View rend néanmoins le
+    // constructeur dans un bloc replié « Préparer un partage » en simplifié :
+    // voir UC-APP-12 et F01.)
     for (const hidden of ['jsonEditor', 'importAudit', 'shareInspector']) expect(available.has(hidden)).toBe(false)
     expect([...renderedPanels(new Set(['sun', 'jsonEditor']), available)]).toEqual(['sun'])
   })
@@ -230,6 +294,9 @@ describe('UC-VIS-01 — vues historiques et HTML narratif', () => {
     const last = mergeDocAsOf(mergeFixture, '2026-01-07', { thresholds })
     expect(count(first)).toBeLessThan(count(last))
     expect(count(last)).toBe(count(mergeFixture))
+    // Dernière trame = document publié : mêmes codes, niveaux et points.
+    const projection = (doc) => doc.domains.flatMap((d) => d.competences.map((c) => [c.code, c.niveau, c.points])).sort()
+    expect(projection(last)).toEqual(projection(mergeFixture))
     expect(first.domains.every((d) => d.competences.length > 0)).toBe(true) // pôles vides exclus
   })
 
@@ -276,13 +343,13 @@ describe('UC-VIS-01 — vues historiques et HTML narratif', () => {
     expect(failure.validationErrors.length).toBeGreaterThan(0)
   })
 
-  // ANOMALIE A1 de la fiche — test qui FIGE le comportement ACTUEL (pas le
+  // ANOMALIE AN1 de la fiche — test qui FIGE le comportement ACTUEL (pas le
   // comportement attendu). Le schéma cartographie-jour impose poleNum en
   // CHAÎNE (« 1 » à « 7 ») et tout le corpus réel s'y conforme, mais
   // findDayNode compare `dp.poleNum === refPole.num` (nombre) : la sélection
   // d'un PÔLE dans la vue journée ne se résout pas sur un document conforme.
   // À inverser quand la comparaison sera normalisée (String(...)).
-  it('UC-VIS-01-U17 — [comportement actuel, anomalie A1] pôle d’une journée conforme au schéma (poleNum chaîne) : non résolu', () => {
+  it('UC-VIS-01-U17 — [comportement actuel, anomalie AN1] pôle d’une journée conforme au schéma (poleNum chaîne) : non résolu', () => {
     const day = FIXTURE_DAYS['2026-01-06']
     expect(typeof day.poles[1].poleNum).toBe('string')
     const meta = { kind: 'pole', id: 'COEUR — Relier & Naviguer', domainId: day.poles[1].poleNum }

@@ -7,8 +7,11 @@
 // révisions et droit de réponse, annotations, comparaison ipsative, éditeur
 // JSON expert, vues par persona, grille de tuiles, constructeur de partage
 // par liste positive, réimport d'un instantané employeur, persistance locale.
-// Les anomalies A2 (date du nom d'un ZIP journalier ignorée) et A3 (master
-// importé sans validation) sont figées ici.
+// Figées ici au niveau du moteur : AN4 (libellé mensuel), AN5 (entrée en
+// quarantaine = master vide, cause racine), AN7 (arbitrage sans révision) et
+// AN11 (forme du master partiellement contrôlée). U04, U15 et U16 illustrent
+// la CAUSE RACINE (moteur, correct par conception) des anomalies AN1, AN2 et
+// AN3, qui sont figées côté IHM par F06, F07 et F12.
 import { describe, expect, it, vi } from 'vitest'
 import { normalizeReferential } from '../../../src/v3/core/referentiel.js'
 import { chooseVariant, correctEffectiveDate, importJourDocuments, summarizeReport } from '../../../src/v3/core/import.js'
@@ -16,7 +19,7 @@ import { computeEvents } from '../../../src/v3/core/events.js'
 import { inventoryZip, isSafeZipPath, listZipEntries, readZipEntry } from '../../../src/v3/core/zip.js'
 import { annotate, applyExpertJson, masterDigest, reviewEvidenceLink, reviewObservation, validateMasterShape } from '../../../src/v3/core/master.js'
 import { compareStates, resolveBaselinePreset, whatChanged } from '../../../src/v3/core/compare.js'
-import { availablePanels, defaultVisiblePanels, INTERFACE_MODES, initialState, switchMode } from '../../../src/v3/core/state.js'
+import { availablePanels, defaultVisiblePanels, INTERFACE_MODES, initialState, renderedPanels, switchMode } from '../../../src/v3/core/state.js'
 import { columnsForWidth, moveTile, orderedTiles, TILE_SIZES } from '../../../src/v3/ui/tile-grid.jsx'
 import {
   addLearnerSummary,
@@ -27,6 +30,7 @@ import {
   newShareProject,
   planScopeInclusion,
   publishSnapshot,
+  removeScope,
   scopeTriState,
   setLinkShared,
   shareFilename,
@@ -93,11 +97,12 @@ describe('UC-APP-12 — import des archives de l’apprenant', () => {
     ])
   })
 
-  // ANOMALIE A2 de la fiche — comportement ACTUEL figé : pour un ZIP
-  // journalier importé seul, la date du NOM de fichier (AAAA-MM-JJ.zip) n'est
-  // jamais utilisée (inventoryZip ne la reçoit pas ; V3View ne l'applique
-  // qu'aux entrées déjà datées). Sans champ « feuille », la journée est perdue.
-  it('UC-APP-12-U04 — [comportement actuel, anomalie A2] ZIP journalier sans « feuille » : journée en quarantaine, même si le nom porte la date', async () => {
+  // Cause racine de l'ANOMALIE AN1 (figée côté IHM par F06) : inventoryZip
+  // n'accepte aucune date en option (seulement fallbackRun) et ne renvoie
+  // JAMAIS d'entrée non datée ; or V3View n'applique la date du nom
+  // (AAAA-MM-JJ.zip) qu'aux entrées SANS date (m && !e.sourceDate). Sans champ
+  // « feuille », la journée est donc perdue. Comportement du moteur voulu.
+  it('UC-APP-12-U04 — cause racine de l’anomalie AN1 (moteur) : inventoryZip ne reçoit aucune date ; ZIP journalier sans « feuille » → aucune entrée, date-absente', async () => {
     const day = structuredClone(FIXTURE_DAYS['2026-01-06'])
     for (const pole of day.poles) for (const p of pole.passagesSaillants ?? []) delete p.feuille
     const { entries, report } = await inventoryZip(storedZip(dayZipFiles(day)), { fallbackRun: 'import' })
@@ -124,6 +129,11 @@ describe('UC-APP-12 — import des archives de l’apprenant', () => {
     expect(moved.days[0].effectiveDate).toBe('2026-01-04')
     expect(moved.days[0].id).toBe(day.id) // identifiants immuables
     expect(moved.annotations.at(-1).note).toBe('Date corrigée : journal daté la veille')
+    // ANOMALIE AN7 — comportement ACTUEL figé : ni l'arbitrage ni la correction
+    // de date ne créent de révision (même identifiant, même numéro). Attendu :
+    // une révision chaînée, comme pour la revue et l'annotation.
+    expect(chosen.revision).toEqual(master.revision)
+    expect(moved.revision).toEqual(master.revision)
   })
 })
 
@@ -308,12 +318,13 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
     expect(await store.listMasters()).toEqual([])
   })
 
-  // ANOMALIE A4 de la fiche — comportement ACTUEL figé : ShareBuilder
+  // Cause racine de l'ANOMALIE AN3 (figée côté IHM par F12) : ShareBuilder
   // (exportSnapshot) RECONSTRUIT l'instantané au moment de publier. Chaque
-  // construction tire de nouveaux identifiants publics (uuidV4) et une nouvelle
-  // date de génération : l'empreinte de sortie diffère toujours de celle
-  // verrouillée à la prévisualisation, donc publishSnapshot refuse toujours.
-  it('UC-APP-12-U16 — [comportement actuel, anomalie A4] deux constructions du même partage n’ont jamais la même empreinte : la publication par l’IHM est refusée', () => {
+  // construction tire de nouveaux identifiants publics (uuidV4, voulu :
+  // AC-SHARE-07) et une nouvelle date de génération : l'empreinte de sortie
+  // diffère de celle verrouillée à la prévisualisation. Le moteur, lui, publie
+  // correctement l'instantané prévisualisé.
+  it('UC-APP-12-U16 — cause racine de l’anomalie AN3 (moteur) : deux constructions du même partage n’ont jamais la même empreinte ; seule l’empreinte prévisualisée se publie', () => {
     const { master } = myMaster()
     const base = newShareProject({ master, name: 'P' })
     const project = applyScopeInclusion(base, master, planScopeInclusion(base, master, { type: 'family', familyNum: 2 }))
@@ -329,11 +340,11 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
     expect(publishSnapshot(locked, master, previewed.digests, { confirmedStaticExportWarning: true }).ok).toBe(true)
   })
 
-  // ANOMALIE A3 de la fiche — comportement ACTUEL figé : V3View charge un
+  // Cause racine de l'ANOMALIE AN2 (figée côté IHM par F07) : V3View charge un
   // fichier « competency-map-master » tel quel (setMaster), sans
-  // validateMasterShape ; le moteur d'événements échoue alors sur un master
-  // incomplet, ce qui fait tomber l'affichage (voir F15).
-  it('UC-APP-12-U15 — [comportement actuel, anomalie A3] un master incomplet est rejeté par validateMasterShape mais fait échouer computeEvents', () => {
+  // validateMasterShape — qui l'aurait rejeté ; computeEvents échoue alors sur
+  // le master incomplet pendant le rendu.
+  it('UC-APP-12-U15 — cause racine de l’anomalie AN2 (moteur) : un master incomplet est rejeté par validateMasterShape mais fait échouer computeEvents', () => {
     const incomplete = { kind: 'competency-map-master', schemaVersion: '3.0.0' }
     expect(validateMasterShape(incomplete)).toEqual([
       'days : tableau attendu', 'observations : tableau attendu', 'evidenceLinks : tableau attendu', 'passages : tableau attendu',
@@ -341,9 +352,9 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
     expect(() => computeEvents(incomplete)).toThrow(TypeError)
   })
 
-  // ANOMALIE A5 (libellé) — comportement ACTUEL figé : sous la précision
+  // ANOMALIE AN4 (libellé) — comportement ACTUEL figé : sous la précision
   // « mois », l'accord suit « journée » (féminin) au lieu de « mois ».
-  it('UC-APP-12-U17 — [comportement actuel, anomalie A5] libellé du compte mensuel mal accordé dans la vue employeur', () => {
+  it('UC-APP-12-U17 — [comportement actuel, anomalie AN4] libellé du compte mensuel mal accordé dans la vue employeur', () => {
     const months = METRICS['documented-months-v1']
     expect(countLabel(1, months)).toBe('1 mois documentée') // attendu : « 1 mois documenté »
     expect(countLabel(2, months)).toBe('2 mois documentée') // attendu : « 2 mois documentés »
@@ -371,5 +382,85 @@ describe('UC-APP-12 — partage par liste positive et réimport', () => {
       URL.revokeObjectURL = originalRevoke
       click.mockRestore()
     }
+  })
+
+  it('UC-APP-12-U19 — RG5 : publication bloquée sur fuite d’un verbatim exclu, document non partagé ou relation orpheline', () => {
+    const { master } = myMaster()
+    const base = newShareProject({ master, name: 'P', now: NOW })
+    const project = applyScopeInclusion(base, master, planScopeInclusion(base, master, { type: 'family', familyNum: 2 }), NOW)
+    expect(buildShareSnapshot(master, project, { referential: REF, now: NOW }).ok).toBe(true)
+    const codes = (res) => res.blockers.map((b) => b.code)
+
+    // (a) Une synthèse reprend mot pour mot le verbatim d'un passage NON autorisé.
+    const allowed = new Set(project.allowed.passageIds)
+    const allowedTexts = master.passages.filter((p) => allowed.has(p.id)).map((p) => p.verbatim.trim())
+    const excluded = master.passages.find(
+      (p) => !allowed.has(p.id) && p.verbatim?.trim().length >= 12 && !allowedTexts.some((a) => a.includes(p.verbatim.trim())),
+    )
+    const leak = buildShareSnapshot(master, addLearnerSummary(project, { code: '6.07', text: excluded.verbatim.trim() }, NOW), { referential: REF, now: NOW })
+    expect(leak.ok).toBe(false)
+    expect(codes(leak)).toContain('fuite-verbatim')
+
+    // (b) Passage autorisé, mais son document n'est partagé qu'en synthèse.
+    const summaryOnly = structuredClone(project)
+    const docId = master.passages.find((p) => p.id === project.allowed.passageIds[0]).documentId
+    summaryOnly.allowed.documentModes[docId] = 'summary'
+    const notShared = buildShareSnapshot(master, summaryOnly, { referential: REF, now: NOW })
+    expect(notShared.ok).toBe(false)
+    expect(codes(notShared)).toContain('document-non-partage')
+
+    // (c) Lien autorisé vers un passage absent du master.
+    const orphan = structuredClone(master)
+    orphan.passages = orphan.passages.filter((p) => p.id !== project.allowed.passageIds[0])
+    const orphaned = buildShareSnapshot(orphan, project, { referential: REF, now: NOW })
+    expect(orphaned.ok).toBe(false)
+    expect(codes(orphaned)).toContain('relation-orpheline')
+  })
+
+  // ANOMALIE AN11 de la fiche — comportement ACTUEL figé : validateMasterShape
+  // ne contrôle ni annotations, ni derivedNarratives (ni les documents et
+  // occurrences), que applyExpertJson recopie tels quels. Attendu : refus
+  // explicite dans les deux cas.
+  it('UC-APP-12-U20 — [comportement actuel, anomalie AN11] JSON expert sans annotations → accepté (annotations indéfinies) ; sans derivedNarratives → TypeError', () => {
+    const { master } = myMaster()
+    const noAnnotations = structuredClone(master)
+    delete noAnnotations.annotations
+    expect(validateMasterShape(noAnnotations)).toEqual([])
+    const accepted = applyExpertJson(master, noAnnotations, { now: NOW })
+    expect(accepted.ok).toBe(true)
+    expect(accepted.master.annotations).toBeUndefined()
+
+    const noNarratives = structuredClone(master)
+    delete noNarratives.derivedNarratives
+    expect(validateMasterShape(noNarratives)).toEqual([])
+    expect(() => applyExpertJson(master, noNarratives, { now: NOW })).toThrow(TypeError)
+  })
+
+  // Cause racine de l'ANOMALIE AN5 (figée côté IHM par F05) : une entrée sans
+  // date valide est mise en quarantaine par importJourDocuments, qui renvoie
+  // quand même un master NEUF… vide — que V3View substitue au dossier courant.
+  it('UC-APP-12-U21 — [comportement actuel, anomalie AN5] pôle isolé dont la date est annulée : master neuf SANS journée, rapport date-absente', () => {
+    const pole = FIXTURE_DAYS['2026-01-05'].poles[1]
+    const { master, report } = importJourDocuments([{ run: 'import', sourceDate: '', payload: { date: null, poles: [pole] } }], { referential: REF, now: NOW })
+    expect(master.kind).toBe('competency-map-master')
+    expect(master.days).toEqual([]) // attendu (IHM) : dossier courant conservé
+    expect(report.map((r) => [r.severity, r.code])).toEqual([['blocking', 'date-absente']])
+  })
+
+  it('UC-APP-12-U22 — RG4 et RG3 : retirer une famille du partage ne touche pas au dossier ; panneaux rendus = affichés ∩ disponibles', () => {
+    const { master } = myMaster()
+    const before = masterDigest(master)
+    const base = newShareProject({ master, name: 'P', now: NOW })
+    const included = applyScopeInclusion(base, master, planScopeInclusion(base, master, { type: 'family', familyNum: 2 }), NOW)
+    expect(included.allowed.evidenceLinkIds).toHaveLength(10)
+
+    const removed = removeScope(included, master, { type: 'family', familyNum: 2 }, NOW)
+    expect(removed.allowed.evidenceLinkIds).toEqual([])
+    expect(removed.allowed.passageIds).toEqual([])
+    expect(removed.journal.at(-1).summary).toBe('Retrait de 10 association(s) de cette version partagée')
+    expect(masterDigest(master)).toBe(before) // « Retirer de cette version partagée », jamais supprimer
+
+    const employer = availablePanels({ format: { temporalPrecision: 'day' }, audience: 'employer', interfaceMode: 'expert' })
+    expect([...renderedPanels(new Set(['jsonEditor', 'sun']), employer)]).toEqual(['sun'])
   })
 })

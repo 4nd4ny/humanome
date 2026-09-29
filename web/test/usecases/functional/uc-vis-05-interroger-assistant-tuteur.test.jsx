@@ -47,11 +47,13 @@ afterEach(() => {
 })
 
 describe('UC-VIS-05 — le visiteur interroge l’assistant', () => {
-  it('UC-VIS-05-F10 — nominal : 💬 → avertissement IA, question, défi résolu, réponse en texte simple ; seule la question et la rubrique partent', async () => {
+  it('UC-VIS-05-F10 — nominal : 💬 → avertissement IA, question, « L’assistant écrit… », défi résolu, réponse en texte simple ; seule la question et la rubrique partent', async () => {
+    let reply
     const server = fakeDemoServer({
       createHash,
       difficultyBits: 6,
-      answer: answer('Ouvrez **Référentiel** puis cherchez `1.01` : #/referentiel/1.01.'),
+      // Réponse différée : l'indicateur « écrit… » reste visible tant qu'elle n'arrive pas.
+      answer: () => new Promise((resolve) => (reply = resolve)),
     })
     openApp('#/referentiel')
 
@@ -60,6 +62,10 @@ describe('UC-VIS-05 — le visiteur interroge l’assistant', () => {
     expect(panel.getByRole('note').textContent).toContain('Il ne voit pas votre portfolio')
     expect(panel.getByRole('button', { name: 'Envoyer' }).disabled).toBe(true)
     await ask(panel, 'Où trouver la pensée critique ?')
+
+    expect(panel.getByRole('status').textContent).toBe('L’assistant écrit…')
+    await waitFor(() => expect(reply).toBeTypeOf('function'))
+    await act(async () => reply(answer('Ouvrez **Référentiel** puis cherchez `1.01` : #/referentiel/1.01.')()))
 
     await waitFor(() =>
       expect(panel.getByText('Ouvrez Référentiel puis cherchez 1.01 : #/referentiel/1.01.')).toBeDefined(),
@@ -75,14 +81,25 @@ describe('UC-VIS-05 — le visiteur interroge l’assistant', () => {
     expect(JSON.stringify({ ...localStorage })).not.toContain('pensée critique')
   })
 
-  it('UC-VIS-05-F11 — A2/A3 : l’historique survit au changement de page dans l’onglet ; « Effacer » le vide', async () => {
+  it('UC-VIS-05-F11 — A2/A3 : l’historique survit à la fermeture du panneau, au changement de page et au rechargement de l’onglet ; « Effacer » le vide', async () => {
     fakeDemoServer({ createHash, difficultyBits: 2, answer: answer('Commencez par #/essayer.') })
     const { unmount } = openApp('#/')
     const panel = openAssistant()
     await ask(panel, 'Par où commencer ?')
     await waitFor(() => expect(panel.getByText('Commencez par #/essayer.')).toBeDefined())
-    unmount()
 
+    // Fermer puis rouvrir, et changer de page : le panneau reste monté dans l'en-tête.
+    fireEvent.click(panel.getByRole('button', { name: 'Fermer l’assistant' }))
+    act(() => {
+      window.location.hash = '#/referentiel'
+      window.dispatchEvent(new HashChangeEvent('hashchange'))
+    })
+    const reopened = openAssistant()
+    expect(reopened.getByText('Par où commencer ?')).toBeDefined()
+    expect(reopened.getByText('Commencez par #/essayer.')).toBeDefined()
+
+    // Rechargement de l'onglet (application démontée puis remontée) : sessionStorage.
+    unmount()
     openApp('#/guides')
     const again = openAssistant()
     expect(again.getByText('Par où commencer ?')).toBeDefined()
@@ -132,6 +149,32 @@ describe('UC-VIS-05 — le visiteur interroge l’assistant', () => {
 
     expect((await panel.findByRole('alert')).textContent).toBe('démo : HTTP 503 sur api/llm/challenge')
     expect(server.posts).toHaveLength(0)
+  })
+
+  it('UC-VIS-05-F18 — RG5 : une réponse contenant du HTML est affichée comme TEXTE, jamais interprétée', async () => {
+    fakeDemoServer({ createHash, difficultyBits: 2, answer: answer('<b>gras</b><img src=x onerror="window.pwned=1">') })
+    openApp('#/')
+    const panel = openAssistant()
+    await ask(panel, 'Un test ?')
+
+    await waitFor(() => expect(panel.getByText('<b>gras</b><img src=x onerror="window.pwned=1">')).toBeDefined())
+    expect(document.querySelector('.tuteur-msg-assistant b, .tuteur-msg-assistant img')).toBeNull()
+    expect(window.pwned).toBeUndefined()
+  })
+
+  it('UC-VIS-05-F19 — garantie : l’historique de l’onglet est borné aux 40 derniers messages', async () => {
+    const seeded = Array.from({ length: 45 }, (_, i) => ({ role: i % 2 ? 'assistant' : 'user', text: `message ${i}` }))
+    sessionStorage.setItem('humanome-tuteur', JSON.stringify(seeded))
+    fakeDemoServer({ createHash, difficultyBits: 2, answer: answer('Réponse 46.') })
+    openApp('#/')
+    const panel = openAssistant()
+    await ask(panel, 'Question 45 ?')
+
+    await waitFor(() => expect(panel.getByText('Réponse 46.')).toBeDefined())
+    const stored = JSON.parse(sessionStorage.getItem('humanome-tuteur'))
+    expect(stored).toHaveLength(40)
+    expect(stored.at(-1)).toEqual({ role: 'assistant', text: 'Réponse 46.' })
+    expect(stored[0].text).toBe('message 7') // 45 + 2 = 47 messages, les 7 premiers sont tombés
   })
 
   it('UC-VIS-05-F15 — E1 : question vide non envoyable ; saisie bornée à 1 500 caractères', () => {

@@ -17,6 +17,7 @@ import { clearReferentielCache } from '../../../src/data/referentiel.js'
 import { downloadJson } from '../../../src/lib/download-json.js'
 import { normalizeReferential } from '../../../src/v3/core/referentiel.js'
 import { importJourDocuments } from '../../../src/v3/core/import.js'
+import { contentDigest } from '../../../src/v3/core/canonical-json.js'
 import {
   addLearnerSummary,
   applyScopeInclusion,
@@ -85,6 +86,15 @@ const setMode = (value) => fireEvent.change(screen.getByLabelText(/Mode/), { tar
 const sectors = () => document.querySelectorAll('.v3-sector:not(.v3-sector-family)')
 const stat = (label) => within(screen.getByRole('region', { name: 'Indicateurs synthétiques' })).getByText(label).nextSibling.textContent
 const tileLabels = () => [...document.querySelectorAll('.v3-tile-label')].map((n) => n.textContent)
+const articleCodes = (portfolio) => [...portfolio.querySelectorAll('article h4')].map((h) => h.textContent.split(' ')[0])
+const shareCount = () => within(screen.getByRole('region', { name: 'Préparer un partage' })).getByText(/association\(s\) autorisée\(s\)/).textContent
+
+/** Inclut la famille COEUR (2) dans le partage, avec la confirmation groupée. */
+function includeCoeur() {
+  const share = within(screen.getByRole('region', { name: 'Préparer un partage' }))
+  fireEvent.click(share.getByLabelText(/COEUR — Relier & Naviguer/))
+  fireEvent.click(within(screen.getByRole('alertdialog', { name: 'Confirmation d’inclusion groupée' })).getByRole('button', { name: 'Confirmer' }))
+}
 
 beforeEach(() => {
   resetApiClient()
@@ -119,7 +129,7 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
     expect(within(report).getByRole('status').textContent).toMatch(/^Avertissement : \d+$/)
   })
 
-  it('UC-APP-12-F02 — A1 : ZIP corpus de deux runs → journée concurrente « à arbitrer » (aucune contribution) puis choix de la variante', async () => {
+  it('UC-APP-12-F02 — A1 + [comportement actuel, anomalie AN9] ZIP corpus de deux runs → journée concurrente « à arbitrer » (aucune contribution), choix de la variante ; badge non recalculé', async () => {
     await openV3()
     const corpus = storedZip([
       { name: 'run-A/2026-02-10.zip', data: storedZip(dayZipFiles(myDay('2026-01-05', '2026-02-10', 'A'))) },
@@ -134,18 +144,32 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
     const arbitrage = await screen.findByRole('region', { name: 'Arbitrage des variantes' })
     expect(arbitrage.textContent).toContain('2026-02-10 — 2 variantes')
     fireEvent.click(within(arbitrage).getByLabelText('run-B'))
+    expect(within(arbitrage).getByLabelText('run-B').checked).toBe(true)
     expect(stat('Journées documentées')).toBe('2')
-    expect(screen.getByRole('gridcell', { name: '2026-02-10 : 4 compétences documentées' })).toBeDefined()
+    // C'est bien run-B (copie du 6 janvier : 1.01, 2.01, 2.06, 5.01) qui contribue, pas run-A.
+    fireEvent.click(screen.getByRole('gridcell', { name: '2026-02-10 : 4 compétences documentées' }))
+    const portfolio = await screen.findByRole('region', { name: 'Portfolio de la journée 2026-02-10' })
+    expect(articleCodes(portfolio).sort()).toEqual(['1.01', '2.01', '2.06', '5.01'])
+    // ANOMALIE AN9 — comportement ACTUEL figé : le badge est calculé sur le
+    // rapport d'import figé ; il n'est pas recalculé après l'arbitrage.
+    expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter') // attendu : plus de badge
   })
 
-  it('UC-APP-12-F03 — A2 : master V3 déjà constitué (révision existante) chargé tel quel', async () => {
+  it('UC-APP-12-F03 — A2 + [comportement actuel, anomalie AN10] master V3 déjà constitué (révision existante) chargé tel quel ; le projet de partage en cours n’est pas abandonné', async () => {
     await openV3()
+    setMode('employeur')
+    await screen.findByRole('region', { name: 'Préparer un partage' })
+    includeCoeur()
+    expect(shareCount()).toContain('10 association(s) autorisée(s)')
     const { master } = importJourDocuments(
       [{ run: 'mon-run', sourceDate: '2026-03-02', payload: myDay('2026-01-06', '2026-03-02', 'M') }],
       { referential: normalizeReferential(referentielDoc) },
     )
     await importFiles(jsonFile(master, 'mon-master.json'))
 
+    // ANOMALIE AN10 — comportement ACTUEL figé : le projet de partage du dossier
+    // PRÉCÉDENT est conservé (setProject(null) n'est appelé que pour des journées).
+    expect(shareCount()).toContain('10 association(s) autorisée(s)') // attendu : 0
     expect(stat('Journées documentées')).toBe('1')
     setMode('expert')
     expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain('Master V3 chargé (révision existante)')
@@ -163,7 +187,7 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
     expect(report.textContent).toContain('autre.json : format non reconnu')
   })
 
-  it('UC-APP-12-F05 — A3/E2 : fichier d’un seul pôle → la date est DEMANDÉE ; sans réponse, la journée est mise en quarantaine', async () => {
+  it('UC-APP-12-F05 — A3/E2 + [comportement actuel, anomalie AN5] fichier d’un seul pôle → la date est DEMANDÉE ; sans réponse, quarantaine ET dossier remplacé par un master vide', async () => {
     await openV3()
     const pole = myDay('2026-01-05', '2026-03-05', 'P').poles[1]
     const prompt = vi.spyOn(window, 'prompt').mockReturnValueOnce('2026-03-05').mockReturnValueOnce(null)
@@ -174,13 +198,16 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
 
     await importFiles(jsonFile(pole, 'carto_P2.json'))
     expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter')
+    // ANOMALIE AN5 — comportement ACTUEL figé : la journée en quarantaine
+    // produit quand même un master NEUF, vide, qui remplace le dossier.
+    expect(stat('Journées documentées')).toBe('0') // attendu : '1' (dossier courant conservé)
     setMode('expert')
     expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain('date-absente')
   })
 
-  // ANOMALIE A2 — comportement ACTUEL figé : le nom « 2026-02-12.zip » porte la
+  // ANOMALIE AN1 — comportement ACTUEL figé : le nom « 2026-02-12.zip » porte la
   // date, mais sans champ « feuille » la journée est refusée.
-  it('UC-APP-12-F06 — [comportement actuel, anomalie A2] ZIP journalier daté par son NOM mais sans « feuille » → refusé', async () => {
+  it('UC-APP-12-F06 — [comportement actuel, anomalie AN1] ZIP journalier daté par son NOM mais sans « feuille » → refusé', async () => {
     await openV3()
     const day = myDay('2026-01-06', '2026-02-12', 'Z')
     for (const pole of day.poles) for (const p of pole.passagesSaillants ?? []) delete p.feuille
@@ -192,10 +219,10 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
     expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain('Date de la journée à saisir')
   })
 
-  // ANOMALIE A3 — comportement ACTUEL figé : un fichier « competency-map-master »
+  // ANOMALIE AN2 — comportement ACTUEL figé : un fichier « competency-map-master »
   // incomplet est chargé sans validation et fait tomber l'affichage (rattrapé
   // ici par une frontière d'erreur de TEST ; l'application n'en a pas).
-  it('UC-APP-12-F07 — [comportement actuel, anomalie A3] master incomplet importé → l’interface plante', async () => {
+  it('UC-APP-12-F07 — [comportement actuel, anomalie AN2] master incomplet importé → l’interface plante', async () => {
     demoNetwork()
     vi.spyOn(console, 'error').mockImplementation(() => {})
     window.location.hash = '#/cartographie'
@@ -215,7 +242,7 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
 })
 
 describe('UC-APP-12 — explorer, comparer, répondre', () => {
-  it('UC-APP-12-F08 — A4 : vue « Apprenant » en tuiles ; réordonner, mémoriser PAR vue ; masquer puis réafficher un panneau', async () => {
+  it('UC-APP-12-F08 — A4 + [comportement actuel, anomalie AN13] vue « Apprenant » en tuiles ; réordonner, redimensionner, mémoriser PAR vue ; masquer puis réafficher un panneau', async () => {
     await openV3()
     setMode('apprenant')
     await waitFor(() => expect(document.querySelector('.v3-tile-grid')).not.toBeNull())
@@ -231,9 +258,17 @@ describe('UC-APP-12 — explorer, comparer, répondre', () => {
     await waitFor(() => expect(tileLabels().slice(0, 2)).toEqual(['Indicateurs', 'Soleil']))
     expect(JSON.parse(localStorage.getItem('humanome-v3-presentation')).interfaceMode).toBe('apprenant')
 
+    // Redimensionner par le menu de taille : mémorisé dans la disposition de la vue.
+    fireEvent.change(screen.getByLabelText('Taille de Soleil'), { target: { value: '2x2' } })
+    expect(JSON.parse(localStorage.getItem('humanome-v3-tiles-apprenant')).sizes.sun).toEqual({ w: 2, h: 2 })
+
     fireEvent.click(screen.getByText('Panneaux'))
     fireEvent.click(within(document.querySelector('.v3-panels-menu')).getByLabelText('Heatmap'))
     expect(tileLabels()).not.toContain('Heatmap')
+    // ANOMALIE AN13 — comportement ACTUEL figé : seules les préférences de
+    // panneaux de Simplifié et Expert sont persistées ; celles de la vue
+    // Apprenant ne survivront pas à un rechargement (hors vue courante).
+    expect(JSON.parse(localStorage.getItem('humanome-v3-presentation')).overrides).not.toHaveProperty('apprenant')
     fireEvent.click(screen.getByRole('button', { name: 'Réafficher les panneaux' }))
     expect(tileLabels()).toContain('Heatmap')
     expect(tileLabels()).toContain('Partage') // disponible en vue Apprenant
@@ -263,7 +298,7 @@ describe('UC-APP-12 — explorer, comparer, répondre', () => {
     expect(region.textContent).toContain('Choisissez un préréglage')
   })
 
-  it('UC-APP-12-F10 — A6 : droit de réponse — contester la seule preuve d’une compétence la retire du soleil ; note privée enregistrée', async () => {
+  it('UC-APP-12-F10 — A6 + [comportement actuel, anomalies AN6 et AN12] droit de réponse — contester la seule preuve d’une compétence la retire du soleil et du portfolio ; note privée enregistrée', async () => {
     await openV3()
     setMode('apprenant')
     fireEvent.click(await screen.findByRole('gridcell', { name: '2026-01-05 : 4 compétences documentées' }))
@@ -271,17 +306,26 @@ describe('UC-APP-12 — explorer, comparer, répondre', () => {
     const article = [...portfolio.querySelectorAll('article')].find((a) => a.querySelector('h4').textContent.startsWith('3.04'))
     expect(within(article).getByLabelText('État de revue').textContent).toMatch(/^Non revue/)
     expect(sectors()).toHaveLength(10)
+    expect(articleCodes(portfolio)).toContain('3.04')
 
     fireEvent.click(within(article).getByRole('button', { name: 'Contester' }))
     expect(sectors()).toHaveLength(9)
     expect(stat('Compétences documentées')).toBe('9')
-    expect([...portfolio.querySelectorAll('article h4')].map((h) => h.textContent)).not.toContain('3.04')
+    expect(articleCodes(portfolio)).not.toContain('3.04')
+    // ANOMALIE AN6 — comportement ACTUEL figé : le lien contesté disparaît du
+    // portfolio ; l'état « Contestée » n'est jamais affiché et aucune commande
+    // ne permet d'y revenir (seul l'éditeur JSON Expert le peut).
+    expect(portfolio.textContent).not.toContain('Contestée')
 
     const other = [...portfolio.querySelectorAll('article')].find((a) => a.querySelector('h4').textContent.startsWith('2.01'))
     fireEvent.click(within(other).getAllByRole('button', { name: 'Confirmer' })[0])
     expect(within(other).getAllByLabelText('État de revue')[0].textContent).toMatch(/^Confirmée/)
     fireEvent.click(within(other).getByText('Note privée, rôle et résultat'))
     fireEvent.change(within(other).getByLabelText('Note privée courte'), { target: { value: 'C’était en atelier.' } })
+    // ANOMALIE AN12 — comportement ACTUEL figé : un seul état « note » est
+    // partagé par tous les articles : la saisie apparaît dans l'article 5.03.
+    const neighbour = [...portfolio.querySelectorAll('article')].find((a) => a.querySelector('h4').textContent.startsWith('5.03'))
+    expect(within(neighbour).getByLabelText('Note privée courte').value).toBe('C’était en atelier.') // attendu : vide
     fireEvent.click(within(other).getByRole('button', { name: 'Enregistrer (privé)' }))
     setMode('expert')
     const editor = await screen.findByLabelText('Copie de travail du master (JSON)')
@@ -331,12 +375,12 @@ describe('UC-APP-12 — préparer un partage employeur (liste positive)', () => 
     return share
   }
 
-  // ANOMALIE A4 — comportement ACTUEL figé : la prévisualisation est exacte,
+  // ANOMALIE AN3 — comportement ACTUEL figé : la prévisualisation est exacte,
   // mais « Publier et exporter » reconstruit l'instantané (nouveaux
   // identifiants publics aléatoires, nouvelle date de génération) : son
   // empreinte ne peut jamais égaler celle verrouillée à la prévisualisation,
   // et la publication est TOUJOURS refusée comme « obsolète ».
-  it('UC-APP-12-F12 — A8 + [comportement actuel, anomalie A4] famille incluse, mois, synthèse → prévisualisation exacte ; la publication confirmée est refusée', async () => {
+  it('UC-APP-12-F12 — A8 + [comportement actuel, anomalie AN3] famille incluse, mois, synthèse → prévisualisation exacte ; la publication confirmée est refusée', async () => {
     await openV3()
     const confirm = vi.spyOn(window, 'confirm').mockReturnValue(true)
     const share = await prepareFamilyShare()
@@ -377,7 +421,7 @@ describe('UC-APP-12 — préparer un partage employeur (liste positive)', () => 
 
   it('UC-APP-12-F14 — A9/E5 : réimporter un fichier employeur → vue en lecture seule ; fichier altéré → quarantaine', async () => {
     await openV3()
-    // Le fichier qu'une publication produit (anomalie A4 : l'IHM ne peut pas
+    // Le fichier qu'une publication produit (anomalie AN3 : l'IHM ne peut pas
     // l'exporter aujourd'hui) est construit par le même moteur que la
     // prévisualisation, à partir d'un dossier de l'apprenant.
     const ref = normalizeReferential(referentielDoc)
@@ -408,5 +452,125 @@ describe('UC-APP-12 — préparer un partage employeur (liste positive)', () => 
     expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter')
     setMode('expert')
     expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain('Erreur d’intégrité')
+  })
+
+  it('UC-APP-12-F19 — A8, RG4 : inclure une preuve depuis le portfolio, puis une famille ; décocher la famille la retire de la version partagée sans toucher au dossier', async () => {
+    await openV3()
+    setMode('apprenant')
+    fireEvent.click(await screen.findByRole('gridcell', { name: '2026-01-05 : 4 compétences documentées' }))
+    const portfolio = await screen.findByRole('region', { name: 'Portfolio de la journée 2026-01-05' })
+    const article = [...portfolio.querySelectorAll('article')].find((a) => a.querySelector('h4').textContent.startsWith('3.04'))
+    fireEvent.click(within(article).getByLabelText('Inclure au partage (brouillon privé)'))
+
+    fireEvent.click(screen.getByText('Panneaux'))
+    fireEvent.click(within(document.querySelector('.v3-panels-menu')).getByLabelText('Partage'))
+    await screen.findByRole('region', { name: 'Préparer un partage' })
+    expect(shareCount()).toContain('1 association(s) autorisée(s)')
+    includeCoeur()
+    expect(shareCount()).toContain('11 association(s) autorisée(s)')
+
+    fireEvent.click(within(screen.getByRole('region', { name: 'Préparer un partage' })).getByLabelText(/COEUR — Relier & Naviguer/))
+    expect(shareCount()).toContain('1 association(s) autorisée(s)')
+    expect(sectors()).toHaveLength(10) // le dossier privé est intact
+    expect(within(article).getByLabelText('Inclure au partage (brouillon privé)').checked).toBe(true)
+  })
+
+  it('UC-APP-12-F20 — RG5 : une synthèse qui reprend le verbatim d’un passage exclu bloque la prévisualisation (fuite-verbatim)', async () => {
+    // Même corpus que la démonstration servie : passages de la famille 2 autorisés, un autre exclu.
+    const ref = normalizeReferential(referentielDoc)
+    const { master } = importJourDocuments(
+      Object.keys(FIXTURE_DAYS).map((d) => ({ run: 'démonstration', sourceDate: d, payload: FIXTURE_DAYS[d] })),
+      { referential: ref },
+    )
+    const base = newShareProject({ master, name: 'P' })
+    const plan = planScopeInclusion(base, master, { type: 'family', familyNum: 2 })
+    const allowedIds = new Set(applyScopeInclusion(base, master, plan).allowed.passageIds)
+    const allowedTexts = master.passages.filter((p) => allowedIds.has(p.id)).map((p) => p.verbatim.trim())
+    const leaked = master.passages
+      .map((p) => ({ id: p.id, text: p.verbatim?.trim() ?? '' }))
+      .find((p) => !allowedIds.has(p.id) && p.text.length >= 12 && !allowedTexts.some((a) => a.includes(p.text))).text
+
+    await openV3()
+    setMode('employeur')
+    const share = within(await screen.findByRole('region', { name: 'Préparer un partage' }))
+    includeCoeur()
+    fireEvent.click(share.getByText('Ajouter une synthèse sans source (ne compte aucune journée)'))
+    fireEvent.change(share.getByLabelText('Synthèse déclarée (sans document source)'), { target: { value: leaked } })
+    fireEvent.click(share.getByRole('button', { name: 'Ajouter la synthèse' }))
+    fireEvent.click(share.getByRole('button', { name: 'Prévisualiser (vue employeur exacte)' }))
+
+    expect(share.getByRole('alert').textContent).toContain('fuite-verbatim')
+    expect(screen.queryByRole('region', { name: 'Prévisualisation employeur' })).toBeNull()
+    expect(share.getByRole('button', { name: 'Publier et exporter le JSON employeur' }).disabled).toBe(true)
+  })
+})
+
+describe('UC-APP-12 — imports : cas limites et anomalies', () => {
+  // ANOMALIE AN8 — comportement ACTUEL figé : un ZIP sans carto_Pn.json ni
+  // kairos.json est ignoré SANS entrée de rapport, et le rapport (donc le
+  // badge) de l'import précédent est effacé. Attendu : « schema-inconnu ».
+  it('UC-APP-12-F15 — [comportement actuel, anomalie AN8] ZIP sans contenu reconnu → ignoré en silence, le rapport précédent est effacé', async () => {
+    await openV3()
+    await importFiles(browserFile('{pas du json', 'casse.json'))
+    expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter')
+
+    await importFiles(browserFile(storedZip([{ name: 'photo.txt', data: 'x' }]), 'photos.zip', 'application/zip'))
+    expect(within(bar()).queryByRole('status')).toBeNull() // attendu : 1 anomalie « schema-inconnu »
+    expect(stat('Journées documentées')).toBe('3') // dossier inchangé
+    setMode('expert')
+    expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain('Aucune anomalie.')
+  })
+
+  // ANOMALIE AN14 — comportement ACTUEL figé : openShareSnapshot ne vérifie que
+  // kind et l'empreinte (recalculable par quiconque) ; un fichier à empreinte
+  // correcte mais sans observations fait planter le rendu (aucune frontière
+  // d'erreur dans l'application ; rattrapé ici par une frontière de TEST).
+  it('UC-APP-12-F16 — [comportement actuel, anomalie AN14] fichier employeur à empreinte valide mais mal formé → l’interface plante', async () => {
+    demoNetwork()
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    window.location.hash = '#/cartographie'
+    render(
+      <Boundary>
+        <App lib={fakeLib} fetchMeFn={async () => ({ user: null })} />
+      </Boundary>,
+    )
+    await screen.findByRole('toolbar', { name: 'Barre de contexte' })
+    const doc = { kind: 'competency-map-share', schemaVersion: '3.0.0', integrity: { algorithm: 'sha-256', contentDigest: '' } }
+    doc.integrity.contentDigest = contentDigest(doc)
+    const input = document.querySelector('.v3-root input[type="file"]')
+    await act(async () => {
+      fireEvent.change(input, { target: { files: [jsonFile(doc, 'partage.json')] } })
+    })
+
+    // snapshotToViewModel parcourt snapshot.observations sans garde.
+    expect((await screen.findByTestId('crash')).textContent).toBe('snapshot.observations is not iterable')
+  })
+
+  // ANOMALIE AN15 — comportement ACTUEL figé : toute journée importée en JSON
+  // reçoit le run « import » ; deux runs d'une même date sont à arbitrer entre
+  // deux choix portant le même libellé.
+  it('UC-APP-12-F17 — [comportement actuel, anomalie AN15] deux documents-jour JSON de même date → variantes à arbitrer indiscernables (« import » ×2)', async () => {
+    await openV3()
+    await importFiles(
+      jsonFile(myDay('2026-01-05', '2026-02-20', 'R1'), 'run-1.json'),
+      jsonFile(myDay('2026-01-06', '2026-02-20', 'R2'), 'run-2.json'),
+    )
+    expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter')
+    setMode('expert')
+    const arbitrage = within(await screen.findByRole('region', { name: 'Arbitrage des variantes' }))
+    expect(arbitrage.getAllByLabelText('import')).toHaveLength(2) // attendu : un libellé par run
+  })
+
+  it('UC-APP-12-F18 — A1 : ZIP journalier seul avec feuilles datées → date PROPOSÉE (« à confirmer »), journée importée', async () => {
+    await openV3()
+    await importFiles(browserFile(storedZip(dayZipFiles(myDay('2026-01-07', '2026-02-12', 'J'))), 'journee.zip', 'application/zip'))
+
+    expect(stat('Journées documentées')).toBe('1')
+    expect(screen.getByRole('gridcell', { name: '2026-02-12 : 6 compétences documentées' })).toBeDefined()
+    expect(within(bar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter') // « à arbitrer » : date à confirmer
+    setMode('expert')
+    expect((await screen.findByRole('region', { name: 'Rapport d’import' })).textContent).toContain(
+      'Date proposée depuis les feuilles (2026-02-12) — à confirmer',
+    )
   })
 })
