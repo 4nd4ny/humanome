@@ -36,9 +36,13 @@ fi
 
 # Regenerate the PUBLISHED prompt packages imported by `deploy.mjs api`
 # (build/prompt-packages/*.json, hash-idempotent server-side): the default
-# aurora package (P8) and the forkable Twin6 package (D1/AD-D1). Both derive
-# deterministically from committed sources — re-running is a no-op on the server.
+# aurora package (P8) and the forkable Twin6 package (D1/AD-D1). Both are
+# deterministic — re-running is a no-op on the server. The Twin6 fiches P1..P7
+# are regenerated here from the committed corpus rather than left to a prior
+# front build; its three public templates must already sit in
+# web/public/data/twin6/prompts/ (not versioned yet: UC-SYS-04 AN-2).
 node "$repo/scripts/build-default-prompt-package.mjs"
+node "$repo/scripts/generate-fiches.mjs"
 node "$repo/scripts/build-twin6-prompt-package.mjs"
 
 git -C "$repo" describe --always --dirty 2>/dev/null > "$stage/VERSION" || echo "unknown" > "$stage/VERSION"

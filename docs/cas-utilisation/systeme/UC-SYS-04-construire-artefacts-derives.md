@@ -98,8 +98,8 @@ Ordre réel, reconstitué d'`INSTALL.md` §2 et §6, du `prebuild` de
    `contentHash` (RG3) → `referentiel/respire-v7.json`.
 3. **Référentiel 7.1.0.** `node scripts/enrich-referentiel.mjs` ajoute à chaque
    compétence sa `description` exacte (`referentiel-v7-definitions.json`), avec
-   le **même** `contentHash` → `respire-v7.1.0.json`. (Étape absente d'`INSTALL.md`
-   §2 ; `deploy.mjs` importe la 7.1.0 si le fichier existe.)
+   le **même** `contentHash` → `respire-v7.1.0.json` (`INSTALL.md` §2 ;
+   `deploy.mjs` importe la 7.1.0 si le fichier existe).
 4. **Validateurs** (quand `schemas/` a changé). `node scripts/build-validators.mjs`
    précompile les cinq schémas (ajv standalone, sans `eval`) dans
    `engine/src/validation-compiled.js`, puis vérifie que `respire-v7.json` passe
@@ -116,8 +116,10 @@ Ordre réel, reconstitué d'`INSTALL.md` §2 et §6, du `prebuild` de
    schémas, lance `build-tuteur-digest.mjs` (`scripts/data/tuteur-digest.md`,
    **avant** la copie de `scripts/data` dans la release — UC-VIS-05), puis
    `build-default-prompt-package.mjs` (paquet par défaut
-   `aurora-v3-reconstruit` 1.0.0, RG5) et `build-twin6-prompt-package.mjs`
-   (paquet publié `twin6-ouverte` 1.0.0, RG6), et enfin `composer`.
+   `aurora-v3-reconstruit` 1.0.0, RG5), `generate-fiches.mjs` (les P*.md du
+   paquet Twin6 ne dépendent donc plus d'un build du front antérieur) et
+   `build-twin6-prompt-package.mjs` (paquet publié `twin6-ouverte` 1.0.0, RG6),
+   et enfin `composer`.
 8. **Consommation.** `node scripts/deploy/deploy.mjs api` importe
    `respire-v7.json`, `respire-v7.1.0.json` (s'il existe) et
    `build/prompt-packages/*.json` (UC-SYS-02 étapes 5 et 8).
@@ -175,11 +177,11 @@ Ordre réel, reconstitué d'`INSTALL.md` §2 et §6, du `prebuild` de
   corpus intact. `generate-fiches.mjs --verify` : « Pn.md DIFFÈRE du corpus
   (…) » puis « ÉCHEC : k P*.md divergent du corpus. », code 1, rien d'écrit.
   Corpus sans en-tête d'un pôle → « En-tête de pôle manquant : n », code 1.
-- **E5 — Sources Twin6 absentes** (étapes 6-7, clone neuf) :
-  `generate-fiches.mjs` → `ENOENT` (le dossier `twin6/prompts/` n'est pas créé) ;
-  une fois le dossier créé, `build-twin6-package.mjs` et
-  `build-twin6-prompt-package.mjs` → « prompt manquant : …/1-scan-pole.md ». Le
-  `prebuild` du front et `stage-api.sh` s'arrêtent (AN-2).
+- **E5 — Gabarits Twin6 absents** (étapes 6-7, clone neuf) :
+  `generate-fiches.mjs` crée le dossier `twin6/prompts/` et y écrit les P*.md,
+  mais `build-twin6-package.mjs` et `build-twin6-prompt-package.mjs` →
+  « prompt manquant : …/1-scan-pole.md ». Le `prebuild` du front et
+  `stage-api.sh` s'arrêtent (AN-2).
 - **E6 — Document non conforme** (étape 5) : `KO <fichier> (<type>) — N
   erreur(s)` suivi des 8 premières erreurs (`chemin [mot-clé] message`) puis
   « … M erreur(s) supplémentaire(s) » ; « JSON illisible : … » ; « kind inconnu
@@ -285,7 +287,7 @@ par le catalogue, comme UC-SYS-01-F22, UC-SYS-02-F19 et UC-PRO-08-F17.
 | UC-SYS-04-U03 | `toMergeDocument` | Corpus réel conforme à `cartographie-merge`, recopie sans renommage, valeurs par défaut, constante requise absente refusée (E1) | idem |
 | UC-SYS-04-U04 | `toDayDocument`, `frenchLabel` | Pôles remis dans l'ordre P1..P7, kairos facultatif, pôle manquant refusé (E1), journée réelle conforme | idem |
 | UC-SYS-04-U05 | `reassembleFiche`, `parsePole` | Règle (b) exacte ; aller-retour octet pour octet sur les 61 fiches du corpus versionné (RG4) | idem |
-| UC-SYS-04-U06 | `stage-api.sh`, `prebuild`, `deploy.mjs` | Ordre réel de la chaîne sur les seules lignes actives (étape commentée ou neutralisée refusée) ; prérequis manuels non rejoués par `stage-api.sh` ; boucles d'import de `deploy.mjs` (référentiels puis paquets) | idem |
+| UC-SYS-04-U06 | `stage-api.sh`, `prebuild`, `deploy.mjs` | Ordre réel de la chaîne sur les seules lignes actives (étape commentée ou neutralisée refusée), dont les P*.md régénérés avant le paquet Twin6 ; prérequis manuels non rejoués par `stage-api.sh` ; boucles d'import de `deploy.mjs` (référentiels puis paquets) | idem |
 
 ### Tests fonctionnels
 
@@ -301,7 +303,7 @@ par le catalogue, comme UC-SYS-01-F22, UC-SYS-02-F19 et UC-PRO-08-F17.
 | UC-SYS-04-F08 | E3 | CLI | Prérequis absents → `ENOENT`, code 1, rien d'écrit sauf `validation-compiled.js` | idem |
 | UC-SYS-04-F09 | Nominal, étape 7, E7 | CLI | Paquet `aurora-v3-reconstruit` conforme, placeholders, variables documentées, aucune sentinelle, déterministe ; gabarit du moteur modifié → construction refusée (RG5) | idem |
 | UC-SYS-04-F10 | Nominal, étape 6, A3, A4, E4 | CLI | 7 P*.md, `--verify` OK, `extract-fiches` redonne le corpus versionné octet pour octet ; parité rompue, code dupliqué, en-tête manquant → code 1, corpus intact (RG4) | idem |
-| UC-SYS-04-F11 | E5 (AN-2) | CLI | Entrées versionnées seules : `generate-fiches` `ENOENT`, paquets Twin6 « prompt manquant » (comportement actuel) | idem |
+| UC-SYS-04-F11 | E5 (AN-2) | CLI | Entrées versionnées seules : `generate-fiches` crée le dossier et écrit les 7 P*.md ; paquets Twin6 « prompt manquant » (comportement actuel) | idem |
 | UC-SYS-04-F12 | Nominal, étapes 6-7 | CLI | Gabarits Twin6 fournis : paquet publié conforme au schéma `prompt-package`, paquet statique (sans schéma) à la forme exacte du contrat `executerTwin6` (clés, fiches 1..7), textes identiques aux P*.md, réservé, déterministes (RG6) | idem |
 | UC-SYS-04-F13 | A2 | CLI + HTTP simulé | `dump-fiches` : requête `GET` avec jeton, corpus identique octet pour octet au versionné ; `.env.deploy`, priorité de l'environnement, jeton par défaut | idem |
 | UC-SYS-04-F14 | E8 | CLI + HTTP simulé | 403, réponse incomplète, API injoignable → code 1, corpus intact | idem |
@@ -355,12 +357,14 @@ cd engine && npx vitest run test/usecases/unit/uc-sys-04-construire-artefacts-de
 - **AN-2 — La construction Twin6 n'est pas reproductible depuis le dépôt.**
   `web/public/data/` est gitignoré et les gabarits Twin6 publics
   `0-mega-prompt.md`, `1-scan-pole.md` et `2-kairos-final.md` n'ont **aucune**
-  source versionnée (seuls les P*.md se régénèrent, depuis `fiches-v7.json`) ;
-  de plus `generate-fiches.mjs` écrit dans `web/public/data/twin6/prompts/` sans
-  créer le dossier. Sur un clone neuf, `npm run build` échoue dès le `prebuild`
-  et `stage-api.sh` échoue à `build-twin6-prompt-package.mjs` : la promesse de
-  « clone déployable » (cahier §5, `INSTALL.md`) n'est pas tenue pour le front
-  ni pour la release de l'API. Figé par UC-SYS-04-F11.
+  source versionnée (seuls les P*.md se régénèrent, depuis `fiches-v7.json`).
+  Sur un clone neuf, `npm run build` échoue dès le `prebuild` et `stage-api.sh`
+  échoue à `build-twin6-prompt-package.mjs` : la promesse de « clone
+  déployable » (cahier §5, `INSTALL.md`) n'est pas tenue pour le front ni pour
+  la release de l'API. Corrigé en partie le 2026-09-29 : `generate-fiches.mjs`
+  crée désormais son dossier de sortie, et `stage-api.sh` régénère les P*.md
+  avant le paquet Twin6 au lieu de dépendre d'un build du front antérieur.
+  Reste à versionner les trois gabarits. Figé par UC-SYS-04-F11.
 - **AN-3 — `enrich-referentiel.mjs` écrit la 7.1.0 avant de contrôler le
   hash.** Quand la structure de la base a changé, le script écrit
   `respire-v7.1.0.json` (avec une empreinte différente de la 7.0.0) **puis**

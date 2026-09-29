@@ -10,7 +10,7 @@
 //
 // Usage : node scripts/generate-fiches.mjs        (écrit les P*.md)
 //         node scripts/generate-fiches.mjs --verify  (compare sans écrire)
-import { readFileSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { reassembleFiche } from './extract-fiches.mjs'
@@ -23,6 +23,10 @@ const verify = process.argv.includes('--verify')
 const corpus = JSON.parse(readFileSync(corpusPath, 'utf8'))
 const poleHeaders = corpus.poleHeaders ?? {}
 const fiches = corpus.fiches ?? {}
+
+// Dossier gitignoré : absent d'un clone neuf, on le crée (sauf en --verify,
+// qui n'écrit rien).
+if (!verify) mkdirSync(promptsDir, { recursive: true })
 
 let mismatches = 0
 for (let n = 1; n <= 7; n += 1) {

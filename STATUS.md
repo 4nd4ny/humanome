@@ -9,6 +9,31 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
 
 ## Fait
 
+- 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
+  - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
+    régénère d'abord les données dérivées lues par `engine/src/pipeline/merge.test.js`
+    (convertisseurs d'`INSTALL.md` §2, sans dépendance npm) ; `engine/src/twin9/referentiel.test.js`
+    ne lit plus l'oracle Twin9 gitignoré quand il est absent (le corps d'un
+    `describe.skipIf` est évalué à la collecte ; même garde que `parite.test.js`).
+  - **Référentiel 7.1.0** (`web/src/data/referentiel-v710.test.js`) : pas de défaut de code,
+    le test lit l'export statique produit depuis la base. `INSTALL.md` était faux : le
+    conteneur `php` travaille dans `api/`, donc `php scripts/migrate.php` échouait
+    (« Could not open input file ») → `../scripts/…` ; étapes manquantes ajoutées
+    (`enrich-referentiel`, import de la 7.1.0, `export-referentiel-static`). En-têtes
+    « Usage » de `import-referentiel.php`, `import-prompt-packages.php` et
+    `export-referentiel-static.php` alignés.
+  - **Twin6 (UC-SYS-04 AN-2), correction PARTIELLE** : `generate-fiches.mjs` crée son dossier
+    de sortie ; `stage-api.sh` régénère les P*.md avant le paquet Twin6 au lieu de dépendre
+    d'un build du front antérieur. Tests UC-SYS-04-U06 et F11 mis à jour.
+    **Reste (décision utilisateur)** : versionner les trois gabarits publics
+    (`0-mega-prompt.md`, `1-scan-pole.md`, `2-kairos-final.md`) ; tant qu'ils manquent,
+    `web/src/views/promptologue/twin6-prompt-package.test.js` échoue hors du poste de
+    l'auteur. Leur ajout depuis la copie servie en production a été refusé par le
+    garde-fou de sécurité de l'agent.
+  - **Vérification** (checkout propre + modifications) : PHPUnit **1 470 verts** ; moteur
+    **60/60 fichiers**, 1 069 verts + 17 sautés ; web **1 941 verts**, seul
+    `twin6-prompt-package.test.js` en échec (gabarits absents).
+
 - 2026-09-29 — **Catalogue des cas d'utilisation + jeux de tests unitaires et fonctionnels (demande utilisateur, PR 4nd4ny/humanome#4 — code de production inchangé).**
   - **Documentation** : `docs/cas-utilisation/` — **58 fiches** en 10 dossiers d'acteurs
     (visiteur 5, compte 6, apprenant 12, cartographe 7, employeur 1, promptologue 8,

@@ -209,11 +209,12 @@ Les comptes portent sur les identifiants distincts (`UC-…-Unn`, `UC-…-Fnn`) 
 ## Index des anomalies de production
 
 L'analyse des cas d'utilisation a mis au jour des écarts entre le code, sa
-documentation et le comportement attendu. **Aucun n'a été corrigé dans le code
-de production** (hors du périmètre de ce travail) : chacun est décrit dans la
-section « Anomalies constatées » de sa fiche, avec sa cause, et son
-comportement **actuel** est figé par un test vert commenté comme tel — le jour
-où l'anomalie est corrigée, ce test échoue et désigne la fiche à mettre à jour.
+documentation et le comportement attendu. Chacun est décrit dans la section
+« Anomalies constatées » de sa fiche, avec sa cause, et son comportement
+**actuel** est figé par un test vert commenté comme tel — le jour où
+l'anomalie est corrigée, ce test échoue et désigne la fiche à mettre à jour.
+Une correction partielle est datée dans la fiche (« Corrigé en partie le … ») ;
+une anomalie entièrement corrigée quitte cet index.
 
 <!-- anomalies:start -->
 - **[UC-VIS-01](visiteur/UC-VIS-01-explorer-cartographie-demonstration.md#anomalies-constatées)** — Explorer la cartographie de démonstration

@@ -632,15 +632,12 @@ describe('UC-SYS-04 — fonctionnels (scripts en sous-processus, miroir temporai
     expect(readdirSync(join(root, PROMPTS_DIR)).sort()).toEqual(['P1.md', 'P2.md'])
   }, TIMEOUT)
 
-  it('UC-SYS-04-F11 — E5 (AN-2) : depuis les seules entrées versionnées, generate-fiches échoue (dossier des P*.md absent) et les deux paquets Twin6 aussi (gabarits Twin6 absents) — comportement ACTUEL', () => {
+  it('UC-SYS-04-F11 — E5 (AN-2) : depuis les seules entrées versionnées, generate-fiches crée le dossier des P*.md et les écrit, mais les deux paquets Twin6 échouent (gabarits Twin6 absents) — comportement ACTUEL', () => {
     const root = mirrorWith([`${REF_DIR}/respire-v7.json`])
-    const generate = run(root, 'scripts/generate-fiches.mjs')
-    expect(generate.status).toBe(1)
-    expect(generate.stderr).toContain('ENOENT')
-    expect(generate.stderr).toContain(`${PROMPTS_DIR}/P1.md`)
-
-    mkdirSync(join(root, PROMPTS_DIR), { recursive: true })
+    expect(existsSync(join(root, PROMPTS_DIR))).toBe(false)
     expectOk(run(root, 'scripts/generate-fiches.mjs'))
+    expect(readdirSync(join(root, PROMPTS_DIR)).sort()).toEqual(['P1.md', 'P2.md', 'P3.md', 'P4.md', 'P5.md', 'P6.md', 'P7.md'])
+
     for (const script of ['scripts/build-twin6-package.mjs', 'scripts/build-twin6-prompt-package.mjs']) {
       const result = run(root, script)
       expect(result.status, script).toBe(1)

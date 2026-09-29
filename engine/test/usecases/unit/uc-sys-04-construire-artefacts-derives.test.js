@@ -242,7 +242,7 @@ describe('UC-SYS-04 — unitaires', () => {
     expect(total).toBe(61)
   })
 
-  it('UC-SYS-04-U06 — Ordre réel de la chaîne : stage-api.sh (digest tuteur avant la copie de scripts/data, puis paquets aurora et Twin6), prebuild web, imports de deploy.mjs — lignes ACTIVES seulement', () => {
+  it('UC-SYS-04-U06 — Ordre réel de la chaîne : stage-api.sh (digest tuteur avant la copie de scripts/data, puis paquet aurora, fiches Twin6 régénérées, paquet Twin6), prebuild web, imports de deploy.mjs — lignes ACTIVES seulement', () => {
     // Seules les lignes actives comptent : une étape commentée (`# node …`) ou
     // neutralisée (`: …; # node …`) ne satisfait pas les expressions ancrées.
     const stage = readFileSync(join(REPO, 'scripts/deploy/stage-api.sh'), 'utf8')
@@ -261,6 +261,7 @@ describe('UC-SYS-04 — unitaires', () => {
       step(/^node "\$repo\/scripts\/build-tuteur-digest\.mjs"$/),
       step(/^cp -R "\$repo\/scripts\/data\/\." "\$stage\/scripts\/data\/"$/),
       step(/^node "\$repo\/scripts\/build-default-prompt-package\.mjs"$/),
+      step(/^node "\$repo\/scripts\/generate-fiches\.mjs"$/),
       step(/^node "\$repo\/scripts\/build-twin6-prompt-package\.mjs"$/),
       step(/^composer install --no-dev\b/),
     ]
@@ -273,7 +274,6 @@ describe('UC-SYS-04 — unitaires', () => {
       'extracted-to-day-json',
       'extract-referentiel',
       'enrich-referentiel',
-      'generate-fiches',
       'extract-fiches',
       'dump-fiches',
       'build-validators',
