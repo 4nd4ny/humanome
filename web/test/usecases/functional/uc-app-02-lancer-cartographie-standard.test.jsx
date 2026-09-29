@@ -568,6 +568,34 @@ describe('UC-APP-02 — scénarios d’erreur', () => {
     expect(idb.values(...CARTOS)).toHaveLength(0)
   })
 
+  it('UC-APP-02-F25 — E7 : clé personnelle refusée par le fournisseur (401 Anthropic) : aucune reprise du transport, 2 requêtes par journée, chaque journée en échec avec le détail du fournisseur, rien d’enregistré', async () => {
+    await seedPortfolio()
+    const fetchMock = stubNetwork({
+      anthropic: () => jsonResponse(401, { type: 'error', error: { type: 'authentication_error', message: 'invalid x-api-key' } }),
+    })
+    openWizard()
+    await screen.findByTestId('espace-connecte')
+    await walkToExecution({ mode: 'cle' })
+    await launch()
+
+    expect((await screen.findByRole('alert', {}, { timeout: 15000 })).textContent).toContain('Certaines journées ont échoué')
+    for (const iso of ['2026-01-05', '2026-01-06', '2026-01-07']) {
+      expect(screen.getByText(`${iso} : extractDay : pôle 1 (${iso}) — anthropic: HTTP 401 — invalid x-api-key`)).toBeDefined()
+    }
+    // 401 non réessayé par le transport : 1 essai + le nouvel essai d'extractDay,
+    // pour le seul pôle 1 de chaque journée ; le run passe à la journée suivante.
+    const direct = fetchMock.calls.filter((c) => c.url === 'https://api.anthropic.com/v1/messages')
+    expect(direct).toHaveLength(6)
+    expect(direct.every((c) => c.init.headers['x-api-key'] === KEY)).toBe(true)
+    expect(direct.map((c) => /\((\d{4}-\d{2}-\d{2})\)/.exec(bodyOf(c).messages[0].content)[1])).toEqual([
+      '2026-01-05', '2026-01-05', '2026-01-06', '2026-01-06', '2026-01-07', '2026-01-07',
+    ])
+    expect(direct.every((c) => bodyOf(c).messages[0].content.includes('# Pôle 1 — '))).toBe(true)
+    expect(llmPosts(fetchMock)).toEqual([]) // jamais de repli sur le service humanome
+    expect(idb.values(...CARTOS)).toHaveLength(0)
+    expect(screen.getByRole('button', { name: 'Reprendre le run' })).toBeDefined()
+  })
+
   it('UC-APP-02-F23 — A2 : API joignable mais en erreur 5xx JSON : bandeau « non connecté », version embarquée seule, synchronisation désactivée', async () => {
     await seedPortfolio()
     stubNetwork({ extra: [[/^api\//, () => jsonResponse(503, { error: 'Service indisponible' })]] })
