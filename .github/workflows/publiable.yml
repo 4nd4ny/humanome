@@ -3,7 +3,10 @@ name: publiable
 # CI de publication (D10). À chaque push/PR :
 #  - `check-publiable` : garde-fou (aucun secret / .env / gabarit Twin9 / chemin
 #    local / identifiant OVH ne doit entrer dans le miroir public) ;
-#  - `engine` : suite du moteur (vecteurs figés versionnés, autonome).
+#  - `engine` : suite du moteur (vecteurs figés versionnés) ; les données
+#    dérivées qu'elle lit (journées de démo, référentiel) sont d'abord
+#    régénérées depuis assets-existants/ (versionné) par les convertisseurs
+#    d'INSTALL.md §2, sans dépendance npm.
 #
 # Volontairement PAS dans cette CI :
 #  - la suite FRONT : ses fixtures importent des données GÉNÉRÉES
@@ -42,5 +45,10 @@ jobs:
           node-version: 20
       - run: npm ci
         working-directory: engine
+      - name: Données dérivées (corpus démo, référentiel)
+        run: |
+          node scripts/convert/carto-data-to-merge-json.mjs
+          node scripts/convert/extracted-to-day-json.mjs
+          node scripts/extract-referentiel.mjs
       - run: npm test
         working-directory: engine

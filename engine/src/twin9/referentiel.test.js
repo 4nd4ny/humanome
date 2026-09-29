@@ -655,9 +655,13 @@ const ORACLE = fileURLToPath(
   new URL("../../test/twin9-oracles/referentiel.json", import.meta.url),
 );
 
-describe.skipIf(!existsSync(ORACLE))("referentiel — structure réelle injectée (oracle)", () => {
-  const structure = JSON.parse(readFileSync(ORACLE, "utf8"));
-  const poles = polesFromStructure(structure);
+const oraclePresent = existsSync(ORACLE);
+
+describe.skipIf(!oraclePresent)("referentiel — structure réelle injectée (oracle)", () => {
+  // Le corps d'un describe sauté est tout de même évalué à la collecte : ne
+  // lire l'oracle que s'il existe (absent d'un clone neuf et de la CI).
+  const structure = oraclePresent ? JSON.parse(readFileSync(ORACLE, "utf8")) : null;
+  const poles = oraclePresent ? polesFromStructure(structure) : null;
 
   it("7 pôles, 61 codes uniques, noms de pôles = POLE_NOMS", () => {
     expect(Array.from(poles.keys())).toEqual([1, 2, 3, 4, 5, 6, 7]);
