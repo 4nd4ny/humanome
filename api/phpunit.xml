@@ -28,7 +28,9 @@
         <!-- PHPUnit retains every TestCase instance until the end of the
              run: at ~320 tests the suite already sat at 114 MB, right under
              the 128 MB container default — each new test class now tips it
-             over. Test-runner-only setting; production php.ini is untouched. -->
-        <ini name="memory_limit" value="512M"/>
+             over. The use-case suites (~1 100 more tests) exhaust 512 MB when
+             run together with or without the legacy suite, hence 2 GB.
+             Test-runner-only setting; production php.ini is untouched. -->
+        <ini name="memory_limit" value="2048M"/>
     </php>
 </phpunit>
