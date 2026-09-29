@@ -6,8 +6,8 @@
 // adaptateur IndexedDB RÉEL (base « humanome-cartographies », jamais
 // exécuté par les suites historiques) et sur son singleton par défaut,
 // téléchargement d'un document, visionneuse isolée, panneau « Mes
-// cartographies » sur store mémoire, bandeaux de session de l'espace et
-// chargement du référentiel publié.
+// cartographies » sur store mémoire, bandeaux de session de l'espace, repli
+// « section inconnue » d'EspaceView et chargement du référentiel publié.
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
@@ -232,5 +232,61 @@ describe('UC-APP-03 — session et référentiel (étapes 1 et 4, A1)', () => {
     })
     expect(offline).toEqual({ doc: getReferentiel(), origin: 'bundled' })
     clearReferentielCache()
+  })
+})
+
+describe('UC-APP-03 — EspaceView isolée : section inconnue (E5)', () => {
+  const MAYA = { id: 7, email: 'maya@example.org', displayName: 'Maya', roles: ['apprenant'] }
+
+  it('UC-APP-03-U13 — EspaceView : segment décodé par parseHash hors des sections (comparaison exacte) → alerte citant le segment, lien de retour #/espace ; aucun bloc monté, stores et panneau jamais sollicités, IndexedDB jamais ouvert ; même repli sans session (A1, E5)', async () => {
+    // Le segment arrive décodé du routeur, sous-chemin compris.
+    expect(parseHash('#/espace/cohortes/3')).toEqual({ name: 'espace', section: 'cohortes/3' })
+    expect(parseHash('#/espace/nouveau%2Drun%2F')).toEqual({ name: 'espace', section: 'nouveau-run/' })
+
+    const idb = createFakeIndexedDb()
+    vi.stubGlobal('indexedDB', idb.factory)
+    /** Store factice : tout accès à une de ses propriétés est journalisé. */
+    const touched = []
+    const untouchable = (name) =>
+      new Proxy({}, { get: (_, prop) => (touched.push(`${name}.${String(prop)}`), vi.fn(async () => null)) })
+    const cartographiesPanel = vi.fn(() => null)
+    const getReferentiel = vi.fn()
+    const fetchFn = vi.fn()
+
+    const sessions = [
+      [async () => ({ user: MAYA }), 'espace-connecte', 'Connecté en tant que Maya.'],
+      [async () => ({ user: null }), 'espace-anonyme', 'Vous n’êtes pas connecté'],
+    ]
+    // « formations » n'est pas « formation[/…] », « nouveau-run/ » pas « nouveau-run ».
+    for (const section of ['cohortes/3', 'formations', 'nouveau-run/', 'Cohortes']) {
+      for (const [fetchMeFn, testId, banner] of sessions) {
+        render(
+          <EspaceView
+            section={section}
+            deps={{
+              fetchMeFn,
+              portfolioStore: untouchable('portfolioStore'),
+              trainingStore: untouchable('trainingStore'),
+              cartographiesPanel,
+              getReferentiel,
+              runWizardDeps: untouchable('runWizardDeps'),
+              fetchFn,
+            }}
+          />,
+        )
+        expect((await screen.findByTestId(testId)).textContent, section).toContain(banner)
+        expect(screen.getByRole('alert').textContent, section).toBe(`Section inconnue de l’espace apprenant : « ${section} ».`)
+        expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' }).getAttribute('href')).toBe('#/espace')
+        expect(screen.queryByRole('region', { name: 'Mes portfolios' })).toBeNull()
+        expect(screen.queryByRole('region', { name: 'Mes cohortes' })).toBeNull()
+        await act(async () => {})
+        cleanup()
+      }
+    }
+    expect(touched).toEqual([])
+    expect(cartographiesPanel).not.toHaveBeenCalled()
+    expect(getReferentiel).not.toHaveBeenCalled()
+    expect(fetchFn).not.toHaveBeenCalled()
+    expect(idb.openCount()).toBe(0)
   })
 })

@@ -225,3 +225,56 @@ describe('UC-ETA-01 — l’établissement crée et gère ses cohortes', () => {
     expect(api.calls.some((c) => c.url.startsWith('api/etablissement/'))).toBe(false)
   })
 })
+
+describe('UC-ETA-01 — section inconnue de l’espace établissement (E6)', () => {
+  it('UC-ETA-01-F15 — E6 : #/etablissement/cohortes/7 → alerte citant le segment, lien de retour ; aucun appel api/etablissement ni paquets ; la garde de rôle passe avant', async () => {
+    const api = stubApi()
+    // « cohortes/7 » (pluriel, comme l'URL de l'API) n'est pas « cohorte/<id> ».
+    openApp('#/etablissement/cohortes/7')
+
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      'Section inconnue de l’espace établissement : « cohortes/7 ».',
+    )
+    expect(screen.getByTestId('etab-connecte').textContent).toContain('Lycée Astrolabe')
+    const back = screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' })
+    expect(back.getAttribute('href')).toBe('#/etablissement')
+    // Aucune section montée : ni accueil (création), ni détail de cohorte.
+    expect(screen.queryByLabelText('Nom de la cohorte')).toBeNull()
+    expect(screen.queryByTestId('etab-membres')).toBeNull()
+    await act(async () => {})
+    expect(api.calls.map((c) => c.key)).toEqual(['GET api/auth/me'])
+
+    // Le lien de retour ramène à l'accueil, qui charge alors cohortes et configuration.
+    fireEvent.click(back)
+    expect(await screen.findByLabelText('Nom de la cohorte')).toBeDefined()
+    expect(window.location.hash).toBe('#/etablissement')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(api.callsTo('GET api/etablissement/cohortes')).toHaveLength(1)
+    expect(api.callsTo('GET api/auth/me')).toHaveLength(1)
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Compte apprenant sur la même URL : espace réservé, pas le message de section.
+    const learnerApi = stubApi({}, { user: LEARNER_USER })
+    openApp('#/etablissement/cohortes/7', { user: LEARNER_USER })
+    expect((await screen.findByTestId('etab-reserve')).textContent).toContain('réservé aux établissements')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(learnerApi.calls.map((c) => c.key)).toEqual(['GET api/auth/me'])
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Comportement ACTUEL (anomalie AN1 de UC-VIS-02, commune aux routes à
+    // section) : un segment au pourcentage mal formé n'atteint pas ce repli.
+    // App calcule sa route au premier rendu (useState(currentRoute)) : le
+    // rendu lui-même lève une URIError — ni shell, ni vérification de session.
+    const brokenApi = stubApi()
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      expect(() => openApp('#/etablissement/100%')).toThrow(URIError)
+    } finally {
+      consoleError.mockRestore()
+    }
+    expect(document.body.textContent).toBe('')
+    expect(brokenApi.calls).toEqual([])
+  })
+})

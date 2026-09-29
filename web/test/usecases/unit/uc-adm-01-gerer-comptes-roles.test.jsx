@@ -5,9 +5,10 @@
 // navigation adaptée au rôle (famille « Administrer »), les appels de
 // admin-api.js (liste, attribution, retrait — URL, méthode, corps, jeton CSRF)
 // la pagination du composant RolesSection rendu isolément, la sonde de session
-// fetchMe et la garde de rôle d'AdminView (coutures deps.fetchMeFn/fetchFn).
+// fetchMe, la garde de rôle d'AdminView et son repli « section inconnue »
+// (coutures deps.fetchMeFn/fetchFn).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { parseHash } from '../../../src/router.js'
 import { navGroups } from '../../../src/nav.js'
 import {
@@ -237,6 +238,45 @@ describe('UC-ADM-01 — session et garde de la vue', () => {
     render(<AdminView section="roles" deps={{ fetchMeFn: async () => Promise.reject(new ApiError('Erreur interne', 500)), fetchFn }} />)
     expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
     expect(screen.getByText(/Vous n’êtes pas connecté/)).toBeTruthy()
+    expect(fetchFn).not.toHaveBeenCalled()
+  })
+})
+
+describe('UC-ADM-01 — AdminView isolée : section inconnue (E9)', () => {
+  it('UC-ADM-01-U27 — AdminView : segment décodé par parseHash hors des six sections (comparaison exacte) → alerte citant le segment, lien de retour #/admin, onglets sans section courante, aucune section montée ni appel fetchFn ; non-admin → espace réservé, jamais le message', async () => {
+    // Le segment arrive décodé du routeur : « r%C3%B4les » devient « rôles ».
+    expect(parseHash('#/admin/r%C3%B4les')).toEqual({ name: 'admin', section: 'rôles' })
+
+    const fetchFn = vi.fn(async () => jsonResponse(200, { users: [], total: 0, page: 1, pageSize: 20 }))
+    const admin = async () => ({ user: { id: 1, displayName: 'Root', roles: ['admin'] } })
+    // Comparaison exacte : casse, barre finale, sous-segment ne sont pas des sections.
+    for (const section of ['rôles', 'Roles', 'roles/', 'config/app']) {
+      const fetchMeFn = vi.fn(admin)
+      render(<AdminView section={section} deps={{ fetchMeFn, fetchFn }} />)
+      expect((await screen.findByRole('alert')).textContent, section).toBe(
+        `Section inconnue de l’administration : « ${section} ».`,
+      )
+      expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’administration' }).getAttribute('href')).toBe('#/admin')
+      const tabs = screen.getByRole('navigation', { name: 'Sections d’administration' })
+      expect(tabs.querySelectorAll('a'), section).toHaveLength(7) // Accueil + six sections
+      expect(tabs.querySelector('[aria-current]'), section).toBeNull()
+      expect(screen.getByTestId('admin-connecte').textContent).toBe('Connecté en tant que Root.')
+      // Aucune section montée : ni « Comptes et rôles », ni cartes d'accueil.
+      expect(screen.queryByRole('heading', { name: 'Comptes et rôles' })).toBeNull()
+      expect(document.querySelector('.admin-home')).toBeNull()
+      await act(async () => {})
+      expect(fetchMeFn).toHaveBeenCalledTimes(1)
+      expect(fetchFn, section).not.toHaveBeenCalled()
+      cleanup()
+    }
+
+    // La garde passe avant l'aiguillage : compte sans rôle admin → espace réservé.
+    render(
+      <AdminView section="rôles" deps={{ fetchMeFn: async () => ({ user: { id: 5, displayName: 'Maya', roles: ['apprenant'] } }), fetchFn }} />,
+    )
+    expect(await screen.findByTestId('admin-reserve')).toBeTruthy()
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(screen.queryByRole('navigation', { name: 'Sections d’administration' })).toBeNull()
     expect(fetchFn).not.toHaveBeenCalled()
   })
 })

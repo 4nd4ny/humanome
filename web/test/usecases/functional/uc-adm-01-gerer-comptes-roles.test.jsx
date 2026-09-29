@@ -228,3 +228,71 @@ describe('UC-ADM-01 — l’administrateur gère les comptes et les rôles', () 
     expect(screen.queryByRole('table')).toBeNull()
   })
 })
+
+describe('UC-ADM-01 — section inconnue de l’administration (E9)', () => {
+  it('UC-ADM-01-F25 — E9 : #/admin/r%C3%B4les → alerte citant le segment décodé, onglets sans section active, lien de retour ; aucun appel api/admin ; la garde de rôle passe avant', async () => {
+    // Session : le shell la reçoit par fetchMeFn (menu), AdminView la vérifie
+    // elle-même par GET api/auth/me (faux serveur) — défense en profondeur.
+    const backend = createAdminBackend({ users: [{ ...ADMIN_USER }, MAYA] })
+    vi.stubGlobal('fetch', backend.fetchMock)
+    window.location.hash = '#/admin/r%C3%B4les' // « rôles » accentué : pas la section « roles »
+    render(<App lib={fakeLib} fetchMeFn={async () => ({ user: ADMIN_USER })} />)
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Section inconnue de l’administration : « rôles ».')
+    expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’administration' }).getAttribute('href')).toBe(
+      '#/admin',
+    )
+    // Onglets affichés (admin + section non nulle), aucun marqué comme courant.
+    const tabs = screen.getByRole('navigation', { name: 'Sections d’administration' })
+    expect(within(tabs).getByRole('link', { name: 'Rôles' }).getAttribute('aria-current')).toBeNull()
+    expect(tabs.querySelector('[aria-current]')).toBeNull()
+    // Aucune section montée : ni « Comptes et rôles », ni cartes d'accueil.
+    expect(screen.queryByRole('heading', { name: 'Comptes et rôles' })).toBeNull()
+    expect(screen.queryByRole('link', { name: /Golden Prompt Import privé/ })).toBeNull()
+    await act(async () => {})
+    expect(backend.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+
+    // Le lien de retour ramène à l'accueil (cartes des sections), sans nouvelle
+    // vérification de session (même AdminView, fetchMe inchangé).
+    await act(async () => {
+      fireEvent.click(screen.getByRole('link', { name: 'Retour à l’accueil de l’administration' }))
+    })
+    await waitFor(() => expect(window.location.hash).toBe('#/admin'))
+    expect(await screen.findByRole('link', { name: /Golden Prompt Import privé/ })).toBeDefined()
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(callsTo(backend.calls, 'GET', 'api/auth/me')).toHaveLength(1)
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Compte sans rôle admin sur la même URL : la garde passe AVANT le
+    // dispatch → espace réservé, jamais le message de section inconnue.
+    const other = createAdminBackend({ me: MAYA, users: [MAYA] })
+    vi.stubGlobal('fetch', other.fetchMock)
+    window.location.hash = '#/admin/r%C3%B4les'
+    render(<App lib={fakeLib} fetchMeFn={async () => ({ user: MAYA })} />)
+    expect(await screen.findByTestId('admin-reserve')).toBeDefined()
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(screen.queryByRole('navigation', { name: 'Sections d’administration' })).toBeNull()
+    expect(other.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Comportement ACTUEL (anomalie AN1 de UC-VIS-02, commune aux routes à
+    // section) : un segment au pourcentage mal formé n'atteint pas ce repli.
+    // App calcule sa route au premier rendu (useState(currentRoute)) : le
+    // rendu lui-même lève une URIError — ni shell, ni sonde de session.
+    const broken = createAdminBackend({ users: [{ ...ADMIN_USER }] })
+    vi.stubGlobal('fetch', broken.fetchMock)
+    const shellMe = vi.fn(async () => ({ user: ADMIN_USER }))
+    window.location.hash = '#/admin/100%'
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      expect(() => render(<App lib={fakeLib} fetchMeFn={shellMe} />)).toThrow(URIError)
+    } finally {
+      consoleError.mockRestore()
+    }
+    expect(document.body.textContent).toBe('')
+    expect(shellMe).not.toHaveBeenCalled()
+    expect(broken.calls).toEqual([])
+  })
+})

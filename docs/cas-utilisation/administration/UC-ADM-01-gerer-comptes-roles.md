@@ -135,6 +135,19 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
   échoue (ex. `403 « Rôle insuffisant »` pour un admin dont le rôle vient
   d'être retiré par un autre, A4), `RolesSection` affiche une alerte portant le
   message serveur (« Chargement impossible. » à défaut), sans tableau.
+- **E9 — Section inconnue** (étape 1) : `#/admin/<autre>`, dont le segment,
+  décodé par `parseHash`, n'est exactement aucune des six sections
+  (`monitoring`, `roles`, `golden`, `reglages`, `config`, `twin9`) — ex.
+  `#/admin/r%C3%B4les` → « rôles ». Pour un administrateur, `AdminView` affiche
+  l'alerte « Section inconnue de l'administration : « rôles ». » (segment cité
+  en texte) et le lien « Retour à l'accueil de l'administration » (`#/admin`) ;
+  les onglets restent affichés, aucun n'étant marqué courant. Aucune section
+  n'est montée : aucun appel `api/admin/*`, seule la vérification de session
+  `GET /api/auth/me` part. La garde passe **avant** l'aiguillage : un visiteur
+  ou un compte sans rôle `admin` voit l'espace réservé (E1, E2), jamais ce
+  message. Un segment au pourcentage mal formé (`#/admin/100%`) n'atteint pas
+  ce repli : `parseHash` lève une `URIError` avant tout rendu (anomalie AN1 de
+  UC-VIS-02, commune aux routes à section).
 
 ## Règles de gestion
 
@@ -172,9 +185,9 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Route `#/admin[/<section>]` |
+| Front | `web/src/router.js` — `parseHash` | Route `#/admin[/<section>]`, segment décodé par `decodeURIComponent` (E9) |
 | Front | `web/src/nav.js` — `navGroups` | Famille « Administrer » visible avec le rôle `admin` |
-| Front | `web/src/views/AdminView.jsx` | Garde de session (`fetchMe`), espace réservé, onglets, dispatch |
+| Front | `web/src/views/AdminView.jsx` | Garde de session (`fetchMe`), espace réservé, onglets, dispatch, repli « section inconnue » (E9) |
 | Front | `web/src/views/admin/RolesSection.jsx` | Recherche, tableau, attribution, retrait, cadenas, pagination, messages |
 | Front | `web/src/views/admin/admin-api.js` — `listUsers`, `grantRole`, `revokeRole`, `ASSIGNABLE_ROLES`, `frDate` | Appels HTTP, rôles attribuables |
 | Front | `web/src/api/client.js` — `apiFetch`, `fetchMe` | Jeton CSRF en mémoire, erreurs typées, copie statique |
@@ -215,6 +228,7 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-U21 | `apiFetch` | Copie statique (`file:`) → `ApiUnavailableError` sans réseau | idem |
 | UC-ADM-01-U25 | `fetchMe` | `200` → `{user}` + jeton CSRF en mémoire ; `401` → `{user: null}` ; `500` → `ApiError` relancée | idem |
 | UC-ADM-01-U26 | `AdminView` (`deps.fetchMeFn`, `deps.fetchFn`) | Copie statique → message ; admin → onglets (« Rôles » `aria-current`) et section ; non-admin → espace réservé ; `/auth/me` en 5xx → « non connecté » (limite) | idem |
+| UC-ADM-01-U27 | `parseHash`, `AdminView` (vue isolée, `deps.fetchMeFn`, `deps.fetchFn`) | Segment décodé (`r%C3%B4les` → « rôles ») ; hors des six sections, comparaison exacte (casse, barre finale, sous-segment) → alerte « Section inconnue de l'administration : « … ». », lien `#/admin`, onglets sans `aria-current`, aucune section montée, `fetchFn` jamais appelé ; non-admin → espace réservé, pas de message (E9) | idem |
 
 ### Tests fonctionnels
 
@@ -244,6 +258,7 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 | UC-ADM-01-F21 | E7 | IHM | Réseau indisponible → message « Copie statique du site » | idem |
 | UC-ADM-01-F23 | E8 | IHM | Liste refusée (`403 « Rôle insuffisant »`) → alerte, pas de tableau | idem |
 | UC-ADM-01-F24 | Nominal (4), A6 | IHM | Recherche depuis la page 2 → `?query=…` sans `page=2` ; aucun résultat → « Aucun compte ne correspond. » | idem |
+| UC-ADM-01-F25 | E9 | IHM | `<App/>` sur `#/admin/r%C3%B4les` (admin) : alerte « Section inconnue de l'administration : « rôles ». », onglets sans `aria-current`, seul `GET api/auth/me` ; le lien de retour rouvre l'accueil sans nouvelle sonde ; compte sans `admin` → espace réservé, pas de message ; `<App/>` sur `#/admin/100%` : le rendu lève une `URIError`, rien n'est affiché, ni sonde de session ni requête (comportement actuel, UC-VIS-02 AN1) | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -251,7 +266,7 @@ comptes », ou carte « Rôles » de l'accueil `#/admin`).
 - `api/tests/AdminMonitoringTest.php` — `testUsersListCanBeFilteredByRole` (filtre `role=`).
 - `api/tests/AuthRequireRoleTest.php` — garde `RequireRole` (session purgée, attributs).
 - `api/tests/AdminRolesTest.php` — amorçage par jeton `POST /api/admin/grant-role` (voir UC-SYS-02).
-- `web/src/views/admin/RolesSection.test.jsx`, `web/src/views/AdminView.test.jsx`, `web/src/nav.test.js`.
+- `web/src/views/admin/RolesSection.test.jsx`, `web/src/views/AdminView.test.jsx` (dont « signale une section inconnue », vue isolée, E9), `web/src/nav.test.js`.
 - `web/e2e/parcours-cartographe.e2e.js`, `web/e2e/parcours-promptologue.e2e.js` — attribution de rôle par l'outillage à jeton.
 
 ### Exécuter

@@ -125,9 +125,7 @@ L'épistémiarque ouvre l'atelier `#/epistemiarque` (menu « Faire évoluer ›
   référentiel nécessite une session » ; l'API répond `401` à toutes les routes
   d'atelier. Sur une copie statique du site (pas d'API), l'atelier l'indique.
   Une erreur serveur de `GET /api/auth/me` (`500`) est présentée, elle aussi,
-  comme une absence de session (anomalie AN5). Une section inconnue
-  (`#/epistemiarque/foo`) affiche « Section inconnue de l'atelier
-  épistémiarque » et un lien de retour.
+  comme une absence de session (anomalie AN5). Section inconnue : voir E14.
 - **E2 — Rôle absent** (étape 1) : « Cet atelier est réservé au rôle
   épistémiarque » ; l'API répond `403`. Les rôles sont relus en base à chaque
   requête : un rôle retiré prend effet à la requête suivante. Un compte purgé
@@ -171,6 +169,20 @@ L'épistémiarque ouvre l'atelier `#/epistemiarque` (menu « Faire évoluer ›
   session mais sans `X-CSRF-Token` → `403`.
 - **E13 — Brouillon inconnu** (étapes 5 à 9) : `404` « Brouillon introuvable »
   (au `PUT`, seulement si `If-Match` est présent : sinon `428`, voir E8).
+- **E14 — Section inconnue** (étape 1) : `#/epistemiarque/<autre>`, dont le
+  segment, décodé par `parseHash`, n'est ni `editer/<id>` ni
+  `proposition/<id>`. Pour un épistémiarque — ou un administrateur, qui passe
+  la même garde (A5) —, la vue affiche l'alerte « Section inconnue de l'atelier
+  épistémiarque : « … ». » et le lien « Retour à l'atelier »
+  (`#/epistemiarque`). Le segment est cité comme **texte** :
+  `#/epistemiarque/%3Cimg%20src%3Dx%3E` affiche « `<img src=x>` » sans créer
+  de balise. Aucune section n'est montée : aucun appel aux compétences, seule
+  la vérification de session `GET /api/auth/me` part. La garde passe
+  **avant** l'aiguillage : sans session, sans rôle ou sur une copie statique,
+  les messages E1/E2 s'affichent, jamais celui-ci. Un segment au pourcentage
+  mal formé (`#/epistemiarque/100%`) n'atteint pas ce repli : `parseHash`
+  lève une `URIError` avant tout rendu (anomalie AN1 de UC-VIS-02, commune
+  aux routes à section).
 
 ## Règles de gestion
 
@@ -211,8 +223,8 @@ L'épistémiarque ouvre l'atelier `#/epistemiarque` (menu « Faire évoluer ›
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Routes `#/epistemiarque[/editer/<id>\|proposition/<id>]` |
-| Front | `web/src/views/EpistemiarqueView.jsx` — garde de rôle, `AtelierSection`, `ProposeButton`, `EditeurSection`, `ListEditor` | Atelier, fork, éditeur riche, enregistrement CAS, soumission |
+| Front | `web/src/router.js` — `parseHash` | Routes `#/epistemiarque[/editer/<id>\|proposition/<id>]`, segment décodé par `decodeURIComponent` (E14) |
+| Front | `web/src/views/EpistemiarqueView.jsx` — garde de rôle, `AtelierSection`, `ProposeButton`, `EditeurSection`, `ListEditor` | Atelier, fork, éditeur riche, enregistrement CAS, soumission, repli « section inconnue » (E14) |
 | Front | `web/src/views/epistemiarque/competence-api.js` — `createCompetenceApi`, `nextCompetenceVersion` | Client fin (chemins, `If-Match`), version suggérée |
 | Front | `web/src/api/client.js` — `apiFetch`, `fetchMe`, `ApiError`, `ApiUnavailableError` | En-têtes additionnels, jeton CSRF, erreurs typées, sonde de session |
 | Front | `web/src/nav.js` | Entrée de menu « Édition du référentiel » (rôle `epistemiarque` seulement) |
@@ -250,7 +262,7 @@ L'épistémiarque ouvre l'atelier `#/epistemiarque` (menu « Faire évoluer ›
 | UC-EPI-01-U18 | `EpistemiarqueView` (garde de rôle, vue isolée) | Admin sans rôle épistémiarque : atelier affiché, `list`/`listDrafts` appelés (A5) ; promptologue refusé sans appel | `web/test/usecases/unit/uc-epi-01-proposer-modification-competence-vue.test.jsx` |
 | UC-EPI-01-U19 | `EditeurSection`, `ListEditor` (vue isolée) | Ajout d'un signal, suppression et édition d'un marqueur, argument employeur, enrichissements ; `saveDraft` reçoit le contenu complet et l'empreinte de base (étape 6) | idem |
 | UC-EPI-01-U20 | `fetchMe` | Session → `{user}` ; 401 → `{user: null}` ; 500 → `ApiError` ; réponse non JSON → `ApiUnavailableError` | `web/test/usecases/unit/uc-epi-01-proposer-modification-competence.test.js` |
-| UC-EPI-01-U21 | `EpistemiarqueView` (vue isolée) | API absente → « copie statique » ; `auth/me` en 500 → « nécessite une session » (AN5, figé) ; section inconnue → message et retour (E1) | `web/test/usecases/unit/uc-epi-01-proposer-modification-competence-vue.test.jsx` |
+| UC-EPI-01-U21 | `EpistemiarqueView` (vue isolée) | API absente → « copie statique » ; `auth/me` en 500 → « nécessite une session » (E1, AN5 figé) ; section inconnue → message et retour, sans appel aux compétences (E14) | `web/test/usecases/unit/uc-epi-01-proposer-modification-competence-vue.test.jsx` |
 | UC-EPI-01-U22 | `createDraft`, `CompetenceGovernance::submit` | Anomalie AN1 (figé) : fork concurrent intercalé → `PDOException` (500, pas 409) ; soumission concurrente → seconde soumission acceptée, bulletin effacé, soumissionnaire écrasé | `api/tests/UseCases/Unit/UcEpi01ProposerModificationCompetenceTest.php` |
 
 ### Tests fonctionnels
@@ -277,6 +289,7 @@ L'épistémiarque ouvre l'atelier `#/epistemiarque` (menu « Faire évoluer ›
 | UC-EPI-01-F18 | E1, E2 | IHM | Anonyme, sans rôle, copie statique : messages, aucun appel aux compétences (dans les trois cas) | idem |
 | UC-EPI-01-F19 | E7 | IHM | 409 concurrent : message + bouton « Recharger » | idem |
 | UC-EPI-01-F20 | E5, E10, AN2 | IHM | Fork 409 signalé sur la ligne (message serveur anglais affiché tel quel, figé) ; lien Decidim 422 affiché, on reste dans l'éditeur | idem |
+| UC-EPI-01-F21 | E14 (A5) | IHM | `<App/>` sur `#/epistemiarque/%3Cimg%20src%3Dx%3E` : alerte « … : « `<img src=x>` ». » sans balise créée, seul `GET api/auth/me` ; le lien de retour rouvre l'atelier (compétences chargées, sans nouvelle sonde) ; admin sans rôle épistémiarque → même repli ; apprenant → refus, pas de message ; `<App/>` sur `#/epistemiarque/100%` : le rendu lève une `URIError`, rien n'est affiché, ni sonde de session ni requête (comportement actuel, UC-VIS-02 AN1) | idem |
 
 ### Tests existants liés (non-régression)
 

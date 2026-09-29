@@ -171,3 +171,60 @@ describe('UC-PRO-01 — comparer deux versions depuis l’éditeur', () => {
     expect(screen.queryByTestId('promptologue-diff')).toBeNull()
   })
 })
+
+describe('UC-PRO-01 — section inconnue de l’atelier (E7)', () => {
+  it('UC-PRO-01-F23 — E7 : #/promptologue/r%C3%A9tro → alerte citant le segment décodé, lien de retour ; aucune lecture de paquets ; la garde de rôle passe avant', async () => {
+    const backend = createPromptologueBackend({ published: [packageDoc()] })
+    openApp('#/promptologue/r%C3%A9tro', backend) // « rétro » accentué : pas la section « retro »
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Section inconnue de l’atelier promptologue : « rétro ».')
+    // Rôle vérifié : bandeau et navigation de l'atelier affichés, aucune section montée.
+    expect(screen.getByTestId('promptologue-connecte').textContent).toContain('Pom')
+    expect(screen.getByRole('navigation', { name: 'Sections de l’atelier' })).toBeDefined()
+    expect(screen.queryByRole('region', { name: 'Paquets publiés' })).toBeNull()
+    const back = screen.getByRole('link', { name: 'Retour à l’atelier' })
+    expect(back.getAttribute('href')).toBe('#/promptologue')
+    await act(async () => {})
+    expect(backend.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+
+    // Le lien de retour rouvre l'accueil « Paquets », qui lance alors ses trois lectures.
+    fireEvent.click(back)
+    expect(await screen.findByRole('region', { name: 'Paquets publiés' })).toBeDefined()
+    expect(window.location.hash).toBe('#/promptologue')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    await waitFor(() => expect(backend.callsTo('GET', 'api/prompt-packages/default')).toHaveLength(1))
+    expect(backend.callsTo('GET', 'api/prompt-packages')).toHaveLength(1)
+    expect(backend.callsTo('GET', 'api/prompt-packages/drafts')).toHaveLength(1)
+    expect(backend.callsTo('GET', 'api/auth/me')).toHaveLength(1)
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Compte sans rôle promptologue sur la même URL : refus, pas le message de section.
+    const apprenant = { ...PROMPTOLOGUE, roles: ['apprenant'] }
+    const refused = createPromptologueBackend({ me: apprenant })
+    openApp('#/promptologue/r%C3%A9tro', refused, apprenant)
+    expect((await screen.findByTestId('promptologue-sans-role')).textContent).toContain('réservé au rôle')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(refused.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Comportement ACTUEL (anomalie AN1 de UC-VIS-02, commune aux routes à
+    // section) : un segment au pourcentage mal formé n'atteint pas ce repli.
+    // App calcule sa route au premier rendu (useState(currentRoute)) : le
+    // rendu lui-même lève une URIError — ni shell, ni sonde de session.
+    const broken = createPromptologueBackend({ published: [packageDoc()] })
+    vi.stubGlobal('fetch', broken.fetchMock)
+    const shellMe = vi.fn(async () => ({ user: PROMPTOLOGUE }))
+    window.location.hash = '#/promptologue/100%'
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      expect(() => render(<App lib={fakeLib} fetchMeFn={shellMe} />)).toThrow(URIError)
+    } finally {
+      consoleError.mockRestore()
+    }
+    expect(document.body.textContent).toBe('')
+    expect(shellMe).not.toHaveBeenCalled()
+    expect(broken.calls).toEqual([])
+  })
+})

@@ -329,3 +329,61 @@ describe('UC-APP-03 — scénarios d’erreur', () => {
     expect(within(viewer).queryByRole('group', { name: 'Cartographie cumulée des compétences' })).toBeNull()
   })
 })
+
+describe('UC-APP-03 — section inconnue de l’espace (E5)', () => {
+  it('UC-APP-03-F15 — E5 : #/espace/cohortes/3 → alerte citant le segment, lien de retour ; ni tableau de bord, ni IndexedDB, ni requête hors session ; même message pour un visiteur (pas de garde)', async () => {
+    const fetchMock = stubNetwork()
+    window.location.hash = '#/espace/cohortes/3' // la section « cohortes » n'admet pas de sous-segment
+    render(<App lib={fakeLib} fetchMeFn={async () => ({ user: USER })} />)
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Section inconnue de l’espace apprenant : « cohortes/3 ».')
+    expect((await screen.findByTestId('espace-connecte')).textContent).toBe('Connecté en tant que Maya.')
+    expect(screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' }).getAttribute('href')).toBe('#/espace')
+    // Aucune section montée : ni les quatre blocs, ni l'assistant, ni « Mes cohortes ».
+    expect(screen.queryByRole('region', { name: 'Mes portfolios' })).toBeNull()
+    expect(screen.queryAllByRole('region', { name: 'Mes cartographies' })).toHaveLength(0)
+    expect(screen.queryByRole('region', { name: 'Mes cohortes' })).toBeNull()
+    await act(async () => {})
+    // Seule la session est demandée (la vue la vérifie elle-même) ; aucun
+    // stockage local ouvert, aucune progression ni cohorte demandée.
+    expect(fetchMock.calls.map((c) => c.url)).toEqual(['api/auth/me'])
+    expect(idb.openCount()).toBe(0)
+
+    // Le lien de retour rouvre le tableau de bord, qui lit, lui, le stockage local.
+    fireEvent.click(screen.getByRole('link', { name: 'Retour à l’accueil de l’espace' }))
+    await waitFor(() => expect(window.location.hash).toBe('#/espace'))
+    expect(await screen.findByRole('region', { name: 'Mes portfolios' })).toBeDefined()
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    await waitFor(() => expect(idb.openCount()).toBeGreaterThan(0))
+    cleanup()
+
+    // Visiteur sans session : l'espace n'a pas de garde de rôle, le même
+    // repli s'affiche sous le bandeau « Vous n'êtes pas connecté ».
+    const visitorFetch = stubNetwork({ me: null })
+    window.location.hash = '#/espace/cohortes/3'
+    render(<App lib={fakeLib} fetchMeFn={async () => ({ user: null })} />)
+    expect((await screen.findByTestId('espace-anonyme')).textContent).toContain('Vous n’êtes pas connecté')
+    expect(screen.getByRole('alert').textContent).toBe('Section inconnue de l’espace apprenant : « cohortes/3 ».')
+    expect(visitorFetch.calls.map((c) => c.url)).toEqual(['api/auth/me'])
+    cleanup()
+    idb.reset()
+
+    // Comportement ACTUEL (anomalie AN1 de UC-VIS-02, commune aux routes à
+    // section) : un segment au pourcentage mal formé n'atteint pas ce repli.
+    // App calcule sa route au premier rendu (useState(currentRoute)) : le
+    // rendu lui-même lève une URIError — ni shell, ni session, ni IndexedDB.
+    const brokenFetch = stubNetwork()
+    const shellMe = vi.fn(async () => ({ user: USER }))
+    window.location.hash = '#/espace/100%'
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      expect(() => render(<App lib={fakeLib} fetchMeFn={shellMe} />)).toThrow(URIError)
+    } finally {
+      consoleError.mockRestore()
+    }
+    expect(document.body.textContent).toBe('')
+    expect(shellMe).not.toHaveBeenCalled()
+    expect(brokenFetch.calls).toEqual([])
+    expect(idb.openCount()).toBe(0)
+  })
+})

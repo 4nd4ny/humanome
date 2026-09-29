@@ -224,3 +224,77 @@ describe('UC-EPI-01 — l’épistémiarque propose l’évolution d’une comp�
     expect(backend.versions.get(Number(editorHash.split('/').pop())).status).toBe('draft')
   })
 })
+
+describe('UC-EPI-01 — section inconnue de l’atelier (E14)', () => {
+  /** Ouvre <App/> : session du shell par fetchMeFn, celle de la vue par le faux serveur. */
+  function openAs(backend, me, hash) {
+    vi.stubGlobal('fetch', backend.fetchMock)
+    window.location.hash = hash
+    render(<App lib={fakeLib} fetchMeFn={async () => ({ user: me })} />)
+  }
+
+  const HASH = '#/epistemiarque/%3Cimg%20src%3Dx%3E'
+
+  it('UC-EPI-01-F21 — E14 : section inconnue → alerte citant le segment décodé en texte, lien de retour ; aucun appel aux compétences ; admin (A5) : même repli ; sans rôle : refus', async () => {
+    const backend = createEpiBackend({ me: IRIS, published: PUBLISHED })
+    openAs(backend, IRIS, HASH)
+
+    const alert = await screen.findByRole('alert')
+    // Segment décodé (parseHash) puis rendu comme TEXTE : aucune balise créée.
+    expect(alert.textContent).toBe('Section inconnue de l’atelier épistémiarque : « <img src=x> ».')
+    expect(document.querySelector('.epi img')).toBeNull()
+    const back = screen.getByRole('link', { name: 'Retour à l’atelier' })
+    expect(back.getAttribute('href')).toBe('#/epistemiarque')
+    expect(screen.queryByRole('region', { name: 'Les 61 compétences' })).toBeNull()
+    await act(async () => {})
+    expect(backend.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+
+    // Le lien de retour rouvre l'atelier, qui charge alors compétences et brouillons.
+    fireEvent.click(back)
+    expect(await competenceRow('1.01')).toBeDefined()
+    expect(window.location.hash).toBe('#/epistemiarque')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(backend.callsTo('GET', /^api\/competences$/)).toHaveLength(1)
+    expect(backend.callsTo('GET', /^api\/auth\/me$/)).toHaveLength(1)
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Administrateur sans rôle épistémiarque (A5) : il passe la garde, donc
+    // voit le même repli.
+    const admin = { id: 1, displayName: 'Root', roles: ['admin'] }
+    const adminBackend = createEpiBackend({ me: admin, published: PUBLISHED })
+    openAs(adminBackend, admin, HASH)
+    expect((await screen.findByRole('alert')).textContent).toBe('Section inconnue de l’atelier épistémiarque : « <img src=x> ».')
+    expect(adminBackend.callsTo('GET', /^api\/competences/)).toHaveLength(0)
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Compte sans rôle : la garde passe AVANT le dispatch → refus, pas le repli.
+    const maya = { id: 3, displayName: 'Maya', roles: ['apprenant'] }
+    const refused = createEpiBackend({ me: maya, published: PUBLISHED })
+    openAs(refused, maya, HASH)
+    expect((await screen.findByTestId('epi-sans-role')).textContent).toContain('réservé au rôle')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(refused.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET api/auth/me'])
+    cleanup()
+    vi.unstubAllGlobals()
+
+    // Comportement ACTUEL (anomalie AN1 de UC-VIS-02, commune aux routes à
+    // section) : un segment au pourcentage mal formé n'atteint pas ce repli.
+    // App calcule sa route au premier rendu (useState(currentRoute)) : le
+    // rendu lui-même lève une URIError — ni shell, ni sonde de session.
+    const broken = createEpiBackend({ me: IRIS, published: PUBLISHED })
+    vi.stubGlobal('fetch', broken.fetchMock)
+    const shellMe = vi.fn(async () => ({ user: IRIS }))
+    window.location.hash = '#/epistemiarque/100%'
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      expect(() => render(<App lib={fakeLib} fetchMeFn={shellMe} />)).toThrow(URIError)
+    } finally {
+      consoleError.mockRestore()
+    }
+    expect(document.body.textContent).toBe('')
+    expect(shellMe).not.toHaveBeenCalled()
+    expect(broken.calls).toEqual([])
+  })
+})

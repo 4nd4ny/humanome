@@ -109,6 +109,18 @@ la page Confidentialité.
 - **E4 — Accès API refusé** (A5) : sans session `401` ; compte sans rôle
   `apprenant` `403` ; copie d'un autre compte ou inexistante : **même** `404`
   (aucun oracle d'existence).
+- **E5 — Section inconnue** (étape 1) : `#/espace/<autre>`, dont le segment,
+  décodé par `parseHash`, n'est ni `formation[/<chapitre>]`, ni `nouveau-run`,
+  ni `cohortes` (comparaison exacte : `#/espace/cohortes/3` → « cohortes/3 »).
+  `EspaceView` affiche l'alerte « Section inconnue de l'espace apprenant :
+  « cohortes/3 ». » et le lien « Retour à l'accueil de l'espace »
+  (`#/espace`). Aucun bloc du tableau de bord n'est monté : aucune base
+  IndexedDB ouverte, aucune requête hors de la sonde de session
+  (`GET api/auth/me`). L'espace n'ayant pas de garde de rôle, le même repli
+  s'affiche sous le bandeau de session, que l'apprenant soit connecté ou non
+  (A1). Un segment au pourcentage mal formé (`#/espace/100%`) n'atteint pas ce
+  repli : `parseHash` lève une `URIError` avant tout rendu (anomalie AN1 de
+  UC-VIS-02, commune aux routes à section).
 
 ## Règles de gestion
 
@@ -139,9 +151,9 @@ la page Confidentialité.
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Route `#/espace` et ses sections |
+| Front | `web/src/router.js` — `parseHash` | Route `#/espace` et ses sections (segment décodé par `decodeURIComponent`, E5) |
 | Front | `web/src/api/client.js` — `fetchMe`, `ApiUnavailableError` | Session : utilisateur, 401 anonyme, API absente (bandeaux A1) |
-| Front | `web/src/views/EspaceView.jsx` | Session, bandeaux, dispatch |
+| Front | `web/src/views/EspaceView.jsx` | Session, bandeaux, dispatch, repli « section inconnue » (E5) |
 | Front | `web/src/views/espace/DashboardSection.jsx` | Quatre blocs, ouverture de la visionneuse |
 | Front | `web/src/lib/portfolio-store.js`, `web/src/lib/training-store.js` | Bloc « Mes portfolios » (message E1) ; bloc « Ma formation » (`GET api/training/progress` si connecté) |
 | Front | `web/src/views/espace/cartographies-panel-bridge.js`, `carto-store-bridge.js` | Chargement paresseux du panneau et du carto-store |
@@ -173,6 +185,7 @@ la page Confidentialité.
 | UC-APP-03-U10 | `CartographiesPanel` (store mémoire) | Libellés de type et de confidentialité, badge, noms de fichier : date du document, dernière date de période, date de modification (A4) | `web/test/usecases/unit/uc-app-03-consulter-ses-cartographies.test.jsx` |
 | UC-APP-03-U11 | `EspaceView` (`deps.fetchMeFn`) | Utilisateur → connecté ; `{user: null}` → anonyme ; `ApiUnavailableError` → copie statique ; autre erreur → anonyme (A1) | idem |
 | UC-APP-03-U12 | `loadPublishedReferentiel` | Fichier statique publié (`origin: published`), cache de module, repli embarqué hors ligne | idem |
+| UC-APP-03-U13 | `parseHash`, `EspaceView` (vue isolée, `deps`) | Segment décodé, sous-chemin compris ; hors des sections, comparaison exacte (`cohortes/3`, `formations`, `nouveau-run/`, casse) → alerte « Section inconnue de l'espace apprenant : « … ». », lien `#/espace`, aucun bloc ; stores, panneau, référentiel et `fetchFn` jamais sollicités, IndexedDB jamais ouvert ; même repli connecté ou non (A1, E5) | idem |
 
 ### Tests fonctionnels
 
@@ -192,10 +205,11 @@ la page Confidentialité.
 | UC-APP-03-F12 | E4 | API | 401 / 403 (liste et copie) / même 404 pour autrui et inexistant | idem |
 | UC-APP-03-F13 | A-02 | IHM | **Comportement actuel** : clic sur un jour du calendrier de la visionneuse → `#/jour/2026-01-06`, `data/demo/jours/2026-01-06.json` demandé | `web/test/usecases/functional/uc-app-03-consulter-ses-cartographies.test.jsx` |
 | UC-APP-03-F14 | A3 | IHM | Twin9 sans journée datée : message explicatif, JSON téléchargeable | idem |
+| UC-APP-03-F15 | E5 | IHM | `<App/>` sur `#/espace/cohortes/3` : alerte « Section inconnue de l'espace apprenant : « cohortes/3 ». », lien de retour, aucun bloc, aucune ouverture IndexedDB, seul `api/auth/me` demandé ; le retour rouvre le tableau de bord (qui lit IndexedDB) ; visiteur : même alerte sous le bandeau « pas connecté » ; `<App/>` sur `#/espace/100%` : le rendu lève une `URIError`, rien n'est affiché, ni sonde de session ni requête (comportement actuel, UC-VIS-02 AN1) | idem |
 
 ### Tests existants liés (non-régression)
 
-- `web/src/views/EspaceView.test.jsx` — blocs, bandeaux, « Voir » (panneau factice).
+- `web/src/views/EspaceView.test.jsx` — blocs, bandeaux, « Voir » (panneau factice), section inconnue (« section inconnue : message et lien de retour », vue isolée, E5).
 - `web/src/views/espace/CartographiesPanel.test.jsx` — liste, badge, « Voir », téléchargement (store mémoire).
 - `web/src/views/espace/CartographyViewer.test.jsx` — type Twin9.
 - `web/src/lib/carto-store.test.js` — CRUD sur l'adaptateur mémoire.

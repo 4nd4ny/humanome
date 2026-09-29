@@ -119,6 +119,18 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
   échoue au niveau réseau ou ne renvoie pas de JSON → le site affiche « Copie
   statique du site : l'espace établissement a besoin de l'API… » à la place
   de l'espace, sans autre appel.
+- **E6 — Section inconnue** (étapes 1 et 7) : `#/etablissement/<autre>`, dont
+  le segment, décodé par `parseHash`, ne commence ni par `cohorte/` ni par
+  `membre/` (ex. `#/etablissement/cohortes/7`, au pluriel comme l'URL de
+  l'API → « cohortes/7 »). Pour un compte `etablissement`, la vue affiche
+  l'alerte « Section inconnue de l'espace établissement : « cohortes/7 ». » et
+  le lien « Retour à l'accueil de l'espace » (`#/etablissement`). Aucune
+  section n'est montée : ni cohortes, ni configuration, ni paquets demandés,
+  seule la vérification de session `GET /api/auth/me` part. La garde passe
+  **avant** l'aiguillage : sans le rôle, espace réservé (E3), jamais ce
+  message. Un segment au pourcentage mal formé (`#/etablissement/100%`)
+  n'atteint pas ce repli : `parseHash` lève une `URIError` avant tout rendu
+  (anomalie AN1 de UC-VIS-02, commune aux routes à section).
 
 ## Règles de gestion
 
@@ -150,9 +162,9 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Routes `#/etablissement` et `#/etablissement/cohorte/<id>` |
+| Front | `web/src/router.js` — `parseHash` | Routes `#/etablissement` et `#/etablissement/cohorte/<id>` ; segment de section décodé par `decodeURIComponent` (E6) |
 | Front | `web/src/api/client.js` — `apiFetch`, `fetchMe` | Jeton CSRF gardé en mémoire depuis `GET /api/auth/me`, message d'erreur serveur (`data.error`) affiché, `ApiUnavailableError` (E5) |
-| Front | `web/src/views/EtablissementView.jsx` | Garde de rôle (session), copie statique, aiguillage des sections, section inconnue |
+| Front | `web/src/views/EtablissementView.jsx` | Garde de rôle (session), copie statique, aiguillage des sections, repli « section inconnue » (E6) |
 | Front | `web/src/views/etablissement/AccueilSection.jsx` | Création (nom nettoyé, refus du nom vide), code affiché, tableau, suppression en deux temps armée par ligne |
 | Front | `web/src/views/etablissement/CohorteSection.jsx` | Détail : code rappelé, tableau des membres (« — », « Non déposé », badges), message de chargement |
 | Front | `web/src/views/etablissement/etablissement-api.js` — `fetchCohortes`, `createCohorte`, `fetchCohorte` (normalisation des membres), `deleteCohorte`, `frDate` | Appels HTTP et formes normalisées |
@@ -179,7 +191,7 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 | UC-ETA-01-U10 | `fetchCohorte` | Normalisation du détail à plat (membres, dépôt, avancement non nul, replis `jobs_total`/`jobs_done`, avancement absent → `null`, taille 0 → `null`) | idem |
 | UC-ETA-01-U11 | `deleteCohorte` | `DELETE` avec CSRF, `204` → `null`, `404` → erreur typée | idem |
 | UC-ETA-01-U12 | `frDate` | Date ISO → `jj/mm/aaaa`, vide → `—` | idem |
-| UC-ETA-01-U13 | `EtablissementView` (isolée, `deps.fetchMeFn`) | Rôle établissement → accueil ; autre rôle → espace réservé sans invitation ; visiteur → invitation à se connecter ; `ApiUnavailableError` → copie statique ; section inconnue → alerte | idem |
+| UC-ETA-01-U13 | `EtablissementView` (isolée, `deps.fetchMeFn`) | Rôle établissement → accueil ; autre rôle → espace réservé sans invitation ; visiteur → invitation à se connecter ; `ApiUnavailableError` → copie statique ; section inconnue → alerte, lien de retour, aucun appel (E6) | idem |
 | UC-ETA-01-U14 | `AccueilSection` (isolée, `fetchFn`) | Nom nettoyé envoyé, nom vide refusé sans appel, premier clic arme la ligne sans `DELETE`, armer une autre ligne désarme la première | idem |
 | UC-ETA-01-U15 | `CohorteSection` (isolée, `fetchFn`) | « — » sans job, « x/y journées », « Non déposé », badge « Sans consentement » (forme non produite par l'API), `404` affiché sans code | idem |
 
@@ -201,12 +213,13 @@ L'établissement ouvre l'accueil de son espace (`#/etablissement`, section
 | UC-ETA-01-F12 | E3 | IHM | Apprenant et visiteur → espace réservé, aucun appel `api/etablissement/*` | idem |
 | UC-ETA-01-F13 | Anomalies | IHM | Configuration ou paquets en `500` : alerte, mais « Aucune cohorte pour l'instant » / « Aucun membre… » affichés alors que des données existent (comportement actuel) | idem |
 | UC-ETA-01-F14 | E5 | IHM | API injoignable → « Copie statique du site… », aucun appel `api/etablissement/*` | idem |
+| UC-ETA-01-F15 | E6 | IHM | `<App/>` sur `#/etablissement/cohortes/7` (établissement) : alerte « Section inconnue de l'espace établissement : « cohortes/7 ». », ni accueil ni membres, seul `GET api/auth/me` ; le lien de retour rouvre l'accueil (cohortes chargées, sans nouvelle sonde) ; apprenant → espace réservé, pas de message ; `<App/>` sur `#/etablissement/100%` : le rendu lève une `URIError`, rien n'est affiché, ni sonde de session ni requête (comportement actuel, UC-VIS-02 AN1) | idem |
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/EtablissementCohortesTest.php` — gardes de rôle, cycle de cohorte, consentement à la jointure, dépôt, quitter et cascade.
 - `api/tests/MasseRgpdPurgeTest.php` — purge des comptes établissement/apprenant, cloisonnement des documents.
-- `web/src/views/EtablissementView.test.jsx` — garde de rôle, création, tableau des membres (vue isolée).
+- `web/src/views/EtablissementView.test.jsx` — garde de rôle, création, tableau des membres, section inconnue (« section inconnue : alerte + retour à l'accueil », vue isolée, E6).
 - `api/tests/UseCases/Unit/UcAdm01GererComptesRolesTest.php` — UC-ADM-01-U10 : `RequireRole` (401 sans session, 403 sans rôle, rôles relus à chaque requête).
 - `api/tests/UseCases/Unit/UcCpt02SeConnecterDeconnecterTest.php` — UC-CPT-02-U07 : `CsrfMiddleware` (jeton absent ou faux → 403).
 

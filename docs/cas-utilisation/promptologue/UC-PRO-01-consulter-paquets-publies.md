@@ -121,6 +121,19 @@ client appelle directement une route de lecture publique.
   (« Cet atelier est réservé au rôle promptologue »).
 - **E6 — API injoignable (copie statique du site)** (étape 2) : message
   « Copie statique du site : l'atelier promptologue nécessite l'API serveur ».
+- **E7 — Section inconnue** (étapes 1-2) : `#/promptologue/<autre>`, dont le
+  segment, décodé par `parseHash`, n'est ni `editeur/<id>`, ni `banc-essai`,
+  ni `retro`, ni `formation[/<chapitre>]` (ex. `#/promptologue/r%C3%A9tro` →
+  « rétro »). Pour un promptologue, la vue affiche, sous le bandeau
+  « Connecté en tant que … (promptologue) » et la navigation de l'atelier,
+  l'alerte « Section inconnue de l'atelier promptologue : « rétro ». » et le
+  lien « Retour à l'atelier » (`#/promptologue`). Aucune section n'est
+  montée : aucune lecture de paquets, seule la vérification de session
+  `GET /api/auth/me` part. La garde passe **avant** l'aiguillage : visiteur,
+  compte sans rôle ou copie statique reçoivent les messages E4 à E6, jamais
+  celui-ci. Un segment au pourcentage mal formé (`#/promptologue/100%`)
+  n'atteint pas ce repli : `parseHash` lève une `URIError` avant tout rendu
+  (anomalie AN1 de UC-VIS-02, commune aux routes à section).
 
 ## Règles de gestion
 
@@ -171,8 +184,8 @@ client appelle directement une route de lecture publique.
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/router.js` — `parseHash` | Route `#/promptologue` |
-| Front | `web/src/views/PromptologueView.jsx` | Garde de session et de rôle, dispatch des sections |
+| Front | `web/src/router.js` — `parseHash` | Route `#/promptologue[/<section>]`, segment décodé par `decodeURIComponent` (E7) |
+| Front | `web/src/views/PromptologueView.jsx` | Garde de session et de rôle, dispatch des sections, repli « section inconnue » (E7) |
 | Front | `web/src/views/promptologue/AccueilSection.jsx` | Tableau des versions publiées, défaut marqué, paquet réservé |
 | Front | `web/src/views/promptologue/api.js` — `createPromptologueApi` (`listPublished`, `getPackage`, `getDefault`, `diff`) | Appels HTTP |
 | Front | `web/src/views/promptologue/EditeurSection.jsx` — `DiffView` | Rendu du diff structurel |
@@ -207,6 +220,7 @@ client appelle directement une route de lecture publique.
 | UC-PRO-01-U16 | `fetchPromptPackages` | Anomalie AN-3 : défaut = paquet embarqué → aucune entrée marquée (comportement figé) | idem |
 | UC-PRO-01-U17 | `PromptologueView` | Garde : visiteur, API injoignable, sans rôle → message, aucune lecture ; promptologue → accueil (E4-E6) | idem |
 | UC-PRO-01-U18 | `AccueilSection` | Lectures en échec tolérées (étape 3), entrées sans `id`/`version` filtrées, défaut marqué | idem |
+| UC-PRO-01-U19 | `parseHash`, `PromptologueView` (vue isolée, `deps.api` espionné) | Segment décodé (`r%C3%A9tro` → « rétro ») ; hors des sections, comparaison exacte (casse, barre finale, `editeur/` sans identifiant, `formations`) → sous le bandeau et la navigation, alerte « Section inconnue de l'atelier promptologue : « … ». », lien `#/promptologue` ; client jamais appelé, aucune section montée ; sans rôle → refus, pas de message (E7) | idem |
 
 ### Tests fonctionnels
 
@@ -234,6 +248,7 @@ client appelle directement une route de lecture publique.
 | UC-PRO-01-F20 | RG6 | API | Paquets nommés `default` et `drafts` : document et diff servis ; `/default` reste la désignation | idem |
 | UC-PRO-01-F21 | RG3 (étape 5) | API | Réglage partiel (`id` seul, `version` non textuelle…) → repli sur la dernière publication | idem |
 | UC-PRO-01-F22 | Limite L2 | API | Réglage écrit hors routes vers le Golden : servi tel quel, document toujours 404 (comportement figé) | idem |
+| UC-PRO-01-F23 | E7 | IHM | `<App/>` sur `#/promptologue/r%C3%A9tro` (promptologue) : alerte « Section inconnue de l'atelier promptologue : « rétro ». », bandeau et navigation, seul `GET api/auth/me` ; le lien de retour rouvre « Paquets » (trois lectures, sans nouvelle sonde) ; compte sans rôle → refus, pas de message ; `<App/>` sur `#/promptologue/100%` : le rendu lève une `URIError`, rien n'est affiché, ni sonde de session ni requête (comportement actuel, UC-VIS-02 AN1) | `web/test/usecases/functional/uc-pro-01-consulter-paquets-publies.test.jsx` |
 
 ### Tests existants liés (non-régression)
 
@@ -244,7 +259,7 @@ client appelle directement une route de lecture publique.
 - `api/tests/PackagesDefaultTest.php` — `testDefaultFallsBackToTheLatestPublishedVersion`.
 - `api/tests/PackagesTwin6Test.php` — `testImportReservedIsIdempotentAndListedReserved`.
 - `api/tests/AdminGoldenTest.php` — `testGoldenNeverExposedOnAnyPublicPath`.
-- `web/src/views/PromptologueView.test.jsx` — garde de rôle, défaut marqué.
+- `web/src/views/PromptologueView.test.jsx` — garde de rôle, défaut marqué, section inconnue (« section inconnue : alerte + retour à l'atelier », vue isolée, E7).
 - `web/src/views/promptologue/AccueilSection.test.jsx`, `DiffView.test.jsx`,
   `EditeurSection.test.jsx` (diff contre l'origine).
 - `web/src/lib/run-launcher.test.js` — défaut serveur marqué.

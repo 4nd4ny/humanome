@@ -7,9 +7,10 @@
 // (#/promptologue), le composant DiffView isolé (rendu tolérant de la sortie
 // de PackageDiff), le consommateur apprenant du paquet par défaut
 // (fetchPromptPackages, lanceur de runs), la garde de PromptologueView et
-// l'accueil AccueilSection rendus seuls avec un client simulé (sans réseau).
+// son repli « section inconnue », et l'accueil AccueilSection rendus seuls
+// avec un client simulé (sans réseau).
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render, screen, within } from '@testing-library/react'
+import { act, cleanup, render, screen, within } from '@testing-library/react'
 import { createPromptologueApi } from '../../../src/views/promptologue/api.js'
 import { DiffView } from '../../../src/views/promptologue/EditeurSection.jsx'
 import AccueilSection from '../../../src/views/promptologue/AccueilSection.jsx'
@@ -159,6 +160,45 @@ describe('UC-PRO-01 — PromptologueView isolée : garde de session et de rôle'
     expect(api.listPublished).toHaveBeenCalledTimes(1)
     expect(api.listDrafts).toHaveBeenCalledTimes(1)
     expect(api.getDefault).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('UC-PRO-01 — PromptologueView isolée : section inconnue (E7)', () => {
+  it('UC-PRO-01-U19 — PromptologueView : segment décodé par parseHash hors des sections (comparaison exacte) → sous le bandeau et la navigation, alerte citant le segment et lien de retour #/promptologue ; client jamais appelé, aucune section montée ; sans rôle → refus, jamais le message', async () => {
+    // Le segment arrive décodé du routeur : « r%C3%A9tro » devient « rétro ».
+    expect(parseHash('#/promptologue/r%C3%A9tro')).toEqual({ name: 'promptologue', section: 'rétro' })
+
+    const promptologue = async () => ({ user: { id: 7, displayName: 'Pom', roles: ['promptologue'] } })
+    // « editeur/ » sans identifiant, « formations », « retro/ », casse : aucune section.
+    for (const section of ['rétro', 'Retro', 'retro/', 'formations', 'editeur/', 'banc-essai/1']) {
+      const api = fakeApi({ getPackage: vi.fn(), diff: vi.fn() })
+      const Formation = vi.fn(() => null)
+      render(<PromptologueView section={section} deps={{ fetchMeFn: promptologue, api, formationSection: Formation }} />)
+      expect((await screen.findByRole('alert')).textContent, section).toBe(
+        `Section inconnue de l’atelier promptologue : « ${section} ».`,
+      )
+      expect(screen.getByTestId('promptologue-connecte').textContent).toContain('Pom (promptologue)')
+      expect(screen.getByRole('navigation', { name: 'Sections de l’atelier' })).toBeDefined()
+      expect(screen.getByRole('link', { name: 'Retour à l’atelier' }).getAttribute('href')).toBe('#/promptologue')
+      expect(screen.queryByRole('region', { name: 'Paquets publiés' })).toBeNull()
+      await act(async () => {})
+      for (const [name, fn] of Object.entries(api)) expect(fn, `${section} ${name}`).not.toHaveBeenCalled()
+      expect(Formation, section).not.toHaveBeenCalled()
+      cleanup()
+    }
+
+    // La garde passe avant l'aiguillage : compte sans rôle → refus, pas le repli.
+    const api = fakeApi()
+    render(
+      <PromptologueView
+        section="rétro"
+        deps={{ fetchMeFn: async () => ({ user: { id: 3, email: 'e@example.org', roles: ['apprenant'] } }), api }}
+      />,
+    )
+    expect((await screen.findByTestId('promptologue-sans-role')).textContent).toContain('réservé au rôle')
+    expect(screen.queryByText(/Section inconnue/)).toBeNull()
+    expect(screen.queryByRole('navigation', { name: 'Sections de l’atelier' })).toBeNull()
+    expect(api.listPublished).not.toHaveBeenCalled()
   })
 })
 
