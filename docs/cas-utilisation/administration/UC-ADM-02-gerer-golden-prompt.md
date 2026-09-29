@@ -7,7 +7,7 @@
 | **Portée** | humanome.xyz — `#/admin/golden` et API session admin `POST/GET /api/admin/golden`, `POST /api/admin/golden/{id}/grant` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §2 (administrateur), §3.4 (comparer au Golden Prompt), §3.8, §4.10 (Golden privé par défaut, publication au cas par cas), §6.3 (purge), §6.5 (journalisation minimale), §7 (modèle économique) ; `docs/autorisations.md` P12 ; formation promptologue ch. 5 |
-| **Statut** | Implémenté (P12.1, migration 010) — accès accordé mais consommé par aucune route (voir « Limites ») |
+| **Statut** | Implémenté (P12.1, migration 010) — accès accordé mais consommé par aucune route (voir « Limites ») ; deux fuites d'existence mineures (voir « Anomalies constatées ») |
 
 ## Objectif
 
@@ -22,8 +22,13 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 
 ## Préconditions
 
-- Session ouverte sur un compte portant le rôle `admin` (l'`admin` n'est pas
-  un super-rôle : ces routes sont sa seule surface).
+- Session ouverte sur un compte portant le rôle `admin` (garde
+  `RequireRole::any('admin')` des routes `/api/admin/golden*`). Le rôle
+  `admin` ouvre aussi d'autres routes (écriture du référentiel et des
+  compétences, `RoleGuard::any('epistemiarque', 'admin')` ; supervision et
+  atelier Twin9) — le commentaire de `routes/admin.php` qui en fait « la seule
+  surface admin » est périmé —, mais **aucune** ne donne accès au contenu du
+  Golden (RG1).
 - Un document `prompt-package` valide au schéma, dont l'identifiant n'est pas
   celui d'un paquet public.
 - Pour autoriser : le compte cible existe (non supprimé) et porte le rôle
@@ -90,7 +95,8 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 - **E1 — Pas administrateur** (étape 1) : la vue affiche « Cet espace est
   réservé à l'administration de la plateforme. » (+ invitation à se connecter
   pour un visiteur) et ne charge rien ; l'API répond `401` sans session,
-  `403` sans rôle `admin`.
+  `403` « Rôle insuffisant » sans rôle `admin`. Sur une copie statique (API
+  absente) : « Copie statique du site : l'administration a besoin de l'API… ».
 - **E2 — JSON illisible** (étape 3) : « Le document collé n'est pas un JSON
   valide. », aucune requête ; bouton **Importer** inactif tant que la zone est
   vide.
@@ -108,19 +114,29 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
   « Compte introuvable ».
 - **E8 — `userId` absent ou non entier** (étape 7) : `422` « Champ requis :
   userId (entier) ».
-- **E9 — Jeton CSRF absent** (étapes 3, 6) : `403`.
+- **E9 — Jeton CSRF absent** (étapes 3, 6) : `403` « Jeton CSRF absent ou
+  invalide » (le contrôle CSRF précède la garde de rôle ; rien n'est écrit).
 - **E10 — Corps vide** (étape 3) : `400` « Corps JSON invalide : document
   prompt-package attendu » (une enveloppe dont `document` n'est pas un objet
   est lue comme un document nu, donc `422`).
-- **E11 — Liste indisponible** (étape 2) : « Chargement impossible. »
+- **E11 — Liste indisponible** (étape 2) : erreur de l'API → « Chargement
+  impossible. » ; API injoignable ou réponse non JSON (`ApiUnavailableError`)
+  → message d'indisponibilité du client (« L'espace compte est indisponible
+  sur cette copie statique du site… »).
+- **E12 — API injoignable à l'import ou à l'autorisation** (étapes 3, 6) :
+  erreur autre qu'une `ApiError` → « Import impossible. » (la saisie est
+  conservée) / « Autorisation impossible. ».
 
 ## Règles de gestion
 
 - **RG1** — Un Golden est une ligne `prompt_packages` **privée** : tous les
   chemins de lecture publics de `PromptPackageRepository` filtrent
   `is_private = 0` (liste, document, défaut, publication, proposition,
-  diff, source de brouillon) ; la validation du paquet par défaut et le
-  lancement d'un run de masse le refusent aussi.
+  diff, source de brouillon) ; la validation du paquet par défaut
+  (`AdminSettingsTest`, UC-ADM-03-U03/F07) et le lancement d'un run de masse
+  (`AdminGoldenTest`) le refusent aussi. Deux chemins d'**écriture** ne
+  filtrent pas `is_private` et laissent fuir l'existence d'un slug Golden
+  (anomalies AN-1 et AN-2) ; le contenu, lui, n'est jamais renvoyé.
 - **RG2** — Le contenu vit **hors Git**, en base seulement ; la liste
   d'administration n'en montre que les métadonnées.
 - **RG3** — Versions immuables : idempotence par empreinte de contenu,
@@ -150,11 +166,11 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 | Front | `web/src/views/AdminView.jsx` | Garde de rôle admin, onglets, section `golden` |
 | Front | `web/src/views/admin/GoldenSection.jsx` | Formulaire d'import, liste, autorisation, messages |
 | Front | `web/src/views/admin/admin-api.js` — `fetchGolden`, `importGolden`, `grantGolden`, `frDate` | Appels API, dates |
-| Front | `web/src/api/client.js` — `apiFetch`, `ApiError` | Jeton CSRF, erreurs typées |
+| Front | `web/src/api/client.js` — `apiFetch`, `ApiError`, `ApiUnavailableError` | Jeton CSRF, erreurs typées, API injoignable (E11, E12) |
 | API | `api/src/routes/admin.php` — `POST/GET /admin/golden`, `POST /admin/golden/{id}/grant` | Orchestration, codes HTTP |
 | Domaine | `api/src/Admin/GoldenRepository.php` — `import`, `list`, `grant`, `hasAccess` | Import privé, liste, autorisation |
 | Domaine | `api/src/Packages/PromptPackageRepository.php` — `listPublished`, `findPublished`, `latestPublishedAnyPackage`, `isPublished`, `createDraft` | Invisibilité publique (RG1) |
-| Domaine | `api/src/Middleware/RequireRole.php`, `api/src/Auth/Audit.php` | Garde, journal |
+| Domaine | `api/src/Middleware/RequireRole.php`, `api/src/Middleware/CsrfMiddleware.php`, `api/src/Auth/Audit.php` | Garde de rôle, jeton CSRF (E9), journal |
 | Données | `scripts/migrations/010_admin_golden.sql` | `is_private`, `golden_grants` et cascades |
 
 ## Jeux de tests
@@ -164,8 +180,8 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 | ID | Cible | Vérifie | Fichier |
 |---|---|---|---|
 | UC-ADM-02-U01 | `GoldenRepository::import` | Privé + publié, idempotent, audit par identifiants | `api/tests/UseCases/Unit/UcAdm02GererGoldenPromptTest.php` |
-| UC-ADM-02-U02 | `GoldenRepository::import` | 422 schéma, 409 immuable, 409 slug public (E3-E5) | idem |
-| UC-ADM-02-U03 | `GoldenRepository::list` | Métadonnées seulement, versions ordonnées, autorisations nommées (RG2) | idem |
+| UC-ADM-02-U02 | `GoldenRepository::import` | 422 schéma, 409 immuable, 409 slug public (E3-E5) ; aucun audit ni version écrits par les refus | idem |
+| UC-ADM-02-U03 | `GoldenRepository::list` | Métadonnées seulement (aiguilles sans caractère de contrôle, témoin), versions dans l'ordre de **publication** (≠ semver), autorisations nommées (RG2) | idem |
 | UC-ADM-02-U04 | `GoldenRepository::grant`, `hasAccess` | Accordé / inchangé (un audit), 422 non promptologue, 404 Golden/compte inconnu ou supprimé (RG4) | idem |
 | UC-ADM-02-U05 | `PromptPackageRepository` (5 lectures publiques) | Golden invisible même pour un promptologue autorisé (RG1) | idem |
 | UC-ADM-02-U06 | Cascades `golden_grants` | Purge promptologue / paquet / admin (RG5) | idem |
@@ -173,6 +189,13 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 | UC-ADM-02-U08 | `importGolden` | POST `{document}` + jeton CSRF | idem |
 | UC-ADM-02-U09 | `grantGolden` | URL encodée, `{userId}`, refus → `ApiError` | idem |
 | UC-ADM-02-U10 | `frDate` | Format français, replis | idem |
+| UC-ADM-02-U11 | `GoldenSection` (rendu seul) | Bouton inactif sur zone vide ou blanche ; JSON illisible sans requête ; « inchangé », formulaire vidé, liste rechargée | idem |
+| UC-ADM-02-U12 | `AdminView` (rendu seul) | Garde : non-admin → espace réservé, aucune lecture ; copie statique ; admin → section Golden | idem |
+
+`RequireRole` et `CsrfMiddleware` sont couverts unitairement par les suites
+historiques `api/tests/AuthRequireRoleTest.php` et `api/tests/AuthCsrfTest.php`
+(voir « Tests existants liés ») ; les tests de cette fiche les exercent par
+l'API (F05).
 
 ### Tests fonctionnels
 
@@ -182,31 +205,37 @@ L'administrateur ouvre **Administration → Golden Prompt** (`#/admin/golden`).
 | UC-ADM-02-F02 | A1 + A2 | API | 200 inchangé ; nouvelle version 201, deux versions | idem |
 | UC-ADM-02-F03 | A3 | API | `unchanged`, un seul audit | idem |
 | UC-ADM-02-F04 | A4 | API | Document nu accepté (201) | idem |
-| UC-ADM-02-F05 | E1 + E9 | API | 401 anonyme, 403 promptologue (3 routes), 403 sans CSRF | idem |
-| UC-ADM-02-F06 | E3 + E10 | API | 422 schéma ; 400 corps vide ; enveloppe non objet → 422 | idem |
+| UC-ADM-02-F05 | E1 + E9 | API | 401 anonyme ; 403 « Rôle insuffisant » pour un promptologue (3 routes, jeton valide) ; 403 « Jeton CSRF absent ou invalide » à l'import et à l'autorisation, rien d'écrit | idem |
+| UC-ADM-02-F06 | E3 + E10 | API | 422 schéma ; 400 corps absent ou vide (message) ; enveloppe non objet → 422 | idem |
 | UC-ADM-02-F07 | E4 + E5 | API | 409 immuable, 409 slug public | idem |
-| UC-ADM-02-F08 | E6 | API | Apprenant et établissement : 422 | idem |
-| UC-ADM-02-F09 | E7 + E8 | API | 404 Golden/compte inconnu ; 422 `userId` absent, chaîne, 0 | idem |
+| UC-ADM-02-F08 | E6 | API | Apprenant et établissement : 422 ; ni autorisation ni audit | idem |
+| UC-ADM-02-F09 | E7 + E8 | API | 404 (statut et message) Golden/paquet public/compte inconnu ; 422 `userId` absent, chaîne, 0 | idem |
 | UC-ADM-02-F10 | RG1 (limite) | API | Promptologue AUTORISÉ : liste, document, **diff**, défaut, fork → rien | idem |
 | UC-ADM-02-F11 | RG5 | API | Suppression de compte du promptologue → autorisation retirée | idem |
 | UC-ADM-02-F12 | Nominal | IHM | `<App/>` : import, message, CSRF, liste, autorisation, date | `web/test/usecases/functional/uc-adm-02-gerer-golden-prompt.test.jsx` |
 | UC-ADM-02-F13 | A1 + A2 | IHM | « déjà présent, inchangé » ; versions 1.0.0, 1.1.0 | idem |
-| UC-ADM-02-F14 | A3 | IHM | « avait déjà accès » | idem |
-| UC-ADM-02-F15 | E1 | IHM | Promptologue / visiteur : espace réservé, aucune lecture | idem |
+| UC-ADM-02-F14 | A3 | IHM | « avait déjà accès » ; deux demandes envoyées, une seule ligne affichée | idem |
+| UC-ADM-02-F15 | E1 | IHM | Promptologue / visiteur : espace réservé, aucune lecture (réseau de chaque rendu inspecté) | idem |
 | UC-ADM-02-F16 | E2 | IHM | JSON illisible : refus local, aucune requête | idem |
 | UC-ADM-02-F17 | E3 + E4 | IHM | Messages 422 puis 409 de l'API | idem |
-| UC-ADM-02-F18 | E6 + E7 | IHM | Établissement 422, compte inconnu 404 | idem |
-| UC-ADM-02-F19 | E11 | IHM | « Chargement impossible. » | idem |
+| UC-ADM-02-F18 | E6 + E7 | IHM | Établissement 422, compte inconnu 404 ; aucune autorisation affichée, pas de rechargement | idem |
+| UC-ADM-02-F19 | E11 | IHM | Erreur serveur : « Chargement impossible. » ; API injoignable : message d'indisponibilité | idem |
+| UC-ADM-02-F20 | Anomalie AN-1 | API | Import de déploiement sous le slug du Golden : accepté, description écrasée, version invisible ; existence confirmée (comportement actuel figé) | `api/tests/UseCases/Functional/UcAdm02GererGoldenPromptTest.php` |
+| UC-ADM-02-F21 | Anomalie AN-2 | API | Fork renommé d'un paquet réservé vers le slug du Golden : 409 qui le nomme ; nom libre : 201 (comportement actuel figé) | idem |
+| UC-ADM-02-F22 | E12 | IHM | Import puis autorisation en échec réseau : « Import impossible. » (saisie conservée), « Autorisation impossible. » | `web/test/usecases/functional/uc-adm-02-gerer-golden-prompt.test.jsx` |
 
 Les tests IHM simulent l'API par un serveur factice à état qui reprend les
 statuts et messages de `routes/admin.php` / `GoldenRepository` (dont la logique
-est testée par les tests API ci-dessus).
+est testée par les tests API ci-dessus) ; leurs assertions portent sur l'IHM
+et sur les requêtes émises, jamais sur l'état de ce serveur factice.
 
 ### Tests existants liés (non-régression)
 
 - `api/tests/AdminGoldenTest.php` — garde de rôle, import privé idempotent, invisibilité sur les chemins publics, refus du run de masse par un établissement, slug public, liste et autorisation, audits.
 - `api/tests/RgpdAuditTest.php` — `golden_grants` couverte par l'audit RGPD.
 - `web/src/views/AdminView.test.jsx` — garde de rôle et navigation de l'administration.
+- `api/tests/AdminSettingsTest.php` (`testSetDefaultPackageRejectsUnpublishedAndGolden`) — refus d'un Golden comme paquet par défaut (RG1) ; voir aussi UC-ADM-03-U03/F07.
+- `api/tests/AuthRequireRoleTest.php` (garde `RequireRole`), `api/tests/AuthCsrfTest.php` (`CsrfMiddleware`).
 
 ### Exécuter
 
@@ -214,6 +243,27 @@ est testée par les tests API ci-dessus).
 docker compose run --rm php vendor/bin/phpunit --filter UcAdm02 --testdox
 cd web && npx vitest run test/usecases/unit/uc-adm-02 test/usecases/functional/uc-adm-02
 ```
+
+## Anomalies constatées
+
+- **AN-1 — L'import de déploiement ne protège pas les slugs Golden.** La
+  garde de E5 n'est pas symétrique : l'import Golden refuse un identifiant
+  public (`409`), mais `PromptPackageRepository::importPublishedDocument`
+  (appelé par `POST /api/admin/import-prompt-package`, outillage de
+  déploiement à `X-Migrate-Token`) ne filtre pas `is_private`. Sous le slug
+  d'un Golden, une **nouvelle** version est acceptée (`imported`) : la
+  `description` du Golden est écrasée (`ON DUPLICATE KEY UPDATE`) et une
+  version « publiée » est ajoutée au paquet **privé** — donc invisible du
+  public alors que le script croit l'avoir publiée ; sur une version
+  **existante**, la réponse (`unchanged` ou `409`) confirme l'existence du
+  Golden. Figé par F20. À corriger côté API (refuser un slug privé).
+- **AN-2 — Le nommage d'un fork révèle l'existence d'un slug Golden.**
+  `packageForReservedFork` vérifie la disponibilité du nom cible (`toId`) sans
+  filtrer `is_private` : un promptologue qui forke un paquet réservé
+  (`twin6-ouverte`) sous le nom d'un Golden reçoit `409` « Un paquet nommé
+  « *slug* » existe déjà… » au lieu d'une réponse neutre — contraire à la
+  réponse 404 homogène voulue pour les Golden (commentaire de `createDraft`).
+  Seule l'existence fuit, pas le contenu. Figé par F21. À corriger côté API.
 
 ## Limites
 
@@ -232,3 +282,6 @@ cd web && npx vitest run test/usecases/unit/uc-adm-02 test/usecases/functional/u
   par Twin9 (UC-APP-10, UC-ADM-05, gabarits UC-PRO-08).
 - L'autorisation se fait par **identifiant de compte** saisi à la main (pas de
   recherche par nom dans cette section).
+- L'existence d'un slug Golden n'est pas secrète : l'import de déploiement
+  (AN-1) et le nommage d'un fork renommé (AN-2) la révèlent ; seul le contenu
+  reste protégé.

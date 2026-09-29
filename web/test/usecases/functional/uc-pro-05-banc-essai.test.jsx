@@ -19,7 +19,6 @@ import PromptologueView from '../../../src/views/PromptologueView.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import { runVersionOnDays, TWIN6_PERIMETRE_NOTE } from '../../../src/views/promptologue/bench.js'
 import { TWIN6_MODE_NOTE } from '../../../src/views/promptologue/BancEssaiSection.jsx'
-import { compareRuns } from '../../../../engine/src/consistency.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import pkgFixture from '../../../../schemas/fixtures/prompt-package-exemple.json'
 import referentielFixture from '../../../../schemas/fixtures/referentiel-respire-v7.json'
@@ -173,8 +172,8 @@ describe('UC-PRO-05 — scénario nominal : comparaison A/B de deux versions', (
     const tokens = `${fr(24000)} / ${fr(4800)}`
     expect(rowCells(ab, 'Tokens réels (entrée / sortie)')).toEqual([tokens, tokens])
     expect(rowCells(ab, 'Coût réel (table de prix)')).toEqual(['0.144 $', '0.144 $'])
-    expect(rowCells(ab, 'Estimation (coût / durée)')[0]).toMatch(/\$ \/ ~\d+ min$/)
-    // Par journée : mêmes prompts moteur, mêmes réponses -> tout en commun.
+    // Par journée : B est un paquet engine:// — ses gabarits sont IGNORÉS
+    // (anomalie AN-3) : mêmes prompts moteur, mêmes réponses -> tout en commun.
     const jours = within(ab).getAllByRole('row').filter((r) => /^2026-01-0\d/.test(r.textContent))
     expect(jours.map((r) => r.firstChild.textContent)).toEqual(['2026-01-05', '2026-01-06', '2026-01-07'])
     expect(screen.getByTestId('banc-diff-competences').textContent).toContain('Aucun écart')
@@ -185,19 +184,40 @@ describe('UC-PRO-05 — scénario nominal : comparaison A/B de deux versions', (
     expect(report.versions.b.version).toBe('aurora-lab@2.0.0')
     expect(report.configurations.a).toMatchObject({ fournisseur: 'service humanome', modeleTarif: 'claude-sonnet-5' })
     expect(report.parJour).toHaveLength(3)
+    // Estimation (RG5) : ce que le banc exécute — 3 journées × (7 pôles +
+    // kairos), AUCUN récit de fusion —, chiffrée sur le modèle de référence du
+    // service ; la cellule affichée est celle du rapport.
+    for (const cote of ['a', 'b']) {
+      expect(report.estimations[cote]).toMatchObject({ totalCalls: 24, model: 'claude-sonnet-5' })
+      expect(typeof report.estimations[cote].costUsd).toBe('number')
+    }
+    const { costUsd, durationMin } = report.estimations.a
+    expect(rowCells(ab, 'Estimation (coût / durée)')).toEqual([`${costUsd} $ / ~${durationMin} min`, `${costUsd} $ / ~${durationMin} min`])
   })
 })
 
 describe('UC-PRO-05 — scénarios alternatifs', () => {
   it('UC-PRO-05-F07 — A1 : run simple d’une journée, usage et coût réels, export JSON réimportable', async () => {
     const llm = serviceHumanome()
-    stubNetwork({ ...bancRoutes(), ...llm.routes })
+    const net = stubNetwork({ ...bancRoutes(), ...llm.routes })
     openBanc()
     await ready()
     choisirJournee('2026-01-06')
-    await lancer()
+    // Température à la française (virgule décimale acceptée, étape 4).
+    fireEvent.change(screen.getByLabelText('Température'), { target: { value: '0,7' } })
+    // Double-clic : le verrou synchrone (étape 4) ne lance qu'UN run.
+    const bouton = screen.getByRole('button', { name: 'Lancer' })
+    await act(async () => {
+      fireEvent.click(bouton)
+      fireEvent.click(bouton)
+    })
 
     const bloc = await screen.findByTestId('banc-simple', {}, LONG)
+    expect(llm.prompts).toHaveLength(8)
+    const posts = net.calls((c) => c.method === 'POST' && c.url === 'api/llm')
+    expect(posts).toHaveLength(8)
+    // Le transport proxy recopie la température convertie (0,7 -> 0.7) dans chaque corps.
+    expect(posts.every((c) => JSON.parse(c.init.body).temperature === 0.7)).toBe(true)
     expect(bloc.textContent).toContain('1 journée(s), 8 appel(s) LLM')
     expect(bloc.textContent).toContain('exécution moteur embarqué')
     expect(screen.getByTestId('banc-usage').textContent).toBe(
@@ -225,18 +245,21 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
 
     const bloc = await screen.findByTestId('banc-multi', {}, LONG)
     expect(llm.prompts).toHaveLength(24)
-    const docs = [
-      DAY_DOCS['2026-01-05'],
-      withStatuts(DAY_DOCS['2026-01-05'], { '2.01': STATUT_NON_ETABLIE }),
-      DAY_DOCS['2026-01-05'],
-    ]
-    const expected = compareRuns(docs).distanceStructurelle
-    expect(expected).toBeGreaterThan(0)
+    // Oracle indépendant de compareRuns : paires (1,2) et (2,3) à distance 1,
+    // (1,3) à 0, sur les n codes instruits -> 2 / (3 paires × n).
+    const n = DAY_DOCS['2026-01-05'].poles.flatMap((p) => p.competences).length
+    const expected = 2 / (3 * n)
     expect(bloc.textContent).toContain(`Distance structurelle moyenne : ${expected.toFixed(3)}`)
     expect(bloc.textContent).toContain('3 stable(s), 1 divergente(s)')
     const row = within(bloc).getAllByRole('row').find((r) => r.textContent.startsWith('2.01'))
     expect(row.textContent).toContain('(runs 1, 3)')
     expect(row.textContent).toContain('(run 2)')
+    // Comportement actuel (garanties de la fiche) : le multi-run n'affiche ni
+    // usage ni coût réels, ni estimation, et n'offre aucun rapport téléchargeable.
+    expect(within(bloc).queryByRole('link', { name: /Télécharger/ })).toBeNull()
+    expect(screen.queryByRole('link', { name: /Télécharger/ })).toBeNull()
+    expect(screen.queryByTestId('banc-usage')).toBeNull()
+    expect(bloc.textContent).not.toContain('Estimation')
   })
 
   it('UC-PRO-05-F09 — A3 + A5 : A/B croisé 2×2 runs, B sur un autre LLM (clé personnelle) : écart franc vs bruit', async () => {
@@ -266,8 +289,8 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
     expect(multi.textContent).toMatch(/1 écart\(s\) franc\(s\)/)
     expect(multi.textContent).toMatch(/1 compétence\(s\) dans le bruit/)
     const ecart = within(multi).getAllByRole('row').find((r) => r.textContent.includes('2.01'))
-    expect(ecart.textContent).toContain('100 % des runs')
-    expect(ecart.textContent).toContain('0 % des runs')
+    // Cellules « Établie par A » / « Établie par B » : pA = 1, pB = 0.
+    expect([...ecart.querySelectorAll('td')].map((td) => td.textContent).slice(2)).toEqual(['100 % des runs', '0 % des runs'])
 
     // La clé personnelle ne part QUE vers le fournisseur choisi, jamais vers humanome.
     expect(anthropic.requests[0].headers['x-api-key']).toBe('sk-ant-test-banc')
@@ -353,14 +376,26 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
     expect(net.calls((c) => c.url.startsWith('api/prompt-packages/aurora-lab/'))).toHaveLength(0)
   })
 
-  it('UC-PRO-05-F13 — A8 : paquet à référentiel en dur signalé avant le run (drapeau reserved)', async () => {
-    stubNetwork(bancRoutes({ published: [{ id: 'twin6-ouverte', version: '1.0.0', reserved: true }] }))
+  it('UC-PRO-05-F13 — A8 : paquet à référentiel en dur signalé avant le run (drapeau reserved, ou présomption par le nom)', async () => {
+    stubNetwork(
+      bancRoutes({
+        published: [
+          { id: 'twin6-ouverte', version: '1.0.0', reserved: true },
+          // API ancienne : pas de drapeau reserved -> présomption par le nom.
+          { id: 'twin6-fork', version: '1.0.0' },
+        ],
+      }),
+    )
     openBanc()
     const select = await ready()
-    await waitFor(() => expect(select.options).toHaveLength(2))
+    await waitFor(() => expect(select.options).toHaveLength(3))
     fireEvent.change(select, { target: { value: 'pub:twin6-ouverte@1.0.0' } })
     expect(screen.getByRole('note').textContent).toContain(
       'Référentiel en dur : twin6-ouverte@1.0.0 : paquet Twin6 réservé',
+    )
+    fireEvent.change(select, { target: { value: 'pub:twin6-fork@1.0.0' } })
+    expect(screen.getByRole('note').textContent).toContain(
+      'twin6-fork@1.0.0 : le nom suggère un paquet Twin6 (fiches embarquées)',
     )
   })
 
@@ -404,6 +439,9 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
     const notes = screen.getAllByRole('note').map((n) => n.textContent)
     expect(notes.some((t) => t.includes('paquet Twin6 réservé'))).toBe(true)
     expect(notes.some((t) => t.includes('paquet Twin6 : les fiches P1..P7'))).toBe(true)
+    // La cartographie globale est téléchargeable telle que produite.
+    const lien = within(bloc).getByRole('link', { name: 'Télécharger la cartographie (JSON)' })
+    expect(decodeDataUrl(lien.getAttribute('href'))).toEqual(mergeFixture)
   })
 
   it('UC-PRO-05-F15 — A10 : interruption volontaire pendant le 3e run — statut neutre et rapport partiel', async () => {
@@ -467,6 +505,19 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
     await screen.findByText('Configuration chargée.')
     expect(screen.getByRole('radio', { name: /A\/B/ }).checked).toBe(true)
     expect(screen.getByRole('checkbox', { name: /Fournisseur\/modèle distinct pour B/ }).checked).toBe(true)
+
+    // Un carnet importé (export JSON d'un autre navigateur) qui référence un
+    // brouillon disparu : rechargé « avec réserves », repli sûr sur l'embarqué.
+    const carnet = JSON.stringify({ kind: 'carnet-banc-promptologue', texte: '# Carnet', configs: [{ nom: 'perimee', config: { mode: 'simple', selA: 'draft:999' } }] })
+    const fichier = new File([carnet], 'carnet.json', { type: 'application/json' })
+    Object.defineProperty(fichier, 'text', { value: async () => carnet })
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Importer un carnet'), { target: { files: [fichier] } })
+    })
+    await screen.findByText('Carnet importé depuis carnet.json.')
+    fireEvent.click(screen.getByRole('button', { name: 'Charger perimee' }))
+    await screen.findByText('Configuration chargée avec réserves : version « draft:999 » introuvable.')
+    expect(screen.getByLabelText('Version à tester').value).toBe('builtin')
   })
 
   it('UC-PRO-05-F17 — A12 : portfolio LOCAL du navigateur comme portfolio de test', async () => {
@@ -495,6 +546,74 @@ describe('UC-PRO-05 — scénarios alternatifs', () => {
   })
 })
 
+describe('UC-PRO-05 — scénarios alternatifs (compléments)', () => {
+  it('UC-PRO-05-F28 — A6 en A/B : UNE compétence — un appel par branche, estimation au même périmètre (RG5)', async () => {
+    const llm = serviceHumanome()
+    stubNetwork({ ...bancRoutes(), ...llm.routes })
+    openBanc()
+    await ready()
+    fireEvent.click(screen.getByRole('radio', { name: /A\/B/ }))
+    choisirJournee('2026-01-05')
+    fireEvent.change(screen.getByLabelText('Périmètre du référentiel'), { target: { value: 'comp:2.01' } })
+    await lancer()
+
+    const ab = await screen.findByTestId('banc-ab', {}, LONG)
+    expect(llm.prompts).toHaveLength(2)
+    expect(llm.prompts.every((p) => p.includes('# Pôle 2 — '))).toBe(true)
+    expect(rowCells(ab, 'Appels LLM')).toEqual(['1', '1'])
+    const report = decodeDataUrl(within(ab).getByRole('link', { name: 'Télécharger le rapport JSON' }).getAttribute('href'))
+    // Le banc estime ce qu'il exécute : 1 journée × 1 pôle, sans kairos ni fusion.
+    expect(report.estimations.a).toMatchObject({ totalCalls: 1, model: 'claude-sonnet-5' })
+    expect(report.estimations.b).toMatchObject({ totalCalls: 1, model: 'claude-sonnet-5' })
+  })
+
+  it('UC-PRO-05-F29 — A10 en A/B croisé puis en run simple : rapport partiel (≥ 1 run par branche), sinon « Run interrompu. » sans rapport', async () => {
+    const llm = serviceHumanome()
+    const routes = { ...bancRoutes(), ...llm.routes }
+    const repondre = routes['POST api/llm']
+    let appels = 0
+    let bloquerDes = 25 // A : runs 1-2 (appels 1-16) ; B : run 1 (17-24) ; B run 2 traîne.
+    routes['POST api/llm'] = (req) => {
+      appels += 1
+      if (appels < bloquerDes) return repondre(req)
+      return new Promise((resolve, reject) => {
+        req.init.signal?.addEventListener('abort', () => reject(new DOMException('Interrompu', 'AbortError')))
+      })
+    }
+    stubNetwork(routes)
+    openBanc()
+    await ready()
+    fireEvent.click(screen.getByRole('radio', { name: /A\/B/ }))
+    fireEvent.change(screen.getByLabelText('Runs par branche'), { target: { value: '2' } })
+    choisirJournee('2026-01-05')
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer' }))
+
+    await waitFor(() => expect(appels).toBe(25), LONG)
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Interrompre' }))
+    })
+    expect(await screen.findByText('Run interrompu — rapport partiel affiché.', {}, LONG)).toBeDefined()
+    expect(screen.queryByRole('alert')).toBeNull() // pas une erreur
+    expect(screen.getByTestId('banc-ab-multi').textContent).toContain('2 runs A × 1 runs B')
+    expect(screen.getByRole('note').textContent).toContain('rapport partiel sur 2 run(s) A et 1 run(s) B achevés')
+    expect(screen.getByTestId('banc-ab')).toBeDefined()
+
+    // Run simple interrompu au 1er appel : statut neutre, AUCUN rapport de ce
+    // run (pas de checkpoint) — le résultat précédent reste affiché.
+    fireEvent.click(screen.getByRole('radio', { name: 'Run simple' }))
+    bloquerDes = appels + 1
+    fireEvent.click(screen.getByRole('button', { name: 'Lancer' }))
+    await waitFor(() => expect(appels).toBe(bloquerDes), LONG)
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Interrompre' }))
+    })
+    expect(await screen.findByText('Run interrompu.', {}, LONG)).toBeDefined()
+    expect(screen.queryByRole('alert')).toBeNull()
+    expect(screen.queryByTestId('banc-simple')).toBeNull()
+    expect(screen.getByTestId('banc-ab')).toBeDefined()
+  })
+})
+
 describe('UC-PRO-05 — scénarios d’erreur', () => {
   it('UC-PRO-05-F18 — E1 : sans session ou sans rôle promptologue, le banc n’est pas proposé ni chargé', async () => {
     const net = stubNetwork(bancRoutes({ user: null }))
@@ -502,11 +621,15 @@ describe('UC-PRO-05 — scénarios d’erreur', () => {
     expect(await screen.findByTestId('promptologue-anonyme', {}, LONG)).toBeDefined()
     cleanup()
 
-    stubNetwork(bancRoutes({ user: { id: 3, email: 'a@example.org', displayName: 'Maya', roles: ['apprenant'] } }))
+    const sources = (c) => c.url.startsWith('api/prompt-packages') || c.url.startsWith('api/referentiel')
+    expect(net.calls(sources)).toHaveLength(0)
+
+    const netSansRole = stubNetwork(bancRoutes({ user: { id: 3, email: 'a@example.org', displayName: 'Maya', roles: ['apprenant'] } }))
     openBanc()
     expect((await screen.findByTestId('promptologue-sans-role', {}, LONG)).textContent).toContain('réservé au rôle')
     expect(screen.queryByLabelText('Version à tester')).toBeNull()
-    expect(net.calls('api/prompt-packages')).toHaveLength(0)
+    expect(netSansRole.calls('api/auth/me').length).toBeGreaterThan(0) // c'est bien CE réseau qui a servi
+    expect(netSansRole.calls(sources)).toHaveLength(0)
   })
 
   it('UC-PRO-05-F19 — E2 : période inversée — refus avant tout appel LLM', async () => {
@@ -530,7 +653,9 @@ describe('UC-PRO-05 — scénarios d’erreur', () => {
     stubNetwork({ ...bancRoutes(), ...llm.routes })
     openBanc()
     await ready()
-    fireEvent.change(screen.getByLabelText('Température'), { target: { value: '2,5' } })
+    // '2.5' (et non '2,5') : seul le dépassement de borne est en cause ici —
+    // la conversion de la virgule est couverte par F07.
+    fireEvent.change(screen.getByLabelText('Température'), { target: { value: '2.5' } })
     await lancer()
 
     expect((await screen.findByRole('alert')).textContent).toContain('Température invalide : nombre entre 0 et 2')
@@ -539,12 +664,17 @@ describe('UC-PRO-05 — scénarios d’erreur', () => {
 
   it('UC-PRO-05-F21 — E4 : référence absente puis référence invalide au schéma', async () => {
     const llm = serviceHumanome()
-    stubNetwork({ ...bancRoutes(), ...llm.routes })
+    const net = stubNetwork({ ...bancRoutes(), ...llm.routes })
     openBanc()
     await ready()
     fireEvent.click(screen.getByRole('radio', { name: /Vs référence importée/ }))
     await lancer()
     expect((await screen.findByRole('alert')).textContent).toBe('Importez d’abord un JSON de référence (côté B).')
+    // Comportement actuel : l'absence de référence n'est détectée qu'APRÈS la
+    // préparation du fournisseur (un défi + preuve de travail en mode service),
+    // mais avant tout appel LLM.
+    expect(net.calls('api/llm/challenge')).toHaveLength(1)
+    expect(llm.prompts).toHaveLength(0)
 
     const invalide = clone(DAY_DOCS['2026-01-05'])
     invalide.poles = invalide.poles.slice(0, 6) // 6 pôles, sans marqueur de périmètre
@@ -681,5 +811,32 @@ describe('UC-PRO-05 — anomalies constatées (comportement ACTUEL figé)', () =
     // … mais les versions publiées du référentiel ont été écartées.
     const select = screen.getByLabelText('Version du référentiel')
     expect([...select.options].map((o) => o.value)).toEqual(['embarque'])
+  })
+
+  it('UC-PRO-05-F27 — anomalie AN-3 : un brouillon engine:// aux gabarits édités tourne avec les gabarits du MOTEUR — la modification n’atteint jamais le LLM', async () => {
+    // COMPORTEMENT ACTUEL, documenté comme anomalie (fiche, AN-3) : le paquet
+    // par défaut et tous ses forks portent le marqueur engine:// ; le banc
+    // appelle alors extractDay, qui instancie SES gabarits — les prompts[] du
+    // paquet sont ignorés, sans avertissement.
+    const llm = serviceHumanome()
+    const document = enginePackage('aurora-lab', '2.1.0')
+    const pole = document.prompts.find((p) => p.role === 'extraction-pole')
+    pole.texte = `SENTINELLE-BROUILLON\n${pole.texte}`
+    stubNetwork({ ...bancRoutes({ drafts: [{ draftId: 12, id: 'aurora-lab', version: '2.1.0', document }] }), ...llm.routes })
+    openBanc()
+    const select = await ready()
+    await waitFor(() => expect([...select.options].map((o) => o.value)).toContain('draft:12'))
+    fireEvent.change(select, { target: { value: 'draft:12' } })
+    choisirJournee('2026-01-05')
+    await lancer()
+
+    const bloc = await screen.findByTestId('banc-simple', {}, LONG)
+    expect(bloc.textContent).toContain('aurora-lab@2.1.0')
+    expect(bloc.textContent).toContain('exécution moteur embarqué')
+    expect(llm.prompts).toHaveLength(8)
+    expect(llm.prompts.every((p) => !p.includes('SENTINELLE-BROUILLON'))).toBe(true)
+    expect(llm.prompts[0]).toContain('# Pôle 1 — ') // gabarit du moteur
+    // Aucune alerte n'avertit le promptologue.
+    expect(screen.queryByRole('note')).toBeNull()
   })
 })

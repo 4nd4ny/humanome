@@ -3,14 +3,17 @@
 //
 // Briques du moteur (ESM sans DOM, ADR-001) sur lesquelles le banc calcule ses
 // mesures : consistance multi-run (compareRuns), estimation paramétrable
-// (estimateRun), table de prix du coût réel (getModelPricing) et fournisseur
-// factice (createMockProvider). Données : fixtures VERSIONNÉES uniquement
-// (schemas/fixtures/) — ce fichier tourne dans la CI « Tests moteur ».
+// (estimateRun), table de prix du coût réel (getModelPricing), fournisseurs
+// réels du banc (createProvider : transport direct avec clé personnelle,
+// transport proxy du « Service humanome » — fetch injecté, aucun réseau) et
+// périmètre restreint (restreindreReferentiel). Données : fixtures VERSIONNÉES
+// uniquement (schemas/fixtures/) — ce fichier tourne dans la CI « Tests moteur ».
 import { readFileSync } from 'node:fs'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { compareRuns } from '../../../src/consistency.js'
 import { estimateRun, getModelPricing } from '../../../src/providers/estimate.js'
-import { createMockProvider } from '../../../src/providers/mock.js'
+import { createProvider } from '../../../src/providers/index.js'
+import { restreindreReferentiel } from '../../../src/pipeline/extract.js'
 
 const fixture = (name) =>
   JSON.parse(readFileSync(new URL(`../../../../schemas/fixtures/${name}`, import.meta.url), 'utf8'))
@@ -82,11 +85,57 @@ describe('UC-PRO-05 — estimation et coût', () => {
     expect(getModelPricing('')).toBeNull()
   })
 
-  it('UC-PRO-05-U22 — createMockProvider : température transmise et usage fixe mesurable', async () => {
-    const provider = createMockProvider({ responses: '{}', usage: { inputTokens: 1000, outputTokens: 200 } })
-    const res = await provider.complete({ model: 'demo', prompt: 'pôle 1', temperature: 0.7 })
-    expect(res).toEqual({ text: '{}', usage: { inputTokens: 1000, outputTokens: 200 }, model: 'demo' })
-    expect(provider.calls[0]).toMatchObject({ model: 'demo', prompt: 'pôle 1', temperature: 0.7 })
-    await expect(provider.complete({ model: '', prompt: 'x' })).rejects.toThrow('"model" est requis')
+  it('UC-PRO-05-U22 — createProvider : température transmise, usage RÉEL normalisé (input_tokens → inputTokens), clé seulement vers le fournisseur', async () => {
+    // Transport direct (clé personnelle, Anthropic) : la clé part dans l'en-tête
+    // x-api-key du SEUL fournisseur ; l'usage renvoyé est converti au format
+    // commun {inputTokens, outputTokens} que le banc cumule (coût réel, RG4).
+    const direct = vi.fn(async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ model: 'claude-haiku-4-5', content: [{ type: 'text', text: '{}' }], usage: { input_tokens: 2000, output_tokens: 500 } }),
+    }))
+    const anthropic = createProvider({ provider: 'anthropic', transport: 'direct', apiKey: 'sk-ant-test', fetchFn: direct, maxAttempts: 1 })
+    const res = await anthropic.complete({ model: 'claude-haiku-4-5', prompt: 'pôle 1', temperature: 0.7, maxTokens: 100 })
+    expect(res).toMatchObject({ text: '{}', usage: { inputTokens: 2000, outputTokens: 500 }, model: 'claude-haiku-4-5' })
+    const [url, init] = direct.mock.calls[0]
+    expect(url).toBe('https://api.anthropic.com/v1/messages')
+    expect(init.headers['x-api-key']).toBe('sk-ant-test')
+    expect(JSON.parse(init.body)).toMatchObject({ model: 'claude-haiku-4-5', temperature: 0.7, max_tokens: 100 })
+
+    // Transport proxy (« Service humanome », api/llm) : aucune clé, la
+    // température est recopiée dans le corps, l'usage du serveur relayé.
+    const proxy = vi.fn(async () => ({ ok: true, status: 200, json: async () => ({ text: '{}', usage: { inputTokens: 1000, outputTokens: 200 }, model: 'claude-sonnet-5' }) }))
+    const service = createProvider({ provider: 'anthropic', transport: 'proxy', proxyUrl: 'api/llm', fetchFn: proxy, maxAttempts: 1 })
+    const viaProxy = await service.complete({ model: 'demo', prompt: 'pôle 2', temperature: 0.3 })
+    expect(viaProxy.usage).toEqual({ inputTokens: 1000, outputTokens: 200 })
+    expect(proxy.mock.calls[0][0]).toBe('api/llm')
+    const body = JSON.parse(proxy.mock.calls[0][1].body)
+    expect(body).toMatchObject({ prompt: 'pôle 2', temperature: 0.3 })
+    expect(JSON.stringify(proxy.mock.calls[0][1])).not.toContain('apiKey')
+
+    // Clé absente en transport direct : refus avant tout appel.
+    expect(() => createProvider({ provider: 'anthropic', transport: 'direct' })).toThrow('apiKey requise')
+  })
+})
+
+describe('UC-PRO-05 — périmètre restreint (A6, E6)', () => {
+  it('UC-PRO-05-U28 — restreindreReferentiel : un pôle ou une compétence ; périmètre absent du référentiel refusé (pré-vol E6)', () => {
+    const referentiel = fixture('referentiel-respire-v7.json')
+    expect(restreindreReferentiel(referentiel, {})).toEqual({ referentiel, partiel: false })
+
+    const pole = restreindreReferentiel(referentiel, { poles: [3] })
+    expect(pole.partiel).toBe(true)
+    expect(pole.referentiel.poles.map((p) => p.num)).toEqual([3])
+    expect(pole.referentiel.competences.every((c) => c.pole === 3)).toBe(true)
+
+    const une = restreindreReferentiel(referentiel, { competences: ['2.01'] })
+    expect(une).toMatchObject({ partiel: true })
+    expect(une.referentiel.competences.map((c) => c.code)).toEqual(['2.01'])
+    expect(une.referentiel.poles.map((p) => p.num)).toEqual([2])
+
+    // Une version du référentiel SANS 2.01 : le banc s'appuie sur cette levée
+    // pour refuser le run avant tout appel LLM (E6).
+    const sans201 = { ...referentiel, competences: referentiel.competences.filter((c) => c.code !== '2.01') }
+    expect(() => restreindreReferentiel(sans201, { competences: ['2.01'] })).toThrow('périmètre vide')
   })
 })

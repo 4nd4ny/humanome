@@ -5,7 +5,13 @@
 // (compareRetroDocs), texte LOCAL de la journée (findLocalDayText), versions
 // « plus récentes » du référentiel (newerReferentielVersions), client API de
 // l'atelier, et la chaîne complète extractDay (vrai moteur, référentiel
-// révisé) -> comparaison, avec un fournisseur factice rejouant les fixtures.
+// révisé) -> comparaison, avec un fournisseur factice (double de test)
+// rejouant les fixtures.
+//
+// Le référentiel « plus récent » des tests est un cas FICTIF où le NOM de 1.03
+// est révisé : seul un changement de nom (ou de structure) modifie le prompt
+// du moteur. Les versions réelles ne diffèrent que par leurs définitions
+// (`description`), qui n'atteignent jamais le LLM (anomalie AN-3, U13).
 import { describe, expect, it, vi } from 'vitest'
 import { extractDay } from '../../../../engine/src/pipeline/extract.js'
 import { createMockProvider } from '../../../../engine/src/providers/mock.js'
@@ -17,11 +23,11 @@ import { DAY_DOCS, STATUT_RENVOI, clone, llmReplyFor, withStatuts } from '../sup
 const ETABLIE = 'présence établie'
 const original = DAY_DOCS['2026-01-05']
 
-/** Référentiel 7.1.0 : 61 compétences, 1.03 redéfinie (le schéma fixe leur nombre). */
+/** Référentiel 7.1.0 FICTIF : 61 compétences, NOM de 1.03 révisé (le schéma fixe leur nombre). */
 function referentiel710() {
   const doc = clone(referentielFixture)
   doc.version = '7.1.0'
-  doc.competences.find((c) => c.code === '1.03').nom = 'Synthèse intégrative (définition élargie)'
+  doc.competences.find((c) => c.code === '1.03').nom = 'Synthèse intégrative (nom révisé)'
   return doc
 }
 
@@ -85,12 +91,12 @@ describe('UC-PRO-06 — logique de la rétrospective (retro.js)', () => {
     ])
   })
 
-  it('UC-PRO-06-U10 — chaîne complète : extractDay (référentiel 7.1.0, vrai moteur) puis comparaison → 1.03 nouvellement détectée', async () => {
-    // Le LLM factice n'établit 1.03 que si le prompt porte la définition révisée.
+  it('UC-PRO-06-U10 — chaîne complète : extractDay (référentiel 7.1.0 au NOM révisé, vrai moteur) puis comparaison → 1.03 nouvellement détectée', async () => {
+    // Le LLM factice n'établit 1.03 que si le prompt porte le nom révisé.
     const provider = createMockProvider({
       responses: ({ prompt }) =>
         llmReplyFor(prompt, {
-          mutate: prompt.includes('définition élargie') ? (doc) => withStatuts(doc, { '1.03': ETABLIE }) : undefined,
+          mutate: prompt.includes('(nom révisé)') ? (doc) => withStatuts(doc, { '1.03': ETABLIE }) : undefined,
         }),
     })
     const regenere = await extractDay({

@@ -57,18 +57,26 @@ final class UcPro05BancEssaiTest extends TestCase
         return new PromptPackageRepository(self::$pdo);
     }
 
-    #[TestDox('UC-PRO-05-U01 — listPublished : versions publiées et publiques seulement (ni brouillon, ni Golden privé)')]
+    #[TestDox('UC-PRO-05-U01 — listPublished : versions publiées et publiques seulement (ni brouillon, ni Golden privé) ; drapeau reserved')]
     public function testU01ListPublishedExposesOnlyPublicPublishedVersions(): void
     {
         $author = self::user('Pom');
         self::packages()->importPublishedDocument(self::enginePackage('aurora-lab', '2.0.0'));
+        // Paquet réservé au pipeline Twin6 (metadata.reserved) : le banc s'appuie
+        // sur ce drapeau pour l'alerte « référentiel en dur » AVANT le run (A8).
+        $twin6 = self::enginePackage('twin6-ouverte', '1.0.0');
+        $twin6['metadata']['reserved'] = true;
+        self::packages()->importPublishedDocument($twin6);
         self::packages()->createDraft('aurora-lab', '2.0.0', '2.1.0', $author);
         (new GoldenRepository(self::$pdo))->import(self::user('Root'), self::bancPackage(['id' => 'golden-reference']));
 
         $listed = self::packages()->listPublished();
 
-        self::assertSame([['aurora-lab', '2.0.0']], array_map(static fn (array $p): array => [$p['id'], $p['version']], $listed));
-        self::assertFalse($listed[0]['reserved'], 'paquet non réservé : le banc ne signale pas de référentiel en dur');
+        self::assertSame(
+            [['aurora-lab', '2.0.0', false], ['twin6-ouverte', '1.0.0', true]],
+            array_map(static fn (array $p): array => [$p['id'], $p['version'], $p['reserved']], $listed),
+            'ni brouillon ni Golden ; reserved vrai pour le seul paquet Twin6 réservé',
+        );
     }
 
     #[TestDox('UC-PRO-05-U02 — listDrafts : uniquement les brouillons de l’auteur (un brouillon ne tourne que chez lui)')]

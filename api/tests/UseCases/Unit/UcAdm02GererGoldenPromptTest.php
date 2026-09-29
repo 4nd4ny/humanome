@@ -140,27 +140,48 @@ final class UcAdm02GererGoldenPromptTest extends TestCase
         self::assertStringContainsString('versions immuables', $cases['immuable'][1]);
         self::assertSame(409, $cases['slug-public'][0]);
         self::assertStringContainsString('identifiant distinct', $cases['slug-public'][1]);
+
+        // Garanties minimales : aucun refus n'écrit quoi que ce soit — un seul
+        // audit (l'import réussi), deux versions en base (Golden 1.0.0 et le
+        // paquet public aurora-demo, importé hors Golden), aucun paquet créé
+        // sous le slug public.
+        self::assertCount(1, self::audits('golden_imported'));
+        self::assertSame(2, (int) self::$pdo->query('SELECT COUNT(*) FROM prompt_versions')->fetchColumn());
+        self::assertSame(1, (int) self::$pdo->query('SELECT COUNT(*) FROM prompt_packages WHERE is_private = 1')->fetchColumn());
+        self::assertSame(0, (int) self::$pdo->query("SELECT is_private FROM prompt_packages WHERE slug = 'aurora-demo'")->fetchColumn());
     }
 
-    #[TestDox('UC-ADM-02-U03 — list : métadonnées seulement (jamais les gabarits), versions dans l’ordre, autorisations nommées')]
+    #[TestDox('UC-ADM-02-U03 — list : métadonnées seulement (jamais les gabarits), versions dans l’ordre de PUBLICATION, autorisations nommées')]
     public function testU03ListExposesMetadataAndGrantsOnly(): void
     {
         $admin = self::user('Root', ['admin']);
         $pom = self::user('Pom', ['promptologue']);
-        self::repo()->import($admin, self::golden());
+        // Publiée d'abord : 1.1.0, puis 1.0.0 — l'ordre de publication diffère
+        // de l'ordre semver (et lexical).
         self::repo()->import($admin, self::golden(['version' => '1.1.0']));
+        self::repo()->import($admin, self::golden());
         self::repo()->grant($admin, self::GOLDEN, $pom);
 
         $list = self::repo()->list();
 
         self::assertCount(1, $list);
         self::assertSame(['id', 'packageId', 'description', 'versions', 'grants'], array_keys($list[0]));
-        self::assertSame(['1.0.0', '1.1.0'], $list[0]['versions']);
+        self::assertSame(['1.1.0', '1.0.0'], $list[0]['versions']);
         self::assertSame($pom, $list[0]['grants'][0]['userId']);
         self::assertSame(['Pom', 'pom@example.org'], [$list[0]['grants'][0]['displayName'], $list[0]['grants'][0]['email']]);
         self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', $list[0]['grants'][0]['createdAt']);
-        $texte = self::golden()['prompts'][0]['texte'];
-        self::assertStringNotContainsString(mb_substr($texte, 0, 40), json_encode($list, JSON_UNESCAPED_UNICODE));
+
+        // Jamais les gabarits : aiguilles SANS caractère de contrôle (json_encode
+        // échappe les sauts de ligne), dont le caractère discriminant est
+        // vérifié sur le document lui-même.
+        $liste = json_encode($list, JSON_UNESCAPED_UNICODE);
+        $document = json_encode(self::golden(), JSON_UNESCAPED_UNICODE);
+        foreach (['Tu es le Greffier', 'Tu es le prompt kairos'] as $aiguille) {
+            self::assertStringContainsString($aiguille, $document, 'témoin : l’aiguille est bien dans le Golden');
+            self::assertStringNotContainsString($aiguille, $liste);
+        }
+        self::assertStringNotContainsString('"prompts"', $liste);
+        self::assertStringNotContainsString('"orchestration"', $liste);
     }
 
     #[TestDox('UC-ADM-02-U04 — grant : accordé puis inchangé (un seul audit), réservé aux promptologues, 404 si Golden ou compte inconnu')]

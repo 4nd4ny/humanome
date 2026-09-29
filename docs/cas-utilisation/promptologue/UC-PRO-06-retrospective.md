@@ -7,7 +7,7 @@
 | **Portée** | humanome.xyz — atelier promptologue, section `#/promptologue/retro` (régénération 100 % navigateur) |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.4 (« retrouver rétrospectivement des compétences nouvellement ajoutées au référentiel »), §8 (référentiel évolutif), §6.1 (texte du portfolio côté client) |
-| **Statut** | Implémenté à l'unité (P10.6) — **bloqué contre l'API réelle**, voir « Anomalies constatées » (AN-1) ; régénération de masse au backlog post-v1 |
+| **Statut** | Implémenté à l'unité (P10.6) — **bloqué contre l'API réelle** (AN-1) et, même débloqué, **sans effet avec les versions réelles du référentiel** (AN-3) : voir « Anomalies constatées » ; régénération de masse au backlog post-v1 |
 
 ## Objectif
 
@@ -53,7 +53,8 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
    (`GET api/auth/me`) et le rôle `promptologue`.
 2. La section charge **ses** cartographies serveur (`GET api/cartographies` :
    métadonnées seulement, jamais les documents) et les versions publiées du
-   référentiel (`GET api/referentiel/versions`).
+   référentiel (`GET api/referentiel/versions` ; un échec de cette lecture est
+   avalé en silence — voir E2bis).
 3. Il choisit une cartographie d'origine : `GET api/cartographies/{id}` renvoie
    le document (et la version du référentiel qui l'a produit). Le document est
    une `cartographie-jour` ; la section cherche le texte de **cette date** dans
@@ -75,24 +76,34 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
 
 - **A1 — Texte introuvable localement** (étape 3) : « texte local introuvable,
   collez-le : » ; le promptologue colle le texte dans le champ (jamais envoyé
-  au stockage serveur) et poursuit.
+  au stockage serveur) et poursuit. Un échec du magasin local
+  (`portfolioStore.list()` rejeté, IndexedDB indisponible) mène au même
+  collage, sans message.
 - **A2 — Clé personnelle** (étape 4) : fournisseur direct (Anthropic, OpenAI,
   Google, xAI, OpenRouter, Ollama) avec sa clé ; modèle par défaut du
   fournisseur.
 - **A3 — Aucune évolution** (étape 6) : « Aucun changement : mêmes compétences
   établies. »
 - **A4 — Compétence disparue** (étape 6) : une compétence établie à l'origine
-  ne l'est plus : « disparue (désormais : *statut*) ».
+  ne l'est plus : « disparue (désormais : *statut*) ». Si elle est **absente**
+  du document régénéré (non instruite), la ligne indique seulement
+  « disparue », sans statut.
 
 ## Scénarios d'erreur
 
 - **E1 — Pas de session ou pas le rôle promptologue** (étape 1) : section
-  refusée, aucune cartographie chargée.
+  refusée (« nécessite une session » / « réservé au rôle promptologue »),
+  aucune cartographie chargée.
 - **E2 — Cartographies serveur inaccessibles** (étape 2) : `401`/`403` (par
   exemple un promptologue **sans** rôle `apprenant`) → « Les cartographies
   serveur nécessitent une session avec des cartographies stockées (opt-in
   apprenant). » ; autre échec → message de l'API.
-- **E3 — Cartographie non journalière** (étape 3) : une fusion (`merge`) →
+- **E2bis — Versions du référentiel indisponibles** (étape 2) : l'échec de
+  `GET api/referentiel/versions` est **silencieux** — la liste « Référentiel
+  plus récent » reste vide, sans message ; le promptologue ne l'apprend qu'au
+  lancement, par le message de E4 (comportement actuel).
+- **E3 — Cartographie non journalière** (étape 3) : une fusion (`merge`) ou
+  une analyse Twin9 (`twin9`, document `carto_evolutive` natif) →
   « … la régénération rétrospective (v1) opère à l'unité, jour par jour. »
 - **E4 — Aucune version choisie** (étape 5) : « Choisissez une version du
   référentiel (plus récente que celle du run d'origine). »
@@ -101,13 +112,19 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
 - **E6 — Échec de la régénération** (étape 5) : fournisseur en erreur, clé
   manquante, document invalide → message d'erreur.
 - **E7 — Cartographie d'autrui** (étape 3) : l'API répond le même `404`
-  qu'un identifiant inconnu (la liste ne la propose d'ailleurs jamais).
+  qu'un identifiant inconnu (la liste ne la propose d'ailleurs jamais) ; si la
+  lecture échoue malgré tout (cartographie supprimée entre-temps), la section
+  affiche le message de l'API et rien n'est régénérable.
 
 ## Règles de gestion
 
 - **RG1** — Le texte de la journée ne vient **jamais** du serveur : il est
-  retrouvé dans les portfolios locaux ou collé (client-first §6.1). Le serveur
-  ne détient que le document (extraits, verdicts).
+  retrouvé dans les portfolios locaux ou collé (client-first §6.1), et ne part
+  que vers le fournisseur LLM choisi. Le serveur ne détient que le document
+  (extraits, verdicts). Le serveur ne **filtre** rien (`POST
+  /api/cartographies` stocke le document tel quel, UC-APP-04) : la règle tient
+  côté client, ce que vérifient F05 et F06 (requêtes portant le texte) ; F04
+  contrôle ce que la rétrospective relit du serveur.
 - **RG2** — Seules **mes** cartographies sont accessibles (portée
   propriétaire, `404` sinon).
 - **RG3** — v1 : régénération **à l'unité**, une `cartographie-jour` à la
@@ -117,7 +134,10 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
 - **RG5** — Le référentiel compte toujours 61 compétences (schéma) : une
   « compétence nouvellement ajoutée » est, en pratique, une compétence
   **redéfinie** dans une version plus récente (ou une version majeure qui
-  révise aussi le schéma).
+  révise aussi le schéma). Seule une évolution du **`nom`** (ou de la
+  structure) change le prompt du moteur embarqué ; une redéfinition par la
+  `description` — la forme des versions réelles, 7.1.0 comprise —
+  n'atteint pas le LLM (voir AN-3).
 - **RG6** — La régénération n'est ni enregistrée ni substituée à l'original.
 
 ## Données et RGPD
@@ -138,10 +158,11 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
 | Front | `web/src/views/promptologue/retro.js` — `compareRetroDocs`, `findLocalDayText`, `newerReferentielVersions` | Logique pure |
 | Front | `web/src/views/promptologue/api.js` — `listCartographies`, `getCartography`, `listReferentielVersions`, `getReferentielVersion` | Appels API |
 | Front | `web/src/lib/run-launcher.js` — `createProviderBundle` ; `web/src/lib/portfolio-store.js` | Fournisseur ; portfolios locaux |
-| Moteur | `engine/src/pipeline/extract.js` — `extractDay`, `buildExtractionPrompt` | Régénération avec le référentiel choisi |
+| Moteur | `engine/src/pipeline/extract.js` — `extractDay`, `buildExtractionPrompt`, `buildKairosExtractionPrompt` | Régénération avec le référentiel choisi (code et nom des compétences seulement, AN-3) |
 | API | `GET /api/cartographies`, `GET /api/cartographies/{id}` — `api/src/routes/cartographies.php` (rôle `apprenant`) | Cartographies du propriétaire |
 | API | `GET /api/referentiel/versions[/{semver}]` — `api/src/routes/referentiel.php` | Versions du référentiel |
-| Domaine | `api/src/Cartographies/CartographyRepository.php` — `listForUser`, `findForUser`, `resolveReferentielVersion` | Métadonnées, document + base de référentiel |
+| Domaine | `api/src/Cartographies/CartographyRepository.php` — `listForUser`, `findForUser` (jointure `referentiel_versions` : base de l'original) | Métadonnées, document + base de référentiel |
+| Domaine (précondition) | `CartographyRepository::resolveReferentielVersion` — appelé par le seul `POST /api/cartographies` (UC-APP-04) | Épingle la base publiée au stockage ; la rétrospective ne l'appelle pas |
 | Domaine | `api/src/Referentiel/ReferentielRepository.php` — `publishedVersions`, `findPublished` | Référentiel plus récent |
 
 ## Jeux de tests
@@ -152,41 +173,52 @@ Le promptologue ouvre **Rétrospective** dans la navigation de l'atelier
 |---|---|---|---|
 | UC-PRO-06-U01 | `CartographyRepository::listForUser` | Mes cartographies, métadonnées, clé `type` (pas `kind`) | `api/tests/UseCases/Unit/UcPro06RetrospectiveTest.php` |
 | UC-PRO-06-U02 | `CartographyRepository::findForUser` | Document jour + `referentiel {id, version}` ; `null` pour autrui (RG2) | idem |
-| UC-PRO-06-U03 | `CartographyRepository::resolveReferentielVersion` | Seule une version publiée sert de base | idem |
-| UC-PRO-06-U04 | `ReferentielRepository::publishedVersions`, `findPublished` | Version 7.1.0 : 61 compétences, 1.03 redéfinie (RG5) | idem |
+| UC-PRO-06-U03 | `CartographyRepository::resolveReferentielVersion` (précondition, UC-APP-04) | Seule une version **publiée** épingle la base : ni brouillon, ni inconnue | idem |
+| UC-PRO-06-U04 | `ReferentielRepository::publishedVersions`, `findPublished` | 61 compétences ; redéfinition par `description` (forme réelle 7.1.0) : même nom, même contentHash ; nom révisé (cas fictif) : contentHash changé (RG5) | idem |
 | UC-PRO-06-U05 | `compareRetroDocs` | Nouvelle, disparue avec nouveau statut, stables (RG4) | `web/test/usecases/unit/uc-pro-06-retrospective.test.js` |
 | UC-PRO-06-U06 | `compareRetroDocs` | Compétence absente → disparue (`null`) ; identiques → aucun changement | idem |
 | UC-PRO-06-U07 | `findLocalDayText` | Premier portfolio portant la date, concaténation, titre par défaut (RG1) | idem |
 | UC-PRO-06-U08 | `newerReferentielVersions` | Strictement plus récentes (tri numérique) ; base `null` (AN-2) ; forme `{semver}` écartée (AN-1) | idem |
 | UC-PRO-06-U09 | `createPromptologueApi` | Routes cartographies et référentiel | idem |
-| UC-PRO-06-U10 | `extractDay` → `compareRetroDocs` | Référentiel 7.1.0 : 1.03 nouvellement détectée ; ancien référentiel : rien | idem |
-| UC-PRO-06-U11 | `buildExtractionPrompt` | La définition révisée atteint le LLM | `engine/test/usecases/unit/uc-pro-06-retrospective.test.js` |
+| UC-PRO-06-U10 | `extractDay` → `compareRetroDocs` | Référentiel 7.1.0 au **nom** révisé (cas fictif) : 1.03 nouvellement détectée ; ancien référentiel : rien | idem |
+| UC-PRO-06-U11 | `buildExtractionPrompt` | Un **nom** de compétence révisé atteint le LLM | `engine/test/usecases/unit/uc-pro-06-retrospective.test.js` |
 | UC-PRO-06-U12 | `extractDay` (`kairosOptional`) | Kairos inexploitable → `kairos: null`, sinon échec | idem |
+| UC-PRO-06-U13 | `buildExtractionPrompt`, `buildKairosExtractionPrompt` | Anomalie AN-3 : une redéfinition par `description` laisse les 7 prompts pôle et le prompt kairos identiques (comportement actuel figé) | idem |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-PRO-06-F01 | Nominal (étapes 2, 3, 5) | API | Liste, original avec base 7.0.0, versions (`semver`), référentiel 7.1.0 | `api/tests/UseCases/Functional/UcPro06RetrospectiveTest.php` |
+| UC-PRO-06-F01 | Nominal (étapes 2, 3, 5) | API | Liste, original avec base 7.0.0, versions (`semver`), référentiel 7.1.0 (définition servie dans `description`, nom inchangé) | `api/tests/UseCases/Functional/UcPro06RetrospectiveTest.php` |
 | UC-PRO-06-F02 | E2 | API | 401 sans session ; 403 pour un promptologue sans rôle `apprenant` | idem |
 | UC-PRO-06-F03 | E7 | API | Cartographie d'autrui : même 404 qu'inconnue | idem |
-| UC-PRO-06-F04 | RG1 | API | Le document stocké ne contient pas le texte de la journée | idem |
-| UC-PRO-06-F05 | Nominal | IHM | Texte local retrouvé, 8 appels sur ce texte, 1.03 nouvellement détectée, rien écrit côté serveur | `web/test/usecases/functional/uc-pro-06-retrospective.test.jsx` |
-| UC-PRO-06-F06 | A1 + A2 | IHM | `<App/>` : texte collé, clé Anthropic, modèle par défaut | idem |
+| UC-PRO-06-F04 | RG1 (côté serveur) | API | Le document relu ne porte que les clés du schéma et aucune feuille ne reprend la journée ni deux paragraphes consécutifs ; témoins détectés | idem |
+| UC-PRO-06-F05 | Nominal + RG1 | IHM | Texte local retrouvé, 8 appels sur ce texte, 1.03 nouvellement détectée ; le texte ne part que vers `api/llm`, aucune autre écriture serveur | `web/test/usecases/functional/uc-pro-06-retrospective.test.jsx` |
+| UC-PRO-06-F06 | A1 + A2 | IHM | `<App/>` : texte collé, clé Anthropic, modèle par défaut ; le texte collé ne part que vers le fournisseur | idem |
 | UC-PRO-06-F07 | A3 | IHM | « Aucun changement » | idem |
 | UC-PRO-06-F08 | A4 | IHM | « disparue (désormais : renvoi au cartographe) » | idem |
 | UC-PRO-06-F09 | E1 | IHM | Sans rôle : section refusée, aucune cartographie chargée | idem |
 | UC-PRO-06-F10 | E2 | IHM | 403 → message explicatif | idem |
-| UC-PRO-06-F11 | E3 | IHM | Fusion refusée | idem |
+| UC-PRO-06-F11 | E3 | IHM | Fusion et Twin9 refusées | idem |
 | UC-PRO-06-F12 | E4 | IHM | Aucune version choisie, 0 appel | idem |
 | UC-PRO-06-F13 | E5 | IHM | Texte vide, rappel RGPD, 0 appel | idem |
 | UC-PRO-06-F14 | E6 | IHM | 429 du fournisseur → message, pas de résultat | idem |
 | UC-PRO-06-F15 | Anomalie AN-1 | IHM | Forme réelle `{semver}` : aucune version proposée, cas bloqué (comportement actuel figé) | idem |
 | UC-PRO-06-F16 | Anomalie AN-2 | IHM | Base 7.1.0 ignorée : 7.0.0 encore proposée (comportement actuel figé) | idem |
+| UC-PRO-06-F17 | E1 | IHM | `<App/>` sans session : section refusée, ni cartographies ni versions lues | idem |
+| UC-PRO-06-F18 | E2 | IHM | 401 → message explicatif ; 500 → message de l'API | idem |
+| UC-PRO-06-F19 | E6 | IHM | Clé personnelle vide : message, aucune requête vers le fournisseur | idem |
+| UC-PRO-06-F20 | E2bis + A1 | IHM | Versions indisponibles : liste vide sans message, puis E4 au lancement ; magasin local en échec → collage (comportement actuel figé) | idem |
+| UC-PRO-06-F21 | A4 | IHM | Compétence absente de la régénération → « disparue » sans statut | idem |
+| UC-PRO-06-F22 | E7 | IHM | Lecture de l'original en 404 → message de l'API, rien à régénérer | idem |
 
-Les tests IHM F05 à F16 (sauf F15) fournissent les versions du référentiel
+Les tests IHM F05 à F22 (sauf F15) fournissent les versions du référentiel
 sous la forme **attendue par le front** (`{version}`) afin d'exercer la
 section ; F15 et les tests API figent la forme **réelle** (`{semver}`).
+Les tests IHM, U10 et U11 modélisent le référentiel plus récent par un
+**nom** révisé (cas fictif, le seul qui change le prompt du moteur) ; U04,
+F01 et U13 figent la forme **réelle** d'une version plus récente (définitions
+dans `description`, AN-3).
 
 ### Tests existants liés (non-régression)
 
@@ -220,9 +252,26 @@ cd engine && npx vitest run test/usecases/unit/uc-pro-06
   les versions publiées sont proposées, y compris la version d'origine et les
   antérieures, alors que le libellé et le message d'erreur annoncent « plus
   récent ». Figé par U08 et F16.
+- **AN-3 — Les définitions du référentiel n'entrent pas dans les prompts du
+  moteur embarqué.** La définition d'une compétence est le champ
+  `description` (`schemas/referentiel.schema.json`, rempli depuis
+  `identite.definition` par `SnapshotAssembler`), hors contentHash ; or le
+  bloc référentiel des prompts d'extraction (`referentielBloc`,
+  `engine/src/pipeline/extract.js`) ne porte que « code — nom », pour les
+  pôles comme pour le kairos. La seule version plus récente publiée en
+  production (7.1.0, `scripts/enrich-referentiel.mjs`) ne diffère de 7.0.0
+  que par ces définitions (même contentHash) : une rétrospective
+  7.0.0 → 7.1.0 réelle enverrait des prompts **identiques** — seule la
+  variance du LLM ferait bouger le résultat. Même AN-1 et AN-2 corrigées,
+  l'objectif du cas (« retrouver les compétences que l'évolution du
+  référentiel permet désormais d'identifier ») est donc inatteignable avec
+  les données réelles. Figé par U13 ; U04 et F01 figent la forme réelle.
+  À corriger côté moteur (injecter les définitions dans les prompts).
 
 ## Limites
 
+- Une redéfinition par `description` n'atteint pas le LLM (AN-3) : seule
+  une révision du nom (ou de la structure) peut faire émerger une compétence.
 - La liste des cartographies n'affiche pas leur type (la section lit `kind`,
   l'API renvoie `type`) : une fusion est proposée puis refusée (E3).
 - La régénération utilise toujours le protocole du moteur embarqué : ni le

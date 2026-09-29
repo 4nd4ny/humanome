@@ -8,7 +8,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
-import { resetApiClient } from '../../../src/api/client.js'
+import { API_UNAVAILABLE_MESSAGE, resetApiClient } from '../../../src/api/client.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import pkgFixture from '../../../../schemas/fixtures/prompt-package-exemple.json'
 import { ADMIN, PROMPTOLOGUE, authMe, clone, jsonResponse, stubNetwork } from '../support/banc.js'
@@ -145,29 +145,38 @@ describe('UC-ADM-02 — scénarios alternatifs', () => {
 
   it('UC-ADM-02-F14 — A3 : autoriser un compte déjà autorisé — « avait déjà accès »', async () => {
     const server = fakeGoldenServer()
-    openGolden(server)
+    const net = openGolden(server)
     await screen.findByText('Aucun Golden Prompt importé pour l’instant.', {}, LONG)
     await importer(golden())
     await autoriser(7)
     await screen.findByText('Accès accordé au compte 7.')
     await autoriser(7)
     expect(await screen.findByText('Le compte 7 avait déjà accès.')).toBeDefined()
-    expect(server.paquets[0].grants).toHaveLength(1)
+    // Côté IHM : deux demandes identiques envoyées, une seule ligne affichée.
+    const posts = net.calls((c) => c.method === 'POST' && c.url.endsWith('/grant'))
+    expect(posts.map((c) => JSON.parse(c.init.body))).toEqual([{ userId: 7 }, { userId: 7 }])
+    const item = screen.getByRole('heading', { name: GOLDEN }).closest('li')
+    await waitFor(() => expect(within(item).getAllByRole('listitem')).toHaveLength(1))
   })
 })
 
 describe('UC-ADM-02 — scénarios d’erreur', () => {
   it('UC-ADM-02-F15 — E1 : promptologue ou visiteur — espace réservé, aucune lecture des Golden', async () => {
-    const net = openGolden(fakeGoldenServer({ user: PROMPTOLOGUE }))
+    const netPro = openGolden(fakeGoldenServer({ user: PROMPTOLOGUE }))
     expect((await screen.findByTestId('admin-reserve', {}, LONG)).textContent).toContain(
       'Cet espace est réservé à l’administration de la plateforme.',
     )
     expect(screen.queryByLabelText('Document prompt-package (JSON)')).toBeNull()
+    expect(netPro.calls('api/auth/me').length).toBeGreaterThan(0)
+    expect(netPro.calls('api/admin/golden')).toHaveLength(0)
     cleanup()
 
-    openGolden(fakeGoldenServer({ user: null }))
+    // Chaque rendu a son propre réseau simulé : on inspecte CELUI du visiteur.
+    const netVisiteur = openGolden(fakeGoldenServer({ user: null }))
     expect(await screen.findByText(/Vous n’êtes pas connecté/, {}, LONG)).toBeDefined()
-    expect(net.calls('api/admin/golden')).toHaveLength(0)
+    expect(screen.getByTestId('admin-reserve')).toBeDefined()
+    expect(netVisiteur.calls('api/auth/me').length).toBeGreaterThan(0)
+    expect(netVisiteur.calls('api/admin/golden')).toHaveLength(0)
   })
 
   it('UC-ADM-02-F16 — E2 : JSON collé illisible — refus local, aucune requête', async () => {
@@ -194,7 +203,7 @@ describe('UC-ADM-02 — scénarios d’erreur', () => {
     const server = fakeGoldenServer({
       comptes: { 3: { displayName: 'Lycée', email: 'lycee@example.org', roles: ['etablissement'] } },
     })
-    openGolden(server)
+    const net = openGolden(server)
     await screen.findByText('Aucun Golden Prompt importé pour l’instant.', {}, LONG)
     await importer(golden())
     await autoriser(3)
@@ -203,11 +212,50 @@ describe('UC-ADM-02 — scénarios d’erreur', () => {
     )
     await autoriser(999)
     await waitFor(() => expect(screen.getByRole('alert').textContent).toBe('Compte introuvable'))
-    expect(server.paquets[0].grants).toEqual([])
+    // Côté IHM : aucune autorisation affichée, aucun rechargement de la liste
+    // après les refus (montage + rechargement après l'import seulement).
+    const item = screen.getByRole('heading', { name: GOLDEN }).closest('li')
+    expect(within(item).queryByRole('list')).toBeNull()
+    expect(item.textContent).toContain('Promptologues autorisés : aucun')
+    expect(net.calls((c) => c.url === 'api/admin/golden' && c.method === 'GET')).toHaveLength(2)
   })
 
-  it('UC-ADM-02-F19 — E11 : liste indisponible (erreur serveur) — « Chargement impossible. »', async () => {
+  it('UC-ADM-02-F19 — E11 : liste indisponible (erreur serveur) — « Chargement impossible. » ; API injoignable — message d’indisponibilité', async () => {
     openGolden(fakeGoldenServer({ listStatus: 500 }))
     expect((await screen.findByRole('alert', {}, LONG)).textContent).toBe('Chargement impossible.')
+    cleanup()
+
+    // Réseau en échec (API injoignable) : ApiUnavailableError, son message est affiché.
+    const server = fakeGoldenServer()
+    server.routes['GET api/admin/golden'] = () => {
+      throw new TypeError('network')
+    }
+    openGolden(server)
+    expect((await screen.findByRole('alert', {}, LONG)).textContent).toBe(API_UNAVAILABLE_MESSAGE)
+  })
+
+  it('UC-ADM-02-F22 — E12 : API injoignable à l’import puis à l’autorisation — « Import impossible. », « Autorisation impossible. »', async () => {
+    const server = fakeGoldenServer()
+    const importer1 = server.routes['POST api/admin/golden']
+    let panne = true
+    server.routes['POST api/admin/golden'] = (req) => {
+      if (panne) throw new TypeError('network')
+      return importer1(req)
+    }
+    openGolden(server)
+    await screen.findByText('Aucun Golden Prompt importé pour l’instant.', {}, LONG)
+    await importer(golden())
+    expect((await screen.findByRole('alert')).textContent).toBe('Import impossible.')
+    expect(screen.getByLabelText('Document prompt-package (JSON)').value).not.toBe('') // saisie conservée
+
+    panne = false
+    await importer(golden())
+    await screen.findByText(`Golden « ${GOLDEN} » 1.0.0 importé (privé).`)
+    server.routes[`POST api/admin/golden/${GOLDEN}/grant`] = () => {
+      throw new TypeError('network')
+    }
+    await autoriser(7)
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toBe('Autorisation impossible.'))
+    expect(screen.getByRole('heading', { name: GOLDEN }).closest('li').textContent).toContain('Promptologues autorisés : aucun')
   })
 })

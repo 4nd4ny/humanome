@@ -13,6 +13,7 @@
 //     l'hôte iframe RÉEL pour vérifier ce que la page insère et détruit.
 // L'ISOLATION (réseau coupé par la CSP, origine opaque) n'est PAS observable
 // ici : elle est prouvée en Chromium par web/e2e/sandbox-isolation.e2e.js.
+// Prérequis : Node ≥ 21.7 (hôte simulé : vm USE_MAIN_CONTEXT_DEFAULT_LOADER).
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import PromptologueView from '../../../src/views/PromptologueView.jsx'
@@ -275,6 +276,45 @@ describe('UC-PRO-07 — scénarios d’erreur', () => {
     expect(await screen.findByText('Run interrompu.', {}, LONG)).toBeDefined()
     expect(screen.queryByRole('alert')).toBeNull()
     expect(sandbox.hosts[0].terminated).toBe(true)
+  })
+})
+
+describe('UC-PRO-07 — anomalies constatées (comportement ACTUEL figé)', () => {
+  it('UC-PRO-07-F13 — anomalie AN-1 : « Interrompre » pendant la préparation — le code tiers s’exécute quand même et son résultat s’affiche', async () => {
+    // COMPORTEMENT ACTUEL, documenté comme anomalie (fiche, AN-1) : le banc
+    // affiche « Interrompre » dès « Préparation… », mais ni la preuve de
+    // travail (prime, sans signal) ni la lecture du paquet ne testent
+    // l'annulation ; le pont reçoit un signal DÉJÀ annulé et l'ignore.
+    const llm = serviceHumanome()
+    const routes = { ...bancRoutes({ packages: { 'aurora-demo/1.0.0': sandboxPackage(
+      `export async function run() { return ${JSON.stringify(DAY_DOCS['2026-01-05'])} }`,
+    ) } }), ...llm.routes }
+    const defi = routes['api/llm/challenge']
+    let libererDefi = null
+    routes['api/llm/challenge'] = (req) => new Promise((resolve) => { libererDefi = () => resolve(defi(req)) })
+    stubNetwork(routes)
+    const { sandbox } = openBanc()
+    await choisir('pub:aurora-demo@1.0.0')
+    uneJournee()
+    await lancer()
+
+    // Préparation en cours (défi de preuve de travail en attente) : interruption.
+    await waitFor(() => expect(libererDefi).not.toBeNull(), LONG)
+    expect(sandbox.hosts).toHaveLength(0)
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Interrompre' }))
+    })
+    await act(async () => {
+      libererDefi()
+    })
+
+    // ANOMALIE : la sandbox est quand même créée, le code du paquet tourne, et
+    // son document s'affiche comme un run abouti — aucun « Run interrompu ».
+    const bloc = await screen.findByTestId('banc-simple', {}, LONG)
+    expect(bloc.textContent).toContain('exécution sandbox')
+    expect(sandbox.hosts).toHaveLength(1)
+    expect(screen.queryByText(/Run interrompu/)).toBeNull()
+    expect(llm.prompts).toHaveLength(0)
   })
 })
 

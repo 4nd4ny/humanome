@@ -9,7 +9,8 @@ use Humanome\Referentiel\ReferentielRepository;
 use PDO;
 
 /**
- * Support partagé du lot « banc » (UC-PRO-05, UC-PRO-06, UC-ADM-02) —
+ * Support partagé du lot « banc » (UC-PRO-05, UC-PRO-06, UC-ADM-02 ; UC-PRO-07
+ * n'a pas de test PHP) —
  * fixtures VERSIONNÉES uniquement (schemas/fixtures/), jamais les données
  * dérivées de web/public/data.
  *
@@ -56,10 +57,17 @@ trait BancSupport
      * Référentiel fixture RESPIRE v7 (61 compétences, 7 pôles), éventuellement
      * re-versionné et retouché, contentHash recalculé (import idempotent).
      *
+     * Deux retouches distinctes :
+     * - $renames change le `nom` (champ STRUCTUREL, dans le contentHash et dans
+     *   le prompt du moteur) — cas fictif ;
+     * - $descriptions ajoute une DÉFINITION (`description`, hors contentHash,
+     *   jamais dans le prompt du moteur) — forme des versions réelles (7.1.0).
+     *
      * @param array<string, string> $renames code => nouveau nom de compétence
+     * @param array<string, string> $descriptions code => définition
      * @return array<string, mixed>
      */
-    protected static function referentielDoc(string $version = '7.0.0', array $renames = []): array
+    protected static function referentielDoc(string $version = '7.0.0', array $renames = [], array $descriptions = []): array
     {
         $doc = self::fixture('referentiel-respire-v7.json');
         $doc['version'] = $version;
@@ -68,17 +76,25 @@ trait BancSupport
             if (isset($renames[$competence['code']])) {
                 $doc['competences'][$i]['nom'] = $renames[$competence['code']];
             }
+            if (isset($descriptions[$competence['code']])) {
+                $doc['competences'][$i]['description'] = $descriptions[$competence['code']];
+            }
         }
         $doc['contentHash'] = ContentHash::compute($doc);
 
         return $doc;
     }
 
-    /** Publie une version du référentiel (chemin d'import initial). */
-    protected static function publishReferentiel(PDO $pdo, string $version = '7.0.0', array $renames = []): void
+    /**
+     * Publie une version du référentiel (chemin d'import initial).
+     *
+     * @param array<string, string> $renames
+     * @param array<string, string> $descriptions
+     */
+    protected static function publishReferentiel(PDO $pdo, string $version = '7.0.0', array $renames = [], array $descriptions = []): void
     {
         (new ReferentielRepository($pdo))->importPublishedDocument(
-            self::referentielDoc($version, $renames),
+            self::referentielDoc($version, $renames, $descriptions),
             'Version ' . $version . ' (tests du lot banc)',
         );
     }

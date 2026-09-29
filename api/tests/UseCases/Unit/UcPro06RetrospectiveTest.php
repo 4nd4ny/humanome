@@ -22,8 +22,10 @@ use PHPUnit\Framework\TestCase;
  *
  * La régénération tourne dans le navigateur ; le serveur fournit la
  * cartographie d'origine (métadonnées puis document, avec la version du
- * référentiel qui l'a produite) et la version plus récente du référentiel.
- * CartographyRepository et ReferentielRepository sont appelés directement.
+ * référentiel qui l'a produite — jointure de findForUser) et la version plus
+ * récente du référentiel. CartographyRepository et ReferentielRepository sont
+ * appelés directement. resolveReferentielVersion n'est pas appelé par la
+ * rétrospective : il épingle la base au stockage (précondition, UC-APP-04).
  */
 final class UcPro06RetrospectiveTest extends TestCase
 {
@@ -106,28 +108,41 @@ final class UcPro06RetrospectiveTest extends TestCase
         self::assertNull(self::repo()->findForUser($id, self::user('Autre')));
     }
 
-    #[TestDox('UC-PRO-06-U03 — resolveReferentielVersion : seule une version PUBLIÉE peut être la base d’une cartographie')]
+    #[TestDox('UC-PRO-06-U03 — précondition (UC-APP-04) : resolveReferentielVersion n’épingle comme base qu’une version PUBLIÉE (ni brouillon, ni inconnue)')]
     public function testU03OnlyPublishedReferentielVersionsResolve(): void
     {
         self::assertNotNull(self::repo()->resolveReferentielVersion('respire', '7.0.0'));
+        // Une version en BROUILLON (édition épistémiarque) n'est jamais une base.
+        self::assertNotNull((new ReferentielRepository(self::$pdo))->createDraft('respire', '7.0.0', '7.2.0'));
+        self::assertNull(self::repo()->resolveReferentielVersion('respire', '7.2.0'), 'un brouillon ne résout pas');
         self::assertNull(self::repo()->resolveReferentielVersion('respire', '9.9.9'));
         self::assertNull(self::repo()->resolveReferentielVersion('autre', '7.0.0'));
     }
 
-    #[TestDox('UC-PRO-06-U04 — référentiel plus récent : 61 compétences, définition révisée servie telle quelle')]
+    #[TestDox('UC-PRO-06-U04 — référentiel plus récent : 61 compétences ; une redéfinition (description) garde le contentHash, un nom révisé (cas fictif) le change')]
     public function testU04NewerReferentielVersionCarriesTheRevisedCompetence(): void
     {
-        self::publishReferentiel(self::$pdo, '7.1.0', ['1.03' => 'Synthèse intégrative (définition élargie)']);
+        // Forme RÉELLE d'une version plus récente (7.1.0 en production) : mêmes
+        // noms, définitions ajoutées dans `description`, même contentHash.
+        self::publishReferentiel(self::$pdo, '7.1.0', [], ['1.03' => 'Capacité à relier des savoirs épars en une vue d’ensemble argumentée.']);
+        // Cas FICTIF (tests IHM, U10, U11) : le NOM de 1.03 est révisé.
+        self::publishReferentiel(self::$pdo, '7.2.0', ['1.03' => 'Synthèse intégrative (nom révisé)']);
         $repo = new ReferentielRepository(self::$pdo);
 
-        self::assertSame(['7.1.0', '7.0.0'], array_column($repo->publishedVersions('respire'), 'semver'));
-        $content = $repo->findPublished('respire', '7.1.0')['content'];
-        self::assertCount(61, $content['competences'], 'le schéma fixe 61 compétences : « nouvelle » = redéfinie');
-        $noms = array_column($content['competences'], 'nom', 'code');
-        self::assertSame('Synthèse intégrative (définition élargie)', $noms['1.03']);
-        self::assertNotSame(
-            $content['contentHash'],
-            $repo->findPublished('respire', '7.0.0')['content']['contentHash'],
-        );
+        self::assertSame(['7.2.0', '7.1.0', '7.0.0'], array_column($repo->publishedVersions('respire'), 'semver'));
+        $base = $repo->findPublished('respire', '7.0.0')['content'];
+        $redefinie = $repo->findPublished('respire', '7.1.0')['content'];
+        $renommee = $repo->findPublished('respire', '7.2.0')['content'];
+        self::assertCount(61, $redefinie['competences'], 'le schéma fixe 61 compétences : « nouvelle » = redéfinie');
+
+        $avant = array_column($base['competences'], null, 'code');
+        $apres = array_column($redefinie['competences'], null, 'code');
+        self::assertSame($avant['1.03']['nom'], $apres['1.03']['nom'], 'une redéfinition ne touche pas le nom');
+        self::assertSame('Capacité à relier des savoirs épars en une vue d’ensemble argumentée.', $apres['1.03']['description']);
+        // Invariant : la définition n'entre pas dans le contentHash (identité structurelle).
+        self::assertSame($base['contentHash'], $redefinie['contentHash']);
+
+        self::assertSame('Synthèse intégrative (nom révisé)', array_column($renommee['competences'], 'nom', 'code')['1.03']);
+        self::assertNotSame($base['contentHash'], $renommee['contentHash'], 'le nom est structurel');
     }
 }
