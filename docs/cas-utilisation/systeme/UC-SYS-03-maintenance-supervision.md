@@ -271,3 +271,8 @@ docker compose run --rm php vendor/bin/phpunit --filter UcSys03 --testdox
 - `scripts/maintenance.php` et `scripts/rgpd-audit.php` ne sont pas livrés
   dans la release : en production, seule la route à jeton maintient ; l'audit
   RGPD se lance depuis un poste ayant accès à la base.
+- La sauvegarde et la restauration de la base (`scripts/backup/backup-db.mjs`,
+  `docs/backup-restore.md`) ne relèvent pas de cette maintenance : objectif de
+  continuité, déclenchement hebdomadaire ou ponctuel, exécution hors serveur
+  avec le client MySQL — voir UC-SYS-05. La construction des données et
+  artefacts dérivés (scripts Node de `scripts/`) relève d'UC-SYS-04.
