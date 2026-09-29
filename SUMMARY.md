@@ -86,6 +86,78 @@
   * [Stratégie de tests & non-régression par release](docs/strategie-tests.md)
   * [Tests bout-en-bout (Playwright) — parcours apprenant (P8), cartographe (P9), promptologue (P10)](docs/tests-e2e.md)
 
+## Cas d’utilisation
+
+* [Cas d'utilisation — catalogue et traçabilité des tests](docs/cas-utilisation/README.md)
+  * Visiteur
+    * [UC-VIS-01 — Explorer la cartographie de démonstration](docs/cas-utilisation/visiteur/UC-VIS-01-explorer-cartographie-demonstration.md)
+    * [UC-VIS-02 — Consulter le référentiel public de compétences](docs/cas-utilisation/visiteur/UC-VIS-02-consulter-referentiel-public.md)
+    * [UC-VIS-03 — Essayer la cartographie en direct, sans compte](docs/cas-utilisation/visiteur/UC-VIS-03-essayer-cartographie-en-direct.md)
+    * [UC-VIS-04 — Se repérer : accueil, navigation, guides, aide, confidentialité](docs/cas-utilisation/visiteur/UC-VIS-04-se-reperer-guides-aide.md)
+    * [UC-VIS-05 — Interroger l'assistant tuteur](docs/cas-utilisation/visiteur/UC-VIS-05-interroger-assistant-tuteur.md)
+  * Compte
+    * [UC-CPT-01 — Créer un compte et l'activer par code email](docs/cas-utilisation/compte/UC-CPT-01-creer-activer-compte.md)
+    * [UC-CPT-02 — Se connecter et se déconnecter](docs/cas-utilisation/compte/UC-CPT-02-se-connecter-deconnecter.md)
+    * [UC-CPT-03 — Gérer son profil (nom affiché, avatar)](docs/cas-utilisation/compte/UC-CPT-03-gerer-profil.md)
+    * [UC-CPT-04 — Gérer ses clés API personnelles](docs/cas-utilisation/compte/UC-CPT-04-gerer-cles-api.md)
+    * [UC-CPT-05 — Suivre sa progression de formation](docs/cas-utilisation/compte/UC-CPT-05-suivre-progression-formation.md)
+    * [UC-CPT-06 — Supprimer son compte (droit à l'effacement)](docs/cas-utilisation/compte/UC-CPT-06-supprimer-compte.md)
+  * Apprenant
+    * [UC-APP-01 — Constituer son portfolio local](docs/cas-utilisation/apprenant/UC-APP-01-constituer-portfolio.md)
+    * [UC-APP-02 — Lancer une cartographie standard](docs/cas-utilisation/apprenant/UC-APP-02-lancer-cartographie-standard.md)
+    * [UC-APP-03 — Consulter ses cartographies](docs/cas-utilisation/apprenant/UC-APP-03-consulter-ses-cartographies.md)
+    * [UC-APP-04 — Stocker une cartographie sur le serveur et régler sa confidentialité](docs/cas-utilisation/apprenant/UC-APP-04-stocker-regler-confidentialite.md)
+    * [UC-APP-05 — Partager une cartographie avec un employeur](docs/cas-utilisation/apprenant/UC-APP-05-partager-avec-employeur.md)
+    * [UC-APP-06 — Exporter et importer son archive complète](docs/cas-utilisation/apprenant/UC-APP-06-exporter-importer-archive.md)
+    * [UC-APP-07 — Inviter un cartographe](docs/cas-utilisation/apprenant/UC-APP-07-inviter-cartographe.md)
+    * [UC-APP-08 — Rejoindre une cohorte, déposer son portfolio, quitter](docs/cas-utilisation/apprenant/UC-APP-08-rejoindre-cohorte.md)
+    * [UC-APP-09 — Lancer une cartographie ouverte (Twin6)](docs/cas-utilisation/apprenant/UC-APP-09-cartographie-ouverte-twin6.md)
+    * [UC-APP-10 — Lancer une analyse approfondie (Twin9)](docs/cas-utilisation/apprenant/UC-APP-10-analyse-approfondie-twin9.md)
+    * [UC-APP-11 — Gérer son crédit Twin9 (achat, factures, remboursement)](docs/cas-utilisation/apprenant/UC-APP-11-gerer-credit-twin9.md)
+    * [UC-APP-12 — Explorer sa cartographie dans l'interface ipsative V3](docs/cas-utilisation/apprenant/UC-APP-12-interface-ipsative-v3.md)
+  * Cartographe
+    * [UC-CAR-01 — Accepter l'invitation d'un apprenant](docs/cas-utilisation/cartographe/UC-CAR-01-accepter-invitation.md)
+    * [UC-CAR-02 — Consulter sa file de relecture](docs/cas-utilisation/cartographe/UC-CAR-02-consulter-file-relecture.md)
+    * [UC-CAR-03 — Annoter une cartographie](docs/cas-utilisation/cartographe/UC-CAR-03-annoter-cartographie.md)
+    * [UC-CAR-04 — Corriger une cartographie (révision)](docs/cas-utilisation/cartographe/UC-CAR-04-corriger-cartographie.md)
+    * [UC-CAR-05 — Garantir une cartographie ou retirer sa garantie](docs/cas-utilisation/cartographe/UC-CAR-05-garantir-cartographie.md)
+    * [UC-CAR-06 — Comparer des versions de cartographie](docs/cas-utilisation/cartographe/UC-CAR-06-comparer-versions.md)
+    * [UC-CAR-07 — Mesurer la consistance multi-run](docs/cas-utilisation/cartographe/UC-CAR-07-mesurer-consistance.md)
+  * Employeur
+    * [UC-EMP-01 — Consulter une cartographie partagée](docs/cas-utilisation/employeur/UC-EMP-01-consulter-cartographie-partagee.md)
+  * Promptologue
+    * [UC-PRO-01 — Consulter les paquets de prompts publiés et leurs différences](docs/cas-utilisation/promptologue/UC-PRO-01-consulter-paquets-publies.md)
+    * [UC-PRO-02 — Créer et éditer un brouillon de paquet de prompts](docs/cas-utilisation/promptologue/UC-PRO-02-editer-brouillon-paquet.md)
+    * [UC-PRO-03 — Publier une version de paquet](docs/cas-utilisation/promptologue/UC-PRO-03-publier-version-paquet.md)
+    * [UC-PRO-04 — Proposer une version par défaut](docs/cas-utilisation/promptologue/UC-PRO-04-proposer-version-defaut.md)
+    * [UC-PRO-05 — Évaluer un paquet au banc d'essai](docs/cas-utilisation/promptologue/UC-PRO-05-banc-essai.md)
+    * [UC-PRO-06 — Régénérer rétrospectivement des cartographies](docs/cas-utilisation/promptologue/UC-PRO-06-retrospective.md)
+    * [UC-PRO-07 — Exécuter le code d'un paquet en sandbox](docs/cas-utilisation/promptologue/UC-PRO-07-sandbox.md)
+    * [UC-PRO-08 — Éditer les gabarits du Golden Prompt Twin9](docs/cas-utilisation/promptologue/UC-PRO-08-editer-gabarits-twin9.md)
+  * Épistémiarque
+    * [UC-EPI-01 — Proposer une modification de compétence](docs/cas-utilisation/epistemiarque/UC-EPI-01-proposer-modification-competence.md)
+    * [UC-EPI-02 — Voter sur une proposition](docs/cas-utilisation/epistemiarque/UC-EPI-02-voter-proposition.md)
+    * [UC-EPI-03 — Entériner et publier (compétence, release du référentiel)](docs/cas-utilisation/epistemiarque/UC-EPI-03-enteriner-publier.md)
+    * [UC-EPI-04 — Éditer une version complète du référentiel](docs/cas-utilisation/epistemiarque/UC-EPI-04-editer-version-referentiel.md)
+  * Établissement
+    * [UC-ETA-01 — Créer et gérer une cohorte](docs/cas-utilisation/etablissement/UC-ETA-01-gerer-cohorte.md)
+    * [UC-ETA-02 — Configurer le moteur LLM, le budget et le jeton worker](docs/cas-utilisation/etablissement/UC-ETA-02-configurer-llm-budget.md)
+    * [UC-ETA-03 — Lancer, suivre et annuler un run de masse](docs/cas-utilisation/etablissement/UC-ETA-03-piloter-run-masse.md)
+    * [UC-ETA-04 — Consulter les documents produits pour un membre](docs/cas-utilisation/etablissement/UC-ETA-04-consulter-documents-membre.md)
+  * Administration
+    * [UC-ADM-01 — Gérer les comptes et les rôles](docs/cas-utilisation/administration/UC-ADM-01-gerer-comptes-roles.md)
+    * [UC-ADM-02 — Gérer le Golden Prompt et ses accès](docs/cas-utilisation/administration/UC-ADM-02-gerer-golden-prompt.md)
+    * [UC-ADM-03 — Valider le paquet par défaut et les réglages](docs/cas-utilisation/administration/UC-ADM-03-valider-paquet-defaut-reglages.md)
+    * [UC-ADM-04 — Configurer la démo publique](docs/cas-utilisation/administration/UC-ADM-04-configurer-demo.md)
+    * [UC-ADM-05 — Superviser Twin9](docs/cas-utilisation/administration/UC-ADM-05-superviser-twin9.md)
+    * [UC-ADM-06 — Consulter le monitoring](docs/cas-utilisation/administration/UC-ADM-06-monitoring.md)
+  * Système et exploitation
+    * [UC-SYS-01 — Traiter la file de jobs de masse](docs/cas-utilisation/systeme/UC-SYS-01-traiter-file-jobs.md)
+    * [UC-SYS-02 — Déployer, migrer et importer](docs/cas-utilisation/systeme/UC-SYS-02-deployer-migrer.md)
+    * [UC-SYS-03 — Maintenance et supervision technique](docs/cas-utilisation/systeme/UC-SYS-03-maintenance-supervision.md)
+    * [UC-SYS-04 — Construire les données et artefacts dérivés](docs/cas-utilisation/systeme/UC-SYS-04-construire-artefacts-derives.md)
+    * [UC-SYS-05 — Sauvegarder et restaurer la base](docs/cas-utilisation/systeme/UC-SYS-05-sauvegarder-restaurer.md)
+
 ## Décisions d’architecture (ADR)
 
 * [ADR-001 — Exécution client-first du moteur de cartographie](docs/decisions/ADR-001-execution-client-first.md)
