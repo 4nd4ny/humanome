@@ -40,11 +40,13 @@ describe('UC-APP-01 — stockage local IndexedDB « humanome-portfolios » (éta
   it('UC-APP-01-U08 — l’adaptateur ouvre paresseusement la base v1, magasin « portfolios » à clé id', async () => {
     const idb = createFakeIndexedDb()
     vi.stubGlobal('indexedDB', idb.factory)
+    const openSpy = vi.spyOn(idb.factory, 'open')
 
     const adapter = createIndexedDbAdapter()
     expect(idb.openCount()).toBe(0) // import et création sans effet de bord
 
     await adapter.put({ id: 'p-1', titre: 'Journal', texte: 'A' })
+    expect(openSpy).toHaveBeenCalledWith('humanome-portfolios', 1) // base v1
     await adapter.put({ id: 'p-2', titre: 'Carnet', texte: 'B' })
     expect(idb.databases()).toEqual(['humanome-portfolios'])
     expect(await adapter.get('p-1')).toEqual({ id: 'p-1', titre: 'Journal', texte: 'A' })

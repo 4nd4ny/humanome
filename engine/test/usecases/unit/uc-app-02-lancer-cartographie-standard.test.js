@@ -256,7 +256,9 @@ describe('UC-APP-02 — run : checkpoints, échec, interruption, reprise (étape
     expect((await second.journal.entries()).map((e) => e.type)).toContain('run_resumed')
   })
 
-  it('UC-APP-02-U07 — interruption coopérative : la journée en cours se termine, la suivante n’est pas entamée', async () => {
+  it('UC-APP-02-U07 — moteur seul (createRun) : interruption coopérative entre deux journées, la journée en cours se termine, la suivante n’est pas entamée', async () => {
+    // L'assistant, lui, transmet aussi le signal aux appels du fournisseur :
+    // l'appel en cours y est abandonné et la journée refaite (F05).
     const storage = createMemoryStorage()
     const controller = new AbortController()
     const run = createRun({
@@ -375,7 +377,9 @@ describe('UC-APP-02 — fournisseurs (étape 4, A1)', () => {
     expect(() => createProvider({ provider: 'openai', transport: 'direct' })).toThrow(/apiKey requise/)
   })
 
-  it('UC-APP-02-U11 — service humanome : proxy api/llm SANS clé ; 429 réessayé après Retry-After, 4xx jamais', async () => {
+  it('UC-APP-02-U11 — transport proxy générique du moteur (politique par défaut, que le Service humanome n’utilise pas) : pas de clé, 429 réessayé après Retry-After, 413 jamais', async () => {
+    // Le Service humanome construit ce transport avec maxAttempts: 1 (aucune
+    // reprise sur quota, RG5) : voir UC-APP-02-U26 côté web.
     const waits = []
     const { calls, fetchFn } = recordingFetch([
       [429, { error: 'Quota' }, { 'retry-after': '2' }],

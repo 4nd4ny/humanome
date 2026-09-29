@@ -13,7 +13,11 @@ import { act, cleanup, fireEvent, render, screen, waitFor } from '@testing-libra
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
 import { createPortfolioStore } from '../../../src/lib/portfolio-store.js'
+import { computeDayGroups } from '../../../src/lib/run-launcher.js'
+import { clearReferentielCache } from '../../../src/data/referentiel.js'
+import { getReferentiel } from '../../../src/data/load.js'
 import { segmentText } from '@engine/portfolio/segment.js'
+import { buildExtractionPrompt } from '@engine/pipeline/extract.js'
 import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
 import { FakeIDBKeyRange, createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import { bodyOf, jsonResponse, routedFetch } from '../support/appl-http.js'
@@ -93,8 +97,14 @@ function hangUntilAbort(init) {
   })
 }
 
+/** Réponse RÉELLE de PUT /api/keys : 204 sans corps. */
+const noContent = () => ({ ok: true, status: 204, headers: { get: () => null }, json: async () => null, text: async () => '' })
+
 beforeEach(() => {
   resetApiClient()
+  // Référentiel : data/referentiel/index.json n'est pas routé (404) => copie
+  // embarquée ; le cache de module est vidé pour isoler chaque scénario.
+  clearReferentielCache()
   vi.stubGlobal('indexedDB', idb.factory)
   vi.stubGlobal('IDBKeyRange', FakeIDBKeyRange)
   localStorage.clear()
@@ -170,7 +180,7 @@ describe('UC-APP-02 — scénario nominal : Service humanome', () => {
 describe('UC-APP-02 — scénarios alternatifs', () => {
   it('UC-APP-02-F02 — A1 : clé personnelle Anthropic, appels directs, clé mémorisée localement et synchronisée (opt-in)', async () => {
     await seedPortfolio()
-    const fetchMock = stubNetwork({ extra: [['api/keys', () => jsonResponse(200, { provider: 'anthropic', stored: true })]] })
+    const fetchMock = stubNetwork({ extra: [['api/keys', noContent]] })
     openWizard()
     await screen.findByTestId('espace-connecte')
 
@@ -224,6 +234,7 @@ describe('UC-APP-02 — scénarios alternatifs', () => {
     // n'est ni présélectionné ni signalé — l'embarqué reste coché.
     expect(screen.getByRole('radio', { name: /aurora-v3-reconstruit@1\.0\.0/ }).checked).toBe(true)
     expect(screen.getByRole('radio', { name: /aurora-lab@2\.0\.0/ }).checked).toBe(false)
+    expect(screen.getByRole('radio', { name: /aurora-lab@2\.0\.0/ }).closest('label').textContent).not.toMatch(/défaut/i)
     fireEvent.click(screen.getByRole('radio', { name: /aurora-lab@2\.0\.0/ }))
     next()
     fireEvent.click(await screen.findByRole('radio', { name: /Service humanome/ }))
@@ -237,8 +248,15 @@ describe('UC-APP-02 — scénarios alternatifs', () => {
     expect(saved.every((c) => c.promptPackage.id === 'aurora-lab' && c.promptPackage.version === '2.0.0')).toBe(true)
     expect(idb.values(...RUNS).length).toBeGreaterThan(0)
     expect(idb.entries(...RUNS).some(([k]) => k.includes('::aurora-lab@2.0.0:checkpoint:'))).toBe(true)
-    // v1 : le prompt exécuté reste celui du pipeline embarqué (Aurora v3).
-    expect(bodyOf(llmPosts(fetchMock)[0]).prompt).toMatch(/# Pôle 1 — /)
+    // v1 : le prompt exécuté reste celui du pipeline embarqué (Aurora v3) —
+    // le document du paquet publié n'est même jamais téléchargé…
+    expect(fetchMock.calls.some((c) => c.url.startsWith('api/prompt-packages/aurora-lab/'))).toBe(false)
+    // …et le 1er prompt est exactement celui du moteur embarqué (pôle 1, 1re journée).
+    const [portfolio] = await createPortfolioStore().list()
+    const [firstDay] = computeDayGroups(portfolio.segments)
+    expect(bodyOf(llmPosts(fetchMock)[0]).prompt).toBe(
+      buildExtractionPrompt({ referentiel: getReferentiel(), poleNum: 1, dayText: firstDay.texte, date: firstDay.iso }),
+    )
   })
 
   it('UC-APP-02-F05 — A4 : interrompre pendant la journée 2 puis reprendre : la journée 1 checkpointée est sautée', async () => {
@@ -283,10 +301,14 @@ describe('UC-APP-02 — scénarios alternatifs', () => {
     await seedPortfolio()
     let session = 1
     let release
+    let sessionOneSignal = null
     const gate = new Promise((resolve) => (release = resolve))
     const fetchMock = stubNetwork({
       llm: async (prompt, init) => {
-        if (session === 1 && prompt.includes('(2026-01-06)')) return hangUntilAbort(init)
+        if (session === 1 && prompt.includes('(2026-01-06)')) {
+          sessionOneSignal = init.signal
+          return hangUntilAbort(init)
+        }
         if (session === 2 && prompt.includes('(2026-01-07)')) await gate
         return jsonResponse(200, proxyAnswer(prompt))
       },
@@ -297,7 +319,11 @@ describe('UC-APP-02 — scénarios alternatifs', () => {
     await waitFor(() => expect(screen.getByTestId('run-progress').textContent).toContain('Journée 2/3'), { timeout: 10000 })
 
     // Rechargement : l'assistant est démonté (le run en cours est interrompu).
+    await waitFor(() => expect(sessionOneSignal).not.toBeNull())
+    expect(sessionOneSignal.aborted).toBe(false)
     await act(async () => first.unmount())
+    // Le démontage abandonne VRAIMENT la requête en cours (signal transmis au fetch).
+    expect(sessionOneSignal.aborted).toBe(true)
     session = 2
     const beforeReload = llmPosts(fetchMock).length
     openWizard()
@@ -371,15 +397,30 @@ describe('UC-APP-02 — scénarios d’erreur', () => {
   it('UC-APP-02-F11 — E4 : une journée échoue : le run continue, l’échec est listé, « Reprendre » ne retente qu’elle', async () => {
     await seedPortfolio()
     let broken = true
+    let gate = null
+    let firstRunDay3 = true
+    let releaseDay3
+    const day3Gate = new Promise((resolve) => (releaseDay3 = resolve))
     const fetchMock = stubNetwork({
-      llm: (prompt) =>
-        broken && prompt.includes('(2026-01-06)') && prompt.includes('# Pôle 3 — ')
+      llm: async (prompt) => {
+        if (firstRunDay3 && prompt.includes('(2026-01-07)')) {
+          firstRunDay3 = false
+          await day3Gate
+        }
+        if (gate) await gate
+        return broken && prompt.includes('(2026-01-06)') && prompt.includes('# Pôle 3 — ')
           ? jsonResponse(200, { text: 'réponse illisible', usage: { inputTokens: 1, outputTokens: 1 }, model: 'mock' })
-          : jsonResponse(200, proxyAnswer(prompt)),
+          : jsonResponse(200, proxyAnswer(prompt))
+      },
     })
     openWizard()
     await walkToExecution()
     await launch()
+
+    // [comportement ACTUEL, anomalie A-04] après l'échec de la journée 2, la
+    // journée 3 s'affiche « Journée 2/3 » (compte des journées terminées).
+    await waitFor(() => expect(screen.getByTestId('run-progress').textContent).toContain('Journée 2/3 (2026-01-07)'), { timeout: 10000 })
+    releaseDay3()
 
     expect((await screen.findByRole('alert', {}, { timeout: 15000 })).textContent).toContain(
       '« Reprendre » ne retentera que les journées manquantes',
@@ -388,25 +429,36 @@ describe('UC-APP-02 — scénarios d’erreur', () => {
     expect(idb.values(...CARTOS)).toHaveLength(0) // rien d'enregistré tant que le run est incomplet
 
     broken = false
+    let release
+    gate = new Promise((resolve) => (release = resolve))
     const before = llmPosts(fetchMock).length
     await launch('Reprendre le run')
+    // [comportement ACTUEL, anomalie A-04] la reprise annonce la journée 3/3
+    // alors que c'est la journée 2 (2026-01-06) qui est refaite.
+    expect((await screen.findByTestId('run-resumed')).textContent).toBe(
+      'Repris à la journée 3/3 : les 2 journée(s) déjà checkpointée(s) sont sautées.',
+    )
+    await waitFor(() => expect(screen.getByTestId('run-progress').textContent).toContain('Journée 3/3 (2026-01-06)'))
+    release()
     await screen.findByTestId('run-success', {}, { timeout: 15000 })
     const retried = llmPosts(fetchMock).slice(before).map((c) => bodyOf(c).prompt)
     expect(retried).toHaveLength(8)
     expect(retried.every((p) => p.includes('(2026-01-06)'))).toBe(true)
   })
 
-  it('UC-APP-02-F12 — E5 : quota de la démo atteint dès le premier défi : message d’attente, aucun appel LLM', async () => {
+  it('UC-APP-02-F12 — E5 : démo désactivée dès le défi initial (503) : message dédié, aucun appel LLM', async () => {
     await seedPortfolio()
+    // Seule réponse d'erreur possible de GET api/llm/challenge : 503 (démo
+    // désactivée ou secret de preuve de travail absent) — jamais 429.
     const fetchMock = stubNetwork({
-      extra: [['api/llm/challenge', () => jsonResponse(429, { error: 'Quota horaire atteint, réessayez plus tard.' }, { 'Retry-After': '120' })]],
+      extra: [['api/llm/challenge', () => jsonResponse(503, { error: 'La démonstration est désactivée pour le moment.' })]],
     })
     openWizard()
     await walkToExecution()
     await launch()
 
     expect((await screen.findByRole('alert')).textContent).toBe(
-      'La démo est très demandée en ce moment : réessayez dans 2 minutes.',
+      'La démo est épuisée pour aujourd’hui ou momentanément désactivée. Revenez un peu plus tard — ou créez un compte pour cartographier sans ces limites.',
     )
     expect(llmPosts(fetchMock)).toHaveLength(0)
     expect(screen.getByRole('button', { name: 'Reprendre le run' })).toBeDefined()
@@ -426,6 +478,109 @@ describe('UC-APP-02 — scénarios d’erreur', () => {
     expect(screen.getAllByText(/HTTP 503 — Démo épuisée pour aujourd’hui/)).toHaveLength(3)
     // …et le run a continué d'appeler le proxy (1 essai + 1 nouvel essai par journée).
     expect(llmPosts(fetchMock)).toHaveLength(6)
+  })
+
+  it('UC-APP-02-F20 — [comportement ACTUEL, anomalie A-02] quota horaire (429) atteint en cours de run : journée 1 checkpointée, journées 2 et 3 en échec technique', async () => {
+    await seedPortfolio()
+    const fetchMock = stubNetwork({
+      llm: (prompt, init, n) =>
+        n <= 8
+          ? jsonResponse(200, proxyAnswer(prompt))
+          : jsonResponse(429, { error: 'Quota horaire atteint, réessayez plus tard.' }, { 'Retry-After': '30' }),
+    })
+    openWizard()
+    await walkToExecution()
+    await launch()
+
+    expect((await screen.findByRole('alert', {}, { timeout: 15000 })).textContent).toContain('Certaines journées ont échoué')
+    // Pas de message « réessayez dans N minutes » : le détail technique par journée.
+    expect(screen.getByText(/^2026-01-06 : .*HTTP 429 — Quota horaire atteint/)).toBeDefined()
+    expect(screen.getByText(/^2026-01-07 : .*HTTP 429 — Quota horaire atteint/)).toBeDefined()
+    expect(screen.queryByText(/La démo est très demandée/)).toBeNull()
+    expect(idb.entries(...RUNS).some(([k]) => k.endsWith(':checkpoint:2026-01-05'))).toBe(true)
+    // 8 appels de la journée 1, puis 2 par journée restante (aucune reprise
+    // automatique du fournisseur, mais le nouvel essai d'extractDay).
+    expect(llmPosts(fetchMock)).toHaveLength(12)
+    expect(idb.values(...CARTOS)).toHaveLength(0)
+  })
+
+  it('UC-APP-02-F21 — A1 : clé pré-remplie depuis localStorage ou récupérée du serveur ; SANS synchronisation, elle ne va jamais vers humanome', async () => {
+    await seedPortfolio()
+    const SERVER_KEY = 'sk-ant-serveur-9876543210'
+    localStorage.setItem('humanome-keys', JSON.stringify({ anthropic: KEY }))
+    const fetchMock = stubNetwork({ extra: [['api/keys/anthropic', () => jsonResponse(200, { apiKey: SERVER_KEY })]] })
+    openWizard()
+    await screen.findByTestId('espace-connecte')
+
+    fireEvent.click(await screen.findByRole('radio', { name: /Journal de Maya — 3 journée\(s\)/ }))
+    next()
+    await screen.findByTestId('step-prompt')
+    await waitFor(() => expect(screen.queryByText('Chargement des versions publiées…')).toBeNull())
+    next()
+    await screen.findByTestId('step-fournisseur')
+    // Pré-remplissage depuis localStorage (« humanome-keys »).
+    expect(screen.getByLabelText('Clé API').value).toBe(KEY)
+    expect(screen.getByRole('checkbox', { name: /Synchroniser sur le serveur/ }).checked).toBe(false)
+
+    // Récupération explicite de la clé enregistrée sur le serveur.
+    fireEvent.click(screen.getByRole('button', { name: 'Récupérer la clé depuis le serveur' }))
+    expect(await screen.findByText('Clé récupérée depuis le serveur.')).toBeDefined()
+    expect(screen.getByLabelText('Clé API').value).toBe(SERVER_KEY)
+
+    next()
+    await screen.findByTestId('run-estimate')
+    next()
+    await screen.findByTestId('step-execution')
+    await launch()
+    await screen.findByTestId('run-success', {}, { timeout: 15000 })
+
+    const direct = fetchMock.calls.filter((c) => c.url === 'https://api.anthropic.com/v1/messages')
+    expect(direct).toHaveLength(24)
+    expect(direct.every((c) => c.init.headers['x-api-key'] === SERVER_KEY)).toBe(true)
+    // Case non cochée : aucun PUT api/keys, aucune requête vers humanome ne porte une clé.
+    expect(fetchMock.calls.filter((c) => c.url === 'api/keys')).toEqual([])
+    const leaked = fetchMock.calls.filter(
+      (c) => c.url.startsWith('api/') && (JSON.stringify(c).includes(KEY) || JSON.stringify(c).includes(SERVER_KEY)),
+    )
+    expect(leaked).toEqual([])
+    expect(JSON.parse(localStorage.getItem('humanome-keys'))).toEqual({ anthropic: SERVER_KEY })
+  })
+
+  it('UC-APP-02-F22 — E6 : synchronisation de la clé refusée par le serveur (422) : message du serveur, aucun appel LLM, reprise possible', async () => {
+    await seedPortfolio()
+    const fetchMock = stubNetwork({
+      extra: [
+        [
+          'api/keys',
+          () => jsonResponse(422, { error: 'Validation échouée', fields: { apiKey: 'Clé API invalide (8 à 4096 caractères imprimables)' } }),
+        ],
+      ],
+    })
+    openWizard()
+    await screen.findByTestId('espace-connecte')
+    await walkToExecution({ mode: 'cle', sync: true })
+    await launch()
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Validation échouée')
+    expect(fetchMock.calls.filter((c) => c.url === 'api/keys').map((c) => c.init.method)).toEqual(['PUT'])
+    expect(fetchMock.calls.filter((c) => c.url.startsWith('https://api.anthropic.com'))).toHaveLength(0)
+    expect(screen.getByRole('button', { name: 'Reprendre le run' })).toBeDefined()
+    expect(idb.values(...CARTOS)).toHaveLength(0)
+  })
+
+  it('UC-APP-02-F23 — A2 : API joignable mais en erreur 5xx JSON : bandeau « non connecté », version embarquée seule, synchronisation désactivée', async () => {
+    await seedPortfolio()
+    stubNetwork({ extra: [[/^api\//, () => jsonResponse(503, { error: 'Service indisponible' })]] })
+    openWizard()
+
+    expect((await screen.findByTestId('espace-anonyme')).textContent).toContain('Vous n’êtes pas connecté')
+    fireEvent.click(await screen.findByRole('radio', { name: /Journal de Maya — 3 journée\(s\)/ }))
+    next()
+    expect((await screen.findByTestId('packages-fallback')).textContent).toContain('version embarquée proposée')
+    next()
+    await screen.findByTestId('step-fournisseur')
+    expect(screen.getByRole('checkbox', { name: /Synchroniser sur le serveur/ }).disabled).toBe(true)
+    expect(screen.queryByRole('button', { name: 'Récupérer la clé depuis le serveur' })).toBeNull()
   })
 
   it('UC-APP-02-F19 — [comportement ACTUEL, anomalie A-03] relance après modification du portfolio : rien n’est recalculé, cartographies dupliquées', async () => {

@@ -5,12 +5,14 @@
 // sans couture de test : le panneau « Mes cartographies » (chargé par son
 // pont), le carto-store et le portfolio-store réels lisent un IndexedDB
 // factice pré-rempli comme l'aurait fait un run (UC-APP-02). Le réseau est
-// simulé (fetch global) : il ne sert qu'à la session et au référentiel —
-// les documents consultés ne transitent jamais par lui.
+// simulé (fetch global) : il ne sert qu'à la session, à la progression de
+// formation et au référentiel publié — les documents consultés ne transitent
+// jamais par lui.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
+import { clearReferentielCache } from '../../../src/data/referentiel.js'
 import { createCartoStore } from '../../../src/lib/carto-store.js'
 import { createPortfolioStore } from '../../../src/lib/portfolio-store.js'
 import { segmentText } from '@engine/portfolio/segment.js'
@@ -19,6 +21,7 @@ import day05 from '../../../../schemas/fixtures/cartographie-jour-2026-01-05.jso
 import day06 from '../../../../schemas/fixtures/cartographie-jour-2026-01-06.json'
 import day07 from '../../../../schemas/fixtures/cartographie-jour-2026-01-07.json'
 import merge3 from '../../../../schemas/fixtures/cartographie-merge-3-jours.json'
+import referentielFixture from '../../../../schemas/fixtures/referentiel-respire-v7.json'
 import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import { jsonResponse, routedFetch } from '../support/appl-http.js'
 import { portfolioText } from '../support/appl-llm.js'
@@ -63,13 +66,22 @@ async function seedAfterRun({ extra = [] } = {}) {
   for (const entry of extra) await store.saveCartography(entry)
 }
 
-function stubNetwork({ me = USER, offline = false } = {}) {
+/** Référentiel PUBLIÉ servi en fichier statique (chemin nominal de l'étape 4). */
+const PUBLISHED = { ...referentielFixture, version: '7.9.0' }
+
+function stubNetwork({ me = USER, offline = false, published = false } = {}) {
   const fetchMock = offline
     ? vi.fn(async () => {
         throw new TypeError('Failed to fetch')
       })
     : routedFetch([
         ['api/auth/me', () => (me ? jsonResponse(200, { user: me, csrfToken: 'csrf' }) : jsonResponse(401, { error: 'Non connecté' }))],
+        ...(published
+          ? [
+              ['data/referentiel/index.json', () => jsonResponse(200, [{ referentielId: 'respire', semver: '7.9.0', fichier: 'respire-7.9.0.json' }])],
+              ['data/referentiel/respire-7.9.0.json', () => jsonResponse(200, PUBLISHED)],
+            ]
+          : []),
       ])
   vi.stubGlobal('fetch', fetchMock)
   return fetchMock
@@ -85,6 +97,8 @@ const itemTitled = (titre) => items().find((li) => within(li).queryByText(titre)
 
 beforeEach(() => {
   resetApiClient()
+  // Cache de module du référentiel vidé : chaque scénario refait son chargement.
+  clearReferentielCache()
   vi.stubGlobal('indexedDB', idb.factory)
 })
 
@@ -100,7 +114,7 @@ afterEach(() => {
 describe('UC-APP-03 — scénario nominal', () => {
   it('UC-APP-03-F01 — nominal : tableau de bord, liste locale (plus récente d’abord), « Voir » la fusion, retour', async () => {
     await seedAfterRun()
-    const fetchMock = stubNetwork()
+    const fetchMock = stubNetwork({ published: true })
     openDashboard()
 
     // 1-2. Session vérifiée, blocs du tableau de bord.
@@ -128,7 +142,16 @@ describe('UC-APP-03 — scénario nominal', () => {
     const viewer = await screen.findByTestId('carto-viewer')
     expect(within(viewer).getByRole('heading', { name: 'Cartographie — Journal de Maya' })).toBeDefined()
     expect(await within(viewer).findByRole('group', { name: 'Cartographie cumulée des compétences' })).toBeDefined()
+    // Le rendu est celui de merge3 : ses feuilles datées au calendrier.
+    for (const label of ['Journée du 05/01/2026', 'Journée du 06/01/2026', 'Journée du 07/01/2026']) {
+      expect(within(viewer).getByRole('link', { name: label })).toBeDefined()
+    }
+    expect(viewer.querySelectorAll('[data-kind="competence"]').length).toBeGreaterThan(0)
     expect(screen.queryByRole('region', { name: 'Ma formation' })).toBeNull()
+    // Référentiel PUBLIÉ chargé (fichier statique), pas la copie embarquée.
+    expect(fetchMock.calls.map((c) => c.url)).toEqual(
+      expect.arrayContaining(['data/referentiel/index.json', 'data/referentiel/respire-7.9.0.json']),
+    )
 
     // 5. Retour au tableau de bord.
     fireEvent.click(screen.getByRole('button', { name: '← Retour au tableau de bord' }))
@@ -148,17 +171,24 @@ describe('UC-APP-03 — scénarios alternatifs', () => {
     expect((await screen.findByTestId('espace-anonyme')).textContent).toContain('tout fonctionne en local dans ce navigateur')
     await waitFor(() => expect(items()).toHaveLength(4))
     expect(screen.getByText(/Progression locale à ce navigateur/)).toBeDefined()
+
+    // Consultation identique : la visionneuse s'ouvre sans session.
+    fireEvent.click(within(itemTitled('Journée 2026-01-07 — Journal de Maya')).getByRole('button', { name: 'Voir' }))
+    expect(await screen.findByRole('group', { name: 'Cartographie de la journée du 07/01/2026' })).toBeDefined()
   })
 
   it('UC-APP-03-F03 — A1 : copie statique hors ligne : liste et visionneuse fonctionnent (référentiel embarqué)', async () => {
     await seedAfterRun()
-    stubNetwork({ offline: true })
+    const fetchMock = stubNetwork({ offline: true })
     openDashboard()
 
     expect((await screen.findByTestId('espace-anonyme')).textContent).toContain('Copie statique du site')
     await waitFor(() => expect(items()).toHaveLength(4))
     fireEvent.click(within(itemTitled('Journée 2026-01-06 — Journal de Maya')).getByRole('button', { name: 'Voir' }))
     expect(await screen.findByRole('group', { name: 'Cartographie de la journée du 06/01/2026' })).toBeDefined()
+    // Le référentiel publié a bien été tenté hors ligne (cache vidé), puis
+    // la copie embarquée a pris le relais.
+    expect(fetchMock.mock.calls.some(([url]) => String(url) === 'data/referentiel/index.json')).toBe(true)
   })
 
   it('UC-APP-03-F04 — A2 : « Voir » une journée : vue du jour en lecture seule', async () => {
@@ -172,6 +202,9 @@ describe('UC-APP-03 — scénarios alternatifs', () => {
     const viewer = await screen.findByTestId('carto-viewer')
     expect(await within(viewer).findByRole('group', { name: 'Cartographie de la journée du 05/01/2026' })).toBeDefined()
     expect(within(viewer).getByText('Journée du 05/01/2026')).toBeDefined()
+    // [comportement ACTUEL, anomalie A-02] la vue du jour garde son lien vers
+    // la vue merge GLOBALE (#/merge), qui sort de l'espace (démonstration).
+    expect(within(viewer).getByRole('link', { name: '← Retour à la cartographie' }).getAttribute('href')).toBe('#/merge')
   })
 
   it('UC-APP-03-F05 — A3 : analyse Twin9 : libellé dédié, projetée sur la vue chronologique', async () => {
@@ -183,7 +216,13 @@ describe('UC-APP-03 — scénarios alternatifs', () => {
     const twin9 = itemTitled('Analyse approfondie — mars')
     expect(within(twin9).getByText('Analyse Twin9')).toBeDefined()
     fireEvent.click(within(twin9).getByRole('button', { name: 'Voir' }))
-    expect(await screen.findByRole('group', { name: 'Cartographie cumulée des compétences' })).toBeDefined()
+    const viewer = await screen.findByTestId('carto-viewer')
+    expect(await within(viewer).findByRole('group', { name: 'Cartographie cumulée des compétences' })).toBeDefined()
+    // Contenu qui n'existe qu'APRÈS projection par l'adaptateur du moteur :
+    // la feuille datée tirée de l'attestation et la compétence attestée.
+    expect(within(viewer).getByRole('link', { name: 'Journée du 02/03/2026' })).toBeDefined()
+    const sectors = [...viewer.querySelectorAll('[data-kind="competence"]')]
+    expect(sectors.length).toBeGreaterThan(0)
   })
 
   it('UC-APP-03-F06 — A4 : « Télécharger le JSON » : le document seul, nommé d’après son type et sa date', async () => {
@@ -250,5 +289,43 @@ describe('UC-APP-03 — scénarios d’erreur', () => {
     const entry = await screen.findByTestId('carto-item')
     expect(within(entry).getByRole('button', { name: 'Voir' }).disabled).toBe(true)
     expect(within(entry).getByRole('button', { name: 'Télécharger le JSON' }).disabled).toBe(true)
+  })
+
+  it('UC-APP-03-F13 — [comportement ACTUEL, anomalie A-02] un clic sur un jour du calendrier de la visionneuse ouvre la journée de DÉMONSTRATION', async () => {
+    await seedAfterRun()
+    const fetchMock = stubNetwork()
+    openDashboard()
+    await waitFor(() => expect(items()).toHaveLength(4))
+    fireEvent.click(within(itemTitled('Cartographie — Journal de Maya')).getByRole('button', { name: 'Voir' }))
+    const viewer = await screen.findByTestId('carto-viewer')
+    await within(viewer).findByRole('group', { name: 'Cartographie cumulée des compétences' })
+
+    // Le calendrier est rendu sans onPickDay : le clic navigue vers #/jour/<iso>,
+    // hors de l'espace ; App charge alors data/demo/jours/<iso>.json (le journal
+    // de démonstration), au lieu de la journée de l'apprenant.
+    fireEvent.click(within(viewer).getByRole('link', { name: 'Journée du 06/01/2026' }))
+    await waitFor(() => expect(window.location.hash).toBe('#/jour/2026-01-06'))
+    await waitFor(() => expect(fetchMock.calls.some((c) => c.url === 'data/demo/jours/2026-01-06.json')).toBe(true))
+    expect(screen.queryByTestId('carto-viewer')).toBeNull()
+  })
+
+  it('UC-APP-03-F14 — A3 : analyse Twin9 sans journée datée : message explicatif, JSON toujours téléchargeable', async () => {
+    const sansDate = {
+      ...TWIN9,
+      competences: { '1.01': { ...TWIN9.competences['1.01'], attestations: [] } },
+    }
+    await seedAfterRun({ extra: [{ type: 'twin9', titre: 'Twin9 sans date', document: sansDate }] })
+    stubNetwork()
+    openDashboard()
+    await waitFor(() => expect(items()).toHaveLength(5))
+
+    const entry = itemTitled('Twin9 sans date')
+    expect(within(entry).getByRole('button', { name: 'Télécharger le JSON' }).disabled).toBe(false)
+    fireEvent.click(within(entry).getByRole('button', { name: 'Voir' }))
+    const viewer = await screen.findByTestId('carto-viewer')
+    expect((await within(viewer).findByRole('alert')).textContent).toContain(
+      'Cette analyse Twin9 ne porte aucune journée datée : rien à projeter sur le sunburst.',
+    )
+    expect(within(viewer).queryByRole('group', { name: 'Cartographie cumulée des compétences' })).toBeNull()
   })
 })

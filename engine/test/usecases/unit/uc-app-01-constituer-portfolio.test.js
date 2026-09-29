@@ -5,7 +5,8 @@
 // (engine/src/portfolio/segment.js) sur la fixture VERSIONNÉE du parcours
 // (schemas/fixtures/portfolio-3-jours.md) et sur des variantes réalistes des
 // trois sources d'un portfolio (collage, fichier .txt/.md, export texte d'un
-// Google Docs), puis la projection vers le contrat archive-export.
+// Google Docs), puis la projection moteur vers le contrat archive-export
+// (API exportée par le moteur ; l'IHM, elle, projette via web/src/lib/archive.js).
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import {
@@ -48,7 +49,7 @@ describe('UC-APP-01 — segmentation automatique en journées (étape 4)', () =>
     }
   })
 
-  it('UC-APP-01-U02 — la projection toArchiveSegmentation est acceptée par le schéma archive-export', () => {
+  it('UC-APP-01-U02 — contrat moteur : la projection toArchiveSegmentation (non appelée par l’IHM) est acceptée par le schéma archive-export', () => {
     const FIXTURE = portfolioFixture()
     const segmentation = toArchiveSegmentation(segmentText(FIXTURE, { today: TODAY }))
 
@@ -119,5 +120,35 @@ describe('UC-APP-01 — segmentation automatique en journées (étape 4)', () =>
       '2026-01-05',
       '2026-01-06',
     ])
+  })
+
+  it('UC-APP-01-U21 — séparateur, entêtes de même date, date sans année, date en milieu de phrase, préambule (étape 4, RG5)', () => {
+    // Séparateur « --- » seul sur sa ligne : coupe, la suite est NON datée.
+    const separe = '## 2026-01-05\nAtelier.\n---\nNotes sans date.\n'
+    expect(segmentText(separe, { today: TODAY }).map((s) => s.date)).toEqual(['2026-01-05', null])
+
+    // Deux entêtes consécutives de même date : une seule journée.
+    const doublon = '## 2026-01-05\nMatin.\n## 2026-01-05\nApres-midi.\n## 2026-01-06\nSuite.\n'
+    const fusion = segmentText(doublon, { today: TODAY })
+    expect(fusion.map((s) => s.date)).toEqual(['2026-01-05', '2026-01-06'])
+    expect(fusion[0].texte).toBe('## 2026-01-05\nMatin.\n## 2026-01-05\nApres-midi.\n')
+
+    // RG5 : date textuelle sans année ANCRÉE (jour de semaine, marque #) :
+    // coupe et donne une journée non datée, à nommer.
+    const sansAnnee = '## 2026-01-05\nAtelier.\n## Lundi 22 décembre\nSortie.\n'
+    const ancree = segmentText(sansAnnee, { today: TODAY })
+    expect(ancree.map((s) => s.date)).toEqual(['2026-01-05', null])
+    expect(ancree[1].texte.startsWith('## Lundi 22 décembre')).toBe(true)
+
+    // RG5 : une date au milieu d'une phrase ne coupe jamais.
+    const prose = '## 2026-01-05\nAtelier.\n22/12/2025, nous sommes partis tôt.\n'
+    expect(segmentText(prose, { today: TODAY }).map((s) => s.date)).toEqual(['2026-01-05'])
+
+    // Préambule réel (pas un simple titre) avant la première date : journée non datée.
+    const preambule = 'Quelques mots avant de commencer.\n\n## 2026-01-05\nAtelier.\n'
+    const avecPreambule = segmentText(preambule, { today: TODAY })
+    expect(avecPreambule.map((s) => s.date)).toEqual([null, '2026-01-05'])
+    expect(avecPreambule[0].debut).toBe(0)
+    expect(avecPreambule[1].fin).toBe(preambule.length)
   })
 })

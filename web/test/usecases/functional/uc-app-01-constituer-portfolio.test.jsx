@@ -93,6 +93,19 @@ afterEach(() => {
 describe('UC-APP-01 — scénario nominal : coller son journal, le retrouver au rechargement', () => {
   it('UC-APP-01-F01 — nominal : collage, découpage automatique, sauvegarde locale, rechargement, rien sur le réseau', async () => {
     const fetchMock = stubNetwork()
+    // Les autres canaux de sortie du navigateur sont neutralisés et comptés :
+    // XMLHttpRequest et navigator.sendBeacon (absent de jsdom).
+    let xhrCount = 0
+    vi.stubGlobal(
+      'XMLHttpRequest',
+      class {
+        constructor() {
+          xhrCount += 1
+        }
+      },
+    )
+    const beacon = vi.fn(() => true)
+    Object.defineProperty(navigator, 'sendBeacon', { value: beacon, configurable: true })
     const first = openPortfolio()
 
     // 1. Bandeau RGPD permanent et liste vide.
@@ -125,10 +138,12 @@ describe('UC-APP-01 — scénario nominal : coller son journal, le retrouver au 
     expect((await screen.findByLabelText('Texte du portfolio')).value).toBe(FIXTURE)
     expect(screen.getByRole('heading', { name: 'Découpage en journées (3)' })).toBeDefined()
 
-    // RGPD (RG1) : aucune requête n'a porté le texte du portfolio.
-    for (const call of fetchMock.calls) {
-      expect(`${call.url} ${call.init?.body ?? ''}`).not.toContain('Astrolabe')
-    }
+    // RGPD (RG1) : AUCUNE requête pendant tout le parcours — ni fetch, ni
+    // XMLHttpRequest, ni beacon (la session est injectée par fetchMeFn).
+    expect(fetchMock.calls).toEqual([])
+    expect(xhrCount).toBe(0)
+    expect(beacon).not.toHaveBeenCalled()
+    delete navigator.sendBeacon
   })
 })
 
@@ -151,6 +166,18 @@ describe('UC-APP-01 — scénarios alternatifs', () => {
     expect(screen.getByRole('heading', { name: 'Découpage en journées (3)' })).toBeDefined()
     const [record] = await savedRecords((r) => r.source === 'fichier')
     expect(record).toMatchObject({ titre: 'journal-maya', source: 'fichier', texte: FIXTURE })
+
+    // Titre déjà choisi (≠ « Portfolio sans titre ») : il est conservé.
+    await createPortfolio({ titre: 'Mon carnet' })
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText('Importer un fichier .txt ou .md'), {
+        target: { files: [textFile('## 2026-03-02\nStage.', 'autre-nom.txt', 'text/plain')] },
+      })
+    })
+    expect(await screen.findByText(/Fichier « autre-nom\.txt » importé/)).toBeDefined()
+    expect(screen.getByLabelText('Titre du portfolio').value).toBe('Mon carnet')
+    await savedRecords((r) => r.titre === 'Mon carnet' && r.source === 'fichier')
+    expect(idb.values(DB, STORE).some((r) => r.titre === 'autre-nom')).toBe(false)
     expect(fetchMock.calls).toHaveLength(0)
   })
 
@@ -160,12 +187,14 @@ describe('UC-APP-01 — scénarios alternatifs', () => {
       [`api/gdoc-text?docId=${DOC_ID}`, () => textResponse(200, exportGdoc)],
     ])
     openPortfolio()
-    await createPortfolio({ titre: 'Journal importé' })
+    // Un texte existe déjà : l'import le REMPLACE (il ne s'y ajoute pas).
+    await createPortfolio({ titre: 'Journal importé', texte: 'Ancien texte' })
 
     fireEvent.change(screen.getByLabelText('URL du document Google Docs'), { target: { value: DOC_URL } })
     fireEvent.click(screen.getByRole('button', { name: 'Importer le document' }))
 
     expect(await screen.findByText(/le serveur n’en conserve aucune copie/)).toBeDefined()
+    expect(screen.getByLabelText('Texte du portfolio').value).toBe(exportGdoc)
     // fr-FR groupe les milliers par une espace fine insécable, que le
     // normaliseur de Testing Library ramène à une espace simple.
     const chars = exportGdoc.length.toLocaleString('fr-FR').replace(/\s/g, ' ')
@@ -205,6 +234,31 @@ describe('UC-APP-01 — scénarios alternatifs', () => {
       },
       { timeout: 3000 },
     )
+    // RG3 : les ajustements ne touchent pas au texte.
+    expect(idb.values(DB, STORE)[0].texte).toBe(FIXTURE)
+
+    // Champ date vidé : la journée devient non datée (date null persistée).
+    const emptied = screen.getByLabelText('Date de la journée 3')
+    fireEvent.change(emptied, { target: { value: '' } })
+    fireEvent.keyDown(emptied, { key: 'Enter' })
+    await waitFor(
+      () => expect(idb.values(DB, STORE)[0].segments.map((s) => s.date)).toEqual(['2026-01-05', null, null]),
+      { timeout: 3000 },
+    )
+
+    // RG3 : toute modification du TEXTE relance la segmentation automatique
+    // et réinitialise les ajustements manuels.
+    fireEvent.change(screen.getByLabelText('Texte du portfolio'), { target: { value: `${FIXTURE}\nAjout.` } })
+    expect(screen.getByLabelText('Date de la journée 2').value).toBe('2026-01-06')
+    await waitFor(
+      () =>
+        expect(idb.values(DB, STORE)[0].segments.map((s) => s.date)).toEqual([
+          '2026-01-05',
+          '2026-01-06',
+          '2026-01-07',
+        ]),
+      { timeout: 3000 },
+    )
   })
 
   it('UC-APP-01-F05 — A3 : ouvrir un autre portfolio sauvegarde IMMÉDIATEMENT le courant', async () => {
@@ -219,12 +273,16 @@ describe('UC-APP-01 — scénarios alternatifs', () => {
     })
     // Changement de portfolio AVANT la fin de la pause de 600 ms.
     fireEvent.click(screen.getByRole('button', { name: 'Premier' }))
-    expect((await screen.findByLabelText('Texte du portfolio')).value).toBe('## 2026-01-05\nPremier jour.')
 
-    await waitFor(() => {
-      const second = idb.values(DB, STORE).find((r) => r.titre === 'Second')
-      expect(second?.texte).toBe('## 2026-02-01\nTexte saisi juste avant de changer.')
-    })
+    // Sauvegarde IMMÉDIATE : visible bien avant l'échéance des 600 ms.
+    await waitFor(
+      () => {
+        const second = idb.values(DB, STORE).find((r) => r.titre === 'Second')
+        expect(second?.texte).toBe('## 2026-02-01\nTexte saisi juste avant de changer.')
+      },
+      { timeout: 300 },
+    )
+    expect((await screen.findByLabelText('Texte du portfolio')).value).toBe('## 2026-01-05\nPremier jour.')
   })
 
   it('UC-APP-01-F06 — A4 : suppression en deux temps, purge réelle de la base locale', async () => {
@@ -278,6 +336,17 @@ describe('UC-APP-01 — scénarios d’erreur', () => {
     expect(
       await screen.findByText(/La sauvegarde locale a échoué : IndexedDB est indisponible/, {}, { timeout: 3000 }),
     ).toBeDefined()
+
+    // Variante « refusé » : IndexedDB présent mais ouverture refusée (quota,
+    // navigation privée stricte). L'alerte s'affiche aussi ; l'ouverture est
+    // retentée à l'opération suivante (U09), le travail est alors conservé.
+    cleanup()
+    vi.stubGlobal('indexedDB', idb.factory)
+    idb.failNextOpen('quota dépassé')
+    openPortfolio()
+    expect((await screen.findByRole('alert')).textContent).toContain('Stockage local indisponible (quota dépassé)')
+    await createPortfolio({ titre: 'Après refus', texte: 'Texte.' })
+    await savedRecords((r) => r.titre === 'Après refus')
   })
 
   it('UC-APP-01-F09 — E2 : URL Google Docs non reconnue : message, aucune requête', async () => {
@@ -342,6 +411,20 @@ describe('UC-APP-01 — scénarios d’erreur', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Importer le document' }))
 
     expect((await screen.findByRole('alert')).textContent).toBe(GDOC_UNAVAILABLE_MESSAGE)
+
+    // Variante réseau coupé : fetch lève (hors ligne, DNS…) — même renvoi.
+    const offline = stubNetwork([
+      [
+        /^api\/gdoc-text/,
+        () => {
+          throw new TypeError('Failed to fetch')
+        },
+      ],
+    ])
+    fireEvent.click(screen.getByRole('button', { name: 'Importer le document' }))
+    await waitFor(() => expect(offline.calls).toHaveLength(1))
+    expect((await screen.findByRole('alert')).textContent).toBe(GDOC_UNAVAILABLE_MESSAGE)
+    expect(screen.getByLabelText('Texte du portfolio').value).toBe('')
   })
 
   it('UC-APP-01-F13 — E6 : date de journée invalide refusée, la date d’origine est conservée', async () => {
@@ -427,5 +510,112 @@ describe('UC-APP-01 — scénarios d’erreur', () => {
     expect(fetchMock.calls).toHaveLength(0)
     expect(screen.queryByRole('alert')).toBeNull()
     expect(screen.getByLabelText('Texte du portfolio').value).toBe('Texte conservé.')
+  })
+
+  it('UC-APP-01-F26 — [comportement ACTUEL, anomalie A-04] changement de portfolio pendant la pause : le portfolio ouvert est réenregistré, la liste garde l’ancien titre', async () => {
+    stubNetwork()
+    openPortfolio()
+    await createPortfolio({ titre: 'Premier', texte: '## 2026-01-05\nPremier jour.' })
+    const premier = (await savedRecords((r) => r.titre === 'Premier')).find((r) => r.titre === 'Premier')
+
+    await createPortfolio({ titre: 'Second' })
+    fireEvent.change(screen.getByLabelText('Texte du portfolio'), {
+      target: { value: '## 2026-02-01\nTexte saisi juste avant de changer.' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Premier' }))
+
+    // Le minuteur de la sauvegarde différée n'est pas annulé : à échéance, il
+    // enregistre le portfolio COURANT, c'est-à-dire « Premier », sans aucune
+    // modification (updatedAt changé, statut « Enregistré localement »).
+    await waitFor(
+      () => {
+        const again = idb.values(DB, STORE).find((r) => r.id === premier.id)
+        expect(again.updatedAt).not.toBe(premier.updatedAt)
+      },
+      { timeout: 3000 },
+    )
+    const again = idb.values(DB, STORE).find((r) => r.id === premier.id)
+    expect(again.texte).toBe(premier.texte)
+    expect(await screen.findByText(/Enregistré localement à/)).toBeDefined()
+
+    // La sauvegarde immédiate de « Second » ne met pas la liste à jour : la
+    // barre latérale affiche encore « Portfolio sans titre ».
+    const sidebar = screen.getByRole('complementary', { name: 'Mes portfolios' })
+    const titles = within(sidebar)
+      .getAllByRole('button')
+      .filter((button) => button.className.includes('portfolio-list-open'))
+      .map((button) => button.textContent)
+    expect(titles).toEqual(['Premier', 'Portfolio sans titre'])
+    expect(idb.values(DB, STORE).map((r) => r.titre).sort()).toEqual(['Premier', 'Second'])
+  })
+
+  it('UC-APP-01-F27 — [comportement ACTUEL, anomalie A-05] quitter #/portfolio pendant la pause de 600 ms : la dernière modification est perdue', async () => {
+    stubNetwork()
+    openPortfolio()
+    await createPortfolio({ titre: 'Journal', texte: 'Premier jour.' })
+    await savedRecords((r) => r.texte === 'Premier jour.')
+
+    fireEvent.change(screen.getByLabelText('Texte du portfolio'), {
+      target: { value: 'Premier jour. Ajout de dernière minute.' },
+    })
+    // Navigation vers le tableau de bord AVANT l'échéance : la vue est
+    // démontée, son minuteur annulé, et rien n'est sauvegardé au démontage.
+    act(() => {
+      window.location.hash = '#/espace'
+    })
+    await waitFor(() => expect(screen.queryByLabelText('Texte du portfolio')).toBeNull())
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    expect(idb.values(DB, STORE).map((r) => r.texte)).toEqual(['Premier jour.'])
+  })
+
+  it('UC-APP-01-F28 — E9 (RG6) : identifiant extrait d’une URL mais invalide → 422 du serveur, message affiché, texte conservé', async () => {
+    // Côté navigateur, un identifiant extrait d'une URL n'est pas borné (20–80) :
+    // la requête part, et c'est le serveur qui refuse.
+    const fetchMock = stubNetwork([
+      ['api/gdoc-text?docId=abc', () => jsonResponse(422, { error: 'Identifiant de document Google Docs invalide.' })],
+    ])
+    openPortfolio()
+    await createPortfolio({ texte: 'Texte déjà saisi.' })
+
+    fireEvent.change(screen.getByLabelText('URL du document Google Docs'), {
+      target: { value: 'https://docs.google.com/document/d/abc/edit' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Importer le document' }))
+
+    expect((await screen.findByRole('alert')).textContent).toBe('Identifiant de document Google Docs invalide.')
+    expect(fetchMock.calls.map((c) => c.url)).toEqual(['api/gdoc-text?docId=abc'])
+    expect(screen.getByLabelText('Texte du portfolio').value).toBe('Texte déjà saisi.')
+  })
+
+  it('UC-APP-01-F29 — E10 : ouverture, suppression ou export locaux impossibles : message explicite, données intactes', async () => {
+    stubNetwork()
+    openPortfolio()
+    await createPortfolio({ titre: 'Ancien', texte: 'Texte ancien.' })
+    await savedRecords((r) => r.titre === 'Ancien')
+    await createPortfolio({ titre: 'Courant', texte: 'Texte courant.' })
+    await savedRecords((r) => r.titre === 'Courant')
+
+    // Ouverture : la lecture IndexedDB échoue.
+    idb.failNextRequest('get', 'base corrompue')
+    fireEvent.click(screen.getByRole('button', { name: 'Ancien' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Impossible d’ouvrir ce portfolio : base corrompue')
+    expect(screen.getByLabelText('Texte du portfolio').value).toBe('Texte courant.')
+
+    // Suppression : l'effacement échoue, l'enregistrement reste.
+    idb.failNextRequest('delete', 'disque plein')
+    const item = screen.getByRole('button', { name: 'Ancien' }).closest('li')
+    fireEvent.click(within(item).getByRole('button', { name: 'Supprimer' }))
+    fireEvent.click(within(item).getByRole('button', { name: 'Confirmer la suppression' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Suppression impossible : disque plein')
+    expect(idb.values(DB, STORE).map((r) => r.titre).sort()).toEqual(['Ancien', 'Courant'])
+
+    // Export : le navigateur refuse de créer le fichier.
+    URL.createObjectURL = vi.fn(() => {
+      throw new Error('Blob refusé')
+    })
+    URL.revokeObjectURL = vi.fn()
+    fireEvent.click(screen.getByRole('button', { name: 'Exporter (.md)' }))
+    expect((await screen.findByRole('alert')).textContent).toBe('Export impossible : Blob refusé')
   })
 })

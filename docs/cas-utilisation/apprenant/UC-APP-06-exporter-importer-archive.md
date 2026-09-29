@@ -78,9 +78,11 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 ## Scénarios alternatifs
 
 - **A1 — Sans compte ou hors ligne** (étape 3) : chaque lecture en échec est
-  remplacée par une valeur neutre : `account` null (archive anonyme),
-  `promptPackages` vide, référentiel embarqué, pas de documents de masse ;
-  l'export aboutit.
+  remplacée par une valeur neutre et l'export aboutit. Hors ligne : `account`
+  null (archive anonyme), `promptPackages` vide, référentiel embarqué, pas de
+  documents de masse. Sans compte mais en ligne : `account` null, pas de
+  documents de masse (`401`), mais le paquet est embarqué (les paquets
+  publiés sont en lecture publique) ainsi que le référentiel publié.
 - **A2 — Documents produits en cohorte** (étape 3) : les cartographies de
   masse de l'apprenant (RGPD art. 15/20) sont ajoutées
   (`id` `masse-<run>-<job>`, `runMeta.modele` « cartographie de masse —
@@ -90,8 +92,10 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
   l'intérieur d'une même archive : « 0 portfolio(s) et 0 cartographie(s)
   restaurés ».
 - **A4 — Archive d'une autre instance** (étape 8) : les versions de paquet et
-  de référentiel sont conservées comme traçabilité ; les marqueurs neutres
-  (`inconnu`, `0.0.0`) redeviennent « non renseigné ».
+  de référentiel sont conservées comme traçabilité ; un couple dont l'id vaut
+  `inconnu` est restauré à `null` (paquet ou référentiel non renseigné) ; les
+  autres couples, y compris une version `0.0.0` associée à un id réel, sont
+  conservés tels quels.
 
 ## Scénarios d'erreur
 
@@ -117,10 +121,13 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
   offsets entiers valides ; `source` hors {`colle`, `gdocs`, `fichier`} →
   `colle`.
 - **RG5** — Cartographies : type `merge` ou `jour` (tout autre type est
-  exporté en `jour`) ; traçabilité absente → marqueurs neutres `inconnu` /
-  `0.0.0` (jamais inventée) ; `runMeta` réduit aux clés du schéma
-  (`modele`, `dateRun`, `tokens{entree, sortie, total}`, `coutEstime`) ;
-  visibilité et copie serveur ne sont pas exportées.
+  exporté en `jour`) ; paquet absent → marqueurs neutres `inconnu` / `0.0.0` ;
+  référentiel absent → id et version du référentiel embarqué **au moment de
+  l'export** (provenance inventée, anomalie A-05) ; `runMeta` réduit aux clés
+  du schéma (`modele`, `dateRun`, `tokens{entree, sortie, total}`,
+  `coutEstime`), `dateRun` absent → `updatedAt` local (documents de masse :
+  date d'export) ; visibilité et copie serveur ne sont pas exportées ; une
+  entrée locale sans document est omise.
 - **RG6** — Import : identifiants régénérés, visibilité `privee`, `serverId`
   null (l'opt-in serveur ne s'importe jamais, §6.2) ; seuls portfolios et
   cartographies sont restaurés.
@@ -140,12 +147,13 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/views/espace/ExportSection.jsx` (dans `CartographiesPanel.jsx`) | Boutons, champ fichier, messages, rafraîchissement |
-| Front | `web/src/lib/archive.js` — `exportArchive`, `importArchive`, `downloadJson` | Assemblage, projections, lectures, restauration, dédoublonnage |
+| Front | `web/src/views/espace/DashboardSection.jsx` | Hôte du panneau « Mes cartographies » (et donc de « Mes données ») et du bloc « Mes portfolios », chargé une seule fois au montage (anomalie A-04) |
+| Front | `web/src/views/espace/ExportSection.jsx` (dans `CartographiesPanel.jsx`) | Boutons, champ fichier réarmé, messages (`status` / `alert`), `onImported` en succès seulement |
+| Front | `web/src/lib/archive.js` — `exportArchive`, `importArchive` ; `browserDownload` (Blob + `<a download>`, via la couture `download`) | Assemblage, projections, lectures, restauration, dédoublonnage, téléchargement |
 | Front | `web/src/lib/carto-store.js`, `web/src/lib/portfolio-store.js` | Sources et cibles locales |
-| Front | `web/src/api/client.js` — `fetchMe`, `apiFetch` ; `web/src/data/referentiel.js` | Lectures du compte, des paquets, de la masse ; référentiel |
+| Front | `web/src/api/client.js` — `fetchMe`, `apiFetch` ; `web/src/data/referentiel.js` ; `web/src/data/load.js` — `getReferentiel`, `frenchDate` | Lectures du compte, des paquets, de la masse ; référentiel publié ou embarqué ; dates des titres dérivés |
 | Moteur | `engine/src/validation.js` — `validateDocument('archive-export')` ; `schemas/archive-export.schema.json` | Contrat pivot (ADR-006) |
-| API | `GET /api/auth/me`, `GET /api/prompt-packages`, `GET /api/prompt-packages/{id}/{version}`, `GET /api/mes-documents-masse` | Lectures seules |
+| API | `GET /api/auth/me` (`api/src/routes/auth.php`), `GET /api/prompt-packages`, `GET /api/prompt-packages/{id}/{version}` (`packages.php`, lecture publique), `GET /api/mes-documents-masse` (`etablissement.php`, `RequireRole` `apprenant`) | Lectures seules |
 | Domaine | `api/src/Packages/PromptPackageRepository.php` — `listPublished`, `findPublished` | Paquet embarqué, filtrage des paquets privés |
 
 ## Jeux de tests
@@ -160,25 +168,27 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | UC-APP-06-U04 | idem | Cohérence type/document ; type `twin9` refusé | idem |
 | UC-APP-06-U05 | idem | `source` énumérée, segmentation stricte | idem |
 | UC-APP-06-U06 | idem | `runMeta` : clés du schéma seules ; forme de l'assistant refusée | idem |
-| UC-APP-06-U07 | `exportArchive` | Portfolios : texte, segmentation datée, normalisations ; nom de fichier ; téléchargement indenté | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
-| UC-APP-06-U08 | `exportArchive` | **Comportement actuel** : `runMeta` de l'assistant → `modele` « inconnu », tokens perdus ; forme schéma conservée (A-02) | idem |
+| UC-APP-06-U07 | `exportArchive` | Portfolios : texte, segmentation datée, normalisations (titre et source de repli d'`archive.js`, enregistrement écrit par l'adaptateur) ; cartographie sans document omise ; nom de fichier ; téléchargement indenté | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
+| UC-APP-06-U08 | `exportArchive` | **Comportement actuel** : `runMeta` de l'assistant → `modele` « inconnu », tokens perdus ; forme schéma conservée (A-02) ; référentiel absent → `respire@7.0.0` courant (A-05) | idem |
 | UC-APP-06-U09 | `exportArchive` | Lectures : compte filtré, 1er paquet publié, documents de masse ; uniquement des GET | idem |
 | UC-APP-06-U10 | `exportArchive` | Archive non conforme : exception, aucun téléchargement (E4) | idem |
-| UC-APP-06-U11 | `importArchive` | Segments reconstruits, ids régénérés, privée sans copie, marqueurs → null, titres | idem |
-| UC-APP-06-U12 | `importArchive` | Doublons ignorés, y compris dans une même archive (A3) | idem |
+| UC-APP-06-U11 | `importArchive` | Segments reconstruits, ids de cartographie régénérés (couture `id` du carto-store), privée sans copie, marqueurs → null, titres | idem |
+| UC-APP-06-U12 | `importArchive` | Doublons ignorés (portfolios et cartographies), y compris dans une même archive (A3) | idem |
 | UC-APP-06-U13 | `importArchive` | JSON invalide, autre `kind`, schéma : refus sans écriture (E1-E3) | idem |
 | UC-APP-06-U14 | `PromptPackageRepository` | 1er de `listPublished` = ordre alphabétique puis plus ancienne ; privé jamais servi | `api/tests/UseCases/Unit/UcApp06ExporterImporterArchiveTest.php` |
+| UC-APP-06-U15 | `importArchive` | **Comportement actuel** : cartographie citant un paquet absent de l'archive importée sans avertissement (A-06) | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
+| UC-APP-06-U16 | `ExportSection` | Succès en `status`, refus en `alert` sans `onImported`, champ fichier réarmé, `onImported` après un import réussi | idem |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-APP-06-F01 | Nominal (export) | IHM | `<App/>` : archive validée, téléchargée, compte, 4 cartographies, sans visibilité ni `serverId`, que des GET | `web/test/usecases/functional/uc-app-06-exporter-importer-archive.test.jsx` |
-| UC-APP-06-F02 | Nominal (import) | IHM | Navigateur neuf : 1 portfolio + 4 cartographies restaurés, privés, sans badge serveur | idem |
-| UC-APP-06-F03 | A1 | IHM | Hors ligne : archive anonyme, sans paquet, référentiel embarqué | idem |
+| UC-APP-06-F01 | Nominal (export) | IHM | `<App/>` : archive validée, téléchargée, compte, référentiel publié (7.9.0), 4 cartographies, sans visibilité ni `serverId`, que des GET | `web/test/usecases/functional/uc-app-06-exporter-importer-archive.test.jsx` |
+| UC-APP-06-F02 | Nominal (import) | IHM | Navigateur neuf sans session (bandeau anonyme) : 1 portfolio + 4 cartographies restaurés, privés, sans badge serveur | idem |
+| UC-APP-06-F03 | A1 | IHM | Hors ligne : archive anonyme, sans paquet, référentiel = copie embarquée | idem |
 | UC-APP-06-F04 | A2 | IHM | Document de masse inclus (`masse-4-11`) | idem |
 | UC-APP-06-F05 | A3 | IHM | Réimport : 0 restauré | idem |
-| UC-APP-06-F06 | A4 | IHM | Fixture d'une autre instance : titre dérivé, traçabilité conservée | idem |
+| UC-APP-06-F06 | A4 | IHM | Fixture d'une autre instance : titres dérivés, traçabilité conservée ; id `inconnu` → `null`, version `0.0.0` d'un id réel conservée | idem |
 | UC-APP-06-F07 | E1, E2, E3 | IHM | Fichier refusé (3 cas), alerte, rien d'importé | idem |
 | UC-APP-06-F08 | E4 (anomalie A-03) | IHM | **Comportement actuel** : une analyse Twin9 locale annule tout l'export | idem |
 | UC-APP-06-F09 | Nominal (anomalie A-01) | IHM | **Comportement actuel** : paquet embarqué = 1er publié, pas celui des cartographies | idem |
@@ -186,7 +196,9 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | UC-APP-06-F11 | Nominal, étape 9 (anomalie A-04) | IHM | **Comportement actuel** : « Mes portfolios » non rafraîchi avant rechargement | idem |
 | UC-APP-06-F12 | Nominal (étape 3) | API | Compte sans secret, liste + document du paquet, masse vide | `api/tests/UseCases/Functional/UcApp06ExporterImporterArchiveTest.php` |
 | UC-APP-06-F13 | A1 | API | Sans session : `auth/me` et masse en 401, paquets lisibles | idem |
-| UC-APP-06-F14 | RG1, RG7 | API | Aucune route d'export/import (404) ; paquet privé ni listé ni lisible | idem |
+| UC-APP-06-F14 | RG1, RG7 | API | Table de routage : aucun motif « export » / « archive », seuls imports d'administration ; chemins plausibles en 404 ; paquet privé ni listé ni lisible | idem |
+| UC-APP-06-F15 | A4 (anomalie A-05) | IHM | **Comportement actuel** : référentiel « inconnu » importé (`null`) puis réexporté comme le référentiel embarqué | `web/test/usecases/functional/uc-app-06-exporter-importer-archive.test.jsx` |
+| UC-APP-06-F16 | A1 | IHM | Sans compte mais en ligne : bandeau anonyme, `account` null, paquet public embarqué, pas de masse | idem |
 
 ### Tests existants liés (non-régression)
 
@@ -216,8 +228,9 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-06
   `aurora-v3-reconstruit@1.0.0`). L'archive peut donc ne pas contenir le
   paquet dont elle cite l'identifiant. Figé par U14 et F09.
 - **A-02 — `runMeta` : contrats divergents entre l'assistant et l'archive.**
-  L'assistant (UC-APP-02) enregistre `{mode, provider, model, jours,
-  generatedAt, usage{inputTokens, outputTokens, mesures}}` ; l'archive
+  L'assistant (UC-APP-02) enregistre `{portfolioId, portfolioTitre, mode,
+  provider, model, jours, generatedAt, usage?{inputTokens, outputTokens,
+  mesures}}` (`usage` seulement si des tokens ont été mesurés) ; l'archive
   n'accepte que `{modele, dateRun, tokens{entree, sortie, total},
   coutEstime}`. À l'export, le modèle devient « inconnu », la date du run est
   remplacée par la date de modification locale et les **compteurs de tokens
@@ -233,6 +246,26 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-06
   la liste des cartographies, pas le bloc « Mes portfolios » du tableau de
   bord, qui n'affiche les portfolios restaurés qu'au rechargement. Figé par
   F11.
+- **A-05 — Provenance du référentiel inventée à l'export.** Contrairement aux
+  paquets (marqueurs neutres), une cartographie locale sans `referentiel`
+  reçoit l'id et la version du référentiel embarqué **au moment de
+  l'export** (`archive.js`, `toArchiveCartography`), et `dateRun` absent
+  devient la date de modification locale (la date d'export pour les documents
+  de masse). Conséquence : après un aller-retour, une cartographie importée
+  avec `referentielId: inconnu` (restaurée à `null`, A4) est réexportée comme
+  `respire@<version courante>` — une fausse traçabilité apparaît. Figé par
+  U08 et F15. Correctif suggéré : marqueurs neutres pour le référentiel aussi.
+- **A-06 — Cohérence référentielle non vérifiée à l'import.** Le schéma
+  (`cartographies`, description) et `docs/contrats.md` (« Notes de
+  cohérence… vérifiées par le code ») annoncent que les couples
+  (`promptPackageId`, `promptPackageVersion`) et (`referentielId`,
+  `referentielVersion`) désignent des documents présents dans
+  `promptPackages` / `referentiels`, « cohérence référentielle vérifiée par
+  le code d'import ». `importArchive` ne fait que `JSON.parse`, le contrôle de
+  `kind` et `validateDocument`, puis restaure : une archive incohérente —
+  typiquement celles que produit l'export lui-même (A-01) — est importée sans
+  avertissement. Figé par U15. Friction de contrat à consigner dans
+  `docs/contrats.md`.
 
 ## Limites
 
@@ -244,7 +277,17 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-06
 - Les copies serveur des cartographies ne sont pas relues (voir UC-APP-03,
   A-01) : l'archive reflète le stockage local du navigateur.
 - `web/src/lib/download-json.js` n'est **pas** sollicité : ce module sert le
-  téléchargement « un clic » des résultats Essayer, Twin6 et Twin9 ; l'archive
-  et « Télécharger le JSON » utilisent `downloadJson` de `archive.js`
-  (homonyme, arguments dans l'ordre inverse : `(filename, data)` contre
-  `(data, filename)`).
+  téléchargement « un clic » des résultats Essayer, Twin6, Twin9 et de
+  l'interface V3. L'archive utilise `browserDownload`, interne à `archive.js`
+  (via la couture `download`) ; `downloadJson(filename, data)` d'`archive.js`
+  (homonyme de celui de `download-json.js`, arguments dans l'ordre inverse)
+  ne sert qu'à « Télécharger le JSON » (UC-APP-03).
+- Les cartographies locales et les documents de masse **sans document** sont
+  omis silencieusement de l'archive (compteur de l'export compris).
+- Les titres d'origine des cartographies sont perdus à l'aller-retour (le
+  schéma n'a pas de champ `titre`) : l'import dérive un titre, avec les
+  replis « Cartographie merge importée » / « Cartographie importée » (non
+  testés) ; le `titre` des segments d'un portfolio n'est pas restauré.
+- La date du nom de fichier `humanome-export-AAAA-MM-JJ.json` est la date
+  **UTC** (`toISOString`), qui peut différer d'un jour de la date locale
+  autour de minuit.

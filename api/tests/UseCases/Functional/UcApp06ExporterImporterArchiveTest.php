@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Humanome\Tests\UseCases\Functional;
 
+use Humanome\Bootstrap;
 use Humanome\Packages\PromptPackageRepository;
 use Humanome\Tests\CartographeTestCase;
 use PHPUnit\Framework\Attributes\TestDox;
@@ -79,9 +80,20 @@ final class UcApp06ExporterImporterArchiveTest extends CartographeTestCase
         self::assertSame(200, $this->request('GET', '/api/prompt-packages/aurora-v3-reconstruit/1.0.0')->getStatusCode());
     }
 
-    #[TestDox('UC-APP-06-F14 — RG : aucune route serveur d’export ou d’import d’archive ; Golden Prompt jamais exportable')]
+    #[TestDox('UC-APP-06-F14 — RG1, RG7 : aucune route serveur d’export ou d’import d’archive (table de routage) ; Golden Prompt jamais exportable')]
     public function testF14NoServerArchiveRouteAndNoPrivatePackage(): void
     {
+        // Table de routage RÉELLE : aucun motif « export » ni « archive » ; les
+        // seuls motifs « import » sont les imports d'administration (jeton technique).
+        $patterns = array_map(
+            static fn ($route): string => $route->getPattern(),
+            Bootstrap::createApp()->getRouteCollector()->getRoutes(),
+        );
+        self::assertSame([], array_values(preg_grep('/export|archive/i', $patterns)));
+        $imports = array_values(preg_grep('/import/i', $patterns));
+        sort($imports);
+        self::assertSame(['/admin/import-prompt-package', '/admin/import-referentiel', '/admin/twin9/import'], $imports);
+
         self::publish('golden-prompt', '1.0.0', true);
         $maya = $this->registerAs('maya@example.org', 'Maya');
 

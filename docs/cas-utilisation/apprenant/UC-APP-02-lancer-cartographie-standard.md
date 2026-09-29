@@ -6,9 +6,9 @@
 | **Acteurs secondaires** | Fournisseur LLM : service humanome (proxy plateforme) ou fournisseur choisi avec la clé personnelle de l'apprenant ; promptologues (versions publiées) ; administrateur (version par défaut) |
 | **Portée** | humanome.xyz — assistant `#/espace/nouveau-run` ; moteur exécuté dans le navigateur |
 | **Niveau** | Objectif utilisateur |
-| **Cahier des charges** | §3.2 (déclencher une cartographie), §4.3 (découpage journalier, fusion obligatoire, traçabilité prompt/référentiel), §5 (clé API personnelle, LLM peu coûteux pour l'usage gratuit), §6.1 et §6.5 |
+| **Cahier des charges** | §3.2 (déclencher une cartographie), §4.3 (découpage journalier, fusion obligatoire, traçabilité prompt/référentiel), §5 (clé API personnelle, LLM peu coûteux pour l'usage gratuit), §6.1 ; principe RGPD n°5 de `CLAUDE.md` (journalisation minimale) |
 | **Décisions** | ADR-001 (exécution client-first), ADR-004 (clés API personnelles), ADR-005 (la masse passe par la file serveur — hors de ce cas) |
-| **Statut** | Implémenté (P8.3 ; version par défaut serveur M7) |
+| **Statut** | Implémenté (P8.3) ; version par défaut exposée par le serveur (M7) mais non exploitée par l'assistant (anomalie A-01) |
 
 ## Objectif
 
@@ -28,7 +28,12 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
 
 - Un portfolio local comportant au moins une journée **datée** (UC-APP-01).
 - Mode « Service humanome » : API joignable, démonstration activée et budget
-  du jour non épuisé.
+  du jour non épuisé. Avec la configuration par défaut, au plus
+  ⌊`perIpPerHour` / 8⌋ journées par heure et par IP (20/h dans
+  `api/config/demo.php` ⇒ 2 journées ; 40/h dans `api/.env.example` ⇒ 5) et
+  des journées d'au plus `maxInputChars` − ~8,5 k caractères de gabarit
+  (≈ 11,5 k caractères avec 20 000) ; au-delà, voir E5 et les anomalies A-02
+  et A-05.
 - Mode « Clé personnelle » : une clé du fournisseur choisi (sauf Ollama,
   local et sans clé).
 - Aucune session n'est exigée ; la synchronisation serveur de la clé et la
@@ -101,22 +106,29 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
   clé est pré-remplie depuis `localStorage` (`humanome-keys`) et y est
   mémorisée par défaut ; « Synchroniser sur le serveur (chiffrée) » (opt-in,
   connecté) envoie `PUT api/keys` avant le run ; « Récupérer la clé depuis le
-  serveur » lit `GET api/keys/{fournisseur}`. Les appels partent
+  serveur » lit `GET api/keys/{fournisseur}` (clé absente : message du
+  serveur, « Aucune clé enregistrée pour ce fournisseur »). Les appels partent
   **directement** vers l'API du fournisseur (clé en en-tête), jamais vers
-  humanome ; le moteur réessaie jusqu'à 3 fois sur 429/5xx.
-- **A2 — API injoignable** (étapes 1 et 3) : copie statique ou serveur
-  indisponible : bandeau « Copie statique du site… », seule la version
-  embarquée est proposée (« Versions publiées indisponibles (API injoignable) :
-  version embarquée proposée. »), synchronisation de clé désactivée. Le mode
-  clé personnelle reste utilisable.
+  humanome ; le moteur fait 3 tentatives au total sur 429/5xx/erreur réseau
+  (`Retry-After` respecté, plafonné à 5 min), soit, avec le nouvel essai
+  d'`extractDay`, jusqu'à 6 requêtes par pôle. Un refus de la synchronisation
+  bloque le lancement (E6).
+- **A2 — API injoignable ou en erreur** (étapes 1 et 3) : API absente (échec
+  réseau, réponse non JSON d'une copie statique) : bandeau « Copie statique du
+  site… » ; API joignable mais en erreur 5xx JSON : bandeau « Vous n'êtes pas
+  connecté… ». Dans les deux cas, seule la version embarquée est proposée
+  (« Versions publiées indisponibles (API injoignable) : version embarquée
+  proposée. ») et la synchronisation de clé est désactivée. Le mode clé
+  personnelle reste utilisable.
 - **A3 — Version publiée choisie** (étape 3) : la version choisie est
   enregistrée avec chaque cartographie (`promptPackage`) et entre dans
   l'identifiant du run ; en v1 le moteur exécute **toujours** le protocole
   embarqué (annoncé à l'écran).
 - **A4 — Interrompre puis reprendre** (étape 6) : « Interrompre » arrête le run
-  (l'appel en cours est abandonné) ; « Reprendre le run » saute les journées
-  checkpointées : « Repris à la journée k/n : les j journée(s) déjà
-  checkpointée(s) sont sautées. »
+  (l'appel en cours est abandonné, la journée entamée sera refaite) ;
+  « Reprendre le run » saute les journées checkpointées : « Repris à la
+  journée k/n : les j journée(s) déjà checkpointée(s) sont sautées. » (k est
+  faux après une journée en échec, anomalie A-04).
 - **A5 — Rechargement de la page** (étape 6) : quitter l'assistant interrompt
   le run ; relancé avec le même portfolio et la même version (même
   identifiant de run `portfolioId::paquet@version`), il reprend depuis les
@@ -140,33 +152,49 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
   journées réussies sont checkpointées : « Reprendre » ne retentera que les
   journées manquantes. » et la liste des journées en échec ; rien n'est
   enregistré dans le carto-store.
-- **E5 — Service humanome indisponible** (étape 6) : quota horaire par IP
-  (`429` + `Retry-After`), défi réutilisé (`429 pow_reused`), preuve absente
-  ou invalide (`400 pow_*`), texte trop long (`413`), budget du jour épuisé
-  ou démo désactivée (`503`). Si l'échec survient dès le défi initial, un
-  message dédié s'affiche (« La démo est très demandée en ce moment :
-  réessayez dans N minutes. », « La démo est épuisée pour aujourd'hui ou
-  momentanément désactivée… ») avec « Reprendre le run » ; en cours de run,
-  voir E4 et l'anomalie A-02.
+- **E5 — Service humanome indisponible** (étape 6). Au défi initial
+  (`GET api/llm/challenge`, pré-résolu avant la 1re journée), seul un `503`
+  est possible (démo désactivée, ou secret de preuve de travail absent) :
+  « La démo est épuisée pour aujourd'hui ou momentanément désactivée.
+  Revenez un peu plus tard — ou créez un compte pour cartographier sans ces
+  limites. » avec « Reprendre le run », aucun appel LLM. Le quota horaire par
+  IP (`429` + `Retry-After`), le budget du jour épuisé (`503`), le texte trop
+  long (`413`) et les refus de preuve (`400 pow_*`, `429 pow_reused`) ne
+  surviennent que sur `POST api/llm`, donc **en cours de run** : les journées
+  concernées échouent avec le détail technique (E4, anomalie A-02).
+- **E6 — Synchronisation de la clé refusée** (étape 6, A1) : `PUT api/keys`
+  en échec (`401` session expirée, `403` CSRF, `422` « Validation échouée »,
+  clé de moins de 8 caractères) : le run ne démarre pas, le message du
+  serveur s'affiche avec « Reprendre le run », aucun appel au fournisseur —
+  bien que la clé fonctionnerait localement.
 
 ## Règles de gestion
 
 - **RG1** — Exécution dans le navigateur (ADR-001) : le serveur ne voit le
   texte d'une journée qu'en mode Service humanome, le temps de l'appel, sans
-  le conserver (compteurs seulement, §6.5).
-- **RG2** — Une journée = 7 appels de pôle + 1 synthèse kairos ; une réponse
-  illisible est réessayée **une** fois ; une synthèse kairos en échec est
-  dégradée en `kairos: null` (la journée reste valable).
+  le conserver (compteurs seulement, principe RGPD n°5).
+- **RG2** — Une journée = 7 appels de pôle + 1 synthèse kairos ; un appel en
+  échec (réponse illisible ou erreur du fournisseur) est réessayé **une**
+  fois par `extractDay` ; une synthèse kairos en échec — pour **toute**
+  cause, erreur HTTP ou réseau comprise — est dégradée en `kairos: null` : la
+  journée reste valable et est checkpointée **définitivement** (jamais
+  retentée, cf. A-03), sans signalement à l'écran.
 - **RG3** — Identifiant de run stable `portfolioId::paquet@version` : même
   portfolio et même version ⇒ mêmes checkpoints (reprise automatique).
 - **RG4** — Checkpoint atomique par journée (`run:<id>:checkpoint:<date>`),
   échec persistant (`run:<id>:failed:<date>`), journal horodaté
   (`run_started`, `run_resumed`, `day_started`, `day_completed`, `day_failed`,
-  `run_completed`) ; interruption coopérative **entre** deux journées.
+  `run_completed`). Le moteur ne consulte le signal d'interruption qu'**entre**
+  deux journées, mais l'assistant le transmet aussi aux appels du
+  fournisseur : l'appel en cours est abandonné et la journée entamée est
+  refaite à la reprise.
 - **RG5** — Service humanome : une preuve de travail **par appel** (défi signé
-  HMAC, 5 minutes, usage unique), pot de miel `website` vide, pas de reprise
-  automatique sur quota ; le serveur impose modèle, `maxTokens` et plafonds
-  (`api/config/demo.php`, surcharges admin).
+  HMAC, 5 minutes, usage unique), pot de miel `website` vide ; le serveur
+  impose modèle, `maxTokens` et plafonds (`api/config/demo.php`, surcharges
+  admin). Reprises (`demo-llm.js`, transport à `maxAttempts: 1`) : **aucune**
+  sur quota (`429` hors défi) ni sur `503` ; **une seule**, après 2,5 s et
+  avec un défi neuf, sur `500`/`502`/`504`/`529`, erreur réseau ou défi refusé
+  (`pow_reused`, `pow_expired`, `pow_required`).
 - **RG6** — Estimation : 8 appels par journée + 69 récits de fusion ; tokens
   ≈ caractères / 3,6 ; 1 000 tokens de sortie et 20 s par appel ; le service
   humanome est estimé sur le modèle de référence `claude-sonnet-5` ; un
@@ -193,7 +221,7 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
 |---|---|---|
 | Front | `web/src/views/EspaceView.jsx` | Session, dispatch de `#/espace/nouveau-run` |
 | Front | `web/src/components/RunWizard.jsx` | Assistant en 5 étapes, exécution, enregistrement |
-| Front | `web/src/lib/run-launcher.js` — `computeDayGroups`, `fetchPromptPackages`, `buildEstimate`, `createProviderBundle`, `makeRunId`, `executeRun`, clés locales et synchronisation | Logique non-UI du lancement |
+| Front | `web/src/lib/run-launcher.js` — `computeDayGroups`, `fetchPromptPackages`, `buildEstimate`, `createProviderBundle`, `makeRunId`, `executeRun`, `buildLocalNarratives`, clés locales et synchronisation | Logique non-UI du lancement, résumés locaux du merge |
 | Front | `web/src/lib/demo-llm.js` — `createDemoProvider`, `describeDemoError` ; `web/src/lib/pow.js` | Service humanome : défi, preuve de travail, messages |
 | Front | `web/src/lib/carto-store.js` (via `carto-store-bridge.js`) | Enregistrement local des résultats |
 | Moteur | `engine/src/pipeline/extract.js` — `extractDay` | 7 pôles + kairos, validation, nouvel essai |
@@ -204,6 +232,7 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
 | API | `GET /api/llm/challenge`, `POST /api/llm` — `api/src/routes/llm.php` | Proxy du service humanome |
 | Domaine | `api/src/Packages/PromptPackageRepository.php`, `SettingsRepository.php` | Versions publiques, défaut validé |
 | Domaine | `api/src/Llm/PowChallenge.php`, `MockProvider.php`, `UsageCounters.php`, `Pricing.php` | Preuve de travail, fournisseur mock, compteurs, coût |
+| Domaine | `api/src/Llm/DemoConfig.php`, `api/src/Auth/RateLimiter.php` | Configuration du service (interrupteur, plafonds, quota), quota horaire par IP à délai progressif (RG5, E5) |
 
 ## Jeux de tests
 
@@ -217,42 +246,44 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
 | UC-APP-02-U04 | `extractDay` | Pôle en échec deux fois → erreur contextualisée (E4) | idem |
 | UC-APP-02-U05 | `createRun` | Checkpoint par journée, journal, fusion des 3 journées (RG4) | idem |
 | UC-APP-02-U06 | `createRun` | Journée en échec persistée ; reprise limitée à celle-ci (E4) | idem |
-| UC-APP-02-U07 | `createRun` | Interruption coopérative entre journées (A4) | idem |
+| UC-APP-02-U07 | `createRun` | Moteur seul : interruption coopérative entre journées (A4 ; l'abandon de l'appel en cours est vu par F05/F06) | idem |
 | UC-APP-02-U08 | `createIndexedDbStorage` + `createRun` | Base `humanome-runs` relue après rechargement (A5) | idem |
 | UC-APP-02-U09 | `mergeDays`, `buildMergeDocument` | 3 journées → merge valide ; 2 journées → pôle vide, invalide (A6, RG7) | idem |
 | UC-APP-02-U10 | `createProvider` (direct) | Appel direct, clé en en-tête seulement (A1) | idem |
-| UC-APP-02-U11 | `createProvider` (proxy) | Pas de clé, 429 réessayé après `Retry-After`, 413 non réessayé | idem |
-| UC-APP-02-U12 | `computeDayGroups` | Vrai découpage : préambule non daté ignoré, tri | `web/test/usecases/unit/uc-app-02-lancer-cartographie-standard.test.js` |
+| UC-APP-02-U11 | `createProvider` (proxy) | Transport proxy générique du moteur (politique par défaut, non utilisée par le Service humanome) : pas de clé, 429 réessayé après `Retry-After`, 413 jamais | idem |
+| UC-APP-02-U12 | `computeDayGroups` | Vrai découpage : préambule non daté ignoré, tri ; textes d'une même date concaténés | `web/test/usecases/unit/uc-app-02-lancer-cartographie-standard.test.js` |
 | UC-APP-02-U13 | `makeRunId` | Identifiant stable portfolio + version (RG3) | idem |
 | UC-APP-02-U14 | `fetchPromptPackages` | Ordre des appels, embarqué en tête sans doublon, défaut marqué | idem |
 | UC-APP-02-U15 | `createProviderBundle` | Service humanome (modèle imposé), clé requise sauf Ollama | idem |
 | UC-APP-02-U16 | `setLocalKey`, `readLocalKeys` | `humanome-keys` : mémoriser, effacer, JSON corrompu toléré | idem |
-| UC-APP-02-U17 | `syncKeyToServer`, `fetchKeyFromServer` | `PUT api/keys`, `GET api/keys/{fournisseur}`, clé absente | idem |
-| UC-APP-02-U18 | `createDemoProvider` | Un défi par appel, nonce et pot de miel joints (RG5) | idem |
+| UC-APP-02-U17 | `syncKeyToServer`, `fetchKeyFromServer` | `PUT api/keys`, `GET api/keys/{fournisseur}` ; clé absente = 404 du serveur, message propagé ; garde défensive `{apiKey: ''}` | idem |
+| UC-APP-02-U18 | `createDemoProvider`, `pow.js` | Un défi par appel, nonce satisfaisant la difficulté (sha256 recalculé), pot de miel joint (RG5) | idem |
 | UC-APP-02-U19 | `describeDemoError` | 429 → minutes, 503 → épuisé, autre → détail | idem |
 | UC-APP-02-U20 | `buildEstimate` | Modèle de référence du service, coût inconnu, surcharges | idem |
-| UC-APP-02-U21 | `executeRun` + `createIndexedDbStorage` | Checkpoints persistés, reprise sur nouvel onglet, compteurs de session | idem |
+| UC-APP-02-U21 | `executeRun` + `createIndexedDbStorage` | Checkpoints persistés, reprise sur nouvel onglet, compteurs de session ; merge à résumés locaux (étape 7) | idem |
 | UC-APP-02-U22 | `PowChallenge` | Format, TTL 5 min, OK / WEAK / EXPIRED / INVALID | `api/tests/UseCases/Unit/UcApp02LancerCartographieStandardTest.php` |
 | UC-APP-02-U23 | `MockProvider` | Prompt de pôle/kairos → JSON de la fixture du jour | idem |
 | UC-APP-02-U24 | `UsageCounters`, `Pricing` | Compteurs seuls, disjoncteur tokens/budget, jour UTC | idem |
-| UC-APP-02-U25 | `PromptPackageRepository`, `SettingsRepository` | Versions publiques seulement, défaut validé ou plus récent | idem |
+| UC-APP-02-U25 | `PromptPackageRepository`, `SettingsRepository` | Versions publiées et publiques seulement ; dernière publiée tous paquets confondus ; lecture/écriture du réglage (la décision réglage > plus récente est testée par F14) | idem |
+| UC-APP-02-U26 | `createDemoProvider` | Aucune reprise sur quota 429 ni sur 503 : 1 défi, 1 POST (RG5) | `web/test/usecases/unit/uc-app-02-lancer-cartographie-standard.test.js` |
+| UC-APP-02-U27 | `createDemoProvider` | Une seule reprise après 2,5 s avec un défi neuf sur 502, erreur réseau, `pow_reused`, `pow_expired` ; pas de seconde reprise (RG5) | idem |
 
 ### Tests fonctionnels
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
 | UC-APP-02-F01 | Nominal | IHM | `<App/>` : 5 étapes, estimation, 24 POST avec défis distincts, 3 jours + merge privés et tracés | `web/test/usecases/functional/uc-app-02-lancer-cartographie-standard.test.jsx` |
-| UC-APP-02-F02 | A1 | IHM | 24 appels directs à Anthropic ; clé vers humanome uniquement par `PUT api/keys` (CSRF) ; `localStorage` | idem |
+| UC-APP-02-F02 | A1 | IHM | 24 appels directs à Anthropic ; clé vers humanome uniquement par `PUT api/keys` (CSRF, réponse 204) ; `localStorage` | idem |
 | UC-APP-02-F03 | A2 | IHM | Bandeau copie statique, version embarquée seule, synchronisation désactivée | idem |
-| UC-APP-02-F04 | A3 (anomalie A-01) | IHM | Version publiée tracée, pipeline embarqué exécuté ; défaut serveur non présélectionné | idem |
+| UC-APP-02-F04 | A3 (anomalie A-01) | IHM | Version publiée tracée ; paquet publié jamais téléchargé, 1er prompt = prompt du moteur embarqué ; défaut serveur ni présélectionné ni signalé | idem |
 | UC-APP-02-F05 | A4 | IHM | Interruption en journée 2, reprise : 16 appels, journée 1 sautée | idem |
-| UC-APP-02-F06 | A5 | IHM | Démontage (rechargement) puis reprise depuis IndexedDB | idem |
+| UC-APP-02-F06 | A5 | IHM | Démontage (rechargement) : signal de la requête en cours abandonné ; reprise depuis IndexedDB | idem |
 | UC-APP-02-F07 | A6 | IHM | 2 journées : documents jour seuls, note de fusion | idem |
 | UC-APP-02-F08 | E1 | IHM | Aucun portfolio : lien `#/portfolio`, « Continuer » inactif | idem |
 | UC-APP-02-F09 | E2 | IHM | Portfolio sans journée datée signalé, « Continuer » inactif | idem |
 | UC-APP-02-F10 | E3 | IHM | Clé vide bloquante ; Ollama sans clé | idem |
-| UC-APP-02-F11 | E4 | IHM | Journée en échec listée, rien enregistré ; reprise = 8 appels de cette journée | idem |
-| UC-APP-02-F12 | E5 | IHM | Quota au défi initial : message d'attente, aucun POST | idem |
+| UC-APP-02-F11 | E4 (anomalie A-04) | IHM | Journée en échec listée, rien enregistré ; reprise = 8 appels de cette journée ; **comportement actuel** des indicateurs de progression et de reprise | idem |
+| UC-APP-02-F12 | E5 | IHM | Démo désactivée (503) au défi initial : message dédié, aucun POST, « Reprendre le run » | idem |
 | UC-APP-02-F13 | E5 (anomalie A-02) | IHM | **Comportement actuel** : 503 en cours de run → détails techniques, 6 appels | idem |
 | UC-APP-02-F14 | Nominal (étape 3) | API | Versions publiées, défaut (réglage/plus récente/404), document, lecture publique | `api/tests/UseCases/Functional/UcApp02LancerCartographieStandardTest.php` |
 | UC-APP-02-F15 | Nominal (étape 6) | API | Une journée = 8 appels avec défi, JSON pôle/kairos, compteurs sans contenu | idem |
@@ -260,6 +291,11 @@ Cartographier mes écrits », ou le bouton du tableau de bord `#/espace`).
 | UC-APP-02-F17 | E5 | API | Quota IP → 429 ; budget épuisé → 503 ; démo coupée → 503 | idem |
 | UC-APP-02-F18 | E5 | API | Journée trop longue → 413, aucun défi ni compteur consommé | idem |
 | UC-APP-02-F19 | A5 (anomalie A-03) | IHM | **Comportement actuel** : relance après modification → aucun appel, anciens documents ré-enregistrés en double | `web/test/usecases/functional/uc-app-02-lancer-cartographie-standard.test.jsx` |
+| UC-APP-02-F20 | E5 (anomalie A-02) | IHM | **Comportement actuel** : quota 429 sur `POST api/llm` à partir du 9e appel → journée 1 checkpointée, journées 2 et 3 en échec « HTTP 429 », 12 appels | idem |
+| UC-APP-02-F21 | A1 | IHM | Clé pré-remplie depuis `localStorage`, « Récupérer la clé depuis le serveur » ; sans synchronisation : aucun `api/keys`, aucune clé dans une requête vers humanome | idem |
+| UC-APP-02-F22 | E6 | IHM | `PUT api/keys` → 422 : message du serveur, aucun appel au fournisseur, « Reprendre le run » | idem |
+| UC-APP-02-F23 | A2 | IHM | API en erreur 5xx JSON : bandeau « non connecté », version embarquée seule, synchronisation et récupération indisponibles | idem |
+| UC-APP-02-F24 | E5 (anomalie A-05) | API | **Comportement actuel** : quota par défaut (20/h) → un run de 3 journées bloqué au 21e appel, `Retry-After` 30/60/120/240 | `api/tests/UseCases/Functional/UcApp02LancerCartographieStandardTest.php` |
 
 ### Tests existants liés (non-régression)
 
@@ -290,12 +326,14 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-02
   Figé par F04.
 - **A-02 — Quota ou épuisement du service en cours de run.** Un `429`/`503`
   de `POST api/llm` n'est pas traduit par `describeDemoError` (réservé aux
-  échecs hors journée, comme le défi initial) : chaque journée échoue avec le
-  détail technique (« extractDay : pôle 1 (…) — anthropic: HTTP 503 — Démo
-  épuisée… »), et le run **continue d'appeler** le proxy pour toutes les
-  journées restantes (un essai + un nouvel essai d'`extractDay` par journée),
-  alors que `demo-llm.js` désactive volontairement les reprises automatiques
-  sur quota. Figé par F13.
+  échecs hors journée, comme le défi initial — qui ne peut renvoyer que
+  `503`) : chaque journée échoue avec le détail technique (« extractDay :
+  pôle 1 (…) — anthropic: HTTP 503 — Démo épuisée… », « … HTTP 429 — Quota
+  horaire atteint… »), et le run **continue d'appeler** le proxy pour toutes
+  les journées restantes (un essai + un nouvel essai d'`extractDay` par
+  journée), alors que `demo-llm.js` désactive volontairement les reprises
+  automatiques sur quota. Sur quota, chaque appel refusé allonge encore le
+  `Retry-After` (30 s × 2^excès, jusqu'à 1 h). Figé par F13 (503) et F20 (429).
 - **A-03 — Checkpoints jamais purgés : relance sans recalcul.** L'identifiant
   de run ne dépend que du portfolio et de la version
   (`portfolioId::paquet@version`), et les checkpoints de `humanome-runs` ne
@@ -303,6 +341,25 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-02
   reprend les anciens checkpoints : aucune journée n'est recalculée, et les
   anciens documents sont ré-enregistrés, **en double**, dans le carto-store.
   Figé par F19.
+- **A-04 — Indicateurs de progression faux après une journée en échec.**
+  `RunWizard.jsx` calcule le numéro de journée affiché à partir du nombre de
+  journées **terminées** (`Math.min(daysDone + 1, …)`, `resumedFrom + 1`) au
+  lieu de la position de la journée (`dayInfo.position`, pourtant transmise
+  par `executeRun`). Après l'échec de la journée 2, la journée 3 s'affiche
+  « Journée 2/3 (2026-01-07) » ; à la reprise (journées 1 et 3 checkpointées),
+  l'écran annonce « Repris à la journée 3/3 : les 2 journée(s)… » et
+  « Journée 3/3 (2026-01-06) » alors que c'est la journée 2 qui est refaite.
+  Figé par F11.
+- **A-05 — Quota par défaut incompatible avec un run standard, sans
+  avertissement.** Avec la configuration livrée (`perIpPerHour` = 20 dans
+  `api/config/demo.php`, 40 dans `api/.env.example`) et 8 `POST /api/llm` par
+  journée, le Service humanome ne peut pas mener au bout un run de plus de 2
+  journées (5 avec 40/h) dans l'heure : le 21e appel reçoit un `429`, la
+  journée échoue et le run continue d'appeler le proxy (A-02), chaque refus
+  allongeant le délai. L'assistant n'en tient pas compte (l'estimation
+  annonce 93 appels pour 3 journées sans avertissement) ; seul
+  `docker-compose.override.yml` relève le quota, en développement. Figé côté
+  API par F24.
 
 ## Limites
 
@@ -316,3 +373,8 @@ cd engine && npx vitest run test/usecases --testNamePattern UC-APP-02
 - Le repli « télécharger le résultat (JSON) » de l'assistant ne s'affiche que
   si le module carto-store est absent du bundle : chemin mort dans la version
   livrée, non testé.
+- Service humanome : une journée dont le texte dépasse `maxInputChars` moins
+  le gabarit du prompt d'extraction (8 300 à 8 600 caractères selon le pôle,
+  soit ≈ 11,5 k caractères de texte avec 20 000) échoue en `413` à chaque
+  pôle ; l'assistant ne le vérifie pas avant le lancement (le `413` lui-même
+  est testé par F18).

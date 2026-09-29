@@ -52,6 +52,7 @@ export const FakeIDBKeyRange = {
  *   factory: {open: Function},
  *   reset: () => void,
  *   failNextOpen: (message?: string) => void,
+ *   failNextRequest: (op: 'get' | 'getAll' | 'put' | 'delete', message?: string) => void,
  *   databases: () => string[],
  *   values: (dbName: string, storeName: string) => object[],
  *   entries: (dbName: string, storeName: string) => Array<[string, object]>,
@@ -62,7 +63,17 @@ export function createFakeIndexedDb() {
   /** name -> {version, stores: Map<name, {keyPath, records: Map}>} */
   const databases = new Map()
   let pendingOpenFailure = null
+  /** op ('get' | 'getAll' | 'put' | 'delete') -> message de l'échec à injecter */
+  const pendingRequestFailures = new Map()
   let opens = 0
+
+  /** Consomme l'échec injecté pour `op` (failNextRequest), s'il y en a un. */
+  function takeRequestFailure(op) {
+    if (!pendingRequestFailures.has(op)) return null
+    const message = pendingRequestFailures.get(op)
+    pendingRequestFailures.delete(op)
+    return Object.assign(new Error(message), { name: 'UnknownError' })
+  }
 
   function storeApi(db, storeName, mode) {
     const store = db.stores.get(storeName)
@@ -73,11 +84,21 @@ export function createFakeIndexedDb() {
     return {
       get(key) {
         const request = makeRequest()
+        const failure = takeRequestFailure('get')
+        if (failure) {
+          settle(request, { error: failure })
+          return request
+        }
         settle(request, { result: clone(store.records.get(key)) })
         return request
       },
       getAll() {
         const request = makeRequest()
+        const failure = takeRequestFailure('getAll')
+        if (failure) {
+          settle(request, { error: failure })
+          return request
+        }
         const keys = [...store.records.keys()].sort()
         settle(request, { result: keys.map((k) => clone(store.records.get(k))) })
         return request
@@ -90,6 +111,11 @@ export function createFakeIndexedDb() {
       },
       put(value, key) {
         const request = makeRequest()
+        const failure = takeRequestFailure('put')
+        if (failure) {
+          settle(request, { error: failure })
+          return request
+        }
         if (mode !== 'readwrite') {
           settle(request, { error: readonlyError() })
           return request
@@ -107,6 +133,11 @@ export function createFakeIndexedDb() {
       },
       delete(key) {
         const request = makeRequest()
+        const failure = takeRequestFailure('delete')
+        if (failure) {
+          settle(request, { error: failure })
+          return request
+        }
         if (mode !== 'readwrite') {
           settle(request, { error: readonlyError() })
           return request
@@ -176,11 +207,20 @@ export function createFakeIndexedDb() {
         for (const store of db.stores.values()) store.records.clear()
       }
       pendingOpenFailure = null
+      pendingRequestFailures.clear()
       opens = 0
     },
     /** La prochaine ouverture échoue (quota dépassé, navigation privée stricte…). */
     failNextOpen(message = 'ouverture refusée par le navigateur') {
       pendingOpenFailure = message
+    },
+    /**
+     * La prochaine requête `op` ('get' | 'getAll' | 'put' | 'delete'), toutes
+     * bases confondues, échoue (disque plein, base corrompue…) ; la base reste
+     * ouverte et les requêtes suivantes réussissent.
+     */
+    failNextRequest(op, message = 'requête refusée par le navigateur') {
+      pendingRequestFailures.set(op, message)
     },
     databases: () => [...databases.keys()].sort(),
     values(dbName, storeName) {

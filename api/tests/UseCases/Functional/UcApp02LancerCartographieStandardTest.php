@@ -132,7 +132,7 @@ final class UcApp02LancerCartographieStandardTest extends LlmTestCase
         self::assertSame([], $this->http->requests, 'mock : aucun appel sortant');
     }
 
-    #[TestDox('UC-APP-02-F16 — E : preuve de travail absente → 400 ; défi réutilisé pour un 2e appel → 429 + Retry-After')]
+    #[TestDox('UC-APP-02-F16 — E5 : preuve de travail absente → 400 ; défi réutilisé pour un 2e appel → 429 + Retry-After')]
     public function testF16ProofOfWorkIsMandatoryAndSingleUse(): void
     {
         $missing = $this->request('POST', '/api/llm', ['prompt' => self::polePrompt(1), 'website' => '']);
@@ -169,7 +169,7 @@ final class UcApp02LancerCartographieStandardTest extends LlmTestCase
         self::assertSame(503, $this->request('GET', '/api/llm/challenge')->getStatusCode());
     }
 
-    #[TestDox('UC-APP-02-F18 — E : journée trop longue pour le service (maxInputChars) → 413, aucun défi consommé')]
+    #[TestDox('UC-APP-02-F18 — E5 : journée trop longue pour le service (maxInputChars) → 413, aucun défi consommé')]
     public function testF18OversizedDayIsRejected(): void
     {
         TestDb::setEnv('DEMO_MAX_INPUT_CHARS', '500');
@@ -179,5 +179,32 @@ final class UcApp02LancerCartographieStandardTest extends LlmTestCase
         self::assertSame('Texte trop long : 500 caractères maximum pour la démonstration.', self::json($response)['error']);
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM llm_pow_challenges')->fetchColumn());
         self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM llm_usage_daily')->fetchColumn());
+    }
+
+    #[TestDox('UC-APP-02-F24 — [comportement ACTUEL, anomalie A-05] quota par défaut (20/h/IP) : un run de 3 journées (24 appels) est bloqué au 21e appel, Retry-After croissant')]
+    public function testF24DefaultQuotaCannotCarryAThreeDayRun(): void
+    {
+        // Configuration PAR DÉFAUT (api/config/demo.php : perIpPerHour = 20) :
+        // ni surcharge d'environnement, ni réglage administrateur.
+        TestDb::setEnv('DEMO_PER_IP_PER_HOUR', '');
+        $kairos = "SYNTHÈSE KAIROS — journée (" . self::DAY . ")\nAtelier photo à l’Astrolabe.";
+
+        $statuses = [];
+        $retryAfter = [];
+        for ($day = 1; $day <= 3; $day++) {
+            for ($call = 1; $call <= 8; $call++) {
+                $response = $this->engineCall($call <= 7 ? self::polePrompt($call) : $kairos);
+                $statuses[] = $response->getStatusCode();
+                if ($response->getStatusCode() === 429) {
+                    $retryAfter[] = (int) $response->getHeaderLine('Retry-After');
+                }
+            }
+        }
+
+        // Journées 1 et 2 complètes, 4 premiers appels de la journée 3 : 200 ;
+        // à partir du 21e appel (5e pôle de la journée 3) : 429.
+        self::assertSame(array_merge(array_fill(0, 20, 200), array_fill(0, 4, 429)), $statuses);
+        // Chaque appel refusé compte encore : le délai double (30, 60, 120, 240 s).
+        self::assertSame([30, 60, 120, 240], $retryAfter);
     }
 }

@@ -7,6 +7,7 @@
 // directement. Le run complet tourne sur l'adaptateur IndexedDB RÉEL du
 // moteur (« humanome-runs ») posé sur un IndexedDB factice.
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createHash } from 'node:crypto'
 import { segmentText } from '@engine/portfolio/segment.js'
 import { createIndexedDbStorage } from '@engine/runs/index.js'
 import { createMockProvider } from '@engine/providers/mock.js'
@@ -29,14 +30,36 @@ import {
   setLocalKey,
   syncKeyToServer,
 } from '../../../src/lib/run-launcher.js'
-import { DEMO_MODEL, createDemoProvider, describeDemoError } from '../../../src/lib/demo-llm.js'
+import {
+  DEMO_MODEL,
+  UPSTREAM_RETRY_DELAY_MS,
+  createDemoProvider,
+  describeDemoError,
+} from '../../../src/lib/demo-llm.js'
+import { ApiError } from '../../../src/api/client.js'
 import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import { bodyOf, jsonResponse, routedFetch } from '../support/appl-http.js'
 import { fixtureAnswer, portfolioText } from '../support/appl-llm.js'
 
 afterEach(() => {
+  vi.useRealTimers()
   vi.unstubAllGlobals()
 })
+
+/** Bits nuls en tête du sha256 (hex) de `challenge:nonce` — calcul indépendant de pow.js. */
+function leadingZeroBitsOf(challenge, nonce) {
+  const digest = createHash('sha256').update(`${challenge}:${nonce}`, 'utf8').digest()
+  let bits = 0
+  for (const byte of digest) {
+    if (byte === 0) {
+      bits += 8
+      continue
+    }
+    bits += Math.clz32(byte) - 24
+    break
+  }
+  return bits
+}
 
 function memoryKeyStorage(initial = {}) {
   const map = new Map(Object.entries(initial))
@@ -44,7 +67,7 @@ function memoryKeyStorage(initial = {}) {
 }
 
 describe('UC-APP-02 — étape 2 : portfolio et journées', () => {
-  it('UC-APP-02-U12 — computeDayGroups sur un vrai découpage : préambule non daté ignoré, journées triées', () => {
+  it('UC-APP-02-U12 — computeDayGroups sur un vrai découpage : préambule non daté ignoré, journées triées, textes d’une même date concaténés', () => {
     const texte = `Notes en vrac sans date.\n\n${portfolioText(['2026-01-07', '2026-01-05'])}`
     const segments = segmentText(texte, { today: '2026-07-12' })
     expect(segments[0].date).toBeNull() // préambule non daté
@@ -52,6 +75,16 @@ describe('UC-APP-02 — étape 2 : portfolio et journées', () => {
     const groups = computeDayGroups(segments)
     expect(groups.map((g) => g.iso)).toEqual(['2026-01-05', '2026-01-07'])
     expect(groups[0].texte).toContain('Journée du 2026-01-05')
+
+    // Deux segments de même date (après ajustement manuel) : un seul groupe.
+    const a = 'Matin : atelier.'
+    const b = 'Soir : bilan.'
+    const sameDay = computeDayGroups([
+      { date: '2026-01-05', texte: a, debut: 0, fin: a.length },
+      { date: null, texte: 'non daté', debut: a.length, fin: a.length + 8 },
+      { date: '2026-01-05', texte: b, debut: a.length + 8, fin: a.length + 8 + b.length },
+    ])
+    expect(sameDay).toEqual([{ iso: '2026-01-05', texte: `${a}\n\n${b}` }])
   })
 
   it('UC-APP-02-U13 — makeRunId : même portfolio + même version de prompt = même run (clé de reprise)', () => {
@@ -117,15 +150,26 @@ describe('UC-APP-02 — étape 4 : fournisseur et clés', () => {
     expect(JSON.parse(storage.map.get(KEYS_STORAGE_KEY))).toEqual({ openai: 'sk-oa-1' })
   })
 
-  it('UC-APP-02-U17 — synchronisation opt-in : PUT api/keys ; récupération GET api/keys/{fournisseur}', async () => {
-    const apiFetchFn = vi.fn(async (path) => (path === 'keys/openai' ? { apiKey: '' } : { apiKey: 'sk-ant-2' }))
+  it('UC-APP-02-U17 — synchronisation opt-in : PUT api/keys ; récupération GET api/keys/{fournisseur} ; clé absente (404 du serveur)', async () => {
+    const apiFetchFn = vi.fn(async (path) => {
+      if (path === 'keys/openai') {
+        // Réponse RÉELLE de l'API pour une clé absente (api/src/routes/keys.php).
+        throw new ApiError('Aucune clé enregistrée pour ce fournisseur', 404)
+      }
+      return path === 'keys/google' ? { apiKey: '' } : { apiKey: 'sk-ant-2' }
+    })
     await syncKeyToServer('anthropic', 'sk-ant-2', { apiFetchFn })
     expect(apiFetchFn).toHaveBeenCalledWith('keys', {
       method: 'PUT',
       body: { provider: 'anthropic', apiKey: 'sk-ant-2' },
     })
     await expect(fetchKeyFromServer('anthropic', { apiFetchFn })).resolves.toBe('sk-ant-2')
+    // Clé absente : le message du SERVEUR est propagé tel quel.
     await expect(fetchKeyFromServer('openai', { apiFetchFn })).rejects.toThrow(
+      'Aucune clé enregistrée pour ce fournisseur',
+    )
+    // Garde défensive (réponse 200 sans clé, jamais produite par l'API actuelle).
+    await expect(fetchKeyFromServer('google', { apiFetchFn })).rejects.toThrow(
       'Aucune clé enregistrée sur le serveur pour ce fournisseur.',
     )
   })
@@ -148,6 +192,9 @@ describe('UC-APP-02 — étape 4 : fournisseur et clés', () => {
     for (const body of posts) {
       expect(body.website).toBe('')
       expect(typeof body.nonce).toBe('string')
+      // Le nonce satisfait VRAIMENT la difficulté (sha256 recalculé ici,
+      // indépendamment de pow.js) : sinon le serveur répondrait pow_invalid.
+      expect(leadingZeroBitsOf(body.challenge, body.nonce)).toBeGreaterThanOrEqual(4)
       expect(body).not.toHaveProperty('apiKey')
     }
     expect(phases).toEqual(['challenge', 'pow', 'llm', 'challenge', 'pow', 'llm'])
@@ -226,5 +273,92 @@ describe('UC-APP-02 — étapes 5 et 6 : estimation et exécution', () => {
     expect(second.mergeError).toBeNull()
     expect(second.document.kind).toBe('cartographie-merge')
     expect(second.dayDocuments.map((d) => d.date)).toEqual(['2026-01-05', '2026-01-06', '2026-01-07'])
+    // Étape 7 : résumés LOCAUX à la place des récits narratifs (buildLocalNarratives).
+    expect(second.document.source.protocole).toContain('narratifs de fusion différés (P10)')
+    const feedbacks = second.document.domains.flatMap((d) => d.competences.map((c) => c.feedback))
+    expect(feedbacks.length).toBeGreaterThan(0)
+    expect(feedbacks.every((html) => html.includes('Résumé local.'))).toBe(true)
+  })
+})
+
+describe('UC-APP-02 — Service humanome : politique de reprise (RG5)', () => {
+  const PROMPT = { model: DEMO_MODEL, prompt: '# Pôle 1 — (2026-01-05)' }
+  const OK = () => jsonResponse(200, { text: '{}', usage: { inputTokens: 1, outputTokens: 1 }, model: 'mock' })
+
+  /** Défis de difficulté 0 ; `answers` = réponses successives du POST (Error = exception réseau). */
+  function demoNetwork(answers) {
+    let n = 0
+    const queue = [...answers]
+    return routedFetch([
+      ['api/llm/challenge', () => jsonResponse(200, { challenge: `v1.c${++n}`, difficultyBits: 0, expiresAt: null })],
+      [
+        'api/llm',
+        () => {
+          const next = queue.shift()
+          if (next instanceof Error) throw next
+          return next()
+        },
+      ],
+    ])
+  }
+  const count = (fetchFn, url) => fetchFn.calls.filter((c) => c.url === url).length
+
+  it('UC-APP-02-U26 — aucune reprise automatique sur quota (429) ni sur service épuisé (503) : 1 défi, 1 POST', async () => {
+    const cases = [
+      [429, 'Quota horaire atteint, réessayez plus tard.', { 'Retry-After': '30' }, 'quota'],
+      [503, 'Démo épuisée pour aujourd’hui, revenez demain.', {}, 'unavailable'],
+    ]
+    for (const [status, error, headers, kind] of cases) {
+      const fetchFn = demoNetwork([() => jsonResponse(status, { error }, headers)])
+      const { provider } = createDemoProvider({ fetchFn })
+
+      const failure = await provider.complete(PROMPT).then(
+        () => null,
+        (err) => err,
+      )
+
+      expect(failure).not.toBeNull()
+      expect(describeDemoError(failure).kind).toBe(kind)
+      expect(count(fetchFn, 'api/llm')).toBe(1)
+      expect(count(fetchFn, 'api/llm/challenge')).toBe(1)
+    }
+  })
+
+  it('UC-APP-02-U27 — une seule reprise, après 2,5 s et avec un défi NEUF, sur 5xx transitoire, erreur réseau ou défi refusé', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout'] })
+    const cases = [
+      ['502', () => jsonResponse(502, { error: 'Erreur du fournisseur LLM : passerelle' })],
+      ['réseau', new TypeError('Failed to fetch')],
+      ['pow_reused', () => jsonResponse(429, { error: 'Défi déjà utilisé : demandez un nouveau défi.', code: 'pow_reused' }, { 'Retry-After': '1' })],
+      ['pow_expired', () => jsonResponse(400, { error: 'Défi expiré : demandez un nouveau défi.', code: 'pow_expired' })],
+    ]
+    for (const [label, first] of cases) {
+      const fetchFn = demoNetwork([first, OK])
+      const { provider } = createDemoProvider({ fetchFn })
+
+      const pending = provider.complete(PROMPT)
+      await vi.advanceTimersByTimeAsync(UPSTREAM_RETRY_DELAY_MS - 1)
+      expect(count(fetchFn, 'api/llm'), label).toBe(1) // pas encore de reprise
+      await vi.advanceTimersByTimeAsync(1)
+      await expect(pending).resolves.toMatchObject({ text: '{}' })
+
+      const posts = fetchFn.calls.filter((c) => c.url === 'api/llm').map(bodyOf)
+      expect(posts.map((b) => b.challenge), label).toEqual(['v1.c1', 'v1.c2'])
+    }
+
+    // Une seule reprise : deux échecs transitoires de suite => erreur propagée.
+    const twice = demoNetwork([
+      () => jsonResponse(502, { error: 'passerelle' }),
+      () => jsonResponse(502, { error: 'passerelle' }),
+      OK,
+    ])
+    const { provider } = createDemoProvider({ fetchFn: twice })
+    const pending = provider.complete(PROMPT).then(
+      () => null,
+      (err) => err,
+    )
+    await vi.advanceTimersByTimeAsync(UPSTREAM_RETRY_DELAY_MS)
+    expect(await pending).not.toBeNull()
+    expect(count(twice, 'api/llm')).toBe(2)
   })
 })

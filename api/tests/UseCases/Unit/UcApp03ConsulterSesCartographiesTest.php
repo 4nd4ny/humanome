@@ -63,8 +63,10 @@ final class UcApp03ConsulterSesCartographiesTest extends TestCase
         $jour = $repo->create($maya, 'jour', 'Journée du 5', 'privee', self::fixture('cartographie-jour-2026-01-05.json'), null, null, null);
         $merge = $repo->create($maya, 'merge', 'Parcours', 'publique', self::fixture('cartographie-merge-3-jours.json'), null, null, ['jours' => 3]);
         $repo->create($autre, 'jour', 'Pas à moi', 'privee', ['kind' => 'cartographie-jour'], null, null, null);
-        self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-08 10:00:00' WHERE id = {$jour}");
-        self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-09 10:00:00' WHERE id = {$merge}");
+        // Tri DISCRIMINANT : la plus récemment MODIFIÉE est la première CRÉÉE
+        // (un tri par id ou par created_at donnerait l'ordre inverse).
+        self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-09 10:00:00' WHERE id = {$jour}");
+        self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-08 10:00:00' WHERE id = {$merge}");
 
         $links = new ShareLinks(self::$pdo);
         $links->create($merge, 'sesame-employeur', 30);
@@ -75,11 +77,12 @@ final class UcApp03ConsulterSesCartographiesTest extends TestCase
 
         $list = $repo->listForUser($maya);
 
-        self::assertSame([$merge, $jour], array_column($list, 'id'));
-        self::assertSame(['id', 'type', 'titre', 'visibility', 'createdAt', 'updatedAt', 'hasDocument', 'shares'], array_keys($list[0]));
-        self::assertSame(['merge', 'Parcours', 'publique', true, 1], [$list[0]['type'], $list[0]['titre'], $list[0]['visibility'], $list[0]['hasDocument'], $list[0]['shares']]);
-        self::assertSame('2026-01-09T10:00:00', $list[0]['updatedAt']);
-        self::assertSame(0, $list[1]['shares']);
+        self::assertSame([$jour, $merge], array_column($list, 'id'));
+        $byId = array_column($list, null, 'id');
+        self::assertSame(['id', 'type', 'titre', 'visibility', 'createdAt', 'updatedAt', 'hasDocument', 'shares'], array_keys($byId[$merge]));
+        self::assertSame(['merge', 'Parcours', 'publique', true, 1], [$byId[$merge]['type'], $byId[$merge]['titre'], $byId[$merge]['visibility'], $byId[$merge]['hasDocument'], $byId[$merge]['shares']]);
+        self::assertSame('2026-01-09T10:00:00', $byId[$jour]['updatedAt']);
+        self::assertSame(0, $byId[$jour]['shares']);
     }
 
     #[TestDox('UC-APP-03-U09 — findForUser : document complet pour le propriétaire seul ; versions liées résolues')]
@@ -104,6 +107,15 @@ final class UcApp03ConsulterSesCartographiesTest extends TestCase
         self::assertEquals(['mode' => 'humanome', 'jours' => 1], $carto['runMeta']);
         self::assertMatchesRegularExpression('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/', (string) $carto['optInAt']);
         self::assertSame(0, $carto['shares']);
+
+        // RG4 : seuls les liens ACTIFS comptent (un actif, un révoqué, un expiré).
+        $links = new ShareLinks(self::$pdo);
+        $links->create($id, 'sesame-employeur', 30);
+        ['shareId' => $revoked] = $links->create($id, 'sesame-employeur', 30);
+        $links->revokeForUser($revoked, $maya);
+        ['shareId' => $expired] = $links->create($id, 'sesame-employeur', 30);
+        self::$pdo->exec('UPDATE share_links SET expires_at = NOW() - INTERVAL 1 MINUTE WHERE id = ' . $expired);
+        self::assertSame(1, $repo->findForUser($id, $maya)['shares']);
 
         self::assertNull($repo->findForUser($id, $autre), 'pas d’oracle : autrui = inexistant');
         self::assertNull($repo->findForUser($id + 999, $maya));

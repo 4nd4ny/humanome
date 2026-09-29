@@ -121,7 +121,7 @@ final class UcApp02LancerCartographieStandardTest extends TestCase
         );
     }
 
-    #[TestDox('UC-APP-02-U25 — versions proposées : publiées et publiques seulement ; défaut = réglage validé sinon la plus récente')]
+    #[TestDox('UC-APP-02-U25 — dépôts : versions publiées et publiques seulement ; dernière publiée tous paquets confondus ; lecture/écriture du réglage par défaut')]
     public function testU25PublishedPackagesAndDefault(): void
     {
         $repo = new PromptPackageRepository(self::$pdo);
@@ -141,6 +141,9 @@ final class UcApp02LancerCartographieStandardTest extends TestCase
         $settings = new SettingsRepository(self::$pdo);
         self::assertNull($settings->get(SettingsRepository::DEFAULT_PACKAGE));
         $settings->set(SettingsRepository::DEFAULT_PACKAGE, ['id' => 'aurora-demo', 'version' => '1.0.0']);
-        self::assertSame(['id' => 'aurora-demo', 'version' => '1.0.0'], $settings->get(SettingsRepository::DEFAULT_PACKAGE));
+        // Document JSON relu en base : l'ordre des clés n'est pas garanti.
+        self::assertEquals(['id' => 'aurora-demo', 'version' => '1.0.0'], $settings->get(SettingsRepository::DEFAULT_PACKAGE));
+        // La DÉCISION « réglage, sinon la plus récente » vit dans la route
+        // GET /api/prompt-packages/default : elle est testée par F14.
     }
 }

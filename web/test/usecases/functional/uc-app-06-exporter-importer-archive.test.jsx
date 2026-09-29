@@ -6,11 +6,19 @@
 // assemblée depuis les stores réels (IndexedDB factice), validée par le
 // moteur puis « téléchargée » (Blob + lien, capturés) ; l'import passe par le
 // vrai champ fichier. Le réseau simulé ne sert qu'aux recherches en lecture
-// seule (compte, paquet de prompts, documents de masse, référentiel).
+// seule : compte, paquet de prompts, documents de masse et — en ligne — le
+// référentiel PUBLIÉ (fichier statique data/referentiel/, version 7.9.0 ici,
+// distincte de la copie embarquée) ; hors ligne, la copie embarquée.
+//
+// NB : la session de l'espace (bandeaux, export) est lue par EspaceView et
+// archive.js via GET api/auth/me sur le réseau simulé ; le `fetchMeFn` passé
+// à <App/> ne sert qu'à l'en-tête (menus par rôle).
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
+import { clearReferentielCache } from '../../../src/data/referentiel.js'
+import { getReferentiel } from '../../../src/data/load.js'
 import { createCartoStore } from '../../../src/lib/carto-store.js'
 import { createPortfolioStore } from '../../../src/lib/portfolio-store.js'
 import { validateDocument } from '@engine/validation.js'
@@ -22,6 +30,7 @@ import day05 from '../../../../schemas/fixtures/cartographie-jour-2026-01-05.jso
 import day06 from '../../../../schemas/fixtures/cartographie-jour-2026-01-06.json'
 import day07 from '../../../../schemas/fixtures/cartographie-jour-2026-01-07.json'
 import merge3 from '../../../../schemas/fixtures/cartographie-merge-3-jours.json'
+import referentielFixture from '../../../../schemas/fixtures/referentiel-respire-v7.json'
 import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import { jsonResponse, routedFetch } from '../support/appl-http.js'
 import { portfolioText } from '../support/appl-llm.js'
@@ -64,6 +73,8 @@ function stubNetwork({ me = USER, offline = false, packages = [BUILTIN], mass = 
           return jsonResponse(200, { ...packageFixture, id: decodeURIComponent(id), version: decodeURIComponent(version) })
         }],
         ['api/mes-documents-masse', () => (me ? jsonResponse(200, { documents: mass }) : jsonResponse(401, { error: 'Authentification requise' }))],
+        ['data/referentiel/index.json', () => jsonResponse(200, [{ referentielId: 'respire', semver: '7.9.0', fichier: 'respire-7.9.0.json' }])],
+        ['data/referentiel/respire-7.9.0.json', () => jsonResponse(200, { ...referentielFixture, version: '7.9.0' })],
       ])
   vi.stubGlobal('fetch', fetchMock)
   return fetchMock
@@ -93,9 +104,9 @@ function captureDownloads() {
   }
 }
 
-function openDashboard() {
+function openDashboard({ user = USER } = {}) {
   window.location.hash = '#/espace'
-  return render(<App lib={fakeLib} fetchMeFn={async () => ({ user: USER })} />)
+  return render(<App lib={fakeLib} fetchMeFn={async () => ({ user })} />)
 }
 
 async function exportAll() {
@@ -124,6 +135,8 @@ const notice = () =>
 
 beforeEach(() => {
   resetApiClient()
+  // Cache de module du référentiel vidé : chaque scénario refait son chargement.
+  clearReferentielCache()
   vi.stubGlobal('indexedDB', idb.factory)
 })
 
@@ -156,7 +169,9 @@ describe('UC-APP-06 — scénario nominal : exporter puis restaurer sur un navig
     expect(archive.account).toEqual({ roles: ['apprenant'], email: 'maya@example.org', displayName: 'Maya' })
     expect(archive.portfolios[0]).toMatchObject({ titre: 'Journal de Maya', source: 'colle' })
     expect(archive.portfolios[0].segmentation.map((s) => s.date)).toEqual(['2026-01-05', '2026-01-06', '2026-01-07'])
+    // Étape 3 : le référentiel PUBLIÉ (fichier statique), pas la copie embarquée.
     expect(archive.referentiels).toHaveLength(1)
+    expect(archive.referentiels[0].version).toBe('7.9.0')
     expect(archive.promptPackages.map((p) => `${p.id}@${p.version}`)).toEqual(['aurora-v3-reconstruit@1.0.0'])
     expect(archive.cartographies.map((c) => c.type).sort()).toEqual(['jour', 'jour', 'jour', 'merge'])
     expect(archive.cartographies.every((c) => c.promptPackageId === 'aurora-v3-reconstruit')).toBe(true)
@@ -180,7 +195,9 @@ describe('UC-APP-06 — scénario nominal : exporter puis restaurer sur un navig
     // Autre navigateur : stockage local vide, pas de session.
     idb.reset()
     stubNetwork({ me: null })
-    openDashboard()
+    openDashboard({ user: null })
+    expect(await screen.findByTestId('espace-anonyme')).toBeDefined()
+    expect(screen.queryByTestId('espace-connecte')).toBeNull()
     expect(await screen.findByText(/Aucune cartographie pour l’instant\./)).toBeDefined()
     await importFile(archiveText, 'humanome-export.json')
 
@@ -197,7 +214,7 @@ describe('UC-APP-06 — scénario nominal : exporter puis restaurer sur un navig
 })
 
 describe('UC-APP-06 — scénarios alternatifs', () => {
-  it('UC-APP-06-F03 — A1 : hors ligne ou sans compte : archive anonyme, référentiel embarqué, sans paquet', async () => {
+  it('UC-APP-06-F03 — A1 : hors ligne : archive anonyme, référentiel embarqué, sans paquet', async () => {
     await seedAfterRun()
     stubNetwork({ offline: true })
     const downloads = captureDownloads()
@@ -209,7 +226,28 @@ describe('UC-APP-06 — scénarios alternatifs', () => {
     const archive = await downloads.json()
     expect(archive.account).toBeNull()
     expect(archive.promptPackages).toEqual([])
-    expect(archive.referentiels).toHaveLength(1)
+    // Repli prouvé : la copie EMBARQUÉE, pas la version publiée.
+    expect(archive.referentiels).toEqual([getReferentiel()])
+    expect(archive.referentiels[0].version).not.toBe('7.9.0')
+    expect(validateDocument('archive-export', archive).valid).toBe(true)
+  })
+
+  it('UC-APP-06-F16 — A1 : sans compte mais en ligne : archive anonyme, paquet public embarqué, pas de masse', async () => {
+    await seedAfterRun()
+    const fetchMock = stubNetwork({ me: null })
+    const downloads = captureDownloads()
+    openDashboard({ user: null })
+    expect(await screen.findByTestId('espace-anonyme')).toBeDefined()
+
+    await exportAll()
+
+    expect((await notice()).textContent).toContain('1 portfolio(s), 4 cartographie(s)')
+    const archive = await downloads.json()
+    expect(archive.account).toBeNull()
+    // Les paquets publiés sont en lecture publique : l'archive anonyme en embarque un.
+    expect(archive.promptPackages.map((p) => `${p.id}@${p.version}`)).toEqual(['aurora-v3-reconstruit@1.0.0'])
+    expect(archive.cartographies.some((c) => c.id.startsWith('masse-'))).toBe(false)
+    expect(fetchMock.calls.map((c) => c.url)).toContain('api/mes-documents-masse') // tenté : 401
     expect(validateDocument('archive-export', archive).valid).toBe(true)
   })
 
@@ -245,15 +283,37 @@ describe('UC-APP-06 — scénarios alternatifs', () => {
     expect(idb.values('humanome-cartographies', 'cartographies')).toHaveLength(1)
   })
 
-  it('UC-APP-06-F06 — A4 : archive d’une autre instance (fixture) : titres dérivés, traçabilité conservée', async () => {
+  it('UC-APP-06-F06 — A4 : archive d’une autre instance (fixture) : titres dérivés, traçabilité conservée, marqueur « inconnu » → null', async () => {
     stubNetwork()
     openDashboard()
-    await importFile(JSON.stringify(exemple))
+    const archive = structuredClone(exemple)
+    archive.cartographies.push({
+      ...archive.cartographies[0],
+      id: 'jour-sans-trace',
+      type: 'jour',
+      document: day05,
+      promptPackageId: 'inconnu',
+      promptPackageVersion: '0.0.0',
+      referentielId: 'respire',
+      referentielVersion: '0.0.0',
+    })
+    await importFile(JSON.stringify(archive))
 
-    const item = await screen.findByTestId('carto-item')
-    expect(within(item).getByText('Parcours du 05/01/2026 au 07/01/2026')).toBeDefined()
-    const [stored] = idb.values('humanome-cartographies', 'cartographies')
-    expect(stored).toMatchObject({ promptPackage: { id: 'aurora-demo', version: '1.0.0' }, referentiel: { id: 'respire', version: '7.0.0' }, serverId: null })
+    await waitFor(() => expect(screen.getAllByTestId('carto-item')).toHaveLength(2))
+    expect(screen.getByText('Parcours du 05/01/2026 au 07/01/2026')).toBeDefined()
+    expect(screen.getByText('Journée du 05/01/2026')).toBeDefined()
+    const stored = idb.values('humanome-cartographies', 'cartographies')
+    expect(stored.find((c) => c.type === 'merge')).toMatchObject({
+      promptPackage: { id: 'aurora-demo', version: '1.0.0' },
+      referentiel: { id: 'respire', version: '7.0.0' },
+      serverId: null,
+    })
+    // Seul un id « inconnu » ramène le couple à null ; une version 0.0.0 avec
+    // un id réel est conservée telle quelle.
+    expect(stored.find((c) => c.type === 'jour')).toMatchObject({
+      promptPackage: null,
+      referentiel: { id: 'respire', version: '0.0.0' },
+    })
   })
 })
 
@@ -336,5 +396,24 @@ describe('UC-APP-06 — anomalies figées', () => {
     first.unmount()
     openDashboard()
     expect((await screen.findByTestId('espace-portfolios')).textContent).toContain(exemple.portfolios[0].titre)
+  })
+
+  it('UC-APP-06-F15 — [comportement ACTUEL, anomalie A-05] aller-retour : un référentiel « inconnu » importé ressort comme le référentiel courant', async () => {
+    const archive = structuredClone(exemple)
+    archive.cartographies[0] = { ...archive.cartographies[0], referentielId: 'inconnu', referentielVersion: '0.0.0' }
+    stubNetwork({ offline: true })
+    const downloads = captureDownloads()
+    openDashboard()
+    await importFile(JSON.stringify(archive))
+    await notice()
+    const [stored] = idb.values('humanome-cartographies', 'cartographies')
+    expect(stored.referentiel).toBeNull() // provenance inconnue, fidèlement restaurée…
+
+    await exportAll()
+    await waitFor(() => expect(downloads.files).toHaveLength(1))
+    const [carto] = (await downloads.json()).cartographies
+    // …puis INVENTÉE à la réexportation : id et version du référentiel embarqué.
+    expect(carto.referentielId).toBe('respire')
+    expect(carto.referentielVersion).toBe(getReferentiel().version)
   })
 })
