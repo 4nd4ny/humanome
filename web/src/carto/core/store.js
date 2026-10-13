@@ -115,9 +115,17 @@ export function defaultAdapter() {
 /** Fusionne une retouche dans un détail de journée existant. */
 export function applyDetailPatch(existing, date, patchValue) {
   const detail = existing ?? { date, portfolio: null, variants: {} }
+  let portfolio = patchValue.portfolio !== undefined ? patchValue.portfolio : detail.portfolio
+  if (patchValue.portfolioAppend) {
+    // Passage rattaché à une journée qui a déjà du texte : ajouté à la suite.
+    const add = patchValue.portfolioAppend
+    portfolio = portfolio?.text
+      ? { ...portfolio, text: `${portfolio.text.replace(/\s+$/u, '')}\n\n${add.text}` }
+      : { title: add.title ?? null, text: add.text, source: add.source ?? null }
+  }
   return {
     date,
-    portfolio: patchValue.portfolio !== undefined ? patchValue.portfolio : detail.portfolio,
+    portfolio,
     variants: { ...detail.variants, ...(patchValue.variants ?? {}) },
   }
 }

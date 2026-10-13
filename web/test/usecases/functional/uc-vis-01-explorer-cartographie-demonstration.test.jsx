@@ -73,9 +73,11 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
     // 1. Depuis le menu « Découvrir ».
     const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
-    const link = nav.getByRole('link', { name: 'Cartographie (démonstration)' })
+    // Depuis l'interface ultime de cartographie (journal D-2), le lien du menu
+    // mène à #/cartographie ; la V3 décrite ici reste servie sur #/cartographie-v3.
+    const link = nav.getByRole('link', { name: 'Cartographie' })
     expect(link.getAttribute('href')).toBe('#/cartographie')
-    goTo('#/cartographie')
+    goTo('#/cartographie-v3')
 
     // 2-4. Chargement du référentiel puis du corpus, import en mémoire.
     expect(screen.getByRole('status').textContent).toMatch(/Chargement du (référentiel|corpus)/)
@@ -121,7 +123,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
   it('UC-VIS-01-F02 — nominal : filtrer par un secteur, « Pourquoi ce rayon ? » (touche w), retirer le filtre', async () => {
     demoNetwork()
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 
     const sector = screen.getByRole('button', { name: /^2\.01 Intelligence Émotionnelle/ })
@@ -165,7 +167,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
   it('UC-VIS-01-F03 — nominal : inspecter une journée (portfolio) ne déplace pas la tête de lecture ; « Voir l’état à cette date » la déplace', async () => {
     demoNetwork()
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 
     fireEvent.click(screen.getByRole('gridcell', { name: '2026-01-06 : 4 compétences documentées' }))
@@ -194,7 +196,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
   it('UC-VIS-01-F04 — A2 : lecteur temporel — début, pas à pas, lecture ×2 jusqu’à la dernière journée puis pause ; lecture arrière ; l’inspection met en pause', async () => {
     demoNetwork()
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
     const timeline = within(screen.getByRole('region', { name: 'Lecteur temporel' }))
     fireEvent.change(timeline.getByRole('combobox'), { target: { value: '2' } })
@@ -246,7 +248,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
   it('UC-VIS-01-F06 — A5 : accessibilité — distinctions renforcées (motifs) et surface sombre, sans toucher aux données', async () => {
     demoNetwork()
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
     const root = document.querySelector('.v3-root')
 
@@ -261,7 +263,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
   it('UC-VIS-01-F07 — A6 : impression — « Aperçu avant impression » appelle l’impression, les <details> sont ouverts le temps d’imprimer', async () => {
     demoNetwork()
     const print = vi.spyOn(window, 'print').mockImplementation(() => {})
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 
     fireEvent.click(screen.getByRole('button', { name: 'Aperçu avant impression' }))
@@ -277,7 +279,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
 
   it('UC-VIS-01-F08 — E1 : corpus injoignable → message « Chargement impossible », rien d’autre', async () => {
     demoNetwork({ failIndex: true })
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await waitFor(() => expect(screen.getByRole('status').textContent).toContain('Chargement impossible : Failed to fetch'))
     expect(screen.queryByRole('toolbar', { name: 'Barre de contexte' })).toBeNull()
   })
@@ -293,7 +295,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
       referentielIndex: [{ referentielId: 'respire', semver: '7.1.0', label: 'RESPIRE v7.1', publishedAt: '2026-07-15T09:00:00', fichier: 'respire-v7.1.json' }],
       referentielDoc: published,
     })
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 
     expect(calledUrls(network)).toContain('data/referentiel/respire-v7.1.json')
@@ -308,7 +310,7 @@ describe('UC-VIS-01 — le visiteur explore la démonstration (interface V3)', (
   // impossible ». À inverser quand le statut HTTP sera contrôlé.
   it('UC-VIS-01-F19 — [comportement actuel, anomalie AN3] une journée du corpus en HTTP 500 (corps JSON) → démonstration partielle, « 1 anomalie(s) à traiter »', async () => {
     demoNetwork({ extra: (u) => (u === 'data/demo/jours/2026-01-06.json' ? jsonResponse(500, { error: 'x' }) : undefined) })
-    openApp('#/cartographie')
+    openApp('#/cartographie-v3')
     await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 
     expect(within(contextBar()).getByRole('status').textContent).toBe('1 anomalie(s) à traiter') // attendu : « Chargement impossible »

@@ -338,10 +338,19 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
   ds.days.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
   counts.pendingDays = ds.days.filter((d) => d.variantChoice === 'pending').length
   ds.updatedAt = now
+  // Le dernier rapport reste consultable après rechargement (sans les
+  // informations, 300 entrées au plus) : le badge « à traiter » reste visible.
   ds.importLog = [
     ...(ds.importLog ?? []),
-    { at: now, files: fileNames.slice(0, 50), counts: { ...counts }, severities: severityCounts(report) },
-  ].slice(-50)
+    {
+      at: now,
+      files: fileNames.slice(0, 50),
+      counts: { ...counts },
+      severities: severityCounts(report),
+      entries: report.filter((r) => r.severity !== 'info').slice(0, 300).map(({ severity, code, message, date }) => ({ severity, code, message, ...(date ? { date } : {}) })),
+      acknowledged: false,
+    },
+  ].slice(-20)
   return { dataset: ds, detailPatches: patches, runDetails: recognized.runDetails, report, counts, referentialCandidate }
 }
 

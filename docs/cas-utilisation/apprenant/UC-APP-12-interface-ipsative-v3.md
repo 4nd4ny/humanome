@@ -1,5 +1,12 @@
 # UC-APP-12 — Explorer sa cartographie dans l'interface ipsative V3
 
+> **Mise à jour du 2026-10-13 (interface ultime de cartographie).** L'interface V3
+> décrite dans cette fiche est désormais servie sur `#/cartographie-v3` (et
+> toujours sur `#/merge` sans document chargé) ; `#/cartographie` porte
+> l'interface ultime (voir `docs/cartographie-ultime/JOURNAL.md`, décision D-2).
+> L'entrée du menu « Découvrir » s'intitule « Cartographie ». Les tests
+> fonctionnels de cette fiche ouvrent donc `#/cartographie-v3`.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (avec ou sans compte : l'interface est entièrement locale) |

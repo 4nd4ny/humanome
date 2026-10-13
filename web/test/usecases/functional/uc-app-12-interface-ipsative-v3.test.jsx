@@ -1,7 +1,7 @@
 // UC-APP-12 — Explorer sa cartographie dans l'interface ipsative V3 : tests FONCTIONNELS (IHM).
 // Fiche : docs/cas-utilisation/apprenant/UC-APP-12-interface-ipsative-v3.md
 //
-// L'apprenant ouvre #/cartographie dans l'application ENTIÈRE (<App/>), puis
+// L'apprenant ouvre #/cartographie-v3 (ex-#/cartographie, journal D-2) dans l'application ENTIÈRE (<App/>), puis
 // travaille sur SES données : import de fichiers (JSON journaliers, ZIP
 // journalier ou corpus, master V3, instantané employeur), vues par persona,
 // grille de tuiles, comparaison avec soi-même, droit de réponse, éditeur JSON,
@@ -74,7 +74,7 @@ class Boundary extends Component {
 
 async function openV3() {
   demoNetwork()
-  window.location.hash = '#/cartographie'
+  window.location.hash = '#/cartographie-v3'
   render(<App lib={fakeLib} fetchMeFn={async () => ({ user: { id: 1, displayName: 'Maya', roles: ['apprenant'] } })} />)
   await screen.findByRole('toolbar', { name: 'Barre de contexte' })
 }
@@ -232,7 +232,7 @@ describe('UC-APP-12 — l’apprenant importe ses propres fichiers', () => {
   it('UC-APP-12-F07 — [comportement actuel, anomalie AN2] master incomplet importé → l’interface plante', async () => {
     demoNetwork()
     vi.spyOn(console, 'error').mockImplementation(() => {})
-    window.location.hash = '#/cartographie'
+    window.location.hash = '#/cartographie-v3'
     render(
       <Boundary>
         <App lib={fakeLib} fetchMeFn={async () => ({ user: null })} />
@@ -549,7 +549,7 @@ describe('UC-APP-12 — imports : cas limites et anomalies', () => {
   it('UC-APP-12-F16 — [comportement actuel, anomalie AN14] fichier employeur à empreinte valide mais mal formé → l’interface plante', async () => {
     demoNetwork()
     vi.spyOn(console, 'error').mockImplementation(() => {})
-    window.location.hash = '#/cartographie'
+    window.location.hash = '#/cartographie-v3'
     render(
       <Boundary>
         <App lib={fakeLib} fetchMeFn={async () => ({ user: null })} />

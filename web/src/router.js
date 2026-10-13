@@ -2,6 +2,8 @@
 // hand and views subscribe to `hashchange`. Canonical routes:
 //
 //   #/                      home
+//   #/cartographie[/…]      ultimate cartography interface (5 spaces, day view)
+//   #/cartographie-v3       previous V3 interface (kept)
 //   #/merge                 chronological (merge) view
 //   #/jour/<iso>            day view, <iso> = AAAA-MM-JJ
 //   #/jour/<iso>?focus=<c>  idem with a competence code highlighted
@@ -52,8 +54,22 @@ export function parseHash(hash) {
   const query = queryIndex === -1 ? '' : raw.slice(queryIndex + 1)
 
   if (path === '' || path === '/') return { name: 'home' }
-  // Interface V3 de cartographie ipsative (remplace l'ancienne vue merge).
+  // Interface ultime de cartographie (docs/cartographie-ultime, journal D-2) :
+  // #/cartographie et ses espaces #/cartographie/<espace>, plus la journée
+  // seule #/cartographie/jour/<iso>[?focus=<code>].
   if (path === '/cartographie') return { name: 'cartographie' }
+  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|export)$/.exec(path)
+  if (cartoSpace) return { name: 'cartographie', sub: cartoSpace[1] }
+  const cartoDay = /^\/cartographie\/jour\/([^/]+)$/.exec(path)
+  if (cartoDay) {
+    const date = decodeURIComponent(cartoDay[1])
+    if (isValidIsoDate(date)) {
+      const focus = new URLSearchParams(query).get('focus')
+      return { name: 'cartographie', sub: 'jour', date, focus: focus === null || focus === '' ? null : focus }
+    }
+  }
+  // Interface V3 de cartographie ipsative (précédente, conservée).
+  if (path === '/cartographie-v3') return { name: 'cartographie-v3' }
   if (path === '/merge') return { name: 'merge' }
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }

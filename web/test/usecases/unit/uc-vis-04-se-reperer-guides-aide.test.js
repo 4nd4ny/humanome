@@ -137,7 +137,7 @@ describe('UC-VIS-04 — navigation par familles d’intention', () => {
 // toute dérive de nav.js (lien, badge, hint, visibilité) le fait échouer.
 const ITEM = {
   accueil: { href: '#/', label: 'Accueil', route: 'home' },
-  demo: { href: '#/cartographie', label: 'Cartographie (démonstration)', route: 'cartographie' },
+  demo: { href: '#/cartographie', label: 'Cartographie', route: 'cartographie', hint: 'vos fichiers ou la démonstration' },
   essayer: { href: '#/essayer', label: 'Essayer', route: 'essayer', badge: 'gratuit', hint: 'sans compte' },
   referentiel: { href: '#/referentiel', label: 'Référentiel', route: 'referentiel', hint: '7 pôles, 61 compétences' },
   guides: { href: '#/guides', label: 'Guides', route: 'guides', hint: 'prise en main par profil' },

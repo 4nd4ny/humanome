@@ -22,8 +22,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 |---|---|---|---|---|---|
 | Installation | dépôt cloné, dépendances, données dérivées, base locale | — | — | ✅ voir §3 | — |
 | Cadrage | architecture, modèle, journal | ✅ | — | — | `4710134` |
-| P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 111 tests | ✅ 111 verts | (ce commit) |
-| P1 | soleil, heatmap, gestionnaire, date t, liste, modale | — | — | — | — |
+| P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 112 tests | ✅ 112 verts | `16cca1a`, `1d6472d` |
+| P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | (ce commit) |
 | P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | — | — | — | — |
 | P3 | comparaison A/B (8 vues) | — | — | — | — |
 | P4 | tableau de bord des métriques | — | — | — | — |
@@ -66,9 +66,10 @@ casser, les cinq espaces vivent sous un même préfixe :
 · `#/cartographie/tableau-de-bord` · `#/cartographie/gestionnaire` ·
 `#/cartographie/export`.
 
-L'interface V3 actuellement servie sur `#/cartographie` reste accessible (elle
-sera déplacée sur `#/cartographie-v3` quand la nouvelle interface la
-remplacera, en P1).
+Depuis P1, `#/cartographie` porte l'interface ultime et l'entrée du menu
+« Découvrir » s'intitule « Cartographie ». L'interface V3 reste accessible sur
+`#/cartographie-v3` (et sur `#/merge`) ; les fiches UC-VIS-01 et UC-APP-12 le
+mentionnent en tête, et leurs tests ouvrent désormais `#/cartographie-v3`.
 
 ### D-3 — Conteneur : le master V3 étendu, réorganisé par journée
 
@@ -178,6 +179,65 @@ réglable.
   traces sont reconstituées sans extrait (signalé) ; ses textes évolutifs
   deviennent des narratifs liés à leur ensemble source (§6.4).
 
+### D-10 — Interface : un état partagé, des composants qui dessinent
+
+- `ui/CartoApp.jsx` tient l'état d'écran unique (réducteur) : date t, journée
+  inspectée, sélection, survol, filtre de liste, onglet mobile. La chaîne de
+  commande du §2 est respectée : les cases (index léger) → heatmap → soleil.
+- `ui/useCartoData.js` : ouverture du magasin IndexedDB, enregistrement
+  différé (250 ms) et immédiat avant changement de jeu, caches de détails en
+  `Map` immuables dans l'état React (aucun `eslint-disable`, aucune référence
+  mutable lue au rendu).
+- Les espaces suivants (comparaison, tableau de bord, export) sont des
+  emplacements (`slots`) que P3–P5 rempliront sans toucher au cœur.
+- Soleil : un seul SVG, secteurs annulaires `sectorPath` à deux arcs (un
+  secteur de 360° est un anneau `evenodd`), cercles guides 0,25 / 0,5 / 0,75 /
+  1, hachures pour les renvois, motifs par pôle en mode « distinctions
+  renforcées », titre central au survol, disque central = désélection.
+  Équivalent textuel repliable (tableau compétence × journées).
+- Heatmap : un seul SVG avec rôle `grid`, focus géré par
+  `aria-activedescendant` (flèches ±1 / ±7, Origine / Fin, Entrée = date t,
+  Maj+Entrée ou `o` = ouvrir le jour), double-clic et bouton « Ouvrir ce
+  jour » pour le tactile, brosse de période optionnelle.
+- Modale du jour : piège de focus, Échap, journée précédente / suivante parmi
+  les journées actives, « Retour » ; elle ne déplace jamais t (V3).
+- Tête de lecture : icônes SVG (jamais d'emoji), vitesses ×0,5 / ×1 / ×2,
+  pause automatique à la sélection ou au survol d'un secteur, désactivée sous
+  `prefers-reduced-motion`, annonce `aria-live` seulement à la pause et en fin
+  de plage. Les états sont calculés à la demande pour la trame affichée.
+- Mobile (< 768 px) : onglets Diagramme / Détails / Journées ; les trois
+  zones restent dans le DOM pour l'impression.
+
+### D-11 — Valeur de la heatmap et démonstration
+
+- Couleur d'un jour = volume du portfolio de ce jour (caractères), en cinq
+  niveaux ipsatifs (quantiles 20 / 40 / 60 / 80 % des jours écrits de la
+  personne). Si **aucun** portfolio n'est importé, la heatmap bascule sur la
+  somme des poids des traces du jour et la légende le dit. Un jour sans texte
+  reste une case vide, jamais un niveau bas.
+- « Explorer la démonstration » importe les 59 documents-jour publics du site
+  (`web/public/data/demo/jours/`) dans un jeu local « Démonstration ». Ils
+  n'ont pas de portfolio : la heatmap est en mode « poids » et le surlignage
+  est indisponible ; la démo anonymisée avec portfolio arrive en P5 (§11.1).
+
+### D-12 — Validation sur les données réelles, sans rien sortir du Mac
+
+Les importeurs ont été exécutés **sur le Mac de Christian** (clone de la
+branche hors du dossier synchronisé, script de validation qui n'imprime que
+des compteurs) sur les trois journaux AuroraCore. Aucun texte n'a quitté la
+machine, rien n'est versionné.
+
+| Journal | journées | avec analyse | avec portfolio | détails de run | bloquants | traces surlignées le jour même : complet / partiel / non retrouvé |
+|---|---|---|---|---|---|---|
+| 200 | 47 | 43 | 47 | 66 | 0 | 180 / 53 / 69 (sur 302) |
+| 300 | 51 | 42 | 51 | 64 | 0 | 120 / 35 / 25 (sur 180) |
+| GEN1 | 160 | 9 | 160 | 68 | 0 | 9 / 1 / 0 (sur 10) |
+
+Un diagnostic complémentaire montre qu'une part des passages « non
+retrouvés » figure dans la feuille d'un **autre** jour (décalage de date dans
+AuroraCore) : le lecteur de P2 cherche d'abord dans la journée de la trace,
+puis dans les autres journées, et dit clairement d'où vient le passage.
+
 ---
 
 ## 3. État des tests
@@ -211,6 +271,22 @@ régénérées (INSTALL.md §2), base MySQL locale migrée et référentiel expo
 Dépendance de développement ajoutée : `fake-indexeddb` (tests du magasin
 IndexedDB réel, sans navigateur).
 
+### P1 — interface `web/src/carto/ui/`
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `CartoApp.test.jsx` | accueil sans données ; ordre des secteurs ; **critère P1 : décocher change le soleil et la heatmap** ; Tout / Aucune / Maj+clic ; case tri-état d'un mois ; clic sur un jour = date t + liste filtrée ; **critère P1 : double-clic ouvre la modale du jour seul**, navigation précédent / suivant, « Retour » ; l'inspection ne déplace pas t ; une compétence allume ses journées, Échap désélectionne ; clavier de la heatmap ; « Pourquoi cette surface ? » (`w`) ; recherche sans accents ; secteur de 360° | 13 |
+
+Suite complète du front après P1 (2026-10-13) : **2 066 verts** sur 211
+fichiers ; seul `twin6-prompt-package.test.js` reste non chargeable (gabarits
+Twin6 non versionnés, anomalie connue, sans rapport avec la cartographie).
+Les tests existants qui ouvraient la V3 sur `#/cartographie` ouvrent
+désormais `#/cartographie-v3` (D-2).
+
+Vérification visuelle : parcours complet dans Chromium (Playwright) à
+1 440 px et 390 px — accueil, démonstration, sélection, date t, modale —
+sans erreur de console.
+
 ---
 
 ## 4. Questions ouvertes pour Christian
@@ -230,3 +306,8 @@ IndexedDB réel, sans navigateur).
 - **2026-10-13** — P0 : noyau `core/` (dates, référentiel, formules, état,
   disposition du soleil, heatmap, ensembles, opérations, surlignage, import,
   magasin) et 111 tests. Constat D-8 sur la saturation des angles.
+- **2026-10-13** — P1 : interface (soleil, heatmap scolaire / libre, gestionnaire,
+  tête de lecture, liste, modale du jour, « Pourquoi cette surface ? »),
+  bascule de `#/cartographie` vers l'interface ultime (V3 sur
+  `#/cartographie-v3`), validation des importeurs sur les journaux réels
+  (D-12, compteurs seulement).

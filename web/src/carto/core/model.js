@@ -273,6 +273,17 @@ export function dayAnomalies(day, { portfolioImported = false } = {}) {
   return out
 }
 
+/**
+ * Badge « N anomalie(s) à traiter » (§3) : journées à arbitrer, passages du
+ * portfolio sans date, et éléments bloquants du dernier import tant qu'il n'a
+ * pas été marqué comme lu.
+ */
+export function todoCount(dataset) {
+  const last = dataset.importLog?.at(-1)
+  const blocking = last && !last.acknowledged ? last.severities?.blocking ?? 0 : 0
+  return pendingAnomalyCount(dataset) + (dataset.portfolio?.undated?.length ?? 0) + blocking
+}
+
 /** Nombre d'anomalies « à traiter » (Bloquant ou À arbitrer) d'un jeu de données. */
 export function pendingAnomalyCount(dataset) {
   let n = 0

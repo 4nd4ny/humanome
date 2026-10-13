@@ -45,7 +45,7 @@ describe('App', () => {
     expect(screen.queryByRole('link', { name: 'humanome.xyz' })).toBeNull()
     const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
     expect(
-      nav.getByRole('link', { name: 'Cartographie (démonstration)' }).getAttribute('href'),
+      nav.getByRole('link', { name: 'Cartographie' }).getAttribute('href'),
     ).toBe('#/cartographie')
     expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
       '#/referentiel',
@@ -155,14 +155,18 @@ describe('App', () => {
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   })
 
-  it('routes #/cartographie et #/merge (démo) -> interface V3, plus l’ancienne vue merge', () => {
-    // D14 : l'interface V3 REMPLACE la vue merge pour la démonstration. Le
-    // comportement détaillé de la V3 est testé dans v3/ui/V3View.test.jsx avec
-    // ses coutures ; ici on vérifie le REMPLACEMENT de route.
+  it('routes #/cartographie (interface ultime), #/cartographie-v3 et #/merge (démo) -> interface V3', () => {
+    // D14 : l'interface V3 avait REMPLACÉ la vue merge pour la démonstration ;
+    // l'interface ultime (docs/cartographie-ultime, D-2) prend #/cartographie,
+    // la V3 reste servie sur #/cartographie-v3 et #/merge.
     window.location.hash = '#/'
     renderApp()
 
     setHash('#/cartographie')
+    expect(document.querySelector('.carto-app')).not.toBeNull()
+    expect(document.querySelector('.v3-root')).toBeNull()
+
+    setHash('#/cartographie-v3')
     expect(document.querySelector('.v3-root')).not.toBeNull()
     expect(screen.queryByText('Feuilles de portfolio')).toBeNull() // ancienne vue absente
 

@@ -6,7 +6,8 @@
 // mutent jamais l'entrée. Aucune ne touche aux verdicts importés : la source
 // n'est jamais réécrite.
 
-import { REVIEW_STATES, stableId } from './model.js'
+import { REVIEW_STATES, createDay, stableId } from './model.js'
+import { portfolioSummary } from './importers/portfolio.js'
 import { isIsoDate } from './dates.js'
 import { resolveDefinition } from './sets.js'
 
@@ -193,4 +194,45 @@ export function setPreferences(ds, patch, { now } = {}) {
 export function renameDataset(ds, title, { now } = {}) {
   const t = String(title ?? '').trim().slice(0, 120)
   return t ? touch({ ...ds, title: t }, now) : ds
+}
+
+// ---- Rapport d'import et passages sans date ------------------------------------------
+
+/** Marque le dernier rapport d'import comme lu (le badge ne compte plus ses entrées). */
+export function acknowledgeLastImport(ds, { now } = {}) {
+  if (!ds.importLog?.length) return ds
+  const log = ds.importLog.map((e, i) => (i === ds.importLog.length - 1 ? { ...e, acknowledged: true } : e))
+  return touch({ ...ds, importLog: log }, now)
+}
+
+/**
+ * Rattache un passage du portfolio resté sans date à une journée (§3.1). Si la
+ * journée a déjà du texte, le passage est ajouté à la suite.
+ * @returns {{dataset: object, detailPatches: Map<string, object>}}
+ */
+export function attachUndatedSegment(ds, index, date, { now } = {}) {
+  if (!isIsoDate(date)) throw new Error('Date attendue au format AAAA-MM-JJ')
+  const undated = ds.portfolio?.undated ?? []
+  const seg = undated[index]
+  if (!seg) throw new Error('Passage introuvable')
+  const days = ds.days.map((d) => ({ ...d }))
+  let day = days.find((d) => d.date === date)
+  if (!day) {
+    day = createDay(date)
+    days.push(day)
+    days.sort((a, b) => (a.date < b.date ? -1 : 1))
+  }
+  const added = portfolioSummary(seg.text)
+  day.portfolio = day.portfolio ? { chars: day.portfolio.chars + 2 + added.chars, words: day.portfolio.words + added.words } : added
+  const portfolio = { ...ds.portfolio, undated: undated.filter((_, i) => i !== index) }
+  return {
+    dataset: touch({ ...ds, days, portfolio }, now),
+    detailPatches: new Map([[date, { portfolioAppend: { title: seg.title, text: seg.text, source: seg.source } }]]),
+  }
+}
+
+/** Écarte un passage sans date (il n'est plus proposé au rattachement). */
+export function discardUndatedSegment(ds, index, { now } = {}) {
+  const undated = ds.portfolio?.undated ?? []
+  return touch({ ...ds, portfolio: { ...ds.portfolio, undated: undated.filter((_, i) => i !== index) } }, now)
 }

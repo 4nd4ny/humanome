@@ -8,6 +8,7 @@ import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
 import V3View from './v3/ui/V3View.jsx'
+import CartoApp from './carto/ui/CartoApp.jsx'
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
@@ -476,8 +477,12 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   let view
   switch (route.name) {
     case 'cartographie':
-      // Interface V3 (spec « prototype cartographies ») : remplace l'ancienne
-      // vue merge comme interface de consultation/édition/partage.
+      // Interface ultime de cartographie (docs/cartographie-ultime) : cinq
+      // espaces, données dans le navigateur, démonstration incluse.
+      view = <CartoApp route={route} />
+      break
+    case 'cartographie-v3':
+      // Interface V3 précédente, conservée pour comparaison.
       view = <V3View />
       break
     case 'merge':
@@ -703,7 +708,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
         </div>
       </header>
       {/* L'interface V3 occupe toute la largeur disponible (grille de tuiles). */}
-      <main className={`app-main${route.name === 'cartographie' || (route.name === 'merge' && !userMerge) ? ' app-main--full' : ''}`}>
+      <main className={`app-main${route.name === 'cartographie' || route.name === 'cartographie-v3' || (route.name === 'merge' && !userMerge) ? ' app-main--full' : ''}`}>
         {view}
       </main>
       <footer className="app-footer">
