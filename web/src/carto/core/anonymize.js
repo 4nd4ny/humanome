@@ -24,7 +24,7 @@
 //   jury), avant les substitutions.
 // - La table de correspondance n'est JAMAIS écrite dans l'export.
 
-import { locateExtract, splitExtract } from './highlight.js'
+import { locateRendered, splitExtract } from './highlight.js'
 import { findPassage } from './passages.js'
 import { portfolioSummary } from './importers/portfolio.js'
 import { sentences } from './stylometry.js'
@@ -262,14 +262,13 @@ export function thirdPartySentences(archive, names) {
 /**
  * Statut de surlignage de chaque trace, calculé comme le lecteur : trouvée
  * (ou partielle) dans sa journée, retrouvée dans la feuille d'un autre jour,
- * non retrouvée.
+ * non retrouvée — dans le texte AFFICHÉ de chaque journée.
  * @param {object} archive
- * @param {(portfolio: {text: string}, anchors: object) => Array<{complete: boolean, exact?: boolean}>} [locate]
- *   recherche dans le texte d'une journée — par défaut dans le texte brut ;
- *   l'interface fournit la recherche dans le texte affiché (Markdown rendu)
+ * @param {(portfolio: {text: string}) => string} [displayText] texte affiché d'une
+ *   journée — par défaut le texte brut ; l'interface fournit le Markdown rendu
  * @returns {Map<string, {status: string, date: string, trace: object}>}
  */
-export function highlightStatuses(archive, locate = (p, a) => locateExtract(p.text, a)) {
+export function highlightStatuses(archive, displayText = (p) => p.text) {
   const withText = Object.entries(archive.details ?? {})
     .filter(([, d]) => typeof d?.portfolio?.text === 'string')
     .map(([date]) => date)
@@ -282,7 +281,8 @@ export function highlightStatuses(archive, locate = (p, a) => locateExtract(p.te
       dates: withText,
       locate: (d) => {
         const p = archive.details[d]?.portfolio
-        return p && typeof p.text === 'string' ? locate(p, tr.anchors) : null
+        const shown = p && typeof p.text === 'string' ? displayText(p) : null
+        return typeof shown === 'string' && shown.trim() !== '' ? locateRendered(shown, tr.anchors) : null
       },
     })
     out.set(tr.id, { status: r.status, date: r.date, trace: tr })
@@ -341,7 +341,7 @@ const wordEnd = (text, j) => {
 function alignTrace(text, t) {
   const anchors = t.start ? { start: t.start, end: t.end ?? null } : splitExtract(t.extract)
   if (!anchors.start) return false
-  const r = locateExtract(text, anchors).find((x) => x.complete && x.exact)
+  const r = locateRendered(text, anchors).find((x) => x.complete && x.exact)
   if (!r) return false
   let { start, end } = anchors
   let extract = typeof t.extract === 'string' ? t.extract : null
@@ -368,14 +368,14 @@ function alignTrace(text, t) {
   }
   // Bords intérieurs (fin de l'ancre de début, début de l'ancre de fin).
   if (end) {
-    const s = locateExtract(text, { start, end: null }).find((x) => x.exact && x.from === from)
+    const s = locateRendered(text, { start, end: null }).find((x) => x.exact && x.from === from)
     if (s && isWord(text[s.to - 1]) && isWord(text[s.to]) && s.to < to) {
       const suf = text.slice(s.to, Math.min(wordEnd(text, s.to), to))
       if (parts && parts.length > 1 && lastWord(parts[0]) === lastWord(start)) parts[0] = suffixWord(parts[0], suf)
       start = suffixWord(start, suf)
       changed = true
     }
-    const e = locateExtract(text, { start: end, end: null }).find((x) => x.exact && x.to === to)
+    const e = locateRendered(text, { start: end, end: null }).find((x) => x.exact && x.to === to)
     if (e && isWord(text[e.from - 1]) && isWord(text[e.from]) && e.from > from) {
       const pre = text.slice(Math.max(wordStart(text, e.from), from), e.from)
       if (parts && parts.length > 1 && firstWord(parts[parts.length - 1]) === firstWord(end)) parts[parts.length - 1] = prefixWord(parts[parts.length - 1], pre)
@@ -390,8 +390,8 @@ function alignTrace(text, t) {
   return true
 }
 
-/** Aligne les ancres des traces retrouvées en entier (copie de travail modifiée sur place). */
-function alignAnchors(work, statuses) {
+/** Aligne les ancres des traces retrouvées en entier, dans le texte affiché (copie de travail modifiée sur place). */
+function alignAnchors(work, statuses, displayText) {
   let n = 0
   for (const [date, d] of Object.entries(work.details ?? {})) {
     for (const v of Object.values(d?.variants ?? {})) {
@@ -399,7 +399,8 @@ function alignAnchors(work, statuses) {
         for (const [id, t] of Object.entries(verdict?.traces ?? {})) {
           const st = statuses.get(id)
           if (!t?.extract || !st || (st.status !== 'found' && st.status !== 'relocated')) continue
-          const text = work.details[st.date ?? date]?.portfolio?.text
+          const p = work.details[st.date ?? date]?.portfolio
+          const text = p && typeof p.text === 'string' ? displayText(p) : null
           if (typeof text === 'string' && alignTrace(text, t)) n++
         }
       }
@@ -439,7 +440,9 @@ function cutPassages(value, cuts) {
  * @param {object} archive archive (buildArchive)
  * @param {{dictionary?: Array<{from: string, to: string}>, patterns?: Record<string, boolean>, pseudonym?: string,
  *   remove?: Array<{date?: string, sentence: string}>, now?: string,
- *   locate?: (portfolio: {text: string}, anchors: object) => Array<{complete: boolean, exact?: boolean}>}} opts
+ *   displayText?: (portfolio: {text: string}) => string}} opts
+ *   displayText : texte affiché d'une journée (Markdown rendu dans l'interface) ;
+ *   le surlignage s'y cherche, et les ancres s'y alignent
  * @returns {{archive: object, report: {
  *   replacements: Array<{label: string, count: number}>,
  *   removed: number,
@@ -450,12 +453,12 @@ function cutPassages(value, cuts) {
  *   highlight.before / after : traces dont le passage est retrouvé (en entier ou en partie) avant / après ;
  *   kept : retrouvées après au même statut et dans la même journée.
  */
-export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym = 'Démonstration', remove = [], now = new Date().toISOString(), locate } = {}) {
-  const before = highlightStatuses(archive, locate)
+export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym = 'Démonstration', remove = [], now = new Date().toISOString(), displayText = (p) => p.text } = {}) {
+  const before = highlightStatuses(archive, displayText)
 
   // 0. Ancres alignées sur des mots entiers (copie de travail).
   const work = structuredClone(archive)
-  const aligned = alignAnchors(work, before)
+  const aligned = alignAnchors(work, before, displayText)
 
   // 1. Passages retirés à la demande (contenu de tiers), avant toute substitution.
   const cuts = [...new Set(remove.map((r) => (typeof r?.sentence === 'string' ? r.sentence.trim() : '')).filter((s) => s.length >= 8))]
@@ -477,7 +480,7 @@ export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym
   out.anonymizedAt = now
 
   // 3. Le surlignage tient-il ? Même statut, même journée, pour chaque trace.
-  const after = highlightStatuses(out, locate)
+  const after = highlightStatuses(out, displayText)
   const located = (s) => s && RANK[s.status] > 0
   const broken = []
   let kept = 0

@@ -154,9 +154,11 @@ describe('garde-fous de l’anonymisation', () => {
     const st = [...highlightStatuses(archive).values()]
     expect(st.length).toBeGreaterThan(0)
     expect(st.every((s) => s.status === 'found' || s.status === 'partial')).toBe(true)
-    // Une recherche fournie (texte affiché) remplace la recherche dans le texte brut.
-    const none = [...highlightStatuses(archive, () => []).values()]
-    expect(none.every((s) => s.status === 'not-found')).toBe(true)
+    // Le texte affiché fourni remplace le texte brut (ici : rien d'affiché).
+    const none = [...highlightStatuses(archive, () => '').values()]
+    expect(none.every((s) => s.status === 'no-text')).toBe(true)
+    const other = [...highlightStatuses(archive, () => 'Un tout autre texte, sans aucun des passages.').values()]
+    expect(other.every((s) => s.status === 'not-found')).toBe(true)
   })
 
   it('ancres coupées au milieu d’un nom ou écrites dans une autre casse : réalignées, le passage reste retrouvé, aucun fragment ne reste', async () => {

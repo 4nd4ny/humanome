@@ -25,7 +25,7 @@ import { archiveFileName, buildArchive } from '../core/archive.js'
 import { injectArchive } from '../core/standalone.js'
 import { canonicalJson } from '../core/model.js'
 import { formatShort } from '../core/dates.js'
-import { locateInPortfolio } from './highlight-dom.js'
+import { renderPortfolio } from './highlight-dom.js'
 import { downloadBlob } from '../../lib/download-json.js'
 import { loadViewerTemplate } from './viewerTemplate.js'
 import { formatBytes } from './format.js'
@@ -68,6 +68,8 @@ function Marked({ text, words, className }) {
 }
 
 const removalKey = (r) => `${r.date}\u0000${r.sentence}`
+/** Texte affiché d'une journée : le lecteur cherche les passages dans le Markdown rendu. */
+const displayText = (portfolio) => renderPortfolio(portfolio).text
 
 /**
  * @param {{dataset: object, data: object, fetchFn?: typeof fetch, onClose: () => void, onOpened?: () => void}} props
@@ -137,7 +139,7 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
     // Laisser le message s'afficher avant le calcul (synchrone).
     setTimeout(() => {
       try {
-        const r = anonymizeArchive(archive, { dictionary: entries, patterns, pseudonym, remove: removals, locate: locateInPortfolio })
+        const r = anonymizeArchive(archive, { dictionary: entries, patterns, pseudonym, remove: removals, displayText })
         setResult({ ...r, key: settingsKey, dictionary: cleanDictionary(entries) })
         setConfirmed(false)
         const first = Object.entries(r.archive.details ?? {})
