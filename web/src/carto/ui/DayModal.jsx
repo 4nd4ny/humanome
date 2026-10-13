@@ -12,17 +12,34 @@ import { provenanceLabel } from './Manager.jsx'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
 
-/** Piège de focus d'un dialogue (Tab / Maj+Tab restent à l'intérieur). */
+/**
+ * Piège de focus d'un dialogue (Tab / Maj+Tab restent à l'intérieur).
+ * Le focus est rendu, à la fermeture, à l'élément qui l'avait avant
+ * l'ouverture. Le piège peut être suspendu (`active` = false) pendant qu'un
+ * volet non modal ouvert depuis le dialogue a la main (lecteur de portfolio) ;
+ * à la reprise, le focus reste où il est s'il est déjà dans le dialogue.
+ */
 export function useFocusTrap(containerRef, active, onEscape) {
+  const returnTo = useRef(null)
+
+  // Ouverture / fermeture du dialogue : mémoriser puis rendre le focus.
+  useEffect(() => {
+    const prev = document.activeElement
+    returnTo.current = prev && !containerRef.current?.contains(prev) ? prev : null
+    return () => {
+      const el = returnTo.current
+      if (el && el.isConnected && typeof el.focus === 'function') el.focus()
+    }
+  }, [containerRef])
+
   useEffect(() => {
     if (!active) return undefined
-    const previous = document.activeElement
     const root = containerRef.current
     const focusables = () =>
       [...(root?.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])') ?? [])].filter(
         (el) => !el.hasAttribute('disabled') && el.getAttribute('aria-hidden') !== 'true',
       )
-    focusables()[0]?.focus()
+    if (!root?.contains(document.activeElement)) focusables()[0]?.focus()
     function onKey(e) {
       if (e.key === 'Escape') {
         e.stopPropagation()
@@ -43,10 +60,7 @@ export function useFocusTrap(containerRef, active, onEscape) {
       }
     }
     root?.addEventListener('keydown', onKey)
-    return () => {
-      root?.removeEventListener('keydown', onKey)
-      if (previous && typeof previous.focus === 'function') previous.focus()
-    }
+    return () => root?.removeEventListener('keydown', onKey)
   }, [containerRef, active, onEscape])
 }
 
@@ -62,12 +76,17 @@ const STATUS_GROUPS = [
  *   date: string, dataset: object, refl: object, params: object, geometry: object,
  *   activeDates: string[], focusCode?: string | null, reinforced?: boolean,
  *   onClose: () => void, onNavigate: (d: string) => void, onSelect?: (t: object) => void,
+ *   renderVerdict?: (v: object, variant: object) => React.ReactNode,
+ *   trapActive?: boolean,
  *   children?: (ctx: {date: string, state: object, variant: object | null}) => React.ReactNode,
- * }} props children : rendu supplémentaire (traces, jury) fourni en P2
+ * }} props
+ *   renderVerdict : contenu dépliable de chaque compétence du jour (traces, motif, jury) ;
+ *   trapActive : false pendant que le lecteur de portfolio (volet non modal) a la main ;
+ *   children : rendu supplémentaire en bas de la modale
  */
-export function DayModal({ date, dataset, refl, params, geometry, activeDates, focusCode = null, reinforced = false, onClose, onNavigate, children }) {
+export function DayModal({ date, dataset, refl, params, geometry, activeDates, focusCode = null, reinforced = false, onClose, onNavigate, renderVerdict, trapActive = true, children }) {
   const ref = useRef(null)
-  useFocusTrap(ref, true, onClose)
+  useFocusTrap(ref, trapActive, onClose)
   const day = dataset.days.find((d) => d.date === date)
   const variant = day ? contributingVariant(day) : null
   const state = useMemo(() => computeDayState(dataset, date, { ref: refl, params }), [dataset, date, refl, params])
@@ -148,8 +167,8 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                     {groups[key].map((v) => {
                       const meta = refl.compByCode.get(v.code)
                       const s = state.competencies.get(v.code)
-                      return (
-                        <li key={v.code} className={v.code === focusCode ? 'is-focus' : ''} style={{ '--pole-color': refl.poleByNum.get(meta?.pole)?.color ?? '#78716c' }}>
+                      const line = (
+                        <>
                           <span className="carto-code">{v.code}</span> {meta?.name ?? '(hors référentiel)'}
                           <span className="carto-count">
                             {' '}
@@ -157,6 +176,18 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                             {s ? ` · ${((s.theta / 360) * 100).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % du jour` : ''}
                             {v.status === 'needs_review' ? ' · renvoi' : ''}
                           </span>
+                        </>
+                      )
+                      return (
+                        <li key={v.code} className={v.code === focusCode ? 'is-focus' : ''} style={{ '--pole-color': refl.poleByNum.get(meta?.pole)?.color ?? '#78716c' }}>
+                          {renderVerdict && variant ? (
+                            <details className="carto-day-verdict" open={v.code === focusCode || undefined}>
+                              <summary>{line}</summary>
+                              {renderVerdict(v, variant)}
+                            </details>
+                          ) : (
+                            line
+                          )}
                         </li>
                       )
                     })}

@@ -40,6 +40,20 @@ export const SEVERITY_LABELS = {
 }
 
 /** États du droit de réponse (§8.2) ; « unreviewed » n'est JAMAIS affiché « Contestée ». */
+/** Libellés des statuts normalisés d'un verdict. */
+export const STATUS_LABELS = {
+  established: 'présence établie',
+  needs_review: 'renvoi au cartographe',
+  not_established: 'présence non établie',
+  unknown: 'statut inconnu',
+}
+
+/** Libellé d'un verdict résumé (court-circuit compris). */
+export function verdictStatusLabel(v) {
+  if (v?.courtCircuit) return 'non instruite (court-circuit)'
+  return STATUS_LABELS[v?.status] ?? STATUS_LABELS.unknown
+}
+
 export const REVIEW_STATES = ['unreviewed', 'confirmed', 'nuanced', 'contested']
 export const REVIEW_LABELS = {
   unreviewed: 'Non revue',

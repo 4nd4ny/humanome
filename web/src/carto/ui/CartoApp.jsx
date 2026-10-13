@@ -5,13 +5,13 @@
 // #/cartographie/comparaison, #/cartographie/tableau-de-bord,
 // #/cartographie/export, #/cartographie/jour/<date>.
 
-import { useCallback, useEffect, useMemo, useReducer } from 'react'
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
 import { resolveParams, ringGeometry } from '../core/formulas.js'
 import { contributingVariant, todoCount } from '../core/model.js'
-import { setPreferences } from '../core/ops.js'
+import { selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
 import { Sun, SunTable } from './Sun.jsx'
 import { HeatmapPanel } from './HeatmapPanel.jsx'
@@ -22,6 +22,11 @@ import { WhyDialog } from './WhyDialog.jsx'
 import { Player, usePrefersReducedMotion } from './Player.jsx'
 import { Manager } from './Manager.jsx'
 import { ImportPanel, ImportReport } from './ImportPanel.jsx'
+import { PortfolioReader } from './PortfolioReader.jsx'
+import { DayVerdictDetail, ObservationDays, TraceList, verdictDetailOf } from './Observations.jsx'
+import { PoleReports } from './PoleReports.jsx'
+import { DayKairos, EvolutiveNarratives } from './Narratives.jsx'
+import { usePrintExpand } from './print.js'
 import './carto.css'
 
 export const SPACES = [
@@ -43,6 +48,7 @@ const initialUi = {
   mobileTab: 'diagram',
   why: false,
   expert: false,
+  reader: null, // cible du lecteur de portfolio (trace ou passage)
 }
 
 function reducer(state, action) {
@@ -63,6 +69,12 @@ function reducer(state, action) {
       return { ...state, why: action.open }
     case 'expert':
       return { ...state, expert: action.on }
+    case 'openReader':
+      return { ...state, reader: action.target }
+    case 'readerIndex':
+      return state.reader?.kind === 'trace' ? { ...state, reader: { ...state.reader, index: action.index } } : state
+    case 'closeReader':
+      return { ...state, reader: null }
     case 'reset':
       return { ...initialUi, expert: state.expert }
     default:
@@ -83,6 +95,8 @@ const go = (hash) => {
 export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
   const data = useCartoData(deps)
   const [ui, dispatch] = useReducer(reducer, initialUi)
+  const rootRef = useRef(null)
+  usePrintExpand(rootRef)
   const space = route.sub === 'jour' || !route.sub ? 'cartographie' : route.sub
   const modalDate = route.sub === 'jour' ? route.date : null
   const { dataset, ref: refl } = data
@@ -130,6 +144,64 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
   const openDay = useCallback((date, code) => go(`#/cartographie/jour/${date}${code ? `?focus=${encodeURIComponent(code)}` : ''}`), [])
   const closeDay = useCallback(() => go('#/cartographie'), [])
   const onPrefs = useCallback((patch) => data.update((ds) => setPreferences(ds, patch)), [data])
+  const openTrace = useCallback((code, list, index) => dispatch({ type: 'openReader', target: { kind: 'trace', code, list, index } }), [])
+  const openPassage = useCallback(({ date, extract, label }) => dispatch({ type: 'openReader', target: { kind: 'passage', date, extract, label } }), [])
+  const closeReader = useCallback(() => dispatch({ type: 'closeReader' }), [])
+  const showSourceSet = useCallback(
+    (dates) => {
+      data.update((ds) => selectExactly(ds, dates))
+      setT(null)
+    },
+    [data, setT],
+  )
+
+  // Détails par journée nécessaires au panneau de détail (chargement paresseux).
+  const { ensureDetails, ensureRunDetail, getDetail, getRunDetail } = data
+  const selectionDates = useMemo(() => {
+    if (!state) return []
+    if (ui.selection?.type === 'competency') return state.competencies.get(ui.selection.code)?.days ?? []
+    if (ui.selection?.type === 'pole') {
+      const out = new Set()
+      for (const code of state.poles.get(ui.selection.num)?.codes ?? []) for (const d of state.competencies.get(code).days) out.add(d)
+      return [...out].sort()
+    }
+    return state.dates.slice(-1)
+  }, [state, ui.selection])
+  useEffect(() => {
+    if (selectionDates.length > 0) ensureDetails(selectionDates)
+  }, [selectionDates, ensureDetails])
+  useEffect(() => {
+    if (modalDate) ensureDetails([modalDate])
+  }, [modalDate, ensureDetails])
+
+  // Délibérations de run (AuroraCore) de la sélection et de la compétence en focus de la modale.
+  const runKeys = useMemo(() => {
+    const keys = new Set()
+    if (!dataset) return []
+    const byDate = new Map(dataset.days.map((d) => [d.date, d]))
+    if (ui.selection?.type === 'competency' && state) {
+      for (const v of state.competencies.get(ui.selection.code)?.verdicts ?? []) {
+        const vd = verdictDetailOf(getDetail, v.date, v.variantId, ui.selection.code)
+        if (vd?.runRef) keys.add(vd.runRef)
+      }
+    }
+    if (ui.selection?.type === 'pole') {
+      for (const d of selectionDates) {
+        const variant = contributingVariant(byDate.get(d))
+        const runId = getDetail(d)?.variants?.[variant?.id]?.runId
+        if (runId) keys.add(`${runId}|pole:${ui.selection.num}`)
+      }
+    }
+    if (modalDate && route.focus) {
+      const variant = contributingVariant(byDate.get(modalDate))
+      const vd = variant ? verdictDetailOf(getDetail, modalDate, variant.id, route.focus) : null
+      if (vd?.runRef) keys.add(vd.runRef)
+    }
+    return [...keys]
+  }, [dataset, state, ui.selection, selectionDates, modalDate, route.focus, getDetail])
+  useEffect(() => {
+    for (const k of runKeys) ensureRunDetail(k)
+  }, [runKeys, ensureRunDetail])
 
   const onHeatmapSetT = useCallback(
     (date) => {
@@ -145,6 +217,10 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
     function onKey(e) {
       const tag = e.target?.tagName
       if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag) || e.target?.isContentEditable || e.ctrlKey || e.metaKey || e.altKey) return
+      if (e.key === 'Escape' && ui.reader) {
+        dispatch({ type: 'closeReader' })
+        return
+      }
       if (modalDate || ui.why) return
       if (e.key === 'w' && ui.selection) {
         e.preventDefault()
@@ -155,7 +231,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [modalDate, ui.why, ui.selection, select])
+  }, [modalDate, ui.why, ui.selection, ui.reader, select])
 
   if (data.status === 'loading') {
     return (
@@ -172,7 +248,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
   const ctx = { data, dataset, refl, ui, dispatch, state, layout, params, geometry: GEOMETRY, frames, activeDates, heat, period, openDay, setT, select }
 
   return (
-    <div className={`carto-app carto-tab-${ui.mobileTab}`}>
+    <div ref={rootRef} className={`carto-app carto-tab-${ui.mobileTab}${ui.reader ? ' has-reader' : ''}`}>
       <ContextBar dataset={dataset} state={state} t={ui.t} activeCount={activeDates.length} expert={ui.expert} onExpert={(on) => dispatch({ type: 'expert', on })} onResetT={() => setT(null)} />
       <nav className="carto-spaces" aria-label="Espaces de la cartographie">
         {SPACES.map(([id, label, hash]) => (
@@ -295,6 +371,18 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
                 onOpenDay={openDay}
                 onWhy={() => dispatch({ type: 'why', open: true })}
               >
+                <SelectionDetails
+                  dataset={dataset}
+                  state={state}
+                  selection={ui.selection}
+                  t={ui.t}
+                  data={data}
+                  selectionDates={selectionDates}
+                  onOpenDay={openDay}
+                  onOpenTrace={openTrace}
+                  onOpenPassage={openPassage}
+                  onShowSourceSet={showSourceSet}
+                />
                 {slots.detail ? slots.detail(ctx) : null}
               </DetailPanel>
               {ui.expert ? <EncodingSettings params={params} onPrefs={onPrefs} prefs={prefs} /> : null}
@@ -340,6 +428,21 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
           reinforced={Boolean(prefs.reinforced)}
           onClose={closeDay}
           onNavigate={(d) => openDay(d, route.focus ?? undefined)}
+          trapActive={!ui.reader}
+          renderVerdict={(v, variant) => (
+            <DayVerdictDetail
+              v={v}
+              variant={variant}
+              date={modalDate}
+              dataset={dataset}
+              getDetail={getDetail}
+              getRunDetail={getRunDetail}
+              ensureRunDetail={ensureRunDetail}
+              update={data.update}
+              onOpenTrace={openTrace}
+              onOpenPassage={openPassage}
+            />
+          )}
         >
           {slots.day ? (dayCtx) => slots.day({ ...ctx, ...dayCtx }) : undefined}
         </DayModal>
@@ -357,7 +460,82 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
           }}
         />
       ) : null}
+      {ui.reader ? (
+        <PortfolioReader
+          target={ui.reader}
+          dataset={dataset}
+          refl={refl}
+          getDetail={getDetail}
+          ensureDetails={ensureDetails}
+          reducedMotion={reducedMotion}
+          onClose={closeReader}
+          onIndex={(index) => dispatch({ type: 'readerIndex', index })}
+          onBackToCompetency={(code) => {
+            dispatch({ type: 'closeReader' })
+            if (modalDate) closeDay()
+            select({ type: 'competency', code })
+            dispatch({ type: 'tab', tab: 'details' })
+          }}
+        />
+      ) : null}
     </div>
+  )
+}
+
+/**
+ * Sections du panneau de détail qui lisent les détails par journée (P2) :
+ * traces, verdicts, jury, droit de réponse (compétence) ; rapports et
+ * passages (pôle) ; portrait kairos et synthèses évolutives (profil).
+ */
+function SelectionDetails({ dataset, state, selection, t, data, selectionDates, onOpenDay, onOpenTrace, onOpenPassage, onShowSourceSet }) {
+  if (selection?.type === 'competency') {
+    const comp = state.competencies.get(selection.code)
+    return (
+      <>
+        {comp ? (
+          <>
+            <TraceList traces={comp.traces} code={selection.code} getDetail={data.getDetail} onOpenTrace={(i) => onOpenTrace(selection.code, comp.traces, i)} onOpenDay={onOpenDay} />
+            <ObservationDays
+              code={selection.code}
+              comp={comp}
+              dataset={dataset}
+              t={t}
+              getDetail={data.getDetail}
+              getRunDetail={data.getRunDetail}
+              update={data.update}
+              onOpenDay={onOpenDay}
+              onOpenPassage={onOpenPassage}
+            />
+          </>
+        ) : null}
+        <EvolutiveNarratives
+          dataset={dataset}
+          kind="competence-evolutive"
+          scope={{ code: selection.code }}
+          shownDates={state.dates}
+          title="Synthèse évolutive de la compétence"
+          onShowSourceSet={onShowSourceSet}
+        />
+      </>
+    )
+  }
+  if (selection?.type === 'pole') {
+    return (
+      <>
+        <EvolutiveNarratives dataset={dataset} kind="pole-evolutif" scope={{ pole: selection.num }} shownDates={state.dates} title="Synthèse évolutive du pôle" onShowSourceSet={onShowSourceSet} />
+        <PoleReports num={selection.num} dates={selectionDates} dataset={dataset} getDetail={data.getDetail} getRunDetail={data.getRunDetail} onOpenPassage={onOpenPassage} />
+      </>
+    )
+  }
+  const last = state.dates.at(-1) ?? null
+  const day = last ? dataset.days.find((d) => d.date === last) : null
+  const variant = day ? contributingVariant(day) : null
+  const kairos = last && variant ? data.getDetail(last)?.variants?.[variant.id]?.kairos ?? null : null
+  return (
+    <>
+      <EvolutiveNarratives dataset={dataset} kind="kairos-evolutif" scope={{}} shownDates={state.dates} title="Synthèse évolutive (kairos)" onShowSourceSet={onShowSourceSet} />
+      {kairos ? <DayKairos kairos={kairos} date={last} /> : null}
+    </>
   )
 }
 

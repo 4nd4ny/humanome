@@ -23,8 +23,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Installation | dépôt cloné, dépendances, données dérivées, base locale | — | — | ✅ voir §3 | — |
 | Cadrage | architecture, modèle, journal | ✅ | — | — | `4710134` |
 | P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 112 tests | ✅ 112 verts | `16cca1a`, `1d6472d` |
-| P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | (ce commit) |
-| P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | — | — | — | — |
+| P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | `e4c21fd` |
+| P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | (ce commit) |
 | P3 | comparaison A/B (8 vues) | — | — | — | — |
 | P4 | tableau de bord des métriques | — | — | — | — |
 | P5 | exports JSON / HTML / PDF, anonymisation | — | — | — | — |
@@ -238,6 +238,77 @@ retrouvés » figure dans la feuille d'un **autre** jour (décalage de date dans
 AuroraCore) : le lecteur de P2 cherche d'abord dans la journée de la trace,
 puis dans les autres journées, et dit clairement d'où vient le passage.
 
+### D-13 — Lecteur de portfolio : un volet, le texte AFFICHÉ, un `<mark>` par nœud texte
+
+- Volet latéral **non modal** (`ui/PortfolioReader.jsx`) au-dessus des
+  modales (il s'ouvre aussi depuis la modale du jour, dont le piège de focus
+  est alors suspendu). Focus sur son titre à l'ouverture, rendu au bouton
+  déclencheur à la fermeture ; Échap le ferme.
+- Le portfolio est rendu en Markdown par le moteur du site (`lib/md.js`,
+  DOMPurify), puis la recherche porte sur le **texte affiché** (concaténation
+  des nœuds texte, avec un saut de ligne virtuel entre deux blocs) et non sur
+  le Markdown brut : un extrait qui contient `**gras**` est réessayé sans ses
+  marques. Les plages trouvées sont enveloppées nœud par nœud par l'API DOM
+  sur un `<template>` inerte (aucun `<mark>` n'englobe un `<p>`, segments
+  blancs ignorés), et la sortie repasse par DOMPurify (`ui/highlight-dom.js`).
+- Jaune = début et fin retrouvés, orange (et souligné pointillé, pour ne pas
+  dépendre de la couleur) = un seul bout ; toutes les occurrences, avec
+  navigation ; l'occurrence courante est cerclée quand il y en a plusieurs ;
+  défilement centré (sans animation sous mouvement réduit).
+
+### D-14 — Où chercher le passage d'une trace
+
+Ordre : journée du passage (`sourceDate`), journée de la trace, puis les
+autres journées du portfolio par distance croissante (`core/passages.js`).
+Dans sa journée, un résultat partiel suffit (orange). Ailleurs, seule une
+correspondance **complète et exacte** (ancres non raccourcies) déplace le
+lecteur, et le volet le dit : « retrouvé tel quel dans la feuille du X, alors
+que la trace est datée du Y » (cas réel, D-12), avec un lien vers la journée
+de la trace. Une ancre raccourcie à deux mots se trouve n'importe où : elle
+ne suffit jamais. Les autres journées ne sont chargées que si le passage
+n'est pas retrouvé en entier dans la sienne. Introuvable : le volet le dit
+et cite l'extrait du jury (défaut d'AuroraCore). Sans portfolio : il invite à
+l'importer.
+
+### D-15 — Panneau de détail d'une compétence : traces, verdicts, jury, réponse
+
+- Traces (date, rôle, extrait, « Ouvrir dans le portfolio ») dans l'ordre des
+  journées ; puis un bloc dépliable par journée : statut, confiance, preuves,
+  indices, motif, prescription, provenance de l'analyse, droit de réponse, et
+  « Réflexions du jury » à deux niveaux (examen du Pédagogue — attaques
+  nommées par le dictionnaire `ATTAQUES` du moteur —, pièces du Greffier
+  ouvrables dans le portfolio).
+- AuroraCore : la délibération (six éclairages, président, débat, pièces
+  verbatim) porte sur tout le journal ; elle est affichée **une fois** par run,
+  au-dessus des journées, et chargée à la demande.
+- Mention du niveau de preuve : « exploratoire — un seul codeur automatique ».
+- Droit de réponse (Confirmer / Nuancer / Contester + note privée) : stocké
+  dans le jeu de données local, jamais envoyé, sans effet sur les calculs ; un
+  second clic retire la réponse ; un état inconnu s'affiche « pas encore
+  donnée » (jamais « Contestée », défaut de V3). La note privée n'est pas
+  imprimée **[à valider]**.
+
+### D-16 — Panneau d'un pôle et du profil
+
+- Pôle : synthèse, rapport de chaque journée (portrait, territoires denses
+  avec leur extrait ouvrable, pistes), passages saillants repliables ; rapport
+  de pôle du run pour AuroraCore. Les « territoires non visités » et les
+  « émergences » du rapport ne sont **pas** affichés : ils décrivent ce qui
+  manque, ce que le miroir s'interdit (§1.2) **[à valider]**.
+- Profil (aucune sélection) : portrait kairos de la **dernière journée**
+  affichée, présenté comme tel (« kairos de cette journée seule »).
+- Synthèses évolutives : affichées seulement si leur ensemble source est
+  exactement l'ensemble des journées qui fondent l'état affiché (S jusqu'à t,
+  avec analyse) ; sinon masquées avec un message et un bouton « Cocher
+  exactement ces journées et afficher l'état complet ». Leurs anciens liens de
+  journée ouvrent la modale du jour de l'interface ultime.
+
+### D-17 — Impression
+
+Tous les `<details>` s'ouvrent à `beforeprint` et ceux qu'on a ouverts se
+referment à `afterprint`. Le lecteur, les boutons et la note privée ne sont
+pas imprimés ; le tableau équivalent du soleil l'est.
+
 ---
 
 ## 3. État des tests
@@ -287,6 +358,19 @@ Vérification visuelle : parcours complet dans Chromium (Playwright) à
 1 440 px et 390 px — accueil, démonstration, sélection, date t, modale —
 sans erreur de console.
 
+### P2 — lecteur surligné, détail, jury
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/passages.test.js` | ordre de recherche ; trouvé / partiel / retrouvé ailleurs (exact seulement) / introuvable / sans texte ; une ancre raccourcie ne déplace pas le lecteur ; synthèses évolutives visibles seulement pour leur ensemble source | 8 |
+| `ui/highlight-dom.test.js` | séparateur de blocs ; extrait sur deux paragraphes = un `<mark>` par nœud texte, aucun autour d'un `<p>` ; segments blancs ignorés ; orange ; toutes les occurrences et occurrence courante ; marques Markdown retirées ; assainissement (ni script, ni image, ni `javascript:`) | 7 |
+| `ui/P2.test.jsx` | **critère P2 : passage surligné dans le portfolio importé en cartographie fusionnée** (3 journées), trace suivante, retour à la compétence ; **idem depuis un `carto_merge.json`** ; décalage de date dit comme tel ; introuvable ; sans portfolio ; deux occurrences ; depuis la modale du jour (focus rendu) ; motif / prescription / Pédagogue / Greffier ; droit de réponse enregistré sans effet sur le soleil ; état inconnu ≠ « Contestée » ; rapport de pôle sans « territoires non visités » ; kairos ; synthèse évolutive masquée puis rappelée ; impression ; AuroraCore (six éclairages, président, délibération, pièces, surlignage dans la feuille du journal) | 15 |
+
+Suite complète du front après P2 : **2 096 verts** sur 214 fichiers (seul
+`twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
+Vérification visuelle dans Chromium (1 440 px et 390 px) : lecteur, trace
+suivante, détail, jury, sans erreur de console.
+
 ---
 
 ## 4. Questions ouvertes pour Christian
@@ -311,3 +395,7 @@ sans erreur de console.
   bascule de `#/cartographie` vers l'interface ultime (V3 sur
   `#/cartographie-v3`), validation des importeurs sur les journaux réels
   (D-12, compteurs seulement).
+- **2026-10-13** — P2 : lecteur de portfolio surligné (volet, texte affiché,
+  occurrences, décalage de date), panneau de détail (traces, verdicts, jury à
+  deux niveaux, droit de réponse), rapports de pôle, kairos, synthèses
+  évolutives, impression (D-13 à D-17).

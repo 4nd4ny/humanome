@@ -155,9 +155,11 @@ function allIndexes(haystack, needle, from = 0) {
  * @param {{extract?: string, start?: string, end?: string | null}} anchors
  *   ancres explicites (`start`/`end`) ou extrait à découper
  * @param {{maxSpan?: number}} [opts] écart maximal début→fin, en caractères repliés
- * @returns {Array<{from: number, to: number, complete: boolean}>} plages en index
- *   d'ORIGINE (`to` exclu), dans l'ordre du texte ; `complete` = surlignage
- *   jaune (début et fin trouvés), sinon orange (un seul bout).
+ * @returns {Array<{from: number, to: number, complete: boolean, exact: boolean}>} plages en
+ *   index d'ORIGINE (`to` exclu), dans l'ordre du texte ; `complete` = surlignage
+ *   jaune (début et fin trouvés), sinon orange (un seul bout) ; `exact` = les
+ *   ancres ont été trouvées SANS être raccourcies (preuve forte, utilisée pour
+ *   retrouver un passage dans une autre journée que la sienne).
  */
 export function locateExtract(text, anchors, { maxSpan = 6000 } = {}) {
   const { start: rawStart, end: rawEnd } =
@@ -181,7 +183,7 @@ export function locateExtract(text, anchors, { maxSpan = 6000 } = {}) {
       const stEnd = st + s.needle.length
       if (!endNeedle) {
         // Extrait court : un seul bout existe ; complet s'il est trouvé en entier.
-        found.push({ ...toOrig(st, stEnd), complete: !s.shrunk })
+        found.push({ ...toOrig(st, stEnd), complete: !s.shrunk, exact: !s.shrunk })
         continue
       }
       // La fin est cherchée APRÈS ce début, avant le début suivant.
@@ -189,16 +191,51 @@ export function locateExtract(text, anchors, { maxSpan = 6000 } = {}) {
       const e = effectiveNeedle(hay, endNeedle, shrinkKeepEnd, stEnd)
       const endAt = e ? hay.indexOf(e.needle, stEnd) : -1
       if (e && endAt >= 0 && endAt < limit) {
-        found.push({ ...toOrig(st, endAt + e.needle.length), complete: true })
+        found.push({ ...toOrig(st, endAt + e.needle.length), complete: true, exact: !s.shrunk && !e.shrunk })
       } else {
-        found.push({ ...toOrig(st, stEnd), complete: false })
+        found.push({ ...toOrig(st, stEnd), complete: false, exact: false })
       }
     }
   } else if (endNeedle) {
     const e = effectiveNeedle(hay, endNeedle, shrinkKeepEnd)
-    if (e) for (const idx of allIndexes(hay, e.needle)) found.push({ ...toOrig(idx, idx + e.needle.length), complete: false })
+    if (e) for (const idx of allIndexes(hay, e.needle)) found.push({ ...toOrig(idx, idx + e.needle.length), complete: false, exact: false })
   }
   return found
+}
+
+/**
+ * Retire d'une ancre la ponctuation Markdown qu'un extrait recopié du texte
+ * brut peut contenir (`**gras**`, `_italique_`, `` `code` ``, `### titre`,
+ * `> citation`, puces) : le texte AFFICHÉ, lui, ne la contient plus.
+ * @param {string} s
+ */
+export function stripMarkdownMarks(s) {
+  if (typeof s !== 'string') return s
+  return s
+    .replace(/^\s*(?:#{1,6}|>|[-*+]|\d+[.)])\s+/gmu, '')
+    .replace(/\*\*|__|`/gu, '')
+    .replace(/(^|[\s(«"'‘“])[*_](?=\S)/gu, '$1')
+    .replace(/(\S)[*_](?=$|[\s.,;:!?»"'’”)])/gu, '$1')
+}
+
+/**
+ * Comme `locateExtract`, mais sur le texte AFFICHÉ d'un Markdown rendu : si
+ * l'extrait n'est pas trouvé en entier tel quel, on réessaie sans ses marques
+ * Markdown (le meilleur des deux résultats est gardé).
+ */
+export function locateRendered(text, anchors, opts) {
+  const direct = locateExtract(text, anchors, opts)
+  if (direct.some((r) => r.complete)) return direct
+  const a = anchors ?? {}
+  const stripped =
+    a.start !== undefined || a.end !== undefined
+      ? { start: stripMarkdownMarks(a.start ?? ''), end: a.end ? stripMarkdownMarks(a.end) : null }
+      : { extract: stripMarkdownMarks(a.extract ?? '') }
+  const same = stripped.extract !== undefined ? stripped.extract === a.extract : stripped.start === (a.start ?? '') && stripped.end === (a.end ?? null)
+  if (same) return direct
+  const retry = locateExtract(text, stripped, opts)
+  if (retry.some((r) => r.complete)) return retry
+  return direct.length > 0 ? direct : retry
 }
 
 /**
