@@ -24,7 +24,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Cadrage | architecture, modèle, journal | ✅ | — | — | `4710134` |
 | P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 112 tests | ✅ 112 verts | `16cca1a`, `1d6472d` |
 | P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | `e4c21fd` |
-| P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | (ce commit) |
+| P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | `13796b0` |
 | P3 | comparaison A/B (8 vues) | — | — | — | — |
 | P4 | tableau de bord des métriques | — | — | — | — |
 | P5 | exports JSON / HTML / PDF, anonymisation | — | — | — | — |
@@ -366,6 +366,26 @@ sans erreur de console.
 | `ui/highlight-dom.test.js` | séparateur de blocs ; extrait sur deux paragraphes = un `<mark>` par nœud texte, aucun autour d'un `<p>` ; segments blancs ignorés ; orange ; toutes les occurrences et occurrence courante ; marques Markdown retirées ; assainissement (ni script, ni image, ni `javascript:`) | 7 |
 | `ui/P2.test.jsx` | **critère P2 : passage surligné dans le portfolio importé en cartographie fusionnée** (3 journées), trace suivante, retour à la compétence ; **idem depuis un `carto_merge.json`** ; décalage de date dit comme tel ; introuvable ; sans portfolio ; deux occurrences ; depuis la modale du jour (focus rendu) ; motif / prescription / Pédagogue / Greffier ; droit de réponse enregistré sans effet sur le soleil ; état inconnu ≠ « Contestée » ; rapport de pôle sans « territoires non visités » ; kairos ; synthèse évolutive masquée puis rappelée ; impression ; AuroraCore (six éclairages, président, délibération, pièces, surlignage dans la feuille du journal) | 15 |
 
+Validation du lecteur sur les journaux réels (sur le Mac, compteurs
+seulement, même chaîne que l'interface : Markdown rendu, assaini, recherche
+dans le texte affiché) :
+
+| Journal | traces | brut, jour même : complet / partiel / absent | lecteur : trouvé / partiel / retrouvé ailleurs / non retrouvé |
+|---|---|---|---|
+| 200 | 302 | 180 / 53 / 69 | 181 / 51 / 5 / 65 |
+| 300 | 180 | 120 / 35 / 25 | 121 / 33 / 5 / 21 |
+| GEN1 | 10 | 9 / 1 / 0 | 9 / 1 / 0 / 0 |
+
+Les « non retrouvés » ne sont presque jamais dans le portfolio, même en
+ignorant la ponctuation (63 sur 65 pour le journal 200, 21 sur 21 pour le
+300) ; 10 et 3 figurent tels quels dans les pièces du Greffier ; pour la
+plupart, la moitié à trois quarts seulement de leurs mots se retrouvent dans
+la feuille du jour : l'extrait a été **reformulé** par l'analyse (défaut
+d'AuroraCore prévu au §8.1). Le lecteur le dit et cite l'extrait. Piste (point
+ouvert 9) : un surlignage « approché », clairement signalé, pour les extraits
+dont au moins 75 % des mots figurent dans la feuille (18 traces sur ces deux
+journaux).
+
 Suite complète du front après P2 : **2 096 verts** sur 214 fichiers (seul
 `twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
 Vérification visuelle dans Chromium (1 440 px et 390 px) : lecteur, trace
@@ -380,6 +400,19 @@ suivante, détail, jury, sans erreur de console.
    AuroraCore) ne sont **jamais** versionnées : le dépôt est public. Les tests
    utilisent des données synthétiques ou le corpus déjà public
    (`assets-existants/merge-prototype`).
+3. Saturation des angles sur une longue période (D-8) : garder la formule telle
+   quelle, ou une des pistes proposées ?
+4. Lecture des formules (D-6) : moyenne des confiances des seuls verdicts qui
+   fournissent des traces, statut optimiste, hors référentiel sans secteur.
+5. Miroir et rapports de pôle (D-16) : « territoires non visités » et
+   « émergences » masqués — à confirmer.
+6. Note privée du droit de réponse non imprimée (D-15) — à confirmer.
+7. Routes préfixées par `#/cartographie` (D-2) plutôt que `#/jour/<date>`
+   (déjà pris par la vue historique du site).
+8. Démonstration sans portfolio (D-11) : le surlignage y est indisponible
+   jusqu'à la démo anonymisée de P5.
+9. Surlignage « approché » des extraits reformulés par l'analyse (validation
+   P2) : à ajouter, signalé comme tel, ou s'en tenir au message actuel ?
 
 ---
 
