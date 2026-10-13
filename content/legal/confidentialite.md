@@ -33,6 +33,7 @@ Selon votre usage, nous pouvons traiter :
 - **Progression de formation** : les chapitres de formation que vous avez parcourus, pour afficher votre avancement.
 - **Clés d'API personnelles** : si vous choisissez d'utiliser votre propre clé d'un fournisseur de modèle de langage, elle est **chiffrée au repos** et n'est jamais réaffichée ni exposée.
 - **Liens de partage** : lorsque vous partagez une cartographie avec un employeur, nous conservons une empreinte (hachage) du lien et du mot de passe de partage — jamais leur valeur en clair.
+- **Versions partagées (adultes uniquement)** : depuis l'espace Partage de la cartographie, une personne majeure peut publier une version de sa cartographie qu'elle compose elle-même (compétences retenues, dates au jour, au mois ou masquées, extraits choisis et relus) — jamais son portfolio. Nous conservons cette version, la date à laquelle vous avez attesté être majeur·e (aucune date de naissance, aucun justificatif), et la date de chaque consultation de vos liens, que vous seul·e voyez.
 - **Journaux et compteurs anti-abus** : des compteurs techniques (par exemple le nombre d'appels par heure), avec des identifiants **hachés** — jamais votre adresse IP en clair, jamais le contenu de vos textes.
 
 ## Où sont vos données : local par défaut, serveur sur option
@@ -57,6 +58,7 @@ lien de partage, ou en supprimant votre compte.
 
 - **Compte et données rattachées** : conservés jusqu'à ce que vous supprimiez votre compte. La suppression est un **effacement réel**, pas une simple désactivation.
 - **Liens de partage** : un lien de partage est valable **90 jours par défaut** (durée réglable de 1 à 365 jours au moment du partage), et peut être révoqué à tout moment. Une fois expiré ou révoqué, il est **purgé** par une tâche d'entretien au plus tard 30 jours après.
+- **Versions partagées** : conservées jusqu'à ce que vous les retiriez (effacement immédiat) ou supprimiez votre compte. Retirer votre attestation de majorité révoque aussitôt tous leurs liens. Les pages partagées ne sont pas indexées par les moteurs de recherche.
 - **Sessions** : un cookie de session strictement nécessaire, expirant après une période d'inactivité ; l'enregistrement serveur de la session disparaît avec votre compte.
 - **Compteurs anti-abus** : fenêtres courtes (à l'heure ou à la journée), à identifiants hachés, sans lien avec votre profil.
 

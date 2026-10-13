@@ -249,3 +249,21 @@ cd web && npx vitest run test/usecases --testNamePattern UC-EMP-01
   pseudonymisée et l'heure de la fenêtre restent conservées indéfiniment et
   peuvent être rapprochées du `created_at` de `share_consulted`. Formule du
   seau figée par UC-EMP-01-F19.
+
+## Extension — version partagée de l'interface ultime (spécification §12)
+
+Un lien vers une **version partagée** (type `partage`, publiée par un
+apprenant adulte depuis `#/cartographie/partage`) peut se passer de mot de
+passe : il arrive alors en `#/partage/<jeton>/ouvert`, et `ShareView` demande
+la version dès l'ouverture par `GET /api/share/{token}` (même quota par IP que
+le POST, 404 homogène ; `401 {code: 'password_required'}` si le lien a
+finalement un mot de passe, et le formulaire habituel s'affiche). La version
+est rendue par `SharedView` : soleil, heatmap à la précision choisie par
+l'auteur (jour, mois, ou aucune), compétences et extraits choisis, en lecture
+seule, sans comparaison ni droit de réponse, avec le référentiel embarqué
+(aucun autre appel réseau). Toutes les réponses publiques de partage portent
+`X-Robots-Tag: noindex, nofollow, noarchive` et `Cache-Control: no-store` ; la
+page ajoute une balise `robots` équivalente tant qu'elle est affichée. Une
+consultation réussie alimente le journal des accès de l'auteur (dates
+seulement). La route `GET` n'est pas concernée par l'anomalie AN2 (pas de
+jeton CSRF sur un GET).

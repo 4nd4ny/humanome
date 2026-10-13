@@ -59,14 +59,17 @@ session ; un id étranger répond `404` exactement comme un id inexistant
 
 | Route | Méthode | Accès | Garde |
 |---|---|---|---|
-| `/api/cartographies` | POST | `apprenant` | Rôle + CSRF ; **le POST est l'opt-in stockage serveur** (`opt_in_at = NOW()` posé par l'INSERT, §6.2) |
+| `/api/cartographies` | POST | `apprenant` | Rôle + CSRF ; **le POST est l'opt-in stockage serveur** (`opt_in_at = NOW()` posé par l'INSERT, §6.2). Type `partage` (version partagée de l'interface ultime, §12) : **403 `adult_required` sans attestation de majorité**, visibilité `privee` imposée, document vérifié par liste blanche (`Share\SharedVersion`) |
 | `/api/cartographies` | GET | `apprenant` | Rôle ; liste de métadonnées, **jamais** le document |
 | `/api/cartographies/{id}` | GET | `apprenant`, propriétaire | Rôle + propriété ; document inclus |
-| `/api/cartographies/{id}` | PATCH | `apprenant`, propriétaire | Rôle + propriété + CSRF ; titre/visibilité uniquement |
+| `/api/cartographies/{id}` | PATCH | `apprenant`, propriétaire | Rôle + propriété + CSRF ; titre/visibilité uniquement (une version partagée reste `privee`) |
 | `/api/cartographies/{id}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; purge réelle (ligne + share_links par FK) |
-| `/api/cartographies/{id}/share` | POST | `apprenant`, propriétaire | Rôle + propriété + CSRF ; jeton stocké haché (sha256), mdp en `password_hash` ; audit `share_created` (ids seulement) |
+| `/api/cartographies/{id}/share` | POST | `apprenant`, propriétaire | Rôle + propriété + CSRF ; jeton stocké haché (sha256), mdp en `password_hash` ; audit `share_created` (ids seulement). Version partagée : **403 `adult_required` sans attestation**, mot de passe facultatif (URL `…/ouvert` sans mot de passe) |
 | `/api/cartographies/{id}/shares` | GET | `apprenant`, propriétaire | Rôle + propriété ; jamais le jeton en clair |
 | `/api/shares/{shareId}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; révocation (`revoked_at`) ; audit `share_revoked` |
+| `/api/shares/{shareId}/consultations` | GET | `apprenant`, propriétaire | Rôle + propriété (404 sinon) ; journal des accès : dates des consultations réussies (`share_consulted`), ni IP ni navigateur |
+| `/api/auth/me/adult` | GET / PUT | `apprenant` (le sien) | Rôle (+ CSRF sur PUT) ; auto-attestation de majorité (§12.1) ; `false` révoque tous les liens actifs des versions partagées ; audit `adult_attested` / `adult_attestation_withdrawn` (compteur seulement) |
+| `/api/share/{token}` | GET (sans mdp) | **Public** | Lien SANS mot de passe d'une version partagée (§12) : même quota IP que le POST, 404 homogène, 401 `password_required` si le lien a un mot de passe ; `X-Robots-Tag: noindex, nofollow, noarchive` et `Cache-Control: no-store` sur toutes les réponses publiques de partage |
 | `/api/share/{token}` | POST (mdp) | **Public** (employeur, §3.6 — pas de compte) | Rate-limit IP (buckets hachés, /64 IPv6 via `ClientIp`) ; 404 homogène inconnu/expiré/révoqué (anti-énumération, vérif factice du mdp) ; 403 mauvais mdp ; depuis P9, `garantie` = état figé `{par, date, revisionId}` ou `null`, et le document servi est **celui de la révision garantie** quand `revisionId` est présent (§8). Si le navigateur porte une session, le SPA joint son jeton CSRF comme partout |
 | `/api/training/progress` | GET/PUT | Connecté (tout rôle), sa propre progression | Session (+ CSRF sur PUT) |
 | `/api/keys` | PUT | Connecté, ses propres clés | Session + CSRF ; chiffrement sodium `crypto_secretbox`, nonce par entrée, clé maîtresse `SODIUM_MASTER_KEY` (hors webroot) ; 503 explicite si non configurée |
@@ -222,6 +225,12 @@ Marketplace employeur (bibliothèque payante des cartographies consenties,
   `api/src/Packages/` ; migration `scripts/migrations/007_cartographies_run_meta.sql` ;
   paquet par défaut `scripts/build-default-prompt-package.mjs` +
   `scripts/import-prompt-packages.php`.
+- Interface ultime, P6 (spécification §12) : `api/src/routes/partage.php`
+  (attestation), `share.php` (mot de passe facultatif, GET public, journal
+  des accès), `cartographies.php` (type `partage`) ; domaine
+  `api/src/Share/SharedVersion.php` ; migration
+  `scripts/migrations/022_carto_partage_adultes.sql` ; tests
+  `api/tests/CartoPartageTest.php`.
 - P9 (M7) : routes `api/src/routes/{cartographe,annotations}.php` (+ garantie
   dans `share.php`) ; domaine `api/src/Cartographe/` (`Invitations`, `Links`,
   `Annotations`, `Revisions`, `Garanties`) ; migration

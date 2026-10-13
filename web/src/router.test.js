@@ -162,6 +162,16 @@ describe('routes du hub des guides', () => {
   })
 })
 
+describe('partage (P8) et version partagée de l’interface ultime (§12)', () => {
+  it('lien protégé, lien ouvert, espace Partage', () => {
+    const token = 'a1'.repeat(16)
+    expect(parseHash(`#/partage/${token}`)).toEqual({ name: 'share', token })
+    expect(parseHash(`#/partage/${token}/ouvert`)).toEqual({ name: 'share', token, open: true })
+    expect(parseHash(`#/partage/${token}/autre`).name).toBe('not-found')
+    expect(parseHash('#/cartographie/partage')).toEqual({ name: 'cartographie', sub: 'partage' })
+  })
+})
+
 describe('dayHash', () => {
   it('construit la route jour, avec et sans focus', () => {
     expect(dayHash('2026-03-15')).toBe('#/jour/2026-03-15')

@@ -187,6 +187,16 @@ final class CartographyRepository
         return $stmt->fetchColumn() !== false;
     }
 
+    /** Type d'une cartographie possédée (null si absente ou d'un autre compte). */
+    public function typeOwnedBy(int $id, int $userId): ?string
+    {
+        $stmt = $this->pdo->prepare('SELECT type FROM cartographies WHERE id = ? AND user_id = ?');
+        $stmt->execute([$id, $userId]);
+        $type = $stmt->fetchColumn();
+
+        return $type === false ? null : (string) $type;
+    }
+
     /** Published prompt-package version -> FK id (null when unknown). */
     public function resolvePromptVersion(string $packageId, string $semver): ?int
     {

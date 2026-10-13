@@ -123,3 +123,62 @@ describe('ShareView — rendu lecture seule après déverrouillage', () => {
     expect(screen.queryByLabelText('Mot de passe du lien')).toBeNull()
   })
 })
+
+// Version partagée de l'interface ultime (spec §12) : liens ouverts, rendu
+// « employeur » et noindex.
+import sharedFixture from '../../../schemas/fixtures/partage/carto-partage-exemple.json'
+
+describe('ShareView — version partagée (interface ultime, §12)', () => {
+  const shared = { titre: 'Mes compétences — année 2025-2026', type: 'partage', document: sharedFixture, garantie: null }
+
+  it('lien ouvert : GET api/share/<token> dès l’ouverture, puis vue lecture seule (soleil, extraits)', async () => {
+    const token = 'd'.repeat(32)
+    const fetchFn = vi.fn().mockResolvedValueOnce(jsonResponse(200, shared))
+    const getRef = vi.fn(getReferentiel)
+    render(<ShareView token={token} open lib={fakeLib} fetchFn={fetchFn} getReferentiel={getRef} />)
+
+    expect(await screen.findByRole('heading', { level: 1, name: 'Mes compétences — année 2025-2026' })).toBeDefined()
+    const [url, init] = fetchFn.mock.calls[0]
+    expect(url).toBe(`api/share/${token}`)
+    expect(init.method).toBe('GET')
+    expect(screen.getByText('J’ai vérifié chaque source avant de conclure.')).toBeDefined()
+    expect(screen.getByText(/Pensée critique/)).toBeDefined()
+    expect(screen.getByText('de décembre 2025 à janvier 2026')).toBeDefined()
+    expect(screen.getByRole('group', { name: /Soleil : 2 compétences partagées/ })).toBeDefined()
+    // Ni formulaire, ni comparaison, ni droit de réponse ; le référentiel est embarqué.
+    expect(screen.queryByLabelText('Mot de passe du lien')).toBeNull()
+    expect(screen.queryByText(/Comparaison|Confirmer|Nuancer|Contester/)).toBeNull()
+    expect(getRef).not.toHaveBeenCalled()
+  })
+
+  it('lien ouvert qui demande finalement un mot de passe (401) : formulaire, puis POST', async () => {
+    const fetchFn = vi
+      .fn()
+      .mockResolvedValueOnce(jsonResponse(401, { error: 'Mot de passe requis', code: 'password_required' }))
+      .mockResolvedValueOnce(jsonResponse(403, {}))
+      .mockResolvedValueOnce(jsonResponse(200, shared))
+    render(<ShareView token={'e'.repeat(32)} open lib={fakeLib} fetchFn={fetchFn} getReferentiel={getReferentiel} />)
+
+    expect(await screen.findByLabelText('Mot de passe du lien')).toBeDefined()
+    await submitPassword('mauvais-mot')
+    expect((await screen.findByRole('alert')).textContent).toBe('Mot de passe incorrect.')
+    expect(screen.getByLabelText('Mot de passe du lien')).toBeDefined() // le formulaire reste
+    await submitPassword('sesame-employeur')
+    expect(await screen.findByRole('heading', { level: 1, name: 'Mes compétences — année 2025-2026' })).toBeDefined()
+  })
+
+  it('lien ouvert révoqué ou expiré : message homogène, sans formulaire', async () => {
+    const fetchFn = vi.fn().mockResolvedValueOnce(jsonResponse(404, { error: 'Lien de partage introuvable ou expiré' }))
+    render(<ShareView token={'f'.repeat(32)} open lib={fakeLib} fetchFn={fetchFn} getReferentiel={getReferentiel} />)
+    expect((await screen.findByRole('alert')).textContent).toBe('Ce lien de partage n’existe pas, a expiré ou a été révoqué par son auteur.')
+    expect(screen.queryByLabelText('Mot de passe du lien')).toBeNull()
+  })
+
+  it('demande aux moteurs de ne pas indexer la page, le temps qu’elle est affichée', () => {
+    const { unmount } = render(<ShareView token={'a'.repeat(32)} lib={fakeLib} fetchFn={vi.fn()} getReferentiel={getReferentiel} />)
+    const meta = document.head.querySelector('meta[name="robots"][data-share-noindex]')
+    expect(meta?.getAttribute('content')).toBe('noindex, nofollow, noarchive')
+    unmount()
+    expect(document.head.querySelector('meta[data-share-noindex]')).toBeNull()
+  })
+})

@@ -15,9 +15,11 @@ declare(strict_types=1);
  * mutating routes ride the global CSRF middleware.
  */
 
+use Humanome\Auth\Users;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\Db;
 use Humanome\Middleware\RequireRole;
+use Humanome\Share\SharedVersion;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -70,8 +72,14 @@ return function (App $app): void {
         $type = $data['type'] ?? null;
         // 'twin9' (D12) : carto_evolutive natif d'une analyse approfondie,
         // même contrat d'opt-in que les autres types.
-        if (!\in_array($type, ['jour', 'merge', 'twin9'], true)) {
-            $errors['type'] = 'Type invalide (attendu : "jour", "merge" ou "twin9")';
+        // 'partage' (interface ultime, §12) : version partagée figée, réservée
+        // aux comptes qui ont attesté leur majorité — sinon la fonction
+        // n'existe pas (403, rien n'est écrit).
+        if (!\in_array($type, ['jour', 'merge', 'twin9', 'partage'], true)) {
+            $errors['type'] = 'Type invalide (attendu : "jour", "merge", "twin9" ou "partage")';
+        }
+        if ($type === 'partage' && Users::adultAttestedAt(Db::get(), $userId) === null) {
+            return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
         }
         $titre = \is_string($data['titre'] ?? null) ? trim($data['titre']) : '';
         if ($titre === '' || mb_strlen($titre) > 190) {
@@ -80,12 +88,17 @@ return function (App $app): void {
         $visibility = $data['visibility'] ?? 'privee';
         if (!\in_array($visibility, ['privee', 'cartographe', 'publique'], true)) {
             $errors['visibility'] = 'Visibilité invalide (attendu : "privee", "cartographe" ou "publique")';
+        } elseif ($type === 'partage' && $visibility !== 'privee') {
+            $errors['visibility'] = 'Une version partagée reste privée : seul un lien la montre';
         }
         $document = $data['document'] ?? null;
         if (!\is_array($document) || $document === [] || array_is_list($document)) {
             $errors['document'] = 'Document requis (objet JSON de cartographie)';
         } elseif (\strlen(json_encode($document, JSON_UNESCAPED_UNICODE) ?: '') > $maxDocumentBytes) {
             $errors['document'] = 'Document trop volumineux (8 Mo maximum)';
+        } elseif ($type === 'partage') {
+            // Liste blanche de champs : ni portfolio, ni jury, ni dates plus fines que choisi.
+            $errors += SharedVersion::validate($document);
         }
         $runMeta = $data['runMeta'] ?? null;
         if ($runMeta !== null) {
@@ -191,6 +204,8 @@ return function (App $app): void {
             $visibility = $data['visibility'];
             if (!\in_array($visibility, ['privee', 'cartographe', 'publique'], true)) {
                 $errors['visibility'] = 'Visibilité invalide (attendu : "privee", "cartographe" ou "publique")';
+            } elseif ($visibility !== 'privee' && $repo()->typeOwnedBy((int) $args['id'], $userId) === 'partage') {
+                $errors['visibility'] = 'Une version partagée reste privée : seul un lien la montre';
             }
         }
         if ($errors !== []) {

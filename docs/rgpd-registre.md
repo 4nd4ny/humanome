@@ -71,6 +71,31 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Tables | `cartographies` (+ `cartography_annotations`, `cartography_revisions`, `cartography_garanties` pour la relecture cartographe). |
 | Sort à la suppression | `cartographies` en CASCADE ; annotations CASCADE ; révisions anonymisées (`author_id` SET NULL) car ce sont des données de l'apprenant ; garanties CASCADE. |
 
+### 3 bis. Versions partagées de l'interface ultime (adultes, spécification §12)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Permettre à un apprenant **majeur** de montrer, par un lien, une version de sa cartographie qu'il a lui-même composée (employeur, recruteur…). |
+| Personnes concernées | Apprenants adultes (auto-attestation) ; destinataires des liens (aucune donnée collectée sur eux). |
+| Données | Instantané figé `carto-partage` : compétences retenues et leurs chiffres recalculés, dates à la précision choisie (jour, mois ou masquées), extraits choisis et relus (masques de courriels, liens, téléphones, adresses ; remplacements de noms), titre. **Jamais** le portfolio, les délibérations du jury, les notes. Liste blanche de champs vérifiée par le serveur (`Share\SharedVersion`). |
+| Localisation | Local par défaut ; serveur uniquement sur demande explicite (case à cocher + publication), version par version. |
+| Base légale | **a** (consentement explicite, après aperçu verrouillé et relecture des contenus tiers). |
+| Durée | Jusqu'au retrait de la version (effacement immédiat), au retrait de l'attestation (liens révoqués aussitôt) ou à la suppression du compte. Liens : 90 jours par défaut (1-365), révocables, purgés au plus tard 30 jours après expiration ou révocation. |
+| Destinataires | Toute personne munie du lien (et du mot de passe s'il y en a un). Pages et réponses non indexées (`noindex`, `no-store`), aucune statistique tierce. |
+| Journal | Dates des consultations réussies, visibles par l'auteur (`share_consulted` : ids seulement, ni IP ni navigateur). |
+| Tables | `cartographies` (`type = 'partage'`, `visibility = 'privee'` imposée), `share_links` (`password_hash` NULL = lien sans mot de passe), `audit_events`. |
+| Sort à la suppression | Comme les cartographies : CASCADE (versions et liens). |
+
+### 3 ter. Attestation de majorité
+
+| Élément | Détail |
+|---|---|
+| Finalité | Réserver la copie serveur et le partage par lien aux adultes (spécification §12 : « pas de contrôle d'âge, mais une auto-certification »). |
+| Données | Date de l'attestation (`users.adult_attested_at`), posée par la personne elle-même au moment de partager ; aucune date de naissance, aucun justificatif. |
+| Base légale | **b** (condition d'accès à la fonction). |
+| Durée | Jusqu'à son retrait (qui révoque tous les liens actifs des versions partagées) ou à la suppression du compte. |
+| Sort à la suppression | Colonne de la ligne `users` : purgée avec le compte. |
+
 ## 4. Progression de formation
 
 | Élément | Détail |
@@ -90,7 +115,7 @@ exécution du service/contrat, **f** = intérêt légitime.
 |---|---|
 | Finalité | Partager une cartographie validée avec un employeur (lien + mot de passe), décision individuelle explicite (§3.6). |
 | Personnes concernées | Apprenants (émetteurs), employeurs (destinataires). |
-| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage, échéance, date de révocation — **jamais** les valeurs en clair. |
+| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage (facultatif pour une version partagée de l'interface ultime, §3 bis), échéance, date de révocation — **jamais** les valeurs en clair. |
 | Base légale | **a** (consentement, décision individuelle). |
 | Durée | Validité **90 jours par défaut** (réglable 1-365 j à la création, `share.php` `expiresInDays`) ; révocable à tout moment ; liens expirés/révoqués **purgés au plus tard 30 jours** après expiration (`scripts/maintenance.php`). |
 | Destinataires | Employeur muni du lien + mot de passe. |

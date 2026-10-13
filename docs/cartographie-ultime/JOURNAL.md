@@ -28,7 +28,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | `b1907fa` |
 | P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | `77d2d93` |
 | P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 39 tests (cœur, interface, e2e Chromium) + validation sur les journaux réels (D-29) | ✅ 239 verts (carto) + suite du site + e2e | `c7e200c`, corrections `90aacee` → `3ff2dcd` |
-| P6 | copie serveur et partage (adultes) | — | — | — | — |
+| P6 | copie serveur et partage (adultes) | ✅ | ✅ 39 tests (cœur, interface, API, e2e Chromium contre l'API locale) | ✅ 262 verts (carto) + suites du site et de l'API + e2e | voir §5 |
 | P7 | dialogue scripté (option) | — | — | — | — |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
@@ -577,6 +577,137 @@ Référentiel intact. La première passe avait cassé 15 à 26 surlignages sur
    Markdown — D-28.
 4. Ancres alignées sur des mots entiers du texte affiché — D-28.
 
+
+### D-30 — Ce qui part sur le serveur : une version partagée, jamais le master **[à valider]**
+
+« Conserver ses données sur nos serveurs » (§12) est lu au plus juste : ce
+qui est copié sur le serveur, c'est une **version partagée** composée par
+l'apprenant, jamais l'archive complète (master v4), jamais le portfolio. Une
+sauvegarde serveur de tout le travail n'est pas faite (question 14).
+
+- **Liste positive** (`web/src/carto/core/share.js`, `buildSharedVersion`) :
+  seules les compétences cochées y figurent, avec leurs chiffres
+  **recalculés sur cette seule liste** (angles qui somment à 360°, pôles
+  refaits) : un retrait ne laisse ni trou ni trace dans le soleil. Les
+  journées qui comptent sont celles où une compétence retenue est observée ;
+  le jury, les notes, les étiquettes, les ensembles, les métriques ne partent
+  jamais.
+- **Dates** à la précision choisie : jour, mois (proposé par défaut) ou
+  masquées (ni période, ni heatmap, ni date d'extrait ; le nombre de
+  journées reste).
+- **Heatmap** : poids des traces des seules compétences retenues, par jour ou
+  par mois, en cinq niveaux propres à la personne — jamais le volume du
+  portfolio (qui dirait combien la personne écrit, sans qu'elle l'ait choisi).
+- **Extraits** : aucun par défaut ; ceux que la personne coche passent par la
+  relecture (D-33), sans Markdown, bornés à 2 000 caractères.
+- **Référentiel embarqué** : tous les pôles (donnée publique ; les symboles du
+  mode renforcé restent stables), les seules compétences retenues.
+- Le serveur vérifie la même forme **par liste blanche de champs**, à tous
+  les niveaux (`api/src/Share/SharedVersion.php`) : un champ inconnu, une
+  date plus fine que la précision choisie, un extrait d'une compétence
+  retirée ou trop long, un référentiel augmenté sont refusés (422). Les deux
+  listes sont tenues ensemble par une fixture partagée
+  (`schemas/fixtures/partage/carto-partage-exemple.json`) : le test PHP
+  l'accepte, le test du client compare sa forme à celle de
+  `buildSharedVersion`.
+- **[écart]** §12.2 propose « PHP 8 + SQLite (ou fichiers JSON) ». Le site a
+  déjà une API PHP déployée par FTP, avec comptes, liens de partage hachés,
+  quotas, audit et migrations par point d'entrée : la version partagée en
+  est un nouveau type de cartographie (`cartographies.type = 'partage'`,
+  migration 022) plutôt qu'un second stockage à maintenir.
+
+### D-31 — Adultes seulement : une auto-attestation, gardée par le serveur
+
+- `users.adult_attested_at` (migration 022) : date de l'attestation, posée
+  par la personne au moment de partager (« J'atteste avoir 18 ans ou
+  plus »), sans date de naissance ni justificatif. `GET /api/auth/me/adult`
+  et `PUT {adult}` (`api/src/routes/partage.php`).
+- **Le serveur tient la règle**, quoi qu'envoie le client : sans
+  attestation, `POST /api/cartographies` de type `partage` et
+  `POST /api/cartographies/{id}/share` sur une telle version répondent
+  `403 {code: 'adult_required'}` et n'écrivent rien. Retirer l'attestation
+  révoque aussitôt tous les liens actifs des versions partagées du compte ;
+  les versions restent consultables, téléchargeables et effaçables par leur
+  auteur (droits d'export et d'effacement).
+- **Le client** : le module se règle par `{serverEnabled, adultOnly}`
+  (§12.2, `deps.share` de `CartoApp`, normalisé par `normalizeShareConfig`) ;
+  `serverEnabled` est faux par défaut (copie autonome, phase 1) et vrai sur le
+  site, `adultOnly` vrai par défaut. Le serveur répond aussi
+  `required: true` : le client ne peut qu'ajouter l'exigence, jamais la
+  retirer.
+- **Absente de l'interface** : l'espace « Partage »
+  (`#/cartographie/partage`) n'apparaît qu'à un compte apprenant connecté,
+  sur le site ; pas pour un visiteur, ni dans une copie autonome. Pour un
+  compte sans attestation, il ne montre que l'attestation : ni choix, ni
+  aperçu, ni publication, ni lien, ni liste des versions — et aucune requête
+  de publication n'est possible depuis l'interface.
+
+### D-32 — Le lien : mot de passe facultatif, jamais indexé, journal des accès
+
+- Jeton de 128 bits (existant, stocké haché), expiration 90 jours par défaut
+  (1 à 365), révocation immédiate. Pour une version partagée, le mot de
+  passe est **facultatif** (§12.1) : `share_links.password_hash` devient
+  NULL-able ; sans mot de passe, l'URL se termine par `/ouvert` et
+  `GET /api/share/{token}` (public, même quota par IP que le formulaire,
+  404 homogène, 401 `password_required` si le lien a un mot de passe) sert
+  la version. Les autres types gardent le mot de passe obligatoire.
+- **Jamais indexé** : `X-Robots-Tag: noindex, nofollow, noarchive` et
+  `Cache-Control: no-store` sur toutes les réponses publiques de partage,
+  plus une balise `robots` tant que la page de partage est affichée. Aucune
+  statistique tierce (le site n'en a aucune).
+- **Journal des accès** pour l'auteur : `GET /api/shares/{id}/consultations`
+  (dates des consultations réussies, tirées des événements d'audit
+  `share_consulted` qui ne portent que des identifiants — ni IP, ni
+  navigateur). Une ouverture = une consultation : la lecture d'un lien
+  ouvert est partagée entre montages (mode strict de React).
+- Le lien n'est montré **qu'une fois**, à sa création (seule son empreinte
+  est gardée) : l'interface le dit et propose de le copier.
+
+### D-33 — Composer, relire, publier
+
+Espace `ui/SharePanel.jsx`, en trois étapes puis la gestion :
+
+1. **Choisir** : titre (« Ma cartographie de compétences » par défaut, jamais
+   le nom du jeu de données, qui peut contenir celui de la personne),
+   précision des dates, arbre pôles → compétences à cases à trois états,
+   extraits proposés par compétence (traces de l'ensemble coché, chargées à
+   la demande). La version part de l'état affiché (journées cochées, date t).
+2. **Relire** (§12.2, contenus tiers) : masques des courriels, liens,
+   téléphones et adresses (actifs par défaut, avec leurs nombres) ; mots à
+   majuscule repérés dans le titre et les extraits, à remplacer d'un clic
+   par « ‹nom› » (ou un autre nom) ; chaque extrait peut être modifié ou
+   « Retiré de cette version partagée » ; une case « j'ai relu » est exigée.
+3. **Aperçu verrouillé** : le composant même du destinataire (`SharedView`),
+   avec les données mêmes ; encart RGPD (ce qui part, hébergement, durée de
+   conservation, droits, journal, pas d'indexation) et case de demande
+   explicite, puis « Publier la version partagée ».
+
+Vocabulaire : on **retire** d'une version partagée ; « Supprimer » n'apparaît
+nulle part (le retrait d'une version du serveur s'appelle « Retirer cette
+version du serveur »). **Instantané figé** : aucune route ne modifie le
+document d'une version ; une nouvelle version est une nouvelle publication,
+les anciennes restent jusqu'à leur retrait (question 15).
+
+Gestion : versions publiées (privée / lien partagé), liens (création avec
+expiration et mot de passe facultatif, révocation en deux temps, état
+actif / expiré / révoqué), journal des accès, aperçu, export JSON complet
+d'une version (document, liens, journal), retrait immédiat, retrait de
+l'attestation. Hébergement affiché : « OVHcloud, dans l'Union européenne »
+**[à valider]** (question 16).
+
+### D-34 — La vue du destinataire
+
+`ui/SharedView.jsx`, ouverte par `ShareView` pour un partage de type
+`partage` (`#/partage/<jeton>` avec mot de passe, `#/partage/<jeton>/ouvert`
+sans) : titre, période à la précision choisie, nombre de journées et de
+compétences, date de la version ; le soleil (sélection d'un secteur pour
+lire une compétence) ; la heatmap (bande des mois, ou calendrier par jour) ;
+les compétences par pôle avec leurs chiffres, leur description et les
+extraits choisis ; « Comment lire ce soleil » (ce document ne classe pas, ne
+compare pas, ne dit rien de ce qui n'a pas été partagé). Lecture seule, sans
+comparaison ni droit de réponse, sans aucun appel réseau autre que la
+lecture du lien (le référentiel est embarqué).
+
 ---
 
 ## 3. État des tests
@@ -717,6 +848,28 @@ construction du modèle de copie autonome (fiche UC-SYS-04 mise à jour).
 Bout en bout : `npx playwright test e2e/carto-export.e2e.js` vert (Chromium,
 dev-server Vite seul, sans API).
 
+### P6 — copie serveur et lien de partage (adultes)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/share.test.js` | liste positive (angles recalculés sur les seules compétences retenues, 360° sans trou, compétence retirée absente partout, référentiel réduit) ; journées comptées ; version vide ou sans titre refusée ; précision au mois et masquée (période, heatmap, dates d'extraits) ; candidats extraits ; extraits relus (Markdown, blancs, courriel et téléphone masqués, nom remplacé, borne de 2 000 caractères, doublons, compétence retirée) ; **même forme que la fixture partagée acceptée par le serveur** ; aucun champ privé ; lecture par le destinataire (même soleil) ; configuration `serverEnabled` / `adultOnly` ; lien absolu ; propositions de relecture | 15 |
+| `ui/P6.test.jsx` | **critère P6** : visiteur sans compte, module désactivé, copie autonome → pas d'espace Partage, aucun appel ; compte sans attestation → seule l'attestation, ni choix, ni publication, ni lien, aucun appel ; exigence du serveur même si le client ne l'impose pas ; attestation puis retrait (liens révoqués, fonction refermée) ; composer (cases à trois états, « Retirer de cette version partagée », jamais « Supprimer »), relire, aperçu verrouillé, consentement, publication sans portfolio ni date au jour ; extraits choisis, nom de tiers remplacé, extrait retiré ; gestion (lien sans mot de passe montré une fois, journal des accès, révocation, mot de passe trop court refusé, retrait de la version) | 8 |
+| `views/ShareView.test.jsx` (ajouts) | lien ouvert : lecture dès l'ouverture, vue employeur (soleil, extraits), sans formulaire ni comparaison ni réponse, référentiel embarqué ; lien ouvert qui exige un mot de passe ; lien révoqué ; balise `robots` le temps de l'affichage | +4 |
+| `router.test.js` (ajout) | `#/partage/<jeton>`, `#/partage/<jeton>/ouvert`, `#/cartographie/partage` | +1 |
+| `api/tests/CartoPartageTest.php` (PHPUnit) | **critère P6 côté serveur** : sans attestation, rien n'est stocké ni partagé (403 `adult_required`) ; attestation datée, conservée, journalisée une fois ; visiteur 401 ; **liste blanche** (portfolio, traces du jury, référentiel augmenté, compétence inconnue, liste vide, extrait trop long ou d'une compétence retirée ou daté trop finement, journée trop fine, période avec dates masquées, heatmap de mauvaise précision, mauvais `kind`, version inconnue, visibilité publique) ; lien sans mot de passe (`/ouvert`, `GET` 200, en-têtes `noindex` et `no-store`, audit) ; lien protégé (`GET` 401, `POST` 403 puis 200) ; autres types : mot de passe toujours obligatoire ; journal des accès réservé à l'auteur, contrat de la liste des liens inchangé ; retrait de l'attestation : liens révoqués, fonction refermée, export et effacement possibles ; instantané figé ; **fixture partagée acceptée** ; quota par IP commun au `GET` et au `POST` | 10 |
+| `e2e/carto-partage.e2e.js` (Playwright, Chromium, **API docker locale**) | compte apprenant réel sans attestation : seule l'attestation à l'écran, et un `POST` direct est refusé (403), rien en base ; attestation, composition, nom de tiers remplacé, aperçu, publication (en base : la version, sans « Sam » ni texte du portfolio ni compétence retirée), lien sans mot de passe ; un navigateur anonyme l'ouvre (vue employeur, `noindex` dans la page et dans l'en-tête) ; l'auteur voit « Consulté 1 fois » ; retrait de l'attestation → le lien répond « n'existe pas, a expiré ou a été révoqué » ; compte de test effacé | 1 |
+
+Vérification visuelle dans Chromium (API simulée) : attestation, choix,
+relecture, aperçu verrouillé, gestion à 1 440 px ; choix à 390 px (pas de
+défilement horizontal) ; vue du destinataire à 1 440 et 390 px.
+
+Suites complètes après P6 : front **2 208 verts** sur 2 208 (227 fichiers ;
+`twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ;
+API **1 479 verts** (14 090 assertions, 23 min 30 s), puis les 108 tests du
+partage et des cartographies rejoués après les derniers changements (dont le
+test de la fixture partagée) : verts. La base de développement locale a reçu
+la migration 022 (`POST /api/admin/migrate`).
+
 ---
 
 ## 4. Questions ouvertes pour Christian
@@ -751,6 +904,22 @@ dev-server Vite seul, sans API).
 13. Correction hors module (D-27) : la règle d'impression de la facture Twin9
     masquait toute autre impression du site ; elle est désormais limitée à la
     page qui affiche une facture — à confirmer.
+14. Copie serveur (D-30) : seule la version partagée est copiée sur le
+    serveur. Faut-il aussi offrir aux adultes une sauvegarde serveur de toute
+    leur cartographie (portfolio compris), pour la retrouver sur un autre
+    appareil ?
+15. Nouvelle version (D-33) : une nouvelle publication crée une version
+    distincte, avec ses propres liens. Préférez-vous qu'elle remplace une
+    version existante sous le même lien (le destinataire voit alors la mise à
+    jour) ?
+16. Hébergement affiché (D-33) : « OVHcloud, dans l'Union européenne » — à
+    confirmer (centre de données de l'offre mutualisée).
+17. Deux entrées « partager » coexistent pour un apprenant connecté : celle
+    du site (« Partager ma cartographie », `#/espace`, cartographies du
+    moteur, mot de passe obligatoire) et l'espace Partage de l'interface
+    ultime. Faut-il les réunir ?
+18. §12.2 (D-30, **[écart]**) : la version partagée vit dans l'API PHP/MySQL
+    existante du site plutôt que dans un stockage SQLite ou JSON séparé.
 
 ---
 
@@ -782,3 +951,9 @@ dev-server Vite seul, sans API).
   Validation sur les journaux réels : quatre corrections (dont le décalage du
   surlignage après un émoji, défaut de P2), puis aucun surlignage perdu sur
   406 (D-29).
+- **2026-10-14** — P6 : version partagée en liste positive (chiffres
+  recalculés, dates au jour, au mois ou masquées, extraits relus), réservée
+  aux adultes par auto-attestation et gardée par le serveur (liste blanche,
+  403 sans attestation, liens révoqués au retrait), lien à mot de passe
+  facultatif jamais indexé, journal des accès, vue du destinataire ; migration
+  022 ; e2e contre l'API locale (D-30 à D-34).

@@ -295,3 +295,26 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-05
 - Le cahier (§3.2) parle de partager une cartographie **validée** : aucune
   garantie cartographe n'est exigée pour créer un lien ; si elle existe, elle
   est montrée à l'employeur (UC-EMP-01 A1).
+
+## Extension — version partagée de l'interface ultime (spécification §12)
+
+L'interface ultime de cartographie (`#/cartographie/partage`, journal
+`docs/cartographie-ultime/JOURNAL.md`, D-30 à D-34) réutilise ces routes pour
+un type de cartographie dédié, `partage`, **réservé aux adultes** :
+
+- `POST /api/cartographies` avec `type: 'partage'` et
+  `POST /api/cartographies/{id}/share` sur une telle cartographie répondent
+  `403 {code: 'adult_required'}` tant que le compte n'a pas attesté sa
+  majorité (`PUT /api/auth/me/adult {adult: true}`) ; retirer l'attestation
+  révoque aussitôt tous les liens actifs de ces versions ;
+- le document est un instantané `carto-partage` vérifié par liste blanche
+  (`api/src/Share/SharedVersion.php`), toujours en visibilité `privee` ;
+- le mot de passe d'un tel lien est **facultatif** : sans mot de passe, l'URL
+  renvoyée se termine par `/ouvert` et `GET /api/share/{token}` sert la
+  version ;
+- l'auteur lit le journal des accès d'un lien
+  (`GET /api/shares/{shareId}/consultations` : dates seulement).
+
+Les cartographies des autres types gardent exactement le comportement décrit
+ci-dessus (mot de passe obligatoire, ≥ 8 caractères). Tests :
+`api/tests/CartoPartageTest.php`, `web/src/carto/ui/P6.test.jsx`.

@@ -12,7 +12,9 @@ import CartoApp from './carto/ui/CartoApp.jsx'
 import { loadPublishedReferentiel } from './data/referentiel.js'
 
 // Dépendances de l'interface ultime de cartographie (constante : identité stable).
-const CARTO_DEPS = { loadReferential: loadPublishedReferentiel }
+// Partage (spec §12.2) : copie serveur et lien activés sur le site, réservés
+// aux adultes ; le serveur exige de toute façon l'attestation de majorité.
+const CARTO_DEPS = { loadReferential: loadPublishedReferentiel, share: { serverEnabled: true, adultOnly: true } }
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
@@ -123,6 +125,9 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   // roles = [] pour un visiteur ou une copie statique — la nav « Découvrir »
   // reste toujours affichée.
   const [roles, setRoles] = useState([])
+  // Rôles transmis à l'interface de cartographie : l'espace Partage n'est
+  // offert qu'à un compte apprenant (le serveur garde ses propres contrôles).
+  const cartoSession = useMemo(() => ({ roles }), [roles])
   // Identité minimale pour l'avatar de nav (D6) : {id, displayName, hasAvatar}.
   const [sessionUser, setSessionUser] = useState(null)
   const [helpOpen, setHelpOpen] = useState(false)
@@ -483,7 +488,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     case 'cartographie':
       // Interface ultime de cartographie (docs/cartographie-ultime) : cinq
       // espaces, données dans le navigateur, démonstration incluse.
-      view = <CartoApp route={route} deps={CARTO_DEPS} />
+      view = <CartoApp route={route} deps={CARTO_DEPS} session={cartoSession} />
       break
     case 'cartographie-v3':
       // Interface V3 précédente, conservée pour comparaison.
@@ -541,7 +546,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <EspaceView section={route.section} lib={lib} />
       break
     case 'share':
-      view = <ShareView token={route.token} lib={lib} />
+      view = <ShareView token={route.token} open={Boolean(route.open)} lib={lib} />
       break
     case 'cartographe':
       view = <CartographeView section={route.section} lib={lib} />

@@ -58,7 +58,7 @@ export function parseHash(hash) {
   // #/cartographie et ses espaces #/cartographie/<espace>, plus la journée
   // seule #/cartographie/jour/<iso>[?focus=<code>].
   if (path === '/cartographie') return { name: 'cartographie' }
-  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|export)$/.exec(path)
+  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|export|partage)$/.exec(path)
   if (cartoSpace) return { name: 'cartographie', sub: cartoSpace[1] }
   const cartoDay = /^\/cartographie\/jour\/([^/]+)$/.exec(path)
   if (cartoDay) {
@@ -108,9 +108,11 @@ export function parseHash(hash) {
   const espaceMatch = /^\/espace\/(.+)$/.exec(path)
   if (espaceMatch) return { name: 'espace', section: decodeURIComponent(espaceMatch[1]) }
 
-  // Lien de partage employeur (P8) : #/partage/<token>
-  const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})$/.exec(path)
-  if (shareMatch) return { name: 'share', token: shareMatch[1] }
+  // Lien de partage employeur (P8) : #/partage/<token> ; lien SANS mot de
+  // passe d'une version partagée (interface ultime, §12) :
+  // #/partage/<token>/ouvert — la version s'ouvre directement.
+  const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})(\/ouvert)?$/.exec(path)
+  if (shareMatch) return shareMatch[2] ? { name: 'share', token: shareMatch[1], open: true } : { name: 'share', token: shareMatch[1] }
 
   // Espace cartographe (P9) : #/cartographe[/<section>]
   if (path === '/cartographe') return { name: 'cartographe', section: null }

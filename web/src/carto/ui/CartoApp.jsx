@@ -3,7 +3,8 @@
 //   gestionnaire (cases cochées = ensemble S) → heatmap (date t) → soleil (état(S, t)).
 // Routes (journal D-2) : #/cartographie, #/cartographie/gestionnaire,
 // #/cartographie/comparaison, #/cartographie/tableau-de-bord,
-// #/cartographie/export, #/cartographie/jour/<date>.
+// #/cartographie/export, #/cartographie/partage (phase 2 : adultes, compte
+// apprenant, module activé par configuration), #/cartographie/jour/<date>.
 
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
 import { useCartoData } from './useCartoData.js'
@@ -30,6 +31,9 @@ import { usePrintExpand } from './print.js'
 import { ComparePanel } from './ComparePanel.jsx'
 import { Dashboard } from './Dashboard.jsx'
 import { ExportPanel } from './ExportPanel.jsx'
+import { SharePanel } from './SharePanel.jsx'
+import { createShareApi } from './shareApi.js'
+import { normalizeShareConfig } from '../core/share.js'
 import './carto.css'
 
 export const SPACES = [
@@ -38,6 +42,7 @@ export const SPACES = [
   ['comparaison', 'Comparaison', '#/cartographie/comparaison'],
   ['tableau-de-bord', 'Tableau de bord', '#/cartographie/tableau-de-bord'],
   ['export', 'Export', '#/cartographie/export'],
+  ['partage', 'Partage', '#/cartographie/partage'],
 ]
 
 const GEOMETRY = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5 })
@@ -91,13 +96,20 @@ const go = (hash) => {
 
 /**
  * @param {{route?: {sub?: string | null, date?: string, focus?: string | null},
- *   deps?: {store?: object, fetchFn?: typeof fetch, loadReferential?: () => Promise<{doc: object}>},
+ *   deps?: {store?: object, fetchFn?: typeof fetch, loadReferential?: () => Promise<{doc: object}>,
+ *     share?: {serverEnabled?: boolean, adultOnly?: boolean}, shareApi?: object},
+ *   session?: {roles?: string[]},
  *   slots?: Record<string, (ctx: object) => React.ReactNode>}} props
  *   slots : espaces fournis par les phases suivantes (comparaison, tableau de bord, export…)
+ *   deps.share : module de partage (spec §12.2) — absent ou serverEnabled faux, l'espace
+ *   n'existe pas ; session.roles : il n'est offert qu'à un compte apprenant connecté.
  */
-export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site' }) {
+export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site', session = null }) {
   const viewer = mode === 'viewer'
   const data = useCartoData(deps)
+  const shareConfig = useMemo(() => normalizeShareConfig(deps.share), [deps.share])
+  const canShare = !viewer && shareConfig.serverEnabled && (session?.roles ?? []).includes('apprenant')
+  const shareApi = useMemo(() => deps.shareApi ?? createShareApi(deps.fetchFn ? { fetchFn: deps.fetchFn } : {}), [deps.shareApi, deps.fetchFn])
   const [ui, dispatch] = useReducer(reducer, initialUi)
   const rootRef = useRef(null)
   usePrintExpand(rootRef)
@@ -255,7 +267,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     <div ref={rootRef} className={`carto-app carto-tab-${ui.mobileTab}${ui.reader ? ' has-reader' : ''}`}>
       <ContextBar dataset={dataset} state={state} t={ui.t} activeCount={activeDates.length} expert={ui.expert} viewer={viewer} onExpert={(on) => dispatch({ type: 'expert', on })} onResetT={() => setT(null)} />
       <nav className="carto-spaces" aria-label="Espaces de la cartographie">
-        {SPACES.filter(([id]) => !(viewer && id === 'export')).map(([id, label, hash]) => (
+        {SPACES.filter(([id]) => !(viewer && id === 'export') && (id !== 'partage' || canShare)).map(([id, label, hash]) => (
           <a key={id} href={hash} aria-current={space === id ? 'page' : undefined}>
             {label}
             {id === 'gestionnaire' && todoCount(dataset) > 0 ? <span className="carto-dot" aria-label={`${todoCount(dataset)} anomalies à traiter`} /> : null}
@@ -446,6 +458,24 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
             fetchFn={deps.fetchFn}
             onOpenDataset={() => go('#/cartographie')}
           />
+        )
+      ) : space === 'partage' && !slots.partage ? (
+        canShare ? (
+          <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} />
+        ) : (
+          <p className="carto-muted carto-pad">
+            {viewer
+              ? 'Le partage n’est pas disponible dans une copie autonome.'
+              : !shareConfig.serverEnabled
+                ? 'Le partage par lien n’est pas activé sur ce site : votre cartographie reste dans ce navigateur.'
+                : 'Le partage par lien est réservé aux comptes apprenants connectés, et aux adultes. Tout le reste fonctionne sans compte, dans ce navigateur.'}
+            {!viewer && shareConfig.serverEnabled ? (
+              <>
+                {' '}
+                <a href="#/compte">Se connecter</a>
+              </>
+            ) : null}
+          </p>
         )
       ) : slots[space] ? (
         slots[space](ctx)
