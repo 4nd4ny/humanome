@@ -28,6 +28,7 @@ import { PoleReports } from './PoleReports.jsx'
 import { DayKairos, EvolutiveNarratives } from './Narratives.jsx'
 import { usePrintExpand } from './print.js'
 import { ComparePanel } from './ComparePanel.jsx'
+import { Dashboard } from './Dashboard.jsx'
 import './carto.css'
 
 export const SPACES = [
@@ -413,6 +414,18 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
         />
       ) : space === 'comparaison' && !slots.comparaison ? (
         <ComparePanel dataset={dataset} refl={refl} params={params} geometry={GEOMETRY} t={ui.t} update={data.update} onOpenDay={openDay} />
+      ) : space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? (
+        <Dashboard
+          dataset={dataset}
+          refl={refl}
+          state={state}
+          params={params}
+          getDetail={getDetail}
+          ensureDetails={ensureDetails}
+          update={data.update}
+          onOpenDay={openDay}
+          onOpenTrace={openTrace}
+        />
       ) : slots[space] ? (
         slots[space](ctx)
       ) : (

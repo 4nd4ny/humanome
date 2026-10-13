@@ -25,8 +25,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 112 tests | ✅ 112 verts | `16cca1a`, `1d6472d` |
 | P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | `e4c21fd` |
 | P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | `13796b0` |
-| P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | (ce commit) |
-| P4 | tableau de bord des métriques | — | — | — | — |
+| P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | `b1907fa` |
+| P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | (ce commit) |
 | P5 | exports JSON / HTML / PDF, anonymisation | — | — | — | — |
 | P6 | copie serveur et partage (adultes) | — | — | — | — |
 | P7 | dialogue scripté (option) | — | — | — | — |
@@ -357,6 +357,62 @@ plus »), parts qui diffèrent le plus. Au-delà de cinq compétences propres à
 ensemble, une seule phrase les cite. Les tests vérifient qu'aucune phrase ne
 contient de mot de valence (progrès, amélioration, recul, meilleur…).
 
+### D-22 — Tableau de bord : neuf cartes qui se masquent seules
+
+- Profil, Rythme, Phases et repères, Constance, Moments remarquables, Style
+  (local), Fonctions cognitives, Rupture lexicale, Ruptures et anomalies
+  d'import (`core/dashboard.js`, `ui/Dashboard.jsx`). Chaque carte calcule ses
+  données à la volée ; sans données, elle n'est **pas affichée** et une ligne
+  « N cartes sans données » en donne la raison (critère P4). L'apprenant peut
+  aussi masquer une carte et la rappeler.
+- Grille de tuiles de V3 réutilisée telle quelle (glisser-déposer, tailles,
+  colonnes automatiques), aux couleurs du site ; la disposition, les cartes
+  masquées et la sensibilité des moments sont des préférences du jeu.
+- Graphiques SVG maison (`ui/charts.jsx`) dessinés à la largeur réelle de leur
+  tuile (les textes gardent leur taille) : axe temporel **réel** (les silences
+  se voient, une courbe est coupée au-delà de 7 jours sans donnée), aucun zéro
+  inventé, un seul arrêt de tabulation par graphique (← → pour parcourir les
+  journées, Entrée pour ouvrir la journée), info-bulle au survol, au toucher et
+  au clavier, libellé par point. Couleur = fonction, jamais personne.
+- Chaque carte dit sa source : « niveau de preuve : exploratoire — un seul
+  codeur » pour ce qui vient des analyses, « calcul local et déterministe »
+  pour le reste.
+
+### D-23 — Style local et rupture lexicale
+
+- 19 mesures à expressions régulières (`core/stylometry.js`) : longueur des
+  mots, variété du vocabulaire (TTR glissant sur 100 mots, pour ne pas
+  dépendre de la longueur du texte), mots employés une fois, longueur des
+  phrases, interrogatives, exclamatives, ponctuation interne, parenthèses,
+  1re et 3e personnes, connecteurs d'opposition et de cause, modalisateurs,
+  verbes de pensée, méta-discours, questions qu'on se pose, mots d'émotion,
+  interjections, émojis. Les listes de mots sont courtes, lisibles et
+  **affichées** dans la carte. Mesure impossible (texte sans phrase…) = null.
+- La heatmap journées × mesures est normalisée **ligne par ligne sur les
+  journées de la personne** (min–max) ; une journée de moins de 50 mots n'est
+  pas mesurée (case vide).
+- Rupture lexicale = 1 − cosinus des fréquences de mots pleins (≥ 3 lettres,
+  hors mots-outils) entre deux journées écrites consécutives ; non mesurée
+  sous 20 mots pleins ; aucun seuil fixe, la médiane de la personne sert de
+  repère.
+
+### D-24 — Moments remarquables et fonctions cognitives
+
+- Moments : traces dont le poids (rôle × confiance) atteint un seuil réglé par
+  la sensibilité 0–100 (pas de 5) : 0 → 0,9, 50 → 0,6 (défaut), 100 → 0,3 ;
+  « signaux forts seulement » sous 35, « signaux faibles inclus » au-dessus de
+  65. Chaque moment : date, compétence, barre de confiance (vert > 0,6, orange
+  > 0,3, gris sinon), extrait, « Ouvrir dans le portfolio », et « première
+  impression » du jour : celle du miroir HumanoTwin si importé, sinon le
+  portrait kairos du jour, sinon le début du texte du jour.
+- Fonctions cognitives : l'import reconnaît désormais le fichier **miroir**
+  d'HumanoTwin (`trajectoire` + `signatures_par_sensibilite`) en plus du format
+  `metrics[date][champ]` : sept fonctions (couleur fixe par fonction), premières
+  impressions du jour, signatures dédoublonnées avec la plus petite
+  sensibilité où elles apparaissent. Courbes à légende cliquable, signatures en
+  repères, « inclure les signaux faibles ». Le format définitif reste le point
+  ouvert 7.
+
 ---
 
 ## 3. État des tests
@@ -426,6 +482,22 @@ Suite complète du front après P3 : **2 113 verts** sur 216 fichiers (seul
 Vérification visuelle dans Chromium sur la démonstration (59 journées) :
 les huit vues à 1 440 px, la page à 390 px sans défilement horizontal.
 
+### P4 — tableau de bord
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/stylometry.test.js` | découpage en mots et en phrases ; 19 mesures sur un texte connu ; texte vide = null ; TTR glissant ; distance lexicale | 8 |
+| `core/dashboard.test.js` | données de chaque carte (profil, rythme, constance, moments et sensibilité, style normalisé par ligne, miroir HumanoTwin, rupture lexicale, anomalies) ; **critère P4 : chaque carte sans données vaut null** | 13 |
+| `ui/P4.test.jsx` | **critère P4 dans l'interface** (portfolio court, sans portfolio, portfolio long + miroir) avec la raison de chaque carte absente ; masquer / rappeler une carte ; sensibilité des moments et ouverture dans le portfolio ; repère ajouté, vu sur le rythme, retiré en deux temps ; graphique au clavier | 7 |
+
+Suite complète du front après P4 : **2 140 verts** sur 2 141 ; l'unique échec,
+`UC-ADM-04-U15` (formulaire des réglages de la démo, sans lien avec la
+cartographie), est **instable sous charge** : il passe seul (3 fois sur 3).
+`twin6-prompt-package.test.js` reste non chargeable (anomalie connue).
+Vérification visuelle dans Chromium : tableau de bord sur la démonstration (59
+journées : l'axe temporel réel montre le silence de janvier–février) et sur
+un jeu synthétique avec portfolio long et miroir, à 1 440 px et 390 px.
+
 Validation du lecteur sur les journaux réels (sur le Mac, compteurs
 seulement, même chaîne que l'interface : Markdown rendu, assaini, recherche
 dans le texte affiché) :
@@ -494,3 +566,6 @@ suivante, détail, jury, sans erreur de console.
   évolutives, impression (D-13 à D-17).
 - **2026-10-13** — P3 : comparaison de soi à soi (côtés nommés, préréglages,
   deux analyses du même portfolio, huit vues, précautions, note) (D-18 à D-21).
+- **2026-10-13** — P4 : tableau de bord (neuf cartes qui se masquent seules,
+  graphiques SVG accessibles, style local, rupture lexicale, moments,
+  miroir HumanoTwin) (D-22 à D-24).

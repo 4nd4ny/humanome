@@ -1920,6 +1920,322 @@ kbd {
   }
 }
 
+/* ---- Tableau de bord (P4) ------------------------------------------------------------------------- */
+.carto-dashboard {
+  /* La grille de tuiles de V3, aux couleurs du site (thèmes clair et sombre). */
+  --v3-border: var(--line);
+  --v3-surface: var(--card);
+  --v3-surface-2: var(--surface-2);
+  --v3-text: var(--ink);
+  --v3-muted: var(--ink-faint);
+  --v3-accent: var(--accent);
+  --v3-focus: var(--accent);
+}
+.carto-dashboard-head h2 {
+  margin: 0.25rem 0;
+  font-size: 1.25rem;
+}
+.carto-dashboard .v3-tile {
+  background: var(--card);
+}
+.carto-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.carto-card-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.3rem 0.6rem 0;
+}
+.carto-card-body {
+  padding: 0.35rem 0.6rem 0.75rem;
+}
+.carto-card-body h4 {
+  font-size: 0.86rem;
+  margin: 0.6rem 0 0.25rem;
+}
+.carto-dashboard-hidden {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+.carto-dashboard-missing {
+  margin-top: 0.75rem;
+}
+.carto-chart {
+  margin: 0.3rem 0;
+}
+.carto-chart-box {
+  position: relative;
+}
+.carto-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.carto-chart svg:focus-visible {
+  outline: 2px solid var(--accent);
+}
+.carto-chart-grid line {
+  stroke: var(--line);
+}
+.carto-chart-grid text,
+.carto-chart-month text,
+.carto-chart-ref text,
+.carto-chart-phase text,
+.carto-chart-marker text {
+  font-size: 10px;
+  fill: var(--ink-soft);
+}
+.carto-chart-month line {
+  stroke: var(--ink-faint);
+}
+.carto-chart-ref line {
+  stroke: var(--ink-soft);
+  stroke-dasharray: 4 3;
+}
+.carto-chart-ref text,
+.carto-chart-marker text {
+  paint-order: stroke;
+  stroke: var(--card);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.carto-chart-phase rect {
+  fill: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.carto-chart-marker line {
+  stroke: var(--ink);
+  stroke-dasharray: 2 2;
+}
+.carto-chart-series polyline {
+  fill: none;
+  stroke-width: 1.8;
+}
+.carto-chart-bar.is-active {
+  opacity: 0.75;
+}
+.carto-chart-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.carto-chart-hit.is-active {
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.carto-chart-tip {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  max-width: 18rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  border-radius: 4px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.78rem;
+  pointer-events: none;
+  z-index: 2;
+}
+.carto-spark {
+  display: block;
+  width: 160px;
+  height: 28px;
+}
+.carto-spark-base {
+  stroke: var(--line);
+}
+.carto-spark-dot {
+  fill: var(--ink-soft);
+}
+.carto-radar {
+  display: block;
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+.carto-radar-grid {
+  fill: none;
+  stroke: var(--line);
+}
+.carto-radar-a {
+  fill: color-mix(in srgb, var(--cmp-a) 30%, transparent);
+  stroke: var(--cmp-a);
+  stroke-width: 2;
+}
+.carto-radar-b {
+  fill: none;
+  stroke: var(--cmp-b);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+.carto-radar-label,
+.carto-radar-tick {
+  font-size: 10px;
+  fill: var(--ink-soft);
+}
+.carto-hist {
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin: 0.3rem 0;
+}
+.carto-mini-table {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  width: 100%;
+  margin-top: 0.4rem;
+}
+.carto-mini-table th,
+.carto-mini-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.2rem 0.35rem;
+  text-align: left;
+  vertical-align: middle;
+}
+.carto-mini-table .carto-num {
+  text-align: right;
+  white-space: nowrap;
+}
+.carto-conf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.carto-conf-track {
+  display: inline-block;
+  width: 4rem;
+  height: 0.45rem;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.carto-conf-fill {
+  display: block;
+  height: 100%;
+}
+.carto-conf-fill.is-high {
+  background: #15803d;
+}
+.carto-conf-fill.is-mid {
+  background: #c2410c;
+}
+.carto-conf-fill.is-low {
+  background: #9ca3af;
+}
+.carto-moments,
+.carto-signatures,
+.carto-marker-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.carto-moment {
+  border-left: 3px solid var(--pole-color, var(--line));
+  padding-left: 0.55rem;
+}
+.carto-moment-head {
+  margin: 0 0 0.2rem;
+  font-size: 0.86rem;
+}
+.carto-moment-head .carto-link-btn {
+  margin-left: 0;
+}
+.carto-marker-list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem;
+  font-size: 0.86rem;
+}
+.carto-marker-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+.carto-field--grow {
+  flex: 1 1 12rem;
+}
+.carto-legend-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.carto-legend-btn {
+  font: inherit;
+  font-size: 0.78rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--fn-color);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+  cursor: pointer;
+}
+.carto-legend-btn[aria-pressed='false'] {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.carto-style-table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 0.74rem;
+}
+.carto-style-table th[scope='row'] {
+  text-align: left;
+  font-weight: 400;
+  white-space: nowrap;
+  padding-right: 0.4rem;
+  position: sticky;
+  left: 0;
+  background: var(--card);
+}
+.carto-style-cell {
+  width: 14px;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 2px;
+}
+.carto-style-cell.is-missing {
+  background: transparent;
+  outline: 1px dashed var(--line);
+  outline-offset: -1px;
+}
+.carto-style-date {
+  font: inherit;
+  font-size: 0.66rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+@media print {
+  .carto-dashboard .v3-tile-bar,
+  .carto-card-tools button,
+  .carto-marker-form {
+    display: none !important;
+  }
+  .carto-dashboard .v3-tile-grid {
+    display: block;
+  }
+  .carto-dashboard .v3-tile-content {
+    overflow: visible;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carto-app * {
     transition: none !important;

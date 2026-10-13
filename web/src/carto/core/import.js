@@ -311,10 +311,16 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     counts.narratives = recognized.narratives.length
   }
   if (recognized.metrics) {
-    const prev = ds.metrics ?? { source: recognized.metrics.source, fields: {}, byDate: {} }
+    const m = recognized.metrics
+    const prev = ds.metrics ?? { source: m.source, fields: {}, byDate: {} }
     const byDateMerged = structuredClone(prev.byDate)
-    for (const [d, row] of Object.entries(recognized.metrics.byDate)) byDateMerged[d] = { ...(byDateMerged[d] ?? {}), ...row }
-    ds.metrics = { source: recognized.metrics.source, fields: { ...prev.fields, ...recognized.metrics.fields }, byDate: byDateMerged }
+    for (const [d, row] of Object.entries(m.byDate)) byDateMerged[d] = { ...(byDateMerged[d] ?? {}), ...row }
+    const next = { source: m.source, fields: { ...prev.fields, ...m.fields }, byDate: byDateMerged }
+    const fi = { ...(prev.firstImpressions ?? {}), ...(m.firstImpressions ?? {}) }
+    if (Object.keys(fi).length > 0) next.firstImpressions = fi
+    const sigs = new Map([...(prev.signatures ?? []), ...(m.signatures ?? [])].map((x) => [`${x.type}|${x.date}|${x.question}`, x]))
+    if (sigs.size > 0) next.signatures = [...sigs.values()].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+    ds.metrics = next
   }
 
   // Formats reconnus mais traités par un autre importeur.
