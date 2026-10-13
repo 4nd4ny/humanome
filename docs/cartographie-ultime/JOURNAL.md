@@ -29,7 +29,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | `77d2d93` |
 | P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 39 tests (cœur, interface, e2e Chromium) + validation sur les journaux réels (D-29) | ✅ 239 verts (carto) + suite du site + e2e | `c7e200c`, corrections `90aacee` → `3ff2dcd` |
 | P6 | copie serveur et partage (adultes) | ✅ | ✅ 39 tests (cœur, interface, API, e2e Chromium contre l'API locale) | ✅ 262 verts (carto) + suites du site et de l'API + e2e | `a6972bb` |
-| P7 | dialogue scripté (option) | ✅ | ✅ 18 tests (cœur, interface, e2e Chromium) | ✅ 279 verts (carto) + suites du site + e2e | voir §5 |
+| P7 | dialogue scripté (option) | ✅ | ✅ 18 tests (cœur, interface, e2e Chromium) | ✅ 279 verts (carto) + suites du site + e2e | `e08f8c9` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
