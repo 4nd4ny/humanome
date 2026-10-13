@@ -25,7 +25,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P0 | noyau `core/` : modèle, importeurs, formules §5 | ✅ | ✅ 112 tests | ✅ 112 verts | `16cca1a`, `1d6472d` |
 | P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | `e4c21fd` |
 | P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | `13796b0` |
-| P3 | comparaison A/B (8 vues) | — | — | — | — |
+| P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | (ce commit) |
 | P4 | tableau de bord des métriques | — | — | — | — |
 | P5 | exports JSON / HTML / PDF, anonymisation | — | — | — | — |
 | P6 | copie serveur et partage (adultes) | — | — | — | — |
@@ -309,6 +309,54 @@ Tous les `<details>` s'ouvrent à `beforeprint` et ceux qu'on a ouverts se
 referment à `afterprint`. Le lecteur, les boutons et la note privée ne sont
 pas imprimés ; le tableau équivalent du soleil l'est.
 
+### D-18 — Comparaison : deux côtés définis par l'apprenant
+
+- Chaque côté a un nom (choisi par l'apprenant) et une définition : sélection
+  courante, ensemble nommé, période (option « journées cochées seulement »),
+  étiquette, ou **analyse** (source + run) pour comparer deux analyses du même
+  portfolio : `computeState` accepte alors une fonction `variantOf` qui choisit
+  la variante de chaque journée (`core/compare.js`).
+- La dernière comparaison (A, B, vue) est gardée dans les préférences du jeu ;
+  la note de l'apprenant est rangée dans `comparisons[]` du master, sous la clé
+  des deux définitions (§9.4).
+
+### D-19 — Préréglages
+
+« Depuis la dernière évaluation », « depuis le début du trimestre » et
+« depuis le début de l'année scolaire » comparent l'état cumulé à une date
+repère (A) et l'état cumulé à la date de référence (B, la date t ou la
+dernière journée cochée analysée) : B contient A, ce que l'interface signale.
+« Année scolaire précédente » compare deux années scolaires disjointes. Seules
+les journées cochées comptent. Le trimestre est civil, comme dans V3
+**[à valider : trimestre scolaire ?]**. Un préréglage sans données le dit et
+ne change rien.
+
+### D-20 — Mesures de la comparaison
+
+- Tableau par pôle et compétence : part ipsative, intensité absolue,
+  confiance cumulée, nombre de journées, et moyenne [min–max] σ de
+  l'**intensité du jour** (traces de ce seul jour) sur les journées observées
+  seulement ; Δ = B − A ; Δ relatif seulement quand A dépasse 2 % de part ou
+  0,1 d'intensité. Aucune couleur de verdict : les deux ensembles ont deux
+  teintes neutres, B toujours en pointillé.
+- Avertissement dès que A et B n'ont pas le même nombre de journées analysées
+  (critère P3), et dès qu'ils se recouvrent.
+- Radar : 7 pôles ou compétences d'un pôle, échelle commune max(A, B) arrondie
+  au point supérieur (1 % sous 10 %, sinon 5 %), sans plafond fixe.
+- Journées par pôle : les cinq journées où le pôle pèse le plus (somme des
+  intensités du jour de ses compétences), en liste non numérotée et allumées
+  sur une heatmap — des repères pour choisir quoi relire, pas une note.
+- Concentration : part cumulée des cinq plus grandes parts de chaque soleil.
+
+### D-21 — Récit « ce qui a changé »
+
+Phrases factuelles et datées (`changeNarrative`) : tailles et périodes,
+journées communes, compétences propres à A ou à B, journées de plus quand B
+prolonge A (« depuis le 1er janvier 2026, … apparaît dans 4 journées de
+plus »), parts qui diffèrent le plus. Au-delà de cinq compétences propres à un
+ensemble, une seule phrase les cite. Les tests vérifient qu'aucune phrase ne
+contient de mot de valence (progrès, amélioration, recul, meilleur…).
+
 ---
 
 ## 3. État des tests
@@ -365,6 +413,18 @@ sans erreur de console.
 | `core/passages.test.js` | ordre de recherche ; trouvé / partiel / retrouvé ailleurs (exact seulement) / introuvable / sans texte ; une ancre raccourcie ne déplace pas le lecteur ; synthèses évolutives visibles seulement pour leur ensemble source | 8 |
 | `ui/highlight-dom.test.js` | séparateur de blocs ; extrait sur deux paragraphes = un `<mark>` par nœud texte, aucun autour d'un `<p>` ; segments blancs ignorés ; orange ; toutes les occurrences et occurrence courante ; marques Markdown retirées ; assainissement (ni script, ni image, ni `javascript:`) | 7 |
 | `ui/P2.test.jsx` | **critère P2 : passage surligné dans le portfolio importé en cartographie fusionnée** (3 journées), trace suivante, retour à la compétence ; **idem depuis un `carto_merge.json`** ; décalage de date dit comme tel ; introuvable ; sans portfolio ; deux occurrences ; depuis la modale du jour (focus rendu) ; motif / prescription / Pédagogue / Greffier ; droit de réponse enregistré sans effet sur le soleil ; état inconnu ≠ « Contestée » ; rapport de pôle sans « territoires non visités » ; kairos ; synthèse évolutive masquée puis rappelée ; impression ; AuroraCore (six éclairages, président, délibération, pièces, surlignage dans la feuille du journal) | 15 |
+
+### P3 — comparaison de soi à soi
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/compare.test.js` | communes / seulement A / B ; parts à somme 1 ; **tailles différentes → avertissement** ; recouvrement ; tableau (intensité, confiance, n, moyenne / min / max / σ, Δ, pas de Δ relatif sans base) ; pôles, concentration, échelle du radar ; statistiques ; journées par pôle ; deux analyses du même portfolio ; préréglages (dont indisponibles et journées décochées) ; **récit sans valence** | 12 |
+| `ui/P3.test.jsx` | avertissements de taille et de recouvrement ; huit vues au clavier, **aucune ne contient de rang ni de mot de verdict** ; deux périodes de même taille ; communes / seulement A / B ; préréglage indisponible ; note enregistrée | 5 |
+
+Suite complète du front après P3 : **2 113 verts** sur 216 fichiers (seul
+`twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
+Vérification visuelle dans Chromium sur la démonstration (59 journées) :
+les huit vues à 1 440 px, la page à 390 px sans défilement horizontal.
 
 Validation du lecteur sur les journaux réels (sur le Mac, compteurs
 seulement, même chaîne que l'interface : Markdown rendu, assaini, recherche
@@ -432,3 +492,5 @@ suivante, détail, jury, sans erreur de console.
   occurrences, décalage de date), panneau de détail (traces, verdicts, jury à
   deux niveaux, droit de réponse), rapports de pôle, kairos, synthèses
   évolutives, impression (D-13 à D-17).
+- **2026-10-13** — P3 : comparaison de soi à soi (côtés nommés, préréglages,
+  deux analyses du même portfolio, huit vues, précautions, note) (D-18 à D-21).

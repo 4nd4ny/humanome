@@ -5,7 +5,7 @@
 // ses dates (§4.1 « fige un instantané si demandé »). Les cases tri-états du
 // gestionnaire (mois, semaine, année scolaire, étiquette) se calculent ici.
 
-import { isoWeekKey, monthKey, monthName, schoolYearOf } from './dates.js'
+import { formatShort, isoWeekKey, monthKey, monthName, schoolYearOf } from './dates.js'
 
 export const SET_KINDS = ['dates', 'period', 'tags', 'selection']
 
@@ -31,7 +31,7 @@ export function resolveDefinition(def, dataset) {
     }
     case 'period':
       return dataset.days
-        .filter((d) => (!def.from || d.date >= def.from) && (!def.to || d.date <= def.to))
+        .filter((d) => (!def.from || d.date >= def.from) && (!def.to || d.date <= def.to) && (!def.onlyActive || d.active))
         .map((d) => d.date)
         .sort()
     case 'tags': {
@@ -53,8 +53,13 @@ export function describeDefinition(def) {
   switch (def?.kind) {
     case 'dates':
       return `${def.dates?.length ?? 0} journée${(def.dates?.length ?? 0) > 1 ? 's' : ''} choisie${(def.dates?.length ?? 0) > 1 ? 's' : ''}`
-    case 'period':
-      return `période ${def.from ?? '…'} → ${def.to ?? '…'}`
+    case 'period': {
+      const only = def.onlyActive ? ' (journées cochées)' : ''
+      if (def.from && def.to) return `du ${formatShort(def.from)} au ${formatShort(def.to)}${only}`
+      if (def.to) return `jusqu’au ${formatShort(def.to)}${only}`
+      if (def.from) return `depuis le ${formatShort(def.from)}${only}`
+      return `toutes les journées${only}`
+    }
     case 'tags':
       return `${def.match === 'all' ? 'toutes les étiquettes' : 'étiquette'} ${(def.tags ?? []).map((t) => `« ${t} »`).join(def.match === 'all' ? ' et ' : ' ou ')}`
     case 'selection':

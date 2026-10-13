@@ -27,6 +27,7 @@ import { DayVerdictDetail, ObservationDays, TraceList, verdictDetailOf } from '.
 import { PoleReports } from './PoleReports.jsx'
 import { DayKairos, EvolutiveNarratives } from './Narratives.jsx'
 import { usePrintExpand } from './print.js'
+import { ComparePanel } from './ComparePanel.jsx'
 import './carto.css'
 
 export const SPACES = [
@@ -410,6 +411,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
           }}
           onOpenDay={openDay}
         />
+      ) : space === 'comparaison' && !slots.comparaison ? (
+        <ComparePanel dataset={dataset} refl={refl} params={params} geometry={GEOMETRY} t={ui.t} update={data.update} onOpenDay={openDay} />
       ) : slots[space] ? (
         slots[space](ctx)
       ) : (

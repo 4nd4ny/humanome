@@ -1642,6 +1642,284 @@ kbd {
   box-shadow: 0 0 0 2px #b45309;
 }
 
+/* ---- Comparaison de soi à soi (P3) ------------------------------------------------------------- */
+.carto-compare {
+  max-width: 1200px;
+}
+.carto-compare-head h2 {
+  margin: 0.25rem 0;
+  font-size: 1.25rem;
+}
+.carto-cmp-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0;
+}
+.carto-cmp-sides {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.carto-cmp-side {
+  border: 1px solid var(--line);
+  border-radius: var(--carto-radius);
+  padding: 0.5rem 0.8rem 0.6rem;
+  margin: 0;
+  min-width: 0;
+}
+.carto-cmp-side legend {
+  font-weight: 700;
+  padding: 0 0.3rem;
+}
+.carto-cmp-side--a {
+  border-top: 3px solid var(--cmp-a);
+}
+.carto-cmp-side--b {
+  border-top: 3px dashed var(--cmp-b);
+}
+.carto-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0.35rem 0;
+  font-size: 0.88rem;
+}
+.carto-field > span {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+.carto-field input,
+.carto-field select,
+.carto-field textarea {
+  font: inherit;
+  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--carto-radius);
+  background: var(--card);
+  color: var(--ink);
+  padding: 0.3rem 0.45rem;
+  max-width: 100%;
+}
+.carto-field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.carto-field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+.carto-field-check {
+  margin: 0.35rem 0;
+}
+.carto-cmp-warnings {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.carto-cmp-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 1rem 0 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.carto-cmp-tabs [role='tab'] {
+  font: inherit;
+  font-size: 0.88rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.35rem 0.6rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.carto-cmp-tabs [role='tab'][aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 700;
+}
+.carto-cmp-panel {
+  padding: 0.5rem 0 1rem;
+}
+.carto-cmp-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.carto-cmp-three {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.carto-cmp-two h4,
+.carto-cmp-three h4 {
+  font-size: 0.92rem;
+  margin: 0.3rem 0;
+}
+.carto-app {
+  --cmp-a: #475569;
+  --cmp-b: #0f766e;
+}
+.carto-cmp-overlay svg,
+.carto-cmp-radar svg {
+  display: block;
+  width: min(100%, 460px);
+  margin: 0 auto;
+}
+.carto-cmp-outline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+}
+.carto-cmp-radar-grid {
+  fill: none;
+  stroke: var(--line);
+}
+.carto-cmp-radar-a {
+  fill: color-mix(in srgb, var(--cmp-a) 30%, transparent);
+  stroke: var(--cmp-a);
+  stroke-width: 2;
+}
+.carto-cmp-radar-b {
+  fill: none;
+  stroke: var(--cmp-b);
+  stroke-width: 2;
+  stroke-dasharray: 5 3;
+}
+.carto-cmp-radar-label,
+.carto-cmp-radar-tick {
+  font-size: 10px;
+  fill: var(--ink-soft);
+}
+.carto-cmp-key {
+  display: inline-block;
+  width: 1.4em;
+  height: 0.7em;
+  vertical-align: middle;
+}
+.carto-cmp-key--a {
+  background: color-mix(in srgb, var(--cmp-a) 45%, transparent);
+  border: 2px solid var(--cmp-a);
+}
+.carto-cmp-key--b {
+  border: 2px dashed var(--cmp-b);
+}
+.carto-table-scroll {
+  overflow-x: auto;
+}
+.carto-cmp-table {
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 100%;
+}
+.carto-cmp-table caption {
+  text-align: left;
+  margin-bottom: 0.4rem;
+  color: var(--ink-soft);
+}
+.carto-cmp-table th,
+.carto-cmp-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.25rem 0.45rem;
+  text-align: left;
+  white-space: nowrap;
+}
+.carto-cmp-table thead th {
+  font-weight: 600;
+  color: var(--ink-soft);
+  vertical-align: bottom;
+  white-space: normal;
+}
+.carto-cmp-table .carto-num {
+  text-align: right;
+}
+.carto-cmp-pole-row th,
+.carto-cmp-pole-row td {
+  font-weight: 700;
+  background: var(--surface-2);
+}
+.carto-cmp-codes,
+.carto-cmp-days,
+.carto-cmp-story {
+  margin: 0.3rem 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.carto-cmp-codes li::marker {
+  color: var(--pole-color, var(--ink-faint));
+}
+.carto-cmp-story li {
+  margin-bottom: 0.35rem;
+}
+.carto-cmp-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 520px;
+}
+.carto-cmp-bars dt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.carto-cmp-bars dd {
+  margin: 0.15rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+.carto-cmp-bar {
+  display: inline-block;
+  height: 0.9rem;
+  border-radius: 2px;
+}
+.carto-cmp-bar--a {
+  background: color-mix(in srgb, var(--cmp-a) 55%, transparent);
+}
+.carto-cmp-bar--b {
+  background: repeating-linear-gradient(45deg, var(--cmp-b) 0 4px, transparent 4px 7px);
+  border: 1px solid var(--cmp-b);
+}
+.carto-cmp-precautions {
+  margin: 1.25rem 0 0.75rem;
+}
+.carto-cmp-precautions h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+}
+.carto-cmp-precautions ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.carto-cmp-note textarea {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .carto-cmp-sides,
+  .carto-cmp-two,
+  .carto-cmp-three {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media print {
+  .carto-cmp-panel[hidden] {
+    display: block !important;
+  }
+  .carto-cmp-tabs,
+  .carto-cmp-presets {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .carto-app * {
     transition: none !important;

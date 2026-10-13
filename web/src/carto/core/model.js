@@ -76,6 +76,7 @@ export const DEFAULT_PREFERENCES = Object.freeze({
   speed: 1,
   params: { alpha: DEFAULT_PARAMS.alpha, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
   dashboardHidden: [], // cartes masquées du tableau de bord
+  compare: null, // dernière comparaison A/B : {a: {name, def}, b: {name, def}, view}
 })
 
 // ---------------------------------------------------------------------------

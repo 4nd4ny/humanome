@@ -34,9 +34,10 @@ import { daysBetween } from './dates.js'
  *   dates?: Iterable<string> | null,  // ensemble S ; null = journées cochées
  *   until?: string | null,            // date t incluse ; null = sans borne
  *   params?: object,
+ *   variantOf?: (day: object) => object | null, // variante qui compte (comparaison de deux analyses, §9)
  * }} opts
  */
-export function computeState(dataset, { ref, dates = null, until = null, params } = {}) {
+export function computeState(dataset, { ref, dates = null, until = null, params, variantOf = contributingVariant } = {}) {
   const p = resolveParams(params)
   const selected = dates === null ? new Set(dataset.days.filter((d) => d.active).map((d) => d.date)) : new Set(dates)
 
@@ -49,7 +50,7 @@ export function computeState(dataset, { ref, dates = null, until = null, params 
   for (const day of dataset.days) {
     if (!selected.has(day.date)) continue
     if (until !== null && day.date > until) continue
-    const variant = contributingVariant(day)
+    const variant = variantOf(day)
     if (!variant) continue
     retainedDates.push(day.date)
     for (const v of variant.verdicts) {
