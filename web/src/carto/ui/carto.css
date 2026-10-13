@@ -3415,3 +3415,149 @@ label.carto-share-field span {
     transition: none;
   }
 }
+
+/* ---- Dialogue d'accompagnement (P7) ------------------------------------------------------------------ */
+.carto-dialogue-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  align-items: start;
+}
+.carto-dialogue-chat,
+.carto-dialogue-side > section,
+.carto-dialogue-llm {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--carto-radius);
+  padding: 0.85rem 1rem;
+}
+.carto-dialogue-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.carto-dialogue-log {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.carto-dialogue-turn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.carto-dialogue-msg {
+  max-width: 62ch;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+.carto-dialogue-msg p {
+  margin: 0.15rem 0;
+}
+.carto-dialogue-msg.is-bot {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 3px;
+  align-self: flex-start;
+}
+.carto-dialogue-msg.is-me {
+  background: var(--paper);
+  border: 1px solid var(--accent);
+  border-bottom-right-radius: 3px;
+  align-self: flex-end;
+  white-space: pre-wrap;
+}
+.carto-dialogue-msg.is-skipped {
+  border-style: dashed;
+  color: var(--ink-faint);
+}
+.carto-dialogue-msg.is-ai {
+  border-style: dashed;
+}
+.carto-dialogue-msg .carto-verbatim {
+  margin: 0.4rem 0;
+}
+.carto-dialogue-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin-top: 0.35rem !important;
+}
+.carto-dialogue-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.carto-dialogue-answer textarea {
+  font: inherit;
+  width: 100%;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  resize: vertical;
+}
+.carto-dialogue-carnet {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+.carto-dialogue-carnet > li {
+  padding: 0.35rem 0;
+  border-top: 1px solid var(--line);
+}
+.carto-dialogue-carnet .carto-link-btn {
+  margin-left: 0;
+}
+.carto-dialogue-entry {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.carto-dialogue-entry p {
+  margin: 0.1rem 0;
+}
+.carto-dialogue-llm summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.carto-dialogue-llm[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.carto-dialogue-llm label:not(.carto-dialogue-consent) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.carto-dialogue-llm input[type='text'],
+.carto-dialogue-llm input[type='password'],
+.carto-dialogue-llm select {
+  font: inherit;
+  font-size: 0.85rem;
+  max-width: 100%;
+  padding: 0.25rem 0.4rem;
+}
+.carto-dialogue-consent {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+.carto-dialogue-consent input {
+  margin-top: 0.2rem;
+}
+@media (max-width: 900px) {
+  .carto-dialogue-grid {
+    grid-template-columns: 1fr;
+  }
+}

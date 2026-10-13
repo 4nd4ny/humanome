@@ -58,7 +58,7 @@ export function parseHash(hash) {
   // #/cartographie et ses espaces #/cartographie/<espace>, plus la journée
   // seule #/cartographie/jour/<iso>[?focus=<code>].
   if (path === '/cartographie') return { name: 'cartographie' }
-  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|export|partage)$/.exec(path)
+  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|dialogue|export|partage)$/.exec(path)
   if (cartoSpace) return { name: 'cartographie', sub: cartoSpace[1] }
   const cartoDay = /^\/cartographie\/jour\/([^/]+)$/.exec(path)
   if (cartoDay) {

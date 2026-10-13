@@ -12,7 +12,8 @@
 //                   traces), volume du portfolio, anomalies
 //     sets[]        ensembles nommés (§7, §9)
 //     reviews{}     droit de réponse par observation (§8.2)
-//     markers[], comparisons[], narratives[], metrics, preferences
+//     markers[], comparisons[], reflections[] (carnet du dialogue, P7),
+//     narratives[], metrics, preferences
 //
 //   détail d'une journée (chargé à la demande, un enregistrement par date)
 //     portfolio     texte du portfolio de ce jour
@@ -200,6 +201,7 @@ export function createDataset({ datasetId, title = 'Ma cartographie', referentia
     reviews: {},
     comparisons: [],
     markers: [],
+    reflections: [], // carnet du dialogue d'accompagnement (P7) : réponses de l'apprenant, locales
     narratives: [],
     metrics: null,
     preferences: structuredClone(DEFAULT_PREFERENCES),
@@ -351,6 +353,7 @@ export function upgradeDataset(doc) {
   ds.reviews ??= {}
   ds.comparisons ??= []
   ds.markers ??= []
+  ds.reflections ??= []
   ds.narratives ??= []
   ds.metrics ??= null
   ds.importLog ??= []

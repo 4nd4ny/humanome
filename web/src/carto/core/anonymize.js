@@ -487,6 +487,9 @@ export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym
   out.runDetails = Object.fromEntries(Object.entries(out.runDetails ?? {}).map(([k, v]) => [applyTechnicalNames(k), v]))
   out.title = String(pseudonym ?? '').trim() || 'Démonstration'
   out.importLog = []
+  // Le carnet du dialogue (P7) est intime : une démo ne le garde jamais.
+  const reflectionsRemoved = (out.reflections ?? []).length
+  out.reflections = []
   // Volumes du portfolio recalculés sur le texte anonymisé.
   for (const day of out.days ?? []) {
     const text = out.details?.[day.date]?.portfolio?.text
@@ -515,6 +518,7 @@ export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym
     report: {
       replacements: [...counts.entries()].map(([label, count]) => ({ label, count })).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label, 'fr')),
       removed: found.size,
+      reflectionsRemoved,
       highlight: {
         aligned,
         traces: before.size,

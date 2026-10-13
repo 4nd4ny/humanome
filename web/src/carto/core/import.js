@@ -380,8 +380,16 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     const cmpKeys = new Set(ds.comparisons.map((c) => c.key))
     const newCmp = (ex.comparisons ?? []).filter((c) => c?.key && !cmpKeys.has(c.key))
     if (newCmp.length) ds.comparisons = [...ds.comparisons, ...structuredClone(newCmp)]
-    if (newSets.length || newReviews.length || newMarkers.length || newCmp.length) {
-      report.push({ severity: 'info', code: 'etat-restaure', message: `Restauré : ${newSets.length} ensemble(s), ${newReviews.length} réponse(s), ${newMarkers.length} repère(s), ${newCmp.length} note(s) de comparaison` })
+    ds.reflections ??= []
+    const reflectionIds = new Set(ds.reflections.map((r) => r.id))
+    const newReflections = (ex.reflections ?? []).filter((r) => r?.id && Array.isArray(r.entries) && !reflectionIds.has(r.id))
+    if (newReflections.length) ds.reflections = [...ds.reflections, ...structuredClone(newReflections)].sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
+    if (newSets.length || newReviews.length || newMarkers.length || newCmp.length || newReflections.length) {
+      report.push({
+        severity: 'info',
+        code: 'etat-restaure',
+        message: `Restauré : ${newSets.length} ensemble(s), ${newReviews.length} réponse(s), ${newMarkers.length} repère(s), ${newCmp.length} note(s) de comparaison${newReflections.length ? `, ${newReflections.length} dialogue(s) du carnet` : ''}`,
+      })
     }
   }
 

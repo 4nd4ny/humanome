@@ -182,6 +182,38 @@ export function setComparisonNote(ds, { a, b, note }, { now } = {}) {
   return touch({ ...ds, comparisons: [...others, { key, a, b, note: String(note ?? '').slice(0, 10000), updatedAt: at }] }, at)
 }
 
+// ---- Carnet du dialogue d'accompagnement (P7) ------------------------------------------------
+
+/**
+ * Garde un dialogue dans le carnet (local, dans le jeu de données). Seules les
+ * questions et les réponses sont gardées, bornées ; une relance demandée à un
+ * modèle de langage est gardée avec le nom du modèle.
+ * @param {{entries: Array<{threadId: string, kind: string, question: string, quote?: string | null,
+ *   answer: string, refs?: {dates?: string[], codes?: string[]}, relaunch?: {text: string, model: string} | null}>}} reflection
+ */
+export function addReflection(ds, { entries }, { now } = {}) {
+  const at = now ?? new Date().toISOString()
+  const clean = (entries ?? [])
+    .filter((e) => e && typeof e.question === 'string')
+    .map((e) => ({
+      threadId: String(e.threadId ?? ''),
+      kind: String(e.kind ?? ''),
+      question: e.question.slice(0, 2000),
+      quote: typeof e.quote === 'string' ? e.quote.slice(0, 2000) : null,
+      answer: String(e.answer ?? '').slice(0, 4000),
+      refs: { dates: (e.refs?.dates ?? []).filter(isIsoDate), codes: (e.refs?.codes ?? []).map(String) },
+      relaunch: e.relaunch?.text ? { text: String(e.relaunch.text).slice(0, 1000), model: String(e.relaunch.model ?? '').slice(0, 120) } : null,
+    }))
+  if (clean.length === 0) return ds
+  const reflection = { id: stableId('rf', [at, clean.map((e) => e.question + e.answer).join('|')]), at, entries: clean }
+  return touch({ ...ds, reflections: [...(ds.reflections ?? []), reflection] }, at)
+}
+
+/** Retire un dialogue du carnet. */
+export function removeReflection(ds, id, { now } = {}) {
+  return touch({ ...ds, reflections: (ds.reflections ?? []).filter((r) => r.id !== id) }, now)
+}
+
 // ---- Préférences ------------------------------------------------------------------------------
 
 export function setPreferences(ds, patch, { now } = {}) {

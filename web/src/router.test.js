@@ -169,6 +169,7 @@ describe('partage (P8) et version partagée de l’interface ultime (§12)', () 
     expect(parseHash(`#/partage/${token}/ouvert`)).toEqual({ name: 'share', token, open: true })
     expect(parseHash(`#/partage/${token}/autre`).name).toBe('not-found')
     expect(parseHash('#/cartographie/partage')).toEqual({ name: 'cartographie', sub: 'partage' })
+    expect(parseHash('#/cartographie/dialogue')).toEqual({ name: 'cartographie', sub: 'dialogue' })
   })
 })
 

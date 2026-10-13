@@ -3,6 +3,7 @@
 //   gestionnaire (cases cochées = ensemble S) → heatmap (date t) → soleil (état(S, t)).
 // Routes (journal D-2) : #/cartographie, #/cartographie/gestionnaire,
 // #/cartographie/comparaison, #/cartographie/tableau-de-bord,
+// #/cartographie/dialogue (dialogue d'accompagnement scripté, P7),
 // #/cartographie/export, #/cartographie/partage (phase 2 : adultes, compte
 // apprenant, module activé par configuration), #/cartographie/jour/<date>.
 
@@ -32,6 +33,7 @@ import { ComparePanel } from './ComparePanel.jsx'
 import { Dashboard } from './Dashboard.jsx'
 import { ExportPanel } from './ExportPanel.jsx'
 import { SharePanel } from './SharePanel.jsx'
+import { DialoguePanel } from './DialoguePanel.jsx'
 import { createShareApi } from './shareApi.js'
 import { normalizeShareConfig } from '../core/share.js'
 import './carto.css'
@@ -41,6 +43,7 @@ export const SPACES = [
   ['gestionnaire', 'Gestionnaire', '#/cartographie/gestionnaire'],
   ['comparaison', 'Comparaison', '#/cartographie/comparaison'],
   ['tableau-de-bord', 'Tableau de bord', '#/cartographie/tableau-de-bord'],
+  ['dialogue', 'Dialogue', '#/cartographie/dialogue'],
   ['export', 'Export', '#/cartographie/export'],
   ['partage', 'Partage', '#/cartographie/partage'],
 ]
@@ -103,6 +106,8 @@ const go = (hash) => {
  *   slots : espaces fournis par les phases suivantes (comparaison, tableau de bord, export…)
  *   deps.share : module de partage (spec §12.2) — absent ou serverEnabled faux, l'espace
  *   n'existe pas ; session.roles : il n'est offert qu'à un compte apprenant connecté.
+ *   deps.llm : relances facultatives du dialogue (P7) par un modèle de langage — absent,
+ *   le dialogue reste entièrement scripté et local (copie autonome).
  */
 export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site', session = null }) {
   const viewer = mode === 'viewer'
@@ -459,6 +464,18 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
             onOpenDataset={() => go('#/cartographie')}
           />
         )
+      ) : space === 'dialogue' && !slots.dialogue ? (
+        <DialoguePanel
+          dataset={dataset}
+          refl={refl}
+          state={state}
+          data={data}
+          params={params}
+          readOnly={viewer}
+          llm={viewer ? null : deps.llm ?? null}
+          onOpenDay={openDay}
+          onOpenPassage={openPassage}
+        />
       ) : space === 'partage' && !slots.partage ? (
         canShare ? (
           <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} />

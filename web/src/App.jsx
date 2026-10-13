@@ -10,11 +10,19 @@ import MergeView from './views/MergeView.jsx'
 import V3View from './v3/ui/V3View.jsx'
 import CartoApp from './carto/ui/CartoApp.jsx'
 import { loadPublishedReferentiel } from './data/referentiel.js'
+import { PROVIDERS, getLocalKey } from './lib/run-launcher.js'
+import { createProvider } from '@engine/providers/index.js'
 
 // Dépendances de l'interface ultime de cartographie (constante : identité stable).
 // Partage (spec §12.2) : copie serveur et lien activés sur le site, réservés
 // aux adultes ; le serveur exige de toute façon l'attestation de majorité.
-const CARTO_DEPS = { loadReferential: loadPublishedReferentiel, share: { serverEnabled: true, adultOnly: true } }
+// Dialogue (P7) : relances par un modèle de langage POSSIBLES (clé personnelle
+// ou Ollama local, comme les runs), jamais par défaut ni sans accord explicite.
+const CARTO_DEPS = {
+  loadReferential: loadPublishedReferentiel,
+  share: { serverEnabled: true, adultOnly: true },
+  llm: { providers: PROVIDERS, getLocalKey: (provider) => getLocalKey(provider), createProvider },
+}
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'

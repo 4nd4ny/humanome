@@ -34,6 +34,9 @@ export function buildArchive(exported, { includePortfolio = true, now = new Date
   if (!includePortfolio) {
     for (const d of Object.values(details)) if (d && d.portfolio) d.portfolio = null
     if (dataset.portfolio) dataset.portfolio = { ...dataset.portfolio, undated: [] }
+    // Le carnet du dialogue (P7) est écrit par la personne, comme son journal :
+    // il suit le même choix.
+    dataset.reflections = []
   }
   return {
     ...dataset,
@@ -55,7 +58,8 @@ export function looksLikeArchive(doc) {
  * Lit une archive pour la chaîne d'import : variantes (résumé + détail),
  * portfolio, narratifs, métriques, détails de run, référentiel et
  * « extras » (cases, étiquettes, choix de variantes, ensembles, revues,
- * repères, comparaisons, titre, préférences) que la fusion applique.
+ * repères, comparaisons, carnet du dialogue, titre, préférences) que la
+ * fusion applique.
  * @param {object} doc
  * @param {{fileName?: string}} [opts]
  */
@@ -107,6 +111,7 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
       reviews: doc.reviews ?? {},
       markers: doc.markers ?? [],
       comparisons: doc.comparisons ?? [],
+      reflections: doc.reflections ?? [],
     },
     report,
   }

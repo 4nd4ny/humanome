@@ -112,6 +112,15 @@ describe('anonymiser une archive (critère P5 : les surlignages tiennent)', () =
     expect(report.highlight.broken).toEqual([expect.objectContaining({ code: '2.01', reason: 'retrait' })])
   })
 
+  it('le carnet du dialogue (P7) n’entre jamais dans une démo', async () => {
+    const archive = await louArchive()
+    archive.reflections = [{ id: 'rf-1', at: NOW, entries: [{ question: 'Q ?', answer: 'Ma réponse intime, avec Sam.', refs: { dates: [], codes: [] } }] }]
+    const { archive: demo, report } = anonymizeArchive(archive, { dictionary: [{ from: 'Sam', to: 'Personne A' }] })
+    expect(demo.reflections).toEqual([])
+    expect(report.reflectionsRemoved).toBe(1)
+    expect(JSON.stringify(demo)).not.toContain('intime')
+  })
+
   it('la table de correspondance n’est jamais dans l’export', async () => {
     const { archive: out } = anonymizeArchive(await louArchive(), { dictionary: [{ from: 'Sam', to: 'Alex' }], now: NOW })
     expect(JSON.stringify(out)).not.toMatch(/Sam → Alex|dictionary|correspondance/)

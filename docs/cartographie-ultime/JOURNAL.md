@@ -29,7 +29,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | `77d2d93` |
 | P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 39 tests (cœur, interface, e2e Chromium) + validation sur les journaux réels (D-29) | ✅ 239 verts (carto) + suite du site + e2e | `c7e200c`, corrections `90aacee` → `3ff2dcd` |
 | P6 | copie serveur et partage (adultes) | ✅ | ✅ 39 tests (cœur, interface, API, e2e Chromium contre l'API locale) | ✅ 262 verts (carto) + suites du site et de l'API + e2e | `a6972bb` |
-| P7 | dialogue scripté (option) | — | — | — | — |
+| P7 | dialogue scripté (option) | ✅ | ✅ 18 tests (cœur, interface, e2e Chromium) | ✅ 279 verts (carto) + suites du site + e2e | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -708,6 +708,69 @@ compare pas, ne dit rien de ce qui n'a pas été partagé). Lecture seule, sans
 comparaison ni droit de réponse, sans aucun appel réseau autre que la
 lecture du lien (le référentiel est embarqué).
 
+
+### D-35 — Dialogue d'accompagnement : un questionnement scripté, tiré des traces
+
+Espace « Dialogue » (`#/cartographie/dialogue`, `ui/DialoguePanel.jsx`,
+cœur `core/dialogue.js`), d'après `proto_chatbot_socratique` (fiche
+d'analyse : « fonction candidate 3 et 4 ») :
+
+- **Les questions viennent des traces de la personne**, jamais d'un texte
+  écrit à l'avance sur quelqu'un (le prototype citait un journal réel en
+  dur). Sept fils, dans un ordre fixe, chacun présent seulement si ses
+  données existent : **citation** datée (la preuve la plus sûre, la plus
+  récente à confiance égale, avec « Lire dans le journal » et « Ouvrir la
+  journée ») ; **silence** (« une donnée, pas un trou » : le plus long écart
+  du journal, s'il dépasse une semaine et trois fois l'écart habituel de la
+  personne) ; **apparition** (la compétence apparue le plus tard) ;
+  **constance** (celle qui revient le plus, au moins trois journées) ;
+  **renvoi** (une présence que l'analyse renvoie à un cartographe) ;
+  **changement de vocabulaire** (le plus grand écart lexical entre deux
+  journées écrites consécutives, relatif à la personne, sans seuil fixe) ;
+  **écart** entre les deux ensembles de la comparaison (première phrase
+  factuelle du récit « ce qui a changé », §9.4).
+- **Questions ouvertes, sans valence** (ni progrès, ni faible, ni conseil,
+  ni comparaison à quiconque) — un test le vérifie. Vouvoiement, comme le
+  reste de l'interface (le prototype tutoyait) **[à valider]**.
+- **Honnêteté du dispositif** : le script ne lit pas les réponses pour
+  choisir la suite ; l'ouverture le dit (« c'est un questionnement, pas une
+  conversation »). On peut répondre, passer une question, s'arrêter,
+  recommencer.
+- **Carnet local** (le prototype ne gardait rien) : « Garder dans mon
+  carnet » enregistre questions et réponses (bornées) dans le jeu de données
+  (`reflections[]`, dans le navigateur) ; chaque dialogue se relit, se copie
+  ou se télécharge en Markdown (pour le recopier dans son journal) et se
+  retire en deux temps. Le carnet suit le portfolio dans l'archive (exclu
+  quand on exporte sans le texte du portfolio), n'entre **jamais** dans une
+  version partagée (liste blanche, D-30) ni dans une démo anonymisée (le
+  rapport de la démo le compte), et se restaure à la réimportation d'une
+  archive (doublons ignorés). Dans une copie autonome, rien n'est enregistré.
+
+### D-36 — Relances par un modèle de langage : facultatives, sur accord explicite
+
+« Sans LLM par défaut » : le dialogue ne fait **aucune requête**. Une option
+repliée, « Relances par un modèle de langage (facultatif) », permet de
+demander, après une réponse, une question de relance :
+
+- fournisseur au choix parmi ceux des runs (`PROVIDERS` de
+  `lib/run-launcher.js`), **Ollama local proposé d'abord** (la relance ne
+  quitte alors pas l'ordinateur) ; clé personnelle (celle déjà enregistrée
+  dans le navigateur, ou saisie pour la page seulement) ; appel **direct du
+  navigateur** par le moteur (`createProvider`, transport `direct`) — jamais
+  par les serveurs de humanome (le « service humanome » des runs n'est pas
+  proposé ici **[à valider]**) ;
+- **accord explicite** : case décochée par défaut, impossible à cocher tant
+  que le fournisseur n'est pas utilisable, retirée dès qu'on change de
+  fournisseur, de version ou de clé, jamais enregistrée ; puis un bouton par
+  réponse (« Demander une relance à … ») : l'accord seul n'envoie rien ;
+- la requête (`buildRelaunchRequest`) n'emporte **que** la question, la
+  réponse et le passage cité, avec une consigne système qui interdit
+  jugement, évaluation, conseil, diagnostic et comparaison ; la relance
+  s'affiche en texte simple, bornée, marquée comme venant d'un modèle de
+  langage, et se garde dans le carnet avec le nom du modèle ;
+- l'option n'existe pas dans la copie autonome (le module est fourni par le
+  site : `deps.llm` dans `App.jsx`).
+
 ---
 
 ## 3. État des tests
@@ -870,6 +933,28 @@ partage et des cartographies rejoués après les derniers changements (dont le
 test de la fixture partagée) : verts. La base de développement locale a reçu
 la migration 022 (`POST /api/admin/migrate`).
 
+### P7 — dialogue d'accompagnement scripté
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/dialogue.test.js` | ordre fixe des fils, présents seulement si leurs données existent ; citation (preuve la plus sûre, la plus récente à confiance égale, sans Markdown ; absente sans détail chargé ; bornée) ; silence relatif au rythme de la personne ; apparition, constance, renvoi ; changement de vocabulaire ; écart seulement s'il y a une comparaison ; **aucune valence, toujours une question** ; jeu d'une journée : aucun fil inventé ; relance : **seulement la question, la réponse et le passage**, consigne système ; relance affichée en texte simple ; carnet (bornes, retrait, Markdown) | 12 |
+| `ui/P7.test.jsx` | **critère P7** : dialogue complet (répondre, passer, garder, relire, retirer du carnet) **sans aucune requête** ni fournisseur créé ; s'arrêter, recommencer ; option de relance : accord décoché par défaut, pas de bouton sans accord, l'accord seul n'envoie rien, la relance n'emporte que la question, la réponse et le passage ; changer de modèle retire l'accord ; sans clé, pas d'accord possible ; copie autonome : ni relance ni carnet enregistré | 4 |
+| `core/archive.test.js` (ajouts) | le carnet fait l'aller-retour de l'archive sans perte ni doublon ; exclu de l'archive sans portfolio | (dans les 6) |
+| `core/anonymize.test.js` (ajout) | le carnet n'entre jamais dans une démo | +1 |
+| `router.test.js` (ajout) | `#/cartographie/dialogue` | (dans le test du partage) |
+| `e2e/carto-dialogue.e2e.js` (Playwright, Chromium) | **dans un vrai navigateur, toutes les requêtes enregistrées** : dialogue complet et carnet → **aucune requête** ; option ouverte sans accord → aucune ; accord pour Ollama (simulé) → une relance demandée = **une** requête vers `localhost:11434`, qui ne contient que la question, la réponse et le passage (ni le reste du journal, ni la réponse précédente, ni la cartographie) | 1 |
+
+Vérification visuelle dans Chromium : dialogue, carnet et option de
+relance à 1 440 px et 390 px (pas de défilement horizontal, aucune requête
+enregistrée pendant le dialogue).
+
+Suites complètes après P7 : front **2 225 verts** sur 2 225 (229 fichiers ;
+`twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ;
+moteur **1 069 verts**, 17 sautés ; les trois scénarios e2e de la
+cartographie (P5, P6, P7) verts. API inchangée depuis P6. Le modèle de la
+copie autonome passe de 620 à 711 Ko (les espaces Partage et Dialogue y sont
+compilés, inactifs ou sans relance dans une copie).
+
 ---
 
 ## 4. Questions ouvertes pour Christian
@@ -920,6 +1005,15 @@ la migration 022 (`POST /api/admin/migrate`).
     ultime. Faut-il les réunir ?
 18. §12.2 (D-30, **[écart]**) : la version partagée vit dans l'API PHP/MySQL
     existante du site plutôt que dans un stockage SQLite ou JSON séparé.
+19. Dialogue (D-35) : vouvoiement (comme le reste de l'interface) ou
+    tutoiement (comme le prototype) ?
+20. Carnet (D-35) : le prototype annonçait que le texte consigné « fera
+    partie du portfolio à la prochaine évaluation ». Ici, le carnet reste à
+    part (copiable en Markdown) : faut-il prévoir un chemin vers le
+    portfolio analysé ?
+21. Relances (D-36) : faut-il aussi proposer le « service humanome » (proxy
+    du site, sans clé personnelle), au prix d'un passage des réponses par le
+    serveur ?
 
 ---
 
@@ -957,3 +1051,9 @@ la migration 022 (`POST /api/admin/migrate`).
   403 sans attestation, liens révoqués au retrait), lien à mot de passe
   facultatif jamais indexé, journal des accès, vue du destinataire ; migration
   022 ; e2e contre l'API locale (D-30 à D-34).
+- **2026-10-14** — P7 : dialogue d'accompagnement scripté tiré des traces
+  (sept fils sans valence), carnet local (archive, jamais partagé ni en
+  démo), relances facultatives par un modèle de langage sur accord explicite
+  (Ollama local proposé d'abord, appel direct du navigateur, seulement la
+  question, la réponse et le passage) ; e2e : aucune requête sans accord
+  (D-35, D-36).

@@ -159,6 +159,16 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Base légale | **a** (le run est déclenché par la personne). |
 | Conservation côté humanome | Aucune, au-delà de ce que la personne a explicitement stocké (§3). |
 
+### 8 bis. Dialogue d'accompagnement de l'interface ultime (P7)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Aider la personne à relire ses propres traces par des questions scriptées (citation datée, silence, apparition, constance, renvoi, changement de vocabulaire, écart entre deux ensembles). |
+| Traitement | **Local** : le script et le carnet des réponses vivent dans le navigateur (jeu de données IndexedDB) ; aucune table serveur. Le carnet part dans l'archive JSON seulement si la personne y inclut son portfolio, jamais dans une version partagée (§3 bis) ni dans une démo anonymisée. |
+| Option LLM | **Désactivée par défaut.** Après choix d'un fournisseur et accord explicite (case décochée par défaut, non enregistrée), chaque relance demandée envoie **uniquement** la question, la réponse et le passage cité, **directement du navigateur** au fournisseur choisi (clé personnelle) ou à Ollama sur l'ordinateur de la personne — jamais par les serveurs de humanome. |
+| Base légale | **a** (consentement explicite, relance par relance). |
+| Conservation côté humanome | Aucune. |
+
 ## 9. Cartographie de masse — établissements (B2B)
 
 | Élément | Détail |

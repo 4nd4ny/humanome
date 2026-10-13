@@ -483,6 +483,12 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
                         <th scope="row">passages retirés</th>
                         <td className="carto-num">{result.report.removed}</td>
                       </tr>
+                      {result.report.reflectionsRemoved ? (
+                        <tr>
+                          <th scope="row">dialogues du carnet retirés</th>
+                          <td className="carto-num">{result.report.reflectionsRemoved}</td>
+                        </tr>
+                      ) : null}
                     </tbody>
                   </table>
                 </div>

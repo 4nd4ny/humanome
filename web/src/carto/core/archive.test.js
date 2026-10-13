@@ -5,7 +5,7 @@ import { archiveFileName, buildArchive, importArchive, looksLikeArchive } from '
 import { importFiles } from './import.js'
 import { createDataset, observationKey } from './model.js'
 import { createCartoStore, createMemoryAdapter } from './store.js'
-import { addMarker, addTag, chooseVariant, saveSet, setActive, setComparisonNote, setPreferences, setReview } from './ops.js'
+import { addMarker, addReflection, addTag, chooseVariant, saveSet, setActive, setComparisonNote, setPreferences, setReview } from './ops.js'
 import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { importJourDocuments } from '../../v3/core/import.js'
 import { reviewEvidenceLink } from '../../v3/core/master.js'
@@ -45,6 +45,11 @@ async function richStore() {
   ds = addMarker(ds, { date: '2025-12-23', label: 'Premier pont', kind: 'repere' }, { now: NOW })
   ds = setComparisonNote(ds, { a: 'A', b: 'B', note: 'Ma lecture.' }, { now: NOW })
   ds = setPreferences(ds, { calendarMode: 'free', reinforced: true }, { now: NOW })
+  ds = addReflection(
+    ds,
+    { entries: [{ threadId: 'citation:2025-12-22:1.01', kind: 'citation', question: 'Qu’est-ce qui se jouait pour vous ce jour-là ?', quote: 'deux sources contradictoires', answer: 'Je doutais de la date du chantier.', refs: { dates: ['2025-12-22'], codes: ['1.01'] } }] },
+    { now: NOW },
+  )
   await store.saveDataset(ds)
   return store
 }
@@ -55,6 +60,7 @@ const stable = (ds) => ({
   reviews: ds.reviews,
   markers: ds.markers,
   comparisons: ds.comparisons,
+  reflections: ds.reflections,
   narratives: ds.narratives,
   metrics: ds.metrics,
   preferences: ds.preferences,
@@ -100,6 +106,9 @@ describe('archive : sans perte', () => {
     expect(Object.values(archive.details).every((d) => d.portfolio === null)).toBe(true)
     // Le texte intégral part ; seuls restent les extraits cités par le jury.
     expect(JSON.stringify(archive)).not.toMatch(/Ce matin j’ai relu mes notes avant d’écrire/)
+    // Le carnet du dialogue (P7) suit le même choix que le journal.
+    expect(archive.reflections).toEqual([])
+    expect(JSON.stringify(archive)).not.toContain('Je doutais')
     const res = await importFiles([{ path: 'a.json', text: JSON.stringify(archive) }], empty(), { now: LATER })
     expect(res.dataset.days.find((d) => d.date === '2025-12-22').portfolio).toEqual(exported.dataset.days.find((d) => d.date === '2025-12-22').portfolio)
     expect(res.report.map((r) => r.code)).toContain('archive-sans-portfolio')
