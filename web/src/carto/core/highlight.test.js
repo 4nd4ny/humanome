@@ -84,4 +84,14 @@ describe('localisation (jaune / orange)', () => {
     const [m] = locateExtract(text, { extract: 'café crème' })
     expect(text.slice(m.from, m.to)).toBe('café   crème')
   })
+
+  it('un émoji (deux unités de code) avant le passage ne décale pas le surlignage', () => {
+    const text = 'Bonne journée 🙂🎉 ! Ensuite j’ai relu mes notes 📚 avant d’écrire le rapport.'
+    const [m] = locateExtract(text, { start: 'j’ai relu mes notes', end: 'avant d’écrire le rapport' })
+    expect(m).toMatchObject({ complete: true, exact: true })
+    expect(text.slice(m.from, m.to)).toBe('j’ai relu mes notes 📚 avant d’écrire le rapport')
+    const decomposed = `🙂 cafe${String.fromCharCode(0x301)} 🙂 crème`
+    const [n] = locateExtract(decomposed, { extract: 'café 🙂 crème' })
+    expect(decomposed.slice(n.from, n.to)).toBe(`cafe${String.fromCharCode(0x301)} 🙂 crème`)
+  })
 })

@@ -32,7 +32,10 @@ function normChar(ch) {
 
 /**
  * Texte « replié » : caractères normalisés, blancs repliés en une espace,
- * avec la correspondance vers les index d'origine (bornes incluses).
+ * avec la correspondance vers les index d'origine (bornes incluses), UNE
+ * entrée par unité de code du texte replié — un émoji (deux unités de code)
+ * en a donc deux : sans quoi tout passage situé après un émoji serait
+ * surligné décalé.
  * @param {string} text
  * @returns {{collapsed: string, origStart: number[], origEnd: number[]}}
  */
@@ -40,32 +43,36 @@ export function collapseText(text) {
   const chars = []
   const origStart = []
   const origEnd = []
+  const push = (n, from, to) => {
+    chars.push(n)
+    for (let k = 0; k < n.length; k++) {
+      origStart.push(from)
+      origEnd.push(to)
+    }
+  }
   let inSpace = false
   let i = 0
   for (const cp of text) {
     const len = cp.length
     if (COMBINING.test(cp) && chars.length > 0 && !inSpace) {
       // Accent combinant : on le compose avec la lettre précédente (NFC).
-      const composed = (chars[chars.length - 1] + cp).normalize('NFC')
-      if (composed.length === 1) chars[chars.length - 1] = composed
-      origEnd[origEnd.length - 1] = i + len - 1
+      const prev = chars[chars.length - 1]
+      const composed = (prev + cp).normalize('NFC')
+      if (composed.length === prev.length) chars[chars.length - 1] = composed
+      for (let k = origEnd.length - prev.length; k < origEnd.length; k++) origEnd[k] = i + len - 1
       i += len
       continue
     }
     const n = normChar(cp.normalize('NFC'))
     if (n === ' ') {
       if (!inSpace) {
-        chars.push(' ')
-        origStart.push(i)
-        origEnd.push(i + len - 1)
+        push(' ', i, i + len - 1)
         inSpace = true
       } else {
         origEnd[origEnd.length - 1] = i + len - 1
       }
     } else {
-      chars.push(n)
-      origStart.push(i)
-      origEnd.push(i + len - 1)
+      push(n, i, i + len - 1)
       inSpace = false
     }
     i += len
