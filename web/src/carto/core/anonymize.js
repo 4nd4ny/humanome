@@ -72,18 +72,26 @@ const NOT_NAMES = new Set(
 )
 
 /**
- * Propositions de noms : mots à majuscule rencontrés AILLEURS qu'en début de
- * phrase ou de ligne, au moins `min` fois.
+ * Propositions de noms : mots à majuscule (« Sam », « Jean-Pierre », aussi
+ * après une élision : « l’Arnaud ») rencontrés AILLEURS qu'en début de phrase
+ * ou de ligne, au moins `min` fois. « J’ai » n'est pas un nom : l'apostrophe
+ * coupe le mot.
  * @param {string[]} texts
  * @returns {Array<{word: string, count: number}>}
  */
 export function suggestNames(texts, { min = 2 } = {}) {
   const counts = new Map()
   for (const text of texts) {
-    for (const line of String(text ?? '').split('\n')) {
+    for (const line of String(text ?? '').normalize('NFC').split('\n')) {
       const clean = line.replace(/^\s*(?:#{1,6}|[-*+>]|\d+[.)])\s+/u, '')
-      for (const m of clean.matchAll(/(?<=[^\s.!?…:]\s+|[,;]\s*)(\p{Lu}[\p{Ll}\p{M}'’-]{1,})/gu)) {
-        const w = m[1].replace(/['’-]+$/u, '')
+      for (const m of clean.matchAll(/\p{Lu}[\p{Ll}\p{M}]+(?:-\p{Lu}[\p{Ll}\p{M}]+)*/gu)) {
+        const w = m[0]
+        const before = clean.slice(0, m.index)
+        if (/[\p{L}\p{M}\p{N}]$/u.test(before)) continue // au milieu d'un mot
+        // Élision (« l’ », « d’ », « qu’ ») : on regarde ce qui la précède.
+        const head = before.replace(/(?:^|(?<=[^\p{L}]))\p{L}{1,2}['’]$/u, '')
+        const prev = head.replace(/[\s«»"“”'’‘(\[]+$/u, '')
+        if (prev === '' || /[.!?…:]$/u.test(prev)) continue // début de ligne ou de phrase
         if (NOT_NAMES.has(w.toLowerCase())) continue
         counts.set(w, (counts.get(w) ?? 0) + 1)
       }
@@ -91,6 +99,13 @@ export function suggestNames(texts, { min = 2 } = {}) {
   }
   return [...counts.entries()].filter(([, c]) => c >= min).map(([word, count]) => ({ word, count })).sort((a, b) => b.count - a.count || a.word.localeCompare(b.word, 'fr'))
 }
+
+/** Apostrophes et guillemets simples, que la recherche des passages confond. */
+const QUOTES = "['’‘`´′]"
+/** Motif d'un nom du dictionnaire : apostrophes et blancs indifférents, comme pour la recherche des passages. */
+const namePattern = (from) => escapeRe(from).replace(/['’‘`´′]/gu, QUOTES).replace(/\s+/gu, '\\s+')
+/** Clé de comparaison d'un nom : casse, apostrophes et blancs indifférents. */
+const nameKey = (s) => s.normalize('NFC').toLowerCase().replace(/['’‘`´′]/gu, "'").replace(/\s+/gu, ' ')
 
 /**
  * Fonctions de remplacement, avec leurs compteurs.
@@ -116,14 +131,14 @@ export function makeReplacer({ dictionary = [], patterns = { emails: true, urls:
   const entries = cleanDictionary(dictionary)
     .sort((a, b) => b.from.length - a.from.length || a.from.localeCompare(b.from, 'fr'))
     .map((d) => ({ ...d, label: `${d.from} → ${d.to}` }))
-  const byLower = new Map(entries.map((d) => [d.from.toLowerCase(), d]))
+  const byLower = new Map(entries.map((d) => [nameKey(d.from), d]))
   const byExact = new Map()
   for (const d of entries) {
     byExact.set(d.from, d)
     if (!byExact.has(d.from.toUpperCase())) byExact.set(d.from.toUpperCase(), d)
   }
   const alternation = (list) => list.map(escapeRe).join('|')
-  const reText = entries.length ? new RegExp(`(?<![\\p{L}\\p{M}])(?:${alternation(entries.map((d) => d.from))})(?![\\p{L}\\p{M}])`, 'giu') : null
+  const reText = entries.length ? new RegExp(`(?<![\\p{L}\\p{M}])(?:${entries.map((d) => namePattern(d.from)).join('|')})(?![\\p{L}\\p{M}])`, 'giu') : null
   const exactForms = [...byExact.keys()].sort((a, b) => b.length - a.length)
   const reTech = entries.length ? new RegExp(`(?<![\\p{L}\\p{M}\\p{N}])(?:${alternation(exactForms)})(?![\\p{L}\\p{M}\\p{N}])`, 'gu') : null
   const upper = (m) => m === m.toUpperCase() && m !== m.toLowerCase() && m.length > 1
@@ -142,9 +157,9 @@ export function makeReplacer({ dictionary = [], patterns = { emails: true, urls:
   }
   function applyNames(text) {
     if (!reText || typeof text !== 'string' || text === '') return text
-    return text.replace(reText, (m, offset, whole) => {
+    return text.normalize('NFC').replace(reText, (m, offset, whole) => {
       if (whole[offset - 1] === '‹' && whole[offset + m.length] === '›') return m // repère neutre
-      const d = byLower.get(m.toLowerCase()) ?? entries.find((x) => x.from.localeCompare(m, 'fr', { sensitivity: 'accent' }) === 0)
+      const d = byLower.get(nameKey(m)) ?? entries.find((x) => nameKey(x.from).localeCompare(nameKey(m), 'fr', { sensitivity: 'accent' }) === 0)
       if (!d) return m
       bump(d.label, 1)
       return upper(m) && !upper(d.from) ? d.to.toUpperCase() : d.to
@@ -168,10 +183,10 @@ export function cleanDictionary(dictionary) {
   const out = []
   for (const d of dictionary ?? []) {
     if (!d || typeof d.from !== 'string') continue
-    const from = d.from.trim()
-    if (from.length < 2 || seen.has(from.toLowerCase())) continue
-    seen.add(from.toLowerCase())
-    out.push({ from, to: String(d.to ?? '').trim() || '‹nom›' })
+    const from = d.from.normalize('NFC').trim()
+    if (from.length < 2 || seen.has(nameKey(from))) continue
+    seen.add(nameKey(from))
+    out.push({ from, to: String(d.to ?? '').normalize('NFC').trim() || '‹nom›' })
   }
   return out
 }
@@ -245,13 +260,13 @@ export function archiveTexts(archive) {
 /** Phrases du portfolio qui citent une personne tierce (pour revue). */
 export function thirdPartySentences(archive, names) {
   const list = names.filter((n) => typeof n === 'string' && n.trim().length >= 2).map((n) => n.trim())
-  const wanted = list.map((n) => new RegExp(`(?<![\\p{L}\\p{M}])${escapeRe(n)}(?![\\p{L}\\p{M}])`, 'iu'))
+  const wanted = list.map((n) => new RegExp(`(?<![\\p{L}\\p{M}])${namePattern(n.normalize('NFC'))}(?![\\p{L}\\p{M}])`, 'iu'))
   if (wanted.length === 0) return []
   const out = []
   for (const [date, d] of Object.entries(archive.details ?? {}).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
     const text = d?.portfolio?.text
     if (typeof text !== 'string') continue
-    for (const s of sentences(text)) {
+    for (const s of sentences(text.normalize('NFC'))) {
       const hits = list.filter((n, i) => wanted[i].test(s))
       if (hits.length) out.push({ date, sentence: s, names: hits })
     }
@@ -415,7 +430,7 @@ function cutPassages(value, cuts) {
   if (cuts.length === 0) return { value, found }
   const fn = (s, key) => {
     if (TECHNICAL_KEY.test(key ?? '')) return s
-    let out = s
+    let out = s.normalize('NFC')
     for (const c of cuts) {
       if (out.includes(c)) {
         out = out.split(c).join(REMOVED)
@@ -461,7 +476,7 @@ export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym
   const aligned = alignAnchors(work, before, displayText)
 
   // 1. Passages retirés à la demande (contenu de tiers), avant toute substitution.
-  const cuts = [...new Set(remove.map((r) => (typeof r?.sentence === 'string' ? r.sentence.trim() : '')).filter((s) => s.length >= 8))]
+  const cuts = [...new Set(remove.map((r) => (typeof r?.sentence === 'string' ? r.sentence.normalize('NFC').trim() : '')).filter((s) => s.length >= 8))]
   const { referential, ...rest } = work
   const { value: cut, found } = cutPassages(rest, cuts)
 

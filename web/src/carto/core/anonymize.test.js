@@ -28,6 +28,16 @@ describe('propositions et remplacements', () => {
     expect(s.map((x) => x.word)).not.toContain('Samedi')
   })
 
+  it('élisions, noms composés, guillemets ; « J’ai » n’est pas un nom', () => {
+    const words = suggestNames(['Hier, J’ai vu l’Arnaud et Jean-Pierre. J’ai revu l’Arnaud, puis « Jean-Pierre » est parti.'], { min: 2 }).map((x) => x.word)
+    expect(words).toEqual(['Arnaud', 'Jean-Pierre'])
+  })
+
+  it('les apostrophes et les blancs d’un nom sont indifférents, comme pour la recherche des passages', () => {
+    const { apply } = makeReplacer({ dictionary: [{ from: 'O’Brien', to: 'Personne A' }, { from: 'Jean Paul', to: 'Personne B' }] })
+    expect(apply("O'Brien, o’brien et Jean\u00a0Paul ou Jean  Paul")).toBe('Personne A, Personne A et Personne B ou Personne B')
+  })
+
   it('noms en mot entier seulement ; courriels, liens, téléphones, adresses', () => {
     const { apply, counts } = makeReplacer({ dictionary: [{ from: 'Sam', to: 'Alex' }] })
     expect(apply('Sam et SAM, mais pas Samedi ni Samuel.')).toBe('Alex et ALEX, mais pas Samedi ni Samuel.')
