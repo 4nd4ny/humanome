@@ -37,6 +37,19 @@ describe('propositions et remplacements', () => {
     expect(apply('Le 2025-12-22 à 14 h 30, 3 essais.')).toBe('Le 2025-12-22 à 14 h 30, 3 essais.')
     expect(counts.get('Sam → Alex')).toBe(2)
   })
+
+  it('une seule passe, sans tenir compte de la casse ; les repères neutres et les identifiants sont protégés', () => {
+    const r = makeReplacer({ dictionary: [{ from: 'Christian', to: 'Personne A' }, { from: 'Personne', to: 'Quelqu’un' }, { from: 'Lien', to: 'Lio' }, { from: 'Ada', to: 'Iris' }] })
+    // Un remplacement n'est jamais remplacé à son tour.
+    expect(r.apply('Christian et Personne')).toBe('Personne A et Quelqu’un')
+    // La recherche des passages ignore la casse : le remplacement aussi (capitales gardées).
+    expect(r.apply('christian, CHRISTIAN, Christian2 et Christian_3')).toBe('Personne A, PERSONNE A, Personne A2 et Personne A_3')
+    // « [lien] » est un repère neutre, pas le nom « Lien ».
+    expect(r.apply('voir https://a.org/x et Lien')).toBe('voir [lien] et Lio')
+    // Identifiants : forme exacte seulement, jamais au milieu de chiffres hexadécimaux.
+    expect(r.applyTechnicalNames('v-3f9ada12')).toBe('v-3f9ada12')
+    expect(r.applyTechnicalNames('Ada@2026-01-01|1.01')).toBe('Iris@2026-01-01|1.01')
+  })
 })
 
 describe('anonymiser une archive (critère P5 : les surlignages tiennent)', () => {
@@ -142,5 +155,28 @@ describe('garde-fous de l’anonymisation', () => {
     // Une recherche fournie (texte affiché) remplace la recherche dans le texte brut.
     const none = [...highlightStatuses(archive, () => []).values()]
     expect(none.every((s) => s.status === 'not-found')).toBe(true)
+  })
+
+  it('ancres coupées au milieu d’un nom ou écrites dans une autre casse : réalignées, le passage reste retrouvé, aucun fragment ne reste', async () => {
+    const archive = await louArchive()
+    const traceOf = (a, date, code) => Object.values(Object.values(a.details[date].variants)[0].verdicts[code].traces)[0]
+    const d24 = Object.values(Object.values(archive.details['2025-12-24'].variants)[0].verdicts['3.02'].traces)
+    // 2.01 : bord gauche coupé dans « Sam ».
+    Object.assign(traceOf(archive, '2025-12-23', '2.01'), { extract: 'am expliquer son idée jusqu’au bout sans l’interrompre', start: 'am expliquer son', end: 'bout sans l’interrompre' })
+    // 3.02 (24 déc.) : ancre de début coupée à l'intérieur (« Troisième essai de la maq »), ancres en minuscules.
+    Object.assign(d24[0], { extract: 'troisième essai de la maq […] noté chaque modification dans un tableau.', start: 'troisième essai de la maq', end: 'noté chaque modification dans un tableau.' })
+    const before = [...highlightStatuses(archive).values()].filter((x) => x.status === 'found').length
+    const { archive: out, report } = anonymizeArchive(archive, { dictionary: [{ from: 'Sam', to: 'Alex' }, { from: 'Maquette', to: 'Ouvrage' }, { from: 'Troisième', to: 'Dernier' }], now: NOW })
+    expect(report.highlight.broken).toEqual([])
+    expect(report.highlight.aligned).toBe(2)
+    expect([...highlightStatuses(out).values()].filter((x) => x.status === 'found').length).toBe(before)
+    const t201 = traceOf(out, '2025-12-23', '2.01')
+    expect(t201.start).toBe('Alex expliquer son')
+    expect(t201.extract).toBe('Alex expliquer son idée jusqu’au bout sans l’interrompre')
+    const t302 = Object.values(Object.values(out.details['2025-12-24'].variants)[0].verdicts['3.02'].traces)[0]
+    expect(t302.start).toBe('Dernier essai de la Ouvrage')
+    expect(t302.extract).toBe('Dernier essai de la Ouvrage […] noté chaque modification dans un tableau.')
+    expect(out.details['2025-12-24'].portfolio.text).toMatch(/Dernier essai de la Ouvrage/)
+    expect(JSON.stringify(out)).not.toMatch(/\bmaq\b|\bam expliquer/u)
   })
 })

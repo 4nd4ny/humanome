@@ -445,6 +445,9 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
                   Surlignage : {h.before} passage{h.before > 1 ? 's' : ''} retrouvé{h.before > 1 ? 's' : ''} avant l’anonymisation, {h.after} après ; {h.kept} au même
                   endroit, avec le même statut.
                   {h.broken.length === 0 ? ' Tous les surlignages tiennent.' : ` ${h.broken.length} surlignage${h.broken.length > 1 ? 's' : ''} perdu${h.broken.length > 1 ? 's' : ''}.`}
+                  {h.aligned > 0
+                    ? ` ${h.aligned} extrait${h.aligned > 1 ? 's' : ''} coupé${h.aligned > 1 ? 's' : ''} au milieu d’un mot ${h.aligned > 1 ? 'ont' : 'a'} été complété${h.aligned > 1 ? 's' : ''} par le mot entier, pour que les remplacements s’y appliquent.`
+                    : ''}
                 </p>
                 {h.broken.length > 0 ? (
                   <ul className="carto-demo-broken">
