@@ -27,7 +27,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | `13796b0` |
 | P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | `b1907fa` |
 | P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | `77d2d93` |
-| P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 34 tests (cœur, interface, e2e Chromium) | ✅ 233 verts (carto) + suite du site + e2e | (commit P5, voir §5) |
+| P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 39 tests (cœur, interface, e2e Chromium) + validation sur les journaux réels (D-29) | ✅ 239 verts (carto) + suite du site + e2e | `c7e200c`, corrections `90aacee` → `3ff2dcd` |
 | P6 | copie serveur et partage (adultes) | — | — | — | — |
 | P7 | dialogue scripté (option) | — | — | — | — |
 
@@ -490,40 +490,92 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
 
 ### D-28 — « Préparer une démo » : anonymisation dans le navigateur
 
-- Propositions : mots à majuscule rencontrés au moins deux fois ailleurs
-  qu'en début de phrase (portfolio ; à défaut, extraits). Dictionnaire nom →
-  remplacement (par défaut « Personne A », « Personne B »…), mot entier,
-  forme en capitales comprise, noms les plus longs d'abord ; ajout manuel.
+- Propositions : mots à majuscule (y compris composés, « Jean-Pierre », et
+  après une élision, « l’Arnaud ») rencontrés au moins deux fois ailleurs
+  qu'en début de phrase (portfolio ; à défaut, extraits) ; « J’ai » n'est pas
+  un nom (l'apostrophe coupe le mot). Dictionnaire nom → remplacement (par
+  défaut « Personne A », « Personne B »…), ajout manuel, enregistrement et
+  rechargement **à part** (`cartographie-dictionnaire-<date>.json`).
+- Les noms sont remplacés **comme les passages sont cherchés** : en une seule
+  passe (un remplacement n'est jamais remplacé à son tour), sans tenir compte
+  de la casse, des apostrophes (' ’) ni des blancs, en mot entier au sens des
+  lettres (« Sam2 » est remplacé, « Samuel » non) ; une forme en capitales
+  reçoit le remplacement en capitales. Sans cela, une ancre écrite
+  « christian » ou « J'ai » ne changeait pas comme le portfolio écrit
+  « Christian » ou « J’ai », et le passage n'était plus retrouvé (validation
+  ci-dessous).
 - Motifs : courriels, liens, téléphones (FR, CH, international), adresses →
-  repères neutres (`[courriel]`, `[lien]`, `[téléphone]`, `[adresse]`).
+  repères neutres **entre chevrons simples** (‹courriel›, ‹lien›,
+  ‹téléphone›, ‹adresse›, ‹passage retiré›) : des crochets formaient, dans le
+  Markdown, des liens qui changeaient le texte affiché ; un lien s'arrête
+  désormais aux crochets et aux barres obliques inverses (« [texte](lien) »,
+  « \<lien\> » gardent leur ponctuation). Test : remplacer puis afficher =
+  afficher puis remplacer.
 - **Les mêmes substitutions partout** : portfolio, extraits et ancres de
   surlignage, textes du jury, rapports, narratifs, noms de fichiers,
   identifiants de run (clés des délibérations comprises). Les champs
   techniques (identifiants, empreintes, dates, codes, états) ne reçoivent que
-  les noms, jamais les motifs — un identifiant hexadécimal peut contenir dix
-  chiffres qui ressemblent à un téléphone (testé). Le référentiel n'est pas
-  touché.
+  les noms en forme exacte, bornés par des lettres et des chiffres, jamais les
+  motifs (un identifiant hexadécimal peut contenir dix chiffres qui
+  ressemblent à un téléphone : testé). Le référentiel n'est pas touché.
+- Avant de remplacer, les ancres de chaque passage retrouvé en entier sont
+  **alignées sur des mots entiers du texte affiché** (bords extérieurs et
+  intérieurs, et bords de l'extrait) : une ancre coupée dans un mot (« …avec
+  Chris ») ne recevrait pas le remplacement du nom entier, et le fragment de
+  nom resterait dans l'extrait.
 - Personnes tierces : les phrases du portfolio qui citent un nom du
   dictionnaire sont listées pour relecture ; « retirer ce passage » le
-  remplace par « [passage retiré] » partout où il figure, et un extrait
+  remplace par « ‹passage retiré› » partout où il figure, et un extrait
   entièrement contenu dans la phrase retirée part aussi (sinon le passage
   restait lisible dans les extraits du jury).
 - Revue avant export : remplacements comptés ; **vérification du surlignage
-  trace par trace avec la recherche du lecteur** (texte affiché du Markdown
-  rendu) : même statut, même journée, avant et après ; surlignages perdus
-  listés avec leur cause (passage retiré, ou remplacement à vérifier) ; mots à
-  majuscule restants (noms de fichiers et titres compris) ; relecture du texte
-  anonymisé jour par jour, remplacements mis en évidence. Les
-  téléchargements (archive, copie autonome, ou ouverture dans ce navigateur)
-  n'ouvrent qu'après confirmation de la relecture d'un aperçu à jour.
-- La table de correspondance n'est **jamais** dans l'export ; elle peut être
-  enregistrée à part (`cartographie-dictionnaire-<date>.json`, « contient les
-  vrais noms : gardez-le pour vous »).
+  trace par trace avec la recherche du lecteur**, dans le texte affiché
+  (Markdown rendu) : même statut, même journée, avant et après ; surlignages
+  perdus listés avec leur cause (passage retiré, ou remplacement à vérifier) ;
+  mots à majuscule restants (noms de fichiers et titres compris, les plus
+  fréquents d'abord) ; relecture du texte anonymisé jour par jour,
+  remplacements mis en évidence. Les téléchargements (archive, copie
+  autonome, ou ouverture dans ce navigateur) n'ouvrent qu'après confirmation
+  de la relecture d'un aperçu à jour.
+- La table de correspondance n'est **jamais** dans l'export.
 - Démo du site : « Explorer la démonstration » ouvre
   `data/demo/carto/archive.json` s'il existe, sinon les 59 journées
   publiques. **[à valider]** Ce fichier, même anonymisé, vient d'un vrai
   portfolio : il n'est jamais versionné (`.gitignore`) ; il se dépose par FTP
   ou se place dans `web/public/data/demo/carto/` avant la construction.
+- Limite connue : sur un journal de 50 journées, l'aperçu calcule une dizaine
+  de secondes (rendu de chaque journée, deux fois) pendant lesquelles la page
+  ne répond pas ; un message l'annonce.
+
+### D-29 — Validation de P5 sur les journaux réels, et ce qu'elle a corrigé
+
+Sur le Mac, compteurs seulement (même chaîne que l'interface : import,
+magasin, archive, réimport ; anonymisation avec la recherche du lecteur dans
+le Markdown rendu). Test « en grand » : **toutes** les propositions du journal
+deviennent des remplacements (bien plus qu'un vrai dictionnaire de noms), et
+tous les motifs sont actifs.
+
+| Journal | journées | archive (sans portfolio) | réimport sans perte | mots remplacés / occurrences | surlignages retrouvés avant → gardés au même endroit | mots du dictionnaire restants |
+|---|---|---|---|---|---|---|
+| 300 | 51 | 3,71 Mo (3,32) | oui (index, détails, délibérations ; doublons ignorés) | 407 / 88 048 | 159 → **159** | 0 |
+| 200 | 47 | 4,32 Mo (3,91) | oui | 189 / 45 983 | 237 → **237** | 0 |
+| GEN1 | 160 | 4,65 Mo (4,18) | oui | 60 / 18 769 | 10 → **10** | 0 |
+
+Statuts identiques avant et après (journal 300 : 121 trouvés, 33 partiels,
+5 retrouvés ailleurs, 21 non retrouvés — ceux-ci l'étaient déjà, voir P2).
+Référentiel intact. La première passe avait cassé 15 à 26 surlignages sur
+159 ; quatre corrections, chacune testée :
+
+1. **Surlignage décalé après un émoji** (défaut de P2, lecteur compris) : le
+   texte replié comptait un émoji (deux unités de code) pour une seule entrée
+   d'index ; tout passage situé après était surligné décalé d'un caractère
+   par émoji. Corrigé dans `collapseText` (test avec émojis et accent
+   décomposé).
+2. Noms remplacés comme les passages sont cherchés (casse, apostrophes,
+   blancs) — D-28.
+3. Repères neutres sans crochets et liens qui gardent leur ponctuation
+   Markdown — D-28.
+4. Ancres alignées sur des mots entiers du texte affiché — D-28.
 
 ---
 
@@ -641,7 +693,9 @@ un jeu synthétique avec portfolio long et miroir, à 1 440 px et 390 px.
 | Fichier de test | Contenu | Tests |
 |---|---|---|
 | `core/archive.test.js` | export → réimport dans un jeu vide : journées, variantes, détails, délibérations, état de l'apprenant identiques ; réimport de la même archive = tout en doublon ; sans portfolio (volumes gardés) ; nom de fichier ; master V3 converti = import direct, réponse reprise ; journée V3 sans variante choisie reste à arbitrer | 6 |
-| `core/anonymize.test.js` | propositions ; noms en mot entier et en capitales ; courriels, liens, téléphones, adresses ; **plus aucun nom, mêmes substitutions dans le portfolio, les extraits et les ancres, chaque passage encore retrouvé** ; tiers signalés et retirés partout ; table de correspondance jamais exportée ; identifiants jamais touchés par les motifs ; référentiel intact ; mots à majuscule restants ; comptage des motifs ; statuts calculés comme le lecteur | 10 |
+| `core/anonymize.test.js` | propositions (élisions, noms composés, « J’ai » exclu) ; noms en mot entier, en une passe, sans tenir compte de la casse, des apostrophes ni des blancs ; repères neutres et identifiants protégés ; courriels, liens (ponctuation Markdown gardée), téléphones, adresses ; **plus aucun nom, mêmes substitutions dans le portfolio, les extraits et les ancres, chaque passage encore retrouvé** ; ancres coupées dans un mot ou d'une autre casse réalignées ; tiers signalés et retirés partout ; table de correspondance jamais exportée ; identifiants jamais touchés par les motifs ; référentiel intact ; mots à majuscule restants ; comptage des motifs ; statuts calculés comme le lecteur | 14 |
+| `ui/anonymize-render.test.js` | remplacer puis afficher le Markdown = afficher puis remplacer (liens, liens entre chevrons, échappés, courriels, emphase, listes) | 1 |
+| `core/highlight.test.js` (ajout) | un émoji avant le passage ne décale plus le surlignage | +1 |
 | `core/report.test.js` | données des pages 1 et 2 ; ensemble nommé ; jeu vide ; jury : dernière journée ou toutes, extraits de ces journées, journées à charger | 4 |
 | `viewer/embedded.test.js` | l'archive insérée se relit à l'identique (avec `</script>`, `$&`, U+2028) ; modèle invalide ; magasin en mémoire ; le modèle construit n'a qu'un emplacement de données et aucun module | 4 |
 | `ui/P5.test.jsx` | archive téléchargée et réimportée, sans portfolio sur demande ; copie HTML avec et sans portfolio, avertissement, modèle absent ; aperçu du rapport (pseudonyme, soleil, profil, précautions, réflexions choisies dépliées avec extraits, réponses seulement sur demande, impression, fermeture et focus rendu) ; page de comparaison ; **démo : propositions, dictionnaire, tiers, aperçu, vérification du surlignage, relecture, téléchargement sans aucun nom** ; réglage changé = aperçu périmé ; retrait d'un passage de tiers et ouverture de la démo dans le navigateur ; copie autonome en lecture seule | 9 |
@@ -652,9 +706,12 @@ Vérification visuelle dans Chromium : espace Export et outil de démo à
 journées : 11 pages (couverture et soleil, profil, réflexions de deux
 compétences, comparaison A/B), sans page blanche après la correction de D-27.
 
-Suite complète du front après P5 : **2 174 verts** sur 224 fichiers (seul
-`twin6-prompt-package.test.js` reste non chargeable, anomalie connue ;
-`UC-ADM-04-U15` est passé). Moteur : **1 069 verts**, 17 sautés — le test
+Suite complète du front après P5 et ses corrections : **2 179 verts** sur
+2 180 (225 fichiers) ; l'unique échec, `UC-ADM-04-U15` (formulaire des
+réglages de la démo, sans lien avec la cartographie), reste instable : il
+attend un message une seconde au plus après un clic et passe seul 6 fois
+sur 7 ; `twin6-prompt-package.test.js` reste non chargeable (anomalie
+connue). Moteur : **1 069 verts**, 17 sautés — le test
 `UC-SYS-04-U06`, qui fige la commande `prebuild` du front, suit l'ajout de la
 construction du modèle de copie autonome (fiche UC-SYS-04 mise à jour).
 Bout en bout : `npx playwright test e2e/carto-export.e2e.js` vert (Chromium,
@@ -722,3 +779,6 @@ dev-server Vite seul, sans API).
   des masters V3), copie autonome HTML lisible en `file://`, rapport
   imprimable A4, « Préparer une démo » (anonymisation vérifiée trace par
   trace) ; correction de l'impression du site (règle Twin9) (D-25 à D-28).
+  Validation sur les journaux réels : quatre corrections (dont le décalage du
+  surlignage après un émoji, défaut de P2), puis aucun surlignage perdu sur
+  406 (D-29).

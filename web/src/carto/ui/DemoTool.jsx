@@ -32,6 +32,7 @@ import { formatBytes } from './format.js'
 
 const DICTIONARY_KIND = 'carto-anonymization-dictionary'
 const SHOWN = 30
+const REMAINING_SHOWN = 300
 
 function letters(i) {
   let s = ''
@@ -208,7 +209,7 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
     }
   }
 
-  const remaining = useMemo(() => (result ? remainingNames(result.archive, result.dictionary).slice(0, 40) : []), [result])
+  const remaining = useMemo(() => (result ? remainingNames(result.archive, result.dictionary) : []), [result])
   const previewDates = useMemo(
     () =>
       result
@@ -487,13 +488,14 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
                 </div>
                 <div>
                   <p className="carto-small">
-                    <strong>Mots à majuscule restants</strong> (portfolio, jury, noms de fichiers) : vérifiez qu’aucun ne désigne une personne.
+                    <strong>Mots à majuscule restants ({remaining.length})</strong> (portfolio, jury, noms de fichiers), les plus fréquents d’abord : vérifiez
+                    qu’aucun ne désigne une personne.
                   </p>
                   {remaining.length === 0 ? (
                     <p className="carto-small carto-muted">Aucun.</p>
                   ) : (
-                    <ul className="carto-demo-remaining">
-                      {remaining.map((w) => (
+                    <ul className="carto-demo-remaining" tabIndex={0} aria-label="Mots à majuscule restants">
+                      {remaining.slice(0, REMAINING_SHOWN).map((w) => (
                         <li key={w.word}>
                           {w.word} <span className="carto-muted">({w.count})</span>{' '}
                           <button type="button" className="carto-link-btn" onClick={() => addEntry(w.word, '')} aria-label={`Ajouter ${w.word} au dictionnaire`}>
