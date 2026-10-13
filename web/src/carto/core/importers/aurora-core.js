@@ -144,6 +144,22 @@ export function importAuroraCoreTrees(files, { now = new Date().toISOString() } 
       consumed.add(f.path)
       portfolio.push({ date: m[1], title: firstHeading(f.text), text: f.text, source: `${journalId}/feuilles/${m[1]}.md` })
     }
+    // Fichiers techniques de l'arborescence : copies de feuilles par pôle et
+    // par compétence (même sans verdict), lectures et rapports de pôle,
+    // triage. Les rapports et lectures de pôle sont gardés au niveau du run.
+    const treeRe = new RegExp(`^${escapeRe(prefix)}(\\d+)/(?:(lecteur|rapport)\\.md|feuilles/\\d{4}-\\d{2}-\\d{2}\\.md|\\d+\\.\\d+/(?:feuilles/.+\\.md|briefing\\.md|deliberation\\.md))$`)
+    const poleTexts = new Map()
+    for (const f of files) {
+      const m = treeRe.exec(f.path)
+      if (!m) continue
+      consumed.add(f.path)
+      if (m[2]) {
+        if (!poleTexts.has(m[1])) poleTexts.set(m[1], {})
+        poleTexts.get(m[1])[m[2] === 'rapport' ? 'report' : 'reading'] = f.text
+      }
+    }
+    const triage = byPath.get(`${prefix}triage.json`)
+    if (triage) consumed.add(triage.path)
 
     const perDate = new Map() // date → Map(code → {verdict, traces[]})
     const rootRunDetails = []
@@ -221,6 +237,7 @@ export function importAuroraCoreTrees(files, { now = new Date().toISOString() } 
     analysisDate ??= nullableStr(manifest?.date_derniere_preparation)?.slice(0, 10) ?? null
     const runId = `${journalId}@${analysisDate ?? 'date-inconnue'}`
     for (const rd of rootRunDetails) runDetails.push({ key: `${runId}|${rd.value.code}`, value: rd.value })
+    for (const [pole, texts] of poleTexts) runDetails.push({ key: `${runId}|pole:${pole}`, value: { pole: Number(pole), ...texts } })
 
     for (const [date, codes] of [...perDate.entries()].sort()) {
       const digest = contentHash(canonicalJson([...codes.entries()].map(([c, e]) => [c, e.status, e.confidence, e.traces])))

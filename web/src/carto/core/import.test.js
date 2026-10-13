@@ -225,6 +225,23 @@ describe('arborescence AuroraCore (verdict.json / deliberation.md / briefing.md)
     expect(run.pieces).toEqual([{ date: '2025-12-22', name: 'LOU-1.01-2025-12-22-001.md', text: '# Pièce 001\n\nExtrait du Greffier.' }])
     expect(res.detailPatches.get('2025-12-22').variants[d22.id].verdicts['1.01'].runRef).toBe('LOU@2026-04-25|1.01')
   })
+
+  it('les copies de feuilles par pôle et par compétence ne remplacent jamais la feuille du journal', async () => {
+    const files = [
+      json('LOU/manifest.json', { id_portfolio: 'LOU' }),
+      json('LOU/1/1.01/verdict.json', verdict),
+      { path: 'LOU/feuilles/2025-12-22.md', text: '### 22.12.2025\n\nTexte du journal.' },
+      { path: 'LOU/1/feuilles/2025-12-22.md', text: 'Copie de triage du pôle (autre contenu).' },
+      { path: 'LOU/2/2.01/feuilles/2025-12-22.md', text: 'Copie pour une compétence sans verdict.' },
+      { path: 'LOU/1/rapport.md', text: '# Rapport du pôle 1' },
+      { path: 'LOU/1/lecteur.md', text: '# Lecture du pôle 1' },
+      json('LOU/triage.json', {}),
+    ]
+    const res = await importFiles(files, empty(), { now: NOW })
+    expect(res.report.filter((r) => r.code === 'portfolio-remplace' || r.code === 'segment-sans-date' || r.code === 'portfolio-sans-date')).toEqual([])
+    expect(res.detailPatches.get('2025-12-22').portfolio.text).toMatch(/Texte du journal/)
+    expect(res.runDetails.find((r) => r.key.endsWith('|pole:1')).value).toMatchObject({ pole: 1, report: '# Rapport du pôle 1', reading: '# Lecture du pôle 1' })
+  })
 })
 
 describe('formats Merge et métriques', () => {
