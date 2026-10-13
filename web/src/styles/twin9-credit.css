@@ -382,12 +382,15 @@
 /* ---------- Impression : seule la facture s'imprime ---------- */
 
 @media print {
-  body * {
+  /* Seulement quand une facture est affichée : cette feuille est chargée avec
+     tout le site (bundle unique) ; sans :has(), elle masquait TOUTE autre
+     impression (cartographie, rapport imprimable : pages blanches). */
+  body:has(.facture-twin9) * {
     visibility: hidden;
   }
 
-  .facture-twin9,
-  .facture-twin9 * {
+  body:has(.facture-twin9) .facture-twin9,
+  body:has(.facture-twin9) .facture-twin9 * {
     visibility: visible;
   }
 

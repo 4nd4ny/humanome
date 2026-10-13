@@ -1,5 +1,14 @@
 # UC-APP-06 — Exporter et importer son archive complète
 
+> **Mise à jour du 2026-10-13 (interface ultime de cartographie).** L'espace
+> Export de `#/cartographie` produit sa **propre** archive, distincte de celle
+> décrite ici : le master de cartographie v4 complet (journées, variantes,
+> verdicts, réflexions du jury, portfolio, réponses de l'apprenant, ensembles,
+> référentiel), réimportable sans perte dans l'interface, ainsi qu'une copie
+> autonome HTML et un rapport imprimable. L'archive de compte ci-dessous ne la
+> contient pas (voir `docs/cartographie-ultime/JOURNAL.md`, D-25, point à
+> valider).
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (fonctionne aussi sans session) |

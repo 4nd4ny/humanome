@@ -26,8 +26,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P1 | soleil, heatmap, gestionnaire, date t, liste, modale | ✅ | ✅ 13 tests d'interface | ✅ 125 verts (carto) + suite du site | `e4c21fd` |
 | P2 | lecteur surligné, détail, jury, « Pourquoi ? », animation | ✅ | ✅ 30 tests (cœur, DOM, interface) | ✅ 155 verts (carto) + suite du site | `13796b0` |
 | P3 | comparaison A/B (8 vues) | ✅ | ✅ 17 tests (cœur, interface) | ✅ 172 verts (carto) + suite du site | `b1907fa` |
-| P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | (ce commit) |
-| P5 | exports JSON / HTML / PDF, anonymisation | — | — | — | — |
+| P4 | tableau de bord des métriques | ✅ | ✅ 28 tests (cœur, interface) | ✅ 200 verts (carto) + suite du site | `77d2d93` |
+| P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 34 tests (cœur, interface, e2e Chromium) | ✅ 233 verts (carto) + suite du site + e2e | (commit P5, voir §5) |
 | P6 | copie serveur et partage (adultes) | — | — | — | — |
 | P7 | dialogue scripté (option) | — | — | — | — |
 
@@ -413,6 +413,118 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
   repères, « inclure les signaux faibles ». Le format définitif reste le point
   ouvert 7.
 
+
+### D-25 — Archive de l'apprenant : le master v4 complet
+
+- `core/archive.js` : l'index du master v4 (`kind: "competency-map-master"`,
+  `schemaVersion: "4.0.0"`) augmenté de `details` (journée → détail : verdicts,
+  traces et extraits, jury, rapports, portfolio du jour), `runDetails`
+  (délibérations AuroraCore), `exportedAt` et `includesPortfolio`. Nom :
+  `cartographie-<type>-<date>.json`. Autoporteuse : référentiel embarqué.
+- La réimportation passe par la chaîne d'import ordinaire (reconnaissance par
+  `kind` + `schemaVersion` 4.x) : variantes et détails, portfolio, narratifs,
+  métriques, délibérations, et l'**état de l'apprenant** (cases, étiquettes,
+  choix de variante, ensembles, réponses au jury, repères, notes de
+  comparaison ; titre et préférences seulement dans un jeu vide). Ce qui est
+  déjà là gagne ; les doublons sont ignorés et comptés ; rapport d'import.
+  Testé sans perte : export → réimport dans un jeu vide → mêmes journées,
+  variantes, détails, délibérations et état.
+- Sans le portfolio : le texte part, les volumes par jour restent (la heatmap
+  reste juste), les extraits cités par le jury restent (ils font partie de
+  l'analyse) ; l'interface le dit.
+- Un master V3 (`3.x`, interface `#/cartographie-v3`) est converti
+  (`importers/v3-master.js`) : mêmes verdicts, traces et extraits que l'import
+  direct (test) ; la réponse V3, posée sur chaque lien de preuve, devient celle
+  de l'observation (état commun, ou « nuancée » avec une note qui le dit).
+- **[à valider]** Cette archive est distincte de l'archive de compte du site
+  (`archive-export` 1.0.0, UC-APP-06, schéma dans `schemas/`), qui ne contient
+  pas le master de cartographie. Deux suites possibles : l'embarquer dans
+  l'archive de compte, et/ou écrire un schéma JSON du master v4 dans
+  `schemas/` (aujourd'hui, le contrat est le code et ses tests).
+
+### D-26 — Copie autonome : un modèle construit à part, les données insérées à l'export
+
+- `web/carto-viewer.html` + `src/carto/viewer/` : le **même** `CartoApp` en
+  mode `viewer` (lecture seule : magasin en mémoire, rien n'est écrit ; ni
+  export, ni import, ni gestion des jeux ; bandeau « copie autonome »).
+- `vite.viewer.config.js` construit un bundle IIFE unique ;
+  `scripts/build-viewer.mjs` l'insère avec la feuille de style dans **un**
+  fichier, `public/carto/viewer-template.html` (≈ 620 Ko, produit de
+  construction non versionné ; `npm run build:viewer`, et `prebuild` pour que
+  le site déployé le contienne).
+- À l'export, le navigateur lit ce modèle (même origine), insère l'archive
+  dans `<script type="application/json" id="carto-data">` (`<` échappé en
+  `<`, séparateurs U+2028 / U+2029 aussi) et télécharge
+  `cartographie-copie-<date>.html`. Le fichier s'ouvre en `file://` sans
+  réseau (vérifié dans Chromium, tout le réseau coupé, aucune erreur).
+- Portfolio **non inclus par défaut** ; s'il l'est, un avertissement dit que
+  le fichier contient le texte intégral.
+- Pour garder la copie légère : la table des attaques du Pédagogue est sortie
+  dans `engine/src/pipeline/attaques.js` (l'import de `extract.js` tirait le
+  validateur ajv), et le chargeur du référentiel publié est fourni par
+  `App.jsx` (la copie embarque le sien).
+
+### D-27 — Rapport imprimable
+
+- Aperçu dans un dialogue rattaché à `<body>` ; tant qu'il est ouvert, la
+  feuille d'impression ne sort **que** le rapport. Pages A4 : la règle `@page`
+  est posée seulement pendant l'aperçu (une page nommée faisait couper Chrome
+  avant chaque tableau). Soleil en SVG, aucune capture raster.
+- Page 1 : pseudonyme choisi, période, ensemble (nommé s'il correspond à un
+  ensemble enregistré), état (complet ou jusqu'à t), référentiel, soleil,
+  pôles, légende. Page 2 : profil chiffré, tableau des pôles, compétences
+  avec leur confiance cumulée, précautions de lecture. Pages suivantes : les
+  réflexions du jury des compétences **choisies** (dernière journée observée,
+  ou toutes), avec leurs extraits, le verdict, le motif, la prescription,
+  l'examen du Pédagogue et, pour AuroraCore, les six voix et le président —
+  pas les délibérations complètes, le débat ni les pièces du Greffier, qui
+  réimprimeraient tout le journal. En option, une page de comparaison A/B
+  (deux soleils, compétences communes / propres, récit, précautions). Les
+  réponses de la personne au jury et sa note ne s'impriment que si elle le
+  demande (cohérent avec D-15).
+- **Défaut corrigé hors du module** : `styles/twin9-credit.css`, chargé avec
+  tout le site (bundle unique), masquait **toute** impression
+  (`body * { visibility: hidden }`) pour isoler la facture Twin9 : la
+  cartographie (D-17) et le rapport sortaient en pages blanches. La règle est
+  désormais limitée à `body:has(.facture-twin9)`.
+
+### D-28 — « Préparer une démo » : anonymisation dans le navigateur
+
+- Propositions : mots à majuscule rencontrés au moins deux fois ailleurs
+  qu'en début de phrase (portfolio ; à défaut, extraits). Dictionnaire nom →
+  remplacement (par défaut « Personne A », « Personne B »…), mot entier,
+  forme en capitales comprise, noms les plus longs d'abord ; ajout manuel.
+- Motifs : courriels, liens, téléphones (FR, CH, international), adresses →
+  repères neutres (`[courriel]`, `[lien]`, `[téléphone]`, `[adresse]`).
+- **Les mêmes substitutions partout** : portfolio, extraits et ancres de
+  surlignage, textes du jury, rapports, narratifs, noms de fichiers,
+  identifiants de run (clés des délibérations comprises). Les champs
+  techniques (identifiants, empreintes, dates, codes, états) ne reçoivent que
+  les noms, jamais les motifs — un identifiant hexadécimal peut contenir dix
+  chiffres qui ressemblent à un téléphone (testé). Le référentiel n'est pas
+  touché.
+- Personnes tierces : les phrases du portfolio qui citent un nom du
+  dictionnaire sont listées pour relecture ; « retirer ce passage » le
+  remplace par « [passage retiré] » partout où il figure, et un extrait
+  entièrement contenu dans la phrase retirée part aussi (sinon le passage
+  restait lisible dans les extraits du jury).
+- Revue avant export : remplacements comptés ; **vérification du surlignage
+  trace par trace avec la recherche du lecteur** (texte affiché du Markdown
+  rendu) : même statut, même journée, avant et après ; surlignages perdus
+  listés avec leur cause (passage retiré, ou remplacement à vérifier) ; mots à
+  majuscule restants (noms de fichiers et titres compris) ; relecture du texte
+  anonymisé jour par jour, remplacements mis en évidence. Les
+  téléchargements (archive, copie autonome, ou ouverture dans ce navigateur)
+  n'ouvrent qu'après confirmation de la relecture d'un aperçu à jour.
+- La table de correspondance n'est **jamais** dans l'export ; elle peut être
+  enregistrée à part (`cartographie-dictionnaire-<date>.json`, « contient les
+  vrais noms : gardez-le pour vous »).
+- Démo du site : « Explorer la démonstration » ouvre
+  `data/demo/carto/archive.json` s'il existe, sinon les 59 journées
+  publiques. **[à valider]** Ce fichier, même anonymisé, vient d'un vrai
+  portfolio : il n'est jamais versionné (`.gitignore`) ; il se dépose par FTP
+  ou se place dans `web/public/data/demo/carto/` avant la construction.
+
 ---
 
 ## 3. État des tests
@@ -470,6 +582,31 @@ sans erreur de console.
 | `ui/highlight-dom.test.js` | séparateur de blocs ; extrait sur deux paragraphes = un `<mark>` par nœud texte, aucun autour d'un `<p>` ; segments blancs ignorés ; orange ; toutes les occurrences et occurrence courante ; marques Markdown retirées ; assainissement (ni script, ni image, ni `javascript:`) | 7 |
 | `ui/P2.test.jsx` | **critère P2 : passage surligné dans le portfolio importé en cartographie fusionnée** (3 journées), trace suivante, retour à la compétence ; **idem depuis un `carto_merge.json`** ; décalage de date dit comme tel ; introuvable ; sans portfolio ; deux occurrences ; depuis la modale du jour (focus rendu) ; motif / prescription / Pédagogue / Greffier ; droit de réponse enregistré sans effet sur le soleil ; état inconnu ≠ « Contestée » ; rapport de pôle sans « territoires non visités » ; kairos ; synthèse évolutive masquée puis rappelée ; impression ; AuroraCore (six éclairages, président, délibération, pièces, surlignage dans la feuille du journal) | 15 |
 
+Validation du lecteur sur les journaux réels (sur le Mac, compteurs
+seulement, même chaîne que l'interface : Markdown rendu, assaini, recherche
+dans le texte affiché) :
+
+| Journal | traces | brut, jour même : complet / partiel / absent | lecteur : trouvé / partiel / retrouvé ailleurs / non retrouvé |
+|---|---|---|---|
+| 200 | 302 | 180 / 53 / 69 | 181 / 51 / 5 / 65 |
+| 300 | 180 | 120 / 35 / 25 | 121 / 33 / 5 / 21 |
+| GEN1 | 10 | 9 / 1 / 0 | 9 / 1 / 0 / 0 |
+
+Les « non retrouvés » ne sont presque jamais dans le portfolio, même en
+ignorant la ponctuation (63 sur 65 pour le journal 200, 21 sur 21 pour le
+300) ; 10 et 3 figurent tels quels dans les pièces du Greffier ; pour la
+plupart, la moitié à trois quarts seulement de leurs mots se retrouvent dans
+la feuille du jour : l'extrait a été **reformulé** par l'analyse (défaut
+d'AuroraCore prévu au §8.1). Le lecteur le dit et cite l'extrait. Piste (point
+ouvert 9) : un surlignage « approché », clairement signalé, pour les extraits
+dont au moins 75 % des mots figurent dans la feuille (18 traces sur ces deux
+journaux).
+
+Suite complète du front après P2 : **2 096 verts** sur 214 fichiers (seul
+`twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
+Vérification visuelle dans Chromium (1 440 px et 390 px) : lecteur, trace
+suivante, détail, jury, sans erreur de console.
+
 ### P3 — comparaison de soi à soi
 
 | Fichier de test | Contenu | Tests |
@@ -498,30 +635,30 @@ Vérification visuelle dans Chromium : tableau de bord sur la démonstration (59
 journées : l'axe temporel réel montre le silence de janvier–février) et sur
 un jeu synthétique avec portfolio long et miroir, à 1 440 px et 390 px.
 
-Validation du lecteur sur les journaux réels (sur le Mac, compteurs
-seulement, même chaîne que l'interface : Markdown rendu, assaini, recherche
-dans le texte affiché) :
 
-| Journal | traces | brut, jour même : complet / partiel / absent | lecteur : trouvé / partiel / retrouvé ailleurs / non retrouvé |
-|---|---|---|---|
-| 200 | 302 | 180 / 53 / 69 | 181 / 51 / 5 / 65 |
-| 300 | 180 | 120 / 35 / 25 | 121 / 33 / 5 / 21 |
-| GEN1 | 10 | 9 / 1 / 0 | 9 / 1 / 0 / 0 |
+### P5 — exports et démo anonymisée
 
-Les « non retrouvés » ne sont presque jamais dans le portfolio, même en
-ignorant la ponctuation (63 sur 65 pour le journal 200, 21 sur 21 pour le
-300) ; 10 et 3 figurent tels quels dans les pièces du Greffier ; pour la
-plupart, la moitié à trois quarts seulement de leurs mots se retrouvent dans
-la feuille du jour : l'extrait a été **reformulé** par l'analyse (défaut
-d'AuroraCore prévu au §8.1). Le lecteur le dit et cite l'extrait. Piste (point
-ouvert 9) : un surlignage « approché », clairement signalé, pour les extraits
-dont au moins 75 % des mots figurent dans la feuille (18 traces sur ces deux
-journaux).
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/archive.test.js` | export → réimport dans un jeu vide : journées, variantes, détails, délibérations, état de l'apprenant identiques ; réimport de la même archive = tout en doublon ; sans portfolio (volumes gardés) ; nom de fichier ; master V3 converti = import direct, réponse reprise ; journée V3 sans variante choisie reste à arbitrer | 6 |
+| `core/anonymize.test.js` | propositions ; noms en mot entier et en capitales ; courriels, liens, téléphones, adresses ; **plus aucun nom, mêmes substitutions dans le portfolio, les extraits et les ancres, chaque passage encore retrouvé** ; tiers signalés et retirés partout ; table de correspondance jamais exportée ; identifiants jamais touchés par les motifs ; référentiel intact ; mots à majuscule restants ; comptage des motifs ; statuts calculés comme le lecteur | 10 |
+| `core/report.test.js` | données des pages 1 et 2 ; ensemble nommé ; jeu vide ; jury : dernière journée ou toutes, extraits de ces journées, journées à charger | 4 |
+| `viewer/embedded.test.js` | l'archive insérée se relit à l'identique (avec `</script>`, `$&`, U+2028) ; modèle invalide ; magasin en mémoire ; le modèle construit n'a qu'un emplacement de données et aucun module | 4 |
+| `ui/P5.test.jsx` | archive téléchargée et réimportée, sans portfolio sur demande ; copie HTML avec et sans portfolio, avertissement, modèle absent ; aperçu du rapport (pseudonyme, soleil, profil, précautions, réflexions choisies dépliées avec extraits, réponses seulement sur demande, impression, fermeture et focus rendu) ; page de comparaison ; **démo : propositions, dictionnaire, tiers, aperçu, vérification du surlignage, relecture, téléchargement sans aucun nom** ; réglage changé = aperçu périmé ; retrait d'un passage de tiers et ouverture de la démo dans le navigateur ; copie autonome en lecture seule | 9 |
+| `e2e/carto-export.e2e.js` (Playwright, Chromium) | **critères P5 dans un vrai navigateur** : import des fichiers de Lou, copie autonome téléchargée (portfolio inclus) puis ouverte en `file://`, **tout le réseau coupé** → le passage d'une trace est surligné ; démo anonymisée (Sam → Personne A) téléchargée et ouverte de même → le passage est surligné sous son nouveau nom, les vrais noms n'y sont plus ; aucune erreur de console | 1 |
 
-Suite complète du front après P2 : **2 096 verts** sur 214 fichiers (seul
-`twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
-Vérification visuelle dans Chromium (1 440 px et 390 px) : lecteur, trace
-suivante, détail, jury, sans erreur de console.
+Vérification visuelle dans Chromium : espace Export et outil de démo à
+1 440 px et 390 px ; rapport imprimé en PDF (A4) sur la démonstration de 59
+journées : 11 pages (couverture et soleil, profil, réflexions de deux
+compétences, comparaison A/B), sans page blanche après la correction de D-27.
+
+Suite complète du front après P5 : **2 174 verts** sur 224 fichiers (seul
+`twin6-prompt-package.test.js` reste non chargeable, anomalie connue ;
+`UC-ADM-04-U15` est passé). Moteur : **1 069 verts**, 17 sautés — le test
+`UC-SYS-04-U06`, qui fige la commande `prebuild` du front, suit l'ajout de la
+construction du modèle de copie autonome (fiche UC-SYS-04 mise à jour).
+Bout en bout : `npx playwright test e2e/carto-export.e2e.js` vert (Chromium,
+dev-server Vite seul, sans API).
 
 ---
 
@@ -545,6 +682,18 @@ suivante, détail, jury, sans erreur de console.
    jusqu'à la démo anonymisée de P5.
 9. Surlignage « approché » des extraits reformulés par l'analyse (validation
    P2) : à ajouter, signalé comme tel, ou s'en tenir au message actuel ?
+10. Archive de cartographie (D-25) : l'embarquer dans l'archive de compte du
+    site (`archive-export`, UC-APP-06) ? Écrire un schéma JSON du master v4
+    dans `schemas/` ?
+11. Démo anonymisée du site (D-28) : où la déposer — par FTP dans la release
+    courante (perdue à la release suivante) ou dans `web/public/data/demo/carto/`
+    avant chaque construction (jamais versionnée) ?
+12. Rapport imprimable (D-27) : pour AuroraCore, les six voix et le président
+    sont imprimés, pas les délibérations complètes ni le débat ni les pièces
+    du Greffier (tout le journal) — à confirmer.
+13. Correction hors module (D-27) : la règle d'impression de la facture Twin9
+    masquait toute autre impression du site ; elle est désormais limitée à la
+    page qui affiche une facture — à confirmer.
 
 ---
 
@@ -569,3 +718,7 @@ suivante, détail, jury, sans erreur de console.
 - **2026-10-13** — P4 : tableau de bord (neuf cartes qui se masquent seules,
   graphiques SVG accessibles, style local, rupture lexicale, moments,
   miroir HumanoTwin) (D-22 à D-24).
+- **2026-10-13** — P5 : archive JSON réimportable sans perte (et conversion
+  des masters V3), copie autonome HTML lisible en `file://`, rapport
+  imprimable A4, « Préparer une démo » (anonymisation vérifiée trace par
+  trace) ; correction de l'impression du site (règle Twin9) (D-25 à D-28).

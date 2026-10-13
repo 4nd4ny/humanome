@@ -1,0 +1,21 @@
+/* Copie autonome : police système (aucun fichier de police à charger). */
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+.carto-viewer-banner {
+  max-width: 1600px;
+  margin: 0.5rem auto 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+}
+.carto-viewer-msg {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+@media print {
+  .carto-viewer-banner {
+    display: none;
+  }
+}

@@ -11,7 +11,7 @@
 // Tout texte importé est rendu comme DONNÉE (texte React) ; le Markdown passe
 // par renderMarkdown (DOMPurify) — jamais de HTML brut.
 
-import { ATTAQUES } from '@engine/pipeline/extract.js'
+import { ATTAQUES } from '@engine/pipeline/attaques.js'
 import { renderMarkdown } from '../../lib/md.js'
 import { JUROR_LABELS } from '../core/importers/aurora-core.js'
 import { verdictStatusLabel } from '../core/model.js'
@@ -134,7 +134,7 @@ export function DayPieces({ pieces, date, onOpenPassage }) {
   )
 }
 
-const JUROR_ORDER = ['linguiste', 'historien', 'anthropologue', 'philosophe', 'pedagogue', 'sociologue', 'creatif']
+export const JUROR_ORDER = ['linguiste', 'historien', 'anthropologue', 'philosophe', 'pedagogue', 'sociologue', 'creatif']
 
 /** Délibération d'un run AuroraCore (porte sur tout le journal). */
 export function RunJury({ run }) {

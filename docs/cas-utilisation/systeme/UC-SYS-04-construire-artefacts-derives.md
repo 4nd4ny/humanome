@@ -4,7 +4,7 @@
 |---|---|
 | **Acteur principal** | Mainteneur, depuis son poste (scripts Node lancés à la main) ; chaîne de déploiement qui en rejoue une partie : prebuild du front (`web/package.json`) et `scripts/deploy/stage-api.sh` |
 | **Acteurs secondaires** | Épistémiarques (auteurs des définitions et des fiches, UC-EPI-03) ; API (source de `GET /api/admin/dump-fiches`, UC-SYS-02 A5) ; outil de déploiement `deploy.mjs` (consomme les artefacts, UC-SYS-02) ; GitBook (lit `SUMMARY.md`) |
-| **Portée** | Scripts Node hors navigateur et hors serveur : `scripts/convert/*`, `scripts/extract-referentiel.mjs`, `enrich-referentiel.mjs`, `extract-fiches.mjs`, `generate-fiches.mjs`, `dump-fiches.mjs`, `build-default-prompt-package.mjs`, `build-twin6-package.mjs`, `build-twin6-prompt-package.mjs`, `build-tuteur-digest.mjs`, `build-validators.mjs`, `validate-corpus.mjs`, `build-gitbook-summary.mjs` |
+| **Portée** | Scripts Node hors navigateur et hors serveur : `scripts/convert/*`, `scripts/extract-referentiel.mjs`, `enrich-referentiel.mjs`, `extract-fiches.mjs`, `generate-fiches.mjs`, `dump-fiches.mjs`, `build-default-prompt-package.mjs`, `build-twin6-package.mjs`, `build-twin6-prompt-package.mjs`, `build-tuteur-digest.mjs`, `build-validators.mjs`, `validate-corpus.mjs`, `build-gitbook-summary.mjs`, `web/scripts/build-viewer.mjs` |
 | **Niveau** | Sous-fonction technique (construction) |
 | **Cahier des charges** | §5 (« clone déployable » ; système de prompts converti en JavaScript), §8 (référentiel évolutif), §9 (éléments existants à intégrer, pas à recréer) ; ADR-001, ADR-003, ADR-006 ; `docs/contrats.md` (§3 notes de cohérence, §4 décisions 3, 4, 6 et 8), `INSTALL.md` §2 et §5, `docs/deploiement.md` |
 | **Statut** | Implémenté (P1, P8.3, D1/AD-D1, D9, D10, source unique des fiches) — voir « Anomalies constatées » |
@@ -111,7 +111,10 @@ Ordre réel, reconstitué d'`INSTALL.md` §2 et §6, du `prebuild` de
 6. **Front.** `npm run build` (dans `web/`) déclenche le `prebuild` :
    `generate-fiches.mjs` régénère `twin6/prompts/P1..P7.md` depuis
    `fiches-v7.json` (RG4), puis `build-twin6-package.mjs` assemble le paquet
-   statique Twin6 ; Vite construit ensuite le bundle (UC-SYS-02 étape 1).
+   statique Twin6, puis `web/scripts/build-viewer.mjs` construit le modèle de
+   la copie autonome de la cartographie (`public/carto/viewer-template.html`,
+   un seul fichier HTML qui s'ouvre en `file://` ; journal de l'interface
+   ultime, D-26) ; Vite construit ensuite le bundle (UC-SYS-02 étape 1).
 7. **Release API.** `./scripts/deploy/stage-api.sh` copie les sources et les
    schémas, lance `build-tuteur-digest.mjs` (`scripts/data/tuteur-digest.md`,
    **avant** la copie de `scripts/data` dans la release — UC-VIS-05), puis

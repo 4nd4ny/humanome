@@ -286,7 +286,7 @@ describe('UC-SYS-04 — unitaires', () => {
 
     const web = JSON.parse(readFileSync(join(REPO, 'web/package.json'), 'utf8'))
     expect(web.scripts.prebuild).toBe(
-      'node ../scripts/generate-fiches.mjs && node ../scripts/build-twin6-package.mjs',
+      'node ../scripts/generate-fiches.mjs && node ../scripts/build-twin6-package.mjs && node scripts/build-viewer.mjs',
     )
 
     // deploy.mjs : boucles d'import réelles (hors commentaires), référentiels puis paquets.

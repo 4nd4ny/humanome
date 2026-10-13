@@ -1,0 +1,146 @@
+// P5 — « Préparer une démo » (spec §11.1). Critère d'acceptation : la démo
+// anonymisée garde ses surlignages.
+import { describe, expect, it } from 'vitest'
+import { REMOVED, anonymizeArchive, archiveTexts, highlightStatuses, makeReplacer, patternCounts, remainingNames, suggestNames, thirdPartySentences } from './anonymize.js'
+import { buildArchive } from './archive.js'
+import { importFiles } from './import.js'
+import { createDataset } from './model.js'
+import { createCartoStore, createMemoryAdapter } from './store.js'
+import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+
+const NOW = '2026-10-13T12:00:00.000Z'
+
+async function louArchive() {
+  const files = [{ path: 'Lou-Martin/journal.md', text: LOU_PORTFOLIO }]
+  for (const [date, poles] of Object.entries(louDays())) {
+    for (const p of poles) files.push({ path: `Lou-Martin/${date}/carto_P${p.poleNum}.json`, text: JSON.stringify(p) })
+    files.push({ path: `Lou-Martin/${date}/kairos.json`, text: JSON.stringify(kairosDoc(date)) })
+  }
+  const store = createCartoStore({ adapter: createMemoryAdapter() })
+  await store.commit(await importFiles(files, createDataset({ datasetId: 'ds', title: 'Lou Martin', referential: miniReferential(), now: NOW }), { now: NOW }))
+  return buildArchive(await store.exportAll('ds'), { now: NOW })
+}
+
+describe('propositions et remplacements', () => {
+  it('propose les mots à majuscule fréquents hors début de phrase', () => {
+    const s = suggestNames([LOU_PORTFOLIO, 'Avec Sam et Noé, puis Sam encore. Samedi, rien.'])
+    expect(s.map((x) => x.word)).toEqual(expect.arrayContaining(['Sam', 'Noé']))
+    expect(s.map((x) => x.word)).not.toContain('Samedi')
+  })
+
+  it('noms en mot entier seulement ; courriels, liens, téléphones, adresses', () => {
+    const { apply, counts } = makeReplacer({ dictionary: [{ from: 'Sam', to: 'Alex' }] })
+    expect(apply('Sam et SAM, mais pas Samedi ni Samuel.')).toBe('Alex et ALEX, mais pas Samedi ni Samuel.')
+    expect(apply('Écrire à lou.martin@ecole.ch ou voir https://exemple.org/a?b=1.')).toBe('Écrire à [courriel] ou voir [lien].')
+    expect(apply('Appeler le 079 123 45 67, le +41 79 123 45 67 ou le 06 12 34 56 78.')).toBe('Appeler le [téléphone], le [téléphone] ou le [téléphone].')
+    expect(apply('Rendez-vous au 12 rue du Lac, puis au 3 bis avenue de la Gare.')).toBe('Rendez-vous au [adresse], puis au [adresse].')
+    expect(apply('Le 2025-12-22 à 14 h 30, 3 essais.')).toBe('Le 2025-12-22 à 14 h 30, 3 essais.')
+    expect(counts.get('Sam → Alex')).toBe(2)
+  })
+})
+
+describe('anonymiser une archive (critère P5 : les surlignages tiennent)', () => {
+  it('plus aucun nom ; mêmes substitutions dans le portfolio, les extraits et les ancres ; chaque passage reste retrouvé', async () => {
+    const archive = await louArchive()
+    const { archive: out, report } = anonymizeArchive(archive, {
+      dictionary: [
+        { from: 'Sam', to: 'Alex' },
+        { from: 'Noé', to: 'Lior' },
+        { from: 'Lou', to: 'Camille' },
+        { from: 'Martin', to: 'Durand' },
+      ],
+      pseudonym: 'Camille (démo)',
+      now: NOW,
+    })
+    const json = JSON.stringify(out)
+    expect(json).not.toMatch(/\bSam\b|Noé|\bLou\b|Martin/u)
+    expect(out.title).toBe('Camille (démo)')
+    expect(out.importLog).toEqual([])
+    expect(report.highlight.before).toBeGreaterThan(0)
+    expect(report.highlight.after).toBe(report.highlight.before)
+    expect(report.highlight.broken).toEqual([])
+    // L'extrait de 2.01 et ses ancres portent le même nouveau prénom que le portfolio.
+    const d23 = out.details['2025-12-23']
+    const t = Object.values(Object.values(d23.variants)[0].verdicts['2.01'].traces)[0]
+    expect(t.extract).toMatch(/^J’ai écouté Alex expliquer/)
+    expect(t.start).toMatch(/Alex/)
+    expect(d23.portfolio.text).toMatch(/J’ai écouté Alex expliquer/)
+    expect(report.replacements.find((r) => r.label === 'Sam → Alex').count).toBeGreaterThan(2)
+    // Volumes recalculés.
+    expect(out.days.find((d) => d.date === '2025-12-23').portfolio.chars).toBe(d23.portfolio.text.length)
+  })
+
+  it('passages de tiers : signalés, retirés à la demande ; un surlignage cassé est signalé', async () => {
+    const archive = await louArchive()
+    const third = thirdPartySentences(archive, ['Sam'])
+    expect(third.map((x) => x.date)).toEqual(['2025-12-22', '2025-12-23'])
+    const target = third.find((x) => x.date === '2025-12-23')
+    const { archive: out, report } = anonymizeArchive(archive, { dictionary: [{ from: 'Sam', to: 'Alex' }], remove: [target], now: NOW })
+    expect(report.removed).toBe(1)
+    expect(out.details['2025-12-23'].portfolio.text).toMatch(/\[passage retiré\]/)
+    // La trace de 2.01 citait cette phrase : l'extrait part aussi (sinon le
+    // passage retiré resterait lisible dans le jury), le surlignage est perdu
+    // et le rapport dit pourquoi.
+    const t = Object.values(Object.values(out.details['2025-12-23'].variants)[0].verdicts['2.01'].traces)[0]
+    expect(t.extract).toBe(REMOVED)
+    expect(JSON.stringify(out)).not.toMatch(/expliquer son idée/)
+    expect(report.highlight.broken).toEqual([expect.objectContaining({ code: '2.01', reason: 'retrait' })])
+  })
+
+  it('la table de correspondance n’est jamais dans l’export', async () => {
+    const { archive: out } = anonymizeArchive(await louArchive(), { dictionary: [{ from: 'Sam', to: 'Alex' }], now: NOW })
+    expect(JSON.stringify(out)).not.toMatch(/Sam → Alex|dictionary|correspondance/)
+  })
+})
+
+describe('garde-fous de l’anonymisation', () => {
+  it('les identifiants ne reçoivent jamais les motifs (un identifiant hexadécimal peut ressembler à un téléphone)', async () => {
+    const archive = await louArchive()
+    const day = archive.days.find((d) => d.date === '2025-12-23')
+    const oldId = day.variants[0].id
+    const newId = 'v-0612345678abcdefabcd'
+    const doc = JSON.parse(JSON.stringify(archive).split(oldId).join(newId))
+    const { archive: out, report } = anonymizeArchive(doc, { dictionary: [{ from: 'Sam', to: 'Alex' }], now: NOW })
+    const d23 = out.days.find((d) => d.date === '2025-12-23')
+    expect(d23.variants[0].id).toBe(newId)
+    expect(d23.activeVariantId).toBe(newId)
+    expect(Object.keys(out.details['2025-12-23'].variants)).toContain(newId)
+    expect(report.highlight.broken).toEqual([])
+    expect(report.replacements.map((r) => r.label)).not.toContain('téléphones')
+  })
+
+  it('le référentiel n’est pas touché, même si un mot du dictionnaire y figure', async () => {
+    const archive = await louArchive()
+    const { archive: out } = anonymizeArchive(archive, { dictionary: [{ from: 'Écoute', to: 'Xyz' }], now: NOW })
+    expect(out.referential).toEqual(archive.referential)
+  })
+
+  it('revue : les mots à majuscule restants, noms de fichiers compris ; les remplacements n’y sont pas', async () => {
+    const archive = await louArchive()
+    const dictionary = [{ from: 'Sam', to: 'Personne A' }]
+    const { archive: out } = anonymizeArchive(archive, { dictionary, now: NOW })
+    const words = remainingNames(out, dictionary).map((x) => x.word)
+    expect(words).toEqual(expect.arrayContaining(['Noé', 'Lou', 'Martin']))
+    expect(words).not.toContain('Sam')
+    expect(words).not.toContain('Personne')
+  })
+
+  it('compte les motifs ; textes de recherche : le portfolio, à défaut les extraits', async () => {
+    expect(patternCounts(['lou@ecole.ch et https://x.org', 'tél. 079 123 45 67'])).toEqual({ emails: 1, urls: 1, phones: 1, addresses: 0 })
+    const archive = await louArchive()
+    expect(archiveTexts(archive).join('\n')).toMatch(/Journal de Lou/)
+    const bare = JSON.parse(JSON.stringify(archive))
+    for (const d of Object.values(bare.details)) d.portfolio = null
+    expect(archiveTexts(bare).some((t) => t.startsWith('J’ai écouté Sam'))).toBe(true)
+  })
+
+  it('statuts de surlignage calculés comme le lecteur (journée de la trace, puis ailleurs)', async () => {
+    const archive = await louArchive()
+    const st = [...highlightStatuses(archive).values()]
+    expect(st.length).toBeGreaterThan(0)
+    expect(st.every((s) => s.status === 'found' || s.status === 'partial')).toBe(true)
+    // Une recherche fournie (texte affiché) remplace la recherche dans le texte brut.
+    const none = [...highlightStatuses(archive, () => []).values()]
+    expect(none.every((s) => s.status === 'not-found')).toBe(true)
+  })
+})

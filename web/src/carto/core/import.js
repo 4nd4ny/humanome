@@ -23,6 +23,9 @@ import { importAuroraCoreTrees } from './importers/aurora-core.js'
 import { importCartoMerge, importSiteMerge, looksLikeCartoMerge, looksLikeSiteMerge } from './importers/merge.js'
 import { importPortfolioText, portfolioSummary } from './importers/portfolio.js'
 import { importMetrics, looksLikeMetrics } from './importers/metrics.js'
+import { importArchive, looksLikeArchive } from './archive.js'
+import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
+import { canonicalJson } from './model.js'
 
 const IGNORED = /(^|\/)(__MACOSX\/|\.DS_Store$|\._[^/]*$|Thumbs\.db$)/
 const ISO_SEGMENT = /^(\d{4}-\d{2}-\d{2})(?:\.zip)?$/
@@ -110,7 +113,7 @@ function dateAndRunFromDir(dir) {
  */
 export function recognize(files, { now = new Date().toISOString() } = {}) {
   const report = []
-  const result = { variants: [], portfolio: [], undated: [], narratives: [], metrics: null, runDetails: [], referential: null, unsupported: [], report }
+  const result = { variants: [], portfolio: [], undated: [], narratives: [], metrics: null, runDetails: [], referential: null, unsupported: [], extras: [], report }
 
   // AuroraCore d'abord : il « consomme » verdicts, délibérations, pièces et feuilles.
   const core = importAuroraCoreTrees(files, { now })
@@ -132,7 +135,25 @@ export function recognize(files, { now = new Date().toISOString() } = {}) {
         continue
       }
       if (doc?.kind === 'competency-map-master') {
-        result.unsupported.push({ path: f.path, kind: String(doc.schemaVersion ?? '').startsWith('4.') ? 'archive' : 'v3-master', doc })
+        if (looksLikeArchive(doc)) {
+          const r = importArchive(doc, { fileName: name })
+          result.variants.push(...r.variants)
+          result.portfolio.push(...r.portfolio)
+          result.undated.push(...r.undated)
+          result.narratives.push(...r.narratives)
+          result.runDetails.push(...r.runDetails)
+          if (r.metrics) result.metrics = r.metrics
+          if (r.referential) result.referential = r.referential
+          result.extras.push(r.extras)
+          report.push(...r.report.map((x) => ({ ...x, file: f.path })))
+        } else if (looksLikeV3Master(doc)) {
+          const r = importV3Master(doc, { fileName: name, now })
+          result.variants.push(...r.variants)
+          result.extras.push(r.extras)
+          report.push(...r.report.map((x) => ({ ...x, file: f.path })))
+        } else {
+          result.unsupported.push({ path: f.path, kind: 'master-inconnu', doc })
+        }
       } else if (doc?.kind === 'referentiel' || (Array.isArray(doc?.poles) && Array.isArray(doc?.competences) && !doc?.date)) {
         const errors = referentialErrors(doc)
         if (errors.length) report.push({ severity: 'blocking', code: 'referentiel-invalide', message: `${f.path} : ${errors.join(' ; ')}`, file: f.path })
@@ -229,8 +250,10 @@ export function recognize(files, { now = new Date().toISOString() } = {}) {
  */
 export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOString(), fileNames = [] } = {}) {
   const report = [...recognized.report]
+  const wasEmpty = dataset.days.length === 0
   const ds = { ...dataset, days: dataset.days.map((d) => ({ ...d, variants: [...d.variants], tags: [...d.tags] })) }
   const byDate = new Map(ds.days.map((d) => [d.date, d]))
+  const created = new Set()
   const patches = new Map()
   const patch = (date) => {
     if (!patches.has(date)) patches.set(date, { variants: {} })
@@ -241,6 +264,7 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
       const d = createDay(date)
       byDate.set(date, d)
       ds.days.push(d)
+      created.add(date)
       counts.daysAdded++
     }
     return byDate.get(date)
@@ -249,7 +273,9 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
 
   // Référentiel : remplacement direct seulement sur un jeu vide.
   let referentialCandidate = null
-  if (recognized.referential) {
+  if (recognized.referential && canonicalJson(recognized.referential) === canonicalJson(ds.referential)) {
+    // Même référentiel (archive réimportée) : rien à arbitrer.
+  } else if (recognized.referential) {
     if (ds.days.length === 0) {
       ds.referential = recognized.referential
       report.push({ severity: 'info', code: 'referentiel', message: `Référentiel ${recognized.referential.label} adopté` })
@@ -323,14 +349,45 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     ds.metrics = next
   }
 
-  // Formats reconnus mais traités par un autre importeur.
+  // Archives et masters V3 : état de l'apprenant (cases, étiquettes, choix de
+  // variantes, ensembles, revues, repères, comparaisons). Sur un jeu existant,
+  // ce qui y est déjà gagne ; sur un jeu vide, l'archive est restaurée telle quelle.
+  for (const ex of recognized.extras ?? []) {
+    if (wasEmpty) {
+      if (ex.title) ds.title = ex.title
+      if (ex.preferences) ds.preferences = { ...ds.preferences, ...structuredClone(ex.preferences) }
+      if (ex.portfolioMeta && ds.portfolio) ds.portfolio = { ...ds.portfolio, title: ex.portfolioMeta.title ?? ds.portfolio.title, sources: [...new Set([...(ex.portfolioMeta.sources ?? []), ...(ds.portfolio.sources ?? [])])] }
+    }
+    for (const d of ex.days ?? []) {
+      const day = dayFor(d.date)
+      day.tags = [...new Set([...day.tags, ...(d.tags ?? [])])]
+      if (!day.portfolio && d.portfolio) day.portfolio = { ...d.portfolio }
+      if (created.has(d.date)) {
+        day.active = d.active !== false
+        const known = d.activeVariantId && day.variants.some((v) => v.id === d.activeVariantId)
+        day.activeVariantId = known ? d.activeVariantId : d.variantChoice === 'pending' || d.variantChoice === 'examine' ? null : day.activeVariantId
+        day.variantChoice = d.variantChoice ?? day.variantChoice
+      }
+    }
+    const setIds = new Set(ds.sets.map((x) => x.id))
+    const newSets = (ex.sets ?? []).filter((x) => x?.id && !setIds.has(x.id))
+    if (newSets.length) ds.sets = [...ds.sets, ...structuredClone(newSets)]
+    const newReviews = Object.entries(ex.reviews ?? {}).filter(([k]) => !(k in ds.reviews))
+    if (newReviews.length) ds.reviews = { ...ds.reviews, ...Object.fromEntries(structuredClone(newReviews)) }
+    const markerIds = new Set(ds.markers.map((m) => m.id))
+    const newMarkers = (ex.markers ?? []).filter((m) => m?.id && !markerIds.has(m.id))
+    if (newMarkers.length) ds.markers = [...ds.markers, ...structuredClone(newMarkers)].sort((a, b) => (a.date < b.date ? -1 : 1))
+    const cmpKeys = new Set(ds.comparisons.map((c) => c.key))
+    const newCmp = (ex.comparisons ?? []).filter((c) => c?.key && !cmpKeys.has(c.key))
+    if (newCmp.length) ds.comparisons = [...ds.comparisons, ...structuredClone(newCmp)]
+    if (newSets.length || newReviews.length || newMarkers.length || newCmp.length) {
+      report.push({ severity: 'info', code: 'etat-restaure', message: `Restauré : ${newSets.length} ensemble(s), ${newReviews.length} réponse(s), ${newMarkers.length} repère(s), ${newCmp.length} note(s) de comparaison` })
+    }
+  }
+
+  // Formats reconnus mais non pris en charge.
   for (const u of recognized.unsupported) {
-    report.push({
-      severity: 'warning',
-      code: `format-${u.kind}`,
-      message: `${u.path} : ${u.kind === 'archive' ? 'archive de cette interface' : 'master V3'} — à importer avec « Restaurer une archive »`,
-      file: u.path,
-    })
+    report.push({ severity: 'warning', code: `format-${u.kind}`, message: `${u.path} : master de version inconnue (${u.doc?.schemaVersion ?? '?'}) — ignoré`, file: u.path })
   }
 
   // Codes hors référentiel : signalés une fois, jamais supprimés (point ouvert 8).

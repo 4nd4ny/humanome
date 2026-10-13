@@ -83,7 +83,7 @@ const GROUPINGS = [
  * }} props
  */
 export function Manager(props) {
-  const { dataset, t, layout = 'side', update, importInto, busy = null, lastReport = null, onCloseReport, onSetT, onOpenDay } = props
+  const { dataset, t, layout = 'side', update, importInto, busy = null, lastReport = null, onCloseReport, onSetT, onOpenDay, readOnly = false } = props
   const [grouping, setGrouping] = useState('none')
   const [importTarget, setImportTarget] = useState('current')
   const [showReport, setShowReport] = useState(false)
@@ -213,8 +213,9 @@ export function Manager(props) {
 
         <div className="carto-manager-tools">
           {pending.length > 0 ? <ArbitrationSection days={pending} update={update} /> : null}
-          <UndatedSection dataset={dataset} commitWithDetails={props.commitWithDetails} update={update} />
+          {readOnly ? null : <UndatedSection dataset={dataset} commitWithDetails={props.commitWithDetails} update={update} />}
 
+          {readOnly ? null : (
           <details className="carto-section" open={layout === 'full' || dataset.days.length === 0 || undefined}>
             <summary>Importer</summary>
             <div className="carto-import-target" role="radiogroup" aria-label="Destination de l’import">
@@ -227,8 +228,9 @@ export function Manager(props) {
             </div>
             <ImportPanel onImport={doImport} busy={busy} compact={layout === 'side'} />
           </details>
+          )}
 
-          {showReport && reportEntries ? (
+          {readOnly ? null : showReport && reportEntries ? (
             <ImportReport
               entries={reportEntries}
               title={lastReport ? 'Rapport du dernier import' : `Rapport de l’import du ${formatShort((lastLog?.at ?? '').slice(0, 10))}`}
@@ -246,7 +248,7 @@ export function Manager(props) {
 
           <TagsSection dataset={dataset} selected={selected} update={update} />
           <SetsSection dataset={dataset} selected={selected} update={update} />
-          <DatasetSection {...props} />
+          {readOnly ? null : <DatasetSection {...props} />}
         </div>
       </div>
     </section>

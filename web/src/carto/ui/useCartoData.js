@@ -7,10 +7,26 @@ import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset, upgradeDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
-import { loadPublishedReferentiel } from '../../data/referentiel.js'
+import { looksLikeArchive } from '../core/archive.js'
 
 const CURRENT_KEY = 'humanome-carto-current'
 const SAVE_DELAY = 250
+/** Démo anonymisée déposée sur le serveur (facultative). */
+export const DEMO_ARCHIVE = 'data/demo/carto/archive.json'
+
+/** Texte de la démo anonymisée, ou null si elle n'est pas déposée (ou n'est pas une archive). */
+async function fetchDemoArchive(fetchFn) {
+  try {
+    const res = await fetchFn(DEMO_ARCHIVE)
+    if (!res?.ok) return null
+    const text = await res.text()
+    // Un serveur de développement renvoie la page d'accueil pour un fichier absent.
+    const doc = JSON.parse(text)
+    return looksLikeArchive(doc) ? text : null
+  } catch {
+    return null
+  }
+}
 
 function readPref(key) {
   try {
@@ -48,7 +64,9 @@ export function useCartoData(deps = {}) {
   }
   const store = storeRef.current
   const fetchFn = deps.fetchFn ?? ((...a) => fetch(...a))
-  const loadReferential = deps.loadReferential ?? loadPublishedReferentiel
+  // Le chargeur du référentiel est fourni par le site (App.jsx) : la copie
+  // autonome n'en a pas besoin (son jeu embarque son référentiel).
+  const loadReferential = deps.loadReferential ?? (() => Promise.reject(new Error('aucun référentiel disponible')))
 
   const [status, setStatus] = useState('loading') // loading | empty | ready | error
   const [error, setError] = useState(null)
@@ -240,10 +258,16 @@ export function useCartoData(deps = {}) {
     [store],
   )
 
-  /** Charge la démonstration (59 journées publiques du site). */
+  /**
+   * Charge la démonstration : la démo anonymisée déposée sur le serveur
+   * (« Préparer une démo », portfolio compris : les passages se surlignent)
+   * si elle existe, sinon les 59 journées publiques du site.
+   */
   const loadDemo = useCallback(async () => {
     setBusy('Chargement de la démonstration…')
     try {
+      const archive = await fetchDemoArchive(fetchFn)
+      if (archive) return await importInto([{ path: DEMO_ARCHIVE, text: archive }], { title: 'Démonstration', newDataset: true })
       const res = await fetchFn('data/demo/jours/index.json')
       if (!res.ok) throw new Error(`index de démonstration introuvable (HTTP ${res.status})`)
       const index = await res.json()

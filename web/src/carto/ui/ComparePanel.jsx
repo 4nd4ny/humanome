@@ -341,6 +341,21 @@ function CodeList({ refl, codes, empty }) {
   )
 }
 
+/** Précautions de lecture d'une comparaison (§9.3), aussi imprimées dans le rapport. */
+export function ComparePrecautions() {
+  return (
+    <aside className="carto-note carto-cmp-precautions" aria-label="Précautions de lecture">
+      <h3>Précautions de lecture</h3>
+      <ul>
+        <li>Les parts sont à somme nulle : si une compétence gagne une part, les autres en perdent. Le tableau donne aussi l’intensité absolue.</li>
+        <li>L’intensité absolue (cumul saturant) dépend du nombre de traces.</li>
+        <li>Les moyennes se font sur les journées observées seulement ; les silences en sont exclus et comptés à part (n).</li>
+        <li>Aucun écart à une norme : il n’y a pas de seuil « faible », « modéré » ou « élevé ».</li>
+      </ul>
+    </aside>
+  )
+}
+
 /** Vue 6 : journées où un pôle pèse le plus, dans chaque ensemble, sur la heatmap. */
 function TopDaysView({ dataset, refl, cmp, params, nameA, nameB, onOpenDay }) {
   const [pole, setPole] = useState(() => cmp.poleRows[0]?.num ?? refl.poles[0]?.num)
@@ -579,15 +594,7 @@ export function ComparePanel({ dataset, refl, params, geometry, t, update, onOpe
         </ul>
       </div>
 
-      <aside className="carto-note carto-cmp-precautions" aria-label="Précautions de lecture">
-        <h3>Précautions de lecture</h3>
-        <ul>
-          <li>Les parts sont à somme nulle : si une compétence gagne une part, les autres en perdent. Le tableau donne aussi l’intensité absolue.</li>
-          <li>L’intensité absolue (cumul saturant) dépend du nombre de traces.</li>
-          <li>Les moyennes se font sur les journées observées seulement ; les silences en sont exclus et comptés à part (n).</li>
-          <li>Aucun écart à une norme : il n’y a pas de seuil « faible », « modéré » ou « élevé ».</li>
-        </ul>
-      </aside>
+      <ComparePrecautions />
 
       <label className="carto-field carto-cmp-note">
         <span>Votre lecture de cette comparaison (reste dans ce navigateur)</span>

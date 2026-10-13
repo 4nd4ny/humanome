@@ -29,6 +29,7 @@ import { DayKairos, EvolutiveNarratives } from './Narratives.jsx'
 import { usePrintExpand } from './print.js'
 import { ComparePanel } from './ComparePanel.jsx'
 import { Dashboard } from './Dashboard.jsx'
+import { ExportPanel } from './ExportPanel.jsx'
 import './carto.css'
 
 export const SPACES = [
@@ -94,7 +95,8 @@ const go = (hash) => {
  *   slots?: Record<string, (ctx: object) => React.ReactNode>}} props
  *   slots : espaces fournis par les phases suivantes (comparaison, tableau de bord, export…)
  */
-export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
+export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site' }) {
+  const viewer = mode === 'viewer'
   const data = useCartoData(deps)
   const [ui, dispatch] = useReducer(reducer, initialUi)
   const rootRef = useRef(null)
@@ -251,9 +253,9 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
 
   return (
     <div ref={rootRef} className={`carto-app carto-tab-${ui.mobileTab}${ui.reader ? ' has-reader' : ''}`}>
-      <ContextBar dataset={dataset} state={state} t={ui.t} activeCount={activeDates.length} expert={ui.expert} onExpert={(on) => dispatch({ type: 'expert', on })} onResetT={() => setT(null)} />
+      <ContextBar dataset={dataset} state={state} t={ui.t} activeCount={activeDates.length} expert={ui.expert} viewer={viewer} onExpert={(on) => dispatch({ type: 'expert', on })} onResetT={() => setT(null)} />
       <nav className="carto-spaces" aria-label="Espaces de la cartographie">
-        {SPACES.map(([id, label, hash]) => (
+        {SPACES.filter(([id]) => !(viewer && id === 'export')).map(([id, label, hash]) => (
           <a key={id} href={hash} aria-current={space === id ? 'page' : undefined}>
             {label}
             {id === 'gestionnaire' && todoCount(dataset) > 0 ? <span className="carto-dot" aria-label={`${todoCount(dataset)} anomalies à traiter`} /> : null}
@@ -290,6 +292,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
                   dataset={dataset}
                   refl={refl}
                   t={ui.t}
+                  readOnly={viewer}
                   layout="side"
                   update={data.update}
                   commitWithDetails={data.commitWithDetails}
@@ -396,6 +399,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
           dataset={dataset}
           refl={refl}
           t={ui.t}
+          readOnly={viewer}
           layout="full"
           update={data.update}
           commitWithDetails={data.commitWithDetails}
@@ -426,6 +430,23 @@ export default function CartoApp({ route = {}, deps = {}, slots = {} }) {
           onOpenDay={openDay}
           onOpenTrace={openTrace}
         />
+      ) : space === 'export' && !slots.export ? (
+        viewer ? (
+          <p className="carto-muted carto-pad">L’export n’est pas disponible dans une copie autonome.</p>
+        ) : (
+          <ExportPanel
+            dataset={dataset}
+            refl={refl}
+            state={state}
+            layout={layout}
+            geometry={GEOMETRY}
+            params={params}
+            t={ui.t}
+            data={data}
+            fetchFn={deps.fetchFn}
+            onOpenDataset={() => go('#/cartographie')}
+          />
+        )
       ) : slots[space] ? (
         slots[space](ctx)
       ) : (
@@ -555,7 +576,7 @@ function SelectionDetails({ dataset, state, selection, t, data, selectionDates, 
   )
 }
 
-function ContextBar({ dataset, state, t, activeCount, expert, onExpert, onResetT }) {
+function ContextBar({ dataset, state, t, activeCount, expert, viewer = false, onExpert, onResetT }) {
   const first = state.dates[0]
   const last = state.dates.at(-1)
   return (
@@ -591,9 +612,11 @@ function ContextBar({ dataset, state, t, activeCount, expert, onExpert, onResetT
         <a className="carto-btn carto-btn--quiet" href="#/cartographie/comparaison">
           Comparer A / B
         </a>
-        <a className="carto-btn carto-btn--quiet" href="#/cartographie/export">
-          Exporter
-        </a>
+        {viewer ? null : (
+          <a className="carto-btn carto-btn--quiet" href="#/cartographie/export">
+            Exporter
+          </a>
+        )}
         <label className="carto-small">
           <input type="checkbox" checked={expert} onChange={(e) => onExpert(e.target.checked)} /> mode expert
         </label>

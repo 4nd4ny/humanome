@@ -9,6 +9,10 @@ import HomeView from './views/HomeView.jsx'
 import MergeView from './views/MergeView.jsx'
 import V3View from './v3/ui/V3View.jsx'
 import CartoApp from './carto/ui/CartoApp.jsx'
+import { loadPublishedReferentiel } from './data/referentiel.js'
+
+// Dépendances de l'interface ultime de cartographie (constante : identité stable).
+const CARTO_DEPS = { loadReferential: loadPublishedReferentiel }
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
@@ -479,7 +483,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     case 'cartographie':
       // Interface ultime de cartographie (docs/cartographie-ultime) : cinq
       // espaces, données dans le navigateur, démonstration incluse.
-      view = <CartoApp route={route} />
+      view = <CartoApp route={route} deps={CARTO_DEPS} />
       break
     case 'cartographie-v3':
       // Interface V3 précédente, conservée pour comparaison.
