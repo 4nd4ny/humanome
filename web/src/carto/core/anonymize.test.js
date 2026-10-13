@@ -31,9 +31,9 @@ describe('propositions et remplacements', () => {
   it('noms en mot entier seulement ; courriels, liens, téléphones, adresses', () => {
     const { apply, counts } = makeReplacer({ dictionary: [{ from: 'Sam', to: 'Alex' }] })
     expect(apply('Sam et SAM, mais pas Samedi ni Samuel.')).toBe('Alex et ALEX, mais pas Samedi ni Samuel.')
-    expect(apply('Écrire à lou.martin@ecole.ch ou voir https://exemple.org/a?b=1.')).toBe('Écrire à [courriel] ou voir [lien].')
-    expect(apply('Appeler le 079 123 45 67, le +41 79 123 45 67 ou le 06 12 34 56 78.')).toBe('Appeler le [téléphone], le [téléphone] ou le [téléphone].')
-    expect(apply('Rendez-vous au 12 rue du Lac, puis au 3 bis avenue de la Gare.')).toBe('Rendez-vous au [adresse], puis au [adresse].')
+    expect(apply('Écrire à lou.martin@ecole.ch ou voir https://exemple.org/a?b=1.')).toBe('Écrire à ‹courriel› ou voir ‹lien›.')
+    expect(apply('Appeler le 079 123 45 67, le +41 79 123 45 67 ou le 06 12 34 56 78.')).toBe('Appeler le ‹téléphone›, le ‹téléphone› ou le ‹téléphone›.')
+    expect(apply('Rendez-vous au 12 rue du Lac, puis au 3 bis avenue de la Gare.')).toBe('Rendez-vous au ‹adresse›, puis au ‹adresse›.')
     expect(apply('Le 2025-12-22 à 14 h 30, 3 essais.')).toBe('Le 2025-12-22 à 14 h 30, 3 essais.')
     expect(counts.get('Sam → Alex')).toBe(2)
   })
@@ -44,8 +44,10 @@ describe('propositions et remplacements', () => {
     expect(r.apply('Christian et Personne')).toBe('Personne A et Quelqu’un')
     // La recherche des passages ignore la casse : le remplacement aussi (capitales gardées).
     expect(r.apply('christian, CHRISTIAN, Christian2 et Christian_3')).toBe('Personne A, PERSONNE A, Personne A2 et Personne A_3')
-    // « [lien] » est un repère neutre, pas le nom « Lien ».
-    expect(r.apply('voir https://a.org/x et Lien')).toBe('voir [lien] et Lio')
+    // « ‹lien› » est un repère neutre, pas le nom « Lien ».
+    expect(r.apply('voir https://a.org/x et Lien')).toBe('voir ‹lien› et Lio')
+    // Dans le Markdown, la ponctuation d'un lien reste en place (le texte affiché ne bouge pas).
+    expect(r.apply('[https://a.org](https://a.org), <https://b.org> et \\<https://c.org\\>')).toBe('[‹lien›](‹lien›), <‹lien›> et \\<‹lien›\\>')
     // Identifiants : forme exacte seulement, jamais au milieu de chiffres hexadécimaux.
     expect(r.applyTechnicalNames('v-3f9ada12')).toBe('v-3f9ada12')
     expect(r.applyTechnicalNames('Ada@2026-01-01|1.01')).toBe('Iris@2026-01-01|1.01')
@@ -90,7 +92,7 @@ describe('anonymiser une archive (critère P5 : les surlignages tiennent)', () =
     const target = third.find((x) => x.date === '2025-12-23')
     const { archive: out, report } = anonymizeArchive(archive, { dictionary: [{ from: 'Sam', to: 'Alex' }], remove: [target], now: NOW })
     expect(report.removed).toBe(1)
-    expect(out.details['2025-12-23'].portfolio.text).toMatch(/\[passage retiré\]/)
+    expect(out.details['2025-12-23'].portfolio.text).toContain(REMOVED)
     // La trace de 2.01 citait cette phrase : l'extrait part aussi (sinon le
     // passage retiré resterait lisible dans le jury), le surlignage est perdu
     // et le rapport dit pourquoi.

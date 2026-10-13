@@ -20,7 +20,7 @@
 // - Le référentiel n'est pas touché (ce n'est pas une donnée personnelle).
 // - Les phrases qui parlent d'une personne tierce sont signalées pour revue ;
 //   celles que l'utilisateur choisit de retirer sont remplacées par
-//   « [passage retiré] » partout où elles figurent (portfolio, extraits,
+//   « ‹passage retiré› » partout où elles figurent (portfolio, extraits,
 //   jury), avant les substitutions.
 // - La table de correspondance n'est JAMAIS écrite dans l'export.
 
@@ -29,21 +29,27 @@ import { findPassage } from './passages.js'
 import { portfolioSummary } from './importers/portfolio.js'
 import { sentences } from './stylometry.js'
 
-export const REMOVED = '[passage retiré]'
+// Repères entre chevrons simples « ‹ › » : des crochets formeraient, dans le
+// Markdown du portfolio, des liens ou des références qui changent le texte
+// affiché (et donc le surlignage).
+export const REMOVED = '‹passage retiré›'
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 export const PATTERNS = Object.freeze({
-  emails: { label: 'courriels', placeholder: '[courriel]', re: /[\p{L}\p{N}._%+-]+@[\p{L}\p{N}.-]+\.\p{L}{2,}/gu },
-  urls: { label: 'liens', placeholder: '[lien]', re: /\bhttps?:\/\/[^\s<>()"']*[^\s<>()"'.,;:!?…]|\bwww\.[^\s<>()"']*[^\s<>()"'.,;:!?…]/gu },
+  emails: { label: 'courriels', placeholder: '‹courriel›', re: /[\p{L}\p{N}._%+-]+@[\p{L}\p{N}.-]+\.\p{L}{2,}/gu },
+  // Ni crochets, ni barre oblique inverse : dans le Markdown, « [texte](lien) »,
+  // « <lien> » ou « \\<lien\\> » doivent garder leur ponctuation, sinon le
+  // texte affiché change autour du repère et le surlignage ne tient plus.
+  urls: { label: 'liens', placeholder: '‹lien›', re: /\bhttps?:\/\/[^\s<>()"'[\]\\]*[^\s<>()"'[\]\\.,;:!?…]|\bwww\.[^\s<>()"'[\]\\]*[^\s<>()"'[\]\\.,;:!?…]/gu },
   phones: {
     label: 'téléphones',
-    placeholder: '[téléphone]',
+    placeholder: '‹téléphone›',
     re: /\+\d{2,3}[\s.-]?(?:\(0\)[\s.-]?)?\d{1,3}(?:[\s.-]?\d{2,3}){2,4}(?!\d)|(?<!\d)0[1-9](?:[\s.-]?\d{2}){4}(?!\d)|(?<!\d)0\d{2}[\s.-]?\d{3}[\s.-]?\d{2}[\s.-]?\d{2}(?!\d)/gu,
   },
   addresses: {
     label: 'adresses',
-    placeholder: '[adresse]',
+    placeholder: '‹adresse›',
     re: /\b\d{1,4}\s?(?:bis|ter)?,?\s+(?:rue|avenue|av\.|boulevard|bd|chemin|ch\.|route|rte|place|impasse|allée|quai|cours|square)\s+(?:de\s+la\s+|du\s+|des\s+|de\s+l['’]|d['’]|de\s+)?[\p{L}'’-]+(?:\s+\p{Lu}[\p{L}'’-]+)*/giu,
   },
 })
@@ -96,7 +102,7 @@ export function suggestNames(texts, { min = 2 } = {}) {
  *   « christian » doit changer comme le portfolio qui écrit « Christian » —
  *   et en mot entier au sens des lettres (« Sam2 » est remplacé, « Samuel »
  *   non). Une forme tout en capitales reçoit le remplacement en capitales.
- *   Les repères neutres (« [lien] »…) ne sont jamais touchés.
+ *   Les repères neutres (« ‹lien› »…) ne sont jamais touchés.
  * - `applyTechnicalNames` (identifiants) : forme exacte ou en capitales
  *   seulement, bornée par des lettres ET des chiffres — un identifiant
  *   hexadécimal ne doit jamais changer.
@@ -137,7 +143,7 @@ export function makeReplacer({ dictionary = [], patterns = { emails: true, urls:
   function applyNames(text) {
     if (!reText || typeof text !== 'string' || text === '') return text
     return text.replace(reText, (m, offset, whole) => {
-      if (whole[offset - 1] === '[' && whole[offset + m.length] === ']') return m // repère neutre
+      if (whole[offset - 1] === '‹' && whole[offset + m.length] === '›') return m // repère neutre
       const d = byLower.get(m.toLowerCase()) ?? entries.find((x) => x.from.localeCompare(m, 'fr', { sensitivity: 'accent' }) === 0)
       if (!d) return m
       bump(d.label, 1)
@@ -156,7 +162,7 @@ export function makeReplacer({ dictionary = [], patterns = { emails: true, urls:
   return { apply: (text) => applyNames(applyPatterns(text)), applyNames, applyTechnicalNames, applyPatterns, counts }
 }
 
-/** Entrées valides du dictionnaire (au moins deux caractères ; remplacement par défaut « [nom] »). */
+/** Entrées valides du dictionnaire (au moins deux caractères ; remplacement par défaut « ‹nom› »). */
 export function cleanDictionary(dictionary) {
   const seen = new Set()
   const out = []
@@ -165,7 +171,7 @@ export function cleanDictionary(dictionary) {
     const from = d.from.trim()
     if (from.length < 2 || seen.has(from.toLowerCase())) continue
     seen.add(from.toLowerCase())
-    out.push({ from, to: String(d.to ?? '').trim() || '[nom]' })
+    out.push({ from, to: String(d.to ?? '').trim() || '‹nom›' })
   }
   return out
 }
@@ -516,7 +522,7 @@ export function anonymizeArchive(archive, { dictionary = [], patterns, pseudonym
 export function remainingNames(archive, dictionary = [], { min = 1 } = {}) {
   const replacements = new Set()
   for (const d of cleanDictionary(dictionary)) for (const w of d.to.split(/[\s'’-]+/u)) if (w) replacements.add(w)
-  for (const p of PLACEHOLDERS) replacements.add(p.replace(/[[\]]/g, ''))
+  for (const p of PLACEHOLDERS) replacements.add(p.replace(/[‹›]/gu, ''))
   // Le titre de la démo (pseudonyme) n'est pas un nom à revoir.
   for (const w of String(archive.title ?? '').split(/[\s'’()-]+/u)) if (w) replacements.add(w)
   const texts = []
@@ -525,5 +531,5 @@ export function remainingNames(archive, dictionary = [], { min = 1 } = {}) {
     if (key === 'source' || key === 'sources' || key === 'files' || key === 'title') texts.push(`· ${s.replace(/[_/\\.-]+/gu, ' ')}`)
     else texts.push(s)
   })
-  return suggestNames(texts, { min }).filter((x) => !replacements.has(x.word) && !replacements.has(x.word.replace(/^\[|\]$/gu, '')))
+  return suggestNames(texts, { min }).filter((x) => !replacements.has(x.word))
 }
