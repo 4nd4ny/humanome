@@ -148,6 +148,19 @@ Dernière revue : M9 (2026-07-12).
   `web/e2e/sandbox-isolation.e2e.js` lit le `.htaccess`, applique la CSP sur le
   document parent, et vérifie (a) qu'un paquet bénin atteint `result` et (b) qu'un
   paquet hostile reste totalement contenu.
+  **Script anti-FOUC (correction du 2026-10-14, journal de la cartographie,
+  question 30)** : le `<script>` en ligne de `web/index.html`, qui pose le thème
+  choisi (`data-theme`) avant le premier rendu, était refusé par cette CSP depuis
+  qu'elle existe — sans qu'aucun test ne le voie (ni vitest ni le dev-server
+  n'appliquent la CSP du `.htaccess`). Le choix explicite d'un visiteur (clair ou
+  sombre) n'était donc pas réappliqué au chargement : la page suivait le thème du
+  système. `script-src` autorise désormais ce script **par son hash**
+  (`'sha256-VNZJ2x9PRW+GU3XSKT9vt2Pezkb2MMkrNIOKCPOuxzY='`), jamais par
+  `'unsafe-inline'`. Garde anti-dérive : `web/src/anti-fouc.test.js` recalcule le
+  hash depuis `index.html` (un seul script en ligne admis) et exige sa présence
+  dans `script-src`. Vérifié dans Chromium sur le bundle construit, sous la CSP
+  de production d'avant puis d'après : violation `script-src-elem`, puis aucune,
+  et le thème posé pendant l'analyse du `<head>`, avant le bundle.
 - **En-têtes API sur OVH** : sur le mutualisé, le `www/.htaccess` du front (`Header
   always set`) **se propage** dans `www/api/`. `api/deploy/webroot/.htaccess`
   **réaffirme** défensivement les valeurs API (CSP `default-src 'none'`, X-Frame

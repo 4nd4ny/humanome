@@ -44,6 +44,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Q25–29 | « Partager » ; `CLAUDE.md` décrit le nouveau partage (D-44) | ✅ | ✅ tests de libellés mis à jour | ✅ | `8f3b196` |
 | Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | `1377f2b` |
 | Déploiement | humanome.xyz : release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en ligne ; branche fusionnée dans `main` (D-46) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-46 |
+| Q30 — thème au chargement | le script anti-FOUC autorisé par son hash dans la CSP de production ; garde de synchronisation ; déployé (D-47) | ✅ | ✅ 1 test (garde du hash) + vérification Chromium avant et après, sur le bundle puis en ligne | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1529,10 +1530,37 @@ merger la branche avec main de Github. »
   journées publiques.
 - **Constaté** (antérieur à ce déploiement) : le script anti-FOUC de
   `index.html` est refusé par la CSP de production depuis qu'elle existe (le
-  seul hash autorisé est celui du bootstrap de la sandbox) ; le thème choisi
-  s'applique après le chargement du bundle. Question 30.
+  seul hash autorisé est celui du bootstrap de la sandbox). Question 30 ;
+  corrigé ensuite (D-47), où l'effet exact est décrit.
 - **Fusion** : PR `feat/ultimate-cartography` → `main`, CI verte
   (`check-publiable`, moteur), fusionnée par un commit de fusion.
+
+### D-47 — Le script anti-FOUC autorisé par la CSP de production **[décidé]**
+
+Christian (2026-10-14), question 30 : « feu vert pour réaliser cette
+correction. Déploie ensuite le correctif sur le site. »
+
+- **L'effet exact** (mesuré dans Chromium sur le bundle construit, sous la CSP
+  de production d'avant) : le script en ligne de `index.html` est refusé
+  (`script-src-elem`) et **rien d'autre ne pose le thème au chargement** —
+  `lib/theme.js` ne gère que la bascule à chaud. Le choix explicite d'un
+  visiteur (clair ou sombre) n'était donc pas réappliqué quand il revenait ou
+  rechargeait la page : elle suivait le thème du système, alors que le bouton
+  de thème affichait son choix. Ce n'était pas un simple éclair au chargement.
+- **Correction** (`web/public/.htaccess`) : `script-src` autorise ce script
+  **par son hash** (`'sha256-VNZJ2x9PRW+GU3XSKT9vt2Pezkb2MMkrNIOKCPOuxzY='`),
+  jamais par `'unsafe-inline'` ; le commentaire de la CSP l'explique. Vite
+  recopie ce script tel quel dans `dist/index.html` (même hash, vérifié).
+- **Garde** (`web/src/anti-fouc.test.js`) : un seul script en ligne admis dans
+  `index.html` ; son hash, recalculé depuis la source, doit figurer dans
+  `script-src`. Le test échoue sur la CSP d'avant (vérifié).
+- **Vérifié avant le déploiement**, dans Chromium sur le bundle construit avec
+  la CSP de production appliquée : avant, une violation et aucun thème posé ;
+  après, aucune violation et le thème posé pendant l'analyse du `<head>`, avant
+  le bundle — pour « sombre » comme pour « clair ».
+- **Déploiement** : front seul (`.htaccess`), par `deploy.mjs static` depuis la
+  VM du Mac ; même vérification ensuite sur le site en ligne.
+- Docs : `docs/securite-checklist.md` (CSP), `STATUS.md`.
 
 ---
 
@@ -1927,14 +1955,15 @@ D-43), réponses du même jour :
     invitation préalable acceptée (D-42, choix d'implémentation) ? →
     **Oui** : « laisser comme ça, le code suffit ».
 
-Question ouverte après le déploiement du 2026-10-14 (D-46) :
+Question posée après le déploiement du 2026-10-14 (D-46) :
 
 30. Le script anti-FOUC de `index.html` (thème clair ou sombre appliqué avant
     le premier rendu) est refusé par la CSP de production depuis qu'elle
-    existe : le thème choisi n'arrive qu'avec le bundle (bref flash). Ajouter
-    son hash à `script-src`, avec un test qui le garde synchronisé comme celui
-    du bootstrap de la sandbox ? Changement de quelques lignes, mais il touche
-    la politique de sécurité : pas fait sans votre accord.
+    existe. Ajouter son hash à `script-src`, avec un test qui le garde
+    synchronisé comme celui du bootstrap de la sandbox ? → **Décidé**
+    (2026-10-14, 15 h 57) : « feu vert pour réaliser cette correction.
+    Déploie ensuite le correctif sur le site. » Suite : fait et déployé
+    (D-47).
 
 ---
 
@@ -2031,3 +2060,6 @@ Question ouverte après le déploiement du 2026-10-14 (D-46) :
 - **2026-10-14** — Déploiement sur humanome.xyz autorisé par Christian (D-46) :
   release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en
   ligne ; branche fusionnée dans `main`.
+- **2026-10-14** — Question 30 (D-47) : le script anti-FOUC est autorisé par
+  son hash dans la CSP de production — le thème choisi par un visiteur est de
+  nouveau réappliqué au chargement ; déployé et vérifié en ligne.
