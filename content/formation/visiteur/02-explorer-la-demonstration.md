@@ -34,10 +34,21 @@ journées publiques sont lues et rangées dans un jeu de données
 « Démonstration », dans votre navigateur. (Les anciennes adresses `#/merge` et
 `#/cartographie-v3` mènent au même endroit.)
 
+## Des panneaux à la demande
+
+Au départ, la page ne montre que deux panneaux, en pleine largeur : le
+**soleil** et, dessous, le **détail**. Les autres attendent dans le menu
+**« Panneaux »**, en haut à droite : Journées, Compétences, Heatmap et
+lecture, Légende, Tableau équivalent, Importer, Étiquettes, Ensembles nommés,
+Jeux de données, Réglages de l'encodage. Cochez-en un : il s'ajoute à la suite.
+Chaque panneau se déplace (poignée ⠿, ou flèches ◀ ▶), se redimensionne (coin
+◢, ou menu de taille) et se masque (✕). Votre disposition reste dans ce
+navigateur ; **« Réinitialiser l'affichage »** revient à la vue de départ,
+sans sélection.
+
 ## Lire le soleil
 
-Le diagramme circulaire occupe le centre de la page. Il se lit du centre vers
-l'extérieur.
+Le soleil se lit du centre vers l'extérieur.
 
 - **Le centre** indique le nombre de journées prises en compte.
 - **L'anneau intérieur** porte les **7 pôles**, chacun de sa couleur (TETE,
@@ -62,9 +73,10 @@ l'analyse a vu un signal mais laisse un humain trancher. Une compétence sans
 secteur n'a simplement pas été observée dans ces journées : l'absence d'une
 trace ne dit pas l'absence de la compétence.
 
-Cliquez sur un secteur : le **panneau de détail** (à droite sur grand écran,
-sous l'onglet **Détails** sur écran étroit) montre ses chiffres, ses traces
-journée par journée, les verdicts et la réflexion du jury. Échap désélectionne.
+Cliquez sur un secteur : le **détail**, sous le soleil, montre ses chiffres,
+ses traces journée par journée, les verdicts et la réflexion du jury. Échap
+désélectionne. Le panneau **« Légende »** rappelle ce que disent l'angle, la
+hauteur et les hachures.
 Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 
 Le portfolio de la démonstration est consultable : sous chaque trace,
@@ -87,8 +99,9 @@ une largeur minimale et la fenêtre le dit, avec l'angle exact.
 
 ## Rejouer la croissance : la tête de lecture
 
-Sous le soleil, la **tête de lecture** fixe la **date t** : le soleil montre
-l'état cumulé jusqu'à cette date.
+Le panneau **« Heatmap et lecture »** (menu « Panneaux ») porte la **tête de
+lecture**, qui fixe la **date t** : le soleil montre l'état cumulé jusqu'à
+cette date, et l'en-tête la rappelle, avec « revenir à l'état complet ».
 
 - **Lecture : voir l'arbre croître** rejoue l'accumulation journée après
   journée ; **Lecture arrière** la rejoue à rebours ; **Pause** l'arrête.
@@ -102,7 +115,7 @@ la navigation pas à pas reste disponible.
 
 ## Parcourir la heatmap
 
-Sous la tête de lecture, la **heatmap** montre l'année scolaire (août à
+Dans le même panneau, sous la tête de lecture, la **heatmap** montre l'année scolaire (août à
 juillet ; flèches pour changer d'année, ou une période libre). Une case par
 jour, les semaines en colonnes. La couleur d'un jour dit combien la personne
 y a écrit dans son portfolio, en cinq niveaux propres à elle. Quelques jours
@@ -116,8 +129,9 @@ jour sans texte reste une case vide, jamais un niveau bas.
 
 ## Choisir les journées
 
-L'espace **Gestionnaire** (et la colonne « Journées » à gauche) liste les 59
-journées avec une case à cocher : décochez-en, et le soleil comme la heatmap ne
+L'espace **Gestionnaire** (et le panneau « Journées », qui rappelle aussi la
+période et le nombre de journées cochées) liste les journées avec une case à
+cocher : décochez-en, et le soleil comme la heatmap ne
 tiennent plus compte de ces journées. « Tout », « Aucune » et « Inverser »
 agissent sur l'ensemble ; Maj+clic coche une plage.
 
@@ -125,8 +139,9 @@ agissent sur l'ensemble ; Maj+clic coche une plage.
 
 En haut de la cartographie :
 
-- **Comparaison** met deux ensembles de journées côte à côte (d'emblée,
-  janvier face à mars), en huit vues, sans jamais classer ;
+- **Comparaison** met deux ensembles de journées côte à côte (d'emblée, la
+  première moitié des journées face à la seconde), en huit vues, sans jamais
+  classer ;
 - **Tableau de bord** réunit des cartes (profil, rythme, constance, moments
   remarquables…) qui se masquent quand leurs données manquent ;
 - **Dialogue** pose des questions tirées des traces, pour relire son parcours ;

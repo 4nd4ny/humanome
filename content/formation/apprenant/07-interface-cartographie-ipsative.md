@@ -63,12 +63,22 @@ pas être surlignés.
 - **Pas de secteur** : aucune trace dans les journées retenues. L'absence
   d'une trace ne dit pas l'absence de la compétence.
 
+Au départ, la page ne montre que le **soleil** et, dessous, le **détail**.
+Le menu **« Panneaux »**, en haut à droite, affiche les autres : vos
+journées (avec la période et le nombre de journées cochées), la liste des
+compétences, la heatmap et la tête de lecture, la légende, le tableau
+équivalent, l'import, les étiquettes, les ensembles nommés, vos jeux de
+données, les réglages de l'encodage. Chaque panneau se déplace, se
+redimensionne et se masque ; votre disposition reste dans ce navigateur, et
+**« Réinitialiser l'affichage »** revient à la vue de départ.
+
 Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
-**panneau de détail** s'ouvre. Appuyez sur **w** : « Pourquoi cette surface ? »
+**détail** le décrit. Appuyez sur **w** : « Pourquoi cette surface ? »
 détaille ses traces, leurs points, la confiance de chaque verdict et les
-formules. Sous le soleil, la **tête de lecture** rejoue la construction de
-votre cartographie journée après journée, et la **heatmap** montre l'année
-scolaire, une case par jour ; un double-clic sur un jour l'ouvre seul.
+formules. Dans le panneau « Heatmap et lecture », la **tête de lecture**
+rejoue la construction de votre cartographie journée après journée, et la
+**heatmap** montre l'année scolaire, une case par jour ; un double-clic sur un
+jour l'ouvre seul.
 
 **Ouvrir un pôle sur 360°.** Un double-clic sur un pôle de l'anneau intérieur
 l'ouvre : à la place du soleil complet, ses seules compétences font tout le
@@ -112,11 +122,12 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
 ## Vous comparer à vous-même
 
 - **Comparaison** : deux ensembles de journées côte à côte, en huit vues.
-  D'emblée, janvier face à mars, quand ces deux mois ont des journées
-  analysées. Des préréglages préparent les cas courants (janvier et mars,
-  depuis la dernière évaluation, depuis le début du trimestre ou de l'année
-  scolaire, année scolaire précédente). Un avertissement s'affiche quand les
-  deux côtés n'ont pas la même taille. Rien n'y est classé.
+  D'emblée, la première moitié de vos journées analysées face à la seconde :
+  le début de votre portfolio face à sa fin. Des préréglages préparent les cas
+  courants (première et seconde moitié, depuis la dernière évaluation, depuis
+  le début du trimestre ou de l'année scolaire, année scolaire précédente). Un
+  avertissement s'affiche quand les deux côtés n'ont pas la même taille. Rien
+  n'y est classé.
 - **Tableau de bord** : profil, rythme, constance, moments remarquables… Une
   carte dont les données manquent se masque.
 - **Dialogue** : des questions tirées de vos traces, pour relire votre

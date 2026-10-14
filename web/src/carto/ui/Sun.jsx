@@ -380,13 +380,16 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
 
 /**
  * Équivalent textuel du soleil (§6.1) : compétence × journées, pour les
- * lecteurs d'écran et l'impression. Replié par défaut.
+ * lecteurs d'écran et l'impression. Replié par défaut ; dans une tuile de la
+ * cartographie (`bare`, D-53), déplié, la tuile portant le titre.
  */
-export function SunTable({ refl, state, open = false }) {
+export function SunTable({ refl, state, open = false, bare = false }) {
   const rows = refl.competencies.filter((c) => state.competencies.has(c.code))
+  const count = `${rows.length} compétence${rows.length > 1 ? 's' : ''}`
+  const Box = bare ? 'div' : 'details'
   return (
-    <details className="carto-sun-table" open={open || undefined}>
-      <summary>Tableau équivalent ({rows.length} compétence{rows.length > 1 ? 's' : ''})</summary>
+    <Box className="carto-sun-table" open={bare ? undefined : open || undefined}>
+      {bare ? <p className="carto-small carto-muted">{count} observée{rows.length > 1 ? 's' : ''}</p> : <summary>Tableau équivalent ({count})</summary>}
       <table>
         <caption>Part du soleil, confiance moyenne du jury et journées observées, dans l’ordre du référentiel</caption>
         <thead>
@@ -417,6 +420,6 @@ export function SunTable({ refl, state, open = false }) {
           })}
         </tbody>
       </table>
-    </details>
+    </Box>
   )
 }

@@ -50,15 +50,16 @@ beforeEach(() => {
 afterEach(cleanup)
 
 describe('P3 — comparaison de soi à soi', () => {
-  it('sans janvier ni mars analysés, par défaut « depuis la dernière évaluation » : tailles différentes et recouvrement sont signalés (critère P3)', async () => {
+  it('« depuis la dernière évaluation » : tailles différentes et recouvrement sont signalés (critère P3)', async () => {
     const page = await openCompare(await louStore())
+    fireEvent.click(within(page).getByRole('button', { name: 'Depuis la dernière évaluation' }))
     const warnings = await within(page).findByRole('list', { name: 'Avertissements' })
-    expect(within(warnings).getByText(/A et B n’ont pas la même taille : 2 journées analysées dans A, 3 dans B/)).toBeTruthy()
+    await waitFor(() => expect(within(warnings).getByText(/A et B n’ont pas la même taille : 2 journées analysées dans A, 3 dans B/)).toBeTruthy())
     expect(within(warnings).getByText(/se recouvrent : 2 journées en commun/)).toBeTruthy()
     expect(within(page).getByRole('group', { name: 'Ensemble A' }) ?? null).toBeTruthy()
   })
 
-  it('par défaut, janvier contre mars quand ces deux mois ont des journées analysées (D-50) ; le préréglage y ramène', async () => {
+  it('par défaut, la première moitié des journées analysées face à la seconde (D-51) ; le préréglage y ramène', async () => {
     const st = createCartoStore({ adapter: createMemoryAdapter() })
     await st.commit({
       dataset: indexDataset([
@@ -71,28 +72,33 @@ describe('P3 — comparaison de soi à soi', () => {
     const page = await openCompare(st)
     const a = within(page).getByRole('group', { name: 'Ensemble A' })
     const b = within(page).getByRole('group', { name: 'Ensemble B' })
-    await waitFor(() => expect(within(a).getByRole('textbox', { name: 'Nom' }).value).toBe('Janvier 2026'))
-    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Mars 2026')
-    expect([within(a).getByLabelText('Du').value, within(a).getByLabelText('Au').value]).toEqual(['2026-01-01', '2026-01-31'])
-    expect([within(b).getByLabelText('Du').value, within(b).getByLabelText('Au').value]).toEqual(['2026-03-01', '2026-03-31'])
+    await waitFor(() => expect(within(a).getByRole('textbox', { name: 'Nom' }).value).toBe('Première moitié'))
+    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Seconde moitié')
+    expect([within(a).getByLabelText('Du').value, within(a).getByLabelText('Au').value]).toEqual(['2026-01-12', '2026-01-19'])
+    expect([within(b).getByLabelText('Du').value, within(b).getByLabelText('Au').value]).toEqual(['2026-02-09', '2026-03-16'])
     expect(within(a).getByText(/: 2 journées, dont 2 analysées/)).toBeTruthy()
-    expect(within(b).getByText(/: 1 journée, dont 1 analysée/)).toBeTruthy()
+    expect(within(b).getByText(/: 2 journées, dont 2 analysées/)).toBeTruthy()
+    // Deux moitiés égales et disjointes : aucun avertissement.
+    expect(within(page).queryByRole('list', { name: 'Avertissements' })).toBeNull()
+    // Le bouton est placé avant « Depuis la dernière évaluation ».
+    const presets = within(within(page).getByRole('group', { name: 'Préréglages' })).getAllByRole('button').map((x) => x.textContent)
+    expect(presets.slice(0, 2)).toEqual(['Première et seconde moitié', 'Depuis la dernière évaluation'])
     // Changer de vue est gardé, sans figer A et B : la comparaison reste celle par défaut.
     fireEvent.click(within(page).getByRole('tab', { name: 'Tableau' }))
     await waitFor(async () => expect((await st.loadDataset('ds-test')).preferences.compare?.view).toBe('table'))
     expect((await st.loadDataset('ds-test')).preferences.compare).not.toHaveProperty('a')
-    // Une autre période choisie pour B, puis le préréglage ramène janvier et mars.
-    fireEvent.change(within(b).getByLabelText('Du'), { target: { value: '2026-02-01' } })
-    await waitFor(() => expect(within(b).getByLabelText('Du').value).toBe('2026-02-01'))
-    await waitFor(async () => expect((await st.loadDataset('ds-test')).preferences.compare?.b?.def?.from).toBe('2026-02-01'))
-    expect((await st.loadDataset('ds-test')).preferences.compare.a.name).toBe('Janvier 2026')
-    fireEvent.click(within(page).getByRole('button', { name: 'Janvier et mars' }))
-    await waitFor(() => expect(within(b).getByLabelText('Du').value).toBe('2026-03-01'))
-    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Mars 2026')
+    // Une autre période choisie pour B, puis le préréglage ramène les deux moitiés.
+    fireEvent.change(within(b).getByLabelText('Du'), { target: { value: '2026-03-01' } })
+    await waitFor(async () => expect((await st.loadDataset('ds-test')).preferences.compare?.b?.def?.from).toBe('2026-03-01'))
+    expect((await st.loadDataset('ds-test')).preferences.compare.a.name).toBe('Première moitié')
+    fireEvent.click(within(page).getByRole('button', { name: 'Première et seconde moitié' }))
+    await waitFor(() => expect(within(b).getByLabelText('Du').value).toBe('2026-02-09'))
+    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Seconde moitié')
   })
 
   it('les huit vues existent, au clavier ; aucune ne contient de rang ni de mot de verdict (critère P3)', async () => {
     const page = await openCompare(await louStore())
+    fireEvent.click(within(page).getByRole('button', { name: 'Depuis la dernière évaluation' }))
     const tabs = within(page).getAllByRole('tab')
     expect(tabs.map((t) => t.textContent)).toEqual(['Deux soleils', 'Superposition', 'Radar des pôles', 'Tableau', 'Communes / seulement A / B', 'Journées par pôle', 'Concentration', 'Ce qui a changé'])
     fireEvent.keyDown(tabs[0], { key: 'ArrowRight' })

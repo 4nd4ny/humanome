@@ -125,27 +125,26 @@ group('préréglages', () => {
     d.days.find((x) => x.date === '2025-10-03').active = false
     expect(comparePreset(d, 'last-evaluation').b.def.to).toBe('2025-10-02')
   })
-  it('janvier et mars (D-50) : deux mois disjoints de l’année la plus récente où chacun a une journée analysée et cochée', () => {
-    const d = indexDataset([
-      { date: '2025-01-10', verdicts: [{ code: '1.01' }] },
-      { date: '2025-03-12', verdicts: [{ code: '2.01' }] },
-      { date: '2026-01-05', verdicts: [{ code: '1.01' }] },
-      { date: '2026-02-02', verdicts: [{ code: '2.01' }] },
-      { date: '2026-03-20', verdicts: [{ code: '3.01' }] },
-      { date: '2027-01-04', verdicts: [{ code: '1.01' }] },
-    ])
-    const p = comparePreset(d, 'january-march')
-    expect(p.a).toEqual({ name: 'Janvier 2026', def: { kind: 'period', from: '2026-01-01', to: '2026-01-31', onlyActive: true } })
-    expect(p.b).toEqual({ name: 'Mars 2026', def: { kind: 'period', from: '2026-03-01', to: '2026-03-31', onlyActive: true } })
-    expect(resolveSide(d, p.a).dates).toEqual(['2026-01-05'])
-    expect(resolveSide(d, p.b).dates).toEqual(['2026-03-20'])
+  it('première et seconde moitié (D-51) : les journées analysées et cochées coupées en deux dans l’ordre du temps, A prend la journée de plus', () => {
+    const p = comparePreset(ds(), 'halves')
+    expect(p.a).toEqual({ name: 'Première moitié', def: { kind: 'period', from: '2025-09-01', to: '2025-10-01', onlyActive: true } })
+    expect(p.b).toEqual({ name: 'Seconde moitié', def: { kind: 'period', from: '2025-10-02', to: '2025-10-03', onlyActive: true } })
+    expect(resolveSide(ds(), p.a).dates).toEqual(['2025-09-01', '2025-09-02', '2025-10-01'])
+    expect(resolveSide(ds(), p.b).dates).toEqual(['2025-10-02', '2025-10-03'])
+    // Deux moitiés disjointes : pas de recouvrement ; 3 et 2 journées, signalé.
+    const codes = compareSets(ds(), ref, p.a, p.b).warnings.map((w) => w.code)
+    expect(codes).toContain('sizes')
+    expect(codes).not.toContain('overlap')
     // La date de référence (t) n'y joue pas.
-    expect(comparePreset(d, 'january-march', { refDate: '2025-06-01' })).toEqual(p)
-    // Mars 2026 décoché : l'année d'avant.
-    d.days.find((x) => x.date === '2026-03-20').active = false
-    expect(comparePreset(d, 'january-march').b.name).toBe('Mars 2025')
-    // Sans janvier ni mars analysés : indisponible, dit comme tel.
-    expect(comparePreset(ds(), 'january-march')).toMatchObject({ unavailable: expect.stringMatching(/janvier et en mars/) })
+    expect(comparePreset(ds(), 'halves', { refDate: '2025-09-02' })).toEqual(p)
+    // Une journée décochée sort du compte : quatre journées, deux et deux.
+    const d = ds()
+    d.days.find((x) => x.date === '2025-10-03').active = false
+    const q = comparePreset(d, 'halves')
+    expect([q.a.def.from, q.a.def.to, q.b.def.from, q.b.def.to]).toEqual(['2025-09-01', '2025-09-02', '2025-10-01', '2025-10-02'])
+    expect(compareSets(d, ref, q.a, q.b).warnings.map((w) => w.code)).not.toContain('sizes')
+    // Une seule journée analysée : indisponible, dit comme tel.
+    expect(comparePreset(indexDataset([{ date: '2026-01-05', verdicts: [{ code: '1.01' }] }]), 'halves')).toMatchObject({ unavailable: expect.stringMatching(/au moins deux/) })
   })
 })
 

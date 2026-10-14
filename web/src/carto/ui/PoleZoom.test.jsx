@@ -13,6 +13,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { showCartoTiles } from '../test/tiles.js'
 import sharedDoc from '../../../../schemas/fixtures/partage/carto-partage-exemple.json'
 
 const NOW = '2026-10-13T12:00:00.000Z'
@@ -43,7 +44,7 @@ async function openLou(opts) {
   await waitFor(() => expect(sectorCodes()).toEqual(['1.01', '2.01', '3.01', '3.02']))
 }
 
-const sunEl = () => document.querySelector('.carto-col-center .carto-sun') ?? document.querySelector('.carto-shared .carto-sun')
+const sunEl = () => document.querySelector('[data-tile="sun"] .carto-sun') ?? document.querySelector('.carto-shared .carto-sun')
 const pole = (name) => sunEl().querySelector(`path[role="button"][aria-label^="Pôle ${name}"]`)
 const sectors = () => [...sunEl().querySelectorAll('path[role="button"]')].filter((el) => /^\d\.\d\d /.test(el.getAttribute('aria-label')))
 const sectorCodes = () => sectors().map((el) => el.getAttribute('aria-label').slice(0, 4))
@@ -57,6 +58,8 @@ beforeEach(() => {
   window.location.hash = '#/cartographie'
   try {
     localStorage.clear()
+    // Ces tests manipulent la liste, la heatmap… : toutes les tuiles affichées (D-53).
+    showCartoTiles()
   } catch {
     /* rien */
   }

@@ -7,22 +7,22 @@
 // #/cartographie/export, #/cartographie/partage (phase 2 : adultes, compte
 // apprenant, module activé par configuration), #/cartographie/jour/<date>.
 
-import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
 import { resolveParams, ringGeometry } from '../core/formulas.js'
 import { contributingVariant, todoCount } from '../core/model.js'
-import { selectExactly, setPreferences } from '../core/ops.js'
+import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
 import { Sun, SunTable } from './Sun.jsx'
 import { HeatmapPanel } from './HeatmapPanel.jsx'
 import { CompetencyList } from './CompetencyList.jsx'
-import { DetailPanel } from './DetailPanel.jsx'
+import { DetailPanel, SunLegend } from './DetailPanel.jsx'
 import { DayModal } from './DayModal.jsx'
 import { WhyDialog } from './WhyDialog.jsx'
 import { Player, usePrefersReducedMotion } from './Player.jsx'
-import { Manager } from './Manager.jsx'
+import { DatasetSection, DatasetTitle, DayAlerts, DayCounts, DayList, ImportSection, LastImportReport, Manager, SetsSection, TagsSection, TwoStepButton } from './Manager.jsx'
 import { ImportPanel, ImportReport } from './ImportPanel.jsx'
 import { PortfolioReader } from './PortfolioReader.jsx'
 import { DayVerdictDetail, ObservationDays, TraceList, verdictDetailOf } from './Observations.jsx'
@@ -36,6 +36,10 @@ import { SharePanel } from './SharePanel.jsx'
 import { DialoguePanel } from './DialoguePanel.jsx'
 import { createShareApi } from './shareApi.js'
 import { normalizeShareConfig } from '../core/share.js'
+import { poleShortName } from '../core/referential.js'
+import { TileGrid } from '../../v3/ui/tile-grid.jsx'
+import { CARTO_TILES, arrangeTiles, defaultTileSizes, defaultTilesLayout, readTilesLayout, setTileShown, writeTilesLayout } from './tiles.js'
+import '../../v3/v3.css'
 import './carto.css'
 
 export const SPACES = [
@@ -56,9 +60,7 @@ const initialUi = {
   hover: null,
   dayFilter: null,
   focusDate: null,
-  mobileTab: 'diagram',
   why: false,
-  expert: false,
   reader: null, // cible du lecteur de portfolio (trace ou passage)
   zoom: null, // pôle ouvert sur 360° dans le soleil (D-45), ou null
 }
@@ -78,12 +80,8 @@ function reducer(state, action) {
       return { ...state, focusDate: action.date }
     case 'dayFilter':
       return { ...state, dayFilter: action.filter }
-    case 'tab':
-      return { ...state, mobileTab: action.tab }
     case 'why':
       return { ...state, why: action.open }
-    case 'expert':
-      return { ...state, expert: action.on }
     case 'openReader':
       return { ...state, reader: action.target }
     case 'readerIndex':
@@ -91,7 +89,7 @@ function reducer(state, action) {
     case 'closeReader':
       return { ...state, reader: null }
     case 'reset':
-      return { ...initialUi, expert: state.expert }
+      return initialUi
     default:
       return state
   }
@@ -138,6 +136,34 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const canShare = !viewer && shareConfig.serverEnabled && (roles.includes('apprenant') || roles.includes('cartographe'))
   const shareApi = useMemo(() => deps.shareApi ?? createShareApi(deps.fetchFn ? { fetchFn: deps.fetchFn } : {}), [deps.shareApi, deps.fetchFn])
   const [ui, dispatch] = useReducer(reducer, initialUi)
+  // Disposition de l'espace Cartographie en tuiles (D-53) : gardée dans ce navigateur.
+  const [tiles, setTiles] = useState(() => readTilesLayout())
+  useEffect(() => writeTilesLayout(tiles), [tiles])
+  const showTile = useCallback((id, on = true) => setTiles((l) => setTileShown(l, id, on)), [])
+  // Rapport d'import : ouvert depuis le compteur d'anomalies (tuile Journées) ou après un import.
+  const [showReport, setShowReport] = useState(false)
+  // Après un import (sauf la démonstration), le rapport s'ouvre : dans la tuile
+  // Importer si elle est affichée, sinon en bandeau au-dessus des tuiles.
+  const lastReport = data.lastReport
+  const seenReport = useRef(lastReport)
+  useEffect(() => {
+    if (lastReport && lastReport !== seenReport.current && data.dataset?.origin !== 'demo') setShowReport(true)
+    if (!lastReport && seenReport.current) setShowReport(false) // fermé (dans un autre espace) : il ne revient pas
+    seenReport.current = lastReport
+  }, [lastReport, data.dataset?.origin])
+  // Masquer une tuile : le focus va au menu « Panneaux » (le bouton ✕ disparaît avec sa tuile).
+  const panelsRef = useRef(null)
+  const hideTile = useCallback((id) => {
+    setTiles((l) => setTileShown(l, id, false))
+    requestAnimationFrame(() => panelsRef.current?.focus())
+  }, [])
+  // Revenir à l'état complet retire aussi le filtre du jour choisi (contours du soleil).
+  const resetT = useCallback(() => {
+    dispatch({ type: 'setT', t: null })
+    dispatch({ type: 'dayFilter', filter: null })
+  }, [])
+  // « Réinitialiser l'affichage » remonte aussi les tuiles (recherche, regroupements, focus…).
+  const [resetKey, setResetKey] = useState(0)
   const rootRef = useRef(null)
   usePrintExpand(rootRef)
   const space = route.sub === 'jour' || !route.sub ? 'cartographie' : route.sub
@@ -306,9 +332,176 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
 
   const ctx = { data, dataset, refl, ui, dispatch, state, layout, params, geometry: GEOMETRY, frames, activeDates, heat, period, openDay, setT, select }
 
+  const resetDisplay = () => {
+    setTiles(defaultTilesLayout())
+    setShowReport(false)
+    dispatch({ type: 'reset' })
+    setResetKey((k) => k + 1)
+  }
+
+  // Les tuiles de la cartographie (D-53) ; null : indisponible ici (copie autonome).
+  const tileNodes = {
+    sun: (
+      <>
+        <Sun
+          refl={refl}
+          state={state}
+          layout={zoomLayout ?? layout}
+          geometry={GEOMETRY}
+          selection={ui.selection}
+          hover={ui.hover}
+          reinforced={Boolean(prefs.reinforced)}
+          highlightCodes={ui.dayFilter?.codes ?? null}
+          caption={ui.t ? `État cumulé jusqu’au ${formatShort(ui.t)}` : 'État complet des journées cochées'}
+          onSelect={select}
+          onHover={hover}
+          zoom={ui.zoom}
+          onZoom={zoomTo}
+          reducedMotion={reducedMotion}
+        />
+        {tiles.shown.includes('table') ? null : (
+          // Sa tuile masquée, l'équivalent textuel reste lu par les lecteurs d'écran, et imprimé.
+          <div className="carto-sr-table">
+            <SunTable refl={refl} state={state} bare />
+          </div>
+        )}
+      </>
+    ),
+    detail: (
+      <DetailPanel
+        refl={refl}
+        dataset={dataset}
+        state={state}
+        selection={ui.selection}
+        t={ui.t}
+        legend={false}
+        onSelect={select}
+        onOpenDay={openDay}
+        onWhy={() => dispatch({ type: 'why', open: true })}
+        zoom={ui.zoom}
+        onZoom={(num) => {
+          zoomTo(num)
+          if (num != null) select({ type: 'pole', num })
+        }}
+      >
+        <SelectionDetails
+          dataset={dataset}
+          state={state}
+          selection={ui.selection}
+          t={ui.t}
+          data={data}
+          selectionDates={selectionDates}
+          onOpenDay={openDay}
+          onOpenTrace={openTrace}
+          onOpenPassage={openPassage}
+          onShowSourceSet={showSourceSet}
+        />
+        {slots.detail ? slots.detail(ctx) : null}
+      </DetailPanel>
+    ),
+    days: (
+      <>
+        <DayCounts dataset={dataset} onShowReport={() => setShowReport(true)} />
+        <p className="carto-manager-period">
+          Période : {state.dates.length ? `${formatShort(state.dates[0])} → ${formatShort(state.dates.at(-1))}` : '—'}
+        </p>
+        <DayList dataset={dataset} t={ui.t} update={data.update} onSetT={onHeatmapSetT} onOpenDay={openDay} />
+        <DayAlerts dataset={dataset} update={data.update} commitWithDetails={data.commitWithDetails} readOnly={viewer} />
+      </>
+    ),
+    competencies: (
+      <CompetencyList
+        refl={refl}
+        state={state}
+        selection={ui.selection}
+        dayFilter={ui.dayFilter}
+        onSelect={select}
+        onOpenDay={openDay}
+        onClearDayFilter={() => dispatch({ type: 'dayFilter', filter: null })}
+      />
+    ),
+    timeline: (
+      <>
+        <Player frames={frames} t={ui.t} onSetT={setT} hold={Boolean(ui.selection || ui.hover)} reducedMotion={reducedMotion} speed={prefs.speed ?? 1} onSpeed={(speed) => onPrefs({ speed })} />
+        <HeatmapPanel
+          model={heat}
+          prefs={prefs}
+          period={period}
+          schoolYear={schoolYear}
+          t={ui.t}
+          focusDate={ui.focusDate}
+          observed={observed}
+          inspected={modalDate}
+          markers={dataset.markers}
+          onPrefs={onPrefs}
+          onFocusDate={(d) => dispatch({ type: 'focusDate', date: d })}
+          onSetT={onHeatmapSetT}
+          onOpenDay={openDay}
+        />
+      </>
+    ),
+    legend: (
+      <>
+        <SunLegend />
+        <p className="carto-small carto-muted">Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}</p>
+        <label className="carto-small carto-sun-options">
+          <input type="checkbox" checked={Boolean(prefs.reinforced)} onChange={(e) => onPrefs({ reinforced: e.target.checked })} /> distinctions renforcées (motifs par pôle)
+        </label>
+      </>
+    ),
+    table: <SunTable refl={refl} state={state} bare />,
+    import: viewer ? null : (
+      <ImportSection
+        bare
+        compact
+        dataset={dataset}
+        importInto={data.importInto}
+        busy={data.busy}
+        lastReport={data.lastReport}
+        onCloseReport={() => data.setLastReport(null)}
+        update={data.update}
+        showReport={showReport}
+        setShowReport={setShowReport}
+      />
+    ),
+    tags: <TagsSection bare dataset={dataset} update={data.update} />,
+    sets: <SetsSection bare dataset={dataset} update={data.update} />,
+    datasets: viewer ? null : (
+      <>
+        <DatasetTitle dataset={dataset} onRename={(title) => data.update((ds) => renameDataset(ds, title))} />
+        <DatasetSection bare dataset={dataset} datasets={data.datasets} onOpenDataset={data.openDataset} onDeleteDataset={data.deleteDataset} />
+      </>
+    ),
+    settings: <EncodingSettings bare params={params} onPrefs={onPrefs} prefs={prefs} />,
+  }
+  const available = CARTO_TILES.filter(([id]) => tileNodes[id] != null)
+  const shownTiles = available
+    .filter(([id]) => tiles.shown.includes(id))
+    .map(([id, label]) => ({
+      id,
+      label,
+      node: (
+        <section className={`carto-tile carto-tile--${id}`} aria-label={label} data-tile={id}>
+          {tileNodes[id]}
+        </section>
+      ),
+    }))
+
   return (
-    <div ref={rootRef} className={`carto-app carto-tab-${ui.mobileTab}${ui.reader ? ' has-reader' : ''}`}>
-      <ContextBar dataset={dataset} state={state} t={ui.t} activeCount={activeDates.length} expert={ui.expert} viewer={viewer} onExpert={(on) => dispatch({ type: 'expert', on })} onResetT={() => setT(null)} />
+    <div ref={rootRef} className={`carto-app carto-space-${space}${ui.reader ? ' has-reader' : ''}`}>
+      <ContextBar
+        dataset={dataset}
+        t={ui.t}
+        onResetT={resetT}
+        tools={
+          space === 'cartographie' ? (
+            <>
+              <PanelsMenu tiles={available} shown={tiles.shown} onToggle={showTile} summaryRef={panelsRef} />
+              <TwoStepButton label="Réinitialiser l’affichage" confirmLabel="Revenir à la vue de départ" onConfirm={resetDisplay} />
+            </>
+          ) : null
+        }
+      />
       <nav className="carto-spaces" aria-label="Espaces de la cartographie">
         {SPACES.filter(([id]) => !(viewer && id === 'export') && (id !== 'partage' || canShare)).map(([id, label, hash]) => (
           <a key={id} href={hash} aria-current={space === id ? 'page' : undefined}>
@@ -327,136 +520,32 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
       ) : null}
 
       {space === 'cartographie' ? (
-        <>
-          <div className="carto-tabs" role="tablist" aria-label="Vues (écran étroit)">
-            {[
-              ['diagram', 'Diagramme'],
-              ['details', 'Détails'],
-              ['days', 'Journées'],
-            ].map(([id, label]) => (
-              <button key={id} type="button" role="tab" aria-selected={ui.mobileTab === id} onClick={() => dispatch({ type: 'tab', tab: id })}>
-                {label}
-              </button>
-            ))}
-          </div>
-          <div className="carto-grid">
-            <aside className="carto-col carto-col-left" aria-label="Journées et compétences">
-              <details className="carto-col-section" open>
-                <summary>Journées</summary>
-                <Manager
-                  dataset={dataset}
-                  refl={refl}
-                  t={ui.t}
-                  readOnly={viewer}
-                  layout="side"
-                  update={data.update}
-                  commitWithDetails={data.commitWithDetails}
-                  importInto={data.importInto}
-                  busy={data.busy}
-                  lastReport={data.lastReport}
-                  onCloseReport={() => data.setLastReport(null)}
-                  datasets={data.datasets}
-                  onOpenDataset={data.openDataset}
-                  onDeleteDataset={data.deleteDataset}
-                  onSetT={onHeatmapSetT}
-                  onOpenDay={openDay}
-                />
-              </details>
-              <details className="carto-col-section" open>
-                <summary>Compétences</summary>
-                <CompetencyList
-                  refl={refl}
-                  state={state}
-                  selection={ui.selection}
-                  dayFilter={ui.dayFilter}
-                  onSelect={select}
-                  onOpenDay={openDay}
-                  onClearDayFilter={() => dispatch({ type: 'dayFilter', filter: null })}
-                />
-              </details>
-            </aside>
-            <section className="carto-col carto-col-center" aria-label="Soleil et heatmap">
-              <Sun
-                refl={refl}
-                state={state}
-                layout={zoomLayout ?? layout}
-                geometry={GEOMETRY}
-                selection={ui.selection}
-                hover={ui.hover}
-                reinforced={Boolean(prefs.reinforced)}
-                highlightCodes={ui.dayFilter?.codes ?? null}
-                caption={ui.t ? `État cumulé jusqu’au ${formatShort(ui.t)}` : 'État complet des journées cochées'}
-                onSelect={select}
-                onHover={hover}
-                zoom={ui.zoom}
-                onZoom={zoomTo}
-                reducedMotion={reducedMotion}
-              />
-              <div className="carto-sun-options">
-                <label className="carto-small">
-                  <input type="checkbox" checked={Boolean(prefs.reinforced)} onChange={(e) => onPrefs({ reinforced: e.target.checked })} /> distinctions renforcées (motifs par pôle)
-                </label>
-              </div>
-              <Player
-                frames={frames}
-                t={ui.t}
-                onSetT={setT}
-                hold={Boolean(ui.selection || ui.hover)}
-                reducedMotion={reducedMotion}
-                speed={prefs.speed ?? 1}
-                onSpeed={(speed) => onPrefs({ speed })}
-              />
-              <HeatmapPanel
-                model={heat}
-                prefs={prefs}
-                period={period}
-                schoolYear={schoolYear}
-                t={ui.t}
-                focusDate={ui.focusDate}
-                observed={observed}
-                inspected={modalDate}
-                markers={dataset.markers}
-                onPrefs={onPrefs}
-                onFocusDate={(d) => dispatch({ type: 'focusDate', date: d })}
-                onSetT={onHeatmapSetT}
-                onOpenDay={openDay}
-              />
-              <SunTable refl={refl} state={state} />
-            </section>
-            <aside className="carto-col carto-col-right" aria-label="Détail">
-              <DetailPanel
-                refl={refl}
+        <div className="carto-tiles" key={resetKey}>
+          {showReport && !viewer && !tiles.shown.includes('import') ? (
+            <div className="carto-report-banner">
+              <LastImportReport
                 dataset={dataset}
-                state={state}
-                selection={ui.selection}
-                t={ui.t}
-                onSelect={select}
-                onOpenDay={openDay}
-                onWhy={() => dispatch({ type: 'why', open: true })}
-                zoom={ui.zoom}
-                onZoom={(num) => {
-                  zoomTo(num)
-                  if (num != null) select({ type: 'pole', num })
-                }}
-              >
-                <SelectionDetails
-                  dataset={dataset}
-                  state={state}
-                  selection={ui.selection}
-                  t={ui.t}
-                  data={data}
-                  selectionDates={selectionDates}
-                  onOpenDay={openDay}
-                  onOpenTrace={openTrace}
-                  onOpenPassage={openPassage}
-                  onShowSourceSet={showSourceSet}
-                />
-                {slots.detail ? slots.detail(ctx) : null}
-              </DetailPanel>
-              {ui.expert ? <EncodingSettings params={params} onPrefs={onPrefs} prefs={prefs} /> : null}
-            </aside>
-          </div>
-        </>
+                lastReport={data.lastReport}
+                update={data.update}
+                onCloseReport={() => data.setLastReport(null)}
+                showReport={showReport}
+                setShowReport={setShowReport}
+                withButton={false}
+              />
+            </div>
+          ) : null}
+          {shownTiles.length > 0 ? (
+            <TileGrid
+              tiles={shownTiles}
+              layout={tiles}
+              onLayoutChange={(change) => setTiles((l) => arrangeTiles(l, change))}
+              defaultSizes={defaultTileSizes}
+              onHide={hideTile}
+            />
+          ) : (
+            <p className="carto-muted carto-pad">Aucun panneau affiché : choisissez-en dans « Panneaux », en haut de la page.</p>
+          )}
+        </div>
       ) : space === 'gestionnaire' ? (
         <Manager
           dataset={dataset}
@@ -464,6 +553,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           t={ui.t}
           readOnly={viewer}
           layout="full"
+          showReport={showReport}
+          setShowReport={setShowReport}
           update={data.update}
           commitWithDetails={data.commitWithDetails}
           importInto={data.importInto}
@@ -605,7 +696,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
             dispatch({ type: 'closeReader' })
             if (modalDate) closeDay()
             select({ type: 'competency', code })
-            dispatch({ type: 'tab', tab: 'details' })
+            showTile('detail')
           }}
         />
       ) : null}
@@ -670,59 +761,85 @@ function SelectionDetails({ dataset, state, selection, t, data, selectionDates, 
   )
 }
 
-function ContextBar({ dataset, state, t, activeCount, expert, viewer = false, onExpert, onResetT }) {
-  const first = state.dates[0]
-  const last = state.dates.at(-1)
+/**
+ * En-tête : titre et jeu de données ; la date t quand elle est fixée ; dans
+ * l'espace Cartographie, le menu « Panneaux » et « Réinitialiser l'affichage »
+ * (D-52). La période et le compteur de journées cochées sont dans la tuile
+ * Journées ; comparer et exporter sont dans les espaces.
+ */
+function ContextBar({ dataset, t, onResetT, tools = null }) {
   return (
     <header className="carto-context" aria-label="Contexte">
       <div className="carto-context-title">
         <h1>Cartographie</h1>
         <span className="carto-context-dataset">{dataset.title}</span>
       </div>
-      <dl className="carto-context-facts">
-        <div>
-          <dt>Période</dt>
-          <dd>{first ? `${formatShort(first)} → ${formatShort(last)}` : '—'}</dd>
-        </div>
-        <div>
-          <dt>Date t</dt>
-          <dd>
-            {t ? formatShort(t) : 'état complet'}
-            {t ? (
+      {t ? (
+        <dl className="carto-context-facts">
+          <div>
+            <dt>Date t</dt>
+            <dd>
+              {formatShort(t)}
               <button type="button" className="carto-link-btn" onClick={onResetT}>
                 revenir à l’état complet
               </button>
-            ) : null}
-          </dd>
-        </div>
-        <div>
-          <dt>Ensemble actif</dt>
-          <dd>
-            {activeCount} / {dataset.days.length} journées cochées
-          </dd>
-        </div>
-      </dl>
-      <div className="carto-context-actions">
-        <a className="carto-btn carto-btn--quiet" href="#/cartographie/comparaison">
-          Comparer A / B
-        </a>
-        {viewer ? null : (
-          <a className="carto-btn carto-btn--quiet" href="#/cartographie/export">
-            Exporter
-          </a>
-        )}
-        <label className="carto-small">
-          <input type="checkbox" checked={expert} onChange={(e) => onExpert(e.target.checked)} /> mode expert
-        </label>
-      </div>
+            </dd>
+          </div>
+        </dl>
+      ) : null}
+      {tools ? <div className="carto-context-tools">{tools}</div> : null}
     </header>
   )
 }
 
-function EncodingSettings({ params, onPrefs, prefs }) {
+/** Menu « Panneaux » : une case par tuile de la cartographie (D-53). */
+function PanelsMenu({ tiles, shown, onToggle, summaryRef = null }) {
+  const ref = useRef(null)
+  // Se referme au clic ailleurs, et sur Échap (le focus revient au bouton).
+  useEffect(() => {
+    const onDown = (e) => {
+      if (ref.current?.open && !ref.current.contains(e.target)) ref.current.open = false
+    }
+    document.addEventListener('pointerdown', onDown)
+    return () => document.removeEventListener('pointerdown', onDown)
+  }, [])
+  const count = tiles.filter(([id]) => shown.includes(id)).length
   return (
-    <details className="carto-section" open>
-      <summary>Réglages de l’encodage</summary>
+    <details
+      ref={ref}
+      className="carto-panels-menu"
+      onKeyDown={(e) => {
+        if (e.key !== 'Escape' || !ref.current?.open) return
+        e.preventDefault()
+        ref.current.open = false
+        ref.current.querySelector('summary')?.focus()
+      }}
+    >
+      <summary ref={summaryRef}>
+        Panneaux{' '}
+        <span className="carto-count">
+          {count}/{tiles.length}
+        </span>
+      </summary>
+      <ul className="carto-panels-list" aria-label="Panneaux affichés">
+        {tiles.map(([id, label]) => (
+          <li key={id}>
+            <label>
+              <input type="checkbox" checked={shown.includes(id)} onChange={(e) => onToggle(id, e.target.checked)} /> {label}
+            </label>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}
+
+/** Réglages de l'encodage (α, épaisseur minimale) : une tuile, masquée au départ (D-52). */
+function EncodingSettings({ params, onPrefs, prefs, bare = false }) {
+  const Box = bare ? 'div' : 'details'
+  return (
+    <Box className="carto-section" open={bare ? undefined : true}>
+      {bare ? null : <summary>Réglages de l’encodage</summary>}
       <label className="carto-setting">
         Poids d’un indice α : <strong>{params.alpha.toLocaleString('fr-FR')}</strong>
         <input
@@ -746,7 +863,7 @@ function EncodingSettings({ params, onPrefs, prefs }) {
         />
       </label>
       <p className="carto-small carto-muted">Points ouverts 1 et 2 de la spécification : valeurs proposées 0,5 et 2 px.</p>
-    </details>
+    </Box>
   )
 }
 

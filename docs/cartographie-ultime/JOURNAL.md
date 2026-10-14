@@ -48,6 +48,9 @@ autorisation, puis fusionné dans `main` (D-46).
 | Démo avec portfolio | le journal de la démonstration sur le site seulement (archive de l'interface), passages surlignés ; guide du visiteur (D-48) | ✅ | ✅ 2 392 traces vérifiées par le chemin du lecteur + vérification en ligne | ✅ | voir §5 |
 | Q31 — portfolio de Google Docs | échappements, traits, sauts de ligne et images rendus ; « 1er » lu par le découpage ; démonstration redéposée, front redéployé (D-49) | ✅ | ✅ 9 tests (rendu, surlignage, découpage) + 2 392 traces revérifiées + vérification en ligne | ✅ | voir §5 |
 | Comparaison par défaut | janvier face à mars ; préréglage « Janvier et mars » ; changer de vue ne fige plus A et B ; déployé (D-50) | ✅ | ✅ 2 tests (cœur, interface) + vérification en ligne | ✅ | voir §5 |
+| Comparaison : deux moitiés | première moitié des journées analysées face à la seconde, par défaut et par un préréglage ; remplace janvier et mars (D-51) | ✅ | ✅ 2 tests réécrits (cœur, interface) | ✅ | voir §5 |
+| En-tête allégé | « Réinitialiser l’affichage » ; ni « Comparer A / B », ni « Exporter », ni case « mode expert » (ses réglages deviennent une tuile) ; légende du soleil sur deux lignes, toujours (D-52) | ✅ | ✅ voir D-53 | ✅ | voir §5 |
+| Cartographie en tuiles | douze tuiles masquables, déplaçables, redimensionnables ; au départ, le soleil et le détail ; disposition gardée dans le navigateur (D-53) | ✅ | ✅ 25 tests (disposition, interface, copie autonome) + e2e Chromium + relecture indépendante | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1703,6 +1706,128 @@ comparer janvier et mars. »
   rechargement, A et B restent janvier et mars.
 - Docs : guides de l'apprenant (chapitre 7) et du visiteur (chapitre 2).
 
+### D-51 — La comparaison s'ouvre sur le début du portfolio face à sa fin **[décidé]**
+
+Christian (2026-10-14, 21 h 45, rectification de D-50) : « C'est juste pour la
+version de démonstration que j'aimerai afficher ces deux périodes pour avoir
+quelque chose à comparer qui ne soit pas 66 journées vs 67. Pour un cas
+général (puisque c'est ce que tu as fait finalement), alors diviser le nombre
+de journées en deux pour comparer le début du portfolio avec la fin et
+ajouter un bouton avant "Depuis la dernière évaluation" de manière à pouvoir
+rapidement revenir à cette configuration. Et du coup, applique ce cas général
+à la place de comparer janvier et mars. »
+
+- **Remplace D-50.** Par défaut, tant que la personne n'a choisi ni A ni B :
+  les journées analysées et cochées, coupées en deux dans l'ordre du temps —
+  A, « Première moitié », du premier au dernier jour de la moitié ; B,
+  « Seconde moitié ». Deux périodes, journées cochées seulement ; la date t
+  n'y joue pas. Sur la démonstration : du 22 décembre au 30 janvier
+  (30 journées analysées) face au 31 janvier – 29 mars (29).
+- **[choix d'implémentation]** Le compte porte sur les journées **analysées**
+  (celles que la comparaison compare) ; impair, A prend la journée de plus,
+  et l'avertissement de tailles différentes le dit. Moins de deux journées
+  analysées : la sélection courante des deux côtés, comme avant.
+- Préréglage « Première et seconde moitié », placé avant « Depuis la dernière
+  évaluation » ; « Janvier et mars » est retiré. Ce que D-50 avait corrigé
+  reste : changer de vue ne fige pas A et B.
+- Docs : guides de l'apprenant (chapitre 7) et du visiteur (chapitre 2).
+
+### D-52 — En-tête allégé : réinitialiser, sans doublons ni « mode expert » **[décidé]**
+
+Christian (2026-10-14, 21 h 45, « Diminution de la charge cognitive
+extrinsèque de l'interface ») : « Ajouter un bouton "reset" de l'interface
+dans le header. Le carto-context-actions est redondant avec les boutons dans
+la nav carto-space : à supprimer. La check box "mode expert" semble ne rien
+modifier visuellement. On peut la supprimer également. La hauteur du
+carto-sun-caption doit être constant et permettre de toujours afficher deux
+lignes. »
+
+- **« Réinitialiser l'affichage »**, dans l'en-tête de l'espace Cartographie,
+  en deux temps (« Revenir à la vue de départ ») : les tuiles de départ
+  (D-53), plus de sélection, de pôle ouvert, de date t ni de filtre du jour ;
+  les tuiles sont remontées (recherche, regroupements). **[choix
+  d'implémentation]** Les données ne bougent pas : journées cochées,
+  étiquettes, ensembles, préférences du jeu (motifs renforcés, réglages de
+  l'encodage, calendrier de la heatmap).
+- **Retirés** : « Comparer A / B » et « Exporter » (les espaces Comparaison
+  et Export), et la case « mode expert ».
+- **« Mode expert » modifiait bien quelque chose**, hors de la vue : sous le
+  panneau de détail, les **réglages de l'encodage** — α, le poids d'un indice,
+  et l'épaisseur minimale d'un secteur. α doit rester réglable (question 1).
+  **[proposition appliquée, réversible]** La case disparaît ; les réglages
+  deviennent une tuile, « Réglages de l'encodage », masquée au départ (D-53).
+- **[choix d'implémentation]** La date t ne s'affiche dans l'en-tête que
+  fixée, avec « revenir à l'état complet » (qui retire aussi le filtre du
+  jour) ; sans elle, la légende du soleil dit déjà « État complet des
+  journées cochées ».
+- **Légende sous le soleil** (`carto-sun-caption`) : hauteur constante de
+  deux lignes — un titre et une phrase, une ligne chacun ; une phrase seule,
+  deux lignes au plus ; au-delà, points de suspension (le texte entier reste
+  lu par les lecteurs d'écran). Vérifié dans Chromium : même hauteur,
+  survolée ou non, égale à deux lignes. Vaut pour tous les soleils (journée,
+  comparaison, version partagée).
+
+### D-53 — La cartographie en tuiles **[décidé]**
+
+Christian (2026-10-14, 21 h 45, « Amélioration de l'UX ») : « Le tableau de
+bord a un système de gestion des div (ou tuiles) sur une grille que je trouve
+excellent. Je souhaite la même souplesse d'interface pour l'onglet
+cartographie. […] Par défaut, prévoir une vue minimaliste avec juste le
+carto-sun avec dessous le carto-detail, tous deux en pleine largeur. La div
+carto-col doit d'ailleurs ne plus être limitée en largeur et utiliser tout
+l'espace disponible. Tout le reste masqué […], y compris les date de la
+période dans le header (et le compteur de nombre de journées cochées), qu'il
+faudrait du coup déplacer dans la tuile "Journées". Les choix de
+customisation de l'interface doivent être stockée dans la mémoire du
+navigateur. »
+
+- **Douze tuiles**, sur la grille du tableau de bord (`TileGrid`, V3) :
+  Soleil, Détail, Journées, Compétences, Heatmap et lecture (la tête de
+  lecture avec la heatmap), Légende (avec « distinctions renforcées »),
+  Tableau équivalent, Importer, Étiquettes, Ensembles nommés, Jeux de données
+  (avec le nom du jeu), Réglages de l'encodage. Chacune se déplace (poignée ⠿,
+  ou ◀ ▶ au clavier), se redimensionne (coin ◢, ou menu de taille ; tailles
+  ajoutées : pleine largeur ×3 et ×4) et se masque (✕).
+- **Vue de départ** : le soleil et, dessous, le détail, en pleine largeur.
+  L'espace Cartographie prend toute la largeur de la page (plus de borne à
+  1 600 px ni de colonnes) ; le soleil s'ajuste à sa tuile, haute de 2 à
+  4 rangées selon la hauteur de l'écran (fenêtre de 1 400 × 950 px : dessin de
+  1 310 × 623 px, contre 560 px de large au plus avant).
+- **Menu « Panneaux »** dans l'en-tête : une case par tuile ; une tuile
+  affichée se place à la suite des autres. La période et le compteur de
+  journées cochées sont dans la tuile Journées.
+- **Gardée dans ce navigateur** (`localStorage`, `humanome-carto-tiles`) :
+  tuiles affichées, ordre, tailles — une disposition pour tous les jeux de
+  données, jamais dans le jeu ni dans une archive ; illisible ou stockage
+  bloqué (copie ouverte depuis le disque) : la vue de départ.
+- **[choix d'implémentation]** Après un import (sauf la démonstration), le
+  rapport s'ouvre : dans la tuile Importer si elle est affichée, sinon en
+  bandeau au-dessus des tuiles ; un seul état pour toute l'interface (fermé
+  dans le Gestionnaire, il ne revient pas). Le compteur d'anomalies de la
+  tuile Journées le rouvre.
+- **[choix d'implémentation]** Les onglets « Diagramme / Détails / Journées »
+  des écrans étroits disparaissent : sur un téléphone, les tuiles s'empilent
+  sur une colonne (vérifié à 390 px : menu « Panneaux » ouvert vers la
+  droite, dans l'écran). Une copie autonome n'a ni « Importer » ni « Jeux de
+  données ».
+- **Accessibilité** : chaque tuile est une région nommée ; une tuile masquée
+  donne le focus à « Panneaux » ; « Réinitialiser » le donne à « Annuler »,
+  puis le rend au bouton (tous les boutons en deux temps) ; ◀ ▶ gardent le
+  focus sur la tuile déplacée (défaut antérieur de la grille, corrigé aussi au
+  tableau de bord) ; tuile masquée, l'équivalent textuel du soleil reste dans
+  la page, hors de la vue, pour les lecteurs d'écran et l'impression.
+- Le gestionnaire est découpé en sections réutilisables (`Manager.jsx`) ;
+  l'espace Gestionnaire garde sa mise en page.
+- **Relecture indépendante** (agent distinct, avant la fusion) : six points,
+  tous corrigés — un rapport d'import fermé dans le Gestionnaire revenait en
+  bandeau ; l'équivalent textuel du soleil n'était plus dans la page ni
+  imprimé par défaut ; « revenir à l'état complet » laissait les contours du
+  jour choisi ; focus perdu (✕, réinitialisation, ◀ ▶) ; marge du détail
+  collée à sa bordure ; trois tests qui ne vérifiaient pas tout ce qu'ils
+  annonçaient.
+- Docs : guides du visiteur (chapitre 2), de l'apprenant et du cartographe
+  (chapitre 7), aide de la cartographie.
+
 ---
 
 ## 3. État des tests
@@ -2038,6 +2163,23 @@ exécution précédente, avant la dernière retouche, a vu échouer une fois
 noté plus haut ; seul, 3 fois sur 3 vert). Moteur inchangé. e2e Chromium
 verts : copie autonome (P5), dialogue (P7), soleil (D-45), guides publics.
 
+### Deux moitiés, en-tête allégé, tuiles (D-51, D-52, D-53)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/compare.test.js` | « première et seconde moitié » : journées analysées et cochées coupées en deux dans l'ordre, A prend la journée de plus, noms et bornes ; moitiés disjointes (tailles signalées, jamais de recouvrement) ; date de référence sans effet ; journée décochée sortie du compte ; une seule journée : indisponible, dit comme tel | réécrit |
+| `ui/P3.test.jsx` | **application complète** : la comparaison s'ouvre sur les deux moitiés (bornes, nombres, aucun avertissement pour deux moitiés égales) ; bouton placé avant « Depuis la dernière évaluation » ; changer de vue ne fige pas A et B ; le préréglage y ramène. Le critère P3 (tailles, recouvrement) passe par « Depuis la dernière évaluation » | réécrit, +0 |
+| `ui/tiles.test.js` (nouveau) | disposition de départ ; tailles par défaut (soleil de 2 à 4 rangées selon l'écran, pleine largeur) ; afficher (à la suite), masquer (garde sa place) ; ordre rendu par la grille, masquées à la suite ; stockage : relu à l'identique ; absent, illisible, autre version, bloqué → départ ; nettoyage des tuiles inconnues et des tailles | 7 |
+| `ui/Tiles.test.jsx` (nouveau) | **application complète** : vue de départ (soleil et détail, toute la largeur de la grille) ; en-tête sans période, compteur, doublons ni « mode expert » ; « Panneaux » (afficher, à la suite, ✕, tout masquer) ; période et compteur dans Journées ; réglages de l'encodage (α enregistré) et légende (motifs renforcés) en tuiles ; disposition gardée (ordre, taille) au rechargement ; « Réinitialiser » en deux temps (tuiles, sélection, date t) ; date t dans l'en-tête seulement fixée ; **relecture** : équivalent textuel toujours là une seule fois, contours du jour retirés avec la date t, focus (✕, réinitialiser, ◀ ▶), rapport fermé dans le Gestionnaire qui ne revient pas (le test échoue sans la correction) | 11 |
+| `ui/P5.test.jsx` | copie autonome : ni « Importer » ni « Jeux de données » parmi les panneaux, même si la disposition gardée les affiche | +1, 1 renforcé |
+| `ui/CompetencyList.test.jsx` | la liste suit la sélection dans sa tuile, jamais au-delà (grille, page) | réécrits |
+| `CartoApp`, `P2`, `PoleZoom`, UC-VIS-01 (fonctionnels) | sélecteurs des tuiles ; toutes les tuiles affichées pour les tests qui manipulent liste et heatmap ; UC-VIS-01-F16 : le rapport s'ouvre de lui-même après l'import | mis à jour |
+| `e2e/carto-soleil.e2e.js` | la légende du soleil garde sa hauteur de deux lignes au survol ; la liste, affichée par « Panneaux », suit la sélection dans sa tuile, page et soleil immobiles ; disposition gardée au rechargement ; réinitialisation | +3 étapes |
+
+Suites complètes après D-53 : site **2 315 verts** (237 fichiers) ; moteur
+inchangé ; e2e Chromium : les 16 scénarios (11 fichiers) verts, dont ceux qui
+passent par l'API locale (Docker).
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2274,3 +2416,11 @@ Questions ouvertes après D-49 :
 - **2026-10-14** — Comparaison par défaut (D-50), à la demande de Christian :
   janvier face à mars ; préréglage « Janvier et mars » ; changer de vue ne
   fige plus A et B ; déployé et vérifié en ligne.
+- **2026-10-14** — Rectification de Christian (D-51) : la comparaison s'ouvre
+  sur la première moitié des journées analysées face à la seconde, avec son
+  préréglage ; janvier et mars retirés. En-tête allégé (D-52) :
+  « Réinitialiser l'affichage », plus de doublons ni de « mode expert » (ses
+  réglages deviennent une tuile), légende du soleil sur deux lignes. La
+  cartographie en tuiles (D-53) : douze tuiles, au départ le soleil et le
+  détail, disposition gardée dans le navigateur. Relu par un agent distinct
+  (six corrections) ; déployé et vérifié en ligne.

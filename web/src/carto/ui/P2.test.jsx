@@ -11,6 +11,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset, observationKey } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { showCartoTiles } from '../test/tiles.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
@@ -43,8 +44,8 @@ async function mount(store) {
   await screen.findByRole('heading', { name: 'Cartographie' })
 }
 
-const sector = (prefix) => document.querySelector(`.carto-col-center .carto-sun [role="button"][aria-label^="${prefix}"]`)
-const detail = () => document.querySelector('.carto-col-right')
+const sector = (prefix) => document.querySelector(`[data-tile="sun"] .carto-sun [role="button"][aria-label^="${prefix}"]`)
+const detail = () => document.querySelector('[data-tile="detail"]')
 const reader = () => screen.queryByRole('region', { name: /^(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche) / })
 const marks = (root) => [...root.querySelectorAll('.carto-reader-text mark.carto-hl')]
 const markedText = (root) => marks(root).map((m) => m.textContent).join('')
@@ -59,6 +60,8 @@ beforeEach(() => {
   window.location.hash = '#/cartographie'
   try {
     localStorage.clear()
+    // Ces tests manipulent la liste, la heatmap… : toutes les tuiles affichées (D-53).
+    showCartoTiles()
   } catch {
     /* rien */
   }

@@ -28,6 +28,8 @@ export const TILE_SIZES = [
   { id: '3x3', w: 3, h: 3 },
   { id: 'pleine-largeur', w: Infinity, h: 1 },
   { id: 'pleine-largeur-x2', w: Infinity, h: 2 },
+  { id: 'pleine-largeur-x3', w: Infinity, h: 3 },
+  { id: 'pleine-largeur-x4', w: Infinity, h: 4 },
 ]
 
 /** Largeur cible d'une colonne (px) → nombre de colonnes de la grille. */
@@ -55,9 +57,11 @@ export function moveTile(order, id, beforeId) {
  * @param {Array<{id: string, label: string, node: import('react').ReactNode}>} props.tiles
  * @param {{order: string[], sizes: Record<string, {w: number, h: number}>}} props.layout
  * @param {(layout: object) => void} props.onLayoutChange
- * @param {Record<string, {w: number, h: number}>} props.defaultSizes
+ * @param {Record<string, {w: number, h: number}> | ((columns: number) => Record<string, {w: number, h: number}>)} props.defaultSizes
+ *   tailles par défaut, ou fonction du nombre de colonnes (une tuile peut être plus basse sur un téléphone)
+ * @param {(id: string) => void} [props.onHide] bouton « Masquer » dans la barre de chaque tuile (cartographie, journal D-53)
  */
-export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
+export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onHide = null }) {
   const ref = useRef(null)
   const [columns, setColumns] = useState(3)
   const dragId = useRef(null)
@@ -67,6 +71,15 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
   // redimensionner ; la taille finale n'est persistée qu'au relâchement.
   const [resizing, setResizing] = useState(null) // {id, w, h}
   const resizingRef = useRef(null)
+  // Déplacer une tuile au clavier (◀ ▶) réinsère son nœud : le focus revient
+  // sur le même bouton de la tuile déplacée (sinon il tombe sur la page).
+  const refocus = useRef(null)
+  useEffect(() => {
+    const r = refocus.current
+    if (!r) return
+    refocus.current = null
+    ref.current?.querySelector(`[data-tile-id="${r.id}"] [data-move="${r.delta}"]`)?.focus()
+  }, [layout])
 
   useEffect(() => {
     const el = ref.current
@@ -91,9 +104,10 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
   const ordered = useMemo(() => orderedTiles(tiles, layout), [tiles, layout])
   const fullOrder = ordered.map((t) => t.id)
 
+  const defaults = typeof defaultSizes === 'function' ? defaultSizes(columns) : defaultSizes
   const sizeOf = (id) => {
     if (resizing?.id === id) return resizing
-    return layout?.sizes?.[id] ?? defaultSizes[id] ?? { w: 1, h: 1 }
+    return layout?.sizes?.[id] ?? defaults[id] ?? { w: 1, h: 1 }
   }
 
   /** Métriques d'une cellule de grille (pour quantiser le geste). */
@@ -161,6 +175,7 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
     if (j < 0 || j >= fullOrder.length) return
     const next = [...fullOrder]
     ;[next[i], next[j]] = [next[j], next[i]]
+    refocus.current = { id, delta }
     onLayoutChange({ order: next, sizes: layout?.sizes ?? {} })
   }
 
@@ -181,6 +196,7 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
           <div
             key={tile.id}
             role="listitem"
+            data-tile-id={tile.id}
             className={`v3-tile${resizing?.id === tile.id ? ' v3-tile-resizing' : ''}`}
             style={{ gridColumn: `span ${w}`, gridRow: `span ${h}` }}
             onDragOver={(e) => {
@@ -212,8 +228,8 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
                 ⠿
               </span>
               <strong className="v3-tile-label">{tile.label}</strong>
-              <button type="button" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
-              <button type="button" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
+              <button type="button" data-move="-1" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
+              <button type="button" data-move="1" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
               <label className="v3-tile-size">
                 <span className="v3-visually-hidden">Taille de {tile.label}</span>
                 <select value={sizeId ?? 'libre'} onChange={(e) => setSize(tile.id, e.target.value)}>
@@ -224,11 +240,16 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
                   ) : null}
                   {TILE_SIZES.map((p) => (
                     <option key={p.id} value={p.id}>
-                      {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id === 'pleine-largeur-x2' ? '↔ pleine largeur ×2' : p.id.replace('x', '×')}
+                      {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id.startsWith('pleine-largeur-x') ? `↔ pleine largeur ×${p.h}` : p.id.replace('x', '×')}
                     </option>
                   ))}
                 </select>
               </label>
+              {onHide ? (
+                <button type="button" className="v3-tile-hide" onClick={() => onHide(tile.id)} aria-label={`Masquer le panneau ${tile.label}`} title="Masquer ce panneau">
+                  ✕
+                </button>
+              ) : null}
             </div>
             <div className="v3-tile-content">{tile.node}</div>
             <span

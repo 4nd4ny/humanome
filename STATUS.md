@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-50, état des tests, les 33 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-53, état des tests, les 33 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -113,6 +113,16 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     janvier face à mars (l'année la plus récente où les deux mois ont des journées analysées ;
     sinon, comme avant, « depuis la dernière évaluation ») ; préréglage « Janvier et mars » ;
     changer de vue ne fige plus A et B. Déployé (front) et vérifié en ligne.
+  - **Rectification, en-tête allégé, tuiles** (D-51 → D-53, demandes de Christian) : la comparaison
+    s'ouvre sur la première moitié des journées analysées face à la seconde (préréglage avant
+    « Depuis la dernière évaluation » ; janvier et mars retirés) ; l'en-tête offre « Réinitialiser
+    l'affichage » et perd « Comparer A / B », « Exporter » et « mode expert » (ses réglages α et
+    épaisseur deviennent une tuile) ; la légende du soleil garde deux lignes. L'espace Cartographie
+    passe en **tuiles** (grille du tableau de bord) : douze tuiles masquables, déplaçables,
+    redimensionnables ; au départ le soleil et le détail en pleine largeur ; menu « Panneaux » ;
+    disposition gardée dans le navigateur (`localStorage`). Relu par un agent distinct (six
+    corrections). Suites : front **2 315 verts**, e2e Chromium **16 sur 16**. Déployé (front) et
+    vérifié en ligne.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

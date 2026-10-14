@@ -20,7 +20,7 @@ const louFiles = () => [
   })),
 ]
 
-const SUN = '.carto-col-center .carto-sun'
+const SUN = '[data-tile="sun"] .carto-sun'
 
 /** Codes des compétences dessinées (et atteignables) dans le soleil. */
 const sectorCodes = (page) =>
@@ -55,8 +55,8 @@ const coverage = (page, r, prefix) =>
     { r, prefix },
   )
 
-/** Clique un point du secteur lui-même (le centre de sa boîte peut tomber sur un autre secteur). */
-async function clickSector(page, labelStart) {
+/** Un point du secteur lui-même, à l'écran (le centre de sa boîte peut tomber sur un autre secteur). */
+async function sectorPoint(page, labelStart) {
   const sector = page.locator(`${SUN} path[role="button"][aria-label^="${labelStart}"]`)
   const pt = await sector.evaluate((el) => {
     const svg = el.ownerSVGElement
@@ -76,6 +76,12 @@ async function clickSector(page, labelStart) {
     return null
   })
   expect(pt).not.toBeNull()
+  return pt
+}
+
+/** Clique le secteur lui-même. */
+async function clickSector(page, labelStart) {
+  const pt = await sectorPoint(page, labelStart)
   await page.mouse.click(pt.x, pt.y)
 }
 
@@ -157,21 +163,49 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await expect(center).toHaveAttribute('aria-label', 'Centre : tout désélectionner')
   })
 
-  await test.step('la liste suit la sélection dans sa colonne, la page ne bouge pas', async () => {
+  await test.step('la légende sous le soleil garde sa hauteur de deux lignes, survolé ou non (D-52)', async () => {
+    const caption = page.locator(`${SUN} .carto-sun-caption`)
+    const h0 = (await caption.boundingBox()).height
+    const pt = await sectorPoint(page, '3.02 ')
+    await page.mouse.move(pt.x, pt.y)
+    await expect(caption).toContainText('3.02')
+    expect((await caption.boundingBox()).height).toBe(h0)
+    const lineHeight = await caption.evaluate((el) => parseFloat(getComputedStyle(el).lineHeight))
+    expect(Math.round(h0)).toBe(Math.round(2 * lineHeight))
+  })
+
+  await test.step('la liste, affichée par « Panneaux », suit la sélection dans sa tuile, la page ne bouge pas', async () => {
+    // Au départ, seuls le soleil et le détail sont affichés (D-53).
+    await expect(page.locator('.carto-tiles [data-tile]')).toHaveCount(2)
+    await page.locator('.carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Compétences' }).check()
+    await page.keyboard.press('Escape')
+    await expect(page.locator('[data-tile="competencies"]')).toBeVisible()
+    await page.locator('[data-tile="competencies"]').scrollIntoViewIfNeeded()
+    await page.locator(SUN).scrollIntoViewIfNeeded()
     const scrollY = await page.evaluate(() => window.scrollY)
     const before = await page.locator(`${SUN} svg`).boundingBox()
     await clickSector(page, '3.02 ')
-    await expect(page.getByRole('article', { name: /^Détail : 3\.02 / })).toBeVisible()
+    await expect(page.getByRole('article', { name: /^Détail : 3\.02 / })).toBeAttached()
     expect(await page.evaluate(() => window.scrollY)).toBe(scrollY)
     expect(await page.locator(`${SUN} svg`).boundingBox()).toEqual(before)
-    // L'élément choisi est visible dans la colonne de gauche.
-    const item = page.locator('.carto-col-left .carto-list-label.is-selected')
+    // L'élément choisi est dans la partie visible de la tuile Compétences.
+    const item = page.locator('[data-tile="competencies"] .carto-list-label.is-selected')
     await expect(item).toHaveCount(1)
     const inView = await item.evaluate((el) => {
-      const col = el.closest('.carto-col-left').getBoundingClientRect()
+      const box = el.closest('.v3-tile-content').getBoundingClientRect()
       const r = el.getBoundingClientRect()
-      return r.top >= col.top - 1 && r.bottom <= col.bottom + 1
+      return r.top >= box.top - 1 && r.bottom <= box.bottom + 1
     })
     expect(inView).toBe(true)
+  })
+
+  await test.step('la disposition est gardée au rechargement ; « Réinitialiser l’affichage » revient au départ', async () => {
+    await page.reload()
+    await expect(page.locator(`${SUN} [role="button"][aria-label^="2.01 "]`)).toHaveCount(1)
+    await expect(page.locator('.carto-tiles [data-tile]')).toHaveCount(3)
+    await page.getByRole('button', { name: 'Réinitialiser l’affichage' }).click()
+    await page.getByRole('button', { name: 'Revenir à la vue de départ' }).click()
+    await expect(page.locator('.carto-tiles [data-tile]')).toHaveCount(2)
   })
 })

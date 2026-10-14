@@ -11,15 +11,15 @@ const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toL
 
 /**
  * Amène `el` dans la partie visible des boîtes défilantes qui l'entourent,
- * jusqu'à la colonne de la liste (`root.closest('.carto-col')`) comprise, au
- * plus près, SANS JAMAIS faire défiler la page. Une sélection faite dans le
- * soleil ne doit pas déplacer le soleil sous le pointeur : entre les deux clics
- * d'un double-clic (qui ouvre un pôle, journal D-45), la page fuyait de
- * plusieurs centaines de pixels avec `scrollIntoView`. Le détail, collant,
- * montre déjà la sélection.
+ * jusqu'à la tuile de la liste (`root.closest('.v3-tile-content')`, journal
+ * D-53 ; avant : la colonne `.carto-col`) comprise, au plus près, SANS JAMAIS
+ * faire défiler la page. Une sélection faite dans le soleil ne doit pas
+ * déplacer le soleil sous le pointeur : entre les deux clics d'un double-clic
+ * (qui ouvre un pôle, journal D-45), la page fuyait de plusieurs centaines de
+ * pixels avec `scrollIntoView`. Le détail montre déjà la sélection.
  */
 export function revealInList(el, root) {
-  const limit = root?.closest?.('.carto-col') ?? root
+  const limit = root?.closest?.('.v3-tile-content, .carto-col') ?? root
   if (!el || !limit) return
   for (let box = el.parentElement; box && box !== document.body && box !== document.documentElement; box = box.parentElement) {
     const { overflowY } = window.getComputedStyle(box)

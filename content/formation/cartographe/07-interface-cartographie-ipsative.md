@@ -57,7 +57,8 @@ Chaque import produit un rapport en quatre gravités : **bloquant** (fichier
 écarté), **à arbitrer** (par exemple deux analyses d'une même journée),
 **avertissement**, **information**. Le filtre « À traiter » réunit les deux
 premières ; une pastille sur l'onglet **Gestionnaire** signale ce qui reste à
-traiter, et « Voir le rapport du dernier import » le rouvre.
+traiter. Le rapport s'ouvre après chaque import ; « Voir le rapport du dernier
+import » (Gestionnaire, ou panneau « Importer ») le rouvre.
 
 ## Arbitrer les analyses concurrentes
 
@@ -76,8 +77,9 @@ le verdict (statut, confiance, motif, prescription), l'examen adversarial du
 Pédagogue et les pièces du Greffier — pour une analyse AuroraCore, les six
 éclairages, le président de séance et la délibération complète. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
-les formules. La case **mode expert** affiche les réglages de l'encodage
-(poids d'un indice, épaisseur minimale d'un secteur).
+les formules. Le panneau **« Réglages de l'encodage »** (menu « Panneaux »
+de la cartographie) règle le poids d'un indice et l'épaisseur minimale d'un
+secteur.
 
 Pour examiner un pôle seul, double-cliquez sur son arc dans l'anneau intérieur
 (au clavier : « o ») : ses compétences occupent tout le cercle, chacune selon

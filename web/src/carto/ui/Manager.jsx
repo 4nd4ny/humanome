@@ -1,6 +1,8 @@
 // Interface ultime — gestionnaire de cartographies journalières (spec §7).
 //
-// Volet latéral (repliable) qui pilote la heatmap, qui pilote le soleil :
+// L'espace Gestionnaire, et les tuiles de la cartographie (journal D-53 :
+// Journées, Importer, Étiquettes, Ensembles nommés, Jeux de données) qui en
+// reprennent les sections ; il pilote la heatmap, qui pilote le soleil :
 // cases à cocher des journées (tout coché par défaut), cases tri-états par
 // mois / semaine / année scolaire / étiquette, tout / rien / inverser,
 // plage au Maj+clic, « cocher jusqu'à / depuis ce jour », étiquettes libres,
@@ -39,25 +41,56 @@ export function TriStateCheckbox({ state, label, onChange }) {
   )
 }
 
-/** Bouton de suppression en deux temps : « Supprimer », puis « Confirmer ». */
+/**
+ * Bouton de suppression en deux temps : « Supprimer », puis « Confirmer ».
+ * Le focus suit au clavier : sur « Annuler » quand la confirmation apparaît
+ * (le choix le plus sûr), puis de nouveau sur le bouton (D-53).
+ */
 export function TwoStepButton({ label = 'Supprimer', confirmLabel = 'Confirmer la suppression', onConfirm, className = '' }) {
   const [armed, setArmed] = useState(false)
+  const mainRef = useRef(null)
+  const cancelRef = useRef(null)
+  const moved = useRef(false) // un geste de la personne : le focus doit suivre
   useEffect(() => {
     if (!armed) return undefined
     const timer = setTimeout(() => setArmed(false), 6000)
     return () => clearTimeout(timer)
   }, [armed])
+  useEffect(() => {
+    if (!moved.current) return
+    moved.current = false
+    ;(armed ? cancelRef : mainRef).current?.focus()
+  }, [armed])
+  const disarm = () => {
+    moved.current = true
+    setArmed(false)
+  }
   return armed ? (
     <span className="carto-two-step">
-      <button type="button" className={`carto-btn carto-btn--danger ${className}`} onClick={() => { setArmed(false); onConfirm() }}>
+      <button
+        type="button"
+        className={`carto-btn carto-btn--danger ${className}`}
+        onClick={() => {
+          disarm()
+          onConfirm()
+        }}
+      >
         {confirmLabel}
       </button>
-      <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setArmed(false)}>
+      <button ref={cancelRef} type="button" className="carto-btn carto-btn--quiet" onClick={disarm}>
         Annuler
       </button>
     </span>
   ) : (
-    <button type="button" className={`carto-btn carto-btn--quiet ${className}`} onClick={() => setArmed(true)}>
+    <button
+      ref={mainRef}
+      type="button"
+      className={`carto-btn carto-btn--quiet ${className}`}
+      onClick={() => {
+        moved.current = true
+        setArmed(true)
+      }}
+    >
       {label}
     </button>
   )
@@ -82,18 +115,95 @@ const GROUPINGS = [
  *   onSetT: (d: string | null) => void, onOpenDay: (d: string) => void,
  * }} props
  */
-export function Manager(props) {
-  const { dataset, t, layout = 'side', update, importInto, busy = null, lastReport = null, onCloseReport, onSetT, onOpenDay, readOnly = false } = props
-  const [grouping, setGrouping] = useState('none')
-  const [importTarget, setImportTarget] = useState('current')
-  const [showReport, setShowReport] = useState(false)
-  const lastToggled = useRef(null)
+/** Journées cochées du jeu (ensemble des dates). */
+function useSelected(dataset) {
+  return useMemo(() => new Set(dataset.days.filter((d) => d.active).map((d) => d.date)), [dataset.days])
+}
 
-  const selected = useMemo(() => new Set(dataset.days.filter((d) => d.active).map((d) => d.date)), [dataset.days])
-  const portfolioImported = Boolean(dataset.portfolio)
+/**
+ * Section repliable du gestionnaire ; dans une tuile de la cartographie
+ * (`bare`), simple bloc : la tuile porte déjà le titre.
+ */
+function Section({ title, bare = false, open = false, children }) {
+  if (bare) return <div className="carto-section carto-section--bare">{children}</div>
+  return (
+    <details className="carto-section" open={open || undefined}>
+      <summary>{title}</summary>
+      {children}
+    </details>
+  )
+}
+
+export function Manager(props) {
+  const { dataset, t, layout = 'full', update, onSetT, onOpenDay, readOnly = false } = props
+  // Rapport d'import : tenu par la cartographie quand elle le fournit (un seul
+  // état pour tous les espaces : fermé ici, il ne revient pas ailleurs).
+  const [ownReport, setOwnReport] = useState(false)
+  const showReport = props.showReport ?? ownReport
+  const setShowReport = props.setShowReport ?? setOwnReport
+  const selected = useSelected(dataset)
+
+  return (
+    <section className={`carto-manager carto-manager--${layout}`} aria-label="Gestionnaire des journées">
+      <header className="carto-manager-head">
+        <DatasetTitle dataset={dataset} onRename={(title) => update((ds) => renameDataset(ds, title))} />
+        <DayCounts dataset={dataset} selected={selected} onShowReport={() => setShowReport(true)} />
+      </header>
+
+      <div className="carto-manager-body">
+        <div className="carto-manager-main">
+          <DayList dataset={dataset} t={t} selected={selected} update={update} onSetT={onSetT} onOpenDay={onOpenDay} />
+        </div>
+
+        <div className="carto-manager-tools">
+          <DayAlerts dataset={dataset} update={update} commitWithDetails={props.commitWithDetails} readOnly={readOnly} />
+          {readOnly ? null : (
+            <ImportSection
+              dataset={dataset}
+              importInto={props.importInto}
+              busy={props.busy ?? null}
+              lastReport={props.lastReport ?? null}
+              onCloseReport={props.onCloseReport}
+              update={update}
+              open={layout === 'full' || dataset.days.length === 0}
+              compact={layout !== 'full'}
+              showReport={showReport}
+              setShowReport={setShowReport}
+            />
+          )}
+          <TagsSection dataset={dataset} selected={selected} update={update} />
+          <SetsSection dataset={dataset} selected={selected} update={update} />
+          {readOnly ? null : <DatasetSection {...props} />}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** « 67 journées · 59 cochées », et les anomalies à traiter (le bouton ouvre le rapport d'import). */
+export function DayCounts({ dataset, selected: given = null, onShowReport }) {
+  const own = useSelected(dataset)
+  const selected = given ?? own
   const todo = todoCount(dataset)
-  const lastLog = dataset.importLog?.at(-1) ?? null
-  const reportEntries = lastReport?.entries ?? lastLog?.entries ?? null
+  return (
+    <p className="carto-manager-counts">
+      {dataset.days.length} journée{dataset.days.length > 1 ? 's' : ''} · {selected.size} cochée{selected.size > 1 ? 's' : ''}
+      {todo > 0 ? (
+        <button type="button" className="carto-badge" onClick={onShowReport}>
+          {todo} anomalie{todo > 1 ? 's' : ''} à traiter
+        </button>
+      ) : null}
+    </p>
+  )
+}
+
+/** Liste des journées : cases à cocher, regroupements, tout / aucune / inverser, plage au Maj+clic. */
+export function DayList({ dataset, t, selected: given = null, update, onSetT, onOpenDay }) {
+  const [grouping, setGrouping] = useState('none')
+  const lastToggled = useRef(null)
+  const own = useSelected(dataset)
+  const selected = given ?? own
+  const portfolioImported = Boolean(dataset.portfolio)
 
   const groups = useMemo(() => {
     if (grouping === 'none') return [{ key: 'all', label: null, dates: dataset.days.map((d) => d.date) }]
@@ -127,135 +237,141 @@ export function Manager(props) {
     e.preventDefault()
   }
 
+  return (
+    <>
+      <div className="carto-toolbar" role="toolbar" aria-label="Sélection des journées">
+        <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => checkAll(ds, true))}>
+          Tout
+        </button>
+        <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => checkAll(ds, false))}>
+          Aucune
+        </button>
+        <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => invertChecks(ds))}>
+          Inverser
+        </button>
+        <label className="carto-select">
+          <span className="carto-visually-hidden">Regrouper les journées</span>
+          <select value={grouping} onChange={(e) => setGrouping(e.target.value)}>
+            {GROUPINGS.map(([v, l]) => (
+              <option key={v} value={v}>
+                {l}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <p className="carto-hint">Maj+clic : plage · a / n / i sur une case : tout, aucune, inverser</p>
+
+      {dataset.days.length === 0 ? (
+        <p className="carto-muted">Aucune journée : importez des analyses ou un portfolio.</p>
+      ) : (
+        <div className="carto-days" onKeyDown={onListKey}>
+          {groups.map((g) => (
+            <div key={g.key} className="carto-day-group">
+              {g.label ? (
+                <div className="carto-day-group-head">
+                  <TriStateCheckbox state={triState(g.dates, selected)} label={`Cocher ${g.label}`} onChange={(on) => update((ds) => setActive(ds, g.dates, on))} />
+                  <span>{g.label}</span>
+                  <span className="carto-count">{g.dates.length} j.</span>
+                </div>
+              ) : null}
+              <ul className="carto-day-list">
+                {g.dates.map((date) => (
+                  <DayRow
+                    key={`${g.key}-${date}`}
+                    day={byDate.get(date)}
+                    t={t}
+                    portfolioImported={portfolioImported}
+                    onToggle={toggle}
+                    onSetT={onSetT}
+                    onOpenDay={onOpenDay}
+                    update={update}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+    </>
+  )
+}
+
+/** Ce qui demande une décision : journées à arbitrer, passages du portfolio sans date. */
+export function DayAlerts({ dataset, update, commitWithDetails, readOnly = false }) {
+  const pending = dataset.days.filter((d) => d.variantChoice === 'pending')
+  return (
+    <>
+      {pending.length > 0 ? <ArbitrationSection days={pending} update={update} /> : null}
+      {readOnly ? null : <UndatedSection dataset={dataset} commitWithDetails={commitWithDetails} update={update} />}
+    </>
+  )
+}
+
+/**
+ * Importer (dans ce jeu ou dans un nouveau) et rapport du dernier import. Le
+ * rapport s'ouvre aussi depuis le compteur d'anomalies : son état est tenu
+ * par le parent (`showReport`).
+ */
+export function ImportSection({ dataset, importInto, busy = null, lastReport = null, onCloseReport, update, open = false, compact = false, bare = false, showReport, setShowReport }) {
+  const [importTarget, setImportTarget] = useState('current')
+
   async function doImport(files) {
     const report = await importInto(files, { newDataset: importTarget === 'new' || !dataset })
     if (report) setShowReport(true)
     return report
   }
 
-  const pending = dataset.days.filter((d) => d.variantChoice === 'pending')
-
   return (
-    <section className={`carto-manager carto-manager--${layout}`} aria-label="Gestionnaire des journées">
-      <header className="carto-manager-head">
-        <DatasetTitle dataset={dataset} onRename={(title) => update((ds) => renameDataset(ds, title))} />
-        <p className="carto-manager-counts">
-          {dataset.days.length} journée{dataset.days.length > 1 ? 's' : ''} · {selected.size} cochée{selected.size > 1 ? 's' : ''}
-          {todo > 0 ? (
-            <button type="button" className="carto-badge" onClick={() => setShowReport(true)}>
-              {todo} anomalie{todo > 1 ? 's' : ''} à traiter
-            </button>
-          ) : null}
-        </p>
-      </header>
-
-      <div className="carto-manager-body">
-        <div className="carto-manager-main">
-          <div className="carto-toolbar" role="toolbar" aria-label="Sélection des journées">
-            <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => checkAll(ds, true))}>
-              Tout
-            </button>
-            <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => checkAll(ds, false))}>
-              Aucune
-            </button>
-            <button type="button" className="carto-btn carto-btn--quiet" onClick={() => update((ds) => invertChecks(ds))}>
-              Inverser
-            </button>
-            <label className="carto-select">
-              <span className="carto-visually-hidden">Regrouper les journées</span>
-              <select value={grouping} onChange={(e) => setGrouping(e.target.value)}>
-                {GROUPINGS.map(([v, l]) => (
-                  <option key={v} value={v}>
-                    {l}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-          <p className="carto-hint">Maj+clic : plage · a / n / i sur une case : tout, aucune, inverser</p>
-
-          {dataset.days.length === 0 ? (
-            <p className="carto-muted">Aucune journée : importez des analyses ou un portfolio.</p>
-          ) : (
-            <div className="carto-days" onKeyDown={onListKey}>
-              {groups.map((g) => (
-                <div key={g.key} className="carto-day-group">
-                  {g.label ? (
-                    <div className="carto-day-group-head">
-                      <TriStateCheckbox
-                        state={triState(g.dates, selected)}
-                        label={`Cocher ${g.label}`}
-                        onChange={(on) => update((ds) => setActive(ds, g.dates, on))}
-                      />
-                      <span>{g.label}</span>
-                      <span className="carto-count">{g.dates.length} j.</span>
-                    </div>
-                  ) : null}
-                  <ul className="carto-day-list">
-                    {g.dates.map((date) => (
-                      <DayRow
-                        key={`${g.key}-${date}`}
-                        day={byDate.get(date)}
-                        t={t}
-                        portfolioImported={portfolioImported}
-                        onToggle={toggle}
-                        onSetT={onSetT}
-                        onOpenDay={onOpenDay}
-                        update={update}
-                      />
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
+    <>
+      <Section title="Importer" bare={bare} open={open}>
+        <div className="carto-import-target" role="radiogroup" aria-label="Destination de l’import">
+          <label>
+            <input type="radio" name="carto-import-target" checked={importTarget === 'current'} onChange={() => setImportTarget('current')} /> dans « {dataset.title} »
+          </label>
+          <label>
+            <input type="radio" name="carto-import-target" checked={importTarget === 'new'} onChange={() => setImportTarget('new')} /> dans un nouveau jeu de données
+          </label>
         </div>
-
-        <div className="carto-manager-tools">
-          {pending.length > 0 ? <ArbitrationSection days={pending} update={update} /> : null}
-          {readOnly ? null : <UndatedSection dataset={dataset} commitWithDetails={props.commitWithDetails} update={update} />}
-
-          {readOnly ? null : (
-          <details className="carto-section" open={layout === 'full' || dataset.days.length === 0 || undefined}>
-            <summary>Importer</summary>
-            <div className="carto-import-target" role="radiogroup" aria-label="Destination de l’import">
-              <label>
-                <input type="radio" name="carto-import-target" checked={importTarget === 'current'} onChange={() => setImportTarget('current')} /> dans « {dataset.title} »
-              </label>
-              <label>
-                <input type="radio" name="carto-import-target" checked={importTarget === 'new'} onChange={() => setImportTarget('new')} /> dans un nouveau jeu de données
-              </label>
-            </div>
-            <ImportPanel onImport={doImport} busy={busy} compact={layout === 'side'} />
-          </details>
-          )}
-
-          {readOnly ? null : showReport && reportEntries ? (
-            <ImportReport
-              entries={reportEntries}
-              title={lastReport ? 'Rapport du dernier import' : `Rapport de l’import du ${formatShort((lastLog?.at ?? '').slice(0, 10))}`}
-              onClose={() => {
-                setShowReport(false)
-                onCloseReport?.()
-                update((ds) => acknowledgeLastImport(ds))
-              }}
-            />
-          ) : reportEntries?.length ? (
-            <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setShowReport(true)}>
-              Voir le rapport du dernier import
-            </button>
-          ) : null}
-
-          <TagsSection dataset={dataset} selected={selected} update={update} />
-          <SetsSection dataset={dataset} selected={selected} update={update} />
-          {readOnly ? null : <DatasetSection {...props} />}
-        </div>
-      </div>
-    </section>
+        <ImportPanel onImport={doImport} busy={busy} compact={compact} />
+      </Section>
+      <LastImportReport dataset={dataset} lastReport={lastReport} update={update} onCloseReport={onCloseReport} showReport={showReport} setShowReport={setShowReport} />
+    </>
   )
 }
 
-function DatasetTitle({ dataset, onRename }) {
+/**
+ * Rapport du dernier import, ou le bouton qui l'ouvre (`withButton`). Le
+ * fermer le marque comme lu. Hors de la tuile Importer, la cartographie le
+ * montre en bandeau après un import (journal D-53).
+ */
+export function LastImportReport({ dataset, lastReport = null, update, onCloseReport, showReport, setShowReport, withButton = true }) {
+  const lastLog = dataset.importLog?.at(-1) ?? null
+  const reportEntries = lastReport?.entries ?? lastLog?.entries ?? null
+  if (showReport && reportEntries) {
+    return (
+      <ImportReport
+        entries={reportEntries}
+        title={lastReport ? 'Rapport du dernier import' : `Rapport de l’import du ${formatShort((lastLog?.at ?? '').slice(0, 10))}`}
+        onClose={() => {
+          setShowReport(false)
+          onCloseReport?.()
+          update((ds) => acknowledgeLastImport(ds))
+        }}
+      />
+    )
+  }
+  if (withButton && reportEntries?.length) {
+    return (
+      <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setShowReport(true)}>
+        Voir le rapport du dernier import
+      </button>
+    )
+  }
+  return null
+}
+
+export function DatasetTitle({ dataset, onRename }) {
   const [draft, setDraft] = useState(dataset.title)
   useEffect(() => setDraft(dataset.title), [dataset.title])
   return (
@@ -451,14 +567,15 @@ function UndatedSection({ dataset, commitWithDetails, update }) {
   )
 }
 
-function TagsSection({ dataset, selected, update }) {
+export function TagsSection({ dataset, selected: given = null, update, bare = false }) {
   const [draft, setDraft] = useState('')
   const [renaming, setRenaming] = useState(null)
+  const own = useSelected(dataset)
+  const selected = given ?? own
   const tags = allTags(dataset)
   const counts = new Map(tags.map((tg) => [tg, dataset.days.filter((d) => d.tags.includes(tg)).length]))
   return (
-    <details className="carto-section">
-      <summary>Étiquettes ({tags.length})</summary>
+    <Section title={`Étiquettes (${tags.length})`} bare={bare}>
       <form
         className="carto-inline-form"
         onSubmit={(e) => {
@@ -508,11 +625,13 @@ function TagsSection({ dataset, selected, update }) {
           </li>
         ))}
       </ul>
-    </details>
+    </Section>
   )
 }
 
-function SetsSection({ dataset, selected, update }) {
+export function SetsSection({ dataset, selected: given = null, update, bare = false }) {
+  const own = useSelected(dataset)
+  const selected = given ?? own
   const [name, setName] = useState('')
   const [kind, setKind] = useState('selection')
   const [from, setFrom] = useState('')
@@ -529,8 +648,7 @@ function SetsSection({ dataset, selected, update }) {
   const canSave = name.trim() && (kind !== 'selection' || selected.size > 0) && (kind !== 'tags' || tags.length > 0) && (kind !== 'period' || from || to)
 
   return (
-    <details className="carto-section">
-      <summary>Ensembles nommés ({dataset.sets.length})</summary>
+    <Section title={`Ensembles nommés (${dataset.sets.length})`} bare={bare}>
       <form
         className="carto-set-form"
         onSubmit={(e) => {
@@ -600,14 +718,13 @@ function SetsSection({ dataset, selected, update }) {
           )
         })}
       </ul>
-    </details>
+    </Section>
   )
 }
 
-function DatasetSection({ dataset, datasets = [], onOpenDataset, onDeleteDataset }) {
+export function DatasetSection({ dataset, datasets = [], onOpenDataset, onDeleteDataset, bare = false }) {
   return (
-    <details className="carto-section">
-      <summary>Jeux de données</summary>
+    <Section title="Jeux de données" bare={bare}>
       {datasets.length > 1 ? (
         <label className="carto-select">
           Ouvrir
@@ -624,6 +741,6 @@ function DatasetSection({ dataset, datasets = [], onOpenDataset, onDeleteDataset
         Référentiel : {dataset.referential.label}. Tout est enregistré dans ce navigateur (IndexedDB) ; l’export JSON en garde une copie.
       </p>
       <TwoStepButton label={`Supprimer « ${dataset.title} » de ce navigateur`} confirmLabel="Confirmer : tout supprimer" onConfirm={() => onDeleteDataset?.(dataset.datasetId)} />
-    </details>
+    </Section>
   )
 }

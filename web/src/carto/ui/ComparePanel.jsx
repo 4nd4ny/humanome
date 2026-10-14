@@ -25,7 +25,7 @@ const MINUS = '−'
 const signed = (x, fmt) => (typeof x === 'number' && Number.isFinite(x) ? `${x > 0 ? '+' : x < 0 ? MINUS : '±'}${fmt(Math.abs(x))}` : '—')
 
 export const PRESETS = [
-  ['january-march', 'Janvier et mars'],
+  ['halves', 'Première et seconde moitié'],
   ['last-evaluation', 'Depuis la dernière évaluation'],
   ['quarter-start', 'Depuis le début du trimestre'],
   ['school-year-start', 'Depuis le début de l’année scolaire'],
@@ -33,7 +33,7 @@ export const PRESETS = [
 ]
 
 /** Comparaison affichée tant que la personne n'en a choisi aucune : le premier préréglage disponible. */
-const DEFAULT_PRESETS = ['january-march', 'last-evaluation']
+const DEFAULT_PRESETS = ['halves', 'last-evaluation']
 
 const VIEWS = [
   ['suns', 'Deux soleils'],
@@ -426,8 +426,8 @@ export function ComparePanel({ dataset, refl, params, geometry, t, update, onOpe
   const tags = useMemo(() => allTags(dataset), [dataset])
   const [notice, setNotice] = useState(null)
   const saved = dataset.preferences?.compare ?? null
-  // Par défaut (tant que rien n'est choisi) : janvier et mars, sinon depuis la
-  // dernière évaluation, sinon la sélection courante des deux côtés (D-50).
+  // Par défaut (tant que rien n'est choisi) : la première moitié des journées
+  // analysées face à la seconde (D-51), sinon la sélection courante des deux côtés.
   const fallback = useMemo(() => {
     for (const key of DEFAULT_PRESETS) {
       const p = comparePreset(dataset, key, { refDate: t })

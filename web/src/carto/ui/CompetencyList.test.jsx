@@ -16,14 +16,23 @@ const at = (el, top, height = 20) => {
   el.getBoundingClientRect = () => ({ top, bottom: top + height, left: 0, right: 100, width: 100, height })
 }
 
+// Depuis le journal D-53, la liste est dans une tuile de la grille (la tuile
+// défile à l'intérieur) ; la grille et la page, qui portent aussi le soleil,
+// ne bougent jamais.
 function tree() {
   document.body.innerHTML = `
     <main>
-      <div class="carto-col carto-col-left">
-        <nav class="carto-list"><ul><li><button id="item">3.02 Itération</button></li></ul></nav>
+      <div class="v3-tile-grid">
+        <div class="v3-tile">
+          <div class="v3-tile-content">
+            <section class="carto-tile carto-tile--competencies">
+              <nav class="carto-list"><ul><li><button id="item">3.02 Itération</button></li></ul></nav>
+            </section>
+          </div>
+        </div>
       </div>
     </main>`
-  return { col: document.querySelector('.carto-col'), nav: document.querySelector('nav'), item: document.getElementById('item'), main: document.querySelector('main') }
+  return { col: document.querySelector('.v3-tile-content'), nav: document.querySelector('nav'), item: document.getElementById('item'), main: document.querySelector('main') }
 }
 
 afterEach(() => {
@@ -51,7 +60,7 @@ describe('revealInList : la liste suit la sélection sans faire défiler la page
     expect(nav.scrollTop).toBe(50) // déjà visible : rien ne bouge
   })
 
-  it('jamais au-delà de la colonne : une boîte défilante qui contient aussi le soleil ne bouge pas, la page non plus', () => {
+  it('jamais au-delà de la tuile : une boîte défilante qui contient aussi le soleil ne bouge pas, la page non plus', () => {
     const { nav, item, main } = tree()
     scroller(main, { top: 0, height: 300, content: 2000 })
     main.scrollTop = 0
@@ -66,7 +75,7 @@ describe('revealInList : la liste suit la sélection sans faire défiler la page
     delete Element.prototype.scrollIntoView
   })
 
-  it('la colonne elle-même peut défiler', () => {
+  it('la tuile elle-même défile (son contenu) pour montrer l’élément', () => {
     const { col, nav, item } = tree()
     scroller(col, { top: 0, height: 400, content: 1200 })
     col.scrollTop = 0
