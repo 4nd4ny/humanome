@@ -45,10 +45,10 @@ final class UcCpt06SupprimerCompteTest extends CartographeTestCase
         self::assertSame(200, $this->as_($user, 'PUT', '/api/training/progress', ['parcours' => 'apprenant', 'chapitre' => '01-pourquoi-un-portfolio-reflexif', 'completed' => true])->getStatusCode());
         self::assertSame(204, $this->as_($user, 'PUT', '/api/keys', ['provider' => 'anthropic', 'apiKey' => $key])->getStatusCode());
         $cartoId = $this->createCarto($user, ['visibility' => 'publique', 'titre' => 'Journée du 5 janvier', 'document' => self::jourDocument()]);
-        $share = $this->as_($user, 'POST', '/api/cartographies/' . $cartoId . '/share', ['password' => self::LINK_PASSWORD]);
-        self::assertSame(201, $share->getStatusCode(), (string) $share->getBody());
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $share = self::legacyShareLink($cartoId, self::LINK_PASSWORD, 90, $user['id']);
 
-        return ['cartoId' => $cartoId, 'token' => (string) self::json($share)['token']];
+        return ['cartoId' => $cartoId, 'token' => $share['token']];
     }
 
     private function deleteAccount(array $user): ResponseInterface
@@ -144,7 +144,7 @@ final class UcCpt06SupprimerCompteTest extends CartographeTestCase
         $revision = $this->as_($carl, 'POST', '/api/cartographies/' . $cartoId . '/revisions', ['document' => $revised, 'note' => 'Date corrigée']);
         $revisionId = (int) self::json($revision)['revisionId'];
         self::assertSame(201, $this->as_($carl, 'POST', '/api/cartographies/' . $cartoId . '/garantie', ['revisionId' => $revisionId])->getStatusCode());
-        $share = self::json($this->as_($maya, 'POST', '/api/cartographies/' . $cartoId . '/share', ['password' => self::LINK_PASSWORD]));
+        $share = self::legacyShareLink($cartoId, self::LINK_PASSWORD, 90, $maya['id']); // créé avant le retrait de l'ancien partage (D-43)
         $before = self::json($this->employeurConsulte($share['token']));
         self::assertSame('Carl', $before['garantie']['par']);
         self::assertSame('2026-01-06', $before['document']['date']);

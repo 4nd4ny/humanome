@@ -1,27 +1,28 @@
 import { useRef, useState } from 'react'
-import { parseUserDocument } from '../data/load.js'
 import FamilyTiles from '../components/FamilyTiles.jsx'
+import { filesFromDataTransfer, readFiles } from '../carto/ui/ImportPanel.jsx'
 
 /**
  * Accueil : présentation sobre + tuiles du plan du site filtrées par la
- * session (landing de profil, refonte 2026-07) + chargement local d'une
- * cartographie (drag & drop ou sélecteur de fichier). Les fichiers sont lus
- * et validés dans le navigateur, rien n'est envoyé nulle part (cahier §6).
+ * session (landing de profil, refonte 2026-07) + ouverture de fichiers de
+ * cartographie (dépôt ou sélecteur) : ils sont lus dans le navigateur et
+ * remis à l'interface de cartographie (#/cartographie), qui les reconnaît et
+ * les importe dans un nouveau jeu — rien n'est envoyé nulle part (cahier §6).
+ * Depuis le 2026-10-14, l'interface V3 (#/merge) est retirée.
  *
- * @param {{onUserDocument: (result: {kind: string, doc: object}) => void,
+ * @param {{onUserFiles: (files: Array<{path: string, bytes: Uint8Array}>) => void,
  *   roles?: string[]}} props
  */
-export default function HomeView({ onUserDocument, roles = [] }) {
+export default function HomeView({ onUserFiles, roles = [] }) {
   const [error, setError] = useState(null)
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef(null)
 
-  async function handleFile(file) {
+  async function handleFiles(read) {
     setError(null)
-    if (!file) return
     try {
-      const text = await file.text()
-      onUserDocument(parseUserDocument(text))
+      const files = await read
+      if (files.length > 0) onUserFiles(files)
     } catch (e) {
       setError(e)
     }
@@ -44,7 +45,7 @@ export default function HomeView({ onUserDocument, roles = [] }) {
           peut explorer, imprimer et choisir de partager.
         </p>
         <p className="home-actions">
-          <a className="button button-primary" href="#/merge">
+          <a className="button button-primary" href="#/cartographie">
             Explorer la cartographie de démonstration
           </a>
           <a className="button" href="#/essayer">
@@ -55,7 +56,7 @@ export default function HomeView({ onUserDocument, roles = [] }) {
             className="button"
             onClick={() => inputRef.current?.click()}
           >
-            Charger ma cartographie (JSON)
+            Ouvrir mes fichiers de cartographie
           </button>
         </p>
       </section>
@@ -73,45 +74,34 @@ export default function HomeView({ onUserDocument, roles = [] }) {
         onDrop={(event) => {
           event.preventDefault()
           setDragging(false)
-          handleFile(event.dataTransfer?.files?.[0])
+          if (event.dataTransfer) handleFiles(filesFromDataTransfer(event.dataTransfer))
         }}
       >
         <p>
-          Déposez ici un document <code>cartographie-merge</code> ou{' '}
-          <code>cartographie-jour</code> (JSON), ou utilisez le bouton ci-dessus.
+          Déposez ici vos fichiers de cartographie (journées, merge, archive, portfolio), ou
+          utilisez le bouton ci-dessus : ils s’ouvrent dans la cartographie.
         </p>
         <p className="privacy-note">
-          Vos fichiers ne quittent pas votre navigateur : lecture et validation sont entièrement
-          locales.
+          Vos fichiers ne quittent pas votre navigateur : lecture et reconnaissance sont
+          entièrement locales.
         </p>
         <input
           ref={inputRef}
           type="file"
-          accept=".json,application/json"
+          multiple
           className="visually-hidden"
-          aria-label="Charger ma cartographie (JSON)"
+          aria-label="Ouvrir mes fichiers de cartographie"
           onChange={(event) => {
-            handleFile(event.target.files?.[0])
+            const list = [...(event.target.files ?? [])]
             event.target.value = ''
+            handleFiles(readFiles(list))
           }}
         />
       </section>
 
       {error ? (
         <section className="load-error" role="alert">
-          <p>{error.message}</p>
-          {error.validationErrors ? (
-            <ul>
-              {error.validationErrors.slice(0, 8).map((ve, i) => (
-                <li key={i}>
-                  <code>{ve.path}</code> — {ve.message}
-                </li>
-              ))}
-              {error.validationErrors.length > 8 ? (
-                <li>… et {error.validationErrors.length - 8} autres erreurs.</li>
-              ) : null}
-            </ul>
-          ) : null}
+          <p>Lecture impossible : {error.message}</p>
         </section>
       ) : null}
     </div>

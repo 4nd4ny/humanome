@@ -223,7 +223,9 @@ cd web && npx vitest run test/usecases/unit/uc-eta-04 test/usecases/functional/u
   sous « Journée du 06/01/2026 », la journée d'une autre personne, avec une
   navigation précédent/suivant dans le corpus de démonstration. Dans la
   `DayView` d'une journée du membre, « ← Retour à la cartographie » pointe
-  vers `#/merge` (V3 de démonstration). Figé par UC-ETA-04-F13.
+  vers `#/cartographie` (interface de cartographie, depuis le retrait des
+  pages V3 le 2026-10-14 ; auparavant `#/merge`, V3 de démonstration). Figé
+  par UC-ETA-04-F13.
 - **AN2 — Libellés de journée décalés d'un jour en fuseau UTC−.** `frDate`
   passe la date `AAAA-MM-JJ` à `new Date()`, qui la lit comme minuit UTC,
   puis l'affiche en heure locale : aux Antilles, en Guyane, en Polynésie ou

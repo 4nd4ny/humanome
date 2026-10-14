@@ -85,7 +85,7 @@ posent, et elles ont chacune un pendant concret dans la plateforme.
 - **Confidentialité interne.** Ce qui est lu dans le groupe reste dans le
   groupe. Côté plateforme, cela correspond à un partage restreint : un apprenant
   partage sa cartographie « avec son cartographe » (le pair relecteur du cycle),
-  pas « publique ». Le rattachement se fait par code d'invitation, comme pour
+  pas au niveau « Partager ». Le rattachement se fait par code d'invitation, comme pour
   n'importe quel cartographe (chapitre 1).
 - **Non-jugement des contenus.** On relit des traces de compétences, pas la
   valeur d'une personne (chapitre 1, §5). Une journée d'échec racontée

@@ -65,7 +65,7 @@ la page Confidentialité.
    dernière modification (JJ/MM/AAAA), badge « copie serveur » si un
    `serverId` est enregistré localement (RG1 ; non revérifié côté serveur),
    confidentialité courante (« Privée », « Partagée avec mon cartographe »,
-   « Publique (partageable) »).
+   « Partager » — libellé « Publique (partageable) » jusqu'au 2026-10-14).
 4. Il clique « Voir » sur la fusion : la visionneuse remplace le tableau de
    bord, charge le référentiel publié (repli sur la copie embarquée) et rend
    la **vue chronologique** (sunburst cumulé, frise, calendrier) sous le
@@ -245,7 +245,8 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-03
   `data/demo/jours/<iso>.json` : la journée du **journal de démonstration**
   (les 06 et 07/01/2026 existent) à la place de celle de l'apprenant ;
   (2) dans la vue du jour (A2), le lien « ← Retour à la cartographie »
-  (`href="#/merge"`) ouvre l'interface de démonstration (`App` sans
+  (`href="#/cartographie"` depuis le 2026-10-14, `#/merge` auparavant) ouvre
+  l'interface de cartographie, hors de l'espace (`App` sans
   `userMerge`). L'apprenant sort de l'espace sans que rien ne le signale.
   Figé par F13 (calendrier) et F04 (lien de retour). Correctif suggéré :
   passer un `onPickDay` local à `HeatmapCalendar`, désactiver ou réécrire

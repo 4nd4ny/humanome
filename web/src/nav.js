@@ -45,7 +45,7 @@ export const FAMILIES = [
     audience: 'Tous — visiteur compris',
     items: [
       { href: '#/', label: 'Accueil', route: 'home' },
-      { href: '#/cartographie', label: 'Cartographie (démonstration)', route: 'cartographie' },
+      { href: '#/cartographie', label: 'Cartographie', route: 'cartographie', hint: 'vos fichiers ou la démonstration' },
       { href: '#/essayer', label: 'Essayer', route: 'essayer', badge: 'gratuit', hint: 'sans compte' },
       { href: '#/referentiel', label: 'Référentiel', route: 'referentiel', hint: '7 pôles, 61 compétences' },
       { href: '#/guides', label: 'Guides', route: 'guides', hint: 'prise en main par profil' },
@@ -69,7 +69,7 @@ export const FAMILIES = [
       },
       { href: '#/twin6-ouverte', label: 'Cartographie ouverte', route: 'twin6ouverte', badge: 'gratuit', hint: 'Twin6 — open source' },
       { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin9' },
-      { href: '#/espace', label: 'Partager ma cartographie', hint: 'lien protégé par mot de passe' },
+      { href: '#/espace', label: 'Partager ma cartographie', hint: 'version choisie, réservée aux adultes' },
     ],
   },
   {

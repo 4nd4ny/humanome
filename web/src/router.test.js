@@ -40,7 +40,8 @@ describe('parseHash', () => {
   })
 
   it('route vers la vue merge', () => {
-    expect(parseHash('#/merge')).toEqual({ name: 'merge' })
+    expect(parseHash('#/merge')).toEqual({ name: 'redirect', to: '#/cartographie' })
+    expect(parseHash('#/cartographie-v3')).toEqual({ name: 'redirect', to: '#/cartographie' })
   })
 
   it('route vers la vue journée pour une date valide', () => {
@@ -162,6 +163,17 @@ describe('routes du hub des guides', () => {
   })
 })
 
+describe('partage (P8) et version partagée de l’interface ultime (§12)', () => {
+  it('lien protégé, lien ouvert, espace Partage', () => {
+    const token = 'a1'.repeat(16)
+    expect(parseHash(`#/partage/${token}`)).toEqual({ name: 'share', token })
+    expect(parseHash(`#/partage/${token}/ouvert`)).toEqual({ name: 'share', token, open: true })
+    expect(parseHash(`#/partage/${token}/autre`).name).toBe('not-found')
+    expect(parseHash('#/cartographie/partage')).toEqual({ name: 'cartographie', sub: 'partage' })
+    expect(parseHash('#/cartographie/dialogue')).toEqual({ name: 'cartographie', sub: 'dialogue' })
+  })
+})
+
 describe('dayHash', () => {
   it('construit la route jour, avec et sans focus', () => {
     expect(dayHash('2026-03-15')).toBe('#/jour/2026-03-15')
@@ -183,9 +195,9 @@ describe('subscribe / currentRoute', () => {
     const listener = vi.fn()
     const unsubscribe = subscribe(listener)
 
-    window.location.hash = '#/merge'
+    window.location.hash = '#/referentiel'
     window.dispatchEvent(new HashChangeEvent('hashchange'))
-    expect(listener).toHaveBeenLastCalledWith({ name: 'merge' })
+    expect(listener).toHaveBeenLastCalledWith({ name: 'referentiel', code: null })
 
     window.location.hash = '#/jour/2026-01-04?focus=1.01'
     window.dispatchEvent(new HashChangeEvent('hashchange'))

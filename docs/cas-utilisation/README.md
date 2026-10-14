@@ -97,7 +97,7 @@ rejouant les fixtures : aucun appel réseau réel).
 
 | ID | Cas d'utilisation | Tests unitaires | Tests fonctionnels | Anomalies |
 |---|---|---:|---:|---:|
-| [UC-VIS-01](visiteur/UC-VIS-01-explorer-cartographie-demonstration.md) | Explorer la cartographie de démonstration | 29 | 24 | 5 |
+| [UC-VIS-01](visiteur/UC-VIS-01-explorer-cartographie-demonstration.md) | Explorer la cartographie de démonstration | 29 | 16 | 5 |
 | [UC-VIS-02](visiteur/UC-VIS-02-consulter-referentiel-public.md) | Consulter le référentiel public de compétences | 11 | 17 | 1 |
 | [UC-VIS-03](visiteur/UC-VIS-03-essayer-cartographie-en-direct.md) | Essayer la cartographie en direct, sans compte | 24 | 23 | 4 |
 | [UC-VIS-04](visiteur/UC-VIS-04-se-reperer-guides-aide.md) | Se repérer : accueil, navigation, guides, aide, confidentialité | 13 | 20 | 3 |
@@ -112,7 +112,7 @@ rejouant les fixtures : aucun appel réseau réel).
 | [UC-CPT-03](compte/UC-CPT-03-gerer-profil.md) | Gérer son profil (nom affiché, avatar) | 18 | 19 | 3 |
 | [UC-CPT-04](compte/UC-CPT-04-gerer-cles-api.md) | Gérer ses clés API personnelles | 14 | 21 | 1 |
 | [UC-CPT-05](compte/UC-CPT-05-suivre-progression-formation.md) | Suivre sa progression de formation | 15 | 17 | 5 |
-| [UC-CPT-06](compte/UC-CPT-06-supprimer-compte.md) | Supprimer son compte (droit à l'effacement) | 10 | 11 | 1 |
+| [UC-CPT-06](compte/UC-CPT-06-supprimer-compte.md) | Supprimer son compte (droit à l'effacement) | 10 | 12 | 1 |
 
 ### Apprenant
 
@@ -122,14 +122,14 @@ rejouant les fixtures : aucun appel réseau réel).
 | [UC-APP-02](apprenant/UC-APP-02-lancer-cartographie-standard.md) | Lancer une cartographie standard | 40 | 25 | 6 |
 | [UC-APP-03](apprenant/UC-APP-03-consulter-ses-cartographies.md) | Consulter ses cartographies | 13 | 15 | 2 |
 | [UC-APP-04](apprenant/UC-APP-04-stocker-regler-confidentialite.md) | Stocker une cartographie sur le serveur et régler sa confidentialité | 21 | 27 | 4 |
-| [UC-APP-05](apprenant/UC-APP-05-partager-avec-employeur.md) | Partager une cartographie avec un employeur | 18 | 23 | 2 |
-| [UC-APP-06](apprenant/UC-APP-06-exporter-importer-archive.md) | Exporter et importer son archive complète | 16 | 16 | 6 |
+| [UC-APP-05](apprenant/UC-APP-05-partager-avec-employeur.md) | Partager une cartographie avec un employeur (par l'interface ; liens déjà créés) | 14 | 15 | 0 |
+| [UC-APP-06](apprenant/UC-APP-06-exporter-importer-archive.md) | Exporter et importer son archive complète | 19 | 17 | 6 |
 | [UC-APP-07](apprenant/UC-APP-07-inviter-cartographe.md) | Inviter un cartographe | 9 | 10 | 1 |
 | [UC-APP-08](apprenant/UC-APP-08-rejoindre-cohorte.md) | Rejoindre une cohorte, déposer son portfolio, quitter | 12 | 25 | 4 |
 | [UC-APP-09](apprenant/UC-APP-09-cartographie-ouverte-twin6.md) | Lancer une cartographie ouverte (Twin6) | 30 | 20 | 3 |
 | [UC-APP-10](apprenant/UC-APP-10-analyse-approfondie-twin9.md) | Lancer une analyse approfondie (Twin9) | 45 | 28 | 7 |
 | [UC-APP-11](apprenant/UC-APP-11-gerer-credit-twin9.md) | Gérer son crédit Twin9 (achat, factures, remboursement) | 17 | 29 | 3 |
-| [UC-APP-12](apprenant/UC-APP-12-interface-ipsative-v3.md) | Explorer sa cartographie dans l'interface ipsative V3 | 28 | 24 | 19 |
+| [UC-APP-12](apprenant/UC-APP-12-interface-ipsative-v3.md) | Explorer sa cartographie dans l'interface ipsative V3 (retirée le 2026-10-14) | 28 | 0 | 19 |
 
 ### Cartographe
 
@@ -201,7 +201,7 @@ rejouant les fixtures : aucun appel réseau réel).
 | [UC-SYS-04](systeme/UC-SYS-04-construire-artefacts-derives.md) | Construire les données et artefacts dérivés | 6 | 16 | 4 |
 | [UC-SYS-05](systeme/UC-SYS-05-sauvegarder-restaurer.md) | Sauvegarder et restaurer la base | 0 | 8 | 6 |
 
-**Total : 58 cas d'utilisation, 963 tests unitaires et 1140 tests fonctionnels identifiés, 214 anomalies de production documentées.**
+**Total : 58 cas d'utilisation, 962 tests unitaires et 1102 tests fonctionnels identifiés, 212 anomalies de production documentées.**
 
 Les comptes portent sur les identifiants distincts (`UC-…-Unn`, `UC-…-Fnn`) présents dans les fichiers de tests ; un identifiant paramétré (`it.each`) compte pour un.
 <!-- catalogue:end -->
@@ -284,9 +284,6 @@ une anomalie entièrement corrigée quitte cet index.
   - « Retrouver depuis un autre appareil » : promesse non tenue par l'IHM
   - « Jamais votre portfolio » : des extraits du portfolio partent quand même
   - `serverId` périmé après un `404` sur le `PATCH`
-- **[UC-APP-05](apprenant/UC-APP-05-partager-avec-employeur.md#anomalies-constatées)** — Partager une cartographie avec un employeur
-  - La visibilité « publique » n'est pas une condition du partage
-  - Expiration en notation scientifique tronquée sans avertissement
 - **[UC-APP-06](apprenant/UC-APP-06-exporter-importer-archive.md#anomalies-constatées)** — Exporter et importer son archive complète
   - A-01 — Les « prompts utilisés » ne sont pas ceux des cartographies
   - A-02 — `runMeta` : contrats divergents entre l'assistant et l'archive

@@ -138,9 +138,8 @@ final class UcCar05GarantirCartographieTest extends CartographeTestCase
         self::assertEquals(['cartographieId' => $this->cartoId, 'cause' => 'retrait'], $audit['details']);
 
         // RG : c'est SON nom — il peut le retirer même après fermeture en privée.
-        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => 'mot-de-passe-du-lien']);
-        self::assertSame(201, $share->getStatusCode(), (string) $share->getBody());
-        $token = (string) self::json($share)['token'];
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $token = self::legacyShareLink($this->cartoId, 'mot-de-passe-du-lien', 90, $this->maya['id'])['token'];
         self::assertSame(201, $this->guarantee($this->carl)->getStatusCode());
         self::assertSame(200, $this->as_($this->maya, 'PATCH', '/api/cartographies/' . $this->cartoId, ['visibility' => 'privee'])->getStatusCode());
         self::assertSame(404, $this->guarantee($this->carl)->getStatusCode(), 'plus de pose possible');

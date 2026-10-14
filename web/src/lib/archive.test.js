@@ -5,9 +5,13 @@ import dayFixture from '../../../schemas/fixtures/cartographie-jour-2026-01-05.j
 import mergeFixture from '../../../schemas/fixtures/cartographie-merge-3-jours.json'
 import referentielFixture from '../../../schemas/fixtures/referentiel-respire-v7.json'
 import promptPackageFixture from '../../../schemas/fixtures/prompt-package-exemple.json'
-import { exportArchive, importArchive, UNKNOWN_ID, UNKNOWN_VERSION } from './archive.js'
+import { exportArchive, importArchive, isPristineDemo, UNKNOWN_ID, UNKNOWN_VERSION } from './archive.js'
 import { createCartoStore, createMemoryAdapter } from './carto-store.js'
 import { createPortfolioStore, createMemoryAdapter as createPortfolioMemoryAdapter } from './portfolio-store.js'
+import masterFixture from '../../../schemas/fixtures/carto/competency-map-master-exemple.json'
+import { createCartoStore as createInterfaceStore, createMemoryAdapter as createInterfaceMemoryAdapter } from '../carto/core/store.js'
+import { importFiles as importIntoInterface } from '../carto/core/import.js'
+import { createDataset as createInterfaceDataset } from '../carto/core/model.js'
 
 function makeStores() {
   let tick = 0
@@ -68,7 +72,7 @@ describe('exportArchive', () => {
 
     expect(validateDocument('archive-export', archive).valid).toBe(true)
     expect(filename).toBe('humanome-export-2026-07-12.json')
-    expect(counts).toEqual({ portfolios: 1, cartographies: 1 })
+    expect(counts).toEqual({ portfolios: 1, cartographies: 1, jeux: 0, jeuxError: null, jeuxExclus: [] })
     expect(archive.account).toBeNull()
     expect(archive.referentiels).toEqual([referentielFixture])
     expect(archive.promptPackages).toEqual([])
@@ -296,11 +300,11 @@ describe('importArchive', () => {
 
     const target = makeStores()
     const first = await importArchive(JSON.stringify(archive), target)
-    expect(first).toEqual({ portfolios: 1, cartographies: 2 })
+    expect(first).toEqual({ portfolios: 1, cartographies: 2, jeux: 0 })
 
     // Ré-import de la même archive : dédoublonnage par contenu.
     const second = await importArchive(JSON.stringify(archive), target)
-    expect(second).toEqual({ portfolios: 0, cartographies: 0 })
+    expect(second).toEqual({ portfolios: 0, cartographies: 0, jeux: 0 })
     expect(await target.cartoStore.listCartographies()).toHaveLength(2)
     expect(await target.portfolioStore.list()).toHaveLength(1)
 
@@ -331,5 +335,108 @@ describe('importArchive', () => {
     )
     expect(await stores.portfolioStore.list()).toEqual([])
     expect(await stores.cartoStore.listCartographies()).toEqual([])
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Question 10 (décision du 2026-10-14, « tout sauvegarder ») : depuis la 1.1.0,
+// l'archive de compte emporte aussi les jeux de données de l'interface de
+// cartographie (master v4 complet, schéma competency-map-master), la
+// démonstration publique exceptée, et les restaure à l'import.
+
+/** Le jeu « Lou » (fixture du master v4) et la démonstration, dans un stockage de l'interface. */
+async function interfaceWithLouAndDemo() {
+  const store = createInterfaceStore({ adapter: createInterfaceMemoryAdapter() })
+  const base = createInterfaceDataset({ datasetId: masterFixture.datasetId, title: masterFixture.title, referential: masterFixture.referential, now: masterFixture.createdAt })
+  await store.commit(await importIntoInterface([{ path: 'lou.json', text: JSON.stringify(masterFixture) }], base, { now: masterFixture.createdAt }))
+  const demo = { ...createInterfaceDataset({ datasetId: 'ds-demo', title: 'Démonstration', referential: masterFixture.referential }), origin: 'demo' }
+  await store.commit({ dataset: demo })
+  return store
+}
+
+describe('archive 1.1.0 : les jeux de l’interface de cartographie', () => {
+  it('export : chaque jeu en archive complète (portfolio et carnet compris), la démonstration exceptée ; archive conforme', async () => {
+    const { cartoStore, portfolioStore } = makeStores()
+    const interfaceStore = await interfaceWithLouAndDemo()
+    const { archive, counts } = await exportArchive({ cartoStore, portfolioStore, interfaceStore, ...offlineDeps(), download: () => {} })
+    expect(archive.schemaVersion).toBe('1.1.0')
+    expect(counts).toEqual({ portfolios: 0, cartographies: 0, jeux: 1, jeuxError: null, jeuxExclus: [] })
+    expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-lou'])
+    const [jeu] = archive.jeuxCartographie
+    expect(jeu.includesPortfolio).toBe(true)
+    expect(jeu.exportedAt).toBe('2026-07-12T10:00:00.000Z')
+    expect(jeu.details['2025-12-22'].portfolio.text).toBe(masterFixture.details['2025-12-22'].portfolio.text)
+    expect(jeu.reflections.map((r) => r.id)).toEqual(masterFixture.reflections.map((r) => r.id))
+    expect(validateDocument('archive-export', archive)).toEqual({ valid: true, errors: [] })
+    // Un jeu non conforme au schéma du master rend l'archive non conforme (et l'export s'arrête, E4).
+    const broken = { ...archive, jeuxCartographie: [{ ...jeu, days: [{ date: 'hier', variants: [] }] }] }
+    expect(validateDocument('archive-export', broken).errors.some((e) => e.path.startsWith('/jeuxCartographie/0/days/0/date'))).toBe(true)
+  })
+
+  it('la démonstration n’est laissée de côté que tant que la personne n’y a rien mis ; un jeu non conforme est écarté et signalé, sans bloquer le reste', async () => {
+    const store = await interfaceWithLouAndDemo()
+    // La personne garde un dialogue dans la démonstration : c'est à elle, il part.
+    const demo = await store.loadDataset('ds-demo')
+    expect(isPristineDemo(demo)).toBe(true)
+    await store.saveDataset({ ...demo, reflections: [{ id: 'rf-1', at: '2026-10-14T10:00:00.000Z', entries: [{ question: 'Q ?', answer: 'Ma réponse.' }] }] })
+    // Un jeu édité à la main : un repère sans date, que le schéma refuse.
+    const lou = await store.loadDataset('ds-lou')
+    await store.saveDataset({ ...lou, markers: [...lou.markers, { id: 'mk-x', label: 'sans date' }] })
+
+    const { cartoStore, portfolioStore } = makeStores()
+    await portfolioStore.create({ titre: 'Journal', source: 'colle', texte: 'Lundi.', segments: [] })
+    const { archive, counts } = await exportArchive({ cartoStore, portfolioStore, interfaceStore: store, ...offlineDeps(), download: () => {} })
+    expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-demo'])
+    expect(counts).toMatchObject({ portfolios: 1, jeux: 1, jeuxExclus: ['Lou'] })
+    expect(validateDocument('archive-export', archive).valid).toBe(true)
+  })
+
+  it('une archive 1.0.0 (sans jeux) reste valide et s’importe', async () => {
+    expect(validateDocument('archive-export', archiveFixture).valid).toBe(true)
+    const { cartoStore, portfolioStore } = makeStores()
+    const interfaceStore = createInterfaceStore({ adapter: createInterfaceMemoryAdapter() })
+    const report = await importArchive(JSON.stringify(archiveFixture), { cartoStore, portfolioStore, interfaceStore })
+    expect(report.jeux).toBe(0)
+    expect(await interfaceStore.listDatasets()).toEqual([])
+  })
+
+  it('import : un navigateur neuf retrouve le jeu à l’identique ; réimporter ne restaure rien ; un jeu complété compte', async () => {
+    const source = await interfaceWithLouAndDemo()
+    const { archive } = await exportArchive({ ...makeStores(), interfaceStore: source, ...offlineDeps(), download: () => {} })
+    const text = JSON.stringify(archive)
+
+    const target = createInterfaceStore({ adapter: createInterfaceMemoryAdapter() })
+    const first = await importArchive(text, { ...makeStores(), interfaceStore: target })
+    expect(first).toEqual({ portfolios: 0, cartographies: 0, jeux: 1 })
+    const [before, after] = [await source.exportAll('ds-lou'), await target.exportAll('ds-lou')]
+    expect(after.details).toEqual(before.details)
+    expect(after.runDetails).toEqual(before.runDetails)
+    for (const key of ['title', 'days', 'sets', 'reviews', 'markers', 'comparisons', 'reflections', 'referential', 'preferences']) {
+      expect(after.dataset[key], key).toEqual(before.dataset[key])
+    }
+    expect(await target.loadDataset('ds-demo')).toBeNull() // la démonstration ne voyage pas
+
+    expect(await importArchive(text, { ...makeStores(), interfaceStore: target })).toEqual({ portfolios: 0, cartographies: 0, jeux: 0 })
+
+    // Le jeu local a perdu un dialogue que l'archive porte : il est complété (et compté).
+    const local = await target.loadDataset('ds-lou')
+    await target.saveDataset({ ...local, reflections: local.reflections.slice(1) })
+    expect((await importArchive(text, { ...makeStores(), interfaceStore: target })).jeux).toBe(1)
+    expect((await target.loadDataset('ds-lou')).reflections.map((r) => r.id).sort()).toEqual(before.dataset.reflections.map((r) => r.id).sort())
+  })
+
+  it('stockage de l’interface illisible : l’export aboutit et le dit ; l’import restaure le reste et le dit', async () => {
+    const failing = { listDatasets: async () => { throw new Error('base verrouillée') } }
+    const { cartoStore, portfolioStore } = makeStores()
+    await portfolioStore.create({ titre: 'Journal', source: 'colle', texte: 'Lundi.', segments: [] })
+    const downloads = []
+    const { archive, counts } = await exportArchive({ cartoStore, portfolioStore, interfaceStore: failing, ...offlineDeps(), download: (name, t) => downloads.push(t) })
+    expect(downloads).toHaveLength(1)
+    expect(archive.jeuxCartographie).toEqual([])
+    expect(counts).toMatchObject({ portfolios: 1, jeux: 0, jeuxError: 'base verrouillée' })
+
+    const withJeu = { ...archive, jeuxCartographie: [masterFixture] }
+    const report = await importArchive(JSON.stringify(withJeu), { ...makeStores(), interfaceStore: failing })
+    expect(report).toEqual({ portfolios: 1, cartographies: 0, jeux: 0, jeuxError: 'base verrouillée' })
   })
 })

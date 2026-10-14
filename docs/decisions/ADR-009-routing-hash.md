@@ -35,7 +35,9 @@ mise en avant).
 l'URL.** Exemples canoniques :
 
 ```
-#/merge                          vue chronologique (agrégat multi-jours)
+#/merge                          vue chronologique (agrégat multi-jours) — RETIRÉE le
+                                 2026-10-14 : renvoie vers #/cartographie (interface
+                                 ultime ; journal de la cartographie, D-2)
 #/jour/2026-03-15                vue Journée à une date ISO 8601
 #/jour/2026-03-15?focus=<code>   idem, compétence <code> mise en évidence
 ```

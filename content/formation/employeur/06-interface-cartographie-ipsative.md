@@ -1,54 +1,106 @@
 ---
 parcours: employeur
 chapitre: 6
-titre: "Lire une cartographie dans l'interface V3"
+titre: "Lire une version partagée"
 statut: complet
 ---
 
-# Lire une cartographie dans l'interface V3
+# Lire une version partagée
 
-Vous recevez un fichier JSON de cartographie partagée, ou vous consultez une cartographie en
-lecture seule. Ce chapitre décrit ce que l'interface vous montre — et, tout aussi important, ce
-qu'elle ne vous montrera jamais.
+Depuis son interface de cartographie, une personne adulte peut composer une
+**version partagée** de sa cartographie et vous en envoyer le lien. C'est elle
+qui choisit les compétences montrées, la précision des dates et les extraits
+de son portfolio, relus avant la publication. Ce chapitre décrit ce que vous
+voyez — et, tout aussi important, ce que vous ne verrez jamais.
 
-## Ce dont vous avez besoin, en tant qu'employeur
+> **Objectifs d'apprentissage**
+>
+> À l'issue de ce chapitre, vous saurez :
+> - ouvrir le lien d'une version partagée, avec ou sans mot de passe ;
+> - lire son soleil, sa heatmap et ses extraits ;
+> - savoir ce qu'une version partagée ne contient pas, par conception ;
+> - savoir quand elle peut changer, et en faire un bon usage en entretien.
 
-1. **Un résumé des forces choisies** par la personne candidate, lisible en une minute.
-2. **Des preuves contextualisées** : pas une note, mais des extraits datés de travail réel.
-3. **La provenance et la récence** au niveau que la personne a choisi de partager (jour, mois, ou
-   sans dates).
-4. **Le périmètre exact du partage** : version du référentiel, métrique, date de génération.
-5. **L'assurance d'intégrité** : un fichier altéré est refusé à l'ouverture (empreinte SHA-256).
+## Ouvrir le lien
+
+Le lien a la forme `https://humanome.xyz/#/partage/<jeton>`. S'il se termine
+par `/ouvert`, la version s'affiche directement ; sinon, saisissez le mot de
+passe que la personne vous a transmis, idéalement par un autre canal que le
+lien. Aucun compte n'est nécessaire. La page est en lecture seule, n'est
+jamais indexée par les moteurs de recherche et ne dépose aucun traceur. Un
+lien expiré ou révoqué affiche « Ce lien de partage n'existe pas, a expiré ou
+a été révoqué par son auteur. »
+
+Depuis le 14 octobre 2026, c'est la seule forme de partage que l'on peut
+vous envoyer. Un lien plus ancien vers une cartographie du site, toujours
+protégé par un mot de passe, reste valable jusqu'à son expiration : le
+chapitre 1 décrit ce qu'il montre.
 
 ## Ce que vous voyez
 
-- **La liste des forces** : chaque compétence partagée avec sa famille (couleur + symbole), une
-  barre proportionnelle et le compte exact — « n journées documentées », « n mois documentés » ou
-  « au moins un soutien public » selon la précision temporelle choisie par la personne. Ce compte
-  mesure la **documentation**, jamais un niveau de maîtrise ni un score d'employabilité.
-- **Les preuves** : les extraits de portfolio explicitement autorisés, avec leur contexte quand il
-  est partagé, et le **rôle réel** ou le **résultat** si la personne les a renseignés.
-- **Les synthèses déclarées** : certaines forces peuvent être présentées « sur déclaration de
-  l'apprenant », sans document source — elles sont étiquetées comme telles et ne comptent aucune
-  journée documentée.
-- **Le cartouche du périmètre** : référentiel et version, métrique publique, date technique de
-  génération.
-
-Si vous consultez l'espace interactif ([Cartographie](#/cartographie)), la vue préconfigurée
-**« Employeur »** dispose l'écran pour cette lecture : soleil, indicateurs, légende, preuves.
+- **L'en-tête** : le titre choisi par la personne ; la **période** (au jour,
+  au mois, ou « dates masquées par son auteur ») ; le nombre de journées de
+  portfolio et de compétences observées ; la date à laquelle la version a été
+  **figée**.
+- **Le soleil** : chaque secteur extérieur est une compétence partagée. Son
+  **angle** est sa part des traces relevées dans l'ensemble partagé (un point
+  par preuve, un demi-point par indice) : plus une compétence a de traces,
+  plus son secteur est large. Sa **hauteur** est la **confiance moyenne du
+  jury** dans ses verdicts, de 0 à 1 — ni un niveau de maîtrise ni une note.
+  L'anneau intérieur regroupe les compétences par pôle ; un secteur hachuré
+  signale une présence « à confirmer ». Choisissez un secteur pour mettre la
+  compétence en avant dans la liste. Un double-clic sur un pôle l'ouvre sur
+  tout le cercle : ses seules compétences, chacune selon sa part des traces du
+  pôle ; un clic au centre ramène à tous les pôles.
+- **La heatmap**, si les dates ne sont pas masquées : une case par jour, ou
+  une par mois. Plus elle est foncée, plus les compétences partagées y sont
+  observées, en niveaux relatifs à cette personne.
+- **Les compétences, pôle par pôle** : pour chacune, sa part du soleil, sa
+  confiance, ses journées (preuves, indices), sa description dans le
+  référentiel, et les **extraits** que la personne a choisis, marqués
+  « Preuve » ou « Indice » et datés à la précision choisie.
 
 ## Ce que vous ne verrez jamais — par conception
 
-- Aucune mention de ce qui a été retiré ou non partagé : l'absence d'une compétence ne signifie
-  **rien** (ni faiblesse, ni dissimulation — simplement « non documentée dans ce périmètre »).
-- Aucun raisonnement adversarial interne, aucune « présence non établie », aucun audit privé.
-- Aucune date plus fine que la précision choisie : une projection mensuelle ne permet pas de
-  reconstruire des jours ; une projection sans dates ne porte aucune trace temporelle.
-- Aucun classement, score global ou profil de personnalité : la cartographie est **ipsative** —
-  elle compare la personne à ses propres états antérieurs, jamais à une cohorte.
+- **Le portfolio** : seuls les extraits choisis et relus figurent dans la
+  version ; le journal lui-même ne quitte jamais le navigateur de son auteur.
+- **Ce qui n'a pas été partagé** : la version est construite par liste
+  positive. L'absence d'une compétence ne signifie rien — ni faiblesse, ni
+  dissimulation.
+- **Les délibérations du jury**, les réponses et notes de la personne, son
+  carnet de dialogue.
+- **Des dates plus fines** que la précision choisie.
+- **Un classement** ou un score : le document ne compare la personne à
+  personne.
+
+## Une version garantie, ou publiée par la personne elle-même
+
+Sous l'en-tête, la version dit qui l'a publiée :
+
+- **« Relue et garantie par … , le … »** : à la demande de la personne, le
+  cartographe qui a relu sa cartographie avec elle a publié lui-même cette
+  version. Il atteste avoir vérifié ce que la personne a fait, ce que
+  l'analyse par IA a détecté et ce qu'en a vu le groupe classe qui travaille
+  avec elle sur un projet commun. Si la personne remplace ensuite la version
+  par une autre, la mention disparaît : elle ne couvre que ce que le
+  cartographe a publié.
+- **« Publiée par la personne elle-même : aucun cartographe ne l'a
+  garantie. »** : c'est sa sélection, à partir des analyses de son
+  portfolio, sans relecture humaine attestée.
+
+## Une version figée, que son auteur peut remplacer ou retirer
+
+La version ne change pas d'elle-même : elle est figée à sa publication. Son
+auteur peut, à tout moment, **révoquer** le lien, ou publier une **nouvelle
+version à la place** de celle-ci, sous le même lien : la date « figée le … »
+de l'en-tête vous dit quelle version vous lisez. L'auteur voit combien de
+fois son lien a été consulté, et quand ; jamais par qui.
 
 ## Bon usage
 
-Utilisez la cartographie comme **support d'entretien** : « Pourquoi ce rayon ? » sur une force
-vous donne les journées et les preuves — d'excellentes questions concrètes. Ne convertissez jamais
-les comptes en note : deux personnes ne partagent jamais le même périmètre.
+Faites de la version partagée un support d'entretien : un extrait daté appelle
+une question concrète (« Racontez-moi cette journée »). Ne convertissez pas les
+parts du soleil en notes : elles dépendent de ce que la personne a écrit et de
+ce qu'elle a choisi de partager, et deux personnes ne partagent jamais le même
+périmètre. La confiance est celle d'un jury automatique dans ses verdicts, pas
+une mesure de la personne.

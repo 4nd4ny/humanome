@@ -9,7 +9,8 @@ prompts LLM versionnés (promptologues), relu et garanti par des humains (cartog
 sur la base d'un référentiel de 61 compétences en 7 pôles, édité collectivement
 (épistémiarques). La visualisation centrale est un sunburst évolutif dans le temps
 (vue merge chronologique + vue journée). Les cartographies validées peuvent être
-partagées avec des employeurs (lien + mot de passe). Le tout est RGPD-by-design :
+partagées avec des employeurs (lien vers une version choisie par la personne, mot de passe
+facultatif, jamais automatique). Le tout est RGPD-by-design :
 le portfolio ne quitte jamais le navigateur par défaut, tout stockage serveur est opt-in.
 Spécification complète : `docs/cahier-des-charges.md` ; plan de construction : `docs/plan-prompts.md`.
 
@@ -34,7 +35,8 @@ Spécification complète : `docs/cahier-des-charges.md` ; plan de construction :
 1. Aucune donnée de portfolio stockée côté serveur par défaut ; export local systématique.
 2. Stockage serveur = opt-in explicite de l'apprenant, chiffré quand il s'agit de clés API (ADR-004).
 3. Export/suppression de compte en un clic, purge réelle + événement d'audit.
-4. Partage employeur = décision explicite individuelle (lien + mot de passe), jamais automatique.
+4. Partage employeur = décision explicite individuelle (lien vers une version choisie par la personne,
+   mot de passe facultatif), jamais automatique.
 5. Journalisation minimale : compteurs, jamais de contenu.
 
 ## Conventions

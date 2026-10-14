@@ -26,10 +26,12 @@ final class ShareLinks
 
     /**
      * Creates a link on a cartography (ownership checked by the caller).
+     * $password null = lien SANS mot de passe (réservé aux versions partagées
+     * de l'interface ultime, §12 — la route l'impose) : password_hash NULL.
      *
      * @return array{shareId: int, token: string}
      */
-    public function create(int $cartographieId, string $password, int $expiresInDays): array
+    public function create(int $cartographieId, ?string $password, int $expiresInDays): array
     {
         $token = bin2hex(random_bytes(self::TOKEN_BYTES));
         $stmt = $this->pdo->prepare(
@@ -39,7 +41,7 @@ final class ShareLinks
         $stmt->execute([
             $cartographieId,
             hash('sha256', $token),
-            password_hash($password, PASSWORD_ARGON2ID),
+            $password === null ? null : password_hash($password, PASSWORD_ARGON2ID),
             $expiresInDays,
         ]);
 
@@ -94,6 +96,50 @@ final class ShareLinks
         }
 
         return ['shareId' => (int) $row['id'], 'cartographieId' => (int) $row['cartographie_id']];
+    }
+
+    /**
+     * Journal des accès d'un lien (§12.1), pour son seul auteur : dates des
+     * consultations réussies (événements d'audit `share_consulted`, qui ne
+     * portent que des ids — ni IP, ni navigateur, ni identité). Null si le
+     * lien n'existe pas ou n'est pas à cet utilisateur (404 homogène).
+     *
+     * @return array{shareId: int, withPassword: bool, count: int, lastAt: ?string, items: list<array{at: string}>}|null
+     */
+    public function consultationsForUser(int $shareId, int $userId, int $limit = 200): ?array
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT s.id, (s.password_hash IS NOT NULL) AS with_password
+               FROM share_links s
+               JOIN cartographies c ON c.id = s.cartographie_id
+              WHERE s.id = ? AND c.user_id = ?'
+        );
+        $stmt->execute([$shareId, $userId]);
+        $row = $stmt->fetch();
+        if ($row === false) {
+            return null;
+        }
+
+        $where = "FROM audit_events
+              WHERE type = 'share_consulted'
+                AND CAST(JSON_UNQUOTE(JSON_EXTRACT(details, '$.shareLinkId')) AS UNSIGNED) = ?";
+        $count = $this->pdo->prepare('SELECT COUNT(*), MAX(created_at) ' . $where);
+        $count->execute([$shareId]);
+        [$total, $last] = $count->fetch(PDO::FETCH_NUM);
+
+        $items = $this->pdo->prepare('SELECT created_at ' . $where . ' ORDER BY created_at DESC, id DESC LIMIT ' . max(1, $limit));
+        $items->execute([$shareId]);
+
+        return [
+            'shareId' => (int) $row['id'],
+            'withPassword' => (bool) $row['with_password'],
+            'count' => (int) $total,
+            'lastAt' => self::iso($last),
+            'items' => array_map(
+                static fn (mixed $at): array => ['at' => (string) self::iso($at)],
+                $items->fetchAll(PDO::FETCH_COLUMN),
+            ),
+        ];
     }
 
     /**

@@ -69,9 +69,9 @@ describe('UC-VIS-04 — accueil et navigation', () => {
     openApp('#/')
 
     expect(screen.getByRole('heading', { name: 'humanome.xyz' })).toBeDefined()
-    expect(screen.getByRole('link', { name: 'Explorer la cartographie de démonstration' }).getAttribute('href')).toBe('#/merge')
+    expect(screen.getByRole('link', { name: 'Explorer la cartographie de démonstration' }).getAttribute('href')).toBe('#/cartographie')
     expect(screen.getByRole('link', { name: 'Essayer avec votre propre texte' }).getAttribute('href')).toBe('#/essayer')
-    expect(screen.getByRole('button', { name: 'Charger ma cartographie (JSON)' })).toBeDefined()
+    expect(screen.getByRole('button', { name: 'Ouvrir mes fichiers de cartographie' })).toBeDefined()
     const plan = within(screen.getByRole('region', { name: 'Plan du site' }))
     expect(plan.getByRole('heading', { name: 'Explorer le site' })).toBeDefined()
     expect([...document.querySelectorAll('.family')].map((f) => f.dataset.family)).toEqual(['decouvrir', 'compte'])
@@ -401,7 +401,7 @@ describe('UC-VIS-04 — liens du panneau pour un compte multi-rôles', () => {
       name: 'Partager ma cartographie',
       href: '#/espace',
       badge: null,
-      hint: 'lien protégé par mot de passe',
+      hint: 'version choisie, réservée aux adultes',
       reached: async () => {
         await h1('Espace apprenant')
         // Session reconnue par la vue (le tableau de bord s'affiche AUSSI en anonyme).

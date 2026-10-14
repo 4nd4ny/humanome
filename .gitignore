@@ -55,3 +55,9 @@ scripts/data/tuteur-digest.md
 # (ils embarquent le chemin absolu local de la machine qui les a produits).
 __pycache__/
 *.pyc
+
+# Copie autonome de la cartographie : modèle généré par web/scripts/build-viewer.mjs
+web/dist-viewer/
+web/public/carto/viewer-template.html
+# Démo anonymisée (« Préparer une démo ») : déposée par FTP, jamais versionnée (dépôt public).
+web/public/data/demo/carto/

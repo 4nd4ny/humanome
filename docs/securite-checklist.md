@@ -99,7 +99,27 @@ Dernière revue : M9 (2026-07-12).
   authentifiée renvoyant 401, **et** sur un 404).
 - **CSP du front** (`web/public/.htaccess`) : `default-src 'self'`, pas de
   `'unsafe-eval'`, `object-src 'none'`, `base-uri 'self'`, `frame-ancestors 'self'`,
-  `connect-src 'self'`, `font-src 'self'` (polices iA Writer Quattro auto-hébergées,
+  `connect-src` limité à notre API et aux fournisseurs de modèles de langage que
+  le navigateur appelle **directement avec la clé personnelle** de l'utilisateur
+  (Anthropic, OpenAI, Google, xAI, OpenRouter, Ollama sur `localhost:11434`) —
+  décision du 2026-10-14 (journal de la cartographie, question 22) : avant,
+  `connect-src 'self'` rendait le mode clé personnelle inopérant en production
+  (runs et relances du dialogue refusés par le navigateur ; constaté sur
+  l'en-tête en ligne). La clé ne passe jamais par notre serveur. Gardes :
+  `web/src/lib/csp-providers.test.js` (liste = adaptateurs du moteur, rien
+  d'autre) et `web/e2e/csp-cle-personnelle.e2e.js` (sous la vraie directive :
+  la relance part vers le fournisseur, un autre hôte est bloqué) ; la sandbox
+  promptologue garde son propre `default-src 'none'` (`sandbox-isolation.e2e.js`
+  vert sous la nouvelle CSP). **Risque résiduel assumé** (relevé par la
+  relecture indépendante du 2026-10-14, journal de la cartographie D-41) : ces
+  cinq hôtes distants acceptent n'importe quelle clé, y compris celle d'un
+  attaquant ; une faille XSS future pourrait donc y envoyer des données vers un
+  compte qu'il contrôle, ce que `connect-src 'self'` aurait bloqué. C'est le
+  prix du mode clé personnelle (D-36). La défense reste en amont : aucun HTML
+  non assaini (DOMPurify, ADR-007), textes de l'utilisateur rendus par React
+  en texte, pas de `'unsafe-inline'` ni de `'unsafe-eval'` pour les scripts ;
+  et toute nouvelle entrée de `connect-src` doit répondre à un adaptateur du
+  moteur (garde `csp-providers.test.js`). `font-src 'self'` (polices iA Writer Quattro auto-hébergées,
   D7 — explicite bien que `default-src 'self'` les couvre déjà ; aucune origine
   tierce de police), Permissions-Policy restrictive (ajoutée en M9).
   **Correction de régression M9 (bug réel)** : la CSP de prod cassait

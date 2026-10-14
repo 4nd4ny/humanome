@@ -45,7 +45,7 @@ final class UcApp03ConsulterSesCartographiesTest extends CartographeTestCase
             'document' => self::mergeDocument(),
             'runMeta' => ['mode' => 'humanome', 'jours' => 3, 'usage' => ['inputTokens' => 1200, 'outputTokens' => 300, 'mesures' => 24]],
         ]);
-        self::assertSame(201, $this->as_($this->maya, 'POST', '/api/cartographies/' . $merge . '/share', ['password' => 'sesame-employeur'])->getStatusCode());
+        self::legacyShareLink($merge, 'sesame-employeur', 90, $this->maya['id']); // créé avant le retrait de l'ancien partage (D-43)
         // Tri discriminant : la plus récemment modifiée est la première créée.
         self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-09 10:00:00' WHERE id = {$jour}");
         self::$pdo->exec("UPDATE cartographies SET updated_at = '2026-01-08 10:00:00' WHERE id = {$merge}");

@@ -1,13 +1,97 @@
 # STATUS — journal de bord
 
-## État : v1.1.0 — EN PRODUCTION
+## État : v1.1.0 + interface ultime de cartographie — EN PRODUCTION
 
 Les 14 prompts P0→P13 (v1.0) puis les 11 chantiers v1.1 (D1→D11) sont appliqués, intégrés,
-déployés sur https://humanome.xyz (`health` → `v1.1.0`) et vérifiés en ligne. Code public :
+déployés sur https://humanome.xyz et vérifiés en ligne. Code public :
 https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Actions restantes
 (utilisateur) » en fin de fichier.
 
+Interface ultime de cartographie (branche `feat/ultimate-cartography`) : validée par Christian,
+**déployée le 2026-10-14** (`health` → `v1.1.0-106-gc6a0231`, migrations 022 et 023) puis fusionnée
+dans `main` (entrée du 2026-10-14 ci-dessous).
+
 ## Fait
+
+- 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
+  `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
+  - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
+    dépôt). Journal d'avancement, décisions D-1 → D-45, état des tests, les 29 questions et
+    les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
+  - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
+    l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
+    importeurs Aurora v3 / AuroraCore / Merge v2, formules §5, IndexedDB) ; P1 soleil,
+    heatmap, gestionnaire, date t ; P2 lecteur de portfolio surligné, détail, jury ; P3
+    comparaison de soi à soi ; P4 tableau de bord ; P5 archive JSON, copie autonome HTML
+    (lisible hors ligne en `file://`), rapport imprimable, démo anonymisée ; P6 version
+    partagée réservée aux adultes (auto-attestation gardée par le serveur, liste blanche,
+    lien à mot de passe facultatif jamais indexé, journal des accès) ; P7 dialogue scripté
+    local, relances LLM facultatives sur accord explicite ; puis relecture indépendante de P6
+    et P7 (13 corrections, D-37).
+  - API : migration `022_carto_partage_adultes.sql` (type `partage`, mot de passe de lien
+    facultatif, `users.adult_attested_at`) — elle part avec la release API (`deploy.mjs api`
+    appelle `migrate`) ; routes `partage.php` (attestation), `GET /api/share/open` (jeton en
+    en-tête), `GET /api/shares/{id}/consultations`. Registre RGPD (3 bis, 3 ter), politique de
+    confidentialité, matrice d'autorisations, UC-APP-05 et UC-EMP-01 mis à jour.
+  - Données réelles (journaux 300 / 200 / GEN1) : importeurs, lecteur, anonymisation, surlignage
+    approché, export du portfolio et archive de compte validés sur le Mac, compteurs
+    seulement ; rien de personnel n'est versionné.
+  - **Réponses de Christian (2026-10-14) appliquées** : l'angle compte les points, la hauteur
+    est la confiance moyenne du jury (D-8) ; `connect-src` ouvert aux seuls fournisseurs, pour
+    les runs et relances avec clé personnelle (D-36) ; pages V3 retirées (D-38) ; une nouvelle
+    version partagée remplace l'ancienne sous le même lien (D-33) ; surlignage approché des
+    extraits reformulés (D-39) ; un dialogue du carnet se verse au portfolio, exporté en
+    Markdown (D-40) ; « Exporter toutes mes données » emporte les jeux de l'interface
+    (archive 1.1.0), schéma JSON du master v4 (D-25) ; chapitres de formation V3 réécrits.
+    Puis relecture indépendante de ces décisions : 9 corrections (D-41, `b651f38`).
+  - **Question 17 (2026-10-14)** : la garantie passe par la publication — un cartographe publie
+    la version partagée de l'apprenant, à sa demande (code à usage unique), avec sa garantie,
+    que l'employeur lit (D-42, migration 023, `f55b036`) ; puis **l'ancien partage est retiré**
+    (D-43) : plus de nouveau lien vers une cartographie du site (`422 share_retired`) ;
+    « Partager depuis l'interface » et « Liens déjà créés » dans « Mes cartographies » ; la page
+    de relecture du cartographe ouvre sa révision dans l'interface pour la publier garantie ;
+    les liens déjà créés restent servis jusqu'à leur échéance. Relu par un agent distinct
+    avant le commit (rien de bloquant, corrections intégrées).
+  - **Questions 25 à 29** (D-44) : le niveau « Publique (partageable) » s'intitule « Partager » ;
+    `CLAUDE.md` décrit le partage par une version choisie, mot de passe facultatif ; anciens
+    liens non révoqués, publication par l'apprenant seul et code de demande confirmés.
+  - **Pôle ouvert sur 360°** (D-45, demande du 2026-10-14) : un double-clic sur un pôle du soleil
+    (ou « o ») l'ouvre — ses compétences font tout le tour selon leur part des points du pôle,
+    hauteurs inchangées, codes écrits ; le centre (ou Échap) ramène à tous les pôles ; passage
+    animé de 480 ms, aucun si le mouvement est réduit ; même geste dans la version partagée.
+    Corrigé en chemin : un clic dans le soleil faisait défiler toute la page jusqu'à la liste
+    (le second clic d'un double-clic tombait à côté) ; la colonne de gauche défile désormais
+    seule, la liste y suit la sélection. Relu par un agent distinct (six corrections).
+  - **Vérification après D-45** (2026-10-14) : front **2 285 verts** (235 fichiers) ; moteur
+    **1 071 verts** + 17 sautés ; API **1 489 verts** (14 328 assertions) ; e2e Chromium
+    **16 sur 16** (dont `carto-soleil.e2e.js`, nouveau : vrai double-clic, géométrie vérifiée
+    sur le tracé rendu).
+  - **Vérification** (2026-10-14, `b651f38`) : front **2 255 verts** (231 fichiers ;
+    `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ; moteur
+    **1 071 verts** + 17 sautés ; API **1 484 verts** (14 162 assertions, 23 min 36 s) ; e2e
+    Chromium de la cartographie verts : P5 (copie autonome, démo anonymisée), P6 (contre l'API
+    docker locale), P7 (dialogue), clé personnelle sous la CSP de production.
+  - **Vérification après D-43** (2026-10-14) : front **2 257 verts** (232 fichiers, dont
+    `twin6-prompt-package.test.js`, chargeable une fois les gabarits Twin6 non versionnés
+    déposés — `INSTALL.md` §4) ; moteur **1 071 verts** + 17 sautés ; API **1 489 verts**
+    (suite complète) ; e2e Chromium verts : parcours apprenant et cartographe (réécrits pour le
+    partage par l'interface, et remis en état : ils s'arrêtaient à l'inscription depuis
+    l'activation par code D5), P6 et version garantie contre l'API docker, P5, P7, CSP, guides,
+    sandbox. Deux e2e en échec depuis juillet, sans rapport, remis en état dans un commit à part :
+    `navigation-burger.e2e.js` (le tiroir rétracté laisse dépasser 10 px depuis `189f20e` ;
+    position lue après la transition) et `parcours-promptologue.e2e.js` (inscription d'avant
+    D5) — **toute la suite e2e est verte** (11 fichiers).
+  - **Déploiement** (2026-10-14, autorisé par Christian ; journal carto D-46) : release API
+    `20261014-133427-v1.1.0-106-gc6a0231`, migrations `022` et `023` appliquées (référentiel,
+    compétences, fiches et paquets de prompts inchangés), front (4 fichiers changés, ancien
+    bundle retiré ; données de démo inchangées). `health` → `v1.1.0-106-gc6a0231`. Fait depuis la
+    VM Linux du Mac (le FTP n'est pas joignable depuis le conteneur cloud) ; la release API a été
+    complétée et vérifiée fichier par fichier avant l'écriture du pointeur. Vérifié en ligne dans
+    Chromium (démo, pôle ouvert sur 360°, retour). Release précédente (`v1.1.0-20-g471d7cd`)
+    gardée pour un retour arrière. La démo anonymisée (`data/demo/carto/archive.json`) n'est pas
+    partie : aucune n'a été préparée (« Préparer une démo », relecture de Christian) ; le site
+    garde les 59 journées publiques.
+  - **Fusion** : PR `feat/ultimate-cartography` → `main` (CI verte), fusionnée le 2026-10-14.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1302,6 +1386,26 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
   informatif, non bloquant — code-splitting à envisager (backlog outillage).
 - `npm audit` complet : 5 findings **outillage de dev uniquement** (vite/vitest/esbuild),
   non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
+- CSP de production `connect-src 'self'` : corrigé (décision du 2026-10-14, question 22 :
+  `connect-src` ouvert aux seuls fournisseurs) — en ligne depuis le déploiement du 2026-10-14.
+- CSP de production et script anti-FOUC (`web/index.html`) : le script en ligne qui applique le
+  thème choisi avant le premier rendu est **refusé par la CSP depuis qu'elle existe** (seul le
+  hash du bootstrap de la sandbox est autorisé) ; le thème s'applique donc après le chargement
+  du bundle (bref flash). Constaté lors de la vérification en ligne du 2026-10-14 ; correctif
+  proposé (ajouter son hash à `script-src`, avec un test de synchronisation comme
+  `csp-hash.test.js`) en attente de l'accord de Christian (journal carto, question 30).
+- `npm run test:dist` (`web/scripts/smoke-dist.mjs`) vise encore la vue merge retirée en D-38
+  (`#/merge`, `svg.sunburst`) : il échoue depuis ; à réécrire pour l'interface ultime.
+- `deploy.mjs api` téléverse la release fichier par fichier sur une seule connexion (~4 min
+  pour 723 fichiers) : trop long pour un shell distant limité à 180 s. Le déploiement du
+  2026-10-14 a suivi les mêmes étapes avec un téléversement reprenable et parallèle (outil
+  ponctuel, hors dépôt) ; à intégrer à `deploy.mjs` si ce mode de déploiement se répète.
+- Partage historique (`#/espace`, jour / merge / twin9) **retiré sur la branche
+  `feat/ultimate-cartography`** (décision du 2026-10-14, journal carto D-43 : plus de nouveau
+  lien, `422 share_retired`). Les liens déjà créés restent servis jusqu'à leur échéance — y
+  compris ceux de comptes sans attestation de majorité : pas de révocation (décision du
+  2026-10-14, journal carto question 25 : le site n'est pas encore ouvert au public). « Liens déjà créés » et les tests `legacyShareLink` pourront
+  partir après le 2027-11-13 (dernière échéance + 30 jours de purge).
 
 ## Jalons
 

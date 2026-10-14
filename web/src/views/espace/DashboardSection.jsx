@@ -27,6 +27,8 @@ function frShortDate(iso) {
  *   injectable (tests) ; sinon chargé via le pont chantier C
  * @param {object} [props.lib] module sunburst (App) — visionneuse « Voir »
  * @param {Function} [props.getReferentiel] couture de test (visionneuse)
+ * @param {(files: Array<{path: string, text: string}>, opts: {title: string}) => void} [props.onShareInInterface]
+ *   ouvre une cartographie dans l'interface, espace Partage (ancien partage retiré, D-43)
  */
 export default function DashboardSection({
   session,
@@ -35,6 +37,7 @@ export default function DashboardSection({
   cartographiesPanel,
   lib,
   getReferentiel,
+  onShareInInterface,
 }) {
   const connected = session.status === 'authenticated'
   const pStore = useMemo(() => portfolioStore ?? createPortfolioStore(), [portfolioStore])
@@ -153,6 +156,7 @@ export default function DashboardSection({
             session={session}
             portfolioStore={pStore}
             onOpen={(document, entry) => setOpened({ document, entry })}
+            onShareInInterface={onShareInInterface}
           />
         ) : panelMissing ? (
           <p data-testid="carto-panel-missing">

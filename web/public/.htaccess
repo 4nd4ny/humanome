@@ -19,7 +19,19 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   #   img-src 'self' data:      inline data: images (small SVG/PNG in the build).
   #   style-src 'self' 'unsafe-inline'  React/Vite inline <style> and style=.
   #   script-src 'self' ...     see the two sandbox additions below.
-  #   connect-src 'self'        fetch/XHR/WebSocket only to our API.
+  #   connect-src 'self' + LLM  fetch/XHR/WebSocket to our API, and to the LLM
+  #                             providers the browser calls DIRECTLY with the
+  #                             user's own key (personal-key runs, dialogue
+  #                             relaunches) — Anthropic, OpenAI, Google, xAI,
+  #                             OpenRouter, and Ollama on the user's own
+  #                             computer. Decision of 2026-10-14 (journal carto,
+  #                             question 22): personal-key mode must work on
+  #                             the public site; the key never reaches our
+  #                             server. Keep this list in sync with the engine
+  #                             adapters (engine/src/providers/*.js) —
+  #                             web/src/lib/csp-providers.test.js checks it.
+  #                             The promptologue sandbox is NOT widened: its
+  #                             srcdoc keeps its own "default-src 'none'".
   #   font-src 'self'           self-hosted iA Writer Quattro woff2 (D7). Explicit
   #                             (default-src already covers it) — clarté + défense.
   #   worker-src blob:          see the sandbox note below.
@@ -47,7 +59,7 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
   #   belt-and-suspenders today; it future-proofs the worker-src fallback chain.)
   #   frame-src is intentionally NOT widened: about:srcdoc is already permitted
   #   by default-src 'self', and nothing frames blob:/data:.
-  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc=' blob:; connect-src 'self'; font-src 'self'; worker-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-7Ll8/Q7scy4XeEgF5GUsqHX5nPQqrnsVFr+cbzr/yEc=' blob:; connect-src 'self' https://api.anthropic.com https://api.openai.com https://generativelanguage.googleapis.com https://api.x.ai https://openrouter.ai http://localhost:11434; font-src 'self'; worker-src blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'"
 
   # Caching: hashed assets are immutable, entry points and data stay fresh
   <FilesMatch "\.(js|css|woff2?)$">

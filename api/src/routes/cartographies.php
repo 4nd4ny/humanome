@@ -15,9 +15,13 @@ declare(strict_types=1);
  * mutating routes ride the global CSRF middleware.
  */
 
+use Humanome\Auth\Audit;
+use Humanome\Auth\Users;
+use Humanome\Cartographe\Garanties;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\Db;
 use Humanome\Middleware\RequireRole;
+use Humanome\Share\SharedVersion;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -70,22 +74,46 @@ return function (App $app): void {
         $type = $data['type'] ?? null;
         // 'twin9' (D12) : carto_evolutive natif d'une analyse approfondie,
         // même contrat d'opt-in que les autres types.
-        if (!\in_array($type, ['jour', 'merge', 'twin9'], true)) {
-            $errors['type'] = 'Type invalide (attendu : "jour", "merge" ou "twin9")';
+        // 'partage' (interface ultime, §12) : version partagée figée, réservée
+        // aux comptes qui ont attesté leur majorité — sinon la fonction
+        // n'existe pas (403, rien n'est écrit).
+        if (!\in_array($type, ['jour', 'merge', 'twin9', 'partage'], true)) {
+            $errors['type'] = 'Type invalide (attendu : "jour", "merge", "twin9" ou "partage")';
         }
-        $titre = \is_string($data['titre'] ?? null) ? trim($data['titre']) : '';
+        if ($type === 'partage' && Users::adultAttestedAt(Db::get(), $userId) === null) {
+            return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+        }
+        // Le titre d'une version partagée est celui de l'instantané (relu avant
+        // publication) : le titre envoyé à côté est ignoré.
+        $titre = $type === 'partage' && \is_array($data['document'] ?? null) && \is_string($data['document']['title'] ?? null)
+            ? trim($data['document']['title'])
+            : (\is_string($data['titre'] ?? null) ? trim($data['titre']) : '');
         if ($titre === '' || mb_strlen($titre) > 190) {
             $errors['titre'] = 'Titre requis (190 caractères maximum)';
         }
         $visibility = $data['visibility'] ?? 'privee';
         if (!\in_array($visibility, ['privee', 'cartographe', 'publique'], true)) {
             $errors['visibility'] = 'Visibilité invalide (attendu : "privee", "cartographe" ou "publique")';
+        } elseif ($type === 'partage' && $visibility !== 'privee') {
+            $errors['visibility'] = 'Une version partagée reste privée : seul un lien la montre';
         }
         $document = $data['document'] ?? null;
         if (!\is_array($document) || $document === [] || array_is_list($document)) {
             $errors['document'] = 'Document requis (objet JSON de cartographie)';
         } elseif (\strlen(json_encode($document, JSON_UNESCAPED_UNICODE) ?: '') > $maxDocumentBytes) {
             $errors['document'] = 'Document trop volumineux (8 Mo maximum)';
+        } elseif ($type === 'partage') {
+            // Liste blanche de champs : ni portfolio, ni jury, ni dates plus fines que choisi.
+            $errors += SharedVersion::validate($document);
+        }
+        if ($type === 'partage') {
+            // Une version partagée ne porte que son document : ni métadonnées de
+            // run, ni versions de paquet ou de référentiel (liste blanche, §12).
+            foreach (['runMeta', 'promptPackageId', 'promptPackageVersion', 'referentielId', 'referentielVersion'] as $field) {
+                if (($data[$field] ?? null) !== null) {
+                    $errors[$field] = 'Champ non autorisé pour une version partagée';
+                }
+            }
         }
         $runMeta = $data['runMeta'] ?? null;
         if ($runMeta !== null) {
@@ -138,7 +166,7 @@ return function (App $app): void {
             return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
         }
 
-        $id = $repo()->create(
+        $create = static fn (): int => $repo()->create(
             $userId,
             (string) $type,
             $titre,
@@ -148,6 +176,29 @@ return function (App $app): void {
             $referentielVersionId,
             $runMeta,
         );
+        if ($type !== 'partage') {
+            return $json($response, ['id' => $create()], 201);
+        }
+
+        // Version partagée : attestation relue SOUS VERROU et insertion dans la
+        // même transaction — un retrait d'attestation simultané ne laisse
+        // jamais une version derrière lui (routes/partage.php).
+        $pdo = Db::get();
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+            }
+            $id = $create();
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
 
         return $json($response, ['id' => $id], 201);
     }))->add($apprenant);
@@ -179,10 +230,13 @@ return function (App $app): void {
         $userId = (int) $request->getAttribute('userId');
 
         $errors = [];
+        $sharedVersion = $repo()->typeOwnedBy((int) $args['id'], $userId) === 'partage';
         $titre = null;
         if (\array_key_exists('titre', $data)) {
             $titre = \is_string($data['titre']) ? trim($data['titre']) : '';
-            if ($titre === '' || mb_strlen($titre) > 190) {
+            if ($sharedVersion) {
+                $errors['titre'] = 'Une version partagée est figée : publiez-en une nouvelle pour changer son titre';
+            } elseif ($titre === '' || mb_strlen($titre) > 190) {
                 $errors['titre'] = 'Titre requis (190 caractères maximum)';
             }
         }
@@ -191,6 +245,8 @@ return function (App $app): void {
             $visibility = $data['visibility'];
             if (!\in_array($visibility, ['privee', 'cartographe', 'publique'], true)) {
                 $errors['visibility'] = 'Visibilité invalide (attendu : "privee", "cartographe" ou "publique")';
+            } elseif ($visibility !== 'privee' && $sharedVersion) {
+                $errors['visibility'] = 'Une version partagée reste privée : seul un lien la montre';
             }
         }
         if ($errors !== []) {
@@ -206,6 +262,74 @@ return function (App $app): void {
             return $json($response, ['error' => 'Cartographie introuvable'], 404);
         }
         unset($carto['document']); // PATCH answers metadata, not the payload
+
+        return $json($response, $carto);
+    }))->add($apprenant);
+
+    // ------------------------------------------------------------------
+    // PUT /api/cartographies/{id}/document {document} — une nouvelle version
+    // partagée publiée À LA PLACE d'une autre (décision du 2026-10-14) : même
+    // contrôle que la publication (attestation sous verrou, liste blanche),
+    // les liens restent et montrent désormais ce document ; l'ancien est
+    // effacé. Réservé aux versions partagées (type « partage »). Une version
+    // garantie par un cartographe (D-42) perd sa garantie.
+    // ------------------------------------------------------------------
+    $app->put('/cartographies/{id:[0-9]+}/document', $wrap(function (Request $request, Response $response, array $args) use ($json, $repo, $maxDocumentBytes): Response {
+        $data = (array) ($request->getParsedBody() ?? []);
+        $userId = (int) $request->getAttribute('userId');
+        $id = (int) $args['id'];
+
+        $type = $repo()->typeOwnedBy($id, $userId);
+        if ($type === null) {
+            return $json($response, ['error' => 'Cartographie introuvable'], 404);
+        }
+        if ($type !== 'partage') {
+            return $json($response, ['error' => 'Validation échouée', 'fields' => ['type' => 'Seule une version partagée se publie à la place d’une autre']], 422);
+        }
+        if (Users::adultAttestedAt(Db::get(), $userId) === null) {
+            return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+        }
+        $document = $data['document'] ?? null;
+        $errors = [];
+        if (!\is_array($document) || $document === [] || array_is_list($document)) {
+            $errors['document'] = 'Document requis (objet JSON de cartographie)';
+        } elseif (\strlen(json_encode($document, JSON_UNESCAPED_UNICODE) ?: '') > $maxDocumentBytes) {
+            $errors['document'] = 'Document trop volumineux (8 Mo maximum)';
+        } else {
+            $errors += SharedVersion::validate($document);
+        }
+        if ($errors !== []) {
+            return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
+        }
+        $titre = trim((string) $document['title']);
+
+        $pdo = Db::get();
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+            }
+            if (!$repo()->replaceSharedDocument($id, $userId, $titre, $document)) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Cartographie introuvable'], 404);
+            }
+            // Une version publiée par un cartographe portait sa garantie : le
+            // document change d'une autre main, elle tombe (cahier §8, D-42).
+            $garantieRemoved = (new Garanties($pdo))->removeForCartography($id);
+            Audit::record($pdo, $userId, 'shared_version_replaced', ['cartographyId' => $id] + ($garantieRemoved ? ['garantieRemoved' => true] : []));
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
+
+        $carto = $repo()->findForUser($id, $userId);
+        unset($carto['document']);
 
         return $json($response, $carto);
     }))->add($apprenant);

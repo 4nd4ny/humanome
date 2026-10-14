@@ -2,7 +2,8 @@
 // hand and views subscribe to `hashchange`. Canonical routes:
 //
 //   #/                      home
-//   #/merge                 chronological (merge) view
+//   #/cartographie[/…]      ultimate cartography interface (5 spaces, day view)
+//   #/cartographie-v3, #/merge  retired V3 pages (2026-10-14): redirect to #/cartographie
 //   #/jour/<iso>            day view, <iso> = AAAA-MM-JJ
 //   #/jour/<iso>?focus=<c>  idem with a competence code highlighted
 //   #/referentiel           public referentiel (7 pôles -> 61 compétences)
@@ -35,7 +36,7 @@ export function isValidIsoDate(value) {
  * @param {string} hash e.g. '#/jour/2026-03-15?focus=1.01' (leading '#' optional)
  * @returns {{name: 'home'}
  *   | {name: 'cartographie'}
- *   | {name: 'merge'}
+ *   | {name: 'redirect', to: string}
  *   | {name: 'day', date: string, focus: string | null}
  *   | {name: 'referentiel', code: string | null}
  *   | {name: 'essayer'}
@@ -52,9 +53,23 @@ export function parseHash(hash) {
   const query = queryIndex === -1 ? '' : raw.slice(queryIndex + 1)
 
   if (path === '' || path === '/') return { name: 'home' }
-  // Interface V3 de cartographie ipsative (remplace l'ancienne vue merge).
+  // Interface ultime de cartographie (docs/cartographie-ultime, journal D-2) :
+  // #/cartographie et ses espaces #/cartographie/<espace>, plus la journée
+  // seule #/cartographie/jour/<iso>[?focus=<code>].
   if (path === '/cartographie') return { name: 'cartographie' }
-  if (path === '/merge') return { name: 'merge' }
+  const cartoSpace = /^\/cartographie\/(gestionnaire|comparaison|tableau-de-bord|dialogue|export|partage)$/.exec(path)
+  if (cartoSpace) return { name: 'cartographie', sub: cartoSpace[1] }
+  const cartoDay = /^\/cartographie\/jour\/([^/]+)$/.exec(path)
+  if (cartoDay) {
+    const date = decodeURIComponent(cartoDay[1])
+    if (isValidIsoDate(date)) {
+      const focus = new URLSearchParams(query).get('focus')
+      return { name: 'cartographie', sub: 'jour', date, focus: focus === null || focus === '' ? null : focus }
+    }
+  }
+  // Anciennes pages de l'interface V3, retirées le 2026-10-14 (décision de
+  // Christian) : leurs adresses renvoient vers l'interface ultime.
+  if (path === '/cartographie-v3' || path === '/merge') return { name: 'redirect', to: '#/cartographie' }
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }
   if (path === '/compte') return { name: 'account', section: null }
@@ -92,9 +107,11 @@ export function parseHash(hash) {
   const espaceMatch = /^\/espace\/(.+)$/.exec(path)
   if (espaceMatch) return { name: 'espace', section: decodeURIComponent(espaceMatch[1]) }
 
-  // Lien de partage employeur (P8) : #/partage/<token>
-  const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})$/.exec(path)
-  if (shareMatch) return { name: 'share', token: shareMatch[1] }
+  // Lien de partage employeur (P8) : #/partage/<token> ; lien SANS mot de
+  // passe d'une version partagée (interface ultime, §12) :
+  // #/partage/<token>/ouvert — la version s'ouvre directement.
+  const shareMatch = /^\/partage\/([A-Za-z0-9_-]{10,})(\/ouvert)?$/.exec(path)
+  if (shareMatch) return shareMatch[2] ? { name: 'share', token: shareMatch[1], open: true } : { name: 'share', token: shareMatch[1] }
 
   // Espace cartographe (P9) : #/cartographe[/<section>]
   if (path === '/cartographe') return { name: 'cartographe', section: null }

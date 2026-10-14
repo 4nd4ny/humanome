@@ -6,8 +6,9 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node ../scripts/generate-fiches.mjs && node ../scripts/build-twin6-package.mjs",
+    "prebuild": "node ../scripts/generate-fiches.mjs && node ../scripts/build-twin6-package.mjs && node scripts/build-viewer.mjs",
     "build": "vite build",
+    "build:viewer": "node scripts/build-viewer.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:usecases": "vitest run test/usecases",
@@ -25,6 +26,7 @@
     "@playwright/test": "^1.61.1",
     "@testing-library/react": "^16.1.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "fake-indexeddb": "^6.0.1",
     "jsdom": "^25.0.1",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"

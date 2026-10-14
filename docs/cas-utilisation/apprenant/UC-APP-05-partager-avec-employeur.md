@@ -1,13 +1,40 @@
 # UC-APP-05 — Partager une cartographie avec un employeur
 
+> **Mise à jour du 2026-10-14 : ancien partage retiré** (décision de
+> Christian ; journal de la cartographie, D-43). On ne crée plus de lien vers
+> une cartographie du site (journée, parcours, Twin9) :
+> `POST /api/cartographies/{id}/share` répond `422 {code: 'share_retired'}`
+> pour tout autre type que `partage`. Le partage passe par l'interface de
+> cartographie : dans « Mes cartographies », **« Partager depuis
+> l'interface »** ouvre la cartographie dans un nouveau jeu de l'interface,
+> à son titre, à l'espace Partage (une analyse Twin9 passe d'abord par
+> l'adaptateur du moteur ; sans journée datée, un message et rien ne part).
+> L'apprenant y compose une **version partagée** (réservée aux adultes,
+> attestation, mot de passe facultatif — voir l'extension en fin de fiche),
+> que son cartographe peut aussi publier **avec sa garantie** sur son code de
+> demande (D-42) ; la page de relecture du cartographe offre « Ouvrir dans
+> l'interface de cartographie » pour la cartographie ou la révision
+> consultée. Les liens **déjà créés** restent servis jusqu'à leur expiration
+> ou leur révocation : le bouton « Partager » devient **« Liens déjà
+> créés »** (liste, révocation ; un lien échu s'affiche « expiré le », sans
+> « Révoquer »). Tests : côté API, F01 et F10 réécrits (`422
+> share_retired`), F03–F05 portent sur des liens créés avant ; F02, F06 et
+> F07 (règles de création) retirés. Côté front, U12 et U14 gardés, U17 et
+> U18 réécrits, U19–U22 ajoutés ; U07–U11, U13, U15 et U16 (création)
+> retirés ; F13, F14, F18–F20 et F22 réécrits, F24 et F25 ajoutés
+> (application complète) ; F11, F12, F15–F17, F21 et F23 (création)
+> retirés. Les deux anomalies de la fiche sont levées par le retrait. Les
+> tableaux de tests et les anomalies sont à jour ; le reste de la fiche
+> décrit l'état antérieur.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (compte actif, rôle `apprenant`) |
 | **Acteurs secondaires** | Employeur potentiel (destinataire du lien et du mot de passe, UC-EMP-01) |
-| **Portée** | humanome.xyz — espace apprenant `#/espace`, « Mes cartographies » → dialogue « Partager » ; API `/api/cartographies/{id}/share`, `/api/cartographies/{id}/shares`, `/api/shares/{shareId}` |
+| **Portée** | humanome.xyz — espace apprenant `#/espace`, « Mes cartographies » → « Partager depuis l'interface » (vers `#/cartographie/partage`) et dialogue « Liens déjà créés » ; API `/api/cartographies/{id}/share` (`422 share_retired` hors version partagée), `/api/cartographies/{id}/shares`, `/api/shares/{shareId}` |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.2 (partager sa cartographie validée), §3.6, §4.8, §6.4 (partage = décision explicite et individuelle, lien + mot de passe) ; journalisation minimale : principe RGPD 5 de `CLAUDE.md` (le §6.5 du cahier traite de l'open data) |
-| **Statut** | Implémenté (P8 / contrat M6) |
+| **Statut** | Création de liens retirée le 2026-10-14 (D-43) : gestion des liens déjà créés maintenue ; partage par l'interface de cartographie |
 
 ## Objectif
 
@@ -177,11 +204,13 @@ cartographie portant le badge « copie serveur ».
 
 | Couche | Élément | Rôle |
 |---|---|---|
-| Front | `web/src/views/espace/CartographiesPanel.jsx` | Bouton « Partager » (si `serverId`), ouverture/fermeture du dialogue |
-| Front | `web/src/views/espace/ShareDialog.jsx` — `handleCreate`, `handleRevoke`, `handleCopy`, `reloadLinks`, `absoluteShareUrl`, `SHARE_PASSWORD_MIN_LENGTH`, `SHARE_DEFAULT_EXPIRES_DAYS` | Formulaire, contrôles locaux, URL unique, liste, révocation |
+| Front | `web/src/views/espace/CartographiesPanel.jsx` — `handleShareInInterface` | « Partager depuis l'interface » ; « Liens déjà créés » (si `serverId`), ouverture/fermeture du dialogue |
+| Front | `web/src/lib/interface-handoff.js` — `interfaceFiles`, `cartographyFileName` | Remise d'une cartographie du site à l'interface (Twin9 adapté par `twin9ToMergeDocument`) |
+| Front | `web/src/App.jsx` — `openInSharingSpace` ; `web/src/carto/ui/CartoApp.jsx` (fichiers reçus) | Nouveau jeu au titre de la cartographie, espace Partage |
+| Front | `web/src/views/espace/ShareDialog.jsx` — `reloadLinks`, `handleRevoke`, `linkStatus` (de `carto/ui/shareApi.js`) | Liens déjà créés : liste, échéance, révocation |
 | Front | `web/src/router.js` — `parseHash` | Le fragment produit est la route publique `share` (UC-EMP-01) |
 | Front | `web/src/api/client.js` — `apiFetch`, `ApiError` | Jeton CSRF, erreurs typées |
-| API | `api/src/routes/share.php` — `POST /api/cartographies/{id}/share`, `GET /api/cartographies/{id}/shares`, `DELETE /api/shares/{shareId}` | Validation, propriété, audit |
+| API | `api/src/routes/share.php` — `POST /api/cartographies/{id}/share`, `GET /api/cartographies/{id}/shares`, `DELETE /api/shares/{shareId}` | Propriété, retrait (`422 share_retired`), liste, révocation, audit |
 | API | `api/src/Middleware/CsrfMiddleware.php` (global, avant les gardes de route), `api/src/Middleware/RequireRole.php` | 403 CSRF ; 401/403, rôle relu en base (E3) — logique unitaire couverte par UC-CPT-02-U07 et UC-ADM-01-U10 |
 | Domaine | `api/src/Share/ShareLinks.php` — `create`, `listForCartography`, `revokeForUser` | Jeton haché, liste sans secret, révocation datée |
 | Domaine | `api/src/Cartographies/CartographyRepository.php` — `ownedBy`, compteur `shares` | Garde de propriété, liens actifs |
@@ -199,19 +228,15 @@ cartographie portant le badge « copie serveur ».
 | UC-APP-05-U03 | `ShareLinks::listForCartography` | Clés de dates seulement, ordre de création, révoqués/expirés inclus (RG5) | idem |
 | UC-APP-05-U04 | `ShareLinks::revokeForUser` | Propriété, idempotence, première date conservée (RG6, RG7) | idem |
 | UC-APP-05-U05 | `CartographyRepository::ownedBy`, compteur `shares` | Garde de propriété ; ni révoqués ni expirés comptés, dans la liste comme dans le détail (RG5) | idem |
-| UC-APP-05-U06 | `Audit::record` | Stocke les détails fournis tels quels (JSON), anonymisation à la purge (RG8) — la garantie « identifiants seulement » est portée par UC-APP-05-F01 | idem |
-| UC-APP-05-U07 | `SHARE_PASSWORD_MIN_LENGTH`, `SHARE_DEFAULT_EXPIRES_DAYS` | 8 et 90, alignés sur l'API | `web/test/usecases/unit/uc-app-05-partager-avec-employeur.test.jsx` |
-| UC-APP-05-U08 | `absoluteShareUrl` | Origine + chemin de déploiement + `#/partage/`, repli relatif | idem |
-| UC-APP-05-U09 | `parseHash` | Le fragment produit ouvre la route `share` au même jeton | idem |
-| UC-APP-05-U10 | `ShareDialog` (isolé) — `handleCreate` | Expiration vide / 0 / 366 / négative refusée sans requête | idem |
-| UC-APP-05-U11 | `ShareDialog` (isolé) — `handleCreate` | Mot de passe contrôlé d'abord, puis envoi d'un entier | idem |
-| UC-APP-05-U12 | `ShareDialog` (isolé) — liste | Dates françaises, « Révoquer » ou « révoqué le » ; un jeton ou une URL parasites dans la réponse ne sont jamais rendus | idem |
-| UC-APP-05-U13 | `ShareDialog` (isolé) — `handleCreate` | Anomalie 2 : « 1e2 » (valide pour la validation native) part comme `expiresInDays: 1`, « 3.65e2 » comme 3 — comportement actuel figé | idem |
+| UC-APP-05-U06 | `Audit::record` | Stocke les détails fournis tels quels (JSON), anonymisation à la purge (RG8) — la garantie « identifiants seulement » de la route est vérifiée par `api/tests/CartoPartageTest.php` (liens avec et sans mot de passe d'une version partagée) | idem |
+| UC-APP-05-U12 | `ShareDialog` (isolé) — liste | Dates françaises, « Révoquer » ou « révoqué le » ; un jeton ou une URL parasites dans la réponse ne sont jamais rendus | `web/test/usecases/unit/uc-app-05-partager-avec-employeur.test.jsx` |
 | UC-APP-05-U14 | `ShareDialog` (isolé) — `handleRevoke` | `DELETE shares/{id}` puis rechargement ; échec (`401` compris) → message brut, lien toujours révocable | idem |
-| UC-APP-05-U15 | `ShareDialog` (isolé) — `handleCopy` | Refus du presse-papiers → libellé inchangé ; succès → « Lien copié » avec l'URL affichée | idem |
-| UC-APP-05-U16 | `ShareDialog` (isolé) — `handleCreate` | `401` → « Session expirée… » ; `422` → « Validation échouée » seul, mot de passe conservé | idem |
-| UC-APP-05-U17 | `apiFetch` | Jeton CSRF sur `POST …/share` et `DELETE shares/{id}`, jamais sur `GET …/shares` | idem |
-| UC-APP-05-U18 | `CartographiesPanel` (isolé) | « Partager » seulement si `serverId` ; le bouton ouvre puis referme le dialogue | idem |
+| UC-APP-05-U17 | `apiFetch` | Jeton CSRF sur `DELETE shares/{id}`, jamais sur `GET …/shares` | idem |
+| UC-APP-05-U18 | `CartographiesPanel` (isolé) | « Liens déjà créés » seulement si `serverId`, `aria-expanded`, ouvre puis referme le dialogue ; « Partager depuis l’interface » pour toutes ; plus de « Partager » | idem |
+| UC-APP-05-U19 | `ShareDialog` (isolé) — retrait | Le dialogue annonce le retrait ; ni mot de passe, ni expiration, ni formulaire, ni bouton de création ; seul `GET …/shares` part | idem |
+| UC-APP-05-U20 | `ShareDialog` (isolé) — renvoi | « Partager depuis l’interface » seulement avec le rappel, qui est appelé | idem |
+| UC-APP-05-U21 | `ShareDialog` (isolé) — échéance | Lien échu : « expiré le », sans « Révoquer » ; actif et révoqué inchangés (la révocation prime) | idem |
+| UC-APP-05-U22 | `CartographiesPanel` — `handleShareInInterface`, `lib/interface-handoff.js` | Journée remise telle quelle (nom de fichier, JSON, titre du jeu) ; Twin9 adapté par `twin9ToMergeDocument` ; sans journée datée : message, rien ne part | idem |
 
 `RequireRole` et `CsrfMiddleware` : logique unitaire couverte par
 UC-ADM-01-U10 et UC-CPT-02-U07.
@@ -220,38 +245,33 @@ UC-ADM-01-U10 et UC-CPT-02-U07.
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-APP-05-F01 | Nominal | API | `201 {shareId, token, url}`, empreintes en base, audit sans secret, liste sans jeton, lien opérant | `api/tests/UseCases/Functional/UcApp05PartagerEmployeurTest.php` |
-| UC-APP-05-F02 | A1 | API | Défaut 90 (absent ou `null`), bornes 1 et 365 | idem |
-| UC-APP-05-F03 | A2 | API | `204`, `revokedAt`, audit, `404` employeur, idempotence (date d'origine, reculée, conservée) | idem |
-| UC-APP-05-F04 | A3 | API | Deux liens indépendants | idem |
-| UC-APP-05-F05 | A4 | API | Lien expiré listé, non compté, `404` employeur | idem |
-| UC-APP-05-F06 | E1 | API | Mot de passe absent / non chaîne / < 8 points de code (y compris astraux) / > 1024 octets → `422` ; 1024 octets → `201` | idem |
-| UC-APP-05-F07 | E2 | API | Expiration 0, 366, négative, chaîne, décimale, booléen → `422` | idem |
+| UC-APP-05-F01 | Retrait | API | `422 share_retired` pour une journée, un parcours ou une analyse Twin9, quel que soit le corps ; rien n'est écrit ni audité | `api/tests/UseCases/Functional/UcApp05PartagerEmployeurTest.php` |
+| UC-APP-05-F03 | A2 | API | Lien créé avant : `204`, `revokedAt`, audit, `404` employeur, idempotence (date d'origine conservée) | idem |
+| UC-APP-05-F04 | A3 | API | Plusieurs liens créés avant, listés sans jeton, révoqués indépendamment | idem |
+| UC-APP-05-F05 | A4 | API | Lien créé avant et expiré : listé, non compté, `404` employeur | idem |
 | UC-APP-05-F08 | E4 | API | Cartographie ou lien d'autrui / inconnu → `404`, rien ne change | idem |
 | UC-APP-05-F09 | E3 | API | `401` sans session, `403` sans CSRF, `403 "Rôle insuffisant"` sans rôle sur POST, GET et DELETE ; sans rôle ni jeton → `403` CSRF (ordre des gardes) | idem |
-| UC-APP-05-F10 | Anomalie 1 | API | Cartographie `privee` partagée (`201`) et consultable — comportement actuel figé | idem |
-| UC-APP-05-F11 | Nominal | IHM | Dialogue, 90 j par défaut, POST avec CSRF, URL absolue unique, liste, copie | `web/test/usecases/functional/uc-app-05-partager-avec-employeur.test.jsx` |
-| UC-APP-05-F12 | A1 | IHM | 30 jours transmis et affichés | idem |
-| UC-APP-05-F13 | A2, A3 | IHM | DELETE avec CSRF, « révoqué le », l'autre lien reste révocable | idem |
-| UC-APP-05-F14 | A5 (+ anomalie 1) | IHM | Pas de « Partager » sans copie serveur ; offert pour une copie privée | idem |
-| UC-APP-05-F15 | A6 | IHM | Réouverture : plus d'URL, dates seules | idem |
-| UC-APP-05-F16 | E1 | IHM | Refus local, aucune requête | idem |
-| UC-APP-05-F17 | E2 | IHM | 0 / 400 jours bloqués par la validation native (pas d'alerte du garde JavaScript), aucune requête | idem |
-| UC-APP-05-F18 | E3 | IHM | 401 : création → « Session expirée : reconnectez-vous puis réessayez. » ; liste → « Authentification requise » brut | idem |
+| UC-APP-05-F10 | Anomalie 1 (levée) | API | Une cartographie `privee` ne se partage pas plus qu'une autre (`422 share_retired`) | idem |
+| UC-APP-05-F13 | A2, A3 | IHM | « Liens déjà créés » : DELETE avec CSRF, « révoqué le », l'autre lien reste révocable | `web/test/usecases/functional/uc-app-05-partager-avec-employeur.test.jsx` |
+| UC-APP-05-F14 | A5 | IHM | Pas de « Liens déjà créés » sans copie serveur ; offert pour une copie privée ; plus de « Partager » | idem |
+| UC-APP-05-F18 | E3 | IHM | 401 au chargement des liens → « Authentification requise » brut | idem |
 | UC-APP-05-F19 | E4 | IHM | Copie retirée ailleurs → « Cartographie introuvable » | idem |
 | UC-APP-05-F20 | E5 | IHM | Révocation en échec : message, lien toujours actif | idem |
-| UC-APP-05-F21 | E6 | IHM | Presse-papiers refusé : bouton inchangé, URL visible | idem |
-| UC-APP-05-F22 | A4 (limite) | IHM | Lien expiré listé avec « Révoquer », sans mention « expiré » | idem |
-| UC-APP-05-F23 | E1 | IHM | Mot de passe admis localement mais refusé par l'API (caractères astraux, > 1024 octets) → requête partie, « Validation échouée » seul, aucun lien | idem |
+| UC-APP-05-F22 | A4 | IHM | Lien échu : « expiré le », sans « Révoquer » | idem |
+| UC-APP-05-F24 | Nominal (retrait) | IHM | Application complète : « Partager depuis l’interface » → `#/cartographie/partage`, nouveau jeu au titre de la cartographie (une journée), espace Partage courant, attestation d'abord ; aucune requête de partage | idem |
+| UC-APP-05-F25 | Retrait | IHM | Application complète : « Liens déjà créés » annonce le retrait, sans formulaire ; son « Partager depuis l’interface » mène au même endroit | idem |
 
 ### Tests existants liés (non-régression)
 
-- `api/tests/ShareTest.php` — hachage, validation, liste, révocation, consultation publique.
+- `api/tests/ShareTest.php` — hachage, liste, révocation, consultation publique (liens créés avant le retrait), refus `share_retired`.
 - `api/tests/CartographiesCsrfTest.php` — CSRF sur `POST …/share` et `DELETE /api/shares/{id}`.
 - `api/tests/CartographiesPurgeTest.php` — la purge du compte tue les liens (et anonymise `share_created`).
 - `api/tests/MaintenanceTest.php` et UC-SYS-03-U01 — purge des liens expirés ou révoqués après 30 jours.
-- `web/src/views/espace/CartographiesPanel.test.jsx` — bloc « partage par lien + mot de passe ».
-- `web/e2e/parcours-apprenant.e2e.js` — étape « Partage : lien + mot de passe, expiration par défaut (90 jours) ».
+- `web/src/views/espace/CartographiesPanel.test.jsx` — bloc « ancien partage retiré (D-43) : liens déjà créés, partage depuis l’interface ».
+- `web/src/views/cartographe/RelectureSection.test.jsx` — « ouvrir dans l’interface de cartographie » (cartographie ou révision consultée, avec leur titre).
+- `api/tests/ShareTest.php`, `api/tests/CartoPartageTest.php` — `422 share_retired` hors version partagée ; les liens créés avant (helper `AuthTestBase::legacyShareLink`) restent servis, listés et révocables.
+- `web/e2e/parcours-apprenant.e2e.js` — étape « Partage depuis l’interface : attestation, version partagée publiée, lien + mot de passe ».
+- `web/e2e/parcours-cartographe.e2e.js` — ancien partage refusé, code de demande, révision garantie ouverte dans l'interface, version publiée avec la garantie, lue par l'employeur.
 - Consultation par l'employeur : voir [UC-EMP-01](../employeur/UC-EMP-01-consulter-cartographie-partagee.md).
 
 ### Exécuter
@@ -263,35 +283,58 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-05
 
 ## Anomalies constatées
 
-1. **La visibilité « publique » n'est pas une condition du partage.** Le
-   chapitre 6 de la formation apprenant (« Confidentialité et partage »)
-   présente « Publique (partageable) » comme « l'état requis pour créer un
-   lien de partage employeur », et le menu la libelle « (partageable) ». Or ni
-   l'API (`POST /api/cartographies/{id}/share` ne lit pas `visibility`) ni
-   l'IHM (« Partager » offert dès qu'il y a une copie serveur) ne l'exigent :
-   une cartographie **privée** se partage et s'ouvre chez l'employeur (le
-   parcours e2e partage d'ailleurs une cartographie restée privée). Soit la
-   règle est à implémenter, soit la documentation est à corriger. Figé par
-   UC-APP-05-F10 et UC-APP-05-F14.
-2. **Expiration en notation scientifique tronquée sans avertissement.** Le
-   champ « Expiration (jours) » est un `input type=number` : la validation
-   native accepte « 1e2 » (100) ou « 3.65e2 » (365), mais `handleCreate`
-   convertit par `Number.parseInt(days, 10)`, qui s'arrête au « e » : le lien
-   part avec `expiresInDays: 1` (ou 3) et expire bien plus tôt que la durée
-   saisie, sans aucun message. Figé par UC-APP-05-U13.
+Les deux anomalies relevées ici sont **levées par le retrait du 2026-10-14**
+(D-43) : on ne crée plus de lien vers une cartographie du site.
+
+1. ~~**La visibilité « publique » n'est pas une condition du partage.**~~
+   Une cartographie privée ne se partage plus, pas plus qu'une autre
+   (`422 share_retired`, UC-APP-05-F10). La version partagée de l'interface
+   est, elle, toujours stockée en visibilité `privee` : seul le lien, voulu
+   par son auteur, l'ouvre.
+2. ~~**Expiration en notation scientifique tronquée sans avertissement.**~~
+   Le formulaire de création de `ShareDialog` est supprimé (UC-APP-05-U13
+   retiré). Le formulaire de lien de l'interface envoie `Number(jours)`.
 
 ## Limites
 
-- L'IHM ne distingue pas un lien **expiré** d'un lien actif : il reste listé
-  sous « Liens actifs » avec « Révoquer » (le serveur, lui, le traite comme
-  mort). Figé par UC-APP-05-F22.
+- Les liens créés avant le retrait restent servis jusqu'à leur échéance
+  (90 jours par défaut) : on peut les révoquer un à un dans « Liens déjà
+  créés » ; aucun n'est révoqué d'office.
 - Une re-révocation (idempotente) journalise un second `share_revoked`.
-- Un refus `422` du serveur (mot de passe trop long, caractères astraux) n'est
-  affiché que « Validation échouée » : le détail `fields` n'est pas montré.
-- Seule la création traduit le `401` ; la liste et la révocation affichent
-  « Authentification requise » tel quel.
-- Le mot de passe d'un lien ne peut pas être changé ni l'expiration prolongée :
-  il faut révoquer et recréer.
-- Le cahier (§3.2) parle de partager une cartographie **validée** : aucune
-  garantie cartographe n'est exigée pour créer un lien ; si elle existe, elle
-  est montrée à l'employeur (UC-EMP-01 A1).
+- La liste et la révocation affichent « Authentification requise » tel quel
+  (sans traduction du `401`).
+- « Partager depuis l'interface » crée un **nouveau jeu** dans l'interface à
+  chaque clic : un second clic donne un second jeu (à supprimer depuis le
+  gestionnaire de l'interface).
+- Une analyse Twin9 sans attestation datée ne peut pas s'ouvrir dans
+  l'interface (rien à placer sur la ligne de temps) : message, rien ne part.
+
+## Extension — version partagée de l'interface ultime (spécification §12)
+
+L'interface ultime de cartographie (`#/cartographie/partage`, journal
+`docs/cartographie-ultime/JOURNAL.md`, D-30 à D-34) réutilise ces routes pour
+un type de cartographie dédié, `partage`, **réservé aux adultes** :
+
+- `POST /api/cartographies` avec `type: 'partage'` et
+  `POST /api/cartographies/{id}/share` sur une telle cartographie répondent
+  `403 {code: 'adult_required'}` tant que le compte n'a pas attesté sa
+  majorité (`PUT /api/auth/me/adult {adult: true}`) ; retirer l'attestation
+  efface aussitôt ces versions et leurs liens ;
+- le document est un instantané `carto-partage` vérifié par liste blanche
+  (`api/src/Share/SharedVersion.php`), toujours en visibilité `privee` ;
+- le mot de passe d'un tel lien est **facultatif** : sans mot de passe, l'URL
+  renvoyée se termine par `/ouvert` et `GET /api/share/open` (jeton dans
+  l'en-tête `X-Share-Token`) sert la version ; une version publiée est figée
+  (titre compris) et hors du module de relecture du cartographe ; une
+  nouvelle version se publie, par défaut, **à la place** de la plus récente
+  (`PUT /api/cartographies/{id}/document`) : même lien, ancien document
+  effacé ;
+- l'auteur lit le journal des accès d'un lien
+  (`GET /api/shares/{shareId}/consultations` : dates seulement).
+
+Depuis le 2026-10-14 (D-43), c'est le **seul** partage par lien : les
+cartographies des autres types n'en reçoivent plus (`422 share_retired`). Une
+version partagée peut être publiée par le cartographe de la personne, avec sa
+garantie, sur le code de demande qu'elle lui donne (D-42). Tests :
+`api/tests/CartoPartageTest.php`, `api/tests/CartoGarantieTest.php`,
+`web/src/carto/ui/P6.test.jsx`, `web/src/carto/ui/Garantie.test.jsx`.

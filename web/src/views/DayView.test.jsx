@@ -123,11 +123,11 @@ describe('findDayNode', () => {
 })
 
 describe('DayView', () => {
-  it('badge date, retour merge et navigation précédent/suivant', async () => {
+  it('badge date, retour à la cartographie et navigation précédent/suivant', async () => {
     renderView()
     expect(screen.getByTestId('day-badge').textContent).toBe('Journée du 01/01/2026')
     expect(screen.getByRole('link', { name: /Retour à la cartographie/ }).getAttribute('href')).toBe(
-      '#/merge',
+      '#/cartographie',
     )
     await waitFor(() => expect(screen.getByText('Portrait kairos de la journée.')).toBeDefined())
     expect(screen.getByRole('link', { name: /22\/12\/2025/ }).getAttribute('href')).toBe(

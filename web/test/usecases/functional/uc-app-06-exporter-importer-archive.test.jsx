@@ -31,7 +31,11 @@ import day06 from '../../../../schemas/fixtures/cartographie-jour-2026-01-06.jso
 import day07 from '../../../../schemas/fixtures/cartographie-jour-2026-01-07.json'
 import merge3 from '../../../../schemas/fixtures/cartographie-merge-3-jours.json'
 import referentielFixture from '../../../../schemas/fixtures/referentiel-respire-v7.json'
-import { createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
+import { FakeIDBKeyRange, createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
+import masterFixture from '../../../../schemas/fixtures/carto/competency-map-master-exemple.json'
+import { createCartoStore as createInterfaceStore } from '../../../src/carto/core/store.js'
+import { importFiles as importIntoInterface } from '../../../src/carto/core/import.js'
+import { createDataset as createInterfaceDataset } from '../../../src/carto/core/model.js'
 import { jsonResponse, routedFetch } from '../support/appl-http.js'
 import { portfolioText } from '../support/appl-llm.js'
 
@@ -138,6 +142,7 @@ beforeEach(() => {
   // Cache de module du référentiel vidé : chaque scénario refait son chargement.
   clearReferentielCache()
   vi.stubGlobal('indexedDB', idb.factory)
+  vi.stubGlobal('IDBKeyRange', FakeIDBKeyRange)
 })
 
 afterEach(() => {
@@ -415,5 +420,56 @@ describe('UC-APP-06 — anomalies figées', () => {
     // …puis INVENTÉE à la réexportation : id et version du référentiel embarqué.
     expect(carto.referentielId).toBe('respire')
     expect(carto.referentielVersion).toBe(getReferentiel().version)
+  })
+})
+
+describe('UC-APP-06 — interface de cartographie (archive 1.1.0, décision du 2026-10-14 : tout sauvegarder)', () => {
+  /** Le jeu « Lou » de l'interface (#/cartographie) et la démonstration, dans le stockage IndexedDB de l'interface. */
+  async function seedInterface() {
+    const store = createInterfaceStore()
+    const base = createInterfaceDataset({ datasetId: masterFixture.datasetId, title: masterFixture.title, referential: masterFixture.referential, now: masterFixture.createdAt })
+    await store.commit(await importIntoInterface([{ path: 'lou.json', text: JSON.stringify(masterFixture) }], base, { now: masterFixture.createdAt }))
+    await store.commit({ dataset: { ...createInterfaceDataset({ datasetId: 'ds-demo', title: 'Démonstration', referential: masterFixture.referential }), origin: 'demo' } })
+  }
+
+  it('UC-APP-06-F17 — les jeux de l’interface partent dans l’archive (démonstration exceptée) et reviennent sur un navigateur neuf ; réimporter ne restaure rien', async () => {
+    await seedInterface()
+    stubNetwork()
+    const downloads = captureDownloads()
+    const first = openDashboard()
+    await exportAll()
+    expect((await notice()).textContent).toMatch(
+      /^Archive téléchargée \(humanome-export-\d{4}-\d{2}-\d{2}\.json\) : 0 portfolio\(s\), 0 cartographie\(s\), 1 jeu\(x\) de l’interface de cartographie\.$/,
+    )
+    const archive = await downloads.json()
+    expect(archive.schemaVersion).toBe('1.1.0')
+    expect(validateDocument('archive-export', archive)).toEqual({ valid: true, errors: [] })
+    expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-lou'])
+    // Tout : le texte du portfolio, les réponses au jury, le carnet du dialogue.
+    const [jeu] = archive.jeuxCartographie
+    expect(jeu.details['2025-12-22'].portfolio.text).toContain('Ce matin j’ai relu mes notes')
+    expect(Object.values(jeu.reviews).map((r) => r.note)).toEqual(['Pas seulement deux sources.'])
+    expect(jeu.reflections).toHaveLength(2)
+    first.unmount()
+
+    // Autre navigateur : stockage local vide.
+    idb.reset()
+    stubNetwork({ me: null })
+    const second = openDashboard({ user: null })
+    const text = JSON.stringify(archive)
+    await importFile(text, 'humanome-export.json')
+    expect((await notice()).textContent).toBe(
+      'Import terminé : 0 portfolio(s), 0 cartographie(s) et 1 jeu(x) de l’interface de cartographie restaurés (les doublons sont ignorés).',
+    )
+    const back = await createInterfaceStore().exportAll('ds-lou')
+    expect(back.details).toEqual(masterFixture.details)
+    expect(back.dataset.reflections).toEqual(masterFixture.reflections)
+    expect(back.dataset.reviews).toEqual(masterFixture.reviews)
+    expect(await createInterfaceStore().loadDataset('ds-demo')).toBeNull()
+    second.unmount()
+
+    openDashboard({ user: null })
+    await importFile(text, 'humanome-export.json')
+    expect((await notice()).textContent).toBe('Import terminé : 0 portfolio(s) et 0 cartographie(s) restaurés (les doublons sont ignorés).')
   })
 })

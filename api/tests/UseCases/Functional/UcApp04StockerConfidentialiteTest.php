@@ -202,9 +202,8 @@ final class UcApp04StockerConfidentialiteTest extends CartographeTestCase
         self::assertSame(201, $revision->getStatusCode(), (string) $revision->getBody());
         self::assertSame(201, $this->as_($camille, 'POST', $cartoPath . '/garantie', ['revisionId' => self::json($revision)['revisionId']])->getStatusCode());
 
-        $share = $this->as_($this->maya, 'POST', $cartoPath . '/share', ['password' => 'sesame-employeur']);
-        self::assertSame(201, $share->getStatusCode());
-        $token = (string) self::json($share)['token'];
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $token = self::legacyShareLink($id, 'sesame-employeur', 90, $this->maya['id'])['token'];
         // Contrôle positif : avant le retrait, le lien s'ouvre chez l'employeur.
         $this->cookieSid = null;
         $this->clientIp = '198.51.100.7';

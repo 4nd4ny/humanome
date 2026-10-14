@@ -1,19 +1,18 @@
-// Dialogue de partage employeur (P8.5, chantier C) — une cartographie AVEC
-// copie serveur peut être partagée par lien public + mot de passe (cahier
-// §3.6, §6.4 : décision explicite, individuelle, révocable). Le token est
-// stocké haché côté serveur : l'URL complète n'est affichée qu'UNE fois, à la
-// création ; la liste des liens actifs ne montre que les dates et l'état.
+// Liens de partage DÉJÀ CRÉÉS d'une cartographie du site (P8.5, chantier C).
+// L'ancien partage est RETIRÉ (décision du 2026-10-14, journal de la
+// cartographie D-43) : on ne crée plus de lien ici — le partage passe par une
+// version partagée de l'interface de cartographie (espace Partage). Les liens
+// créés avant restent servis jusqu'à leur expiration ; ce dialogue les liste
+// (dates et état, jamais le jeton, stocké haché) et permet de les révoquer.
 import { useCallback, useEffect, useState } from 'react'
-import { ApiError, apiFetch } from '../../api/client.js'
+import { apiFetch } from '../../api/client.js'
+import { linkStatus } from '../../carto/ui/shareApi.js'
 
-export const SHARE_PASSWORD_MIN_LENGTH = 8
-export const SHARE_DEFAULT_EXPIRES_DAYS = 90
+const DAY_MS = 24 * 60 * 60 * 1000
 
-/** URL absolue du lien de partage (routeur hash : origin + pathname + #/partage/). */
-export function absoluteShareUrl(token) {
-  const loc = globalThis.location
-  if (!loc) return `/#/partage/${token}`
-  return `${loc.origin}${loc.pathname}#/partage/${token}`
+/** Identifiant du dialogue d'une cartographie (aria-controls du bouton qui l'ouvre). */
+export function shareDialogId(entryId) {
+  return `share-dialog-${String(entryId).replace(/[^A-Za-z0-9_-]/g, '-')}`
 }
 
 /** @param {string} iso @returns {string} date française courte (JJ/MM/AAAA) */
@@ -28,17 +27,13 @@ function frShort(iso) {
  *   entry: {id: string, titre: string, serverId: number},
  *   fetchFn?: typeof fetch,   // test seam
  *   onClose: () => void,
+ *   onShareInInterface?: () => void, // ouvre la cartographie dans l'interface, espace Partage
+ *   now?: () => Date,         // test seam : un lien échu s'affiche « expiré », sans « Révoquer »
  * }} props
  */
-export default function ShareDialog({ entry, fetchFn, onClose }) {
+export default function ShareDialog({ entry, fetchFn, onClose, onShareInInterface, now = () => new Date() }) {
   const [links, setLinks] = useState(null) // null = chargement
   const [linksError, setLinksError] = useState(null)
-  const [password, setPassword] = useState('')
-  const [days, setDays] = useState(String(SHARE_DEFAULT_EXPIRES_DAYS))
-  const [busy, setBusy] = useState(false)
-  const [formError, setFormError] = useState(null)
-  const [created, setCreated] = useState(null) // {url}
-  const [copied, setCopied] = useState(false)
 
   const apiOptions = fetchFn ? { fetchFn } : {}
 
@@ -60,42 +55,6 @@ export default function ShareDialog({ entry, fetchFn, onClose }) {
     reloadLinks()
   }, [reloadLinks])
 
-  async function handleCreate(event) {
-    event.preventDefault()
-    const expiresInDays = Number.parseInt(days, 10)
-    if (password.length < SHARE_PASSWORD_MIN_LENGTH) {
-      setFormError(
-        `Le mot de passe du lien doit compter au moins ${SHARE_PASSWORD_MIN_LENGTH} caractères.`,
-      )
-      return
-    }
-    if (!Number.isInteger(expiresInDays) || expiresInDays < 1 || expiresInDays > 365) {
-      setFormError('L’expiration doit être comprise entre 1 et 365 jours.')
-      return
-    }
-    setBusy(true)
-    setFormError(null)
-    try {
-      const data = await apiFetch(`cartographies/${entry.serverId}/share`, {
-        method: 'POST',
-        body: { password, expiresInDays },
-        ...apiOptions,
-      })
-      setCreated({ url: absoluteShareUrl(data.token) })
-      setCopied(false)
-      setPassword('') // jamais réaffiché ni conservé
-      await reloadLinks()
-    } catch (error) {
-      setFormError(
-        error instanceof ApiError && error.status === 401
-          ? 'Session expirée : reconnectez-vous puis réessayez.'
-          : error.message,
-      )
-    } finally {
-      setBusy(false)
-    }
-  }
-
   async function handleRevoke(shareId) {
     try {
       await apiFetch(`shares/${shareId}`, { method: 'DELETE', ...apiOptions })
@@ -106,95 +65,63 @@ export default function ShareDialog({ entry, fetchFn, onClose }) {
     }
   }
 
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(created.url)
-      setCopied(true)
-    } catch {
-      setCopied(false) // l'URL reste sélectionnable à la main
-    }
-  }
-
   return (
-    <section className="share-dialog" aria-label={`Partage de ${entry.titre}`}>
+    <section id={shareDialogId(entry.id)} className="share-dialog" aria-label={`Liens de partage de ${entry.titre}`}>
       <div className="share-dialog-head">
-        <h3>Partager « {entry.titre} »</h3>
+        <h3>Liens de partage de « {entry.titre} »</h3>
         <button type="button" className="button" onClick={onClose}>
           Fermer
         </button>
       </div>
       <p className="share-dialog-hint">
-        Le lien ouvre la cartographie en lecture seule, protégée par le mot de passe que vous
-        choisissez. Transmettez ce mot de passe par un autre canal que le lien.
+        Le partage par lien de cette cartographie est retiré : on n’en crée plus de nouveau. Les
+        liens que vous avez déjà donnés restent valables jusqu’à leur expiration ; vous pouvez
+        les révoquer ici à tout moment. Pour montrer votre cartographie, partagez-la depuis
+        l’interface de cartographie : vous y choisissez ce qui part, et votre cartographe peut
+        la publier avec sa garantie.
       </p>
-
-      <form className="share-dialog-form" onSubmit={handleCreate}>
-        <label htmlFor={`share-password-${entry.id}`}>Mot de passe du lien (8 caractères min)</label>
-        <input
-          id={`share-password-${entry.id}`}
-          type="password"
-          autoComplete="new-password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          disabled={busy}
-        />
-        <label htmlFor={`share-days-${entry.id}`}>Expiration (jours)</label>
-        <input
-          id={`share-days-${entry.id}`}
-          type="number"
-          min="1"
-          max="365"
-          value={days}
-          onChange={(event) => setDays(event.target.value)}
-          disabled={busy}
-        />
-        <button type="submit" className="button button-primary" disabled={busy}>
-          {busy ? 'Création…' : 'Créer le lien de partage'}
-        </button>
-        {formError ? <p role="alert">{formError}</p> : null}
-      </form>
-
-      {created ? (
-        <div className="share-dialog-created" role="status">
-          <p>
-            Lien créé — copiez-le maintenant, il ne sera plus jamais affiché en entier :
-          </p>
-          <p>
-            <code className="share-url" data-testid="share-url">
-              {created.url}
-            </code>{' '}
-            <button type="button" className="button" onClick={handleCopy}>
-              {copied ? 'Lien copié' : 'Copier le lien'}
-            </button>
-          </p>
-        </div>
+      {onShareInInterface ? (
+        <p>
+          <button type="button" className="button button-primary" onClick={onShareInInterface}>
+            Partager depuis l’interface
+          </button>
+        </p>
       ) : null}
 
-      <h4>Liens actifs</h4>
+      <h4>Liens déjà créés</h4>
       {links === null ? <p role="status">Chargement des liens…</p> : null}
       {links !== null && links.length === 0 ? (
         <p className="share-dialog-empty">Aucun lien de partage pour cette cartographie.</p>
       ) : null}
       {links !== null && links.length > 0 ? (
         <ul className="share-links">
-          {links.map((link) => (
-            <li key={link.shareId}>
-              <span>
-                Créé le {frShort(link.createdAt)} — expire le {frShort(link.expiresAt)}
-              </span>
-              {link.revokedAt ? (
-                <span className="share-link-revoked">révoqué le {frShort(link.revokedAt)}</span>
-              ) : (
-                <button
-                  type="button"
-                  className="button button-danger"
-                  onClick={() => handleRevoke(link.shareId)}
-                >
-                  Révoquer
-                </button>
-              )}
-            </li>
-          ))}
+          {links.map((link) => {
+            // Le serveur ne sert plus un lien échu : on le dit. Son échéance est
+            // une heure du serveur, sans fuseau : « Révoquer » ne disparaît
+            // qu'un jour après, quand le lien est mort quel que soit le fuseau.
+            const at = now()
+            const expired = linkStatus(link, at) === 'expired'
+            const surelyExpired = linkStatus(link, new Date(at.getTime() - DAY_MS)) === 'expired'
+            return (
+              <li key={link.shareId}>
+                <span>
+                  Créé le {frShort(link.createdAt)} — {expired ? 'expiré le' : 'expire le'}{' '}
+                  {frShort(link.expiresAt)}
+                </span>
+                {link.revokedAt ? (
+                  <span className="share-link-revoked">révoqué le {frShort(link.revokedAt)}</span>
+                ) : surelyExpired ? null : (
+                  <button
+                    type="button"
+                    className="button button-danger"
+                    onClick={() => handleRevoke(link.shareId)}
+                  >
+                    Révoquer
+                  </button>
+                )}
+              </li>
+            )
+          })}
         </ul>
       ) : null}
       {linksError ? <p role="alert">{linksError}</p> : null}

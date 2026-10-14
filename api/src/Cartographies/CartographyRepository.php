@@ -97,6 +97,42 @@ final class CartographyRepository
     }
 
     /**
+     * Versions partagées du compte (interface ultime, §12), sans document,
+     * avec leur garantie quand un cartographe les a publiées à la demande de
+     * l'apprenant (journal D-42) : {par, date} ou null.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function listSharedVersionsForUser(int $userId): array
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT c.id, c.titre, c.created_at, c.updated_at,
+                    (SELECT COUNT(*) FROM share_links s
+                      WHERE s.cartographie_id = c.id
+                        AND s.revoked_at IS NULL
+                        AND (s.expires_at IS NULL OR s.expires_at > NOW())) AS shares,
+                    g.par AS garantie_par, g.created_at AS garantie_at
+               FROM cartographies c
+               LEFT JOIN cartography_garanties g ON g.cartographie_id = c.id
+              WHERE c.user_id = ? AND c.type = 'partage'
+              ORDER BY c.updated_at DESC, c.id DESC"
+        );
+        $stmt->execute([$userId]);
+
+        return array_map(static fn (array $row): array => [
+            'id' => (int) $row['id'],
+            'type' => 'partage',
+            'titre' => (string) $row['titre'],
+            'createdAt' => self::iso($row['created_at']),
+            'updatedAt' => self::iso($row['updated_at']),
+            'shares' => (int) $row['shares'],
+            'garantie' => $row['garantie_par'] === null
+                ? null
+                : ['par' => (string) $row['garantie_par'], 'date' => self::iso($row['garantie_at'])],
+        ], $stmt->fetchAll());
+    }
+
+    /**
      * Full cartography (document included) — owner only.
      *
      * @return array<string, mixed>|null
@@ -170,6 +206,31 @@ final class CartographyRepository
         return $stmt->rowCount() > 0 || $this->ownedBy($id, $userId);
     }
 
+    /**
+     * Nouvelle version partagée publiée À LA PLACE d'une autre (décision du
+     * 2026-10-14, journal D-33) : le document et son titre sont remplacés, les
+     * liens et le journal des accès restent. L'ancien document est effacé.
+     * Faux si la version n'existe pas, n'est pas au compte ou n'est pas une
+     * version partagée.
+     *
+     * @param array<string, mixed> $document
+     */
+    public function replaceSharedDocument(int $id, int $userId, string $titre, array $document): bool
+    {
+        $stmt = $this->pdo->prepare(
+            "UPDATE cartographies SET document = ?, titre = ?, updated_at = NOW()
+              WHERE id = ? AND user_id = ? AND type = 'partage'"
+        );
+        $stmt->execute([
+            json_encode($document, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+            $titre,
+            $id,
+            $userId,
+        ]);
+
+        return $stmt->rowCount() > 0 || $this->typeOwnedBy($id, $userId) === 'partage';
+    }
+
     /** Real purge: the row and its share_links (FK ON DELETE CASCADE, 004). */
     public function deleteForUser(int $id, int $userId): bool
     {
@@ -179,12 +240,35 @@ final class CartographyRepository
         return $stmt->rowCount() > 0;
     }
 
+    /**
+     * Efface toutes les versions partagées d'un compte (et leurs liens, par
+     * clé étrangère) : retrait de l'attestation de majorité (§12 : « pour les
+     * mineurs, ni copie serveur ni partage »). Renvoie le nombre de versions.
+     */
+    public function deleteSharedVersionsOf(int $userId): int
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM cartographies WHERE user_id = ? AND type = 'partage'");
+        $stmt->execute([$userId]);
+
+        return $stmt->rowCount();
+    }
+
     public function ownedBy(int $id, int $userId): bool
     {
         $stmt = $this->pdo->prepare('SELECT 1 FROM cartographies WHERE id = ? AND user_id = ?');
         $stmt->execute([$id, $userId]);
 
         return $stmt->fetchColumn() !== false;
+    }
+
+    /** Type d'une cartographie possédée (null si absente ou d'un autre compte). */
+    public function typeOwnedBy(int $id, int $userId): ?string
+    {
+        $stmt = $this->pdo->prepare('SELECT type FROM cartographies WHERE id = ? AND user_id = ?');
+        $stmt->execute([$id, $userId]);
+        $type = $stmt->fetchColumn();
+
+        return $type === false ? null : (string) $type;
     }
 
     /** Published prompt-package version -> FK id (null when unknown). */

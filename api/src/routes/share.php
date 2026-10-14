@@ -3,12 +3,24 @@
 declare(strict_types=1);
 
 /**
- * Employer sharing (P8, cahier §3.6): link + password, expiration,
- * revocation, and the PUBLIC consultation endpoint.
+ * Employer sharing (P8, cahier §3.6): link (password optional for a shared
+ * version), expiration, revocation, and the PUBLIC consultation endpoint.
  *
  * Owner side (`apprenant`, CSRF): create link on an owned cartography, list
- * links, revoke. Public side (no session, no account — §3.6): POST the
- * password against the token.
+ * links, read a link's access journal, revoke. Public side (no session, no
+ * account — §3.6): POST the password against the token.
+ *
+ * Since 2026-10-14 (cartography journal D-43) a link is created ONLY for a
+ * shared version (type `partage`): the historical share of the site's
+ * cartographies (jour, merge, twin9) is retired — 422 `share_retired`. Links
+ * created before stay served, listed and revocable until they expire.
+ *
+ * Shared versions of the ultimate cartography interface (type `partage`,
+ * spécification §12, routes/partage.php): creating their link requires the
+ * account's adult attestation (403 `adult_required`), the password is
+ * OPTIONAL (password_hash NULL), and a passwordless link is read with
+ * GET /api/share/open (token in the X-Share-Token header, never in the URL).
+ * Every public answer carries noindex + no-store.
  *
  * Anti-enumeration on the public side: unknown token, expired link and
  * revoked link all collapse into ONE identical 404, with a dummy
@@ -66,9 +78,46 @@ return function (App $app): void {
 
     $apprenant = RequireRole::any('apprenant');
 
+    /** Une cartographie partagée n'est jamais indexée ni mise en cache (§12.1). */
+    $noindex = static fn (Response $response): Response => $response
+        ->withHeader('X-Robots-Tag', 'noindex, nofollow, noarchive')
+        ->withHeader('Cache-Control', 'no-store');
+
+    /**
+     * Sert une cartographie partagée (lien consultable, mot de passe déjà
+     * vérifié s'il y en a un) : trace de consultation, garantie P9.
+     *
+     * @param array<string, mixed> $row ligne de ShareLinks::findByToken()
+     */
+    $serve = function (\PDO $pdo, array $row, Response $response) use ($json): Response {
+        // Monitoring (§6.5 : compteurs, jamais de contenu ni d'IP) : trace la
+        // consultation réussie — l'employeur consultant n'a pas de session.
+        // Elle nourrit aussi le journal des accès que voit l'apprenant (§12.1).
+        Audit::record($pdo, null, 'share_consulted', [
+            'cartographieId' => (int) $row['cartographie_id'],
+            'shareLinkId' => (int) $row['id'],
+        ]);
+
+        // P9: standing garantie of the shared cartography. When it freezes a
+        // revision, serve THAT document — never a later modification (§8).
+        $garanti = (new Garanties($pdo))->forShareLink((int) $row['id']);
+        $document = $garanti !== null && $garanti['revisionDocument'] !== null
+            ? $garanti['revisionDocument']
+            : ($row['document'] === null ? null : json_decode((string) $row['document'], true));
+
+        return $json($response, [
+            'titre' => (string) $row['titre'],
+            'type' => (string) $row['type'],
+            'document' => $document,
+            'garantie' => $garanti === null ? null : $garanti['garantie'],
+        ]);
+    };
+
     // ------------------------------------------------------------------
-    // POST /api/cartographies/{id}/share — {password (>= 8), expiresInDays
-    // (1..365, default 90)} -> 201 {shareId, token, url}. The clear token
+    // POST /api/cartographies/{id}/share — {expiresInDays (1..365, default
+    // 90), password? (>= 8)} -> 201 {shareId, token, url}. Une VERSION
+    // PARTAGÉE seulement (interface ultime, §12) : réservée aux comptes qui
+    // ont attesté leur majorité, mot de passe facultatif. The clear token
     // exists only in this response.
     // ------------------------------------------------------------------
     $app->post('/cartographies/{id:[0-9]+}/share', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
@@ -76,14 +125,38 @@ return function (App $app): void {
         $userId = (int) $request->getAttribute('userId');
         $cartoId = (int) $args['id'];
 
-        if (!(new CartographyRepository($pdo))->ownedBy($cartoId, $userId)) {
+        $type = (new CartographyRepository($pdo))->typeOwnedBy($cartoId, $userId);
+        if ($type === null) {
             return $json($response, ['error' => 'Cartographie introuvable'], 404);
+        }
+        // Ancien partage RETIRÉ (décision du 2026-10-14, journal de la
+        // cartographie D-43) : on ne partage plus par lien qu'une version
+        // partagée, réservée aux adultes. Les liens déjà créés vers les autres
+        // types restent servis jusqu'à leur expiration ou leur révocation.
+        if ($type !== 'partage') {
+            // The sentence is also the `error`: a tab still running the
+            // previous front end shows it as is.
+            $retired = 'Le partage par lien de cette cartographie est retiré : publiez une version partagée depuis l’interface de cartographie (espace Partage)';
+
+            return $json($response, [
+                'error' => $retired,
+                'code' => 'share_retired',
+                'fields' => ['type' => $retired],
+            ], 422);
+        }
+        if (Users::adultAttestedAt($pdo, $userId) === null) {
+            return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
         }
 
         $data = (array) ($request->getParsedBody() ?? []);
         $errors = [];
-        $password = \is_string($data['password'] ?? null) ? $data['password'] : '';
-        if (mb_strlen($password) < 8) {
+        $rawPassword = $data['password'] ?? null;
+        $password = \is_string($rawPassword) ? $rawPassword : '';
+        if ($rawPassword !== null && !\is_string($rawPassword)) {
+            $errors['password'] = 'Mot de passe invalide (texte attendu)';
+        } elseif ($password === '') {
+            $password = null; // lien sans mot de passe : le jeton (128 bits) suffit
+        } elseif (mb_strlen($password) < 8) {
             $errors['password'] = 'Le mot de passe doit contenir au moins 8 caractères';
         } elseif (\strlen($password) > 1024) {
             $errors['password'] = 'Mot de passe trop long';
@@ -96,20 +169,37 @@ return function (App $app): void {
             return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
         }
 
-        $links = new ShareLinks($pdo);
-        ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
+        // Attestation relue SOUS VERROU dans la transaction de l'insertion :
+        // un retrait simultané (qui efface les versions) ne laisse aucun lien.
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+            }
+            ['shareId' => $shareId, 'token' => $token] = (new ShareLinks($pdo))->create($cartoId, $password, $expiresInDays);
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
 
         // Counters and ids only — never the token, never the password (§6.5).
         Audit::record($pdo, $userId, 'share_created', [
             'cartographieId' => $cartoId,
             'shareId' => $shareId,
             'expiresInDays' => $expiresInDays,
+            'withPassword' => $password !== null,
         ]);
 
         return $json($response, [
             'shareId' => $shareId,
             'token' => $token,
-            'url' => '/#/partage/' . $token,
+            // Un lien sans mot de passe s'ouvre directement (#/partage/<jeton>/ouvert).
+            'url' => '/#/partage/' . $token . ($password === null ? '/ouvert' : ''),
         ], 201);
     }))->add($apprenant);
 
@@ -124,6 +214,21 @@ return function (App $app): void {
         }
 
         return $json($response, (new ShareLinks($pdo))->listForCartography($cartoId));
+    }))->add($apprenant);
+
+    // ------------------------------------------------------------------
+    // GET /api/shares/{shareId}/consultations — journal des accès d'un lien,
+    // visible par son auteur (§12.1) : dates seulement (ni IP, ni navigateur,
+    // ni identité — l'employeur n'a pas de compte). 404 si le lien n'est pas
+    // à lui. {shareId, count, lastAt, items: [{at}]} (200 dernières).
+    // ------------------------------------------------------------------
+    $app->get('/shares/{shareId:[0-9]+}/consultations', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
+        $log = (new ShareLinks(Db::get()))->consultationsForUser((int) $args['shareId'], (int) $request->getAttribute('userId'));
+        if ($log === null) {
+            return $json($response, ['error' => 'Lien de partage introuvable'], 404);
+        }
+
+        return $json($response, $log);
     }))->add($apprenant);
 
     // ------------------------------------------------------------------
@@ -156,7 +261,7 @@ return function (App $app): void {
     // document is that guaranteed revision (cahier §8: what is presented as
     // guaranteed is exactly what was signed).
     // ------------------------------------------------------------------
-    $app->post('/share/{token}', $wrap(function (Request $request, Response $response, array $args) use ($json, $publicAttemptsPerHour): Response {
+    $app->post('/share/{token}', $wrap(function (Request $request, Response $response, array $args) use ($json, $publicAttemptsPerHour, $noindex, $serve): Response {
         $pdo = Db::get();
 
         // Per-IP fixed window before ANY lookup: password brute force and
@@ -167,14 +272,14 @@ return function (App $app): void {
         $bucket = 'share:' . hash('sha256', ClientIp::bucketIdentity($ip));
         $attempts = $limiter->hit($bucket);
         if ($attempts > $publicAttemptsPerHour) {
-            return $json($response, ['error' => 'Trop de tentatives, réessayez plus tard'], 429)
-                ->withHeader('Retry-After', (string) $limiter->retryAfter($attempts));
+            return $noindex($json($response, ['error' => 'Trop de tentatives, réessayez plus tard'], 429)
+                ->withHeader('Retry-After', (string) $limiter->retryAfter($attempts)));
         }
 
         $data = (array) ($request->getParsedBody() ?? []);
         $password = \is_string($data['password'] ?? null) ? $data['password'] : '';
         if ($password === '' || \strlen($password) > 1024) {
-            return $json($response, ['error' => 'Mot de passe requis'], 422);
+            return $noindex($json($response, ['error' => 'Mot de passe requis'], 422));
         }
 
         $token = (string) $args['token'];
@@ -187,32 +292,49 @@ return function (App $app): void {
             // verify so the timing does not reveal which case it was.
             password_verify($password, Users::dummyHash());
 
-            return $json($response, ['error' => 'Lien de partage introuvable ou expiré'], 404);
+            return $noindex($json($response, ['error' => 'Lien de partage introuvable ou expiré'], 404));
         }
 
-        if (!password_verify($password, (string) $row['password_hash'])) {
-            return $json($response, ['error' => 'Mot de passe incorrect'], 403);
+        // Un lien sans mot de passe (version partagée, §12) n'en demande pas.
+        if ($row['password_hash'] !== null && !password_verify($password, (string) $row['password_hash'])) {
+            return $noindex($json($response, ['error' => 'Mot de passe incorrect'], 403));
         }
 
-        // Monitoring (§6.5 : compteurs, jamais de contenu ni d'IP) : trace la
-        // consultation réussie — l'employeur consultant n'a pas de session.
-        Audit::record($pdo, null, 'share_consulted', [
-            'cartographieId' => (int) $row['cartographie_id'],
-            'shareLinkId' => (int) $row['id'],
-        ]);
+        return $noindex($serve($pdo, $row, $response));
+    }));
 
-        // P9: standing garantie of the shared cartography. When it freezes a
-        // revision, serve THAT document — never a later modification (§8).
-        $garanti = (new Garanties($pdo))->forShareLink((int) $row['id']);
-        $document = $garanti !== null && $garanti['revisionDocument'] !== null
-            ? $garanti['revisionDocument']
-            : ($row['document'] === null ? null : json_decode((string) $row['document'], true));
+    // ------------------------------------------------------------------
+    // GET /api/share/open — PUBLIC, lien SANS mot de passe (version partagée
+    // de l'interface ultime, §12). Le jeton voyage dans l'en-tête
+    // X-Share-Token, jamais dans l'URL : sans mot de passe, il suffit à lire
+    // la version, il n'a donc rien à faire dans les journaux d'accès du
+    // serveur. 200 {titre, type, document, garantie} ; 401 {code:
+    // password_required} si le lien a un mot de passe (le destinataire passe
+    // alors par le POST) ; 404 homogène sinon. Même quota par IP que le POST ;
+    // jamais indexé.
+    // ------------------------------------------------------------------
+    $app->get('/share/open', $wrap(function (Request $request, Response $response) use ($json, $publicAttemptsPerHour, $noindex, $serve): Response {
+        $pdo = Db::get();
+        $ip = (string) ($request->getServerParams()['REMOTE_ADDR'] ?? $_SERVER['REMOTE_ADDR'] ?? '');
+        $limiter = new RateLimiter($pdo, $publicAttemptsPerHour, 3600);
+        $bucket = 'share:' . hash('sha256', ClientIp::bucketIdentity($ip));
+        $attempts = $limiter->hit($bucket);
+        if ($attempts > $publicAttemptsPerHour) {
+            return $noindex($json($response, ['error' => 'Trop de tentatives, réessayez plus tard'], 429)
+                ->withHeader('Retry-After', (string) $limiter->retryAfter($attempts)));
+        }
 
-        return $json($response, [
-            'titre' => (string) $row['titre'],
-            'type' => (string) $row['type'],
-            'document' => $document,
-            'garantie' => $garanti === null ? null : $garanti['garantie'],
-        ]);
+        $token = $request->getHeaderLine('X-Share-Token');
+        $row = preg_match('/^[0-9a-f]{32}$/', $token) === 1
+            ? (new ShareLinks($pdo))->findByToken($token)
+            : null;
+        if ($row === null || !ShareLinks::isConsultable($row)) {
+            return $noindex($json($response, ['error' => 'Lien de partage introuvable ou expiré'], 404));
+        }
+        if ($row['password_hash'] !== null) {
+            return $noindex($json($response, ['error' => 'Mot de passe requis', 'code' => 'password_required'], 401));
+        }
+
+        return $noindex($serve($pdo, $row, $response));
     }));
 };

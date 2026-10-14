@@ -1,13 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { currentRoute, dayHash, navigate, subscribe } from './router.js'
+import { currentRoute, navigate, subscribe } from './router.js'
 import { getDemoMerge, getReferentiel, loadDay } from './data/load.js'
 import { fetchMe, logout } from './api/client.js'
 import { isCurrentItem, navGroups } from './nav.js'
 import { applyTheme, resolvedTheme, subscribeSystemTheme } from './lib/theme.js'
 import Help from './help/Help.jsx'
 import HomeView from './views/HomeView.jsx'
-import MergeView from './views/MergeView.jsx'
-import V3View from './v3/ui/V3View.jsx'
+import CartoApp from './carto/ui/CartoApp.jsx'
+import { loadPublishedReferentiel } from './data/referentiel.js'
+import { PROVIDERS, getLocalKey } from './lib/run-launcher.js'
+import { createProvider } from '@engine/providers/index.js'
+
+// Dépendances de l'interface ultime de cartographie (constante : identité stable).
+// Partage (spec §12.2) : copie serveur et lien activés sur le site, réservés
+// aux adultes ; le serveur exige de toute façon l'attestation de majorité.
+// Dialogue (P7) : relances par un modèle de langage POSSIBLES (clé personnelle
+// ou Ollama local, comme les runs), jamais par défaut ni sans accord explicite.
+const CARTO_DEPS = {
+  loadReferential: loadPublishedReferentiel,
+  share: { serverEnabled: true, adultOnly: true },
+  llm: { providers: PROVIDERS, getLocalKey: (provider) => getLocalKey(provider), createProvider },
+}
 import DayView from './views/DayView.jsx'
 import ReferentielView from './views/ReferentielView.jsx'
 import EssayerView from './views/EssayerView.jsx'
@@ -111,13 +124,17 @@ const MENU_EDGE_BLOCKERS = '[aria-modal="true"], .portfolio-editor-fullscreen'
  */
 export default function App({ lib, fetchMeFn = fetchMe }) {
   const [route, setRoute] = useState(currentRoute)
-  const [userMerge, setUserMerge] = useState(null)
-  const [userDays, setUserDays] = useState(() => new Map())
+  // Fichiers déposés sur l'accueil : ils s'ouvrent dans l'interface ultime
+  // (#/cartographie), qui les importe dans un nouveau jeu, dans ce navigateur.
+  const [incomingCarto, setIncomingCarto] = useState(null)
   // Session au niveau du shell : sert UNIQUEMENT à adapter la navigation au
   // rôle (item 3). Les vues gardent leur propre garde (défense en profondeur).
   // roles = [] pour un visiteur ou une copie statique — la nav « Découvrir »
   // reste toujours affichée.
   const [roles, setRoles] = useState([])
+  // Rôles transmis à l'interface de cartographie : l'espace Partage n'est
+  // offert qu'à un compte apprenant (le serveur garde ses propres contrôles).
+  const cartoSession = useMemo(() => ({ roles }), [roles])
   // Identité minimale pour l'avatar de nav (D6) : {id, displayName, hasAvatar}.
   const [sessionUser, setSessionUser] = useState(null)
   const [helpOpen, setHelpOpen] = useState(false)
@@ -451,43 +468,47 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
   }, [])
 
   const referentiel = getReferentiel()
-  const mergeDoc = userMerge ?? getDemoMerge()
-  const days = useMemo(() => {
-    const set = new Set((mergeDoc?.feuilles ?? []).map((f) => f.iso ?? f.date))
-    for (const iso of userDays.keys()) set.add(iso)
-    return [...set].sort()
-  }, [mergeDoc, userDays])
+  // Vue « journée » historique (#/jour/<date>) : journées de la démonstration.
+  const days = useMemo(() => [...new Set((getDemoMerge()?.feuilles ?? []).map((f) => f.iso ?? f.date))].sort(), [])
 
-  const getDay = useMemo(
-    () => (iso) => (userDays.has(iso) ? Promise.resolve(userDays.get(iso)) : loadDay(iso)),
-    [userDays],
-  )
-
-  function handleUserDocument({ kind, doc }) {
-    if (kind === 'cartographie-merge') {
-      setUserMerge(doc)
-      navigate('#/merge')
-    } else {
-      setUserDays((current) => new Map(current).set(doc.date, doc))
-      navigate(dayHash(doc.date))
-    }
+  function handleUserFiles(files) {
+    setIncomingCarto({ id: `${Date.now()}-${Math.random()}`, files })
+    navigate('#/cartographie')
   }
+
+  // L'ancien partage est retiré (journal de la cartographie D-43) : une
+  // cartographie du site s'ouvre dans l'interface, dans un nouveau jeu qui
+  // porte son titre, à l'espace Partage — « Partager depuis l'interface »
+  // (Mes cartographies, apprenant) ou « Ouvrir dans l'interface » (relecture,
+  // cartographe, qui y publie la version garantie qu'une personne demande).
+  function openInSharingSpace(files, { title } = {}) {
+    setIncomingCarto({ id: `${Date.now()}-${Math.random()}`, files, title })
+    navigate('#/cartographie/partage')
+  }
+
+  // Anciennes adresses de l'interface V3 (#/merge, #/cartographie-v3) : on
+  // remplace l'entrée d'historique par #/cartographie.
+  useEffect(() => {
+    if (route.name !== 'redirect') return
+    window.history.replaceState(null, '', route.to)
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+  }, [route])
 
   let view
   switch (route.name) {
     case 'cartographie':
-      // Interface V3 (spec « prototype cartographies ») : remplace l'ancienne
-      // vue merge comme interface de consultation/édition/partage.
-      view = <V3View />
-      break
-    case 'merge':
-      // L'ancienne vue merge ne subsiste QUE pour un document cartographie-merge
-      // chargé par l'utilisateur (la V3 n'a pas d'adaptateur merge, spec §7) ;
-      // la démonstration passe par l'interface V3.
-      view = userMerge ? (
-        <MergeView mergeDoc={mergeDoc} referentiel={referentiel} lib={lib} />
-      ) : (
-        <V3View />
+    case 'redirect':
+      // Interface ultime de cartographie (docs/cartographie-ultime) : six
+      // espaces, données dans le navigateur, démonstration incluse. Les
+      // anciennes pages V3 y renvoient (journal, D-2).
+      view = (
+        <CartoApp
+          route={route.name === 'redirect' ? { name: 'cartographie' } : route}
+          deps={CARTO_DEPS}
+          session={cartoSession}
+          incoming={incomingCarto}
+          onIncomingHandled={(id) => setIncomingCarto((current) => (current?.id === id ? null : current))}
+        />
       )
       break
     case 'day':
@@ -497,7 +518,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
           focus={route.focus}
           referentiel={referentiel}
           days={days}
-          getDay={getDay}
+          getDay={loadDay}
           lib={lib}
         />
       )
@@ -529,13 +550,13 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <Twin6OuverteView lib={lib} />
       break
     case 'espace':
-      view = <EspaceView section={route.section} lib={lib} />
+      view = <EspaceView section={route.section} lib={lib} onShareInInterface={openInSharingSpace} />
       break
     case 'share':
-      view = <ShareView token={route.token} lib={lib} />
+      view = <ShareView key={`${route.token}${route.open ? '/ouvert' : ''}`} token={route.token} open={Boolean(route.open)} lib={lib} />
       break
     case 'cartographe':
-      view = <CartographeView section={route.section} lib={lib} />
+      view = <CartographeView section={route.section} lib={lib} onOpenInInterface={openInSharingSpace} />
       break
     case 'promptologue':
       view = <PromptologueView section={route.section} lib={lib} />
@@ -568,7 +589,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       )
       break
     default:
-      view = <HomeView onUserDocument={handleUserDocument} roles={roles} />
+      view = <HomeView onUserFiles={handleUserFiles} roles={roles} />
   }
 
   const groups = navGroups({ roles })
@@ -702,8 +723,8 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
           </div>
         </div>
       </header>
-      {/* L'interface V3 occupe toute la largeur disponible (grille de tuiles). */}
-      <main className={`app-main${route.name === 'cartographie' || (route.name === 'merge' && !userMerge) ? ' app-main--full' : ''}`}>
+      {/* L'interface de cartographie occupe toute la largeur disponible. */}
+      <main className={`app-main${route.name === 'cartographie' || route.name === 'redirect' ? ' app-main--full' : ''}`}>
         {view}
       </main>
       <footer className="app-footer">

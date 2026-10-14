@@ -147,17 +147,18 @@ function makeMergeDocument() {
 }
 
 describe('validateDocument', () => {
-  it('supports the five document kinds', () => {
+  it('supports the six document kinds', () => {
     expect([...SUPPORTED_KINDS].sort()).toEqual([
       'archive-export',
       'cartographie-jour',
       'cartographie-merge',
+      'competency-map-master',
       'prompt-package',
       'referentiel',
     ])
   })
 
-  it('compiles the five schemas (cross-schema $ref included)', () => {
+  it('compiles the six schemas (cross-schema $ref included)', () => {
     for (const kind of SUPPORTED_KINDS) {
       // an empty object is never a valid document, but validation must run
       // without throwing: that proves the schema compiled and its $ref resolved

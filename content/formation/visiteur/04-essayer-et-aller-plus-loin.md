@@ -123,8 +123,8 @@ journée à la fois, et aucune relecture humaine. Si vous êtes apprenant dans u
   défaut, tout reste local) ;
 - **comparer** l'évolution de vos compétences au fil des semaines, et faire relire
   votre cartographie par un **cartographe** humain qui la corrige et la garantit ;
-- **partager** une cartographie validée avec un employeur, de façon explicite et
-  choisie (via un lien protégé par mot de passe), jamais automatiquement.
+- **partager** une version choisie de sa cartographie avec un employeur, de façon
+  explicite (par un lien, avec ou sans mot de passe), jamais automatiquement.
 
 Ce sont là les usages de l'**apprenant**, décrits en détail dans le guide dédié.
 Depuis le [hub des guides](#/guides), ouvrez le parcours *apprenant* pour la suite

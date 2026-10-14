@@ -90,7 +90,11 @@ la section Export de son espace) et utilise la « Zone de danger ».
 - **A1 — Données locales** (étape 5) : ce qui vit dans le navigateur
   (portfolios IndexedDB, cartographies locales, `humanome-keys`,
   `humanome-training`) n'est pas touché ; l'utilisateur les garde ou les efface
-  lui-même.
+  lui-même. Seule exception, depuis la relecture indépendante du 2026-10-14 :
+  les **brouillons des versions partagées** de l'interface de cartographie
+  (`humanome-carto-share-draft:*` — extraits choisis et retouchés, noms
+  remplacés), qui ne servent qu'à republier des versions désormais purgées,
+  quittent ce navigateur avec le compte (journal de la cartographie, D-41).
 - **A2 — Compte cartographe** (étape 5) : ses liens avec les apprenants, ses
   annotations et ses garanties disparaissent ; les révisions qu'il avait
   proposées restent aux apprenants, auteur anonymisé. Un lien de partage d'une
@@ -155,13 +159,14 @@ la section Export de son espace) et utilise la « Zone de danger ».
 | Audit (création, connexions, suppression) | Conservé, `user_id` → `NULL` ; les événements `login` / `login_failed` gardent pays et réseau tronqué jusqu'à 365 jours ; les événements **d'autres acteurs** (rôle attribué, invitation acceptée, accès Golden…) gardent l'identifiant numérique du compte supprimé dans `details` (hors clé étrangère) |
 | Empreinte de l'email (quota de renvoi de code) | `rate_limits` `resend:acct:` + sha256(email) : non touchée par la suppression (UC-CPT-01 AN2) |
 | Révisions faites par un cartographe supprimé | Conservées pour l'apprenant, `author_id` → `NULL` |
-| Données du navigateur | Non concernées (A1) |
+| Données du navigateur | Non concernées (A1), sauf les brouillons des versions partagées, effacés de ce navigateur |
 
 ## Code sollicité
 
 | Couche | Élément | Rôle |
 |---|---|---|
 | Front | `web/src/views/AccountView.jsx` — « Zone de danger », `handleDelete`, `becomeAnonymous` | Confirmation par l'email, message final, erreurs |
+| Front | `web/src/carto/ui/shareDrafts.js` — `dropAllDrafts` | Brouillons des versions partagées effacés après la suppression réussie |
 | Front | `web/src/api/client.js` — `deleteAccount` | DELETE + jeton, oubli du jeton, `humanome:auth` |
 | Front | `web/src/App.jsx` | Navigation rafraîchie après la suppression (écoute de `humanome:auth` testée unitairement en UC-CPT-02-U14) |
 | API | `DELETE /api/auth/account` — `api/src/routes/auth.php` | Session, transaction audit + purge, destruction de session |
@@ -191,7 +196,7 @@ la section Export de son espace) et utilise la « Zone de danger ».
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-CPT-06-F01 | Nominal | API | Compte peuplé par les routes réelles → 204 ; **aucune ligne de session sous ses deux identifiants juste après la réponse (étape 6, RG5)** ; 8 tables vides pour lui ; audit anonymisé ; lien de partage 404 ; avatar 404 ; ses deux sessions mortes ; login 401 ; Bob intact | `api/tests/UseCases/Functional/UcCpt06SupprimerCompteTest.php` |
+| UC-CPT-06-F01 | Nominal | API | Compte peuplé par les routes réelles (son lien de partage écrit comme le faisait l'ancienne route, `AuthTestBase::legacyShareLink` : on n'en crée plus vers une cartographie du site, D-43) → 204 ; **aucune ligne de session sous ses deux identifiants juste après la réponse (étape 6, RG5)** ; 8 tables vides pour lui ; audit anonymisé ; lien de partage 404 ; avatar 404 ; ses deux sessions mortes ; login 401 ; Bob intact | `api/tests/UseCases/Functional/UcCpt06SupprimerCompteTest.php` |
 | UC-CPT-06-F02 | A2 | API | Cartographe supprimé : lien de l'apprenant sans garantie, document de base ; révision anonymisée, toujours listée et lisible par l'apprenante via l'API (`author` null) | idem |
 | UC-CPT-06-F03 | A3 | API | Compte peuplé supprimé, même email réinscrit : compte neuf sans rôle hérité, photo, clé, progression ni cartographie | idem |
 | UC-CPT-06-F04 | E1 | API | 401 « Authentification requise » sans session ; cookie périmé → 403 ; rien supprimé | idem |
@@ -202,6 +207,7 @@ la section Export de son espace) et utilise la « Zone de danger ».
 | UC-CPT-06-F09 | E4 | API | Contrainte RESTRICT posée pour le test : 500 sans détail SQL (production), compte, rôles et session intacts, aucun `account_deleted` | `api/tests/UseCases/Functional/UcCpt06SupprimerCompteTest.php` |
 | UC-CPT-06-F10 | A4 | API | Établissement supprimé : cohorte, adhésion et dépôt du membre effacés ; le membre ne voit plus la cohorte, son compte reste | idem |
 | UC-CPT-06-F11 | A5 | API | Administrateur supprimé : le rôle attribué reste, audit `role_granted` anonymisé ; l'identifiant du compte visé reste dans `details`, même après sa propre suppression | idem |
+| UC-CPT-06-F12 | A1 | IHM | Brouillons des versions partagées effacés après la suppression (pas après un refus) ; `humanome-keys` conservé | `web/test/usecases/functional/uc-cpt-06-supprimer-compte.test.jsx` |
 
 ### Tests existants liés (non-régression)
 
@@ -242,7 +248,10 @@ cd web && npx vitest run test/usecases --testNamePattern UC-CPT-06
   renvoie vers `#/compte` pour la suppression.
 - Les données du navigateur (dont une clé API mémorisée en `localStorage`)
   survivent à la suppression du compte (A1) ; aucune commande ne les efface
-  depuis l'écran de suppression.
+  depuis l'écran de suppression. Les brouillons des versions partagées ne
+  partent que du navigateur où le compte est supprimé : dans un autre, ils
+  restent jusqu'à la suppression du jeu de données dont ils viennent (qui
+  contient déjà, lui, le portfolio entier).
 - La « Zone de danger » n'avertit ni de la perte du **crédit Twin9 prépayé**
   (solde, grand livre et captures PayPal nécessaires à un remboursement sont
   purgés en cascade), ni, pour un compte établissement, de l'effacement des

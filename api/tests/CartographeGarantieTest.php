@@ -137,11 +137,8 @@ final class CartographeGarantieTest extends CartographeTestCase
     public function testPublicShareCarriesTheGarantieAndTheGuaranteedDocument(): void
     {
         // Employer share link on the cartography (owner action, M6).
-        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $this->cartoId . '/share', [
-            'password' => 'sesame-employeur',
-        ]);
-        self::assertSame(201, $share->getStatusCode());
-        $token = (string) self::json($share)['token'];
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $token = self::legacyShareLink($this->cartoId, 'sesame-employeur', 90, $this->maya['id'])['token'];
 
         $consult = function () use ($token): array {
             $this->cookieSid = null;

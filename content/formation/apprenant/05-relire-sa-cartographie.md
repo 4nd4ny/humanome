@@ -118,8 +118,8 @@ La méthode :
 
 ## 4. La vue Merge : votre carte dans le temps
 
-La vue **Merge** (`#/merge`, ou « Voir » sur une cartographie de type
-*Parcours*) est la carte cumulée de toutes vos journées. Elle réunit :
+La vue **Merge** (« Voir » sur une cartographie de type *Parcours*, dans « Mes
+cartographies ») est la carte cumulée de toutes vos journées. Elle réunit :
 
 - **Le sunburst cumulé** : chaque compétence y est d'autant plus « poussée »
   qu'elle est établie sur la durée. La géométrie a un sens — ici, dans la vue

@@ -19,7 +19,7 @@
     "schemaVersion": {
       "type": "string",
       "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
-      "description": "Version (semver) du schéma d'archive auquel ce document se conforme. Une instance doit toujours pouvoir importer une archive de version antérieure (ADR-006). Exemple : « 1.0.0 »."
+      "description": "Version (semver) du schéma d'archive auquel ce document se conforme. Une instance doit toujours pouvoir importer une archive de version antérieure (ADR-006). « 1.1.0 » ajoute « jeuxCartographie » (optionnel) ; une archive « 1.0.0 » reste valide. Exemple : « 1.1.0 »."
     },
     "kind": {
       "const": "archive-export",
@@ -247,6 +247,11 @@
           }
         ]
       }
+    },
+    "jeuxCartographie": {
+      "type": "array",
+      "description": "Jeux de données de l'interface de cartographie (#/cartographie), depuis la version 1.1.0 de l'archive : chacun est l'archive complète de l'interface (master v4, schéma competency-map-master) — journées, analyses, réflexions du jury, portfolio, réponses de l'apprenant, carnet du dialogue. La démonstration publique n'y figure pas (elle se recharge depuis le site). Optionnel : absent des archives 1.0.0. Restauré à l'import dans le stockage local de l'interface (un jeu de même identifiant est complété, doublons ignorés), jamais sur le serveur.",
+      "items": { "$ref": "https://humanome.xyz/schemas/competency-map-master.schema.json" }
     },
     "audit": {
       "type": "array",

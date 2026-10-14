@@ -1,5 +1,25 @@
 # UC-CAR-05 — Garantir une cartographie ou retirer sa garantie
 
+> **Mise à jour du 2026-10-14 : la garantie passe par la publication**
+> (décisions de Christian ; journal de la cartographie, D-42 et D-43).
+> L'ancien partage par lien est retiré : on ne crée plus de lien vers une
+> cartographie du site, et la garantie d'une révision n'atteint plus un
+> nouvel employeur par ce chemin (les liens créés avant restent servis, avec
+> leur mention « garantie par », jusqu'à leur expiration). Pour qu'un
+> employeur voie sa garantie, le cartographe **publie** la version partagée
+> de la personne, à sa demande (code de demande créé dans son espace
+> Partage) : il ouvre la cartographie ou la révision consultée dans
+> l'interface de cartographie (« Ouvrir dans l'interface de cartographie »,
+> en tête de la page de relecture), ouvre la demande dans l'espace Partage,
+> compose, coche « Je garantis cette version » et publie dans le compte de
+> la personne ; l'employeur lit « Relue et garantie par … ». Tests :
+> `api/tests/CartoGarantieTest.php`, `web/src/carto/ui/Garantie.test.jsx`,
+> `web/src/views/cartographe/RelectureSection.test.jsx` (« ouvrir dans
+> l'interface »), `web/e2e/carto-partage.e2e.js` et
+> `web/e2e/parcours-cartographe.e2e.js`. « Valider et garantir » reste la
+> signature d'une révision dans le module de relecture ; le reste de la
+> fiche décrit cet usage.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Cartographe lié à l'apprenant (UC-CAR-01) |
@@ -57,9 +77,10 @@ Au terme de sa relecture, le cartographe clique sur « Valider et garantir »
    en votre nom (<nom>), avec signature horodatée. » et précise la version
    figée — la révision affichée, sinon la plus récente de l'historique (date
    `createdAt` la plus récente, quel que soit l'ordre reçu)
-   (« La révision N sera figée : c'est elle que verra l'employeur via le lien
-   de partage. »), sinon « Le document d'origine sera présenté comme garanti
-   via le lien de partage. ».
+   (« La révision N sera figée et signée. »), sinon « Le document d'origine
+   sera signé. » — suivi, depuis le retrait de l'ancien partage (D-43), de
+   « Pour qu'un employeur voie votre garantie, publiez la version partagée que
+   la personne vous demande (« Ouvrir dans l'interface de cartographie »). »
 2. Il clique sur « Confirmer et garantir ».
 3. Le navigateur envoie `POST /api/cartographies/{id}/garantie` avec `{}`
    (document d'origine) ou `{revisionId}` (session + `X-CSRF-Token`).

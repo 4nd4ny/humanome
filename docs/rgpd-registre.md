@@ -71,6 +71,45 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Tables | `cartographies` (+ `cartography_annotations`, `cartography_revisions`, `cartography_garanties` pour la relecture cartographe). |
 | Sort à la suppression | `cartographies` en CASCADE ; annotations CASCADE ; révisions anonymisées (`author_id` SET NULL) car ce sont des données de l'apprenant ; garanties CASCADE. |
 
+### 3 bis. Versions partagées de l'interface ultime (adultes, spécification §12)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Permettre à un apprenant **majeur** de montrer, par un lien, une version de sa cartographie qu'il a lui-même composée (employeur, recruteur…). |
+| Personnes concernées | Apprenants adultes (auto-attestation) ; destinataires des liens (aucune donnée collectée sur eux). |
+| Données | Instantané figé `carto-partage` : compétences retenues et leurs chiffres recalculés, dates à la précision choisie (jour, mois ou masquées), extraits choisis et relus (masques de courriels, liens, téléphones, adresses ; remplacements de noms), titre. **Jamais** le portfolio, les délibérations du jury, les notes. Liste blanche de champs vérifiée par le serveur (`Share\SharedVersion`). |
+| Localisation | Local par défaut ; serveur uniquement sur demande explicite (case à cocher + publication), version par version. |
+| Base légale | **a** (consentement explicite, après aperçu verrouillé et relecture des contenus tiers). |
+| Durée | Jusqu'au retrait de la version (effacement immédiat), à la publication d'une nouvelle version à sa place (l'ancien document est effacé, le lien reste), au retrait de l'attestation (versions et liens **effacés** aussitôt) ou à la suppression du compte. Liens : 90 jours par défaut (1-365), révocables, purgés au plus tard 30 jours après expiration ou révocation. |
+| Destinataires | Toute personne munie du lien (et du mot de passe s'il y en a un). Pages et réponses non indexées (`noindex`, `no-store`), aucune statistique tierce. |
+| Journal | Dates des consultations réussies, visibles par l'auteur (`share_consulted` : ids seulement, ni IP ni navigateur). |
+| Tables | `cartographies` (`type = 'partage'`, `visibility = 'privee'` imposée), `share_links` (`password_hash` NULL = lien sans mot de passe), `audit_events`. |
+| Sort à la suppression | Comme les cartographies : CASCADE (versions et liens). |
+
+### 3 bis A. Version garantie par un cartographe (journal de la cartographie, D-42)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Qu'une version partagée puisse porter la **garantie** d'un cartographe : à la demande de l'apprenant, le cartographe qui a relu sa cartographie avec lui la publie dans son compte et atteste avoir vérifié ce que la personne a fait, ce que l'analyse par IA a détecté et ce qu'en a vu le groupe classe. |
+| Personnes concernées | Apprenants adultes (demandeurs) ; cartographes (garants) ; destinataires des liens (aucune donnée collectée sur eux). |
+| Données | Demande : un code à usage unique (10 caractères), la version éventuellement visée, des dates — aucun contenu. Garantie : nom affiché du cartographe **figé** à la publication, date (`cartography_garanties`). La version elle-même relève du §3 bis. |
+| Localisation | Serveur. La composition se fait dans le navigateur du cartographe, depuis le jeu de données qu'il a relu avec la personne ; rien d'autre n'est envoyé. Ce jeu est une **copie locale** de la cartographie de la personne dans le navigateur du cartographe (IndexedDB) — fichiers qu'elle lui a remis, ou cartographie ouverte depuis la page de relecture (« Ouvrir dans l'interface de cartographie », D-43) : elle survit au passage en « privée », au retrait de la copie serveur ou à la suppression du compte de la personne, et entre dans l'archive de compte du cartographe s'il l'exporte. Après la publication, l'interface lui propose de l'effacer ; la formation cartographe (chapitre 7) l'y invite. |
+| Base légale | **a** pour l'apprenant (demande explicite, attestation de majorité de la demande) ; **a** pour le cartographe (sa garantie, case explicite à chaque publication : son nom figurera sur la version). |
+| Durée | Demande : jusqu'à sa publication (consommée), son annulation, son expiration (30 jours), la disparition de la version visée, le retrait de l'attestation de l'apprenant ou la suppression de son compte. Garantie : tant que la version reste celle que le cartographe a publiée — l'apprenant qui la remplace lui-même la lui retire — et que le compte du cartographe existe. |
+| Destinataires | Garantie : toute personne munie d'un lien vers la version (« Relue et garantie par … »). Le cartographe n'a plus accès à la version après publication, ni à ses liens. |
+| Tables | `carto_publication_requests` (migration 023), `cartography_garanties` (008), `audit_events` (`publication_request_created`, `publication_request_cancelled`, `shared_version_guaranteed` : ids seulement, jamais le code). |
+| Sort à la suppression | Compte de l'apprenant : demandes, versions et garanties CASCADE. Compte du cartographe : sa garantie CASCADE ; la version reste à l'apprenant, sans garantie. |
+
+### 3 ter. Attestation de majorité
+
+| Élément | Détail |
+|---|---|
+| Finalité | Réserver la copie serveur et le partage par lien aux adultes (spécification §12 : « pas de contrôle d'âge, mais une auto-certification »). |
+| Données | Date de l'attestation (`users.adult_attested_at`), posée par la personne elle-même au moment de partager ; aucune date de naissance, aucun justificatif. |
+| Base légale | **b** (condition d'accès à la fonction). |
+| Durée | Jusqu'à son retrait (qui efface les versions partagées du compte, leurs liens et leurs garanties, et ses demandes de publication garantie) ou à la suppression du compte. |
+| Sort à la suppression | Colonne de la ligne `users` : purgée avec le compte. |
+
 ## 4. Progression de formation
 
 | Élément | Détail |
@@ -88,12 +127,12 @@ exécution du service/contrat, **f** = intérêt légitime.
 
 | Élément | Détail |
 |---|---|
-| Finalité | Partager une cartographie validée avec un employeur (lien + mot de passe), décision individuelle explicite (§3.6). |
+| Finalité | Partager une cartographie validée avec un employeur (lien, avec ou sans mot de passe), décision individuelle explicite (§3.6). Depuis le 2026-10-14 (ancien partage retiré, journal de la cartographie D-43), un lien ne se crée plus que vers une **version partagée** de l'interface (§3 bis) ; les liens créés avant vers une cartographie du site restent servis jusqu'à leur échéance ou leur révocation, puis sont purgés comme les autres. |
 | Personnes concernées | Apprenants (émetteurs), employeurs (destinataires). |
-| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage, échéance, date de révocation — **jamais** les valeurs en clair. |
+| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage (facultatif pour une version partagée de l'interface ultime, §3 bis ; obligatoire pour les liens créés avant le retrait de l'ancien partage), échéance, date de révocation — **jamais** les valeurs en clair. |
 | Base légale | **a** (consentement, décision individuelle). |
 | Durée | Validité **90 jours par défaut** (réglable 1-365 j à la création, `share.php` `expiresInDays`) ; révocable à tout moment ; liens expirés/révoqués **purgés au plus tard 30 jours** après expiration (`scripts/maintenance.php`). |
-| Destinataires | Employeur muni du lien + mot de passe. |
+| Destinataires | Employeur muni du lien (et du mot de passe s'il y en a un). |
 | Tables | `share_links`. |
 | Sort à la suppression | CASCADE via la cartographie ; entretien périodique pour les liens dormants. |
 
@@ -133,6 +172,16 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Destinataire | **Démo** : Anthropic via le proxy plateforme. **Clé perso** : le fournisseur choisi par la personne. **Établissement** : la clé de l'établissement ou de la plateforme, selon sa configuration. |
 | Base légale | **a** (le run est déclenché par la personne). |
 | Conservation côté humanome | Aucune, au-delà de ce que la personne a explicitement stocké (§3). |
+
+### 8 bis. Dialogue d'accompagnement de l'interface ultime (P7)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Aider la personne à relire ses propres traces par des questions scriptées (citation datée, silence, apparition, constance, renvoi, changement de vocabulaire, écart entre deux ensembles). |
+| Traitement | **Local** : le script et le carnet des réponses vivent dans le navigateur (jeu de données IndexedDB) ; aucune table serveur. Le carnet part dans l'archive JSON seulement si la personne y inclut son portfolio, jamais dans une version partagée (§3 bis) ni dans une démo anonymisée. |
+| Option LLM | **Désactivée par défaut.** Après choix d'un fournisseur et accord explicite (case décochée par défaut, non enregistrée), chaque relance demandée envoie **uniquement** la question, la réponse et le passage cité, **directement du navigateur** au fournisseur choisi (clé personnelle) ou à Ollama sur l'ordinateur de la personne — jamais par les serveurs de humanome. |
+| Base légale | **a** (consentement explicite, relance par relance). |
+| Conservation côté humanome | Aucune. |
 
 ## 9. Cartographie de masse — établissements (B2B)
 

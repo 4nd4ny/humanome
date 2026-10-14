@@ -11,6 +11,7 @@ import {
   validate_archive_export,
   validate_cartographie_jour,
   validate_cartographie_merge,
+  validate_competency_map_master,
   validate_prompt_package,
   validate_referentiel,
 } from './validation-compiled.js'
@@ -22,6 +23,8 @@ const VALIDATORS_BY_KIND = {
   'prompt-package': validate_prompt_package,
   'cartographie-jour': validate_cartographie_jour,
   'cartographie-merge': validate_cartographie_merge,
+  // Archive de l'interface de cartographie (master v4, journal D-25).
+  'competency-map-master': validate_competency_map_master,
   'archive-export': validate_archive_export,
 }
 

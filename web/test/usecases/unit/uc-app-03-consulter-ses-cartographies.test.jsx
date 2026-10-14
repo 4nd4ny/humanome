@@ -158,7 +158,7 @@ describe('UC-APP-03 — visualisation et téléchargement (étapes 4-5, A4)', ()
     }
     expect(describeItem('Le 5')).toEqual(['Journée', 'Privée'])
     expect(describeItem('Parcours')).toEqual(['Parcours (merge)', 'Partagée avec mon cartographe'])
-    expect(describeItem('Approfondie')).toEqual(['Analyse Twin9', 'Publique (partageable)'])
+    expect(describeItem('Approfondie')).toEqual(['Analyse Twin9', 'Partager'])
     expect(within(byTitle('Parcours')).getByText('copie serveur')).toBeDefined()
     expect(within(byTitle('Le 5')).queryByText('copie serveur')).toBeNull()
 

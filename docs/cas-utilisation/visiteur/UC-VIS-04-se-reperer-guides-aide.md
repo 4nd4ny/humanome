@@ -54,8 +54,8 @@ statique, sans API.
    (`GET /api/auth/me`) ; sans session, la réponse `401` donne `roles = []`.
 2. L'accueil présente le site (61 compétences en 7 pôles, prompts versionnés,
    garantie humaine), trois actions (« Explorer la cartographie de
-   démonstration » → `#/merge`, « Essayer avec votre propre texte » →
-   `#/essayer`, « Charger ma cartographie (JSON) », UC-VIS-01) et le **plan du
+   démonstration » → `#/cartographie`, « Essayer avec votre propre texte » →
+   `#/essayer`, « Ouvrir mes fichiers de cartographie », UC-VIS-01) et le **plan du
    site** « Explorer le site » : tuiles des familles « Découvrir » et « Compte ».
 3. Le bouton « Menu de navigation » (ou le survol du bouton, ou le bord gauche
    de l'écran) ouvre le tiroir : famille « Découvrir » (Accueil, Cartographie
@@ -90,8 +90,11 @@ statique, sans API.
   trois échelles de « cartographier un texte » portent un badge de valeur
   (« Cartographie ouverte » gratuit, « Cartographier mes écrits » standard,
   « Analyse approfondie » premium). « Partager ma cartographie » est un alias
-  du tableau de bord (`#/espace`, bloc « Mes cartographies ») : il n'est
-  jamais marqué courant, c'est « Tableau de bord » qui l'est. Les précisions
+  du tableau de bord (`#/espace`, bloc « Mes cartographies », où « Partager
+  depuis l'interface » ouvre la cartographie à l'espace Partage de
+  l'interface ; précision « version choisie, réservée aux adultes » depuis le
+  retrait de l'ancien partage le 2026-10-14, D-43) : il n'est jamais marqué
+  courant, c'est « Tableau de bord » qui l'est. Les précisions
   (« Twin9 », « multi-run »…) ne s'affichent que sur les tuiles de l'accueil,
   jamais dans le menu. Le rôle `employeur`, attribuable, n'ajoute aucune
   famille (« Découvrir » + « Mon compte »).

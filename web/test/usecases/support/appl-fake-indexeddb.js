@@ -11,10 +11,17 @@
 // Ce faux reproduit le SOUS-ENSEMBLE d'API réellement utilisé par ces
 // adaptateurs : open(name, version) + onupgradeneeded/onsuccess/onerror,
 // objectStoreNames.contains, createObjectStore(name, {keyPath?}),
-// transaction(store, mode).objectStore(store) -> get/put/delete/getAll/
-// getAllKeys(range), IDBKeyRange.bound. Les valeurs sont clonées
-// (structuredClone, comme le « structured clone » d'IndexedDB) et les
+// transaction(store | stores[], mode).objectStore(store) -> get/put/delete/
+// getAll(range?)/getAllKeys(range), IDBKeyRange.bound. Les valeurs sont
+// clonées (structuredClone, comme le « structured clone » d'IndexedDB) et les
 // réponses arrivent de façon ASYNCHRONE (micro-tâche), jamais en synchrone.
+//
+// Le magasin de l'interface de cartographie (web/src/carto/core/store.js,
+// « humanome-carto-v4 », lu par l'archive de compte depuis la 1.1.0) ouvre
+// une transaction sur PLUSIEURS magasins et attend son « complete » : la
+// transaction factice se termine (oncomplete) une tâche après sa dernière
+// requête (setTimeout 0 — incompatible avec des minuteurs simulés) ; abort()
+// déclenche onabort, sans annuler les écritures déjà faites.
 //
 // Important : un seul faux par fichier de test. `reset()` vide les données
 // SANS détruire les bases, car carto-store.js garde un singleton dont la
@@ -92,14 +99,14 @@ export function createFakeIndexedDb() {
         settle(request, { result: clone(store.records.get(key)) })
         return request
       },
-      getAll() {
+      getAll(range) {
         const request = makeRequest()
         const failure = takeRequestFailure('getAll')
         if (failure) {
           settle(request, { error: failure })
           return request
         }
-        const keys = [...store.records.keys()].sort()
+        const keys = [...store.records.keys()].sort().filter((k) => !range || range.includes(k))
         settle(request, { result: keys.map((k) => clone(store.records.get(k))) })
         return request
       },
@@ -160,11 +167,51 @@ export function createFakeIndexedDb() {
         db.stores.set(name, { keyPath: options.keyPath ?? null, records: new Map() })
         return storeApi(db, name, 'readwrite')
       },
-      transaction(storeName, mode = 'readonly') {
-        if (!db.stores.has(storeName)) {
-          throw Object.assign(new Error(`NotFoundError: ${storeName}`), { name: 'NotFoundError' })
+      transaction(storeNames, mode = 'readonly') {
+        const names = Array.isArray(storeNames) ? storeNames : [storeNames]
+        for (const name of names) {
+          if (!db.stores.has(name)) {
+            throw Object.assign(new Error(`NotFoundError: ${name}`), { name: 'NotFoundError' })
+          }
         }
-        return { objectStore: () => storeApi(db, storeName, mode) }
+        let aborted = false
+        let timer = null
+        const tx = {
+          error: null,
+          oncomplete: null,
+          onerror: null,
+          onabort: null,
+          objectStore(name = names[0]) {
+            if (!names.includes(name)) {
+              throw Object.assign(new Error(`NotFoundError: ${name}`), { name: 'NotFoundError' })
+            }
+            const api = storeApi(db, name, mode)
+            // Chaque requête repousse la fin de la transaction d'une tâche.
+            return Object.fromEntries(
+              Object.entries(api).map(([op, fn]) => [
+                op,
+                (...args) => {
+                  const request = fn(...args)
+                  clearTimeout(timer)
+                  timer = setTimeout(() => {
+                    if (!aborted) tx.oncomplete?.({ target: tx })
+                  }, 0)
+                  return request
+                },
+              ]),
+            )
+          },
+          abort() {
+            aborted = true
+            clearTimeout(timer)
+            queueMicrotask(() => tx.onabort?.({ target: tx }))
+          },
+        }
+        // Une transaction sans requête se termine aussi.
+        timer = setTimeout(() => {
+          if (!aborted) tx.oncomplete?.({ target: tx })
+        }, 0)
+        return tx
       },
       close() {},
     }

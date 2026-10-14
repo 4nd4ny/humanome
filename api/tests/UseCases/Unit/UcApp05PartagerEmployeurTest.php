@@ -180,7 +180,8 @@ final class UcApp05PartagerEmployeurTest extends TestCase
     {
         // Audit::record enregistre ce qu'on lui donne : la garantie « identifiants
         // seulement, jamais de jeton ni de mot de passe » est celle de la route,
-        // vérifiée par UC-APP-05-F01.
+        // vérifiée par CartoPartageTest (liens avec et sans mot de passe d'une
+        // version partagée, le seul partage par lien depuis D-43).
         $maya = self::user();
         Audit::record(self::$pdo, $maya, 'share_created', ['cartographieId' => 3, 'shareId' => 9, 'expiresInDays' => 90]);
 

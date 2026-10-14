@@ -51,16 +51,14 @@ final class UcEmp01ConsulterPartageTest extends CartographeTestCase
         ]);
     }
 
-    /** Précondition : l'apprenant a créé un lien (UC-APP-05). */
+    /**
+     * Précondition : l'apprenant avait créé un lien (UC-APP-05), avant le
+     * retrait de l'ancien partage (journal de la cartographie D-43) — les
+     * liens existants restent servis jusqu'à leur expiration.
+     */
     private function shareLink(int $expiresInDays = 90, ?int $cartoId = null): array
     {
-        $response = $this->as_($this->apprenant, 'POST', '/api/cartographies/' . ($cartoId ?? $this->cartoId) . '/share', [
-            'password' => self::LINK_PASSWORD,
-            'expiresInDays' => $expiresInDays,
-        ]);
-        self::assertSame(201, $response->getStatusCode(), (string) $response->getBody());
-
-        return self::json($response);
+        return self::legacyShareLink($cartoId ?? $this->cartoId, self::LINK_PASSWORD, $expiresInDays, $this->apprenant['id']);
     }
 
     /** L'employeur : aucun cookie, aucun jeton CSRF, IP distincte. */

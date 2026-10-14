@@ -22,31 +22,19 @@ const BASE = {
     ],
   },
   cartographie: {
-    titre: 'La cartographie ipsative (interface V3)',
+    titre: 'Votre cartographie',
     intro:
-      'Le soleil, la heatmap, l’arbre et le portfolio montrent le MÊME historique : chaque secteur ' +
-      'est une compétence, son rayon compte les journées documentées par des preuves. Vous êtes ' +
-      'comparé à vos propres états antérieurs, jamais à d’autres personnes.',
+      'Chaque secteur du soleil est une compétence relevée dans votre portfolio : son angle compte ' +
+      'ses traces (un point par preuve, moins pour un indice), sa hauteur est la confiance moyenne du jury. ' +
+      'Vous êtes comparé à vos propres états antérieurs, jamais à d’autres personnes. Tout reste ' +
+      'dans votre navigateur.',
     points: [
-      '« Pourquoi ce rayon ? » (touche w sur un secteur) montre la métrique, les journées et les preuves.',
-      'Inspecter une journée (heatmap) ouvre son portfolio ; « Voir l’état à cette date » déplace la lecture.',
-      'Confirmez, nuancez ou contestez chaque association passage–compétence : c’est votre droit de réponse.',
-      'Le mode expert ajoute l’arbre, l’audit d’import, l’éditeur JSON et le constructeur de partage détaillé.',
-      '« Préparer un partage » construit une version employeur par liste positive : rien ne part sans votre choix explicite.',
-      'Tout reste dans votre navigateur ; l’export employeur est un fichier JSON assaini que vous remettez vous-même.',
-    ],
-  },
-  merge: {
-    titre: 'La cartographie évolutive',
-    intro:
-      'Chaque secteur du soleil est une compétence : sa LARGEUR indique la fréquence (nombre de ' +
-      'journées où elle est établie), sa LONGUEUR l’intensité. Touchez un secteur pour lire son ' +
-      'histoire d’apprentissage et les journées où elle apparaît.',
-    points: [
-      'Le calendrier sous le diagramme donne l’intensité jour par jour ; touchez une journée pour l’ouvrir.',
-      'La timeline anime la construction de la cartographie au fil du temps.',
-      'Vous pouvez charger votre propre cartographie (JSON) : elle ne quitte pas votre navigateur.',
-      'Le bouton « Imprimer » produit un document (PDF) de la cartographie.',
+      'Importez vos analyses (journées, merge, archive) et votre portfolio, ou explorez la démonstration.',
+      '« Pourquoi cette surface ? » (touche w sur un secteur) montre les traces, les points et la confiance.',
+      'Un double-clic sur un pôle (anneau intérieur du soleil) l’ouvre sur 360° : ses seules compétences, chacune selon sa part des points du pôle. Un clic au centre (ou Échap) ramène à tous les pôles.',
+      'Un clic sur une journée de la heatmap déplace la date t ; un double-clic ouvre la journée seule.',
+      'Confirmez, nuancez ou contestez chaque verdict du jury : c’est votre droit de réponse.',
+      'Comparaison, tableau de bord, dialogue, export et partage : les autres espaces, en haut de la cartographie.',
     ],
   },
   day: {
@@ -99,8 +87,8 @@ const BASE = {
       'lancez une cartographie, choisissez sa confidentialité, la partagez et exportez vos données.',
     points: [
       'Lancer une cartographie : choisissez la version de prompt, le fournisseur (votre clé ou le service humanome), voyez l’estimation de coût, suivez la progression.',
-      'Confidentialité par cartographie : privée, partagée avec votre cartographe, ou partageable par lien.',
-      'Partage employeur : un lien protégé par mot de passe, en lecture seule.',
+      'Confidentialité par cartographie : « Privée », « Partagée avec mon cartographe » ou « Partager ».',
+      'Partage employeur : « Partager depuis l’interface » ouvre la cartographie dans l’interface de cartographie, où vous composez une version partagée (réservée aux adultes) ; votre cartographe peut aussi la publier avec sa garantie. Les liens créés avant restent révocables ici.',
       'RGPD : exportez toutes vos données en un fichier, ou supprimez votre compte (effacement réel).',
     ],
   },
@@ -122,7 +110,7 @@ const BASE = {
     points: [
       'Acceptez un apprenti via son code d’invitation, puis relisez sa file de cartographies.',
       'Annotez par compétence (commentaire, hallucination, oubli) et corrigez les verdicts (une révision validée).',
-      '« Valider et garantir » fige une révision : le lien de partage affiche « garantie par vous ».',
+      '« Valider et garantir » fige une révision ; pour qu’un employeur voie votre garantie, publiez la version partagée qu’une personne vous demande (code de demande, espace Partage de la cartographie).',
       'Comparez deux cartographies, lisez un rapport de consistance multi-run.',
     ],
   },
@@ -205,7 +193,7 @@ const BASE = {
   employeur: {
     titre: 'Employeur : lire un profil, et bientôt en chercher',
     intro:
-      'Aujourd’hui, un candidat vous partage sa cartographie (lien + mot de passe) : c’est le canal ' +
+      'Aujourd’hui, un candidat vous partage sa cartographie (un lien, avec ou sans mot de passe) : c’est le canal ' +
       'individuel, sur invitation. Une offre complémentaire est EN PRÉPARATION — un moteur de recherche ' +
       'de compétences sur les profils PUBLIÉS par les utilisateurs consentants, sur abonnement payant.',
     points: [
@@ -251,8 +239,9 @@ const BASE = {
   share: {
     titre: 'Cartographie partagée',
     intro:
-      'Une cartographie qu’un apprenant vous a partagée. Saisissez le mot de passe transmis pour la ' +
-      'consulter en lecture seule. La mention « garantie par » indique qu’un cartographe l’a validée.',
+      'Une cartographie qu’une personne vous a partagée, en lecture seule. Si le lien est protégé, ' +
+      'saisissez le mot de passe qu’elle vous a transmis. La mention « Relue et garantie par » indique ' +
+      'qu’un cartographe a vérifié et publié cette version.',
   },
 }
 
@@ -276,13 +265,13 @@ export function helpFor(route, session = {}) {
   const roles = session.roles ?? []
   // Astuce ciblée : sur l'accueil et la cartographie, rappeler à un rôle de
   // travail où se trouve son espace (ergonomie par famille, item 5).
-  if ((route === 'home' || route === 'merge') && roles.includes('cartographe')) {
+  if ((route === 'home' || route === 'cartographie') && roles.includes('cartographe')) {
     return withExtra(
       entry,
       'Vous êtes cartographe : « Ma file de relecture » est dans le menu, famille « Encadrer et garantir ».',
     )
   }
-  if ((route === 'home' || route === 'merge') && roles.includes('etablissement')) {
+  if ((route === 'home' || route === 'cartographie') && roles.includes('etablissement')) {
     return withExtra(
       entry,
       'Vous gérez un établissement : « Mes cohortes » est dans le menu, famille « Piloter mon organisation ».',

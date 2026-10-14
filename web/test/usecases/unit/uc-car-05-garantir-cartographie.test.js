@@ -109,6 +109,6 @@ describe('UC-CAR-05 — RelectureSection : version figée par défaut (rendu seu
       ]),
     ).toContain('La révision 8 sera figée')
     // Aucune révision : le document d'origine.
-    expect(await frozenTarget([])).toContain('Le document d’origine sera présenté comme garanti')
+    expect(await frozenTarget([])).toContain('Le document d’origine sera signé')
   })
 })

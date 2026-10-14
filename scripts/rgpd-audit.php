@@ -90,6 +90,7 @@ final class RgpdAudit
         'cohortes' => '—',
         'mass_runs' => '—',
         'golden_grants' => '—',             // authorisation record, not personal content
+        'carto_publication_requests' => '—', // pending request code (migration 023), no content
     ];
 
     public static function schema(PDO $pdo): string

@@ -5,20 +5,33 @@
 //   création de compte -> portfolio (fixture 3 jours, segmentation vérifiée)
 //   -> run mock complet via « Service humanome » (24 appels /api/llm)
 //   -> cartographies dans le tableau de bord -> visualisation -> opt-in
-//   copie serveur -> partage lien + mot de passe -> ouverture du lien dans
-//   un CONTEXTE NAVIGATEUR NEUF (équivalent navigation privée : mauvais mdp
-//   refusé, bon mdp -> document rendu) -> export d'archive (validée au
-//   schéma archive-export par le moteur) -> suppression de compte -> le
-//   lien de partage répond 404.
+//   copie serveur -> partage : l'ancien partage par lien est RETIRÉ (journal
+//   de la cartographie D-43), la cartographie s'ouvre dans l'interface
+//   (« Partager depuis l'interface ») où l'apprenant atteste sa majorité,
+//   compose et publie une version partagée, puis crée son lien protégé par
+//   mot de passe -> ouverture du lien dans un CONTEXTE NAVIGATEUR NEUF
+//   (équivalent navigation privée : mauvais mdp refusé, bon mdp -> version
+//   rendue) -> export d'archive (validée au schéma archive-export par le
+//   moteur, jeu de l'interface compris) -> suppression de compte -> le lien
+//   de partage répond 404.
 //
 // Un seul test séquentiel (l'état — compte, IndexedDB, lien de partage —
 // se construit d'étape en étape) ; chaque étape du DoD est un test.step
 // nommé en français. Email unique par run : rejouable sans nettoyage.
 
 import { test, expect } from '@playwright/test'
+import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
+import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { validateDocument } from '../../engine/src/validation.js'
+
+const root = dirname(dirname(dirname(fileURLToPath(import.meta.url))))
+
+/** Requête SQL sur la base de DÉVELOPPEMENT du conteneur docker (jamais ailleurs). */
+function devSql(query) {
+  return execFileSync('docker', ['compose', 'exec', '-T', 'mysql', 'mysql', '-uhumanome', '-phumanome_dev', 'humanome', '-N', '-e', query], { cwd: root, stdio: 'pipe' }).toString().trim()
+}
 
 const FIXTURE_PATH = fileURLToPath(
   new URL('../../schemas/fixtures/portfolio-3-jours.md', import.meta.url),
@@ -26,7 +39,7 @@ const FIXTURE_PATH = fileURLToPath(
 const SHARE_PASSWORD = 'partage-test-1'
 const ACCOUNT_PASSWORD = 'mot-de-passe-e2e-1'
 
-test('parcours apprenant complet : compte, portfolio, run mock, partage, export, suppression', async ({
+test('parcours apprenant complet : compte, portfolio, run mock, partage depuis l’interface, export, suppression', async ({
   page,
   browser,
 }, testInfo) => {
@@ -41,14 +54,22 @@ test('parcours apprenant complet : compte, portfolio, run mock, partage, export,
     if (request.method() === 'POST' && /\/api\/llm$/.test(request.url())) llmCalls += 1
   })
 
-  await test.step('Création de compte (email unique par run)', async () => {
+  await test.step('Création de compte (email unique par run, activation, connexion)', async () => {
     await page.goto('/#/compte')
     await page.getByRole('button', { name: 'Inscription' }).click()
     await page.getByLabel('Nom affiché').fill('Testeuse E2E')
-    await page.getByLabel('Email').fill(email)
+    await page.getByLabel('Email', { exact: true }).fill(email)
+    await page.getByLabel('Confirmez l’email').fill(email)
     await page.getByLabel('Mot de passe').fill(ACCOUNT_PASSWORD)
     await page.getByRole('button', { name: 'Créer mon compte' }).click()
-    await expect(page.getByText('Compte créé, bienvenue !')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Activer votre compte' })).toBeVisible()
+    // Le code d'activation (D5) part par mail(), absent en dev : le compte
+    // jetable est activé directement dans la base de DÉVELOPPEMENT.
+    devSql(`UPDATE users SET email_verified_at = NOW() WHERE email = '${email}'`)
+    await page.getByRole('button', { name: 'Retour à la connexion' }).click()
+    await page.getByLabel('Email', { exact: true }).fill(email)
+    await page.getByLabel('Mot de passe').fill(ACCOUNT_PASSWORD)
+    await page.getByRole('button', { name: 'Se connecter' }).click()
     await expect(page.getByText(email, { exact: true })).toBeVisible()
   })
 
@@ -138,23 +159,37 @@ test('parcours apprenant complet : compte, portfolio, run mock, partage, export,
     await expect(mergeItem.getByText('copie serveur')).toBeVisible()
   })
 
+  const VERSION_TITRE = 'Parcours de trois journées (e2e)'
   let shareUrl = ''
-  await test.step('Partage : lien + mot de passe, expiration par défaut (90 jours)', async () => {
-    await mergeItem.getByRole('button', { name: 'Partager' }).click()
-    await expect(page.getByLabel('Expiration (jours)')).toHaveValue('90')
-    await page
-      .getByLabel(/Mot de passe du lien \(8 caractères min\)/)
-      .fill(SHARE_PASSWORD)
-    await page.getByRole('button', { name: 'Créer le lien de partage' }).click()
-    shareUrl = (await page.getByTestId('share-url').textContent())?.trim() ?? ''
+  await test.step('Partage depuis l’interface : attestation, version partagée publiée, lien + mot de passe', async () => {
+    // L'ancien partage est retiré : plus de bouton « Partager » ni de création ici.
+    await expect(mergeItem.getByRole('button', { name: 'Partager', exact: true })).toHaveCount(0)
+    await mergeItem.getByRole('button', { name: 'Partager depuis l’interface' }).click()
+    await expect(page).toHaveURL(/#\/cartographie\/partage$/)
+    await expect(page.locator('.carto-context-dataset')).toHaveText('Cartographie — Journal de Maya (e2e)')
+
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus/ }).check()
+    await page.getByRole('button', { name: 'Confirmer et continuer' }).click()
+    await expect(page.getByRole('heading', { name: 'Nouvelle version partagée' })).toBeVisible()
+    await page.getByRole('textbox', { name: 'Titre vu par le destinataire' }).fill(VERSION_TITRE)
+    await page.getByRole('button', { name: 'Suivant : relire' }).click()
+    await page.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }).check()
+    await page.getByRole('button', { name: 'Suivant : aperçu' }).click()
+    await page.getByRole('checkbox', { name: /Je demande l’enregistrement/ }).check()
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }).check()
+    await page.getByRole('button', { name: 'Publier la version partagée' }).click()
+    await expect(page.getByText(/est publiée\. Créez maintenant un lien/)).toBeVisible()
+
+    await page.getByLabel('Mot de passe (facultatif)').fill(SHARE_PASSWORD)
+    await page.getByRole('button', { name: 'Créer le lien' }).click()
+    shareUrl = await page.getByRole('textbox', { name: 'Lien de partage' }).inputValue()
     expect(shareUrl).toMatch(/\/#\/partage\/[0-9a-f]{32}$/)
-    await page.getByRole('button', { name: 'Fermer' }).click()
   })
 
-  await test.step('Lien ouvert dans un contexte neuf : mauvais mot de passe refusé, bon mot de passe -> document', async () => {
+  await test.step('Lien ouvert dans un contexte neuf : mauvais mot de passe refusé, bon mot de passe -> version partagée', async () => {
     // Contexte navigateur NEUF = navigation privée : aucune session, aucun
     // stockage local — exactement la situation de l'employeur destinataire.
-    const employerContext = await browser.newContext()
+    const employerContext = await browser.newContext({ locale: 'fr-FR' })
     const employerPage = await employerContext.newPage()
     await employerPage.goto(shareUrl)
     await expect(
@@ -168,18 +203,18 @@ test('parcours apprenant complet : compte, portfolio, run mock, partage, export,
       .click()
     await expect(employerPage.getByText('Mot de passe incorrect.')).toBeVisible()
 
-    // Bon mot de passe -> le document merge est rendu en lecture seule.
+    // Bon mot de passe -> la version partagée est rendue en lecture seule.
     await employerPage.getByLabel('Mot de passe du lien').fill(SHARE_PASSWORD)
     await employerPage
       .getByRole('button', { name: 'Consulter la cartographie' })
       .click()
-    await expect(
-      employerPage.getByRole('heading', { name: /Cartographie — Journal de Maya \(e2e\)/ }),
-    ).toBeVisible()
+    await expect(employerPage.getByRole('heading', { level: 1, name: VERSION_TITRE })).toBeVisible()
+    await expect(employerPage.getByTestId('share-sans-garantie')).toBeVisible()
     await expect(employerPage.locator('.share-view svg').first()).toBeVisible()
     await employerContext.close()
   })
 
+  await page.goto('/#/espace')
   await test.step('Export de l’archive : téléchargement + validation au schéma archive-export (moteur)', async () => {
     const downloadPromise = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Exporter toutes mes données' }).click()
@@ -198,6 +233,8 @@ test('parcours apprenant complet : compte, portfolio, run mock, partage, export,
     expect(archive.account?.email).toBe(email)
     expect(archive.portfolios).toHaveLength(1)
     expect(archive.cartographies).toHaveLength(4)
+    // Le jeu ouvert dans l'interface pour le partage voyage avec l'archive.
+    expect(archive.jeuxCartographie).toHaveLength(1)
     await expect(page.getByText(/Archive téléchargée/)).toBeVisible()
   })
 

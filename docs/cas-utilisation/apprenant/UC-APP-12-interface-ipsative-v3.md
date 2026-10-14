@@ -1,5 +1,22 @@
 # UC-APP-12 — Explorer sa cartographie dans l'interface ipsative V3
 
+> **RETIRÉ le 2026-10-14** (décision de Christian, journal de la cartographie,
+> D-2 et D-38). L'interface V3 n'est plus servie : `#/cartographie-v3` et
+> `#/merge` renvoient vers `#/cartographie` (interface ultime), qui couvre ses
+> usages (import, soleil, heatmap, comparaison, partage) et ouvre aussi les
+> masters V3 (conversion, journal D-25). Ses composants d'interface
+> (`V3View`, panneaux, outils, partage) et ses tests fonctionnels sont
+> supprimés ; `web/src/v3/core/` reste, pour la conversion des masters V3 et
+> les briques réutilisées (lecture ZIP, identifiants, grille de tuiles), avec
+> ses tests unitaires. Le reste de cette fiche décrit l'état antérieur.
+
+> **Mise à jour du 2026-10-13 (interface ultime de cartographie).** L'interface V3
+> décrite dans cette fiche est désormais servie sur `#/cartographie-v3` (et
+> toujours sur `#/merge` sans document chargé) ; `#/cartographie` porte
+> l'interface ultime (voir `docs/cartographie-ultime/JOURNAL.md`, décision D-2).
+> L'entrée du menu « Découvrir » s'intitule « Cartographie ». Les tests
+> fonctionnels de cette fiche ouvrent donc `#/cartographie-v3`.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (avec ou sans compte : l'interface est entièrement locale) |
@@ -7,7 +24,7 @@
 | **Portée** | humanome.xyz — `#/cartographie` (et `#/merge` sans document chargé) : import de fichiers, vues par persona, grille de tuiles, arbre du référentiel, présentation (surface, distinctions renforcées), comparaison, droit de réponse, éditeur JSON, constructeur de partage, réimport |
 | **Niveau** | Objectif utilisateur |
 | **Cahier des charges** | §3.2 (visualiser sa cartographie, graphe évolutif ; partager une cartographie choisie), §4.4 (visualisation unifiée), §6.1 et §6.4 (rien ne quitte le navigateur ; partage = décision explicite) |
-| **Statut** | Implémenté (interface V3, décision D14 ; vues par persona et grille de tuiles 2026-07-17) — voir anomalies AN1 à AN19 |
+| **Statut** | **Retiré le 2026-10-14** (remplacé par l'interface ultime, `#/cartographie`) ; auparavant implémenté (interface V3, décision D14 ; vues par persona et grille de tuiles 2026-07-17) — voir anomalies AN1 à AN19 |
 
 ## Objectif
 
@@ -337,7 +354,7 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 - `web/src/v3/core/import.test.js` — identifiants, empreintes, adaptateurs, arbitrage, admissibilité, métriques.
 - `web/src/v3/core/share.test.js` — révisions, comparaison, panneaux, partage (AC-SHARE-01 à 07, 09 à 11, 13, 15, 17, 19, 20 ; les critères 08, 12, 14, 16 et 18 n'y figurent pas), réimport.
 - `web/src/v3/ui/V3View.test.jsx` (dont le titre « Référentiel » qui retire un filtre posé depuis le soleil), `web/src/v3/ui/tile-grid.test.jsx` (colonnes par largeur, déplacement, tailles, redimensionnement au pointeur).
-- Guides : `content/formation/apprenant/07-interface-cartographie-ipsative.md`, `content/formation/cartographe/07-…`, `content/formation/employeur/06-…`.
+- Guides : `content/formation/apprenant/07-interface-cartographie-ipsative.md`, `content/formation/cartographe/07-…`, `content/formation/employeur/06-…` — réécrits le 2026-10-14 pour l'interface de cartographie (`#/cartographie`) et la version partagée ; leurs noms de fichier, qui servent de clés à la progression de formation, sont inchangés.
 
 ### Exécuter
 

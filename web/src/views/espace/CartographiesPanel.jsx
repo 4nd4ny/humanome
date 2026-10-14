@@ -3,20 +3,29 @@
 // lib/carto-store.js) ; la copie serveur est un OPT-IN explicite distinct
 // (cahier §3.2, §6.2) matérialisé par `serverId`. Actions par cartographie :
 // voir (prop onOpen câblée par B) / télécharger le JSON / confidentialité /
-// copier-retirer du serveur / partager par lien + mot de passe (si copie
-// serveur) / supprimer. Section « Mes données » : export/import d'archive.
+// copier-retirer du serveur / partager depuis l'interface de cartographie /
+// liens déjà créés (si copie serveur) / supprimer. Section « Mes données » :
+// export/import d'archive.
+//
+// Ancien partage RETIRÉ (décision du 2026-10-14, journal de la cartographie
+// D-43) : on ne crée plus de lien vers ces cartographies. « Partager depuis
+// l'interface » ouvre la cartographie dans l'interface, à l'espace Partage
+// (version partagée, réservée aux adultes, garantie possible par un
+// cartographe) ; les liens déjà créés restent servis jusqu'à leur
+// expiration, et se révoquent ici.
 import { useCallback, useEffect, useState } from 'react'
 import { ApiError, apiFetch } from '../../api/client.js'
 import { downloadJson } from '../../lib/archive.js'
+import { cartographyFileName, interfaceFiles } from '../../lib/interface-handoff.js'
 import { createCartoStore } from '../../lib/carto-store.js'
 import { createPortfolioStore } from '../../lib/portfolio-store.js'
 import ExportSection from './ExportSection.jsx'
-import ShareDialog from './ShareDialog.jsx'
+import ShareDialog, { shareDialogId } from './ShareDialog.jsx'
 
 const VISIBILITY_LABELS = {
   privee: 'Privée',
   cartographe: 'Partagée avec mon cartographe',
-  publique: 'Publique (partageable)',
+  publique: 'Partager', // valeur serveur « publique » ; libellé décidé le 2026-10-14 (journal D-44)
 }
 
 const TYPE_LABELS = { jour: 'Journée', merge: 'Parcours (merge)', twin9: 'Analyse Twin9' }
@@ -64,6 +73,7 @@ function serverErrorMessage(error, actionLabel) {
  *   fetchFn?: typeof fetch,                             // test seam API
  *   download?: (filename: string, text: string) => void, // test seam téléchargements
  *   getAccount?: Function, getReferentiel?: Function, getPromptPackages?: Function, // seams export
+ *   onShareInInterface?: (files: Array<{path: string, text: string}>, opts: {title: string}) => void, // App : interface, espace Partage
  * }} props
  */
 export default function CartographiesPanel({
@@ -75,6 +85,7 @@ export default function CartographiesPanel({
   getAccount,
   getReferentiel,
   getPromptPackages,
+  onShareInInterface,
 }) {
   const [effectiveStore] = useState(() => store ?? createCartoStore())
   const [effectivePortfolioStore] = useState(() => portfolioStore ?? createPortfolioStore())
@@ -212,9 +223,27 @@ export default function CartographiesPanel({
   }
 
   function handleDownload(entry) {
-    const day = entry.document?.date ?? entry.document?.periode?.derniere ?? null
-    const suffix = day ?? String(entry.updatedAt ?? '').slice(0, 10) ?? 'export'
-    downloadJson(`cartographie-${entry.type}-${suffix}.json`, entry.document, download)
+    downloadJson(cartographyFileName(entry), entry.document, download)
+  }
+
+  // La cartographie part vers l'interface (journée, parcours ; Twin9 adapté) :
+  // rien ne quitte le navigateur.
+  async function handleShareInInterface(entry) {
+    setNotice(null)
+    setBusyId(entry.id) // un seul envoi par clic
+    let files
+    try {
+      files = await interfaceFiles(entry, getReferentiel ? { getReferentiel } : {})
+    } catch {
+      setNotice({
+        kind: 'error',
+        text: `« ${entry.titre} » ne peut pas s’ouvrir dans l’interface de cartographie : aucune journée datée à y placer.`,
+      })
+      return
+    } finally {
+      setBusyId(null)
+    }
+    onShareInInterface?.(files, { title: entry.titre })
   }
 
   const shareEntry = entries?.find((entry) => entry.id === shareEntryId) ?? null
@@ -224,7 +253,10 @@ export default function CartographiesPanel({
       <h2>Mes cartographies</h2>
       <p className="carto-panel-intro">
         Vos cartographies sont conservées dans ce navigateur. La copie serveur est un choix
-        explicite, cartographie par cartographie — elle seule permet le partage par lien.
+        explicite, cartographie par cartographie : elle permet de la faire relire par votre
+        cartographe et de la retrouver ailleurs. Pour la montrer à quelqu’un, partagez-la depuis
+        l’interface de cartographie : vous y composez une version partagée (réservée aux
+        adultes), que votre cartographe peut aussi publier avec sa garantie.
       </p>
 
       {storageError ? <p role="alert">{storageError}</p> : null}
@@ -294,6 +326,16 @@ export default function CartographiesPanel({
                   >
                     Télécharger le JSON
                   </button>
+                  {onShareInInterface ? (
+                    <button
+                      type="button"
+                      className="button"
+                      disabled={busy || entry.document == null}
+                      onClick={() => handleShareInInterface(entry)}
+                    >
+                      Partager depuis l’interface
+                    </button>
+                  ) : null}
                   {entry.serverId == null ? (
                     <button
                       type="button"
@@ -309,11 +351,13 @@ export default function CartographiesPanel({
                         type="button"
                         className="button"
                         disabled={busy}
+                        aria-expanded={shareEntryId === entry.id}
+                        aria-controls={shareEntryId === entry.id ? shareDialogId(entry.id) : undefined}
                         onClick={() =>
                           setShareEntryId(shareEntryId === entry.id ? null : entry.id)
                         }
                       >
-                        Partager
+                        Liens déjà créés
                       </button>
                       <button
                         type="button"
@@ -351,8 +395,8 @@ export default function CartographiesPanel({
                     <strong>Copie serveur = choix explicite (RGPD).</strong> Par défaut, cette
                     cartographie ne quitte pas votre navigateur. En confirmant, vous acceptez que
                     le document de la cartographie (jamais votre portfolio) soit stocké sur le
-                    serveur humanome.xyz, afin de pouvoir le partager par lien et le retrouver
-                    depuis un autre appareil. Vous pouvez retirer cette copie à tout moment
+                    serveur humanome.xyz, afin de le faire relire par votre cartographe et de le
+                    retrouver depuis un autre appareil. Vous pouvez retirer cette copie à tout moment
                     (« Retirer du serveur ») ; la suppression de votre compte purge réellement
                     toutes vos données.
                   </p>
@@ -377,6 +421,11 @@ export default function CartographiesPanel({
                   entry={shareEntry}
                   fetchFn={fetchFn}
                   onClose={() => setShareEntryId(null)}
+                  onShareInInterface={
+                    onShareInInterface && shareEntry.document != null
+                      ? () => handleShareInInterface(shareEntry)
+                      : undefined
+                  }
                 />
               ) : null}
             </li>

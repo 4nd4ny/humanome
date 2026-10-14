@@ -85,20 +85,21 @@ route `#/jour/<date>` (par exemple en cliquant un jour du calendrier).
 
 Une seule journée dit peu de chose. La force de la cartographie vient de
 l'**accumulation**. La fusion — le *merge* — additionne les 59 cartographies
-journalières en une **cartographie cumulée** : c'est la vue centrale, à la route
-`#/merge`. Une compétence évoquée une seule fois reste ténue ; une compétence qui
+journalières en une **cartographie cumulée** : c'est la vue centrale, la
+cartographie (`#/cartographie`). Une compétence évoquée une seule fois reste ténue ; une compétence qui
 revient de semaine en semaine se renforce et s'affirme. Certaines compétences
 n'apparaissent d'ailleurs **qu'à la fusion**, parce qu'aucune journée prise
 isolément ne suffisait à les établir.
 
 ### 4. Le sunburst
 
-Le résultat se lit dans un diagramme circulaire, le **sunburst**. Au centre, la
-personne ; le premier anneau, les 7 pôles ; l'anneau extérieur, les compétences.
-La **largeur** d'un secteur traduit l'importance qu'a prise la compétence (les
-points qu'elle a accumulés au fil des feuilles) ; sa **longueur radiale**, le
-**niveau** atteint (de 1 à 5). Le chapitre `02-explorer-la-demonstration.md`
-vous apprend à le lire secteur par secteur.
+Le résultat se lit dans un diagramme circulaire, le **soleil** (ou sunburst).
+Au centre, le nombre de journées ; le premier anneau, les 7 pôles ; l'anneau
+extérieur, les compétences. L'**angle** d'un secteur compte les points de la
+compétence (un par preuve, un demi par indice : plus elle a de traces, plus il
+est large) ; sa **hauteur**, la confiance moyenne du jury dans ses verdicts
+(de 0 à 1). Le chapitre `02-explorer-la-demonstration.md` vous apprend à le
+lire secteur par secteur.
 
 ## Ce qu'une cartographie n'est pas
 
@@ -109,8 +110,8 @@ humanome.xyz **n'est pas** :
   outils. La cartographie ne liste rien : elle lit des récits et en tire des
   traces. Elle peut compléter un CV, elle ne le remplace pas.
 - **une note.** Il n'y a ni moyenne, ni classement, ni « bon » ou « mauvais »
-  élève. Les niveaux (1 à 5) décrivent l'**épaisseur des traces** relevées, pas
-  la valeur d'une personne. Deux personnes ne sont jamais comparées entre elles.
+  élève. Les points et la confiance décrivent les **traces** relevées, pas la
+  valeur d'une personne. Deux personnes ne sont jamais comparées entre elles.
 - **une mesure de ce que vous êtes.** La cartographie mesure ce que votre
   **portfolio donne à voir**, à un moment donné. Une compétence réelle mais
   jamais racontée restera invisible — non parce qu'elle n'existe pas, mais parce
@@ -126,13 +127,15 @@ humanome.xyz **n'est pas** :
 Vous pouvez tout essayer sans compte. Trois portes s'ouvrent depuis la page
 d'accueil :
 
-1. **« Explorer la cartographie de démonstration »** vous mène à `#/merge`, sur
-   un portfolio réel de 59 feuilles — c'est l'objet du prochain chapitre.
+1. **« Explorer la cartographie de démonstration »** vous mène à la
+   cartographie (`#/cartographie`), où « Explorer la démonstration » ouvre un
+   portfolio réel de 59 journées — c'est l'objet du prochain chapitre.
 2. **« Essayer avec votre propre texte »** vous mène à `#/essayer`, où vous
    collez un texte et obtenez une cartographie en direct, sans rien conserver
    (chapitre `04-essayer-et-aller-plus-loin.md`).
-3. **« Charger ma cartographie (JSON) »** permet, si vous possédez déjà un
-   fichier de cartographie, de l'afficher — la lecture reste entièrement dans
+3. **« Ouvrir mes fichiers de cartographie »** permet, si vous possédez déjà
+   des fichiers de cartographie (journées, merge, archive), de les ouvrir dans
+   la cartographie — la lecture reste entièrement dans
    votre navigateur, rien n'est envoyé nulle part.
 
 Vous savez maintenant de quoi parle humanome.xyz et par quelle chaîne une

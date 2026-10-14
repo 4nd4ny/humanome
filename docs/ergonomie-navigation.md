@@ -356,7 +356,7 @@ flowchart TD
 
   root --> DEC["Découvrir · tous"]
   DEC --> d_home["#/ · Accueil"]
-  DEC --> d_merge["#/merge · Cartographie démonstration"]
+  DEC --> d_merge["#/cartographie · Cartographie (démonstration incluse)"]
   DEC --> d_try["#/essayer · Essayer — gratuit, sans compte"]
   DEC --> d_ref["#/referentiel · Référentiel"]
   DEC --> d_guides["#/guides · Guides — onboarding public"]

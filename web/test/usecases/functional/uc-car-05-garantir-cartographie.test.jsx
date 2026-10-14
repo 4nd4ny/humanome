@@ -55,7 +55,9 @@ describe('UC-CAR-05 — le cartographe garantit', () => {
     // 1. Encadré de confirmation : en votre nom, cible explicite.
     const confirm = await openConfirmation()
     expect(confirm.textContent).toContain('en votre nom (Camille), avec signature horodatée')
-    expect(confirm.textContent).toContain('Le document d’origine sera présenté comme garanti via le lien de partage.')
+    expect(confirm.textContent).toContain('Le document d’origine sera signé.')
+    // Ancien partage retiré (D-43) : la garantie atteint l'employeur par la publication.
+    expect(confirm.textContent).toContain('Pour qu’un employeur voie votre garantie, publiez la version partagée que la personne vous demande')
     expect(net.calls.some((call) => call.key.startsWith('POST'))).toBe(false)
 
     // 2-3. Signature.
@@ -84,7 +86,7 @@ describe('UC-CAR-05 — le cartographe garantit', () => {
 
     // Document d'origine affiché : la révision la plus récente (7) sera figée.
     let confirm = await openConfirmation()
-    expect(confirm.textContent).toContain("La révision 7 sera figée : c'est elle que verra l'employeur via le lien de partage.")
+    expect(confirm.textContent).toContain('La révision 7 sera figée et signée.')
     fireEvent.click(within(confirm).getByRole('button', { name: 'Annuler' }))
 
     // Révision 6 affichée : c'est elle qui sera figée.

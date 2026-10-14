@@ -104,9 +104,8 @@ final class UcCar04CorrigerCartographieTest extends CartographeTestCase
     public function testF02RevisionOnGuaranteedCartographyRemovesTheGarantie(): void
     {
         // Précondition UC-APP-05 : Maya a partagé la cartographie avec un employeur.
-        $share = $this->as_($this->maya, 'POST', '/api/cartographies/' . $this->cartoId . '/share', ['password' => 'mot-de-passe-du-lien']);
-        self::assertSame(201, $share->getStatusCode(), (string) $share->getBody());
-        $token = (string) self::json($share)['token'];
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $token = self::legacyShareLink($this->cartoId, 'mot-de-passe-du-lien', 90, $this->maya['id'])['token'];
         self::assertSame(201, $this->as_($this->carl, 'POST', '/api/cartographies/' . $this->cartoId . '/garantie')->getStatusCode());
         self::assertSame('Carl', $this->employeurConsulte($token)['garantie']['par'], 'avant : l’employeur voit la garantie');
 

@@ -105,6 +105,25 @@ describe('UC-CPT-06 — l’utilisateur supprime son compte', () => {
     expect((await createCartoStore().listCartographies()).map((c) => c.titre)).toEqual(['Journée locale'])
   })
 
+  it('UC-CPT-06-F12 — les brouillons des versions partagées (extraits, noms remplacés), liés aux versions purgées, quittent ce navigateur ; un refus les garde', async () => {
+    localStorage.setItem('humanome-carto-share-draft:ds-lou:10', JSON.stringify({ title: 'v', chosen: [{ text: 'un extrait' }], dictionary: [{ from: 'Sam', to: '‹nom›' }] }))
+    localStorage.setItem('humanome-carto-share-draft:ds-autre:11', JSON.stringify({ title: 'w' }))
+    localStorage.setItem('humanome-keys', JSON.stringify({ openai: 'sk-openai-locale' }))
+    const { api, zone } = await openDangerZone()
+    api.failNext('DELETE auth/account', jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' }))
+    await confirmAndDelete(zone)
+    await screen.findByRole('alert')
+    expect(localStorage.getItem('humanome-carto-share-draft:ds-lou:10')).not.toBeNull()
+
+    await act(async () => {
+      fireEvent.click(zone.getByRole('button', { name: 'Supprimer mon compte' }))
+    })
+    await screen.findByText(/Votre compte a été supprimé/)
+    expect(localStorage.getItem('humanome-carto-share-draft:ds-lou:10')).toBeNull()
+    expect(localStorage.getItem('humanome-carto-share-draft:ds-autre:11')).toBeNull()
+    expect(JSON.parse(localStorage.getItem('humanome-keys'))).toEqual({ openai: 'sk-openai-locale' })
+  })
+
   it('UC-CPT-06-F08 — E2/E1 : suppression refusée (403 CSRF, 401 session expirée) → message, le profil reste affiché', async () => {
     const { api, zone } = await openDangerZone()
     api.failNext('DELETE auth/account', jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' }))

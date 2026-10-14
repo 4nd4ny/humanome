@@ -12,10 +12,17 @@
 //   annotation « hallucination » sur une compétence -> correction du verdict
 //   (statut « renvoi au cartographe », motif sentinelle) -> nouvelle révision
 //   visible dans l'historique -> « valider et garantir » (révision figée).
-//   APPRENANT : crée un lien de partage employeur sur cette cartographie.
-//   CONTEXTE NEUF (employeur) : la page de partage affiche la mention
-//   « garantie par » ET le verdict corrigé (motif sentinelle servi par la
-//   RÉVISION garantie, pas par le document d'origine).
+//   APPRENANT : l'ancien partage est RETIRÉ (journal de la cartographie
+//   D-43) — « Liens déjà créés » ne crée rien, l'API refuse (422) ; il ouvre
+//   la cartographie dans l'interface (« Partager depuis l'interface »),
+//   atteste sa majorité et crée un code de demande de version garantie.
+//   CARTOGRAPHE : ouvre la RÉVISION garantie dans l'interface (« Ouvrir dans
+//   l'interface de cartographie »), ouvre la demande, compose et publie la
+//   version partagée dans le compte de l'apprenant, avec sa garantie (D-42).
+//   APPRENANT : crée le lien (mot de passe) de cette version garantie.
+//   CONTEXTE NEUF (employeur) : la page affiche « Relue et garantie par » ET
+//   la correction du cartographe (compétence corrigée « à confirmer » :
+//   c'est la RÉVISION qui a été publiée, pas le document d'origine).
 //
 // Un seul test séquentiel (l'état se construit d'étape en étape) ; emails
 // uniques par run : rejouable sans nettoyage.
@@ -26,8 +33,17 @@
 // dédiée n'existe pas encore (backlog M7).
 
 import { test, expect } from '@playwright/test'
+import { execFileSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
+import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+const root = dirname(dirname(dirname(fileURLToPath(import.meta.url))))
+
+/** Requête SQL sur la base de DÉVELOPPEMENT du conteneur docker (jamais ailleurs). */
+function devSql(query) {
+  return execFileSync('docker', ['compose', 'exec', '-T', 'mysql', 'mysql', '-uhumanome', '-phumanome_dev', 'humanome', '-N', '-e', query], { cwd: root, stdio: 'pipe' }).toString().trim()
+}
 
 const FIXTURE_PATH = fileURLToPath(
   new URL('../../schemas/fixtures/portfolio-3-jours.md', import.meta.url),
@@ -72,15 +88,50 @@ async function grantRole(page, { email, role }) {
   )
 }
 
-/** Inscription par l'UI #/compte (mêmes libellés que le parcours apprenant). */
+/** Appel d'API depuis la page (cookie de session + jeton CSRF lu sur api/auth/me). */
+async function apiCall(page, method, path, body) {
+  return page.evaluate(
+    async ({ method, path, body }) => {
+      const me = await fetch('api/auth/me', {
+        headers: { Accept: 'application/json' },
+        credentials: 'same-origin',
+      }).then((r) => r.json())
+      const res = await fetch(`api/${path}`, {
+        method,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          ...(me.csrfToken ? { 'X-CSRF-Token': me.csrfToken } : {}),
+        },
+        credentials: 'same-origin',
+        body: body === undefined ? undefined : JSON.stringify(body),
+      })
+      return { status: res.status, body: await res.json().catch(() => null) }
+    },
+    { method, path, body },
+  )
+}
+
+/**
+ * Inscription par l'UI #/compte (mêmes libellés que le parcours apprenant),
+ * activation, connexion. Le code d'activation (D5) part par mail(), absent en
+ * dev : le compte jetable est activé directement dans la base de DÉVELOPPEMENT.
+ */
 async function registerAccount(page, { displayName, email, password }) {
   await page.goto('/#/compte')
   await page.getByRole('button', { name: 'Inscription' }).click()
   await page.getByLabel('Nom affiché').fill(displayName)
-  await page.getByLabel('Email').fill(email)
+  await page.getByLabel('Email', { exact: true }).fill(email)
+  await page.getByLabel('Confirmez l’email').fill(email)
   await page.getByLabel('Mot de passe').fill(password)
   await page.getByRole('button', { name: 'Créer mon compte' }).click()
-  await expect(page.getByText('Compte créé, bienvenue !')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Activer votre compte' })).toBeVisible()
+  devSql(`UPDATE users SET email_verified_at = NOW() WHERE email = '${email}'`)
+  await page.getByRole('button', { name: 'Retour à la connexion' }).click()
+  await page.getByLabel('Email', { exact: true }).fill(email)
+  await page.getByLabel('Mot de passe').fill(password)
+  await page.getByRole('button', { name: 'Se connecter' }).click()
+  await expect(page.getByText(email, { exact: true })).toBeVisible()
 }
 
 test('parcours cartographe : invitation, relecture, annotation, révision, garantie, constat employeur', async ({
@@ -189,6 +240,10 @@ test('parcours cartographe : invitation, relecture, annotation, révision, garan
     const granted = await grantRole(cartoPage, { email: cartographeEmail, role: 'cartographe' })
     expect(granted.status).toBe(200)
     expect(granted.body?.status).toBe('granted')
+    // Rôle attribué après la connexion : la page est rechargée pour que
+    // l'application relise la session (menus, espace Partage de l'interface).
+    await cartoPage.reload()
+    await expect(cartoPage.getByRole('group', { name: 'Encadrer et garantir' })).toHaveCount(1)
   })
 
   await test.step('Cartographe : accepte l’invitation, l’apprenant apparaît, la file se remplit', async () => {
@@ -297,48 +352,109 @@ test('parcours cartographe : invitation, relecture, annotation, révision, garan
     await expect(queueRow.getByText('Garantie par Cartographe E2E')).toBeVisible()
   })
 
-  let shareUrl = ''
-  await test.step('Apprenant : création du lien de partage employeur', async () => {
+  await test.step('Apprenant : l’ancien partage est retiré (rien ne se crée, l’API refuse)', async () => {
     await page.goto('/#/espace')
     await expect(jourItem).toBeVisible()
-    await jourItem.getByRole('button', { name: 'Partager' }).click()
-    await page
-      .getByLabel(/Mot de passe du lien \(8 caractères min\)/)
-      .fill(SHARE_PASSWORD)
-    await page.getByRole('button', { name: 'Créer le lien de partage' }).click()
-    shareUrl = (await page.getByTestId('share-url').textContent())?.trim() ?? ''
-    expect(shareUrl).toMatch(/\/#\/partage\/[0-9a-f]{32}$/)
-    await page.getByRole('button', { name: 'Fermer' }).click()
+    await expect(jourItem.getByRole('button', { name: 'Partager', exact: true })).toHaveCount(0)
+    await jourItem.getByRole('button', { name: 'Liens déjà créés' }).click()
+    const dialog = page.getByRole('region', { name: `Liens de partage de ${JOUR_TITRE}` })
+    await expect(dialog).toContainText('Le partage par lien de cette cartographie est retiré')
+    await expect(dialog.getByText('Aucun lien de partage pour cette cartographie.')).toBeVisible()
+    await expect(dialog.getByLabel(/Mot de passe/)).toHaveCount(0)
+    await dialog.getByRole('button', { name: 'Fermer' }).click()
+
+    // Même en appelant l'API directement : 422 share_retired.
+    const list = await apiCall(page, 'GET', 'cartographies')
+    const copy = (Array.isArray(list.body) ? list.body : list.body?.cartographies ?? []).find((c) => c.titre === JOUR_TITRE)
+    expect(copy?.id).toBeTruthy()
+    const refused = await apiCall(page, 'POST', `cartographies/${copy.id}/share`, { password: SHARE_PASSWORD, expiresInDays: 30 })
+    expect(refused.status).toBe(422)
+    expect(refused.body?.code).toBe('share_retired')
   })
 
-  await test.step('Employeur (contexte NEUF) : mention « garantie par » ET verdict corrigé', async () => {
-    const employerContext = await browser.newContext()
+  let requestCode = ''
+  await test.step('Apprenant : « Partager depuis l’interface », attestation, code de demande de version garantie', async () => {
+    await jourItem.getByRole('button', { name: 'Partager depuis l’interface' }).click()
+    await expect(page).toHaveURL(/#\/cartographie\/partage$/)
+    await expect(page.locator('.carto-context-dataset')).toHaveText(JOUR_TITRE)
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus/ }).check()
+    await page.getByRole('button', { name: 'Confirmer et continuer' }).click()
+    const section = page.locator('section').filter({
+      has: page.getByRole('heading', { name: 'Faire publier une version par votre cartographe' }),
+    })
+    await section.getByRole('checkbox', { name: /au moment de cette demande/ }).check()
+    await section.getByRole('button', { name: 'Créer un code de demande' }).click()
+    requestCode = (await section.locator('.carto-share-created code').innerText()).trim()
+    expect(requestCode).toMatch(/^[A-Z2-9]{10}$/)
+  })
+
+  const VERSION_TITRE = 'Journée relue par le cartographe (e2e)'
+  await test.step('Cartographe : ouvre la révision garantie dans l’interface, puis la demande', async () => {
+    const queueRow = cartoPage
+      .getByTestId('cartographe-queue')
+      .locator('tbody tr')
+      .filter({ hasText: JOUR_TITRE })
+    await queueRow.getByRole('link', { name: 'Relire' }).click()
+    await expect(cartoPage.getByTestId('garantie-badge')).toContainText('garantie par Cartographe E2E')
+    await cartoPage.getByTestId('revisions-list').getByRole('button', { name: 'Voir' }).first().click()
+    await expect(cartoPage.getByTestId('viewing-revision')).toBeVisible()
+    await cartoPage.getByRole('button', { name: 'Ouvrir dans l’interface de cartographie' }).click()
+
+    await expect(cartoPage).toHaveURL(/#\/cartographie\/partage$/)
+    await expect(cartoPage.locator('.carto-context-dataset')).toHaveText(new RegExp(`^${JOUR_TITRE.replace(/[()]/g, '\\$&')} — révision \\d+$`))
+    await cartoPage.getByLabel(/Code de demande/).fill(requestCode)
+    await cartoPage.getByRole('button', { name: 'Ouvrir la demande' }).click()
+    await expect(cartoPage.getByRole('heading', { name: 'Version garantie pour Apprenante E2E' })).toBeVisible()
+  })
+
+  await test.step('Cartographe : compose, garantit et publie dans le compte de l’apprenant', async () => {
+    await cartoPage.getByRole('textbox', { name: 'Titre vu par le destinataire' }).fill(VERSION_TITRE)
+    await cartoPage.getByRole('button', { name: 'Suivant : relire' }).click()
+    await cartoPage.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }).check()
+    await cartoPage.getByRole('button', { name: 'Suivant : aperçu' }).click()
+    const preview = cartoPage.getByLabel('Aperçu verrouillé de la version partagée')
+    await expect(preview.getByTestId('share-garantie')).toContainText('Relue et garantie par Cartographe E2E')
+    await cartoPage.getByRole('checkbox', { name: /Je garantis cette version/ }).check()
+    await cartoPage.getByRole('button', { name: 'Publier pour Apprenante E2E, avec ma garantie' }).click()
+    await expect(cartoPage.getByText(/est publiée dans le compte de Apprenante E2E, avec votre garantie/)).toBeVisible()
+  })
+
+  let shareUrl = ''
+  await test.step('Apprenant : la version garantie est là ; il crée son lien, avec mot de passe', async () => {
+    await page.reload()
+    await page.getByRole('link', { name: 'Partage', exact: true }).click()
+    const item = page.locator('.carto-share-version').filter({ hasText: VERSION_TITRE })
+    await expect(item.getByText(/Garantie par Cartographe E2E, le .* : publiée à votre demande\./)).toBeVisible()
+    await item.getByRole('button', { name: 'Liens et accès' }).click()
+    await item.getByLabel('Mot de passe (facultatif)').fill(SHARE_PASSWORD)
+    await item.getByRole('button', { name: 'Créer le lien' }).click()
+    shareUrl = await page.getByRole('textbox', { name: 'Lien de partage' }).inputValue()
+    expect(shareUrl).toMatch(/\/#\/partage\/[0-9a-f]{32}$/)
+  })
+
+  await test.step('Employeur (contexte NEUF) : « Relue et garantie par » ET la correction du cartographe', async () => {
+    const employerContext = await browser.newContext({ locale: 'fr-FR' })
     const employerPage = await employerContext.newPage()
     await employerPage.goto(shareUrl)
     await employerPage.getByLabel('Mot de passe du lien').fill(SHARE_PASSWORD)
     await employerPage
       .getByRole('button', { name: 'Consulter la cartographie' })
       .click()
-    await expect(employerPage.getByRole('heading', { name: JOUR_TITRE })).toBeVisible()
+    await expect(employerPage.getByRole('heading', { level: 1, name: VERSION_TITRE })).toBeVisible()
 
-    // 1. La garantie posée en P9 remplace le null de M6 : mention visible.
+    // 1. La garantie du cartographe qui a publié.
     await expect(employerPage.getByTestId('share-garantie')).toContainText(
-      'garantie par Cartographe E2E',
+      'Relue et garantie par Cartographe E2E',
     )
 
-    // 2. Le document servi est celui de la RÉVISION garantie : la compétence
-    // corrigée porte le statut « renvoi au cartographe » et le motif
-    // sentinelle — qui n'existent QUE dans la révision. Sélection au clavier
-    // (secteur = role button, Entrée = sélection).
-    const sector = employerPage.locator(
-      `path[data-kind="competence"][data-id^="${competenceCode} "]`,
-    )
-    await expect(sector).toHaveCount(1)
-    await sector.press('Enter')
-    const verdict = employerPage.getByTestId('verdict-block')
-    await expect(verdict).toBeVisible()
-    await expect(verdict).toContainText('renvoi au cartographe')
-    await expect(verdict).toContainText(MOTIF_CORRIGE)
+    // 2. C'est la RÉVISION garantie qui a été publiée : la compétence dont le
+    // verdict « présence établie » a été corrigé en « renvoi au cartographe »
+    // est « à confirmer » (elle ne l'est pas dans le document d'origine).
+    const corrected = employerPage
+      .locator('.carto-shared-comp')
+      .filter({ has: employerPage.locator('.carto-code').getByText(competenceCode, { exact: true }) })
+    await expect(corrected).toHaveCount(1)
+    await expect(corrected).toContainText('à confirmer')
     await employerContext.close()
   })
 

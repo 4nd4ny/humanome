@@ -77,7 +77,7 @@ describe('UC-APP-06 — export : assemblage de l’archive (étapes 2-4)', () =>
     const { archive, filename, counts } = await exportArchive({ cartoStore, portfolioStore, ...deps })
 
     expect(filename).toBe('humanome-export-2026-07-12.json')
-    expect(counts).toEqual({ portfolios: 1, cartographies: 0 })
+    expect(counts).toEqual({ portfolios: 1, cartographies: 0, jeux: 0, jeuxError: null, jeuxExclus: [] })
     expect(archive.portfolios[0]).toMatchObject({
       titre: 'Portfolio sans titre',
       source: 'colle',
@@ -183,7 +183,7 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
 
     const report = await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })
 
-    expect(report).toEqual({ portfolios: 1, cartographies: 2 })
+    expect(report).toEqual({ portfolios: 1, cartographies: 2, jeux: 0 })
     const [portfolio] = await portfolioStore.list()
     const source = exemple.portfolios[0]
     // (portfolio-store.create génère toujours son identifiant : pas de contrôle ici.)
@@ -217,8 +217,8 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
     archive.portfolios = [archive.portfolios[0], { ...archive.portfolios[0], id: 'copie', titre: 'Copie' }]
     archive.cartographies = [archive.cartographies[0], { ...archive.cartographies[0], id: 'copie' }]
 
-    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 1, cartographies: 1 })
-    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 0, cartographies: 0 })
+    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 1, cartographies: 1, jeux: 0 })
+    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 0, cartographies: 0, jeux: 0 })
   })
 
   it.each([
@@ -240,7 +240,7 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
 
     const report = await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })
 
-    expect(report).toEqual({ portfolios: 1, cartographies: 1 })
+    expect(report).toEqual({ portfolios: 1, cartographies: 1, jeux: 0 })
     const [carto] = await cartoStore.listCartographies()
     expect(carto.promptPackage).toEqual({ id: 'aurora-demo', version: '1.0.0' })
   })
@@ -292,5 +292,47 @@ describe('UC-APP-06 — section « Mes données » (ExportSection)', () => {
       'Import terminé : 1 portfolio(s) et 1 cartographie(s) restaurés (les doublons sont ignorés).',
     )
     expect(onImported).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('UC-APP-06 — A5 : stockage de l’interface de cartographie illisible ou jeu non conforme (archive 1.1.0)', () => {
+  it('UC-APP-06-U19 — ExportSection : l’archive part quand même, et le message dit ce qui manque et quoi faire', async () => {
+    const { cartoStore, portfolioStore } = stores()
+    const base = {
+      cartoStore,
+      portfolioStore,
+      download: vi.fn(),
+      fetchFn: async () => {
+        throw new TypeError('hors ligne')
+      },
+      getAccount: async () => null,
+      getReferentiel: async () => ({ doc: referentiel }),
+      getPromptPackages: async () => [],
+    }
+    const failing = { listDatasets: async () => { throw new Error('base verrouillée') } }
+    render(createElement(ExportSection, { ...base, interfaceStore: failing }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Exporter toutes mes données' }))
+    })
+    expect((await screen.findByRole('status')).textContent).toMatch(
+      (/^Archive téléchargée \(humanome-export-\d{4}-\d{2}-\d{2}\.json\) : 0 portfolio\(s\), 0 cartographie\(s\)\. Vos jeux de l’interface de cartographie n’ont pas pu être lus \(base verrouillée\) : exportez-les depuis l’espace Export de la cartographie\.$/),
+    )
+    expect(base.download).toHaveBeenCalledTimes(1)
+    cleanup()
+
+    // Un jeu non conforme (édité à la main) : laissé de côté, nommé.
+    const master = (await import('../../../../schemas/fixtures/carto/competency-map-master-exemple.json')).default
+    const broken = { ...master, markers: [{ id: 'mk', label: 'sans date' }] }
+    const store = {
+      listDatasets: async () => [{ datasetId: broken.datasetId }],
+      exportAll: async () => ({ dataset: broken, details: master.details, runDetails: master.runDetails }),
+    }
+    render(createElement(ExportSection, { ...base, interfaceStore: store }))
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Exporter toutes mes données' }))
+    })
+    expect((await screen.findByRole('status')).textContent).toMatch(
+      / 1 jeu\(x\) illisible\(s\) laissé\(s\) de côté \(« Lou »\) : exportez-le\(s\) depuis l’espace Export de la cartographie\.$/,
+    )
   })
 })

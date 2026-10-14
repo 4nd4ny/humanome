@@ -2,22 +2,35 @@
 // tests FONCTIONNELS (IHM).
 // Fiche : docs/cas-utilisation/apprenant/UC-APP-05-partager-avec-employeur.md
 //
-// Le scénario est joué dans l'espace apprenant rendu (EspaceView, #/espace) :
-// session vérifiée au montage (vrai fetchMe → jeton CSRF), panneau « Mes
-// cartographies » réel, dialogue de partage réel. Seuls le stockage local
-// (carto-store mémoire) et le réseau (fetch global → serveur factice à état
-// reproduisant les routes de partage) sont simulés. La consultation par
-// l'employeur est l'objet de UC-EMP-01.
+// Ancien partage RETIRÉ (décision du 2026-10-14, journal de la cartographie
+// D-43) : on ne crée plus de lien vers une cartographie du site. Le partage
+// passe par l'interface de cartographie (espace Partage : version partagée,
+// réservée aux adultes, garantie possible par un cartographe — ses propres
+// tests sont ceux de l'interface, P6 et D-42). Joués ici :
+// - le renvoi « Partager depuis l'interface » de « Mes cartographies »,
+//   application complète (<App/>) : la cartographie arrive dans un nouveau
+//   jeu de l'interface, à l'espace Partage (F24, F25) ;
+// - la gestion des liens DÉJÀ CRÉÉS dans l'espace apprenant rendu (EspaceView,
+//   #/espace) : session vérifiée au montage (vrai fetchMe → jeton CSRF),
+//   panneau « Mes cartographies » réel, dialogue réel (F13, F14, F18–F20, F22).
+// Seuls le stockage local (carto-store mémoire, IndexedDB factice pour
+// <App/>) et le réseau (fetch global → serveur factice à état) sont simulés.
+// F11, F12, F15–F17, F21 et F23 (création d'un lien) sont retirés avec elle.
+// La consultation par l'employeur est l'objet de UC-EMP-01.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import App from '../../../src/App.jsx'
 import EspaceView from '../../../src/views/EspaceView.jsx'
 import CartographiesPanel from '../../../src/views/espace/CartographiesPanel.jsx'
 import { createCartoStore, createMemoryAdapter } from '../../../src/lib/carto-store.js'
+import { createCartoStore as createInterfaceStore } from '../../../src/carto/core/store.js'
 import {
   createMemoryAdapter as createPortfolioMemoryAdapter,
   createPortfolioStore,
 } from '../../../src/lib/portfolio-store.js'
 import { resetApiClient } from '../../../src/api/client.js'
+import * as fakeLib from '../../../src/test/fake-sunburst-lib.js'
+import { FakeIDBKeyRange, createFakeIndexedDb } from '../support/appl-fake-indexeddb.js'
 import {
   APPS_CSRF,
   APPS_USER,
@@ -31,25 +44,22 @@ import {
 import dayFixture from '../../../../schemas/fixtures/cartographie-jour-2026-01-05.json'
 
 const TITRE = 'Journée du 05/01/2026'
-const PASSWORD = 'sesame-employeur'
+/** Échéance lointaine : le lien est encore servi quel que soit le jour du test. */
+const LATER = '2099-09-29T10:00:00'
+const idb = createFakeIndexedDb()
 
 /**
- * Serveur factice à état : liens de partage de la copie serveur 42
- * (contrat de api/src/routes/share.php côté apprenant : 401 sans session sur
- * les trois routes, 403 sans jeton CSRF, 404 hors propriété, 422 selon les
- * règles serveur du mot de passe — points de code via mb_strlen, octets).
+ * Serveur factice à état : liens de partage DÉJÀ CRÉÉS de la copie serveur 42
+ * (contrat de api/src/routes/share.php côté apprenant : 401 sans session,
+ * 403 sans jeton CSRF, 404 hors propriété). La création (POST …/share) n'est
+ * pas simulée : pour une cartographie du site, elle est retirée (422
+ * share_retired, testé côté API). L'interface de cartographie lit
+ * l'attestation de majorité (GET auth/me/adult) en arrivant à l'espace Partage.
  */
 function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevoke = false } = {}) {
   const shares = links.map((l) => ({ ...l }))
-  let seq = shares.length
   const known = (id) => cartoIds.includes(Number(id))
   const anonymous = () => (user ? null : jsonResponse(401, { error: 'Authentification requise' }))
-  const passwordError = (password) => {
-    if (typeof password !== 'string' || [...password].length < 8) {
-      return 'Le mot de passe doit contenir au moins 8 caractères'
-    }
-    return new TextEncoder().encode(password).length > 1024 ? 'Mot de passe trop long' : null
-  }
   const api = createFakeApi([
     meRoute(user),
     [
@@ -58,31 +68,8 @@ function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevok
       ({ match }) =>
         anonymous() ??
         (known(match[1])
-          ? jsonResponse(200, shares.map(({ token, ...rest }) => rest))
+          ? jsonResponse(200, shares.map((l) => ({ ...l }))) // copies : un nouvel état à chaque lecture
           : jsonResponse(404, { error: 'Cartographie introuvable' })),
-    ],
-    [
-      'POST',
-      /^cartographies\/(\d+)\/share$/,
-      ({ body, headers, match }) => {
-        if (!user) return jsonResponse(401, { error: 'Authentification requise' })
-        if (headers['X-CSRF-Token'] !== APPS_CSRF) return jsonResponse(403, { error: 'Jeton CSRF absent ou invalide' })
-        if (!known(match[1])) return jsonResponse(404, { error: 'Cartographie introuvable' })
-        const refused = passwordError(body.password)
-        if (refused) return jsonResponse(422, { error: 'Validation échouée', fields: { password: refused } })
-        seq += 1
-        const token = String(seq).repeat(32).slice(0, 32).replace(/[^0-9a-f]/g, 'a')
-        const created = new Date(Date.UTC(2026, 6, 1, 10, 0, 0))
-        const expires = new Date(created.getTime() + body.expiresInDays * 86400000)
-        shares.push({
-          shareId: seq,
-          createdAt: created.toISOString().slice(0, 19),
-          expiresAt: expires.toISOString().slice(0, 19),
-          revokedAt: null,
-          token,
-        })
-        return jsonResponse(201, { shareId: seq, token, url: `/#/partage/${token}` })
-      },
     ],
     [
       'DELETE',
@@ -97,6 +84,7 @@ function createServer({ user = APPS_USER, cartoIds = [42], links = [], failRevok
         return noContentResponse()
       },
     ],
+    ['GET', 'auth/me/adult', () => jsonResponse(200, { adult: false, attestedAt: null, required: true })],
   ])
   vi.stubGlobal('fetch', api.fetch)
   return { ...api, shares }
@@ -120,94 +108,96 @@ async function openEspace(entries) {
   return store
 }
 
+/** Application complète sur le tableau de bord ; « Mes cartographies » lit le navigateur (IndexedDB factice). */
+async function openApp(entries) {
+  vi.stubGlobal('indexedDB', idb.factory)
+  vi.stubGlobal('IDBKeyRange', FakeIDBKeyRange)
+  const store = createCartoStore()
+  for (const entry of entries) await store.saveCartography(entry)
+  window.location.hash = '#/espace'
+  render(<App lib={fakeLib} fetchMeFn={async () => ({ user: APPS_USER })} />)
+  await screen.findAllByTestId('carto-item')
+}
+
 function itemOf(titre) {
   return screen.getAllByTestId('carto-item').find((item) => within(item).queryByText(titre))
 }
 
-/** Ouvre le dialogue de partage de la cartographie et attend la liste des liens. */
+/** Ouvre la gestion des liens déjà créés de la cartographie et attend leur liste. */
 async function openDialog(titre = TITRE) {
-  fireEvent.click(within(itemOf(titre)).getByRole('button', { name: 'Partager' }))
-  const dialog = await screen.findByRole('region', { name: `Partage de ${titre}` })
+  fireEvent.click(within(itemOf(titre)).getByRole('button', { name: 'Liens déjà créés' }))
+  const dialog = await screen.findByRole('region', { name: `Liens de partage de ${titre}` })
   await waitFor(() => expect(within(dialog).queryByText('Chargement des liens…')).toBeNull())
   return dialog
 }
 
-function fillAndCreate(dialog, { password = PASSWORD, days } = {}) {
-  fireEvent.change(within(dialog).getByLabelText('Mot de passe du lien (8 caractères min)'), {
-    target: { value: password },
-  })
-  if (days !== undefined) {
-    fireEvent.change(within(dialog).getByLabelText('Expiration (jours)'), { target: { value: days } })
-  }
-  fireEvent.click(within(dialog).getByRole('button', { name: 'Créer le lien de partage' }))
+/** L'interface de cartographie est ouverte à l'espace Partage, sur un jeu au titre donné. */
+async function expectInterfacePartage(titre) {
+  await waitFor(() => expect(window.location.hash).toBe('#/cartographie/partage'))
+  const spaces = await screen.findByRole('navigation', { name: 'Espaces de la cartographie' })
+  expect(within(spaces).getByRole('link', { name: 'Partage' }).getAttribute('aria-current')).toBe('page')
+  await waitFor(() => expect(document.querySelector('.carto-context-dataset')?.textContent).toBe(titre))
+  // Partage réservé aux adultes : l'attestation d'abord.
+  expect(
+    await screen.findByRole('heading', { name: 'Le partage par lien est réservé aux personnes majeures' }),
+  ).toBeDefined()
 }
 
 const SHARED_ENTRY = { type: 'jour', titre: TITRE, visibility: 'publique', document: dayFixture, serverId: 42 }
 
-let clipboardWrite
 beforeEach(() => {
   resetApiClient()
-  clipboardWrite = vi.fn().mockResolvedValue(undefined)
-  Object.defineProperty(window.navigator, 'clipboard', { value: { writeText: clipboardWrite }, configurable: true })
 })
 
 afterEach(() => {
   cleanup()
   vi.unstubAllGlobals()
-  delete window.navigator.clipboard
+  idb.reset()
+  window.location.hash = ''
   resetApiClient()
 })
 
-describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de partage', () => {
-  it('UC-APP-05-F11 — nominal : mot de passe, 90 jours par défaut, URL absolue affichée une fois puis copiée', async () => {
+describe('UC-APP-05 — partager depuis l’interface de cartographie (ancien partage retiré)', () => {
+  it('UC-APP-05-F24 — nominal : « Partager depuis l’interface » → interface, espace Partage, nouveau jeu au titre de la cartographie ; aucun lien, aucune copie', async () => {
     const server = createServer()
-    await openEspace([SHARED_ENTRY])
-    await screen.findByTestId('espace-connecte')
+    await openApp([{ type: 'jour', titre: TITRE, document: dayFixture }]) // sans copie serveur
 
-    // 1-2. Le dialogue s'ouvre sur la liste (vide) et le conseil du double canal.
-    const dialog = await openDialog()
-    expect(within(dialog).getByText('Aucun lien de partage pour cette cartographie.')).toBeDefined()
-    expect(dialog.textContent).toContain('Transmettez ce mot de passe par un autre canal que le lien.')
-    expect(within(dialog).getByLabelText('Expiration (jours)').value).toBe('90')
+    fireEvent.click(within(itemOf(TITRE)).getByRole('button', { name: 'Partager depuis l’interface' }))
 
-    // 3-5. Création : POST {password, expiresInDays: 90} avec le jeton CSRF.
-    fillAndCreate(dialog)
-    const url = await within(dialog).findByTestId('share-url')
-    const [post] = mutations(server.requests)
-    expect(post.path).toBe('cartographies/42/share')
-    expect(post.body).toEqual({ password: PASSWORD, expiresInDays: 90 })
-    expect(post.headers['X-CSRF-Token']).toBe(APPS_CSRF)
-    const token = server.shares[0].token
-    expect(url.textContent).toBe(`${window.location.origin}${window.location.pathname}#/partage/${token}`)
-    expect(dialog.textContent).toContain('il ne sera plus jamais affiché en entier')
-    expect(within(dialog).getByLabelText('Mot de passe du lien (8 caractères min)').value).toBe('')
-
-    // 6. La liste est rafraîchie : dates seulement, bouton de révocation.
-    expect(await within(dialog).findByText(/Créé le 01\/07\/2026 — expire le 29\/09\/2026/)).toBeDefined()
-    expect(within(dialog).getByRole('button', { name: 'Révoquer' })).toBeDefined()
-
-    // 7. Copie du lien dans le presse-papiers.
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Copier le lien' }))
-    expect(await within(dialog).findByRole('button', { name: 'Lien copié' })).toBeDefined()
-    expect(clipboardWrite).toHaveBeenCalledWith(url.textContent)
+    await expectInterfacePartage(TITRE)
+    // Le jeu est enregistré dans ce navigateur (magasin de l'interface), une journée.
+    const sets = await createInterfaceStore().listDatasets()
+    expect(sets).toHaveLength(1)
+    expect(sets[0]).toMatchObject({ title: TITRE, dayCount: 1 })
+    // Rien n'a quitté le navigateur vers le partage : ni lien, ni copie, ni version.
+    expect(mutations(server.requests)).toEqual([])
+    expect(server.requests.some((r) => /share/.test(r.path) || r.path === 'cartographies')).toBe(false)
   })
 
-  it('UC-APP-05-F12 — A1 : expiration choisie (30 jours) transmise et reflétée dans la liste', async () => {
-    const server = createServer()
-    await openEspace([SHARED_ENTRY])
+  it('UC-APP-05-F25 — retrait : « Liens déjà créés » le dit, sans formulaire de création ; son « Partager depuis l’interface » mène au même endroit', async () => {
+    const server = createServer({
+      links: [{ shareId: 1, createdAt: '2026-07-01T10:00:00', expiresAt: LATER, revokedAt: null }],
+    })
+    await openApp([SHARED_ENTRY])
     const dialog = await openDialog()
 
-    fillAndCreate(dialog, { days: '30' })
+    expect(dialog.textContent).toContain('Le partage par lien de cette cartographie est retiré : on n’en crée plus de nouveau.')
+    expect(within(dialog).getByText(/Créé le 01\/07\/2026 — expire le 29\/09\/2099/)).toBeDefined()
+    expect(within(dialog).queryByLabelText(/Mot de passe/)).toBeNull()
+    expect(within(dialog).queryByRole('button', { name: /Créer/ })).toBeNull()
 
-    expect(await within(dialog).findByText(/expire le 31\/07\/2026/)).toBeDefined()
-    expect(mutations(server.requests)[0].body).toEqual({ password: PASSWORD, expiresInDays: 30 })
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Partager depuis l’interface' }))
+    await expectInterfacePartage(TITRE)
+    expect(mutations(server.requests)).toEqual([])
   })
+})
 
+describe('UC-APP-05 — l’apprenant suit et révoque les liens déjà créés', () => {
   it('UC-APP-05-F13 — A2 : « Révoquer » → DELETE api/shares/{id} (CSRF), le lien apparaît révoqué', async () => {
     const server = createServer({
       links: [
-        { shareId: 1, createdAt: '2026-07-01T10:00:00', expiresAt: '2026-09-29T10:00:00', revokedAt: null },
-        { shareId: 2, createdAt: '2026-07-02T10:00:00', expiresAt: '2026-09-30T10:00:00', revokedAt: null },
+        { shareId: 1, createdAt: '2026-07-01T10:00:00', expiresAt: LATER, revokedAt: null },
+        { shareId: 2, createdAt: '2026-07-02T10:00:00', expiresAt: LATER, revokedAt: null },
       ],
     })
     await openEspace([SHARED_ENTRY])
@@ -223,7 +213,7 @@ describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de parta
     expect(within(dialog).getAllByRole('button', { name: 'Révoquer' })).toHaveLength(1)
   })
 
-  it('UC-APP-05-F14 — A5 : sans copie serveur, pas de « Partager » ; avec copie, même « privée », le bouton est offert (anomalie figée)', async () => {
+  it('UC-APP-05-F14 — A5 : sans copie serveur, pas de « Liens déjà créés » ; avec copie, même « privée », la gestion des liens est offerte', async () => {
     createServer()
     await openEspace([
       { type: 'jour', titre: 'Locale seulement', document: dayFixture },
@@ -231,102 +221,38 @@ describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de parta
     ])
 
     const locale = itemOf('Locale seulement')
-    expect(within(locale).queryByRole('button', { name: 'Partager' })).toBeNull()
+    expect(within(locale).queryByRole('button', { name: 'Liens déjà créés' })).toBeNull()
     expect(within(locale).getByRole('button', { name: 'Copier sur le serveur' })).toBeDefined()
 
-    // Comportement ACTUEL (fiche, « Anomalies constatées ») : la visibilité
-    // n'est pas une condition du partage.
+    // La visibilité n'est pas une condition : un lien créé avant reste révocable.
     expect(within(itemOf('Copie privée')).getByLabelText('Confidentialité de Copie privée').value).toBe('privee')
-    expect(within(itemOf('Copie privée')).getByRole('button', { name: 'Partager' })).toBeDefined()
+    expect(within(itemOf('Copie privée')).getByRole('button', { name: 'Liens déjà créés' })).toBeDefined()
+    // L'ancien bouton « Partager » n'existe plus nulle part.
+    expect(screen.queryByRole('button', { name: 'Partager' })).toBeNull()
   })
 
-  it('UC-APP-05-F15 — A6 : fermer puis rouvrir → l’URL n’est plus jamais réaffichée, seules les dates restent', async () => {
-    createServer()
-    await openEspace([SHARED_ENTRY])
-    let dialog = await openDialog()
-    fillAndCreate(dialog)
-    await within(dialog).findByTestId('share-url')
-
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Fermer' }))
-    expect(screen.queryByRole('region', { name: `Partage de ${TITRE}` })).toBeNull()
-
-    dialog = await openDialog()
-    expect(within(dialog).queryByTestId('share-url')).toBeNull()
-    expect(within(dialog).getByText(/expire le/)).toBeDefined()
-  })
-
-  it('UC-APP-05-F16 — E1 : mot de passe de moins de 8 caractères refusé localement, aucune requête', async () => {
-    const server = createServer()
-    await openEspace([SHARED_ENTRY])
-    const dialog = await openDialog()
-
-    fillAndCreate(dialog, { password: 'court' })
-
-    expect((await within(dialog).findByRole('alert')).textContent).toBe(
-      'Le mot de passe du lien doit compter au moins 8 caractères.',
-    )
-    expect(mutations(server.requests)).toEqual([])
-  })
-
-  it.each([
-    ['0', 'rangeUnderflow'],
-    ['400', 'rangeOverflow'],
-  ])('UC-APP-05-F17 — E2 : expiration %s jours bloquée par le champ (1 à 365), aucune requête', async (days, flag) => {
-    const server = createServer()
-    await openEspace([SHARED_ENTRY])
-    const dialog = await openDialog()
-
-    fillAndCreate(dialog, { days })
-
-    const input = within(dialog).getByLabelText('Expiration (jours)')
-    expect(input.validity[flag]).toBe(true) // validation native du navigateur
-    // Pas d'alerte « L’expiration doit être comprise… » : handleCreate n'a pas
-    // été appelé — c'est bien la validation native qui a bloqué la soumission.
-    expect(within(dialog).queryByRole('alert')).toBeNull()
-    expect(within(dialog).queryByTestId('share-url')).toBeNull()
-    expect(mutations(server.requests)).toEqual([])
-  })
-
-  it('UC-APP-05-F18 — E3 : session expirée (401) → la création invite à se reconnecter ; la liste affiche le message brut du serveur', async () => {
+  it('UC-APP-05-F18 — E3 : session expirée (401) → la liste affiche le message brut du serveur', async () => {
     createServer({ user: null })
     await openEspace([SHARED_ENTRY])
     const dialog = await openDialog()
-    // Chargement de la liste en 401 : message brut, sans traduction.
+
     expect((await within(dialog).findByRole('alert')).textContent).toBe('Authentification requise')
-
-    fillAndCreate(dialog)
-
-    // Seule la création traduit le 401 (fiche, E3).
-    await waitFor(() =>
-      expect(within(dialog).getAllByRole('alert').map((a) => a.textContent)).toEqual([
-        'Session expirée : reconnectez-vous puis réessayez.',
-        'Authentification requise',
-      ]),
-    )
-    expect(within(dialog).queryByTestId('share-url')).toBeNull()
+    expect(within(dialog).queryByRole('list')).toBeNull()
   })
 
   it('UC-APP-05-F19 — E4 : copie serveur retirée ailleurs (404) → « Cartographie introuvable »', async () => {
     createServer({ cartoIds: [] })
     await openEspace([SHARED_ENTRY])
     const dialog = await openDialog()
+
     expect((await within(dialog).findByRole('alert')).textContent).toBe('Cartographie introuvable')
-
-    fillAndCreate(dialog)
-
-    await waitFor(() =>
-      expect(within(dialog).getAllByRole('alert').map((a) => a.textContent)).toEqual([
-        'Cartographie introuvable',
-        'Cartographie introuvable',
-      ]),
-    )
-    expect(within(dialog).queryByTestId('share-url')).toBeNull()
+    expect(within(dialog).queryByRole('list')).toBeNull()
   })
 
   it('UC-APP-05-F20 — E5 : la révocation échoue → message, le lien reste affiché actif', async () => {
     createServer({
       failRevoke: true,
-      links: [{ shareId: 1, createdAt: '2026-07-01T10:00:00', expiresAt: '2026-09-29T10:00:00', revokedAt: null }],
+      links: [{ shareId: 1, createdAt: '2026-07-01T10:00:00', expiresAt: LATER, revokedAt: null }],
     })
     await openEspace([SHARED_ENTRY])
     const dialog = await openDialog()
@@ -337,47 +263,14 @@ describe('UC-APP-05 — l’apprenant crée, suit et révoque ses liens de parta
     expect(within(dialog).getByRole('button', { name: 'Révoquer' })).toBeDefined()
   })
 
-  it('UC-APP-05-F21 — E6 : presse-papiers refusé → le lien reste affiché, à copier à la main', async () => {
-    clipboardWrite.mockRejectedValue(new Error('refusé'))
-    createServer()
-    await openEspace([SHARED_ENTRY])
-    const dialog = await openDialog()
-    fillAndCreate(dialog)
-    const url = await within(dialog).findByTestId('share-url')
-
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Copier le lien' }))
-
-    await waitFor(() => expect(clipboardWrite).toHaveBeenCalled())
-    expect(within(dialog).getByRole('button', { name: 'Copier le lien' })).toBeDefined()
-    expect(url.textContent).toContain('#/partage/')
-  })
-
-  it('UC-APP-05-F22 — A4 : un lien expiré reste listé avec « Révoquer », sans mention « expiré » (limite figée)', async () => {
+  it('UC-APP-05-F22 — A4 : un lien échu reste listé, « expiré le », sans « Révoquer » (le serveur ne le sert plus)', async () => {
     createServer({
       links: [{ shareId: 1, createdAt: '2026-01-01T10:00:00', expiresAt: '2026-01-02T10:00:00', revokedAt: null }],
     })
     await openEspace([SHARED_ENTRY])
     const dialog = await openDialog()
 
-    expect(within(dialog).getByText(/expire le 02\/01\/2026/)).toBeDefined()
-    expect(within(dialog).getByRole('button', { name: 'Révoquer' })).toBeDefined()
-    expect(dialog.textContent).not.toMatch(/expiré/)
-  })
-
-  it.each([
-    ['4 caractères astraux (8 unités UTF-16, 4 points de code)', '😀😀😀😀'],
-    ['plus de 1024 octets', 'x'.repeat(1025)],
-  ])('UC-APP-05-F23 — E1 : mot de passe admis localement mais refusé par l’API (%s) → « Validation échouée » seul', async (_label, password) => {
-    const server = createServer()
-    await openEspace([SHARED_ENTRY])
-    const dialog = await openDialog()
-
-    fillAndCreate(dialog, { password })
-
-    expect((await within(dialog).findByRole('alert')).textContent).toBe('Validation échouée')
-    expect(mutations(server.requests)).toHaveLength(1) // le contrôle local a laissé passer
-    expect(mutations(server.requests)[0].body.password).toBe(password)
-    expect(within(dialog).queryByTestId('share-url')).toBeNull()
-    expect(server.shares).toEqual([])
+    expect(within(dialog).getByText('Créé le 01/01/2026 — expiré le 02/01/2026')).toBeDefined()
+    expect(within(dialog).queryByRole('button', { name: 'Révoquer' })).toBeNull()
   })
 })

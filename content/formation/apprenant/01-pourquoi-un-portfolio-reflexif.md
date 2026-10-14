@@ -44,15 +44,17 @@ Cette carte sert trois usages, dans cet ordre d'importance.
   quelqu'un — n'apparaît sur aucun bulletin. La cartographie donne un nom, un
   code et des preuves à ces compétences que le monde scolaire classique laisse
   dans l'angle mort.
-- **Un document partageable, si vous le décidez.** Une cartographie que vous
-  avez choisi de rendre partageable, et qu'un cartographe a relue et garantie,
-  peut être transmise à un employeur par un lien protégé par mot de passe. Rien
-  n'est jamais partagé automatiquement (voir le chapitre 6).
+- **Un document partageable, si vous le décidez.** Une version de votre
+  cartographie que vous composez vous-même — ou que votre cartographe, qui l'a
+  relue avec vous, publie avec sa garantie — peut être transmise à un employeur
+  par un lien, avec ou sans mot de passe. Rien n'est jamais partagé
+  automatiquement (voir le chapitre 6).
 
 Vous pouvez voir à quoi ressemble une cartographie complète sans compte : la
-**démonstration sur données réelles** est accessible depuis l'accueil, à la
-route `#/merge`. Vous y retrouverez le sunburst, le panneau de détails, et une
-*timeline* qui rejoue la construction de la carte feuille après feuille.
+**démonstration sur données réelles** est accessible depuis l'accueil, dans la
+cartographie (`#/cartographie`). Vous y retrouverez le soleil, le panneau de
+détail, la heatmap de vos journées et une tête de lecture qui rejoue la
+construction de la carte journée après journée.
 
 ## 2. Ce que le moteur lit réellement
 
@@ -139,8 +141,8 @@ Deux vues rendent ce temps visible.
 - **La vue Journée** (`#/jour/<date>`, ou « Voir » sur une cartographie de
   type *Journée*) : le détail d'une feuille, avec les verdicts, l'examen du
   pédagogue et les traces retenues.
-- **La vue Merge** (`#/merge`, ou « Voir » sur une cartographie de type
-  *Parcours*) : la carte cumulée, avec une *timeline* qui rejoue la
+- **La vue Merge** (« Voir » sur une cartographie de type *Parcours*) : la
+  carte cumulée, avec une *timeline* qui rejoue la
   construction feuille après feuille, une heatmap de vos journées et une
   synthèse par pôle.
 

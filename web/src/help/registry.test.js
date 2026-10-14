@@ -11,7 +11,7 @@ import { navGroups } from '../nav.js'
 
 describe('helpFor — aide par rubrique et par rôle', () => {
   it('cartographe : sur l’accueil et la cartographie, un point renvoie vers « Encadrer et garantir »', () => {
-    for (const route of ['home', 'merge']) {
+    for (const route of ['home', 'cartographie']) {
       const base = helpFor(route)
       const entry = helpFor(route, { roles: ['cartographe'] })
       expect(entry.titre).toBe(base.titre)
@@ -23,7 +23,7 @@ describe('helpFor — aide par rubrique et par rôle', () => {
   })
 
   it('établissement : sur l’accueil et la cartographie, un point renvoie vers « Piloter mon organisation »', () => {
-    for (const route of ['home', 'merge']) {
+    for (const route of ['home', 'cartographie']) {
       const extra = helpFor(route, { roles: ['etablissement'] }).points.at(-1)
       expect(extra).toContain('Mes cohortes')
       expect(extra).toContain('Piloter mon organisation')
@@ -35,7 +35,7 @@ describe('helpFor — aide par rubrique et par rôle', () => {
   })
 
   it('apprenant : l’entrée de base est inchangée (pas de point parasite)', () => {
-    expect(helpFor('merge', { roles: ['apprenant'] })).toEqual(helpFor('merge'))
+    expect(helpFor('cartographie', { roles: ['apprenant'] })).toEqual(helpFor('cartographie'))
     expect(helpFor('home', { roles: ['apprenant'] })).toEqual(helpFor('home'))
   })
 
@@ -46,9 +46,9 @@ describe('helpFor — aide par rubrique et par rôle', () => {
   })
 
   it('session absente ou sans rôles : ne jette pas, retourne l’entrée de base', () => {
-    expect(helpFor('merge').titre).toBe('La cartographie évolutive')
-    expect(helpFor('merge', {}).titre).toBe('La cartographie évolutive')
-    expect(helpFor('merge', { roles: [] }).titre).toBe('La cartographie évolutive')
+    expect(helpFor('cartographie').titre).toBe('Votre cartographie')
+    expect(helpFor('cartographie', {}).titre).toBe('Votre cartographie')
+    expect(helpFor('cartographie', { roles: [] }).titre).toBe('Votre cartographie')
   })
 
   it('traçabilité nav <-> aide : chaque rubrique du menu a une entrée dédiée (pas le repli)', () => {

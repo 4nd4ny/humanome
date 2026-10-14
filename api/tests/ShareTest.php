@@ -7,14 +7,21 @@ namespace Humanome\Tests;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * P8 — employer share links (cahier §3.6): creation, public consultation
- * with right/wrong password, homogeneous anti-enumeration answers, simulated
+ * P8 — employer share links (cahier §3.6): public consultation with
+ * right/wrong password, homogeneous anti-enumeration answers, simulated
  * expiration, revocation, per-IP rate limit, audit counters without content.
+ *
+ * Since 2026-10-14 (cartography journal D-43) the route no longer creates a
+ * link to the site's cartographies (jour, merge, twin9): the historical
+ * share is retired in favour of the shared versions. The links created
+ * BEFORE stay served, listed and revocable — they are the subject here
+ * (AuthTestBase::legacyShareLink writes them as the route did).
  */
 final class ShareTest extends AuthTestBase
 {
     private string $csrf = '';
     private int $cartoId = 0;
+    private int $userId = 0;
 
     protected function setUp(): void
     {
@@ -24,6 +31,7 @@ final class ShareTest extends AuthTestBase
 
         $response = $this->register('maya@example.org', self::PASSWORD, 'Maya');
         $this->csrf = (string) self::json($response)['csrfToken'];
+        $this->userId = (int) self::json($response)['user']['id'];
 
         $created = $this->request('POST', '/api/cartographies', [
             'type' => 'jour',
@@ -35,19 +43,14 @@ final class ShareTest extends AuthTestBase
         $this->cartoId = (int) self::json($created)['id'];
     }
 
-    /** @return array{shareId: int, token: string, url: string} */
+    /**
+     * Un lien créé avant le retrait de l'ancien partage.
+     *
+     * @return array{shareId: int, token: string, url: string}
+     */
     private function createShare(array $overrides = []): array
     {
-        $response = $this->request(
-            'POST',
-            '/api/cartographies/' . $this->cartoId . '/share',
-            array_merge(['password' => 'sesame-employeur'], $overrides),
-            ['X-CSRF-Token' => $this->csrf],
-        );
-        self::assertSame(201, $response->getStatusCode());
-
-        /** @var array{shareId: int, token: string, url: string} */
-        return self::json($response);
+        return self::legacyShareLink($this->cartoId, 'sesame-employeur', (int) ($overrides['expiresInDays'] ?? 90), $this->userId);
     }
 
     /** Public consultation: a fresh anonymous browser (no session cookie). */
@@ -65,11 +68,23 @@ final class ShareTest extends AuthTestBase
         }
     }
 
-    public function testCreateShareStoresOnlyHashes(): void
+    public function testTheRouteNoLongerCreatesALinkToASiteCartography(): void
+    {
+        // Retrait de l'ancien partage (D-43) : quoi qu'on envoie, rien n'est créé.
+        foreach ([['password' => 'sesame-employeur'], ['password' => 'sesame-employeur', 'expiresInDays' => 30], ['password' => 'court'], []] as $body) {
+            $response = $this->request('POST', '/api/cartographies/' . $this->cartoId . '/share', $body, ['X-CSRF-Token' => $this->csrf]);
+            self::assertSame(422, $response->getStatusCode());
+            self::assertSame('share_retired', self::json($response)['code']);
+            self::assertArrayHasKey('type', self::json($response)['fields']);
+        }
+        self::assertSame(0, (int) self::$pdo->query('SELECT COUNT(*) FROM share_links')->fetchColumn());
+        self::assertSame(0, (int) self::$pdo->query("SELECT COUNT(*) FROM audit_events WHERE type = 'share_created'")->fetchColumn());
+    }
+
+    public function testAnExistingLinkStoresOnlyHashes(): void
     {
         $share = $this->createShare(['expiresInDays' => 30]);
         self::assertMatchesRegularExpression('/^[0-9a-f]{32}$/', $share['token']);
-        self::assertSame('/#/partage/' . $share['token'], $share['url']);
 
         $row = self::$pdo->query('SELECT * FROM share_links WHERE id = ' . $share['shareId'])->fetch();
         self::assertNotFalse($row);
@@ -78,28 +93,6 @@ final class ShareTest extends AuthTestBase
         self::assertNotSame('sesame-employeur', $row['password_hash'], 'password must be hashed');
         self::assertTrue(password_verify('sesame-employeur', (string) $row['password_hash']));
         self::assertNotNull($row['expires_at']);
-
-        // Audit: event with ids only — no token, no password (§6.5).
-        $audit = self::$pdo->query(
-            "SELECT details FROM audit_events WHERE type = 'share_created'"
-        )->fetchAll();
-        self::assertCount(1, $audit);
-        self::assertStringNotContainsString($share['token'], (string) $audit[0]['details']);
-        self::assertStringNotContainsString('sesame', (string) $audit[0]['details']);
-    }
-
-    public function testCreateShareValidatesInput(): void
-    {
-        $short = $this->request('POST', '/api/cartographies/' . $this->cartoId . '/share', [
-            'password' => 'court',
-        ], ['X-CSRF-Token' => $this->csrf]);
-        self::assertSame(422, $short->getStatusCode());
-
-        $badDays = $this->request('POST', '/api/cartographies/' . $this->cartoId . '/share', [
-            'password' => 'sesame-employeur',
-            'expiresInDays' => 400,
-        ], ['X-CSRF-Token' => $this->csrf]);
-        self::assertSame(422, $badDays->getStatusCode());
     }
 
     public function testPublicConsultationHappyPath(): void

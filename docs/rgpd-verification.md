@@ -139,6 +139,22 @@ lui-même** n'est pas offerte par l'archive « un clic ».
    `web/src/lib/archive.test.js` (inclusion + archive valide au schéma). La
    colonne export de `mass_jobs` passe donc de `aucun` à **`via /api/mes-documents-masse`**.
 
+3. **Jeux de données de l'interface de cartographie (stockage local
+   `humanome-carto-v4`).** Données locales (jamais sur le serveur, sauf une
+   version partagée composée par l'apprenant adulte, table `cartographies`),
+   mais absentes de l'archive « un clic » jusqu'au 2026-10-14 : elles ne se
+   sauvegardaient que jeu par jeu, depuis l'espace Export de l'interface.
+   **✅ Couvert (2026-10-14, archive 1.1.0).** « Exporter toutes mes données »
+   embarque chaque jeu en archive complète (`jeuxCartographie`, schéma
+   `competency-map-master`) — portfolio, réponses au jury, carnet du dialogue
+   compris ; la démonstration publique exceptée tant que la personne n'y a
+   rien ajouté — et l'import les restaure sans écraser ce qui est déjà là ;
+   un jeu illisible n'empêche pas l'export des autres (journal de la
+   cartographie, D-25 et D-41 ; UC-APP-06, F17, U19). Les brouillons des
+   versions partagées (`localStorage`, extraits et noms remplacés) quittent
+   le navigateur avec le jeu, avec le compte, et avec la version retirée
+   ailleurs (D-33, D-41 ; UC-CPT-06, F12).
+
 ## (c) Minimisation des journaux (cahier §6.5)
 
 Revue exhaustive de tous les points de journalisation de `api/src`.

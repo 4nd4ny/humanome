@@ -8,165 +8,137 @@ statut: complet
 # Explorer la démonstration
 
 Le meilleur moyen de comprendre humanome.xyz est de manipuler la démonstration.
-Elle repose sur un portfolio réel : **59 feuilles** écrites du **22/12/2025 au
-29/03/2026**, fusionnées en une cartographie cumulée. Ce chapitre est une visite
-guidée, pas à pas, de la vue `#/merge` : lire le sunburst, faire rejouer la
-construction avec la timeline, parcourir le calendrier, ouvrir une journée, et
-imprimer le résultat. Ouvrez la page dans un autre onglet et suivez les étapes ;
-tout ce qui est décrit ici est visible à l'écran, sans compte.
+Elle repose sur un portfolio réel : **59 journées** analysées, du **22/12/2025
+au 29/03/2026**. Ce chapitre est une visite guidée de la cartographie
+(`#/cartographie`) : lire le soleil, rejouer sa croissance, parcourir la
+heatmap, ouvrir une journée, comprendre une surface, et emporter le résultat.
+Ouvrez la page dans un autre onglet et suivez les étapes ; tout ce qui est
+décrit ici est visible à l'écran, sans compte, et rien ne quitte votre
+navigateur.
 
 > **Objectifs d'apprentissage**
 >
 > À l'issue de ce chapitre, vous saurez :
-> - atteindre la vue `#/merge` et lire les trois badges d'en-tête ;
-> - interpréter le sunburst : pôles, largeur des secteurs, longueur radiale, conventions visuelles ;
-> - faire rejouer la construction feuille par feuille avec la timeline animée ;
-> - parcourir la heatmap et ouvrir la cartographie d'une journée à `#/jour/<date>` ;
-> - obtenir une version imprimable / PDF.
+> - ouvrir la démonstration dans la cartographie ;
+> - lire le soleil : pôles, compétences, angle, hauteur, hachures ;
+> - rejouer la croissance de la cartographie journée après journée ;
+> - parcourir la heatmap et ouvrir une journée seule ;
+> - demander « Pourquoi cette surface ? » et exporter ou imprimer.
 
 ## Y accéder
 
 Depuis la page d'accueil (`#/`), cliquez sur le bouton bleu **« Explorer la
-cartographie de démonstration »**. Vous arrivez à la route `#/merge`. Vous pouvez
-aussi taper cette adresse directement : le routage se fait par « hash » (le
-`#/...` dans l'URL), il n'y a rien à installer.
+cartographie de démonstration »**. Vous arrivez sur la cartographie
+(`#/cartographie`) ; cliquez sur **« Explorer la démonstration »** : les 59
+journées publiques sont lues et rangées dans un jeu de données
+« Démonstration », dans votre navigateur. (Les anciennes adresses `#/merge` et
+`#/cartographie-v3` mènent au même endroit.)
 
-## Les trois badges d'en-tête
-
-Tout en haut de `#/merge`, trois indicateurs résument le portfolio :
-
-- **Feuilles de portfolio** — le nombre de journées analysées : **59**.
-- **Période** — les dates de la première et de la dernière feuille :
-  **22/12/2025 → 29/03/2026**.
-- **Compétences établies** — combien de compétences ont accumulé assez de traces
-  pour être affirmées, sur les 61 du référentiel : **54 / 61**.
-
-Ces trois chiffres disent déjà l'essentiel : un travail régulier, sur environ
-trois mois, qui a rendu visibles 54 des 61 compétences RESPIRE.
-
-## Lire le sunburst
+## Lire le soleil
 
 Le diagramme circulaire occupe le centre de la page. Il se lit du centre vers
 l'extérieur.
 
-### Les trois anneaux
-
-- **Le centre** (un disque clair) représente la personne. Cliquer dessus
-  **réinitialise la sélection** — pratique après avoir exploré un secteur.
-- **Le premier anneau** porte les **7 pôles**, chacun de sa couleur :
-  *TETE — Penser & Comprendre* (bleu), *COEUR — Relier & Naviguer* (vert),
-  *MAIN — Créer & Incarner* (rose), *AME — Discerner & Juger* (violet),
-  *RACINES — Évoluer & Résister* (orange doré), *CITE — Gouverner & S'ouvrir*
-  (cyan), *FLAMBEAU — Transmettre & Piloter* (orange). (À l'écran, les noms
-  s'affichent sans accent ni ligature, tels quels.)
-- **L'anneau extérieur** porte les **compétences**, dans la couleur de leur pôle.
-
-### Ce que la géométrie raconte
+- **Le centre** indique le nombre de journées prises en compte.
+- **L'anneau intérieur** porte les **7 pôles**, chacun de sa couleur (TETE,
+  COEUR, MAIN, AME, RACINES, CITE, FLAMBEAU).
+- **L'anneau extérieur** porte les **compétences**, dans l'ordre du référentiel
+  et dans la couleur de leur pôle.
 
 Deux dimensions portent le sens :
 
-- **La largeur d'un secteur** (son ouverture angulaire) traduit l'**importance**
-  qu'a prise la compétence — les *points* qu'elle a accumulés au fil des 59
-  feuilles. Une compétence souvent et fortement présente occupe une part plus
-  large que celle qui n'affleure qu'une fois.
-- **La longueur radiale** (à quelle distance le secteur s'étire vers
-  l'extérieur) traduit le **niveau**, de **1 à 5**. Derrière chaque compétence,
-  cinq bandes grises discrètes rappellent l'échelle complète des niveaux : le
-  secteur coloré s'étire d'autant plus loin que le niveau est élevé.
+- **L'angle** d'un secteur compte les **points** de la compétence : un point
+  par preuve relevée dans le portfolio, un demi-point par indice. Plus une
+  compétence a de traces, plus son secteur est large. Les angles sont des
+  parts d'un tout : si une compétence gagne de la place, les autres en
+  perdent.
+- **La hauteur** (jusqu'où le secteur s'étire vers l'extérieur) est la
+  **confiance moyenne du jury** dans ses verdicts, de 0 à 1 ; les cercles
+  pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n'est ni un niveau de maîtrise ni
+  une force.
 
-### Les conventions de lecture
+Un secteur **hachuré** signale une compétence **en renvoi au cartographe** :
+l'analyse a vu un signal mais laisse un humain trancher. Une compétence sans
+secteur n'a simplement pas été observée dans ces journées : l'absence d'une
+trace ne dit pas l'absence de la compétence.
 
-Le sunburst distingue visuellement plusieurs statuts. Dans ce portfolio de démo,
-toutes les compétences visibles sont **établies** (secteur plein, bordé de
-blanc), mais il est utile de connaître les autres conventions, que vous
-rencontrerez sur d'autres cartographies :
+Cliquez sur un secteur : le **panneau de détail** (à droite sur grand écran,
+sous l'onglet **Détails** sur écran étroit) montre ses chiffres, ses traces
+journée par journée, les verdicts et la réflexion du jury. Échap désélectionne.
+Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 
-- une compétence **en renvoi au cartographe** (le moteur a repéré un signal mais
-  préfère laisser un humain trancher) apparaîtrait **hachurée**, avec une bordure
-  en pointillés et un secteur volontairement raccourci ;
-- une compétence **émergente** (une trace ténue, pas encore consolidée)
-  apparaîtrait légèrement plus transparente et bordée de pointillés.
+Pour regarder un pôle de près, **double-cliquez** sur son arc dans l'anneau
+intérieur (au clavier : « o ») : il s'ouvre sur tout le cercle, à la place du
+soleil complet. Ses compétences se partagent alors les 360°, chacune selon sa
+part des points du pôle, et portent leur code ; leur hauteur ne change pas.
+Le centre, marqué ↩, ramène à tous les pôles (Échap aussi).
 
-Sur la démo, l'indicateur « En renvoi (entretien) » affiche **0** : il n'y a donc
-pas de secteur hachuré à l'écran — mais vous savez désormais ce qu'il signifierait.
+## « Pourquoi cette surface ? »
 
-### Sélectionner un secteur
+Un secteur sélectionné, appuyez sur **w** : une fenêtre détaille ce qui fonde
+sa surface — les traces et leurs points, la confiance de chaque verdict, les
+formules. Si un secteur est si étroit qu'il serait invisible, il est dessiné à
+une largeur minimale et la fenêtre le dit, avec l'angle exact.
 
-Cliquez sur un secteur (un pôle ou une compétence) : le diagramme **atténue tous
-les autres** pour isoler votre choix, et le **panneau de détails** (à droite sur
-grand écran, sous un onglet **Détails** sur mobile) affiche le contenu associé :
+## Rejouer la croissance : la tête de lecture
 
-- pour un **pôle**, le nombre de compétences qu'il contient et combien sont
-  établies ;
-- pour une **compétence**, son niveau (de 1 à 5, avec son libellé), ses points,
-  et le cas échéant un archétype et le retour rédigé par le moteur.
+Sous le soleil, la **tête de lecture** fixe la **date t** : le soleil montre
+l'état cumulé jusqu'à cette date.
 
-Sans sélection, le panneau affiche par défaut la **synthèse kairos** — une
-lecture transversale de l'ensemble du portfolio — suivie d'un petit récapitulatif
-(compétences établies, en renvoi, émergentes, score total). Pour revenir à cet
-état, cliquez le centre du diagramme ou une zone vide.
+- **Lecture : voir l'arbre croître** rejoue l'accumulation journée après
+  journée ; **Lecture arrière** la rejoue à rebours ; **Pause** l'arrête.
+- **Début**, **Journée précédente**, **Journée suivante** et **Fin : état
+  complet** déplacent la date t pas à pas ; le curseur la place n'importe où.
+- **Vitesse** : ×0,5, ×1 ou ×2.
 
-Au clavier, chaque secteur est atteignable par Tabulation et s'active avec Entrée
-ou Espace : la cartographie est utilisable sans souris.
+La lecture se met en pause dès que vous sélectionnez ou survolez un secteur ;
+si votre système demande des mouvements réduits, l'animation est désactivée et
+la navigation pas à pas reste disponible.
 
-## Rejouer la construction : la timeline animée
+## Parcourir la heatmap
 
-Sous le diagramme se trouve un **lecteur de timeline**. C'est l'une des idées
-fortes de la démonstration : au lieu de voir la cartographie figée, vous la voyez
-**se construire feuille après feuille**.
+Sous la tête de lecture, la **heatmap** montre l'année scolaire (août à
+juillet ; flèches pour changer d'année, ou une période libre). Une case par
+jour, les semaines en colonnes. La démonstration n'a pas de portfolio : la
+couleur d'un jour est la somme des points de ses traces, en cinq niveaux
+propres à cette personne. Un jour sans analyse reste une case vide, jamais un
+niveau bas.
 
-- Le bouton **▶ (Lecture)** rejoue l'accumulation depuis la première feuille ; le
-  diagramme se densifie sous vos yeux, secteur par secteur.
-- Les boutons **⏮ ◀ ▶▶ ⏭** vont respectivement à la première feuille, à la
-  précédente, à la suivante, à la dernière.
-- Le **curseur** (la barre de défilement) vous laisse vous positionner à
-  n'importe quelle feuille, de 1 à 59.
-- Le menu **Vitesse** propose *Rapide* (150 ms/feuille), *Normale* (400 ms) et
-  *Lente* (800 ms).
+- Un **clic** sur un jour place la date t sur ce jour.
+- Un **double-clic** ouvre **la journée seule** : son propre soleil et ses
+  compétences, avec des boutons vers la journée précédente et la suivante, et
+  « Retour ».
 
-Sous les contrôles, une ligne d'état indique la position — par exemple
-« Feuille 30 / 59 — 06/02/2026 » — et un compteur du type « N compétences sur la
-carte » : vous voyez le nombre grimper à mesure que les feuilles s'ajoutent.
+## Choisir les journées
 
-Deux comportements utiles à connaître : dès que vous **sélectionnez ou survolez**
-un secteur, la lecture se met en pause (pour ne pas perdre le fil de votre
-lecture) ; et si votre système est réglé sur « mouvement réduit », la lecture
-automatique est désactivée — la navigation manuelle, elle, reste disponible.
+L'espace **Gestionnaire** (et la colonne « Journées » à gauche) liste les 59
+journées avec une case à cocher : décochez-en, et le soleil comme la heatmap ne
+tiennent plus compte de ces journées. « Tout », « Aucune » et « Inverser »
+agissent sur l'ensemble ; Maj+clic coche une plage.
 
-## Parcourir le calendrier (heatmap)
+## Les autres espaces
 
-Encore en dessous s'affiche un **calendrier façon « heatmap »**, dans l'esprit des
-graphes de contributions que vous avez peut-être déjà croisés. Une case par jour,
-une colonne par semaine (du lundi au dimanche). L'**intensité de bleu** d'une case
-traduit le **score de la journée** : plus une feuille était riche, plus la case
-est foncée ; les jours sans feuille restent en gris pâle. La légende annonce
-« 59 feuilles de portfolio — cliquez sur un jour pour ouvrir sa cartographie ».
+En haut de la cartographie :
 
-## Ouvrir une journée
+- **Comparaison** met deux ensembles de journées côte à côte (deux périodes,
+  par exemple), en huit vues, sans jamais classer ;
+- **Tableau de bord** réunit des cartes (profil, rythme, constance, moments
+  remarquables…) qui se masquent quand leurs données manquent ;
+- **Dialogue** pose des questions tirées des traces, pour relire son parcours ;
+- **Export** télécharge l'archive complète (JSON, réimportable), une copie
+  autonome (une page HTML lisible hors ligne) ou un rapport imprimable.
 
-Cliquez sur une case active du calendrier : vous ouvrez la **cartographie de ce
-jour-là**, à la route `#/jour/<date>` (par exemple `#/jour/2026-02-06`). Vous
-retrouvez un sunburst — mais celui d'**une seule feuille** cette fois — et la
-lecture de cette journée. C'est le grain le plus fin de la chaîne
-feuilles → jour → merge : la brique élémentaire à partir de laquelle tout le reste
-s'accumule. Pour revenir à la vue cumulée, retournez à `#/merge`.
-
-## Imprimer / exporter en PDF
-
-Dans la barre au-dessus du diagramme (la même qui, sur mobile, propose de basculer
-entre **Diagramme** et **Détails**) se trouve un bouton **« Imprimer »**. Il
-ouvre la fenêtre d'impression de votre navigateur : la mise en page est adaptée
-pour tenir sur papier, et vous pouvez y choisir « Enregistrer au format PDF »
-plutôt qu'une imprimante physique. C'est le moyen le plus simple d'emporter la
-cartographie hors de la plateforme.
+Pour imprimer ou faire un PDF, ouvrez le **rapport imprimable** depuis
+l'espace Export, puis choisissez « Enregistrer au format PDF » dans la fenêtre
+d'impression de votre navigateur.
 
 ## Récapitulatif de la visite
 
-Vous savez maintenant lire une cartographie cumulée : les badges donnent le
-cadre, le sunburst montre la structure (largeur = importance, longueur = niveau),
-la timeline montre la construction dans le temps, la heatmap donne accès à chaque
-journée, et l'impression permet d'en garder une trace. Reste une question de
-fond : d'où viennent ces 7 pôles et ces 61 compétences, et qui en décide ? C'est
+Vous savez maintenant lire une cartographie : l'angle compte les traces, la
+hauteur dit la confiance du jury, la tête de lecture et la heatmap montrent la
+construction dans le temps, « Pourquoi cette surface ? » justifie chaque
+secteur, et l'export permet d'en garder une trace. Reste une question de fond :
+d'où viennent ces 7 pôles et ces 61 compétences, et qui en décide ? C'est
 l'objet du chapitre suivant.
 
 Chapitre précédent : `01-qu-est-ce-qu-une-cartographie.md` — chapitre suivant :

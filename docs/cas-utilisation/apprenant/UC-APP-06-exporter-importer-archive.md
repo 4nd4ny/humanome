@@ -1,5 +1,15 @@
 # UC-APP-06 — Exporter et importer son archive complète
 
+> **Mise à jour du 2026-10-14 (interface de cartographie, question 10 : « tout
+> sauvegarder »).** L'archive de compte passe en **1.1.0** : elle embarque
+> aussi chaque jeu de données de l'interface de cartographie (`#/cartographie`)
+> en archive complète du master v4 (`jeuxCartographie`, schéma
+> `competency-map-master` : journées, analyses, réflexions du jury, portfolio,
+> réponses de l'apprenant, carnet du dialogue), la démonstration publique
+> exceptée tant qu'on n'y a rien ajouté, et les restaure à l'import. L'espace Export de l'interface garde
+> sa propre archive (un jeu à la fois). Voir `docs/cartographie-ultime/JOURNAL.md`,
+> D-25, et `docs/contrats.md`, décision 9.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (fonctionne aussi sans session) |
@@ -54,16 +64,22 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
    (`GET api/auth/me` → rôles, email, nom affiché), les portfolios et les
    cartographies locaux, le référentiel publié (fichier statique, repli sur la
    copie embarquée), un paquet de prompts (`GET api/prompt-packages` puis
-   `GET api/prompt-packages/{id}/{version}` du premier de la liste) et ses
-   documents produits en cohorte (`GET api/mes-documents-masse`).
-4. Il assemble l'archive : `schemaVersion` `1.0.0`, `kind`, `exportedAt`,
+   `GET api/prompt-packages/{id}/{version}` du premier de la liste), ses
+   documents produits en cohorte (`GET api/mes-documents-masse`) et les jeux
+   de données de l'interface de cartographie (stockage local
+   `humanome-carto-v4`), démonstration exceptée tant qu'elle est intacte
+   (RG8).
+4. Il assemble l'archive : `schemaVersion` `1.1.0`, `kind`, `exportedAt`,
    `account`, `portfolios` (texte intégral + segmentation des journées
    datées), `referentiels`, `promptPackages`, `cartographies` (document +
-   paquet + référentiel + `runMeta`), `audit` vide ; puis la valide avec le
-   moteur (`validateDocument('archive-export')`).
+   paquet + référentiel + `runMeta`), `jeuxCartographie` (un master v4
+   complet par jeu, portfolio et carnet compris), `audit` vide ; puis la
+   valide avec le moteur (`validateDocument('archive-export')`, qui valide
+   chaque jeu contre `competency-map-master`).
 5. Le fichier `humanome-export-AAAA-MM-JJ.json` (JSON indenté) est
    téléchargé ; message « Archive téléchargée (…) : n portfolio(s),
-   m cartographie(s). »
+   m cartographie(s). » — complété de « , k jeu(x) de l'interface de
+   cartographie » quand il y en a.
 6. Sur un autre navigateur (stockage vide, avec ou sans compte), il clique
    « Importer une archive » et choisit le fichier.
 7. Le navigateur lit le fichier, vérifie qu'il s'agit de JSON, que
@@ -72,8 +88,17 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
    segmentation) et chaque cartographie (visibilité `privee`, sans copie
    serveur, titre dérivé : « Journée du JJ/MM/AAAA », « Parcours du … au … »),
    en ignorant les doublons.
+   Puis chaque jeu de l'interface de cartographie, par la chaîne d'import de
+   l'interface elle-même : un jeu de même identifiant est complété (ce qui
+   est déjà là gagne, doublons ignorés), sinon il est créé. « Ce qui est là
+   gagne » vaut aussi pour le portfolio : le texte d'une journée qui en a
+   déjà un n'est pas remplacé, et les passages sans date de l'archive ne sont
+   pas repris dans un jeu qui a déjà son portfolio (un passage rattaché à une
+   journée ou écarté depuis ne revient pas).
 9. Message « Import terminé : n portfolio(s) et m cartographie(s) restaurés
-   (les doublons sont ignorés). » ; la liste des cartographies est rafraîchie.
+   (les doublons sont ignorés). » (« n portfolio(s), m cartographie(s) et
+   k jeu(x) de l'interface de cartographie restaurés… » quand des jeux sont
+   créés ou complétés) ; la liste des cartographies est rafraîchie.
 
 ## Scénarios alternatifs
 
@@ -96,6 +121,16 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
   `inconnu` est restauré à `null` (paquet ou référentiel non renseigné) ; les
   autres couples, y compris une version `0.0.0` associée à un id réel, sont
   conservés tels quels.
+
+- **A5 — Stockage de l'interface de cartographie illisible** (étapes 3 et 8) :
+  l'export aboutit sans les jeux et le message le dit (« Vos jeux de
+  l'interface de cartographie n'ont pas pu être lus (…) : exportez-les depuis
+  l'espace Export de la cartographie. ») ; à l'import, portfolios et
+  cartographies sont restaurés et le message dit que les jeux ne l'ont pas
+  été. Un **jeu non conforme** au schéma (un master édité à la main ou venu
+  d'ailleurs, importé dans l'interface) est laissé de côté, seul, et nommé
+  (« 1 jeu(x) illisible(s) laissé(s) de côté (« … ») : exportez-le(s) depuis
+  l'espace Export de la cartographie. ») ; le reste de l'archive part.
 
 ## Scénarios d'erreur
 
@@ -133,6 +168,15 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
   cartographies sont restaurés.
 - **RG7** — Les paquets privés (Golden Prompt) ne sont jamais servis, donc
   jamais exportés.
+- **RG8** — Jeux de l'interface de cartographie (1.1.0) : tous, en archive
+  complète (« tout sauvegarder »), sauf la démonstration publique **intacte**
+  (`origin: "demo"`, rechargeable depuis le site). Dès qu'on y ajoute quelque
+  chose — un import (son portfolio, d'autres analyses), une réponse au jury,
+  un dialogue, un ensemble, un repère, une note, un passage —, elle part
+  comme les autres ; restaurés dans le stockage local de
+  l'interface, jamais sur le serveur ; un jeu déjà présent est complété, et
+  ne compte comme restauré que s'il gagne des journées, des analyses ou un
+  état de l'apprenant (A3 : réimporter ne restaure rien).
 
 ## Données et RGPD
 
@@ -151,6 +195,7 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | Front | `web/src/views/espace/ExportSection.jsx` (dans `CartographiesPanel.jsx`) | Boutons, champ fichier réarmé, messages (`status` / `alert`), `onImported` en succès seulement |
 | Front | `web/src/lib/archive.js` — `exportArchive`, `importArchive` ; `browserDownload` (Blob + `<a download>`, via la couture `download`) | Assemblage, projections, lectures, restauration, dédoublonnage, téléchargement |
 | Front | `web/src/lib/carto-store.js`, `web/src/lib/portfolio-store.js` | Sources et cibles locales |
+| Front | `web/src/carto/core/store.js`, `archive.js` (`buildArchive`), `import.js` (`importFiles`) | Jeux de l'interface de cartographie : lecture, archive master v4, restauration |
 | Front | `web/src/api/client.js` — `fetchMe`, `apiFetch` ; `web/src/data/referentiel.js` ; `web/src/data/load.js` — `getReferentiel`, `frenchDate` | Lectures du compte, des paquets, de la masse ; référentiel publié ou embarqué ; dates des titres dérivés |
 | Moteur | `engine/src/validation.js` — `validateDocument('archive-export')` ; `schemas/archive-export.schema.json` | Contrat pivot (ADR-006) |
 | API | `GET /api/auth/me` (`api/src/routes/auth.php`), `GET /api/prompt-packages`, `GET /api/prompt-packages/{id}/{version}` (`packages.php`, lecture publique), `GET /api/mes-documents-masse` (`etablissement.php`, `RequireRole` `apprenant`) | Lectures seules |
@@ -178,6 +223,11 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | UC-APP-06-U14 | `PromptPackageRepository` | 1er de `listPublished` = ordre alphabétique puis plus ancienne ; privé jamais servi | `api/tests/UseCases/Unit/UcApp06ExporterImporterArchiveTest.php` |
 | UC-APP-06-U15 | `importArchive` | **Comportement actuel** : cartographie citant un paquet absent de l'archive importée sans avertissement (A-06) | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
 | UC-APP-06-U16 | `ExportSection` | Succès en `status`, refus en `alert` sans `onImported`, champ fichier réarmé, `onImported` après un import réussi | idem |
+| UC-APP-06-U17 | `validateDocument` (`competency-map-master`, `archive-export`) | Fixture du master v4 conforme ; archive 1.1.0 qui l'embarque conforme ; archive 1.0.0 toujours conforme | `engine/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
+| UC-APP-06-U18 | idem | Un jeu non conforme rend l'archive non conforme, à son emplacement (`/jeuxCartographie/0/…`) | idem |
+| UC-APP-06-U19 | `ExportSection` (A5) | Stockage de l'interface illisible : archive téléchargée, message qui dit ce qui manque et quoi faire ; jeu non conforme laissé de côté et nommé, le reste part | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
+| — | `exportArchive`, `importArchive` (jeux de l'interface) | Export : archive complète par jeu, démonstration intacte exceptée (enrichie : exportée), conforme ; jeu non conforme exclu seul ; 1.0.0 importée sans jeux ; import : jeu retrouvé à l'identique, réimport sans effet, jeu complété compté, texte local et passages sans date gardés ; stockage illisible : export abouti et signalé, import du reste | `web/src/lib/archive.test.js` |
+| — | schéma du master v4 | Fixture = sortie exacte de l'interface ; archive sans portfolio ; champ inconnu accepté ; refus localisés ; corpus réel des 59 journées publiques conforme | `web/src/carto/core/master-schema.test.js` |
 
 ### Tests fonctionnels
 
@@ -189,6 +239,7 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | UC-APP-06-F04 | A2 | IHM | Document de masse inclus (`masse-4-11`) | idem |
 | UC-APP-06-F05 | A3 | IHM | Réimport : 0 restauré | idem |
 | UC-APP-06-F06 | A4 | IHM | Fixture d'une autre instance : titres dérivés, traçabilité conservée ; id `inconnu` → `null`, version `0.0.0` d'un id réel conservée | idem |
+| UC-APP-06-F17 | Nominal (1.1.0) | IHM | Jeux de l'interface de cartographie : dans l'archive (démonstration exceptée), conforme, portfolio, réponses et carnet compris ; navigateur neuf : jeu restauré à l'identique, démonstration absente ; réimport : rien | idem |
 | UC-APP-06-F07 | E1, E2, E3 | IHM | Fichier refusé (3 cas), alerte, rien d'importé | idem |
 | UC-APP-06-F08 | E4 (anomalie A-03) | IHM | **Comportement actuel** : une analyse Twin9 locale annule tout l'export | idem |
 | UC-APP-06-F09 | Nominal (anomalie A-01) | IHM | **Comportement actuel** : paquet embarqué = 1er publié, pas celui des cartographies | idem |

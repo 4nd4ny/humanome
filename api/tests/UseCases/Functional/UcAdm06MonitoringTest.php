@@ -50,11 +50,11 @@ final class UcAdm06MonitoringTest extends AdminTestCase
             'visibility' => 'publique',
             'document' => ['kind' => 'cartographie-jour', 'date' => '2026-01-05', 'poles' => [], 'note' => self::SECRET_TEXT],
         ]);
-        $share = $this->as_($maya, 'POST', "/api/cartographies/{$cartoId}/share", ['password' => 'sesame-employeur']);
-        self::assertSame(201, $share->getStatusCode());
+        // Un lien créé (avec son événement) avant le retrait de l'ancien partage (D-43).
+        $share = self::legacyShareLink($cartoId, 'sesame-employeur', 90, $maya['id']);
         $this->cookieSid = null;
         $this->clientIp = '198.51.100.7';
-        self::assertSame(200, $this->request('POST', '/api/share/' . self::json($share)['token'], ['password' => 'sesame-employeur'])->getStatusCode());
+        self::assertSame(200, $this->request('POST', '/api/share/' . $share['token'], ['password' => 'sesame-employeur'])->getStatusCode());
 
         $this->clientIp = '203.0.113.10';
         $this->cookieSid = null;

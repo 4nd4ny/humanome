@@ -1,0 +1,1140 @@
+{
+  "kind": "competency-map-master",
+  "schemaVersion": "4.0.0",
+  "datasetId": "ds-lou",
+  "title": "Lou",
+  "createdAt": "2026-10-14T10:00:00.000Z",
+  "updatedAt": "2026-10-14T10:00:00.000Z",
+  "referential": {
+    "id": "mini",
+    "version": "1.0.0",
+    "label": "Mini 1.0",
+    "poles": [
+      {
+        "num": 1,
+        "nom": "TÊTE — Penser",
+        "couleur": "#2563eb"
+      },
+      {
+        "num": 2,
+        "nom": "CŒUR — Relier",
+        "couleur": "#10b981"
+      },
+      {
+        "num": 3,
+        "nom": "MAIN — Créer",
+        "couleur": "#ec4899"
+      }
+    ],
+    "competences": [
+      {
+        "code": "1.01",
+        "nom": "Pensée critique",
+        "pole": 1,
+        "description": "Douter avec méthode."
+      },
+      {
+        "code": "1.02",
+        "nom": "Cadrage",
+        "pole": 1,
+        "description": "Poser le bon problème."
+      },
+      {
+        "code": "2.01",
+        "nom": "Écoute",
+        "pole": 2,
+        "description": "Accueillir autrui."
+      },
+      {
+        "code": "2.02",
+        "nom": "Coopération",
+        "pole": 2,
+        "description": "Faire ensemble."
+      },
+      {
+        "code": "3.01",
+        "nom": "Fabrication",
+        "pole": 3,
+        "description": "Donner forme."
+      },
+      {
+        "code": "3.02",
+        "nom": "Itération",
+        "pole": 3,
+        "description": "Reprendre et améliorer."
+      }
+    ]
+  },
+  "portfolio": {
+    "title": "lou.md",
+    "sources": [
+      "lou.md",
+      "vacances.md"
+    ],
+    "importedAt": "2026-10-14T10:00:00.000Z",
+    "undated": [
+      {
+        "title": null,
+        "text": "Un passage écrit pendant les vacances, sans date.\n",
+        "source": "vacances.md"
+      }
+    ]
+  },
+  "days": [
+    {
+      "date": "2025-12-22",
+      "active": true,
+      "tags": [
+        "projet pont"
+      ],
+      "activeVariantId": "v-39b1603516f597fa9165",
+      "variantChoice": "auto",
+      "variants": [
+        {
+          "id": "v-39b1603516f597fa9165",
+          "digest": "b6ad342bb68418019b4543a947270c52",
+          "provenance": {
+            "source": "aurora-v3",
+            "run": null,
+            "files": [
+              "carto_P1.json",
+              "carto_P3.json",
+              "kairos.json"
+            ],
+            "model": null,
+            "prompt": null,
+            "analysedAt": null,
+            "importedAt": "2026-10-14T10:00:00.000Z"
+          },
+          "verdicts": [
+            {
+              "code": "1.01",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": false,
+              "confidence": 0.8,
+              "proofs": 1,
+              "hints": 0,
+              "traces": [
+                {
+                  "id": "v-39b1603516f597fa9165:1.01:0",
+                  "role": "preuve"
+                }
+              ]
+            },
+            {
+              "code": "1.02",
+              "status": "not_established",
+              "rawStatus": "présence non établie",
+              "courtCircuit": false,
+              "confidence": 0.7,
+              "proofs": 0,
+              "hints": 0,
+              "traces": []
+            },
+            {
+              "code": "3.01",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": false,
+              "confidence": 0.6,
+              "proofs": 0,
+              "hints": 1,
+              "traces": [
+                {
+                  "id": "v-39b1603516f597fa9165:3.01:0",
+                  "role": "indice"
+                }
+              ]
+            }
+          ],
+          "anomalies": [
+            {
+              "severity": "warning",
+              "code": "journee-incomplete",
+              "message": "2 pôle(s) sur 7 pour cette journée"
+            }
+          ]
+        }
+      ],
+      "portfolio": {
+        "chars": 242,
+        "words": 41
+      },
+      "anomalies": []
+    },
+    {
+      "date": "2025-12-23",
+      "active": true,
+      "tags": [
+        "projet pont"
+      ],
+      "activeVariantId": "v-44b0dd6c98415bae1bbf",
+      "variantChoice": "learner",
+      "variants": [
+        {
+          "id": "v-b307a618c75aea2e3255",
+          "digest": "42ddd46f9e58ad2b698f4b0f0657cbcf",
+          "provenance": {
+            "source": "aurora-v3",
+            "run": null,
+            "files": [
+              "carto_P2.json",
+              "carto_P3.json",
+              "kairos.json"
+            ],
+            "model": null,
+            "prompt": null,
+            "analysedAt": null,
+            "importedAt": "2026-10-14T10:00:00.000Z"
+          },
+          "verdicts": [
+            {
+              "code": "2.01",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": false,
+              "confidence": 0.9,
+              "proofs": 1,
+              "hints": 0,
+              "traces": [
+                {
+                  "id": "v-b307a618c75aea2e3255:2.01:0",
+                  "role": "preuve"
+                }
+              ]
+            },
+            {
+              "code": "3.02",
+              "status": "needs_review",
+              "rawStatus": "renvoi au cartographe",
+              "courtCircuit": false,
+              "confidence": 0.5,
+              "proofs": 0,
+              "hints": 1,
+              "traces": [
+                {
+                  "id": "v-b307a618c75aea2e3255:3.02:0",
+                  "role": "indice"
+                }
+              ]
+            },
+            {
+              "code": "3.01",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": true,
+              "confidence": 0.4,
+              "proofs": 0,
+              "hints": 0,
+              "traces": []
+            }
+          ],
+          "anomalies": [
+            {
+              "severity": "warning",
+              "code": "journee-incomplete",
+              "message": "2 pôle(s) sur 7 pour cette journée"
+            }
+          ]
+        },
+        {
+          "id": "v-44b0dd6c98415bae1bbf",
+          "digest": "e204597a5543b22ff445348563309179",
+          "provenance": {
+            "source": "aurora-v3",
+            "run": "run2",
+            "files": [
+              "carto_P2.json"
+            ],
+            "model": null,
+            "prompt": null,
+            "analysedAt": null,
+            "importedAt": "2026-10-14T10:00:00.000Z"
+          },
+          "verdicts": [
+            {
+              "code": "2.02",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": false,
+              "confidence": 0.6,
+              "proofs": 0,
+              "hints": 1,
+              "traces": [
+                {
+                  "id": "v-44b0dd6c98415bae1bbf:2.02:0",
+                  "role": "indice"
+                }
+              ]
+            }
+          ],
+          "anomalies": [
+            {
+              "severity": "warning",
+              "code": "journee-incomplete",
+              "message": "1 pôle(s) sur 7 pour cette journée"
+            }
+          ]
+        }
+      ],
+      "portfolio": {
+        "chars": 198,
+        "words": 31
+      },
+      "anomalies": []
+    },
+    {
+      "date": "2025-12-24",
+      "active": false,
+      "tags": [],
+      "activeVariantId": "v-90d9c22136e55f22938f",
+      "variantChoice": "auto",
+      "variants": [
+        {
+          "id": "v-90d9c22136e55f22938f",
+          "digest": "e64d3b804a41d796207b99721e5f3c9e",
+          "provenance": {
+            "source": "aurora-v3",
+            "run": null,
+            "files": [
+              "carto_P3.json",
+              "kairos.json"
+            ],
+            "model": null,
+            "prompt": null,
+            "analysedAt": null,
+            "importedAt": "2026-10-14T10:00:00.000Z"
+          },
+          "verdicts": [
+            {
+              "code": "3.02",
+              "status": "established",
+              "rawStatus": "présence établie",
+              "courtCircuit": false,
+              "confidence": 0.7,
+              "proofs": 1,
+              "hints": 1,
+              "traces": [
+                {
+                  "id": "v-90d9c22136e55f22938f:3.02:0",
+                  "role": "preuve"
+                },
+                {
+                  "id": "v-90d9c22136e55f22938f:3.02:1",
+                  "role": "indice"
+                }
+              ]
+            }
+          ],
+          "anomalies": [
+            {
+              "severity": "warning",
+              "code": "journee-incomplete",
+              "message": "1 pôle(s) sur 7 pour cette journée"
+            }
+          ]
+        }
+      ],
+      "portfolio": {
+        "chars": 135,
+        "words": 22
+      },
+      "anomalies": []
+    }
+  ],
+  "sets": [
+    {
+      "id": "set-pont",
+      "name": "Pont",
+      "definition": {
+        "kind": "tags",
+        "tags": [
+          "projet pont"
+        ]
+      },
+      "frozenDates": [
+        "2025-12-22",
+        "2025-12-23"
+      ],
+      "createdAt": "2026-10-14T10:00:00.000Z"
+    }
+  ],
+  "reviews": {
+    "2025-12-22|v-39b1603516f597fa9165|1.01": {
+      "state": "nuanced",
+      "note": "Pas seulement deux sources.",
+      "updatedAt": "2026-10-14T10:00:00.000Z"
+    }
+  },
+  "comparisons": [
+    {
+      "key": "set-pont|selection",
+      "a": "set-pont",
+      "b": "selection",
+      "note": "Ma lecture de la semaine.",
+      "updatedAt": "2026-10-14T10:00:00.000Z"
+    }
+  ],
+  "markers": [
+    {
+      "id": "mk-1",
+      "date": "2025-12-22",
+      "to": "2025-12-24",
+      "kind": "phase",
+      "label": "Semaine du pont"
+    },
+    {
+      "id": "mk-2",
+      "date": "2025-12-23",
+      "to": null,
+      "kind": "repere",
+      "label": "Premier pont"
+    }
+  ],
+  "reflections": [
+    {
+      "id": "rf-80786471d1b8af037020",
+      "at": "2026-10-13T12:00:00.000Z",
+      "entries": [
+        {
+          "threadId": "citation:2025-12-22:1.01",
+          "kind": "citation",
+          "question": "Le 22 décembre 2025, vous écrivez ce passage. Qu’est-ce qui se jouait pour vous ce jour-là ?",
+          "quote": "J’ai vérifié deux sources contradictoires avant de conclure",
+          "answer": "Je doutais de la date du chantier.",
+          "refs": {
+            "dates": [
+              "2025-12-22"
+            ],
+            "codes": [
+              "1.01"
+            ]
+          },
+          "relaunch": {
+            "text": "Qu’est-ce qui vous a fait douter ?",
+            "model": "Ollama — llama3.1"
+          }
+        }
+      ],
+      "versedAt": "2026-10-14T10:00:00.000Z"
+    },
+    {
+      "id": "rf-76aef894bef155636d6e",
+      "at": "2026-10-14T10:00:00.000Z",
+      "entries": [
+        {
+          "threadId": "silence:a:b",
+          "kind": "silence",
+          "question": "Que s’est-il passé pendant ce temps ?",
+          "quote": null,
+          "answer": "Une pause voulue.",
+          "refs": {
+            "dates": [],
+            "codes": []
+          },
+          "relaunch": null
+        }
+      ]
+    }
+  ],
+  "narratives": [],
+  "metrics": null,
+  "preferences": {
+    "calendarMode": "free",
+    "schoolYearStart": null,
+    "freeRange": null,
+    "reinforced": true,
+    "highContrast": false,
+    "reducedMotion": "system",
+    "speed": 1,
+    "params": {
+      "alpha": 0.5,
+      "minThicknessPx": 2
+    },
+    "dashboardHidden": [],
+    "compare": null,
+    "dashboardLayout": null,
+    "momentsSensitivity": 50
+  },
+  "importLog": [
+    {
+      "at": "2026-10-14T10:00:00.000Z",
+      "files": [
+        "lou.md",
+        "vacances.md",
+        "2025-12-22/carto_P1.json",
+        "2025-12-22/carto_P3.json",
+        "2025-12-22/kairos.json",
+        "2025-12-23/carto_P2.json",
+        "2025-12-23/carto_P3.json",
+        "2025-12-23/kairos.json",
+        "2025-12-24/carto_P3.json",
+        "2025-12-24/kairos.json"
+      ],
+      "counts": {
+        "daysAdded": 3,
+        "variantsAdded": 3,
+        "duplicates": 0,
+        "portfolioDays": 3,
+        "narratives": 0,
+        "pendingDays": 0
+      },
+      "severities": {
+        "blocking": 0,
+        "arbitrate": 1,
+        "warning": 3,
+        "info": 0
+      },
+      "entries": [
+        {
+          "severity": "arbitrate",
+          "code": "portfolio-sans-date",
+          "message": "vacances.md : aucune date reconnue — à découper et dater dans le gestionnaire"
+        },
+        {
+          "severity": "warning",
+          "code": "journee-incomplete",
+          "message": "2 pôle(s) sur 7 pour cette journée",
+          "date": "2025-12-22"
+        },
+        {
+          "severity": "warning",
+          "code": "journee-incomplete",
+          "message": "2 pôle(s) sur 7 pour cette journée",
+          "date": "2025-12-23"
+        },
+        {
+          "severity": "warning",
+          "code": "journee-incomplete",
+          "message": "1 pôle(s) sur 7 pour cette journée",
+          "date": "2025-12-24"
+        }
+      ],
+      "acknowledged": false
+    },
+    {
+      "at": "2026-10-14T10:00:00.000Z",
+      "files": [
+        "run2/2025-12-23/carto_P2.json"
+      ],
+      "counts": {
+        "daysAdded": 0,
+        "variantsAdded": 1,
+        "duplicates": 0,
+        "portfolioDays": 0,
+        "narratives": 0,
+        "pendingDays": 1
+      },
+      "severities": {
+        "blocking": 0,
+        "arbitrate": 1,
+        "warning": 1,
+        "info": 1
+      },
+      "entries": [
+        {
+          "severity": "warning",
+          "code": "journee-incomplete",
+          "message": "1 pôle(s) sur 7 pour cette journée",
+          "date": "2025-12-23"
+        },
+        {
+          "severity": "arbitrate",
+          "code": "variantes-concurrentes",
+          "message": "2025-12-23 : 2 analyses — à arbitrer, la journée ne contribue pas tant qu'aucune n'est choisie",
+          "date": "2025-12-23"
+        }
+      ],
+      "acknowledged": false
+    }
+  ],
+  "exportedAt": "2026-10-14T10:00:00.000Z",
+  "includesPortfolio": true,
+  "details": {
+    "2025-12-22": {
+      "date": "2025-12-22",
+      "portfolio": {
+        "title": "2025-12-22",
+        "text": "# Journal de Lou\n\n### 2025-12-22\n\nCe matin j’ai relu mes notes avant d’écrire. J'ai vérifié deux sources contradictoires avant de conclure sur la date du chantier.\nEnsuite nous avons construit la maquette du pont en carton, avec Sam et Noé.\n\n",
+        "source": "lou.md"
+      },
+      "variants": {
+        "v-39b1603516f597fa9165": {
+          "verdicts": {
+            "1.01": {
+              "motif": "Vérification explicite.",
+              "prescription": "Raconter un doute.",
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 1.01.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.8
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 1.01",
+                  "extract": "J'ai vérifié deux sources contradictoires avant de conclure sur la date du chantier."
+                }
+              ],
+              "traces": {
+                "v-39b1603516f597fa9165:1.01:0": {
+                  "role": "preuve",
+                  "rawRole": "preuve décisive",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "J'ai vérifié deux sources contradictoires avant de conclure sur la date du chantier.",
+                  "start": "J'ai vérifié deux sources contradictoires avant",
+                  "end": "de conclure sur la date du chantier.",
+                  "context": "Contexte de 1.01",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-22",
+                  "resolved": true
+                }
+              }
+            },
+            "1.02": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 1.02.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.7
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [],
+              "traces": {}
+            },
+            "3.01": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 3.01.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.6
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 3.01",
+                  "extract": "nous avons construit la maquette du pont en carton"
+                }
+              ],
+              "traces": {
+                "v-39b1603516f597fa9165:3.01:0": {
+                  "role": "indice",
+                  "rawRole": "indice corroboratif",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "nous avons construit la maquette du pont en carton",
+                  "start": "nous avons construit la",
+                  "end": "maquette du pont en carton",
+                  "context": "Contexte de 3.01",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-22",
+                  "resolved": true
+                }
+              }
+            }
+          },
+          "passages": [
+            {
+              "pid": 1,
+              "pole": 1,
+              "date": "2025-12-22",
+              "extract": "J'ai vérifié deux sources contradictoires avant de conclure sur la date du chantier.",
+              "context": "Contexte de 1.01",
+              "author": "apprenant"
+            },
+            {
+              "pid": 1,
+              "pole": 3,
+              "date": "2025-12-22",
+              "extract": "nous avons construit la maquette du pont en carton",
+              "context": "Contexte de 3.01",
+              "author": "apprenant"
+            }
+          ],
+          "poleReports": {
+            "1": {
+              "portrait": "Portrait du pôle 1 le 2025-12-22.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 1\n\nTexte du rapport."
+            },
+            "3": {
+              "portrait": "Portrait du pôle 3 le 2025-12-22.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+            }
+          },
+          "audits": {
+            "1": {
+              "competencesTotales": 2
+            },
+            "3": {
+              "competencesTotales": 1
+            }
+          },
+          "kairos": {
+            "portrait": "Portrait du 2025-12-22.",
+            "profileShape": "Deux massifs.",
+            "linksAcrossPoles": "Le soin du détail.",
+            "betweenTheLines": "Une curiosité.",
+            "invitations": [
+              "Raconter une erreur."
+            ],
+            "markdown": "## Portrait\n\nSynthèse."
+          },
+          "kairosRaw": null,
+          "emergences": {
+            "competencesOrphelines": [],
+            "connexionsTransversales": [],
+            "noeudsConceptuels": []
+          }
+        }
+      }
+    },
+    "2025-12-23": {
+      "date": "2025-12-23",
+      "portfolio": {
+        "title": "23.12.2025",
+        "text": "### 23.12.2025\n\nJ’ai écouté Sam expliquer son idée jusqu’au bout sans l’interrompre, puis j’ai reformulé ce que j’avais compris.\nLa maquette a cédé : nous avons recommencé en changeant les appuis.\n\n",
+        "source": "lou.md"
+      },
+      "variants": {
+        "v-b307a618c75aea2e3255": {
+          "verdicts": {
+            "2.01": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 2.01.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.9
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 2.01",
+                  "extract": "J’ai écouté Sam expliquer son idée jusqu’au bout sans l’interrompre, puis j’ai reformulé ce que j’avais compris."
+                }
+              ],
+              "traces": {
+                "v-b307a618c75aea2e3255:2.01:0": {
+                  "role": "preuve",
+                  "rawRole": "preuve décisive",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "J’ai écouté Sam expliquer son idée jusqu’au bout sans l’interrompre, puis j’ai reformulé ce que j’avais compris.",
+                  "start": "J’ai écouté Sam expliquer son idée jusqu’au bout",
+                  "end": "sans l’interrompre, puis j’ai reformulé ce que j’avais compris.",
+                  "context": "Contexte de 2.01",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-23",
+                  "resolved": true
+                }
+              }
+            },
+            "3.02": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 3.02.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.5
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 3.02",
+                  "extract": "La maquette a cédé [...] en changeant les appuis."
+                }
+              ],
+              "traces": {
+                "v-b307a618c75aea2e3255:3.02:0": {
+                  "role": "indice",
+                  "rawRole": "indice corroboratif",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "La maquette a cédé [...] en changeant les appuis.",
+                  "start": "La maquette a cédé",
+                  "end": "en changeant les appuis.",
+                  "context": "Contexte de 3.02",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-23",
+                  "resolved": true
+                }
+              }
+            },
+            "3.01": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 3.01.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.4
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [],
+              "traces": {}
+            }
+          },
+          "passages": [
+            {
+              "pid": 1,
+              "pole": 2,
+              "date": "2025-12-23",
+              "extract": "J’ai écouté Sam expliquer son idée jusqu’au bout sans l’interrompre, puis j’ai reformulé ce que j’avais compris.",
+              "context": "Contexte de 2.01",
+              "author": "apprenant"
+            },
+            {
+              "pid": 1,
+              "pole": 3,
+              "date": "2025-12-23",
+              "extract": "La maquette a cédé [...] en changeant les appuis.",
+              "context": "Contexte de 3.02",
+              "author": "apprenant"
+            }
+          ],
+          "poleReports": {
+            "2": {
+              "portrait": "Portrait du pôle 2 le 2025-12-23.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 2\n\nTexte du rapport."
+            },
+            "3": {
+              "portrait": "Portrait du pôle 3 le 2025-12-23.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+            }
+          },
+          "audits": {
+            "2": {
+              "competencesTotales": 1
+            },
+            "3": {
+              "competencesTotales": 2
+            }
+          },
+          "kairos": {
+            "portrait": "Portrait du 2025-12-23.",
+            "profileShape": "Deux massifs.",
+            "linksAcrossPoles": "Le soin du détail.",
+            "betweenTheLines": "Une curiosité.",
+            "invitations": [
+              "Raconter une erreur."
+            ],
+            "markdown": "## Portrait\n\nSynthèse."
+          },
+          "kairosRaw": null,
+          "emergences": {
+            "competencesOrphelines": [],
+            "connexionsTransversales": [],
+            "noeudsConceptuels": []
+          }
+        },
+        "v-44b0dd6c98415bae1bbf": {
+          "verdicts": {
+            "2.02": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 2.02.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.6
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 2.02",
+                  "extract": "puis j’ai reformulé ce que j’avais compris"
+                }
+              ],
+              "traces": {
+                "v-44b0dd6c98415bae1bbf:2.02:0": {
+                  "role": "indice",
+                  "rawRole": "indice corroboratif",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "puis j’ai reformulé ce que j’avais compris",
+                  "start": "puis j’ai reformulé",
+                  "end": "ce que j’avais compris",
+                  "context": "Contexte de 2.02",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-23",
+                  "resolved": true
+                }
+              }
+            }
+          },
+          "passages": [
+            {
+              "pid": 1,
+              "pole": 2,
+              "date": "2025-12-23",
+              "extract": "puis j’ai reformulé ce que j’avais compris",
+              "context": "Contexte de 2.02",
+              "author": "apprenant"
+            }
+          ],
+          "poleReports": {
+            "2": {
+              "portrait": "Portrait du pôle 2 le 2025-12-23.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 2\n\nTexte du rapport."
+            }
+          },
+          "audits": {
+            "2": {
+              "competencesTotales": 1
+            }
+          },
+          "kairos": null,
+          "kairosRaw": null,
+          "emergences": null
+        }
+      }
+    },
+    "2025-12-24": {
+      "date": "2025-12-24",
+      "portfolio": {
+        "title": "24 décembre 2025",
+        "text": "### 24 décembre 2025\n\nTroisième essai de la maquette : cette fois, les appuis tiennent. J'ai noté chaque modification dans un tableau.\n",
+        "source": "lou.md"
+      },
+      "variants": {
+        "v-90d9c22136e55f22938f": {
+          "verdicts": {
+            "3.02": {
+              "motif": null,
+              "prescription": null,
+              "pedagogue": {
+                "presomptionAbsence": {
+                  "raisonnement": "Je doute de 3.02.",
+                  "piecesQuiResistent": []
+                },
+                "presomptionSycophantie": {
+                  "raisonnement": "Je me méfie de ma complaisance.",
+                  "examenPieces": []
+                },
+                "conclusionAdversariale": {
+                  "raisonnement": "Après examen, la pièce tient.",
+                  "confianceFinale": 0.7
+                }
+              },
+              "jury": null,
+              "president": null,
+              "pieces": [
+                {
+                  "numero": 1,
+                  "pid": 1,
+                  "context": "Pièce 1 de 3.02",
+                  "extract": "Troisième essai de la maquette : cette fois, les appuis tiennent. J'ai noté chaque modification dans un tableau."
+                },
+                {
+                  "numero": 2,
+                  "pid": 2,
+                  "context": "Pièce 2 de 3.02",
+                  "extract": "Troisième essai de la maquette"
+                }
+              ],
+              "traces": {
+                "v-90d9c22136e55f22938f:3.02:0": {
+                  "role": "preuve",
+                  "rawRole": "preuve décisive",
+                  "pieceType": "trace concrète",
+                  "pieceId": 1,
+                  "pid": 1,
+                  "extract": "Troisième essai de la maquette : cette fois, les appuis tiennent. J'ai noté chaque modification dans un tableau.",
+                  "start": "Troisième essai de la maquette : cette fois, les",
+                  "end": "appuis tiennent. J'ai noté chaque modification dans un tableau.",
+                  "context": "Contexte de 3.02",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-24",
+                  "resolved": true
+                },
+                "v-90d9c22136e55f22938f:3.02:1": {
+                  "role": "indice",
+                  "rawRole": "indice corroboratif",
+                  "pieceType": "trace concrète",
+                  "pieceId": 2,
+                  "pid": 2,
+                  "extract": "Troisième essai de la maquette",
+                  "start": "Troisième essai",
+                  "end": "de la maquette",
+                  "context": "Contexte de 3.02",
+                  "author": "apprenant",
+                  "sourceDate": "2025-12-24",
+                  "resolved": true
+                }
+              }
+            }
+          },
+          "passages": [
+            {
+              "pid": 1,
+              "pole": 3,
+              "date": "2025-12-24",
+              "extract": "Troisième essai de la maquette : cette fois, les appuis tiennent. J'ai noté chaque modification dans un tableau.",
+              "context": "Contexte de 3.02",
+              "author": "apprenant"
+            },
+            {
+              "pid": 2,
+              "pole": 3,
+              "date": "2025-12-24",
+              "extract": "Troisième essai de la maquette",
+              "context": "Contexte de 3.02",
+              "author": "apprenant"
+            }
+          ],
+          "poleReports": {
+            "3": {
+              "portrait": "Portrait du pôle 3 le 2025-12-24.",
+              "denseTerritories": [],
+              "unvisited": "Rien à signaler.",
+              "emergences": "Une ligne émerge.",
+              "leads": [
+                "Continuer."
+              ],
+              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+            }
+          },
+          "audits": {
+            "3": {
+              "competencesTotales": 1
+            }
+          },
+          "kairos": {
+            "portrait": "Portrait du 2025-12-24.",
+            "profileShape": "Deux massifs.",
+            "linksAcrossPoles": "Le soin du détail.",
+            "betweenTheLines": "Une curiosité.",
+            "invitations": [
+              "Raconter une erreur."
+            ],
+            "markdown": "## Portrait\n\nSynthèse."
+          },
+          "kairosRaw": null,
+          "emergences": {
+            "competencesOrphelines": [],
+            "connexionsTransversales": [],
+            "noeudsConceptuels": []
+          }
+        }
+      }
+    }
+  },
+  "runDetails": {}
+}

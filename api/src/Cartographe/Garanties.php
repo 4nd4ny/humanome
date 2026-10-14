@@ -85,6 +85,43 @@ final class Garanties
     }
 
     /**
+     * Garantie d'une version partagée PUBLIÉE PAR UN CARTOGRAPHE à la demande
+     * de l'apprenant (journal D-42) : elle couvre exactement le document qu'il
+     * vient de publier, et remplace toute garantie antérieure de cette version
+     * (le document a changé). Sans transaction propre : l'appelant publie et
+     * garantit dans la même transaction.
+     *
+     * @return array<string, mixed> the frozen garantie {par, date, revisionId}
+     */
+    public function setForPublication(int $cartoId, int $cartographeId, string $displayName): array
+    {
+        $this->pdo->prepare('DELETE FROM cartography_garanties WHERE cartographie_id = ?')->execute([$cartoId]);
+        $this->pdo->prepare(
+            'INSERT INTO cartography_garanties (cartographie_id, cartographe_id, revision_id, par)
+             VALUES (?, ?, NULL, ?)'
+        )->execute([$cartoId, $cartographeId, $displayName]);
+
+        $garantie = $this->findForCartography($cartoId);
+        \assert($garantie !== null);
+
+        return $garantie;
+    }
+
+    /**
+     * Retire la garantie d'une cartographie dont le document change par une
+     * autre main que celle du garant (une version partagée remplacée par son
+     * apprenant, D-42) : ce qui est présenté comme garanti est exactement ce
+     * qui a été vérifié (cahier §8). Vrai si une garantie a été retirée.
+     */
+    public function removeForCartography(int $cartoId): bool
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM cartography_garanties WHERE cartographie_id = ?');
+        $stmt->execute([$cartoId]);
+
+        return $stmt->rowCount() > 0;
+    }
+
+    /**
      * Withdrawal by THE SAME cartographe only (M7 contract). Returns false
      * when no garantie stands or it belongs to another cartographe.
      */

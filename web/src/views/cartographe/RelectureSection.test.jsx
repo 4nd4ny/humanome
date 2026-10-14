@@ -337,3 +337,51 @@ describe('RelectureSection — garantie', () => {
     expect(badge.textContent).toContain('révision 5 figée')
   })
 })
+
+describe('RelectureSection — ouvrir dans l’interface de cartographie (ancien partage retiré, D-43)', () => {
+  it('remet le document affiché à l’interface : l’origine, puis la révision consultée, avec leur titre', async () => {
+    const revised = JSON.parse(JSON.stringify(dayFixture))
+    revised.poles[0].competences[0].verdict.motif = 'Motif corrigé par le cartographe.'
+    const onOpenInInterface = vi.fn()
+    const fetchFn = routedFetch({
+      'GET api/cartographe/cartographies/12': detailResponse({
+        revisions: [{ id: 5, note: 'Relue', createdAt: '2026-07-05T10:00:00Z', author: { id: 9, displayName: 'Carla' } }],
+      }),
+      'GET api/revisions/5': jsonResponse(200, { document: revised }),
+    })
+    render(
+      <RelectureSection
+        id="12"
+        user={user}
+        lib={fakeLib}
+        fetchFn={fetchFn}
+        getReferentiel={getReferentiel}
+        onOpenInInterface={onOpenInInterface}
+      />,
+    )
+    const handoff = await screen.findByTestId('relecture-interface')
+    expect(handoff.textContent).toContain('ouvrez cette cartographie dans l’interface de cartographie')
+
+    fireEvent.click(within(handoff).getByRole('button', { name: 'Ouvrir dans l’interface de cartographie' }))
+    await waitFor(() => expect(onOpenInInterface).toHaveBeenCalledTimes(1))
+    expect(onOpenInInterface.mock.calls[0]).toEqual([
+      [{ path: 'cartographie-jour-2026-01-05.json', text: JSON.stringify(dayFixture) }],
+      { title: 'Journée du 05/01/2026' },
+    ])
+
+    fireEvent.click(within(screen.getByTestId('revisions-list')).getByRole('button', { name: 'Voir' }))
+    await screen.findByTestId('viewing-revision')
+    expect(screen.getByTestId('relecture-interface').textContent).toContain('ouvrez cette révision')
+    fireEvent.click(screen.getByRole('button', { name: 'Ouvrir dans l’interface de cartographie' }))
+    await waitFor(() => expect(onOpenInInterface).toHaveBeenCalledTimes(2))
+    const [[file], { title }] = onOpenInInterface.mock.calls[1]
+    expect(JSON.parse(file.text).poles[0].competences[0].verdict.motif).toBe('Motif corrigé par le cartographe.')
+    expect(title).toBe('Journée du 05/01/2026 — révision 5')
+  })
+
+  it('sans rappel câblé, pas de renvoi vers l’interface', async () => {
+    renderSection({ 'GET api/cartographe/cartographies/12': detailResponse() })
+    await screen.findByTestId('relecture-meta')
+    expect(screen.queryByTestId('relecture-interface')).toBeNull()
+  })
+})

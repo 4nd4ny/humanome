@@ -202,10 +202,7 @@ final class CartographiesTest extends AuthTestBase
     public function testDeletePurgesRowAndItsShareLinks(): void
     {
         $id = (int) self::json($this->post(self::body()))['id'];
-        $share = $this->request('POST', '/api/cartographies/' . $id . '/share', [
-            'password' => 'motdepasse',
-        ], ['X-CSRF-Token' => $this->csrf]);
-        self::assertSame(201, $share->getStatusCode());
+        self::legacyShareLink($id, 'motdepasse'); // créé avant le retrait de l'ancien partage (D-43)
 
         $response = $this->request('DELETE', '/api/cartographies/' . $id, null, ['X-CSRF-Token' => $this->csrf]);
         self::assertSame(204, $response->getStatusCode());

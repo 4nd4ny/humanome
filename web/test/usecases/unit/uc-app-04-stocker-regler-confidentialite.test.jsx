@@ -221,7 +221,7 @@ describe('UC-APP-04 — CartographiesPanel isolé', () => {
     expect(options).toEqual([
       ['privee', 'Privée'],
       ['cartographe', 'Partagée avec mon cartographe'],
-      ['publique', 'Publique (partageable)'],
+      ['publique', 'Partager'],
     ])
     expect(select.value).toBe('privee')
     expect(within(item).getByText('Analyse Twin9')).toBeDefined()

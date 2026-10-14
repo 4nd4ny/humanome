@@ -45,7 +45,7 @@ describe('App', () => {
     expect(screen.queryByRole('link', { name: 'humanome.xyz' })).toBeNull()
     const nav = within(screen.getByRole('navigation', { name: 'Navigation principale' }))
     expect(
-      nav.getByRole('link', { name: 'Cartographie (démonstration)' }).getAttribute('href'),
+      nav.getByRole('link', { name: 'Cartographie' }).getAttribute('href'),
     ).toBe('#/cartographie')
     expect(nav.getByRole('link', { name: 'Référentiel' }).getAttribute('href')).toBe(
       '#/referentiel',
@@ -121,7 +121,7 @@ describe('App', () => {
   })
 
   it('« Se déconnecter » ferme la session (dégradation gracieuse) et revient à l’accueil', async () => {
-    window.location.hash = '#/merge'
+    window.location.hash = '#/referentiel'
     const fetchMeFn = vi
       .fn()
       .mockResolvedValueOnce({ user: { id: 1, roles: ['apprenant'] } }) // montage
@@ -145,30 +145,49 @@ describe('App', () => {
   it('le bouton « ? » ouvre l’aide contextuelle de la rubrique (item 4)', async () => {
     window.location.hash = '#/'
     renderApp()
-    setHash('#/merge')
+    setHash('#/cartographie')
 
     fireEvent.click(screen.getByRole('button', { name: 'Aide sur cette rubrique' }))
     const dialog = await screen.findByRole('dialog')
-    expect(dialog.textContent).toContain('La cartographie évolutive')
+    expect(dialog.textContent).toContain('Votre cartographie')
+    expect(dialog.textContent).not.toContain('V3')
     // Fermeture par Échap.
     fireEvent.keyDown(document, { key: 'Escape' })
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   })
 
-  it('routes #/cartographie et #/merge (démo) -> interface V3, plus l’ancienne vue merge', () => {
-    // D14 : l'interface V3 REMPLACE la vue merge pour la démonstration. Le
-    // comportement détaillé de la V3 est testé dans v3/ui/V3View.test.jsx avec
-    // ses coutures ; ici on vérifie le REMPLACEMENT de route.
+  it('#/cartographie : interface ultime ; les anciennes pages V3 (#/cartographie-v3, #/merge) y renvoient', async () => {
+    // Pages V3 retirées le 2026-10-14 (journal carto, D-2) : leurs adresses
+    // remplacent l'entrée d'historique par #/cartographie.
     window.location.hash = '#/'
     renderApp()
 
     setHash('#/cartographie')
-    expect(document.querySelector('.v3-root')).not.toBeNull()
-    expect(screen.queryByText('Feuilles de portfolio')).toBeNull() // ancienne vue absente
+    expect(document.querySelector('.carto-app')).not.toBeNull()
+    expect(document.querySelector('.v3-root')).toBeNull()
 
-    setHash('#/merge')
-    expect(document.querySelector('.v3-root')).not.toBeNull()
-    expect(screen.queryByText(/Touchez un secteur du diagramme/)).toBeNull()
+    for (const old of ['#/cartographie-v3', '#/merge']) {
+      setHash('#/')
+      setHash(old)
+      await waitFor(() => expect(window.location.hash).toBe('#/cartographie'))
+      expect(document.querySelector('.carto-app')).not.toBeNull()
+      expect(document.querySelector('.v3-root')).toBeNull()
+    }
+  })
+
+  it('l’accueil ouvre les fichiers déposés dans l’interface de cartographie (nouveau jeu, rapport d’import)', async () => {
+    window.location.hash = '#/'
+    renderApp()
+    const day = {
+      kind: 'cartographie-jour',
+      date: '2025-12-22',
+      poles: [],
+    }
+    const bytes = new TextEncoder().encode(JSON.stringify(day))
+    const file = { name: '2025-12-22.json', arrayBuffer: async () => bytes.buffer }
+    fireEvent.change(screen.getByLabelText('Ouvrir mes fichiers de cartographie'), { target: { files: [file] } })
+    await waitFor(() => expect(window.location.hash).toBe('#/cartographie'))
+    await waitFor(() => expect(document.querySelector('.carto-app')).not.toBeNull())
   })
 
   it('route #/referentiel -> arbre public (repli embarqué sans réseau)', async () => {

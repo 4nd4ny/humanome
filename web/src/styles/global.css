@@ -2751,7 +2751,8 @@ body:has([aria-modal='true'], .portfolio-editor-fullscreen)
 
 /* ---------- Espace apprenant : mes cartographies (P8, chantier C) ----------
    Liste locale (IndexedDB) ; la copie serveur (opt-in §6.2) porte le badge
-   « copie serveur » et débloque le partage par lien + mot de passe. */
+   « copie serveur » (relecture par le cartographe ; les liens créés avant le
+   retrait de l'ancien partage, D-43, se gèrent depuis « Liens déjà créés »). */
 
 .carto-panel {
   display: flex;
@@ -2879,7 +2880,7 @@ body:has([aria-modal='true'], .portfolio-editor-fullscreen)
   gap: 0.5rem;
 }
 
-/* ---------- Dialogue de partage employeur (lien + mot de passe, §3.6) ---------- */
+/* ---------- Liens de partage déjà créés (ancien partage retiré : D-43) ---------- */
 
 .share-dialog {
   padding: 0.9rem 1rem;
@@ -2909,53 +2910,6 @@ body:has([aria-modal='true'], .portfolio-editor-fullscreen)
   margin: 0;
   font-size: 0.9rem;
   color: var(--ink-soft);
-}
-
-.share-dialog-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  max-width: 420px;
-}
-
-.share-dialog-form label {
-  font-size: 0.9rem;
-  color: var(--ink-soft);
-}
-
-.share-dialog-form input {
-  padding: 0.45rem 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font: inherit;
-  background: var(--card);
-  color: var(--ink);
-}
-
-.share-dialog-form button {
-  align-self: flex-start;
-}
-
-.share-dialog-created {
-  padding: 0.6rem 0.8rem;
-  border: 1px dashed var(--accent);
-  border-radius: 8px;
-  background: var(--card);
-}
-
-.share-dialog-created p {
-  margin: 0 0 0.4rem;
-  font-size: 0.9rem;
-}
-
-.share-url {
-  display: inline-block;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  padding: 0.15rem 0.35rem;
-  border-radius: 6px;
-  background: var(--paper);
-  font-size: 0.85rem;
 }
 
 .share-links {

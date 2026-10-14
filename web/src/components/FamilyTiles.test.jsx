@@ -54,7 +54,7 @@ describe('FamilyTiles — landing de profil', () => {
     const t = tiles()
     fireEvent.click(t.getByRole('button', { name: 'Voir les profils d’utilisateurs' }))
     fireEvent.click(t.getByRole('button', { name: 'Employeur' }))
-    expect(t.getByText(/cartographie qu’un apprenant vous a partagée/i)).toBeDefined()
+    expect(t.getByText(/cartographie qu’une personne vous a partagée/i)).toBeDefined()
     expect(t.queryByText('Découvrir')).toBeNull()
   })
 
