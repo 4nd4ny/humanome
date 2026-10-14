@@ -203,7 +203,9 @@ par `scripts/extract-referentiel.mjs`.
    `jeuxCartographie[]` : chaque jeu de données de l'interface (`#/cartographie`,
    son propre stockage IndexedDB) y est embarqué en archive complète du master
    v4 (`competency-map-master`), portfolio et carnet du dialogue compris ; la
-   démonstration publique (`origin: "demo"`) n'y est pas. Ajout rétro-compatible
+   démonstration publique (`origin: "demo"`) n'y est pas tant qu'elle est
+   intacte (dès que la personne y ajoute quelque chose, elle part ; journal
+   D-41). Ajout rétro-compatible
    en lecture : une archive 1.0.0 reste valide et s'importe ; en revanche une
    instance 1.0.0 refuserait une archive 1.1.0 (racine fermée) — sans objet
    tant qu'il n'existe qu'une instance, à garder en tête pour le seed d'une
@@ -221,7 +223,10 @@ par `scripts/extract-referentiel.mjs`.
      forme varie selon la chaîne (Aurora v3, AuroraCore, site, fusion).
    - **Stockage illisible ≠ export bloqué.** Si le stockage de l'interface ne
      peut pas être lu, l'archive part sans les jeux et le compte rendu le dit
-     (« exportez-les depuis l'espace Export de la cartographie »).
+     (« exportez-les depuis l'espace Export de la cartographie »). De même,
+     chaque jeu est validé seul : un jeu non conforme (un master édité à la
+     main, puis importé) est laissé de côté et nommé, le reste de l'archive
+     part (relecture du 2026-10-14, journal D-41).
 
 ## 5. Note d'outillage
 

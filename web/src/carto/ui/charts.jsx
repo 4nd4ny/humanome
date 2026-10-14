@@ -261,15 +261,19 @@ export function TimeChart({ label, series, from, to, kind = 'bars', height = 150
 
 /**
  * Petite courbe sans interaction (tableaux) : axe temporel réel, coupée aux trous.
+ * Les pastilles (`dots`) ont leur propre échelle (`dotsMax`, 1 par défaut :
+ * une confiance), indépendante de celle du trait (`max`).
  * @param {{points: Array<{date: string, value: number}>, from: string, to: string, max?: number,
- *   color?: string, dots?: Array<{date: string, value: number}>, label: string, maxGap?: number}} props
+ *   color?: string, dots?: Array<{date: string, value: number}>, dotsMax?: number, label: string, maxGap?: number}} props
  */
-export function Sparkline({ points, from, to, max = 1, color = 'currentColor', dots = [], label, maxGap = 14 }) {
+export function Sparkline({ points, from, to, max = 1, color = 'currentColor', dots = [], dotsMax = 1, label, maxGap = 14 }) {
   const w = 160
   const h = 28
   const span = Math.max(1, daysBetween(from, to) + 1)
   const sx = (d) => 2 + ((daysBetween(from, d) + 0.5) / span) * (w - 4)
-  const sy = (v) => h - 3 - (Math.max(0, Math.min(v, max)) / max) * (h - 6)
+  const scaleY = (top) => (v) => h - 3 - (Math.max(0, Math.min(v, top)) / top) * (h - 6)
+  const sy = scaleY(max > 0 ? max : 1)
+  const syDot = scaleY(dotsMax > 0 ? dotsMax : 1)
   const segs = []
   let cur = []
   for (const p of [...points].sort((a, b) => (a.date < b.date ? -1 : 1))) {
@@ -291,7 +295,7 @@ export function Sparkline({ points, from, to, max = 1, color = 'currentColor', d
         ),
       )}
       {dots.map((p) => (
-        <circle key={`d${p.date}`} cx={sx(p.date)} cy={sy(p.value)} r={1.6} className="carto-spark-dot" />
+        <circle key={`d${p.date}`} cx={sx(p.date)} cy={syDot(p.value)} r={1.6} className="carto-spark-dot" />
       ))}
     </svg>
   )

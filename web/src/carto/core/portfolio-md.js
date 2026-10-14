@@ -112,11 +112,15 @@ export function buildPortfolioMarkdown(exported) {
     const mine = (versed.get(date) ?? [])
       .slice()
       .sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
-      .map((r) => versedDialogueMarkdown(r).trim())
+      .map((r) => keepInDay(versedDialogueMarkdown(r).trim(), date))
       .filter(Boolean)
-    if (parts.length === 0 && mine.length === 0) continue
+    // Un portfolio déjà exporté puis réimporté (avec les analyses de
+    // l'évaluation suivante) porte le dialogue dans le texte de sa journée :
+    // il n'est pas ajouté une seconde fois.
+    const fresh = mine.filter((block) => !text.includes(block))
+    if (parts.length === 0 && fresh.length === 0) continue
     if (parts.length === 0) parts.push(`## ${date}`)
-    for (const md of mine) parts.push(keepInDay(md, date))
+    for (const block of fresh) parts.push(block)
     dialogues += mine.length
     days++
     blocks.push(parts.join('\n\n'))

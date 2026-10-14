@@ -168,7 +168,8 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
           <h3 id={`${uid}-md`}>Portfolio (Markdown)</h3>
           <p className="carto-small">
             Le texte de votre portfolio, journée par journée (cochées ou non), avec les dialogues que vous y avez versés depuis votre carnet, chacun à la journée où il a
-            été tenu. À relire, à transmettre à qui lit votre portfolio, à réimporter ici, ou à faire analyser lors de votre prochaine évaluation.
+            été tenu. À relire, à transmettre à qui lit votre portfolio, ou à faire analyser lors de votre prochaine évaluation — puis à réimporter ici avec ses
+            nouvelles analyses.
           </p>
           <p className="carto-small carto-muted">
             {versedCount > 0

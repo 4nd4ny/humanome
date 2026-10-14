@@ -39,16 +39,23 @@ export function collectText(root) {
   const doc = root.ownerDocument ?? root
   const walker = doc.createTreeWalker(root, 4 /* NodeFilter.SHOW_TEXT */)
   const segments = []
+  const breaks = [] // positions des sauts de ligne virtuels entre deux blocs
   let text = ''
   let lastBlock = null
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     const block = blockOf(node, root)
-    if (lastBlock !== null && block !== lastBlock && text !== '' && !text.endsWith('\n')) text += '\n'
+    if (lastBlock !== null && block !== lastBlock && text !== '') {
+      if (text.endsWith('\n')) breaks.push(text.length - 1)
+      else {
+        breaks.push(text.length)
+        text += '\n'
+      }
+    }
     lastBlock = block
     segments.push({ node, start: text.length, end: text.length + node.data.length })
     text += node.data
   }
-  return { text, segments }
+  return { text, segments, breaks }
 }
 
 /**
@@ -115,8 +122,8 @@ export function renderPortfolio(portfolio) {
   const hit = rendered.get(portfolio)
   if (hit) return hit
   const html = renderMarkdown(portfolio.text)
-  const { text } = collectText(inertFragment(html))
-  const out = { html, text }
+  const { text, breaks } = collectText(inertFragment(html))
+  const out = { html, text, breaks }
   rendered.set(portfolio, out)
   return out
 }
@@ -139,7 +146,8 @@ export function locateInPortfolio(portfolio, anchors) {
  */
 export function approximateInPortfolio(portfolio, extract) {
   if (!portfolio || typeof portfolio.text !== 'string' || portfolio.text.trim() === '' || !extract) return null
-  return locateApproximate(renderPortfolio(portfolio).text, extract)
+  const { text, breaks } = renderPortfolio(portfolio)
+  return locateApproximate(text, extract, { breaks })
 }
 
 /**

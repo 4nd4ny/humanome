@@ -137,6 +137,9 @@ describe('état(S, t) (§5.1)', () => {
     const wide = layout.competencies.find((c) => c.code === '1.01')
     expect(narrow.widened).toBe(true)
     expect(wide.widened).toBe(false)
+    // Le pôle d'une compétence élargie le dit aussi (« Pourquoi cette surface ? »).
+    expect(layout.poles.find((p) => p.num === 2).widened).toBe(true)
+    expect(layout.poles.find((p) => p.num === 1).widened).toBe(false)
     expect((narrow.a1 - narrow.a0) * geometry.competencies.rOut).toBeCloseTo(4)
     expect(narrow.theta).toBeCloseTo(exact)
     expect(layout.competencies.at(-1).a1 - layout.competencies[0].a0).toBeCloseTo(2 * Math.PI)

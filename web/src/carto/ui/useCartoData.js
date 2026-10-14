@@ -8,6 +8,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset, upgradeDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
 import { looksLikeArchive } from '../core/archive.js'
+import { dropDatasetDrafts } from './shareDrafts.js'
 
 const CURRENT_KEY = 'humanome-carto-current'
 const SAVE_DELAY = 250
@@ -295,6 +296,8 @@ export function useCartoData(deps = {}) {
   const deleteDataset = useCallback(
     async (id) => {
       await store.deleteDataset(id)
+      // Les brouillons de ses versions partagées (extraits, noms remplacés) partent avec lui.
+      dropDatasetDrafts(id)
       setDetailCache((prev) => new Map([...prev].filter(([k]) => !k.startsWith(`${id}|`))))
       const list = await refreshList()
       if (dataset?.datasetId === id) {

@@ -242,7 +242,10 @@ function PhasesCard({ data, update, onOpenDay }) {
 function ConstancyCard({ data, refl }) {
   return (
     <div className="carto-card-body">
-      <p className="carto-small carto-muted">Pour chaque compétence observée : ses journées, l’écart entre deux observations, et les points cumulés (trait), avec la confiance du verdict de chaque jour (pastilles).</p>
+      <p className="carto-small carto-muted">
+        Pour chaque compétence observée : ses journées, l’écart entre deux observations, et les points cumulés (trait, à l’échelle de la compétence), avec la confiance du
+        verdict de chaque jour (pastilles, de 0 à 1).
+      </p>
       <table className="carto-mini-table">
         <thead>
           <tr>
@@ -265,7 +268,9 @@ function ConstancyCard({ data, refl }) {
                 <td>
                   <Sparkline
                     points={r.series.map((s) => ({ date: s.date, value: s.intensity }))}
+                    max={Math.max(1, ...r.series.map((s) => s.intensity))}
                     dots={r.series.filter((s) => typeof s.confidence === 'number').map((s) => ({ date: s.date, value: s.confidence }))}
+                    dotsMax={1}
                     from={data.from}
                     to={data.to}
                     color={refl.poleByNum.get(r.pole)?.color}

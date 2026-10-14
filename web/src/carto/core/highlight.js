@@ -274,25 +274,51 @@ function approxTokens(collapsed) {
  * Phrases d'où vient un extrait reformulé : couverture gloutonne des mots
  * pleins de l'extrait par les phrases de la feuille (chaque phrase retenue
  * apporte au moins deux mots), si elle atteint `minShare`.
+ * Une « phrase » s'arrête à une ponctuation forte ou à une limite de bloc
+ * (`breaks` : un paragraphe, un élément de liste, un titre — sans quoi une
+ * liste sans point final formerait une seule phrase). Une phrase démesurée
+ * au regard de l'extrait (plus de quatre fois ses mots pleins, et plus de 24)
+ * n'est jamais retenue : l'encadrer ne localiserait rien.
  * @param {string} text texte affiché
  * @param {string} extract extrait du jury
- * @param {{minShare?: number, minWords?: number, maxSentences?: number}} [opts]
+ * @param {{minShare?: number, minWords?: number, maxSentences?: number, breaks?: number[]}} [opts]
+ *   breaks : positions, dans `text`, des sauts de ligne qui séparent deux blocs
  * @returns {{ranges: Array<{from: number, to: number}>, share: number} | null} plages en
  *   index d'ORIGINE (`to` exclu), dans l'ordre du texte
  */
-export function locateApproximate(text, extract, { minShare = 0.75, minWords = 4, maxSentences = 4 } = {}) {
+export function locateApproximate(text, extract, { minShare = 0.75, minWords = 4, maxSentences = 4, breaks = [] } = {}) {
   const wanted = approxTokens(normalizeNeedle(String(extract ?? '').replace(TRUNCATION_RE, ' ')))
   if (wanted.length < minWords) return null
   const remaining = new Map()
   for (const t of wanted) remaining.set(t.word, (remaining.get(t.word) ?? 0) + 1)
   const map = collapseText(String(text ?? ''))
   const hay = map.collapsed
-  // Phrases : jusqu'à une ponctuation forte (incluse).
-  const sentences = []
-  for (const m of hay.matchAll(/[^.!?…]+[.!?…]*/gu)) {
-    const tokens = approxTokens(m[0]).map((t) => ({ ...t, start: t.start + m.index, end: t.end + m.index }))
-    if (tokens.length > 0) sentences.push({ tokens, used: false })
+  const breakSet = new Set(breaks)
+  const atBreak = (k) => {
+    for (let o = map.origStart[k]; o <= map.origEnd[k]; o++) if (breakSet.has(o)) return true
+    return false
   }
+  const maxTokens = Math.max(24, 4 * wanted.length)
+  const sentences = []
+  let from = 0
+  const close = (to) => {
+    if (to > from) {
+      const tokens = approxTokens(hay.slice(from, to)).map((t) => ({ ...t, start: t.start + from, end: t.end + from }))
+      if (tokens.length > 0 && tokens.length <= maxTokens) sentences.push({ tokens, used: false })
+    }
+    from = to
+  }
+  for (let k = 0; k < hay.length; k++) {
+    if ('.!?…'.includes(hay[k])) {
+      let e = k + 1
+      while (e < hay.length && '.!?…'.includes(hay[e])) e++
+      close(e)
+      k = e - 1
+    } else if (hay[k] === ' ' && breakSet.size > 0 && atBreak(k)) {
+      close(k + 1)
+    }
+  }
+  close(hay.length)
   const gainOf = (s) => {
     const seen = new Map()
     let gain = 0

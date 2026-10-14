@@ -6,7 +6,7 @@
 > en archive complète du master v4 (`jeuxCartographie`, schéma
 > `competency-map-master` : journées, analyses, réflexions du jury, portfolio,
 > réponses de l'apprenant, carnet du dialogue), la démonstration publique
-> exceptée, et les restaure à l'import. L'espace Export de l'interface garde
+> exceptée tant qu'on n'y a rien ajouté, et les restaure à l'import. L'espace Export de l'interface garde
 > sa propre archive (un jeu à la fois). Voir `docs/cartographie-ultime/JOURNAL.md`,
 > D-25, et `docs/contrats.md`, décision 9.
 
@@ -67,7 +67,8 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
    `GET api/prompt-packages/{id}/{version}` du premier de la liste), ses
    documents produits en cohorte (`GET api/mes-documents-masse`) et les jeux
    de données de l'interface de cartographie (stockage local
-   `humanome-carto-v4`), démonstration exceptée.
+   `humanome-carto-v4`), démonstration exceptée tant qu'elle est intacte
+   (RG8).
 4. Il assemble l'archive : `schemaVersion` `1.1.0`, `kind`, `exportedAt`,
    `account`, `portfolios` (texte intégral + segmentation des journées
    datées), `referentiels`, `promptPackages`, `cartographies` (document +
@@ -89,7 +90,11 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
    en ignorant les doublons.
    Puis chaque jeu de l'interface de cartographie, par la chaîne d'import de
    l'interface elle-même : un jeu de même identifiant est complété (ce qui
-   est déjà là gagne, doublons ignorés), sinon il est créé.
+   est déjà là gagne, doublons ignorés), sinon il est créé. « Ce qui est là
+   gagne » vaut aussi pour le portfolio : le texte d'une journée qui en a
+   déjà un n'est pas remplacé, et les passages sans date de l'archive ne sont
+   pas repris dans un jeu qui a déjà son portfolio (un passage rattaché à une
+   journée ou écarté depuis ne revient pas).
 9. Message « Import terminé : n portfolio(s) et m cartographie(s) restaurés
    (les doublons sont ignorés). » (« n portfolio(s), m cartographie(s) et
    k jeu(x) de l'interface de cartographie restaurés… » quand des jeux sont
@@ -122,7 +127,10 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
   l'interface de cartographie n'ont pas pu être lus (…) : exportez-les depuis
   l'espace Export de la cartographie. ») ; à l'import, portfolios et
   cartographies sont restaurés et le message dit que les jeux ne l'ont pas
-  été.
+  été. Un **jeu non conforme** au schéma (un master édité à la main ou venu
+  d'ailleurs, importé dans l'interface) est laissé de côté, seul, et nommé
+  (« 1 jeu(x) illisible(s) laissé(s) de côté (« … ») : exportez-le(s) depuis
+  l'espace Export de la cartographie. ») ; le reste de l'archive part.
 
 ## Scénarios d'erreur
 
@@ -161,8 +169,11 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 - **RG7** — Les paquets privés (Golden Prompt) ne sont jamais servis, donc
   jamais exportés.
 - **RG8** — Jeux de l'interface de cartographie (1.1.0) : tous, en archive
-  complète (« tout sauvegarder »), sauf la démonstration publique (`origin:
-  "demo"`, rechargeable depuis le site) ; restaurés dans le stockage local de
+  complète (« tout sauvegarder »), sauf la démonstration publique **intacte**
+  (`origin: "demo"`, rechargeable depuis le site). Dès qu'on y ajoute quelque
+  chose — un import (son portfolio, d'autres analyses), une réponse au jury,
+  un dialogue, un ensemble, un repère, une note, un passage —, elle part
+  comme les autres ; restaurés dans le stockage local de
   l'interface, jamais sur le serveur ; un jeu déjà présent est complété, et
   ne compte comme restauré que s'il gagne des journées, des analyses ou un
   état de l'apprenant (A3 : réimporter ne restaure rien).
@@ -214,7 +225,8 @@ archive ») dans la section « Mes données » du tableau de bord `#/espace`.
 | UC-APP-06-U16 | `ExportSection` | Succès en `status`, refus en `alert` sans `onImported`, champ fichier réarmé, `onImported` après un import réussi | idem |
 | UC-APP-06-U17 | `validateDocument` (`competency-map-master`, `archive-export`) | Fixture du master v4 conforme ; archive 1.1.0 qui l'embarque conforme ; archive 1.0.0 toujours conforme | `engine/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
 | UC-APP-06-U18 | idem | Un jeu non conforme rend l'archive non conforme, à son emplacement (`/jeuxCartographie/0/…`) | idem |
-| — | `exportArchive`, `importArchive` (jeux de l'interface) | Export : archive complète par jeu, démonstration exceptée, conforme ; 1.0.0 importée sans jeux ; import : jeu retrouvé à l'identique, réimport sans effet, jeu complété compté ; stockage illisible : export abouti et signalé, import du reste | `web/src/lib/archive.test.js` |
+| UC-APP-06-U19 | `ExportSection` (A5) | Stockage de l'interface illisible : archive téléchargée, message qui dit ce qui manque et quoi faire ; jeu non conforme laissé de côté et nommé, le reste part | `web/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js` |
+| — | `exportArchive`, `importArchive` (jeux de l'interface) | Export : archive complète par jeu, démonstration intacte exceptée (enrichie : exportée), conforme ; jeu non conforme exclu seul ; 1.0.0 importée sans jeux ; import : jeu retrouvé à l'identique, réimport sans effet, jeu complété compté, texte local et passages sans date gardés ; stockage illisible : export abouti et signalé, import du reste | `web/src/lib/archive.test.js` |
 | — | schéma du master v4 | Fixture = sortie exacte de l'interface ; archive sans portfolio ; champ inconnu accepté ; refus localisés ; corpus réel des 59 journées publiques conforme | `web/src/carto/core/master-schema.test.js` |
 
 ### Tests fonctionnels

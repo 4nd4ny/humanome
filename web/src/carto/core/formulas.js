@@ -223,16 +223,18 @@ export function encodedArea(thetaRad, k, confidence) {
 }
 
 /**
- * Rayon AFFICHÉ avec l'épaisseur minimale (§5.6) : un secteur de confiance
- * positive ne disparaît jamais. `floored` signale l'écart au strict
- * proportionnel (affiché dans « Pourquoi cette surface ? »).
- * @returns {{rOut: number, floored: boolean}}
+ * Rayon AFFICHÉ avec l'épaisseur minimale (§5.6). Un secteur n'est dessiné
+ * que s'il a des points (son angle) ; il ne disparaît alors jamais, même d'une
+ * confiance nulle ou inconnue (null) : il reçoit l'épaisseur minimale.
+ * `floored` signale l'écart au strict proportionnel (affiché dans « Pourquoi
+ * cette surface ? »).
+ * @param {number | null} confidence
+ * @returns {{rOut: number, rOutExact: number, floored: boolean}}
  */
 export function displayedOuterRadius(rIn, k, confidence, minThickness) {
-  const exact = outerRadiusFor(rIn, k, confidence)
-  if (!(confidence > 0)) return { rOut: rIn, floored: false }
-  if (exact - rIn < minThickness) return { rOut: rIn + minThickness, floored: true }
-  return { rOut: exact, floored: false }
+  const exact = outerRadiusFor(rIn, k, confidence ?? 0)
+  const floored = exact - rIn < minThickness
+  return { rOut: floored ? rIn + minThickness : exact, rOutExact: exact, floored }
 }
 
 /** Degrés → radians. */

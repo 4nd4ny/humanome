@@ -2,7 +2,7 @@
 // texte, jamais un élément englobant des <p> ; segments blancs ignorés ;
 // jaune / orange ; toutes les occurrences ; Markdown assaini.
 import { describe, expect, it } from 'vitest'
-import { collectText, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
+import { approximateInPortfolio, collectText, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
 import { locateRendered, stripMarkdownMarks } from '../core/highlight.js'
 
 const frag = (html) => {
@@ -19,6 +19,16 @@ const marksOf = (html) => {
 describe('texte affiché', () => {
   it('un saut de ligne virtuel sépare deux blocs (sinon deux paragraphes se colleraient)', () => {
     expect(collectText(frag('<p>Fin du paragraphe.</p><p>Début du <em>suivant</em>.</p>')).text).toBe('Fin du paragraphe.\nDébut du suivant.')
+  })
+})
+
+describe('surlignage approché dans le texte affiché', () => {
+  it('une liste sans ponctuation : un élément par phrase (limites de bloc), jamais toute la liste', () => {
+    const portfolio = { text: '## Mardi\n\n- arroser les semis du jardin\n- mesurer la croissance des plants\n- noter les observations au carnet\n- ranger les outils\n' }
+    const { text, breaks } = renderPortfolio(portfolio)
+    expect(breaks.length).toBeGreaterThanOrEqual(4)
+    const near = approximateInPortfolio(portfolio, 'Croissance des plants mesurée ; observations du carnet ; semis du jardin arrosés')
+    expect(near.ranges.map((r) => text.slice(r.from, r.to))).toEqual(['semis du jardin', 'croissance des plants', 'observations au carnet'])
   })
 })
 

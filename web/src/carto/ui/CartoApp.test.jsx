@@ -6,6 +6,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testi
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import CartoApp from './CartoApp.jsx'
 import { Sun, sectorPath } from './Sun.jsx'
+import { WhyDialog } from './WhyDialog.jsx'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
@@ -13,6 +14,7 @@ import { normalizeReferential } from '../core/referential.js'
 import { computeState, layoutSun } from '../core/state.js'
 import { ringGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
+import { isPristineDemo } from '../../lib/archive.js'
 import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
@@ -60,7 +62,7 @@ describe('accueil', () => {
 })
 
 describe('démonstration', () => {
-  it('la démonstration chargée est marquée comme telle (elle n’entre pas dans l’archive de compte)', async () => {
+  it('la démonstration chargée est marquée comme telle : intacte, elle n’entre pas dans l’archive de compte ; enrichie, si', async () => {
     const store = createCartoStore({ adapter: createMemoryAdapter() })
     const days = louDays()
     const fetchFn = async (url) => {
@@ -78,7 +80,28 @@ describe('démonstration', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
     await screen.findByRole('heading', { name: 'Démonstration' })
     const [summary] = await store.listDatasets()
-    expect((await store.loadDataset(summary.datasetId)).origin).toBe('demo')
+    const demo = await store.loadDataset(summary.datasetId)
+    expect(demo.origin).toBe('demo')
+    expect(isPristineDemo(demo)).toBe(true)
+    // La personne y importe son portfolio (cible par défaut du gestionnaire :
+    // le jeu ouvert) : ce sont ses données, elles partiront avec l'archive.
+    await store.commit(await importFiles([{ path: 'lou.md', text: LOU_PORTFOLIO }], demo, { now: NOW }))
+    expect(isPristineDemo(await store.loadDataset(summary.datasetId))).toBe(false)
+  })
+})
+
+describe('suppression d’un jeu', () => {
+  it('supprimer un jeu efface aussi les brouillons de ses versions partagées (extraits, noms remplacés)', async () => {
+    const store = await louStore()
+    localStorage.setItem('humanome-carto-share-draft:ds-lou:10', JSON.stringify({ title: 'v', chosen: [{ text: 'un extrait' }] }))
+    localStorage.setItem('humanome-carto-share-draft:ds-autre:11', JSON.stringify({ title: 'w' }))
+    window.location.hash = '#/cartographie/gestionnaire'
+    render(<Harness store={store} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Supprimer « Lou » de ce navigateur' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Confirmer : tout supprimer' }))
+    await waitFor(() => expect(localStorage.getItem('humanome-carto-share-draft:ds-lou:10')).toBeNull())
+    expect(localStorage.getItem('humanome-carto-share-draft:ds-autre:11')).not.toBeNull()
+    expect(await store.loadDataset('ds-lou')).toBeNull()
   })
 })
 
@@ -235,5 +258,37 @@ describe('soleil (composant)', () => {
     const path = document.querySelector('[aria-label^="2.01"]').getAttribute('d')
     expect(path.match(/A /g)).toHaveLength(4) // deux arcs extérieurs + deux arcs intérieurs
     expect(sectorPath(10, 20, 0, 1)).toMatch(/^M .* A 10 10 0 0 1 .* L .* A 20 20 0 0 0 .* Z$/)
+  })
+})
+
+describe('« Pourquoi cette surface ? » (composant)', () => {
+  const ref = normalizeReferential(miniReferential())
+  const geometry = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5 })
+  const why = (state, layout, selection) =>
+    render(<WhyDialog refl={ref} state={state} selection={selection} layout={layout} onClose={() => {}} onOpenDay={() => {}} />)
+
+  it('l’épaisseur minimale dit sa raison : confiance trop faible, ou confiance inconnue', () => {
+    const state = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: null }, { code: '2.01', confidence: 0.001 }] }]), { ref })
+    const layout = layoutSun(state, ref, geometry, { minThickness: 2 })
+    why(state, layout, { type: 'competency', code: '1.01' })
+    expect(screen.getByText(/la confiance du jury n’est pas connue/)).toBeTruthy()
+    expect(screen.queryByText(/sa confiance est si faible/)).toBeNull()
+    cleanup()
+    why(state, layout, { type: 'competency', code: '2.01' })
+    expect(screen.getByText(/sa confiance est si faible/)).toBeTruthy()
+  })
+
+  it('le pôle d’une compétence élargie le signale ; un pôle sans compétence élargie, non', () => {
+    const state = computeState(
+      indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: Array(400).fill('preuve') }, { code: '2.01', confidence: 0.8, roles: ['indice'] }] }]),
+      { ref },
+    )
+    const layout = layoutSun(state, ref, geometry, { minArc: 4 })
+    why(state, layout, { type: 'pole', num: 2 })
+    expect(screen.getByText(/appliquée à au moins une de ses compétences/)).toBeTruthy()
+    cleanup()
+    why(state, layout, { type: 'pole', num: 1 })
+    expect(screen.getByRole('dialog')).toBeTruthy()
+    expect(screen.queryByText(/Largeur minimale/)).toBeNull()
   })
 })

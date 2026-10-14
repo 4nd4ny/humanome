@@ -17,6 +17,7 @@ import {
 import ApiKeysSection from './account/ApiKeysSection.jsx'
 import Avatar from '../components/Avatar.jsx'
 import { resizeAvatar } from '../lib/resize-image.js'
+import { dropAllDrafts } from '../carto/ui/shareDrafts.js'
 
 const PASSWORD_MIN_LENGTH = 10
 
@@ -292,6 +293,10 @@ export default function AccountView({ initialActivation = null }) {
     setBusy(true)
     try {
       await deleteAccount()
+      // Ses versions partagées sont purgées : leurs brouillons (extraits
+      // choisis, noms remplacés), gardés dans ce navigateur pour les
+      // republier, n'ont plus d'objet et partent avec elles.
+      dropAllDrafts()
       becomeAnonymous(
         'Votre compte a été supprimé : toutes vos données serveur ont été réellement purgées ' +
           '(un événement d’audit anonyme en garde la trace, conformément au RGPD).',

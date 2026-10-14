@@ -15,7 +15,7 @@
 // - les dates restent des chaînes AAAA-MM-JJ.
 
 import { listZipEntries, readZipEntry } from '../../v3/core/zip.js'
-import { createDay, sortedDates, toCount } from './model.js'
+import { REVIEW_STATES, createDay, hasPortfolio, sortedDates, toCount } from './model.js'
 import { isIsoDate } from './dates.js'
 import { normalizeReferential, referentialErrors, toEmbeddedReferential } from './referential.js'
 import { adaptAuroraDay, dateFromPassages, looksLikeCartoPole, looksLikeKairos, looksLikeSiteDay } from './importers/aurora-day.js'
@@ -139,8 +139,9 @@ export function recognize(files, { now = new Date().toISOString() } = {}) {
         if (looksLikeArchive(doc)) {
           const r = importArchive(doc, { fileName: name })
           result.variants.push(...r.variants)
-          result.portfolio.push(...r.portfolio)
-          result.undated.push(...r.undated)
+          // Portfolio d'une archive : sur un jeu qui a déjà le sien, ce qui est là gagne.
+          result.portfolio.push(...r.portfolio.map((seg) => ({ ...seg, fromArchive: true })))
+          result.undated.push(...r.undated.map((seg) => ({ ...seg, fromArchive: true })))
           result.narratives.push(...r.narratives)
           result.runDetails.push(...r.runDetails)
           if (r.metrics) result.metrics = r.metrics
@@ -309,10 +310,19 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     }
   }
 
-  // Portfolio.
+  // Portfolio. Un fichier de portfolio remplace le texte d'une journée (nouvelle
+  // version) ; une ARCHIVE réimportée dans un jeu qui a déjà son portfolio ne
+  // touche ni au texte des journées qui en ont un, ni aux passages sans date
+  // (rattachés ou écartés depuis) : ce qui est là gagne.
+  const hadPortfolio = Boolean(dataset.portfolio)
+  let kept = 0
   for (const seg of recognized.portfolio) {
     const day = dayFor(seg.date)
     const summary = portfolioSummary(seg.text)
+    if (seg.fromArchive && hasPortfolio(day)) {
+      if (day.portfolio.chars !== summary.chars) kept++
+      continue
+    }
     if (day.portfolio && day.portfolio.chars !== summary.chars) {
       report.push({ severity: 'warning', code: 'portfolio-remplace', message: `${seg.date} : texte du portfolio remplacé par la nouvelle version`, date: seg.date })
     }
@@ -320,13 +330,30 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     patch(seg.date).portfolio = { title: seg.title, text: seg.text, source: seg.source }
     counts.portfolioDays++
   }
-  if (recognized.portfolio.length > 0 || recognized.undated.length > 0) {
-    const sources = [...new Set(recognized.portfolio.map((s) => s.source).concat(recognized.undated.map((s) => s.source)))]
+  if (kept > 0) {
+    report.push({ severity: 'info', code: 'portfolio-conserve', message: `${kept} journée(s) dont le texte diffère de celui de l'archive : votre texte est conservé` })
+  }
+  // Un passage sans date déjà en attente (même texte) n'est pas ajouté deux fois.
+  const pending = new Set((ds.portfolio?.undated ?? []).map((u) => u.text))
+  const undated = recognized.undated
+    .filter((u) => !(u.fromArchive && hadPortfolio))
+    .filter((u) => !pending.has(u.text) && pending.add(u.text))
+    .map((u) => {
+      const copy = { ...u }
+      delete copy.fromArchive
+      return copy
+    })
+  const undatedKept = recognized.undated.filter((u) => u.fromArchive && hadPortfolio).length
+  if (undatedKept > 0) {
+    report.push({ severity: 'info', code: 'sans-date-conserves', message: `${undatedKept} passage(s) sans date de l'archive ignoré(s) : les passages de ce jeu sont conservés` })
+  }
+  if (recognized.portfolio.length > 0 || undated.length > 0) {
+    const sources = [...new Set(recognized.portfolio.map((s) => s.source).concat(undated.map((s) => s.source)))]
     ds.portfolio = {
       title: ds.portfolio?.title ?? (sources[0] ?? 'Portfolio'),
       sources: [...new Set([...(ds.portfolio?.sources ?? []), ...sources])],
       importedAt: now,
-      undated: [...(ds.portfolio?.undated ?? []), ...recognized.undated],
+      undated: [...(ds.portfolio?.undated ?? []), ...undated],
     }
   }
 
@@ -370,17 +397,34 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
         day.variantChoice = d.variantChoice ?? day.variantChoice
       }
     }
+    // Un élément illisible (édité à la main, autre version) est écarté et compté,
+    // jamais recopié : il casserait la lecture, et l'archive de compte qui
+    // embarque ce jeu (schéma competency-map-master).
+    let unreadable = 0
+    const readable = (ok) => {
+      if (!ok) unreadable++
+      return ok
+    }
     const setIds = new Set(ds.sets.map((x) => x.id))
-    const newSets = (ex.sets ?? []).filter((x) => x?.id && !setIds.has(x.id))
+    const newSets = (ex.sets ?? [])
+      .filter((x) => readable(typeof x?.id === 'string' && x.id !== '' && typeof x.name === 'string' && x.definition && typeof x.definition === 'object'))
+      .filter((x) => !setIds.has(x.id))
     if (newSets.length) ds.sets = [...ds.sets, ...structuredClone(newSets)]
-    const newReviews = Object.entries(ex.reviews ?? {}).filter(([k]) => !(k in ds.reviews))
+    const newReviews = Object.entries(ex.reviews ?? {})
+      .filter(([, v]) => readable(Boolean(v) && REVIEW_STATES.includes(v.state) && (v.note === undefined || typeof v.note === 'string')))
+      .filter(([k]) => !(k in ds.reviews))
     if (newReviews.length) ds.reviews = { ...ds.reviews, ...Object.fromEntries(structuredClone(newReviews)) }
     const markerIds = new Set(ds.markers.map((m) => m.id))
-    const newMarkers = (ex.markers ?? []).filter((m) => m?.id && !markerIds.has(m.id))
+    const newMarkers = (ex.markers ?? [])
+      .filter((m) => readable(typeof m?.id === 'string' && m.id !== '' && isIsoDate(m.date) && (m.to == null || isIsoDate(m.to))))
+      .filter((m) => !markerIds.has(m.id))
     if (newMarkers.length) ds.markers = [...ds.markers, ...structuredClone(newMarkers)].sort((a, b) => (a.date < b.date ? -1 : 1))
     const cmpKeys = new Set(ds.comparisons.map((c) => c.key))
-    const newCmp = (ex.comparisons ?? []).filter((c) => c?.key && !cmpKeys.has(c.key))
+    const newCmp = (ex.comparisons ?? []).filter((c) => readable(typeof c?.key === 'string')).filter((c) => !cmpKeys.has(c.key))
     if (newCmp.length) ds.comparisons = [...ds.comparisons, ...structuredClone(newCmp)]
+    if (unreadable > 0) {
+      report.push({ severity: 'warning', code: 'etat-illisible', message: `${unreadable} élément(s) illisible(s) de l'archive écarté(s) (ensembles, réponses, repères ou notes)` })
+    }
     ds.reflections ??= []
     const reflectionIds = new Set(ds.reflections.map((r) => r.id))
     const newReflections = (Array.isArray(ex.reflections) ? ex.reflections : [])

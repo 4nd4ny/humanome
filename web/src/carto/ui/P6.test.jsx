@@ -94,6 +94,12 @@ const shareLink = () => screen.queryByRole('link', { name: 'Partage' })
 
 beforeEach(() => {
   window.location.hash = '#/cartographie'
+  // Les brouillons des versions partagées vivent dans localStorage : chaque scénario part d'un navigateur vierge.
+  try {
+    localStorage.clear()
+  } catch {
+    /* stockage indisponible */
+  }
 })
 afterEach(cleanup)
 
@@ -344,6 +350,28 @@ describe('P6 — gérer les versions publiées', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Publier la version partagée' }))
     await waitFor(() => expect(api.publish).toHaveBeenCalledTimes(2))
     expect(versions).toHaveLength(2)
+  })
+
+  it('par défaut, jamais à la place d’une version publiée depuis un autre jeu ; les brouillons des versions disparues sont effacés', async () => {
+    const { api } = fakeApi({ adult: true })
+    // Une version publiée depuis un AUTRE jeu (son brouillon est rangé sous cet autre jeu)…
+    await api.publish({ kind: 'carto-partage', title: 'Journal 2025, pour A' })
+    localStorage.setItem('humanome-carto-share-draft:ds-autre:10', JSON.stringify({ title: 'Journal 2025, pour A' }))
+    // …et le brouillon d'une version de CE jeu qui n'est plus sur le serveur.
+    localStorage.setItem('humanome-carto-share-draft:ds-lou:999', JSON.stringify({ title: 'Retirée ailleurs', chosen: [{ text: 'un extrait' }] }))
+    window.location.hash = '#/cartographie/partage'
+    render(<Harness store={await louStore()} api={api} />)
+    await screen.findByRole('heading', { name: 'Journal 2025, pour A' })
+    await waitFor(() => expect(localStorage.getItem('humanome-carto-share-draft:ds-lou:999')).toBeNull())
+    expect(localStorage.getItem('humanome-carto-share-draft:ds-autre:10')).not.toBeNull() // un autre jeu : pas touché
+
+    fireEvent.click(screen.getByRole('button', { name: 'Suivant : relire' }))
+    fireEvent.click(await screen.findByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }))
+    fireEvent.click(screen.getByRole('button', { name: 'Suivant : aperçu' }))
+    await screen.findByLabelText('Aperçu verrouillé de la version partagée')
+    expect(screen.getByRole('radio', { name: /comme une version distincte/ }).checked).toBe(true)
+    expect(screen.getByRole('radio', { name: /à la place de « Journal 2025, pour A »/ }).checked).toBe(false)
+    expect(screen.getByRole('button', { name: 'Publier la version partagée' })).toBeTruthy()
   })
 
   it('lien sans mot de passe (copié une seule fois), journal des accès, révocation, retrait', async () => {

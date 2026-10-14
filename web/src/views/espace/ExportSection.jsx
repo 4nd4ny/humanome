@@ -55,6 +55,10 @@ export default function ExportSection({
           (counts.jeuxError
             ? ` Vos jeux de l’interface de cartographie n’ont pas pu être lus (${counts.jeuxError}) : ` +
               'exportez-les depuis l’espace Export de la cartographie.'
+            : '') +
+          (counts.jeuxExclus?.length
+            ? ` ${counts.jeuxExclus.length} jeu(x) illisible(s) laissé(s) de côté (${counts.jeuxExclus.map((t) => `« ${t} »`).join(', ')}) : ` +
+              'exportez-le(s) depuis l’espace Export de la cartographie.'
             : ''),
       })
     } catch (error) {
@@ -97,8 +101,9 @@ export default function ExportSection({
       <p>
         L’archive contient vos portfolios, vos cartographies, le référentiel et les prompts
         utilisés, ainsi que vos jeux de données de l’interface de cartographie (analyses,
-        réponses, carnet du dialogue) : elle est autoporteuse et reste lisible hors ligne
-        (format ouvert, RGPD §6).
+        réponses, carnet du dialogue ; la démonstration publique n’y est pas tant que vous
+        n’y ajoutez rien) : elle est autoporteuse et reste lisible hors ligne (format
+        ouvert, RGPD §6).
       </p>
       <div className="mes-donnees-actions">
         <button type="button" className="button button-primary" onClick={handleExport} disabled={busy}>

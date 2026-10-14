@@ -13,9 +13,12 @@
 // Since 1.1.0 (cartography journal D-25, question 10: « tout sauvegarder »),
 // the archive also carries every dataset of the cartography interface
 // (#/cartographie, its own IndexedDB store) as a complete master v4 archive
-// (schemas/competency-map-master.schema.json) — the public demo excepted.
+// (schemas/competency-map-master.schema.json) — the public demo excepted as
+// long as the person has added nothing to it. A dataset that does not match
+// its schema is left out and reported, never blocking the rest of the export.
 // Import restores them into that store: a dataset with the same id is
-// completed (duplicates ignored), otherwise created; never on the server.
+// completed (what is there wins, duplicates ignored), otherwise created;
+// never on the server.
 
 import { validateDocument } from '@engine/validation.js'
 import { apiFetch, fetchMe } from '../api/client.js'
@@ -136,18 +139,43 @@ function toArchiveMassCartography(entry, exportedAt) {
 }
 
 /**
+ * The public demo as loaded, untouched: it reloads from the site. As soon as
+ * the person puts something of their own in it (an import, an answer to the
+ * jury, a notebook dialogue, a set, a marker, a note), it is their data and
+ * leaves with the archive.
+ */
+export function isPristineDemo(ds) {
+  if (ds?.origin !== 'demo') return false
+  return (
+    (ds.importLog?.length ?? 0) <= 1 &&
+    (ds.reflections?.length ?? 0) === 0 &&
+    Object.keys(ds.reviews ?? {}).length === 0 &&
+    (ds.sets?.length ?? 0) === 0 &&
+    (ds.markers?.length ?? 0) === 0 &&
+    (ds.comparisons?.length ?? 0) === 0 &&
+    (ds.portfolio?.undated?.length ?? 0) === 0
+  )
+}
+
+/**
  * Every dataset of the cartography interface as a complete master v4 archive
  * (portfolio text, notebook and learner state included: « tout sauvegarder »).
- * The public demo (origin « demo ») is left out: it reloads from the site.
+ * Each one is checked against its schema: one that does not match is left
+ * out (and reported) rather than blocking the whole export.
+ * @returns {Promise<{list: object[], excluded: Array<{title: string, errors: number}>}>}
  */
 async function interfaceDatasets(store, exportedAt) {
-  const out = []
+  const list = []
+  const excluded = []
   for (const { datasetId } of await store.listDatasets()) {
     const exported = await store.exportAll(datasetId)
-    if (!exported || exported.dataset?.origin === 'demo') continue
-    out.push(buildMasterArchive(exported, { includePortfolio: true, now: exportedAt }))
+    if (!exported || isPristineDemo(exported.dataset)) continue
+    const master = buildMasterArchive(exported, { includePortfolio: true, now: exportedAt })
+    const { valid, errors } = validateDocument('competency-map-master', master)
+    if (valid) list.push(master)
+    else excluded.push({ title: String(master.title ?? datasetId), errors: errors.length })
   }
-  return out
+  return { list, excluded }
 }
 
 /** Maps a portfolio-store record to the archive `portfolios[]` shape. */
@@ -226,7 +254,8 @@ function toArchiveCartography(entry, referentielDoc, fallbackDate) {
  *   fetchFn?: typeof fetch,
  * }} [options] every dependency is injectable (tests, chantier B)
  * @returns {Promise<{archive: object, filename: string,
- *   counts: {portfolios: number, cartographies: number, jeux: number, jeuxError: string | null}}>}
+ *   counts: {portfolios: number, cartographies: number, jeux: number, jeuxError: string | null,
+ *     jeuxExclus: string[]}}>} (jeuxExclus: titles of datasets left out, not matching their schema)
  * @throws {Error} French message; `error.validationErrors` carries the ajv
  *   errors if the assembled archive does not match its schema (never
  *   downloads an invalid archive).
@@ -257,8 +286,8 @@ export async function exportArchive(options = {}) {
       // Un stockage de l'interface illisible n'empêche pas l'export (portabilité,
       // RGPD) : il est signalé dans le compte rendu (counts.jeuxError).
       interfaceDatasets(interfaceStore, exportedAt).then(
-        (list) => ({ list, error: null }),
-        (error) => ({ list: [], error }),
+        ({ list, excluded }) => ({ list, excluded, error: null }),
+        (error) => ({ list: [], excluded: [], error }),
       ),
     ])
   const referentielDoc = referentiel?.doc ?? referentiel ?? null
@@ -305,6 +334,7 @@ export async function exportArchive(options = {}) {
       cartographies: archive.cartographies.length,
       jeux: archive.jeuxCartographie.length,
       jeuxError: jeux.error ? String(jeux.error.message ?? jeux.error) : null,
+      jeuxExclus: jeux.excluded.map((x) => x.title),
     },
   }
 }
@@ -427,7 +457,8 @@ export async function importArchive(source, options = {}) {
       const base =
         existing ?? createDataset({ datasetId: master.datasetId, title: master.title, referential: master.referential, now: master.createdAt })
       const res = await importIntoInterface([{ path: `${master.datasetId}.json`, text: JSON.stringify(master) }], base)
-      const added = res.counts.daysAdded + res.counts.variantsAdded > 0 || res.report.some((r) => r.code === 'etat-restaure')
+      const added =
+        res.counts.daysAdded + res.counts.variantsAdded + res.counts.portfolioDays > 0 || res.report.some((r) => r.code === 'etat-restaure')
       if (existing && !added) continue
       await interfaceStore.commit(res)
       knownDatasets.add(master.datasetId)

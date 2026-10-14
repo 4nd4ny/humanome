@@ -8,7 +8,7 @@ import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
-import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
@@ -86,6 +86,28 @@ describe('P4 — chaque carte se masque seule quand ses données manquent (crit�
     expect(within(missing).getByText(/Style \(local\) : il faut au moins deux journées de portfolio d’au moins 50 mots/)).toBeTruthy()
     expect(within(missing).getByText(/Fonctions cognitives : aucun fichier de fonctions cognitives/)).toBeTruthy()
     expect(within(missing).getByText(/Ruptures et anomalies d’import : rien à signaler/)).toBeTruthy()
+  })
+
+  it('Constance : le trait suit les points cumulés de chaque compétence (il ne plafonne plus à 1 depuis que l’angle compte les points)', async () => {
+    // 1.01 prouvée trois jours de suite : 1, puis 2, puis 3 points cumulés.
+    const st = createCartoStore({ adapter: createMemoryAdapter() })
+    await st.commit({
+      dataset: indexDataset([
+        { date: '2025-12-01', verdicts: [{ code: '1.01', confidence: 0.8, roles: ['preuve'] }, { code: '2.01', confidence: 0.6, roles: ['indice'] }] },
+        { date: '2025-12-03', verdicts: [{ code: '1.01', confidence: 0.7, roles: ['preuve'] }] },
+        { date: '2025-12-05', verdicts: [{ code: '1.01', confidence: 0.9, roles: ['preuve'] }, { code: '2.01', confidence: 0.5, roles: ['indice'] }] },
+      ]),
+    })
+    const page = await openDashboard(st)
+    const card = await within(page).findByRole('region', { name: 'Constance' })
+    const lines = [...card.querySelectorAll('svg.carto-spark polyline')]
+    expect(lines.length).toBeGreaterThan(0)
+    for (const line of lines) {
+      const ys = line.getAttribute('points').split(' ').map((p) => Number(p.split(',')[1]))
+      expect(Math.min(...ys)).toBeCloseTo(3) // le dernier point (le cumul le plus haut) touche le haut
+      // Chaque observation ajoute des points : le trait monte à chaque pas (plus haut = y plus petit).
+      for (let i = 1; i < ys.length; i++) expect(ys[i]).toBeLessThan(ys[i - 1])
+    }
   })
 
   it('sans portfolio : le rythme se masque, les anomalies apparaissent', async () => {

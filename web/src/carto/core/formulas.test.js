@@ -147,7 +147,10 @@ describe('anneaux fixes et surface (§5.6)', () => {
     expect(tiny.rOut).toBeCloseTo(g.competencies.rIn + 2)
     const normal = displayedOuterRadius(g.competencies.rIn, g.k, 0.5, 2)
     expect(normal.floored).toBe(false)
-    expect(displayedOuterRadius(g.competencies.rIn, g.k, 0, 2)).toEqual({ rOut: g.competencies.rIn, floored: false })
+    // Un secteur dessiné a des points : confiance nulle ou inconnue, il ne disparaît pas pour autant.
+    expect(displayedOuterRadius(g.competencies.rIn, g.k, 0, 2)).toEqual({ rOut: g.competencies.rIn + 2, rOutExact: g.competencies.rIn, floored: true })
+    expect(displayedOuterRadius(g.competencies.rIn, g.k, null, 2).floored).toBe(true)
+    expect(displayedOuterRadius(g.competencies.rIn, g.k, 0, 0)).toEqual({ rOut: g.competencies.rIn, rOutExact: g.competencies.rIn, floored: false })
   })
   it('refuse une géométrie impossible', () => {
     expect(() => ringGeometry({ outerRadius: 10, centerRadius: 10 })).toThrow()

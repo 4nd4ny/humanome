@@ -61,12 +61,16 @@ export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }
             </dl>
             {sector?.floored ? (
               <p className="carto-note">
-                Épaisseur minimale d’affichage appliquée : sa confiance est si faible que le secteur serait invisible. Sa surface dessinée dépasse ici le strict proportionnel.
+                Épaisseur minimale d’affichage appliquée :{' '}
+                {typeof e.confidence === 'number' ? 'sa confiance est si faible que le secteur serait invisible.' : 'la confiance du jury n’est pas connue, le secteur n’aurait pas de hauteur.'} Sa
+                surface dessinée dépasse ici le strict proportionnel.
               </p>
             ) : null}
             {sector?.widened ? (
               <p className="carto-note">
-                Largeur minimale d’affichage appliquée : ses points sont si peu nombreux que le secteur serait invisible. Son angle dessiné dépasse ici le strict proportionnel (l’angle exact est indiqué ci-dessus).
+                {e.type === 'pole'
+                  ? 'Largeur minimale d’affichage appliquée à au moins une de ses compétences, si peu pourvue en points qu’elle serait invisible : l’angle dessiné du pôle dépasse ici le strict proportionnel (l’angle exact est indiqué ci-dessus).'
+                  : 'Largeur minimale d’affichage appliquée : ses points sont si peu nombreux que le secteur serait invisible. Son angle dessiné dépasse ici le strict proportionnel (l’angle exact est indiqué ci-dessus).'}
               </p>
             ) : null}
             <h3>Formules</h3>

@@ -5,7 +5,7 @@ import dayFixture from '../../../schemas/fixtures/cartographie-jour-2026-01-05.j
 import mergeFixture from '../../../schemas/fixtures/cartographie-merge-3-jours.json'
 import referentielFixture from '../../../schemas/fixtures/referentiel-respire-v7.json'
 import promptPackageFixture from '../../../schemas/fixtures/prompt-package-exemple.json'
-import { exportArchive, importArchive, UNKNOWN_ID, UNKNOWN_VERSION } from './archive.js'
+import { exportArchive, importArchive, isPristineDemo, UNKNOWN_ID, UNKNOWN_VERSION } from './archive.js'
 import { createCartoStore, createMemoryAdapter } from './carto-store.js'
 import { createPortfolioStore, createMemoryAdapter as createPortfolioMemoryAdapter } from './portfolio-store.js'
 import masterFixture from '../../../schemas/fixtures/carto/competency-map-master-exemple.json'
@@ -72,7 +72,7 @@ describe('exportArchive', () => {
 
     expect(validateDocument('archive-export', archive).valid).toBe(true)
     expect(filename).toBe('humanome-export-2026-07-12.json')
-    expect(counts).toEqual({ portfolios: 1, cartographies: 1, jeux: 0, jeuxError: null })
+    expect(counts).toEqual({ portfolios: 1, cartographies: 1, jeux: 0, jeuxError: null, jeuxExclus: [] })
     expect(archive.account).toBeNull()
     expect(archive.referentiels).toEqual([referentielFixture])
     expect(archive.promptPackages).toEqual([])
@@ -360,7 +360,7 @@ describe('archive 1.1.0 : les jeux de l’interface de cartographie', () => {
     const interfaceStore = await interfaceWithLouAndDemo()
     const { archive, counts } = await exportArchive({ cartoStore, portfolioStore, interfaceStore, ...offlineDeps(), download: () => {} })
     expect(archive.schemaVersion).toBe('1.1.0')
-    expect(counts).toEqual({ portfolios: 0, cartographies: 0, jeux: 1, jeuxError: null })
+    expect(counts).toEqual({ portfolios: 0, cartographies: 0, jeux: 1, jeuxError: null, jeuxExclus: [] })
     expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-lou'])
     const [jeu] = archive.jeuxCartographie
     expect(jeu.includesPortfolio).toBe(true)
@@ -371,6 +371,24 @@ describe('archive 1.1.0 : les jeux de l’interface de cartographie', () => {
     // Un jeu non conforme au schéma du master rend l'archive non conforme (et l'export s'arrête, E4).
     const broken = { ...archive, jeuxCartographie: [{ ...jeu, days: [{ date: 'hier', variants: [] }] }] }
     expect(validateDocument('archive-export', broken).errors.some((e) => e.path.startsWith('/jeuxCartographie/0/days/0/date'))).toBe(true)
+  })
+
+  it('la démonstration n’est laissée de côté que tant que la personne n’y a rien mis ; un jeu non conforme est écarté et signalé, sans bloquer le reste', async () => {
+    const store = await interfaceWithLouAndDemo()
+    // La personne garde un dialogue dans la démonstration : c'est à elle, il part.
+    const demo = await store.loadDataset('ds-demo')
+    expect(isPristineDemo(demo)).toBe(true)
+    await store.saveDataset({ ...demo, reflections: [{ id: 'rf-1', at: '2026-10-14T10:00:00.000Z', entries: [{ question: 'Q ?', answer: 'Ma réponse.' }] }] })
+    // Un jeu édité à la main : un repère sans date, que le schéma refuse.
+    const lou = await store.loadDataset('ds-lou')
+    await store.saveDataset({ ...lou, markers: [...lou.markers, { id: 'mk-x', label: 'sans date' }] })
+
+    const { cartoStore, portfolioStore } = makeStores()
+    await portfolioStore.create({ titre: 'Journal', source: 'colle', texte: 'Lundi.', segments: [] })
+    const { archive, counts } = await exportArchive({ cartoStore, portfolioStore, interfaceStore: store, ...offlineDeps(), download: () => {} })
+    expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-demo'])
+    expect(counts).toMatchObject({ portfolios: 1, jeux: 1, jeuxExclus: ['Lou'] })
+    expect(validateDocument('archive-export', archive).valid).toBe(true)
   })
 
   it('une archive 1.0.0 (sans jeux) reste valide et s’importe', async () => {

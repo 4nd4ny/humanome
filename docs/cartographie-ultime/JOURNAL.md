@@ -39,6 +39,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Formation | chapitres de la V3 réécrits pour la nouvelle interface ; « confiance moyenne du jury » à l'écran (D-38, D-8) | ✅ | ✅ suites des guides et de l'aide | ✅ | `5ff7201` |
 | Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
 | Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
+| Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés | ✅ voir §3 | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -212,6 +213,14 @@ plafond de 0,99 ne servait que le produit). Même corpus, mêmes dates :
   « confiance moyenne du jury » (légende, panneau de détail, tableau du
   soleil, rapport imprimable, version partagée, aide) : c'est une moyenne, et
   ce sont les mots de Christian ; « cumulée » laissait croire à une somme.
+- **Ce que dit « Pourquoi cette surface ? »** (relecture du 2026-10-14,
+  D-41) : l'épaisseur minimale dit sa raison — une confiance si faible que le
+  secteur serait invisible, ou une confiance du jury **inconnue** (le secteur
+  n'aurait pas de hauteur) ; un pôle dont une compétence est élargie le dit
+  aussi (son angle dessiné dépasse le strict proportionnel). Une seule
+  fonction calcule l'épaisseur affichée (`displayedOuterRadius`) : un secteur
+  dessiné a des points, il ne disparaît donc jamais, même d'une confiance
+  nulle ou inconnue.
 
 ### D-9 — Import : reconnaissance du contenu, doublons, variantes
 
@@ -437,6 +446,11 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
 - Chaque carte dit sa source : « niveau de preuve : exploratoire — un seul
   codeur » pour ce qui vient des analyses, « calcul local et déterministe »
   pour le reste.
+- **Constance** : le trait (points cumulés) est à l'échelle de chaque
+  compétence, les pastilles (confiance du verdict de chaque jour) gardent la
+  leur, de 0 à 1. Depuis que l'angle compte les points (D-8), une seule
+  preuve vaut déjà 1 : avec l'ancienne échelle commune [0 ; 1], tous les
+  traits étaient plats, collés en haut (relecture du 2026-10-14, D-41).
 
 ### D-23 — Style local et rupture lexicale
 
@@ -502,11 +516,21 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
   UC-APP-06) passe en **1.1.0** et embarque chaque jeu de données de
   l'interface en archive complète (`jeuxCartographie`) — portfolio, réponses
   au jury et carnet compris ; la démonstration publique, marquée
-  `origin: "demo"` à son chargement, n'y est pas (elle se recharge depuis le
-  site). L'import les restaure par la chaîne d'import de l'interface : un jeu
-  de même identifiant est complété (ce qui est là gagne, doublons ignorés),
-  sinon il est créé ; il ne compte comme restauré que s'il gagne quelque
-  chose (réimporter ne restaure rien). Une archive 1.0.0 reste valide.
+  `origin: "demo"` à son chargement, n'y est pas **tant qu'elle est intacte**
+  (elle se recharge depuis le site) — dès que la personne y ajoute quelque
+  chose (un import, une réponse au jury, un dialogue, un ensemble, un repère,
+  une note, un passage), ce sont ses données, et elles partent
+  (`isPristineDemo`). L'import les restaure par la chaîne d'import de
+  l'interface : un jeu de même identifiant est complété (ce qui est là gagne,
+  doublons ignorés), sinon il est créé ; il ne compte comme restauré que s'il
+  gagne quelque chose (réimporter ne restaure rien). « Ce qui est là gagne »
+  vaut pour le portfolio : une archive réimportée dans un jeu qui a déjà le
+  sien ne remplace pas le texte d'une journée (rapport : « votre texte est
+  conservé ») et ne reprend pas ses passages sans date (rattachés à une
+  journée ou écartés depuis) ; un passage sans date déjà en attente n'est
+  jamais ajouté deux fois. Un fichier de portfolio, lui, reste une nouvelle
+  version qui remplace le texte (avertissement `portfolio-remplace`). Une
+  archive 1.0.0 reste valide.
 - **Schéma** : `schemas/competency-map-master.schema.json`. Ossature typée
   (journées, variantes, verdicts résumés : statut, rôle des traces et choix de
   variante énumérés, confiance dans [0 ; 1] ou null, compteurs entiers ;
@@ -522,7 +546,12 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
 - **Robustesse** : un stockage de l'interface illisible n'empêche pas
   l'export — l'archive part sans les jeux, et le message le dit (« exportez-les
   depuis l'espace Export de la cartographie ») ; à l'import, le reste est
-  restauré et le message le dit.
+  restauré et le message le dit. Chaque jeu est validé seul : un jeu non
+  conforme (un master édité à la main, importé) est laissé de côté et nommé,
+  le reste de l'archive part. En amont, l'import de l'interface écarte et
+  compte les éléments d'état illisibles d'une archive (réponse d'un état
+  inconnu, repère sans date, ensemble sans définition, note sans clé) au lieu
+  de les recopier (`etat-illisible`).
 - **Au passage** : les validateurs précompilés du moteur, à recompiler pour le
   nouveau schéma, étaient périmés — anomalie AN-1 d'UC-SYS-04 : le
   référentiel 7.1.0 publié faisait échouer l'export « en un clic ». Recompilés ;
@@ -822,18 +851,25 @@ un `PATCH` du titre est refusé) ; une version partagée est hors du module de
 relecture des cartographes (annotations, révisions, garantie : 404).
 
 **Nouvelle version (décision du 2026-10-14, question 15)** : elle se publie,
-par défaut, **à la place** de la version la plus récente — même lien, les
+par défaut, **à la place** de la version la plus récente publiée **depuis ce
+jeu** dans ce navigateur (sans elle : comme une version distincte ; jamais, par
+défaut, à la place de la version d'un autre jeu, destinée à quelqu'un
+d'autre — relecture du 2026-10-14, D-41) — même lien, les
 destinataires voient la nouvelle version, l'ancien document est effacé du
 serveur (`PUT /api/cartographies/{id}/document` : mêmes gardes que la
 publication — attestation relue sous verrou, liste blanche, propriétaire —,
 audit `shared_version_replaced`, ids seulement ; le journal des accès du lien
 continue). À l'étape d'aperçu, un choix « à la place de « … » » (coché sur la
-plus récente) ou « comme une version distincte, avec ses propres liens » ; le
+plus récente de ce jeu) ou « comme une version distincte, avec ses propres
+liens » ; le
 bouton le dit (« Publier à la place de « … » »). Chaque version porte
 « Publier une nouvelle version à la place », qui reprend sa composition :
 gardée **dans ce navigateur** à chaque publication (titre, dates,
 compétences, extraits choisis, retouches, noms remplacés, masques ;
-`localStorage`, jamais sur le serveur, effacée avec la version) ou, à défaut,
+`localStorage`, jamais sur le serveur ; `ui/shareDrafts.js`) — effacée avec la
+version, avec le jeu, avec le compte (UC-CPT-06), et, à l'ouverture de
+l'espace Partage, quand la version n'est plus sur le serveur (retirée depuis un
+autre appareil) — ou, à défaut,
 reconstituée depuis le document publié (titre, dates, compétences ; les
 extraits sont à choisir de nouveau). La liste indique « remplacée le … ».
 
@@ -1044,6 +1080,14 @@ tel convient. »
   pleins de l'extrait, qui doit en compter quatre au moins ; chacune est
   encadrée de son premier à son dernier mot de l'extrait. En dessous : « non
   retrouvé », on ne devine pas.
+- **Phrase** : elle s'arrête à une ponctuation forte **ou à une limite de
+  bloc** du texte affiché (paragraphe, élément de liste, titre). Une phrase
+  démesurée au regard de l'extrait (plus de quatre fois ses mots pleins, et
+  plus de 24 mots) n'est jamais retenue : l'encadrer ne localiserait rien.
+  Sans cela, une feuille en liste sans point final formait une seule
+  « phrase » : sur une feuille d'essai, la relecture du 2026-10-14 (D-41) a
+  obtenu un seul cadre de cinq lignes, 63 % de la feuille, dit « la phrase la
+  plus proche ».
 - **Signalé comme tel** : un cadre **pointillé** violet, sans fond (ni le
   jaune ni l'orange des passages retrouvés tels quels, et lisible sans les
   couleurs). Le volet dit : « Passage approché : l'extrait du jury ne figure
@@ -1097,7 +1141,11 @@ externe qui lit le portfolio ».
   portfolio ; jamais de carnet dans une version partagée (D-30) ni dans une
   démo (D-28). L'interface ne mêle pas un dialogue versé au texte des
   journées déjà analysées (ni heatmap, ni surlignage, ni volume) : il attend
-  l'évaluation suivante.
+  l'évaluation suivante. Le portfolio exporté se réimporte **avec** les
+  analyses de cette évaluation (il devient alors le texte des journées) ; un
+  dialogue versé déjà présent dans le texte de sa journée n'est pas ajouté une
+  seconde fois à l'export suivant (relecture du 2026-10-14, D-41 : le fichier
+  en portait deux).
 - **Forme** (`versedDialogueMarkdown`) : `### Dialogue d'accompagnement du …`,
   puis une ligne qui dit d'où viennent les questions et que les réponses sont
   de l'auteur ; seulement les questions répondues (« **Question.** »,
@@ -1133,6 +1181,44 @@ ajoutait un en-tête en double et préfixait 139 lignes d'un tiret ; corrigé
 (`1ed2786`) : traits espacés, en-tête jamais doublé, seules les 15 dates
 précédées d'un tiret. (Les lignes neutralisées des dialogues synthétiques ne
 sont pas comptées.)
+
+### D-41 — Relecture indépendante des décisions du 2026-10-14
+
+Comme pour P6 et P7 (D-37), un agent distinct, qui n'a pas écrit le code, a
+relu les commits `210325f` à `e8f50e7` (angle, politique de sécurité, retrait
+de la V3, version remplacée, surlignage approché, carnet → portfolio, archive
+de compte 1.1.0), avec des sondes écrites hors du dépôt. Il relève **9
+défauts, aucune faille de sécurité bloquante** ; six reproduits par une sonde
+qui échoue comme prévu, trois établis par la lecture du code. Tous sont
+corrigés ; chaque correction a son test, qui échoue si on la défait.
+
+| # | Constat | Suite |
+|---|---|---|
+| 1 | Restaurer une archive de compte dans un jeu existant remplaçait le texte des journées et rajoutait les passages sans date (une correction locale revenait en arrière, un passage écarté revenait) ; l'avertissement n'atteignait pas le message de l'archive de compte | corrigé : sur un jeu qui a déjà son portfolio, une archive ne touche ni au texte d'une journée qui en a un, ni aux passages sans date ; un passage déjà en attente n'est jamais ajouté deux fois (D-25) |
+| 2 | Ce que la personne ajoute à la démonstration (son portfolio importé par le gestionnaire, un dialogue…) manquait à « Exporter toutes mes données », qui promet tout | corrigé : seule la démonstration **intacte** est laissée de côté (D-25) |
+| 3 | Tableau de bord, Constance : traits plats depuis que l'angle compte les points (échelle [0 ; 1] commune au trait et aux pastilles) | corrigé : le trait à l'échelle de la compétence, les pastilles de 0 à 1 (D-22) |
+| 4 | Le portfolio Markdown réimporté « ici », puis exporté de nouveau, portait deux fois chaque dialogue versé | corrigé : un dialogue déjà dans le texte de sa journée n'est pas rajouté ; la carte d'export propose de réimporter le fichier avec les analyses de l'évaluation suivante (D-40) |
+| 5 | « Publier à la place » visait par défaut la version la plus récente du compte, même publiée depuis un autre jeu, pour un autre destinataire : son lien aurait montré l'autre contenu | corrigé : par défaut, la plus récente publiée depuis ce jeu ; sinon, une version distincte (D-33) |
+| 6 | Surlignage approché : une liste sans ponctuation finale formait une seule « phrase », encadrée en entier | corrigé : limites de bloc, phrases démesurées jamais retenues (D-39) |
+| 7 | Un seul jeu non conforme au schéma (un master édité à la main, accepté par l'import de l'interface) faisait échouer toute l'archive de compte, portfolio compris | corrigé : ce jeu est laissé de côté et nommé, le reste part ; l'import de l'interface écarte et compte les éléments d'état illisibles (D-25) |
+| 8 | Les brouillons des versions partagées (extraits retouchés, vrais noms remplacés) restaient dans le navigateur après la suppression du jeu ou du compte, ou un retrait fait ailleurs | corrigé : effacés avec le jeu, avec le compte (UC-CPT-06), et à l'ouverture de l'espace Partage pour les versions qui ne sont plus sur le serveur (D-33). Reste : dans un autre navigateur, après la suppression du compte, ils demeurent jusqu'à la suppression du jeu dont ils viennent (qui contient déjà, lui, le portfolio entier) |
+| 9 | Restes du passage aux points : la note d'épaisseur minimale disait « confiance si faible » pour une confiance inconnue ; l'élargissement n'était jamais signalé pour un pôle ; `displayedOuterRadius` et son test suivaient encore l'ancienne règle | corrigé : la note dit la raison, le pôle le signale, une seule fonction pour l'épaisseur affichée (D-8) |
+
+Rien de sérieux, d'après la même relecture, sur : la route
+`PUT /api/cartographies/{id}/document` (requêtes limitées au propriétaire,
+404 pour un autre compte, 422 pour un autre type, CSRF, attestation relue sous
+verrou, liste blanche, audit sans contenu) ; la politique de sécurité (le
+`connect-src` suit exactement les adaptateurs du moteur ; la sandbox garde son
+`default-src 'none'`) ; les injections (dialogues versés rendus en texte,
+copie autonome par `scriptSafeJson`, surlignage assaini de nouveau par
+DOMPurify) ; les formules (l'élargissement converge et garde la somme ; la
+confiance du jury n'entre plus nulle part dans l'angle) ; le retrait de la V3 ;
+la copie autonome et la démo (seuls les dialogues versés, avec le portfolio ;
+la démo anonymisée n'emporte pas le carnet). **Note retenue** : ouvrir
+`connect-src` aux fournisseurs donne à une faille XSS future cinq
+destinations où envoyer des données avec la clé d'un attaquant ; compromis
+accepté avec D-36, désormais consigné dans `docs/securite-checklist.md`
+(risque résiduel, défense en amont).
 
 ---
 
@@ -1382,6 +1468,25 @@ contre l'API locale, P7) verts.
 
 Validation du surlignage approché sur les journaux réels : D-39.
 
+### Relecture indépendante des décisions du 2026-10-14 (D-41)
+
+| # | Fichier de test | Contenu | Tests |
+|---|---|---|---|
+| 1, 7 | `core/archive.test.js` | archive réimportée dans le jeu modifié depuis : son texte et ses passages sans date gagnent, rien n'est doublé (rapport « conservé ») ; état illisible (réponse d'un état inconnu, repère sans date, ensemble sans définition) écarté et compté, jamais recopié | 9 (+2) |
+| 2, 7 | `lib/archive.test.js` | démonstration intacte laissée de côté ; la même, avec un dialogue de la personne, exportée ; un jeu non conforme écarté et nommé, l'archive part conforme avec les autres | 17 (+1) |
+| 7 | UC-APP-06 **U19** | message de « Mes données » : stockage illisible (ce qui manque, quoi faire), jeu non conforme nommé ; l'archive est téléchargée | +1 |
+| 2 | `ui/CartoApp.test.jsx` | la démonstration, chargée par l'interface, est intacte ; après l'import du portfolio de la personne, elle ne l'est plus | renforcé |
+| 3 | `ui/P4.test.jsx` | Constance : le trait suit les points cumulés (il ne plafonne plus à 1) ; le test échoue avec l'ancienne échelle | 8 (+1) |
+| 4 | `core/portfolio-md.test.js` | exporté, réimporté, exporté de nouveau : un seul bloc de dialogue | 9 (+1) |
+| 5, 8 | `ui/P6.test.jsx` | une version publiée depuis un autre jeu n'est jamais la cible par défaut (« comme une version distincte ») ; le brouillon d'une version qui n'est plus sur le serveur est effacé | 11 (+1) |
+| 8 | `ui/shareDrafts.test.js` (nouveau) | un brouillon par version publiée depuis un jeu ; versions disparues, jeu supprimé ; compte supprimé : tous les brouillons, rien d'autre | 2 |
+| 8 | `ui/CartoApp.test.jsx` | supprimer un jeu efface les brouillons de ses versions, pas ceux d'un autre jeu | +1 |
+| 8 | UC-CPT-06 **F12** | compte supprimé : brouillons effacés (pas après un refus), clés gardées | +1 |
+| 6 | `core/highlight.test.js` | limites de bloc : chaque élément d'une liste est une phrase ; une phrase démesurée n'est jamais retenue | 21 (+1) |
+| 6 | `ui/highlight-dom.test.js` | dans le texte affiché (Markdown rendu) : une liste sans ponctuation, un élément par phrase, jamais toute la liste | 8 (+1) |
+| 9 | `core/formulas.test.js`, `core/state.test.js` | épaisseur affichée : confiance nulle ou inconnue → épaisseur minimale signalée ; le pôle d'une compétence élargie est marqué | renforcés |
+| 9 | `ui/CartoApp.test.jsx` | « Pourquoi cette surface ? » : la note dit « confiance inconnue » ou « confiance si faible » ; un pôle dit qu'une de ses compétences est élargie, un autre non | +2 |
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -1500,3 +1605,12 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   moyenne du jury » (D-8). « Exporter toutes mes données » emporte les jeux de
   l'interface (archive de compte 1.1.0) et le master v4 a son schéma JSON,
   conforme sur les journaux réels (D-25).
+- **2026-10-14** — Relecture indépendante des décisions du jour (D-41) : 9
+  défauts, tous corrigés — archive de compte (« ce qui est là gagne » aussi
+  pour le portfolio ; démonstration laissée de côté seulement intacte ; un jeu
+  non conforme n'empêche plus l'export), Constance du tableau de bord,
+  dialogues versés jamais doublés, « Publier à la place » limité par défaut
+  aux versions du jeu, surlignage approché coupé aux limites de bloc,
+  brouillons de partage effacés avec le jeu et avec le compte, notes de
+  « Pourquoi cette surface ? » ; risque résiduel de la politique de sécurité
+  consigné dans `docs/securite-checklist.md`.

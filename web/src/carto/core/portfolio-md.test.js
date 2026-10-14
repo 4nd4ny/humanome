@@ -161,6 +161,20 @@ describe('verser un dialogue au portfolio', () => {
     expect(back.undated[0].text).toContain('Un passage jamais daté.')
   })
 
+  it('portfolio exporté puis réimporté (avec l’évaluation suivante) : le dialogue, désormais dans le texte de sa journée, n’est pas doublé', async () => {
+    const { store } = await withDialogues(['23', 'today'])
+    const first = buildPortfolioMarkdown(await store.exportAll('ds-lou'))
+    // Réimport du fichier dans le même jeu : les textes des journées le contiennent désormais.
+    const exported = await store.exportAll('ds-lou')
+    const back = importPortfolioText(first.text)
+    const details = { ...exported.details }
+    for (const seg of back.segments) details[seg.date] = { ...(details[seg.date] ?? {}), portfolio: { title: seg.title, text: seg.text, source: 'export.md' } }
+    const second = buildPortfolioMarkdown({ dataset: exported.dataset, details })
+    expect(second.text.match(/### Dialogue d’accompagnement/g)).toHaveLength(2)
+    expect(second.dialogues).toBe(2)
+    expect(importPortfolioText(second.text).segments.map((s) => s.date)).toEqual(['2025-12-22', '2025-12-23', '2025-12-24', '2026-10-14'])
+  })
+
   it('rien à exporter sans texte ni dialogue versé', async () => {
     const empty = createDataset({ datasetId: 'vide', referential: miniReferential(), now: NOW })
     expect(hasPortfolioToExport(empty)).toBe(false)

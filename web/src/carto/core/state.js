@@ -22,6 +22,7 @@ import { contributingVariant } from './model.js'
 import {
   TRACE_PROVIDING_STATUSES,
   anglesFromPoints,
+  displayedOuterRadius,
   meanConfidence,
   widenNarrowSectors,
   poleConfidence,
@@ -184,7 +185,7 @@ export function computeDayState(dataset, date, { ref, params } = {}) {
  *   minimale (px) ; minArc : largeur minimale au bord extérieur (px) — un
  *   secteur élargi est marqué `widened`, son θ reste exact
  * @returns {{
- *   poles: Array<{num: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, confidence: number, theta: number}>,
+ *   poles: Array<{num: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, widened: boolean, confidence: number, theta: number}>,
  *   competencies: Array<{code: string, pole: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, widened: boolean, confidence: number, theta: number, status: string}>,
  * }}
  */
@@ -222,18 +223,17 @@ export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 }
       const a0 = cursor
       const a1 = cursor + d.angle
       cursor = a1
-      const exact = Math.sqrt(geometry.competencies.rIn ** 2 + geometry.k * (c.confidence ?? 0))
       // Un secteur qui a des points ne disparaît jamais, même d'une confiance
       // nulle ou inconnue : il reçoit l'épaisseur minimale, signalée.
-      const floored = exact - geometry.competencies.rIn < minThickness
+      const { rOut, rOutExact, floored } = displayedOuterRadius(geometry.competencies.rIn, geometry.k, c.confidence, minThickness)
       comps.push({
         code,
         pole: pole.num,
         a0,
         a1,
         rIn: geometry.competencies.rIn,
-        rOut: floored ? geometry.competencies.rIn + minThickness : exact,
-        rOutExact: exact,
+        rOut,
+        rOutExact,
         floored,
         widened: d.widened,
         confidence: c.confidence ?? 0,
@@ -241,16 +241,17 @@ export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 }
         status: c.status,
       })
     }
-    const exact = Math.sqrt(geometry.poles.rIn ** 2 + geometry.k * (pState.confidence ?? 0))
-    const floored = exact - geometry.poles.rIn < minThickness
+    const ring = displayedOuterRadius(geometry.poles.rIn, geometry.k, pState.confidence, minThickness)
     poles.push({
       num: pole.num,
       a0: poleStart,
       a1: cursor,
       rIn: geometry.poles.rIn,
-      rOut: floored ? geometry.poles.rIn + minThickness : exact,
-      rOutExact: exact,
-      floored,
+      rOut: ring.rOut,
+      rOutExact: ring.rOutExact,
+      floored: ring.floored,
+      // Au moins une de ses compétences est dessinée à la largeur minimale.
+      widened: ref.codesByPole.get(pole.num).some((code) => drawnByCode.get(code)?.widened),
       confidence: pState.confidence ?? 0,
       theta: pState.theta,
       needsReviewOnly: pState.needsReviewOnly,

@@ -43,38 +43,12 @@ import { verdictDetailOf } from './Observations.jsx'
 import { TriStateCheckbox, TwoStepButton } from './Manager.jsx'
 import { SharedView } from './SharedView.jsx'
 import { LINK_STATUS_LABELS, linkStatus } from './shareApi.js'
+import { draftVersionIds, dropDatasetDrafts, dropDraft, loadDraft, saveDraft } from './shareDrafts.js'
 
 /** Hébergement et durées affichés (§12.1) — à garder alignés sur docs/rgpd-registre.md. */
 export const HOSTING_TEXT = 'Hébergement : OVHcloud, dans l’Union européenne.'
 const DEFAULT_TITLE = 'Ma cartographie de compétences'
 
-/**
- * Composition d'une version publiée, gardée dans CE navigateur (jamais sur le
- * serveur) pour la reprendre et publier une nouvelle version à sa place.
- */
-const DRAFT_PREFIX = 'humanome-carto-share-draft:'
-function saveDraft(key, draft) {
-  try {
-    localStorage.setItem(DRAFT_PREFIX + key, JSON.stringify(draft))
-  } catch {
-    /* stockage indisponible : la reprise partira du document publié */
-  }
-}
-function loadDraft(key) {
-  try {
-    const raw = localStorage.getItem(DRAFT_PREFIX + key)
-    return raw ? JSON.parse(raw) : null
-  } catch {
-    return null
-  }
-}
-function dropDraft(key) {
-  try {
-    localStorage.removeItem(DRAFT_PREFIX + key)
-  } catch {
-    /* rien à faire */
-  }
-}
 
 /** Réglages repris d'un document publié (sans ses extraits, qui sont des textes relus). */
 function settingsFromDocument(doc) {
@@ -913,8 +887,12 @@ export function SharePanel({ refl, state, data, t, api, config }) {
   const [seed, setSeed] = useState(null)
   const composerHeading = useRef(null)
   const datasetId = data.dataset?.datasetId ?? ''
-  // Par défaut, une nouvelle version remplace la plus récente (même lien).
-  const target = chosenTarget !== null && (chosenTarget === 'new' || versions.list.some((v) => v.id === chosenTarget)) ? chosenTarget : versions.list[0]?.id ?? 'new'
+  // Par défaut, une nouvelle version remplace la plus récente publiée DEPUIS CE
+  // JEU dans ce navigateur (même lien) ; sinon, c'est une version distincte :
+  // jamais, par défaut, la version d'un autre jeu (un autre destinataire).
+  const ownIds = useMemo(() => new Set(draftVersionIds(datasetId)), [datasetId, versions])
+  const ownLatest = versions.list.find((v) => ownIds.has(String(v.id)))?.id ?? 'new'
+  const target = chosenTarget !== null && (chosenTarget === 'new' || versions.list.some((v) => v.id === chosenTarget)) ? chosenTarget : ownLatest
 
   useEffect(() => {
     let alive = true
@@ -939,12 +917,18 @@ export function SharePanel({ refl, state, data, t, api, config }) {
     let alive = true
     api
       .listVersions()
-      .then((list) => alive && setVersions({ status: 'ready', list }))
+      .then((list) => {
+        if (!alive) return
+        // Brouillons des versions qui ne sont plus sur le serveur (retirées
+        // depuis un autre appareil, attestation retirée ailleurs) : effacés.
+        dropDatasetDrafts(datasetId, { keep: new Set(list.map((v) => String(v.id))) })
+        setVersions({ status: 'ready', list })
+      })
       .catch((err) => alive && setVersions({ status: 'error', list: [], error: apiMessage(err) }))
     return () => {
       alive = false
     }
-  }, [api, refresh, adultReady])
+  }, [api, refresh, adultReady, datasetId])
 
   async function replaceFrom(version) {
     let settings = loadDraft(`${datasetId}:${version.id}`)

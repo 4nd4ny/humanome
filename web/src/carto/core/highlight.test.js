@@ -126,6 +126,16 @@ describe('surlignage approché (extrait reformulé, décision du 2026-10-14)', (
     expect(locateApproximate('jardin jardin jardin jardin jardin jardin jardin jardin', 'jardin potager classe projet plante')).toBeNull()
   })
 
+  it('limites de bloc (liste sans point final) : chaque élément est une phrase ; une « phrase » démesurée n’est jamais retenue', () => {
+    const list = 'arroser les semis du jardin\nmesurer la croissance des plants\nnoter les observations au carnet\nranger les outils'
+    const breaks = [...list.matchAll(/\n/g)].map((m) => m.index)
+    const near = locateApproximate(list, 'Croissance des plants mesurée ; observations du carnet ; semis du jardin arrosés', { breaks })
+    expect(parts(list, near)).toEqual(['semis du jardin', 'croissance des plants', 'observations au carnet'])
+    // Sans les limites de bloc, tout le texte serait une seule phrase… trop longue pour localiser quoi que ce soit.
+    const flat = Array(10).fill(list.replaceAll('\n', ' ')).join(' ')
+    expect(locateApproximate(flat, 'Croissance des plants mesurée ; observations du carnet ; semis du jardin arrosés')).toBeNull()
+  })
+
   it('index d’origine même après un émoji et des espaces insécables', () => {
     const withEmoji = '🌱 Ce\u00a0matin, nous avons longuement discuté du projet de jardin avec la classe.'
     const near = locateApproximate(withEmoji, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')

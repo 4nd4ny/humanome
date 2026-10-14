@@ -5,7 +5,7 @@ import { archiveFileName, buildArchive, importArchive, looksLikeArchive } from '
 import { importFiles } from './import.js'
 import { createDataset, observationKey } from './model.js'
 import { createCartoStore, createMemoryAdapter } from './store.js'
-import { addMarker, addReflection, addTag, chooseVariant, saveSet, setActive, setComparisonNote, setPreferences, setReflectionVersed, setReview } from './ops.js'
+import { addMarker, addReflection, addTag, chooseVariant, discardUndatedSegment, saveSet, setActive, setComparisonNote, setPreferences, setReflectionVersed, setReview } from './ops.js'
 import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { importJourDocuments } from '../../v3/core/import.js'
 import { reviewEvidenceLink } from '../../v3/core/master.js'
@@ -121,6 +121,45 @@ describe('archive : sans perte', () => {
     const res = await importFiles([{ path: 'a.json', text: JSON.stringify(full) }], empty(), { now: LATER })
     expect(res.dataset.reflections.find((r) => r.id === versed).versedAt).toBe(LATER)
     expect(res.dataset.reflections.find((r) => r.id === kept)).not.toHaveProperty('versedAt')
+  })
+
+  it('réimporter une archive dans le jeu, modifié depuis : son texte et ses passages sans date gagnent, rien n’est doublé', async () => {
+    const store = await richStore()
+    // Un passage sans date dans le jeu, puis l'archive.
+    let res = await importFiles([{ path: 'vacances.md', text: 'Un passage écrit pendant les vacances.\n' }], (await store.exportAll('ds-lou')).dataset, { now: NOW })
+    await store.commit(res)
+    const archive = JSON.stringify(buildArchive(await store.exportAll('ds-lou'), { now: LATER }))
+    // Depuis : le texte du 22 corrigé, le passage sans date écarté.
+    let ds = discardUndatedSegment((await store.exportAll('ds-lou')).dataset, 0, { now: LATER })
+    const fixed = 'Ce matin j’ai relu mes notes (corrigé).'
+    ds = { ...ds, days: ds.days.map((d) => (d.date === '2025-12-22' ? { ...d, portfolio: { chars: fixed.length, words: 7 } } : d)) }
+    await store.commit({ dataset: ds, detailPatches: new Map([['2025-12-22', { portfolio: { title: null, text: fixed, source: 'lou.md' } }]]) })
+
+    res = await importFiles([{ path: 'a.json', text: archive }], ds, { now: LATER })
+    await store.commit(res)
+    const back = await store.exportAll('ds-lou')
+    expect(back.details['2025-12-22'].portfolio.text).toBe(fixed)
+    expect(back.dataset.portfolio.undated).toEqual([])
+    expect(res.counts.portfolioDays).toBe(0)
+    expect(res.report.map((r) => r.code)).toEqual(expect.arrayContaining(['portfolio-conserve', 'sans-date-conserves']))
+    expect(res.report.map((r) => r.code)).not.toContain('portfolio-remplace')
+    // Le même fichier de portfolio importé deux fois : ses passages sans date ne sont pas doublés.
+    const twice = await importFiles([{ path: 'b.md', text: 'Encore un passage sans date.\n' }], back.dataset, { now: LATER })
+    const again = await importFiles([{ path: 'b.md', text: 'Encore un passage sans date.\n' }], twice.dataset, { now: LATER })
+    expect(again.dataset.portfolio.undated.map((u) => u.text.trim())).toEqual(['Encore un passage sans date.'])
+  })
+
+  it('un état illisible dans l’archive (réponse, repère, ensemble) est écarté et compté, jamais recopié', async () => {
+    const store = await richStore()
+    const archive = buildArchive(await store.exportAll('ds-lou'), { now: LATER })
+    archive.reviews = { ...archive.reviews, 'x|y|1.01': { state: 'accepted' } }
+    archive.markers = [...archive.markers, { id: 'mk-sans-date', label: 'Sans date' }]
+    archive.sets = [...archive.sets, { id: 'set-vide' }]
+    const res = await importFiles([{ path: 'a.json', text: JSON.stringify(archive) }], empty(), { now: LATER })
+    expect(res.dataset.reviews).not.toHaveProperty('x|y|1.01')
+    expect(res.dataset.markers.map((m) => m.id)).not.toContain('mk-sans-date')
+    expect(res.dataset.sets.map((x) => x.id)).not.toContain('set-vide')
+    expect(res.report.find((r) => r.code === 'etat-illisible').message).toMatch(/^3 élément\(s\) illisible\(s\)/)
   })
 
   it('sans le portfolio : le texte part, les volumes par jour restent', async () => {
