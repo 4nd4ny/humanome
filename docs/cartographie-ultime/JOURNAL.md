@@ -46,6 +46,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Déploiement | humanome.xyz : release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en ligne ; branche fusionnée dans `main` (D-46) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-46 |
 | Q30 — thème au chargement | le script anti-FOUC autorisé par son hash dans la CSP de production ; garde de synchronisation ; déployé (D-47) | ✅ | ✅ 1 test (garde du hash) + vérification Chromium avant et après, sur le bundle puis en ligne | ✅ | voir §5 |
 | Démo avec portfolio | le journal de la démonstration sur le site seulement (archive de l'interface), passages surlignés ; guide du visiteur (D-48) | ✅ | ✅ 2 392 traces vérifiées par le chemin du lecteur + vérification en ligne | ✅ | voir §5 |
+| Q31 — portfolio de Google Docs | échappements, traits, sauts de ligne et images rendus ; « 1er » lu par le découpage ; démonstration redéposée, front redéployé (D-49) | ✅ | ✅ 9 tests (rendu, surlignage, découpage) + 2 392 traces revérifiées + vérification en ligne | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1583,7 +1584,8 @@ site uniquement. »
   datés, puis passe par l'export de l'interface (`buildPortfolioMarkdown`),
   dont le Markdown se redécoupe exactement en ces journées : séparateurs
   internes neutralisés (« - - - »), « ## AAAA-MM-JJ » ajouté devant les deux
-  journées « 1er ». Le texte n'est pas retouché autrement.
+  journées « 1er » (inutile depuis D-49 : le découpage lit « 1er »). Le texte
+  n'est pas retouché autrement.
 - **Sur le site, et seulement là** : `data/demo/carto/archive.json`, l'archive
   de l'interface portfolio compris, marquée « démonstration » (67 journées,
   18,4 Mo, 3,3 Mo compressés à l'envoi), construite avec le code même de
@@ -1601,13 +1603,73 @@ site uniquement. »
   ses 2 246 échappements Markdown (`\!`, `\*`, `\-`…) s'affichent tels quels, et
   les 120 séparateurs neutralisés comme des puces : le petit moteur Markdown du
   site (`web/src/lib/md.js`) ne connaît ni les échappements ni les traits
-  horizontaux. Question 31.
+  horizontaux. Question 31, faite en D-49.
 - **À refaire** si la démonstration change : dans l'interface, importer les
   journées et le portfolio, puis exporter l'archive portfolio compris et la
   déposer à la même adresse ; pour ce journal, découper d'abord aux titres
   datés, comme ci-dessus.
 - Docs : guide du visiteur (chapitre 2 : portfolio consultable, heatmap au
   volume écrit).
+
+### D-49 — Le portfolio venu de Google Docs, sans symboles parasites (question 31) **[décidé]**
+
+Christian (2026-10-14, 18 h 09) : « Question 31 : oui ! Corrige l'export Google
+Docs du journal, les symboles et les lignes de séparation. Puis uploade les
+fichiers corrigés sur le site web. »
+
+- **Rendu** (`web/src/lib/md.js`, le moteur Markdown du site : lecteur de
+  portfolio, copie autonome, guides, réflexions du jury). Ce que Google Docs
+  écrit en exportant un document en Markdown s'affiche comme dans le
+  document :
+  - **échappements** (règle du CommonMark) : `\!`, `\*`, `\-`, `\#`, `\[`…
+    (2 246 dans la démonstration) — le caractère, sans sa barre oblique ; il
+    n'ouvre ni gras, ni lien, ni puce, ni titre. Écart assumé : l'échappement
+    vaut aussi dans le code inline ;
+  - **traits** (CommonMark) : `---`, `- - -`, `***`, `___`, espacés ou non,
+    seuls sur leur ligne — un trait (`<hr>`), jamais une puce, aussi dans une
+    citation (les 120 séparateurs du journal) ;
+  - **[choix d'implémentation]** **sauts de ligne** : une ligne finie par deux
+    espaces passe à la ligne (CommonMark ; Google Docs l'écrit pour un retour
+    à la ligne dans un paragraphe : listes numérotées, énumérations) ; le
+    caractère U+000B, que Google Docs écrit pour un retour à la ligne dans une
+    cellule de tableau, aussi — le navigateur l'affichait en petit carré « VT »
+    (753 dans la démonstration) ;
+  - **[choix d'implémentation]** **images** : jamais chargées (ADR-007, `img`
+    interdit), elles s'affichaient en `![][imageN]` (34 dans le journal, dont
+    les données ne sont pas dans les feuilles) ; « [image] » à leur place, ou
+    « [image : texte] » quand elles en ont un.
+  - Ce qui reste visible est dans le journal même : des astérisques et des
+    triples accents graves (le 4 mars : du Markdown collé tel quel dans le
+    document, que Google Docs a échappé) et 20 barres obliques voulues (dans
+    du code, ou écrites telles quelles).
+- **Surlignage** : le texte affiché change, pas l'endroit des passages. Un
+  extrait du jury recopié du texte brut garde ses barres obliques et ses
+  images : `stripMarkdownMarks` (`core/highlight.js`) les traite comme le
+  rendu avant de chercher ; un saut de ligne reste un blanc dans le texte
+  affiché. Sur les 2 392 traces de la démonstration, par le chemin du
+  lecteur : **2 356 passages retrouvés tels quels (98,5 %, contre 97,4 % en
+  D-48)**, 28 en partie (55 avant), 2 dans la feuille d'un autre jour,
+  1 approché, 5 introuvables — extraits tronqués ou reformulés par l'analyse,
+  et un lien Markdown recopié.
+- **Découpage** (`engine/src/portfolio/segment.js`) : un titre « 1er.01.2026 »
+  ou « ### 1er/02/2026 » ouvre la journée du premier du mois ; « 11er » ou
+  « 2er » n'ouvrent rien. Les titres « ## AAAA-MM-JJ » que l'archive de la
+  démonstration ajoutait devant ces deux journées (D-48) ne sont plus
+  nécessaires.
+- **Sur le site seulement, comme en D-48** : archive de la démonstration
+  reconstruite avec ce code (67 journées, 18,4 Mo, texte non retouché) et
+  redéposée ; front redéployé deux fois (échappements et traits, puis sauts
+  de ligne et images), depuis la VM du Mac. **Vérifié en ligne** (Chromium) :
+  le 22 décembre, le 1er janvier, le 4 et le 8 mars n'affichent ni barre
+  oblique d'échappement, ni carré « VT », ni `![` ; les traits sont des traits,
+  les listes numérotées vont à la ligne, les images sont des « [image] », le
+  passage est surligné. Copies de travail effacées (journal recomposé,
+  archive, outils).
+- **Pas fait** (questions 32 et 33) : les tableaux s'affichent encore en
+  lignes de barres verticales ; un journal de Google Docs importé tel quel
+  dans l'interface se découpe encore à ses traits.
+- Docs : commentaire d'en-tête de `lib/md.js` (les chapitres de formation ont
+  des tableaux, contrairement à ce qu'il disait).
 
 ---
 
@@ -1916,6 +1978,21 @@ Validation du surlignage approché sur les journaux réels : D-39.
 Suites complètes après D-45 : site 2 285 verts (235 fichiers), moteur 1 071
 (+ 17 ignorés), API 1 489 (14 328 assertions), e2e 16 sur 16 dans Chromium.
 
+### Question 31 — portfolio venu de Google Docs (D-49)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `lib/md.test.js` | caractère échappé affiché sans sa barre oblique (`\!`, titre `1\.` en gras, `\<code\>`), qui n'ouvre ni gras, ni lien, ni puce, ni titre ; barre oblique devant une lettre gardée ; traits `---`, `- - -`, `***`, `* * *`, `___`, entre deux puces, dans une citation ; `--` n'en est pas un, une puce reste une puce ; trait gardé par DOMPurify ; deux espaces en fin de ligne et U+000B → `<br>` (paragraphe, cellule, citation, puce), une seule espace rejoint les lignes ; image → « [image] » ou « [image : texte] », `\!` n'ouvre pas d'image, aucune `<img>` | 6 |
+| `ui/highlight-dom.test.js` | export de Google Docs rendu : ni barre oblique ni tirets de trait dans le texte affiché, extrait échappé retrouvé en entier ; sauts de ligne et images rendus, extraits (images, cellule) retrouvés en entier | 2 |
+| moteur : `portfolio/segment.test.js` | « 1er.01.2026 », « ### 1er/02/2026 », deux journées dans l'ordre ; jamais « 11er » ni « 2er » | 1 |
+| démonstration (script temporaire, non versionné) | les 2 392 traces par le chemin du lecteur ; échappements, traits, carrés « VT » et images dans le texte affiché des 67 journées | voir D-49 |
+
+Suites complètes après D-49 : site **2 294 verts** (235 fichiers) — une
+exécution sur trois a connu un échec isolé, non reproduit (les deux
+suivantes entièrement vertes) ; moteur **1 072 verts** (+ 17 ignorés) ; e2e
+Chromium verts : copie autonome (P5), dialogue (P7), soleil (D-45), guides
+publics. API inchangée.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2012,14 +2089,35 @@ Question posée après le déploiement du 2026-10-14 (D-46) :
     Déploie ensuite le correctif sur le site. » Suite : fait et déployé
     (D-47).
 
-Question ouverte après la démonstration avec portfolio (D-48) :
+Question posée après la démonstration avec portfolio (D-48) :
 
 31. Le portfolio de la démonstration, exporté de Google Docs, affiche ses
     échappements Markdown (`\!`, `\*`… : 2 246) et ses séparateurs neutralisés
     comme des puces (120) : le moteur Markdown du site ne connaît ni les
     échappements ni les traits horizontaux. Les lui apprendre (règles du
     CommonMark), en vérifiant que le surlignage reste au même endroit ? Cela
-    vaut pour tout portfolio venu de Google Docs.
+    vaut pour tout portfolio venu de Google Docs. → **Décidé** (2026-10-14,
+    18 h 09) : « oui ! Corrige l'export Google Docs du journal, les symboles et
+    les lignes de séparation. Puis uploade les fichiers corrigés sur le site
+    web. » Suite : fait — avec les sauts de ligne, les carrés « VT » et les
+    images — et déployé (D-49).
+
+Questions ouvertes après D-49 :
+
+32. Les **tableaux** (`| … | … |`, puis `| --- | --- |`) ne sont pas rendus :
+    leurs lignes s'affichent bout à bout, barres verticales comprises, dans
+    13 journées de la démonstration et dans 9 chapitres de formation. Les
+    rendre en vrais tableaux (règle du GFM) ? Google Docs fait aussi d'un
+    encadré un tableau d'une seule case (le 4 mars, un texte entier) : il
+    deviendrait un encadré. Le surlignage suivrait : 29 extraits du jury
+    recopient des lignes de tableau avec leurs `|`.
+33. Un journal de Google Docs importé **tel quel** dans l'interface se découpe
+    encore à chacun de ses traits (`---`), qui ouvrent une partie sans date :
+    celui de la démonstration donnerait 188 parties, dont 120 sans date qui
+    portent 98,5 % du texte (la démonstration y échappe : son archive est
+    préparée à part, D-48). Proposition : dans un texte qui a des titres
+    datés, un trait ne coupe plus — il reste un trait dans sa journée ; sans
+    aucun titre daté, il coupe comme aujourd'hui.
 
 ---
 
@@ -2123,3 +2221,8 @@ Question ouverte après la démonstration avec portfolio (D-48) :
   correspondant, découpé à ses titres datés, déposé sur le site seulement
   (archive de l'interface) ; 97,4 % des passages retrouvés tels quels ; guide
   du visiteur mis à jour.
+- **2026-10-14** — Question 31 (D-49) : le site rend les exports de Google
+  Docs sans symboles parasites — échappements, traits, sauts de ligne,
+  images ; le découpage lit « 1er » ; archive de la démonstration
+  reconstruite et redéposée, front redéployé ; 98,5 % des passages retrouvés
+  tels quels ; questions 32 (tableaux) et 33 (traits à l'import).

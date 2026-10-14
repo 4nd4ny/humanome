@@ -73,6 +73,17 @@ describe('segmentText — variantes de formats de dates', () => {
     expect(segmentText('22-12-2025\ntexte', TODAY)[0].date).toBe('2025-12-22')
   })
 
+  it('numérique FR au premier du mois « 1er.01.2026 », « ### 1er/02/2026 » ; jamais « 11er » ni « 2er »', () => {
+    expect(segmentText('1er.01.2026\ntexte', TODAY)[0].date).toBe('2026-01-01')
+    expect(segmentText('### 1er/02/2026\ntexte', TODAY)[0].date).toBe('2026-02-01')
+    const twoDays = segmentText('### 2.01.2026\nun\n\n### 1er.01.2026\ndeux', TODAY)
+    expect(twoDays.map((s) => s.date)).toEqual(['2026-01-02', '2026-01-01'])
+    for (const notADate of ['11er.01.2026', '2er.01.2026']) {
+      expect(segmentText(`avant\n${notADate}\ntexte`, TODAY).map((s) => s.date)).not.toContain('2026-01-11')
+      expect(segmentText(`avant\n${notADate}\ntexte`, TODAY)).toHaveLength(1)
+    }
+  })
+
   it('texte FR « 22 décembre 2025 », avec ou sans accent, et « 1er janvier 2026 »', () => {
     expect(segmentText('22 décembre 2025\ntexte', TODAY)[0].date).toBe('2025-12-22')
     expect(segmentText('22 decembre 2025\ntexte', TODAY)[0].date).toBe('2025-12-22')

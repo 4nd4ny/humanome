@@ -3,7 +3,7 @@
 // jaune / orange ; toutes les occurrences ; Markdown assaini.
 import { describe, expect, it } from 'vitest'
 import { approximateInPortfolio, collectText, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
-import { locateRendered, stripMarkdownMarks } from '../core/highlight.js'
+import { locateRendered, splitExtract, stripMarkdownMarks } from '../core/highlight.js'
 
 const frag = (html) => {
   const t = document.createElement('template')
@@ -74,6 +74,40 @@ describe('highlightHtml', () => {
     const ranges = locateInPortfolio(portfolio, { extract: 'j’ai **vraiment** vérifié deux sources avant de conclure' })
     expect(ranges).toHaveLength(1)
     expect(ranges[0].complete).toBe(true)
+  })
+
+  it('un export de Google Docs : échappements et traits rendus, extrait échappé retrouvé en entier (question 31)', () => {
+    const portfolio = { text: '### 22.12.2025\n\nLe projet prend forme \\! Il reste une difficulté à lever.\n\n- - -\n\n**Suite\\.** Après le trait.' }
+    const { html, text } = renderPortfolio(portfolio)
+    expect(text).not.toContain('\\')
+    expect(text).toContain('prend forme ! Il reste')
+    expect(html).toContain('<hr>')
+    expect(text).not.toContain('- -')
+    // L'extrait du jury, recopié du texte brut, garde ses barres obliques.
+    const found = locateInPortfolio(portfolio, { extract: 'Le projet prend forme \\! Il reste une difficulté à lever.' })
+    expect(found.some((r) => r.complete)).toBe(true)
+  })
+
+  it('un export de Google Docs : sauts de ligne (deux espaces, U+000B) et images rendus, extraits retrouvés en entier (question 31)', () => {
+    const portfolio = {
+      text:
+        'Mes notes avant la séance :  \n![][image1]![][image2]\n\nMes notes après la séance :  \n![][image3]\n\n' +
+        '| Titre de l’encadré\u000b\u000bPremière ligne\u000bLa deuxième ligne de l’encadré suit. |\n| :---- |',
+    }
+    const { html, text } = renderPortfolio(portfolio)
+    expect(text).not.toContain('\u000b')
+    expect(text).not.toContain('![')
+    expect(text).toContain('séance :\n[image][image]')
+    expect(text).toContain('Titre de l’encadré\n\nPremière ligne\nLa deuxième ligne')
+    expect(html).toContain('<br>')
+    // Extraits du jury recopiés du texte brut : images et sauts compris.
+    for (const extract of [
+      'Mes notes avant la séance :  \n![][image1]![][image2]\n\nMes notes après la séance :  \n![][image3]',
+      'Première ligne La deuxième ligne de l’encadré suit.',
+    ]) {
+      const found = locateInPortfolio(portfolio, splitExtract(extract))
+      expect(found.some((r) => r.complete)).toBe(true)
+    }
   })
 
   it('le Markdown du portfolio est assaini : aucun script, aucune ressource distante', () => {

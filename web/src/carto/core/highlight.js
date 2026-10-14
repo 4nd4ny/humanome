@@ -211,14 +211,24 @@ export function locateExtract(text, anchors, { maxSpan = 6000 } = {}) {
 }
 
 /**
+ * Image Markdown (« ![texte](url) », « ![texte][ref] ») : le texte affiché
+ * porte « [image] » ou « [image : texte] » à sa place — même règle que
+ * `imagePlaceholder` dans `web/src/lib/md.js`.
+ */
+const IMAGE_RE = /(?<!\\)!\[([^\]]*)\](?:\[[^\]]*\]|\([^)]*\))/gu
+
+/**
  * Retire d'une ancre la ponctuation Markdown qu'un extrait recopié du texte
  * brut peut contenir (`**gras**`, `_italique_`, `` `code` ``, `### titre`,
- * `> citation`, puces) : le texte AFFICHÉ, lui, ne la contient plus.
+ * `> citation`, puces, échappements `\!` `\*` des exports de Google Docs) :
+ * le texte AFFICHÉ, lui, ne la contient plus ; une image y est « [image] ».
  * @param {string} s
  */
 export function stripMarkdownMarks(s) {
   if (typeof s !== 'string') return s
   return s
+    .replace(IMAGE_RE, (_, alt) => (alt.trim() ? `[image : ${alt.trim()}]` : '[image]'))
+    .replace(/\\([!-/:-@[-`{-~])/gu, '$1')
     .replace(/^\s*(?:#{1,6}|>|[-*+]|\d+[.)])\s+/gmu, '')
     .replace(/\*\*|__|`/gu, '')
     .replace(/(^|[\s(«"'‘“])[*_](?=\S)/gu, '$1')
