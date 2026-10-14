@@ -92,6 +92,9 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     partie : aucune n'a été préparée (« Préparer une démo », relecture de Christian) ; le site
     garde les 59 journées publiques.
   - **Fusion** : PR `feat/ultimate-cartography` → `main` (CI verte), fusionnée le 2026-10-14.
+  - **Question 30** (D-47, accord de Christian) : le script anti-FOUC autorisé par son hash dans
+    la CSP de production (le thème choisi par un visiteur n'était pas réappliqué au chargement) ;
+    garde `web/src/anti-fouc.test.js` ; déployé (front seul) et vérifié en ligne.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1388,12 +1391,11 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
   non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
 - CSP de production `connect-src 'self'` : corrigé (décision du 2026-10-14, question 22 :
   `connect-src` ouvert aux seuls fournisseurs) — en ligne depuis le déploiement du 2026-10-14.
-- CSP de production et script anti-FOUC (`web/index.html`) : le script en ligne qui applique le
-  thème choisi avant le premier rendu est **refusé par la CSP depuis qu'elle existe** (seul le
-  hash du bootstrap de la sandbox est autorisé) ; le thème s'applique donc après le chargement
-  du bundle (bref flash). Constaté lors de la vérification en ligne du 2026-10-14 ; correctif
-  proposé (ajouter son hash à `script-src`, avec un test de synchronisation comme
-  `csp-hash.test.js`) en attente de l'accord de Christian (journal carto, question 30).
+- CSP de production et script anti-FOUC (`web/index.html`) : le script en ligne qui réapplique
+  le thème choisi par le visiteur était **refusé par la CSP depuis qu'elle existe** — le choix
+  clair/sombre n'était pas réappliqué au chargement. **Corrigé et déployé le 2026-10-14**
+  (journal carto, question 30, D-47) : son hash est dans `script-src`, gardé par
+  `web/src/anti-fouc.test.js`.
 - `npm run test:dist` (`web/scripts/smoke-dist.mjs`) vise encore la vue merge retirée en D-38
   (`#/merge`, `svg.sunburst`) : il échoue depuis ; à réécrire pour l'interface ultime.
 - `deploy.mjs api` téléverse la release fichier par fichier sur une seule connexion (~4 min

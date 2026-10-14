@@ -6,6 +6,7 @@
 // filtrée casseraient silencieusement le premier paint. Ce test lit le HTML
 // réel et EXÉCUTE le script inline contre des doublures.
 
+import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it, vi } from 'vitest'
@@ -68,6 +69,23 @@ describe('index.html — script anti-FOUC', () => {
   it('valeur inconnue ou absente -> ne pose RIEN (le suivi du système est préservé)', () => {
     expect(runInlineScript('bleu-canard')).not.toHaveBeenCalled()
     expect(runInlineScript(null)).not.toHaveBeenCalled()
+  })
+
+  it('la CSP de production autorise ce script par son hash (sinon il est refusé en ligne et le thème arrive avec le bundle)', () => {
+    // Journal carto, question 30 : refusé par la CSP de web/public/.htaccess
+    // depuis qu'elle existe, sans qu'aucun test ne le voie (ni vitest ni le
+    // dev-server n'appliquent cette CSP). Vite recopie ce script tel quel dans
+    // dist/index.html : le hash de la source est celui servi en ligne.
+    const inline = [...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)]
+    expect(inline, 'un seul script en ligne : chacun exige son hash dans la CSP').toHaveLength(1)
+    const token = `'sha256-${createHash('sha256').update(inline[0][1], 'utf8').digest('base64')}'`
+    const htaccess = readFileSync(resolve(process.cwd(), 'public/.htaccess'), 'utf8')
+    const csp = htaccess.match(/Header always set Content-Security-Policy\s+"([^"]+)"/)?.[1] ?? ''
+    const scriptSrc = csp.match(/script-src ([^;]+)/)?.[1] ?? ''
+    expect(
+      scriptSrc.split(/\s+/).includes(token),
+      `Le script anti-FOUC a changé : remplacez son hash dans script-src (web/public/.htaccess) et dans docs/securite-checklist.md par ${token}.`,
+    ).toBe(true)
   })
 
   it('localStorage qui jette (mode privé) -> pas de crash, rien posé', () => {
