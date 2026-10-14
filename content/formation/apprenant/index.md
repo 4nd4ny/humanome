@@ -28,9 +28,10 @@ rattachée à votre compte (cahier des charges, §4.6).
 | 4 | [Les pièges à éviter](04-les-pieges-a-eviter.md) | Généralités, autopromotion, multimédia non décrit : ce qui affaiblit ou disqualifie vos traces. |
 | 5 | [Relire sa cartographie et travailler avec son cartographe](05-relire-sa-cartographie.md) | Comprendre les verdicts, exploiter les prescriptions, préparer la relecture humaine. |
 | 6 | [Confidentialité et partage](06-confidentialite-et-partage.md) | Où vivent vos données, ce que vous partagez, avec qui, et comment revenir en arrière. |
+| 7 | [Votre cartographie, pas à pas](07-interface-cartographie-ipsative.md) | Ouvrir vos fichiers, lire le soleil, relire vos traces dans votre texte, vous comparer à vous-même. |
 
 ---
 
-*Les six chapitres de ce parcours sont rédigés et complets. Le parcours est
+*Les sept chapitres de ce parcours sont rédigés et complets. Le parcours est
 public en lecture ; cochez « Chapitre terminé » au fil de votre progression pour
 la suivre depuis votre espace apprenant.*

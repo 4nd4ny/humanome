@@ -14,7 +14,7 @@ export function SunLegend() {
       <dt>Angle</dt>
       <dd>part des points de la compétence dans le total : un point par preuve, α (½ par défaut) par indice. Plus il y a de traces, plus le secteur est large. La confiance du jury n’y entre pas.</dd>
       <dt>Hauteur</dt>
-      <dd>confiance cumulée des verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
+      <dd>confiance moyenne du jury dans ses verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
       <dt>Surface</dt>
       <dd>confiance × points. Un pôle a la surface de ses compétences.</dd>
       <dt>Hachures</dt>
@@ -60,7 +60,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
                 <dd>{pct(c.theta)}</dd>
               </div>
               <div>
-                <dt>Confiance cumulée</dt>
+                <dt>Confiance moyenne</dt>
                 <dd>{fmt(c.confidence)}</dd>
               </div>
               <div>

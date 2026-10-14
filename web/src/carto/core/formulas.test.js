@@ -108,7 +108,7 @@ describe('angles (§5.4) : parts d’un tout', () => {
   })
 })
 
-describe('confiance cumulée (§5.5)', () => {
+describe('confiance moyenne du jury (« cumulée » au §5.5)', () => {
   it('moyenne continue des confiances, valeurs absentes ignorées', () => {
     expect(meanConfidence([0.8, 0.6, null])).toBeCloseTo(0.7)
     expect(meanConfidence([])).toBeNull()

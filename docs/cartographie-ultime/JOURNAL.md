@@ -118,7 +118,8 @@ calculs calendaires (jour de la semaine, ajout de jours) passent par
   au cartographe » fournissent des traces (§5.2). Une « non établie » et un
   court-circuit n'en fournissent pas ; le court-circuit est compté à part,
   jamais comme une absence (§4.2).
-- **Confiance cumulée C(c)** : moyenne des confiances des seuls verdicts qui
+- **Confiance cumulée C(c)** (à l'écran : « confiance moyenne du jury »,
+  D-8) : moyenne des confiances des seuls verdicts qui
   ont fourni au moins une trace. La confiance d'un verdict de *non-présence*
   mesure la certitude de l'absence : la mêler à la hauteur fausserait le
   miroir.
@@ -204,6 +205,10 @@ plafond de 0,99 ne servait que le produit). Même corpus, mêmes dates :
 - La heatmap sans portfolio (D-11), la comparaison (points absolus, points du
   jour) et la version partagée suivent la même règle ; les textes de lecture
   (légende, rapport imprimable, « Comment lire ce soleil ») le disent.
+- **Mots** : à l'écran, la « confiance cumulée » du §5.5 devient la
+  « confiance moyenne du jury » (légende, panneau de détail, tableau du
+  soleil, rapport imprimable, version partagée, aide) : c'est une moyenne, et
+  ce sont les mots de Christian ; « cumulée » laissait croire à une somme.
 
 ### D-9 — Import : reconnaissance du contenu, doublons, variantes
 
@@ -970,6 +975,16 @@ décision : retirer les pages V3 et renvoyer vers `#/cartographie`.
 - Aide contextuelle (`help/registry.js`) et guides de formation (visiteur 01 et
   02, apprenant 01 et 05) réécrits pour la nouvelle interface ; fiches
   UC-VIS-01, UC-VIS-04, UC-APP-03, UC-APP-12, UC-ETA-04, ADR-009 mises à jour.
+- Oubli du premier passage, corrigé ensuite : les trois chapitres de
+  formation consacrés à la V3 sont réécrits — apprenant 07 « Votre
+  cartographie, pas à pas », cartographe 07 « Relire dans l'interface de
+  cartographie » (l'outil de l'entretien ; la garantie reste dans l'espace
+  cartographe), employeur 06 « Lire une version partagée » (la vue du
+  destinataire, D-34). Les droits de réponse y sont décrits tels qu'ils sont :
+  locaux et sans effet sur le soleil (la V3 retirait du soleil une
+  observation contestée). Noms de fichier inchangés : ils servent de clés à
+  la progression de formation. Sommaires des parcours et `SUMMARY.md` à
+  jour.
 
 ### D-39 — Surlignage approché des extraits reformulés **[décidé]**
 

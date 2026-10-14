@@ -1,68 +1,139 @@
 ---
 parcours: apprenant
 chapitre: 7
-titre: "L'interface de cartographie ipsative (V3)"
+titre: "Votre cartographie, pas à pas"
 statut: complet
 ---
 
-# L'interface de cartographie ipsative (V3)
+# Votre cartographie, pas à pas
 
-La page [Cartographie](#/cartographie) est votre espace de travail : elle montre le **même
-historique** sous quatre projections synchronisées, et vous compare **à vos propres états
-antérieurs** — jamais à d'autres personnes. Ce chapitre part de vos besoins : que devez-vous
-voir, et avec quel panneau ?
+La page [Cartographie](#/cartographie) est votre espace de travail : vous y
+ouvrez vos analyses et votre portfolio, vous lisez le soleil de vos
+compétences, vous relisez chaque trace dans votre propre texte, et vous vous
+comparez **à vos propres états antérieurs** — jamais à d'autres personnes.
+Tout se passe dans votre navigateur : rien n'est envoyé tant que vous ne
+publiez pas vous-même une version partagée. Ce chapitre part de vos besoins :
+que voulez-vous voir, et où le trouver ?
+
+> **Objectifs d'apprentissage**
+>
+> À l'issue de ce chapitre, vous saurez :
+> - ouvrir vos fichiers d'analyse et votre portfolio dans la cartographie ;
+> - lire le soleil et demander « Pourquoi cette surface ? » ;
+> - relire une trace dans votre portfolio et y répondre ;
+> - choisir les journées qui comptent, vous comparer à vous-même, garder une copie ;
+> - savoir ce qui reste dans votre navigateur et ce qui peut en sortir.
 
 ## Ce dont vous avez besoin, en tant qu'apprenant
 
-1. **Voir votre profil se construire** — pas un score figé, mais des journées documentées qui
-   s'accumulent.
-2. **Comprendre chaque forme** : pourquoi ce secteur a-t-il ce rayon ? Quelles journées, quelles
-   preuves ?
-3. **Exercer votre droit de réponse** : confirmer, nuancer ou contester chaque association entre
-   un passage de votre portfolio et une compétence.
-4. **Vous comparer à vous-même** : qu'est-ce qui a changé depuis la dernière évaluation, le début
-   du trimestre, le début de l'année ?
-5. **Choisir ce que vous partagez** : rien ne part sans votre décision explicite.
+1. **Voir votre profil se construire** : des journées analysées qui
+   s'accumulent, pas une note figée.
+2. **Comprendre chaque forme** : pourquoi ce secteur est-il si large ?
+   Quelles journées, quelles traces, quels verdicts ?
+3. **Relire vos traces dans votre texte**, et donner votre réponse.
+4. **Vous comparer à vous-même** : qu'est-ce qui a changé depuis la dernière
+   évaluation, le début du trimestre, le début de l'année scolaire ?
+5. **Garder la main** sur ce qui sort de votre navigateur.
 
-La vue préconfigurée **« Apprenant »** (sélecteur *Mode* de la barre de contexte) dispose les
-panneaux pour ces cinq besoins. Vous pouvez ensuite tout réorganiser : glisser les tuiles par la
-poignée ⠿, les redimensionner par le coin ◢ ou le menu de taille — votre disposition est mémorisée.
+## Ouvrir vos fichiers
 
-## Les panneaux et leur utilité
+Depuis l'accueil, le bouton **« Ouvrir mes fichiers de cartographie »** (ou un
+glisser-déposer sur la zone prévue) ; depuis la cartographie, la zone d'import
+de l'espace **Gestionnaire**. Sont reconnus : les analyses Aurora
+(`carto_P1…P7.json` et `kairos.json`, ZIP de journées, arborescence
+AuroraCore), les cartographies fusionnées, votre portfolio (`.md`, `.txt`) et
+les archives exportées depuis la cartographie.
 
-- **Soleil** — la vue principale. Chaque secteur est une compétence documentée ; son **rayon
-  compte vos journées documentées** (l'échelle en bandes grises n'est pas une note). Seules les
-  compétences documentées apparaissent : les nouvelles **s'ajoutent** au fil de la lecture
-  temporelle. Touchez un secteur pour filtrer tout l'écran ; la touche `w` ouvre **« Pourquoi ce
-  rayon ? »** — la métrique, le compte exact et chaque journée contributrice.
-- **Journées (heatmap)** — le calendrier de la matière du soleil. L'intensité d'une case = le
-  nombre de compétences documentées ce jour-là. Un clic **inspecte** la journée (ouvre son
-  portfolio) sans déplacer la lecture ; « Voir l'état à cette date » déplace la tête de lecture.
-  Le titre « Journées » réinitialise la sélection.
-- **Timeline** — rejouez la construction de votre profil, en avant ou en arrière (le rembobinage
-  montre un état passé, jamais une perte). Vitesse réglable.
-- **Portfolio** — les passages de votre journal retenus comme preuves, avec provenance et état de
-  revue. C'est ici que vous **confirmez, nuancez ou contestez** une association, ajoutez une note
-  privée, un rôle réel, un résultat. Contester le dernier lien d'une observation la retire du
-  soleil — et c'est réversible.
-- **Comparaison** — vos préréglages ipsatifs (« depuis la dernière évaluation », « depuis le début
-  du trimestre/de l'année ») et le récit « Ce qui a changé », où chaque phrase renvoie aux journées
-  qui la justifient.
-- **Indicateurs / Légende** — les comptes synthétiques et l'identité visuelle des 7 familles
-  (couleur, symbole, motif).
-- **Arbre (Référentiel)** — les 61 compétences, y compris celles non encore documentées (le soleil,
-  lui, ne montre pas les manques). Le titre « Référentiel » réinitialise le filtre.
-- **Partage** — le constructeur de version employeur, par **liste positive** : voir le chapitre
+Les fichiers sont lus dans votre navigateur et rangés dans un **jeu de
+données**. Un **rapport d'import** classe ce qu'il a vu en quatre gravités :
+*bloquant* (fichier écarté), *à arbitrer*, *avertissement*, *information*.
+Importez votre portfolio avec vos analyses : sans lui, les passages ne peuvent
+pas être surlignés.
+
+## Lire le soleil
+
+- **L'angle** d'un secteur compte les **points** de la compétence : un point
+  par preuve relevée dans votre portfolio, un demi-point par indice. Plus une
+  compétence a de traces, plus son secteur est large.
+- **La hauteur** est la **confiance moyenne du jury** dans ses verdicts, de 0
+  à 1 ; les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n'est ni un
+  niveau de maîtrise ni une note.
+- **Des hachures** signalent une compétence en renvoi au cartographe : le jury
+  n'a pas tranché.
+- **Pas de secteur** : aucune trace dans les journées retenues. L'absence
+  d'une trace ne dit pas l'absence de la compétence.
+
+Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
+**panneau de détail** s'ouvre. Appuyez sur **w** : « Pourquoi cette surface ? »
+détaille ses traces, leurs points, la confiance de chaque verdict et les
+formules. Sous le soleil, la **tête de lecture** rejoue la construction de
+votre cartographie journée après journée, et la **heatmap** montre l'année
+scolaire, une case par jour ; un double-clic sur un jour l'ouvre seul.
+
+## Relire une trace, et y répondre
+
+Dans le panneau de détail, chaque trace a son bouton **« Ouvrir dans le
+portfolio »** : le lecteur s'ouvre sur la journée et marque le passage.
+
+- **Surligné en jaune** : le passage est retrouvé tel quel.
+- **Surligné en orange** : un seul bout est retrouvé (l'extrait a pu être
+  tronqué).
+- **Encadré en pointillés** : passage **approché**. L'analyse a reformulé
+  l'extrait ; les phrases d'où viennent ses mots sont encadrées. À vous de
+  vérifier que c'est bien ce que vous vouliez dire.
+- **Non retrouvé** : le lecteur le dit et cite l'extrait tel que le jury l'a
+  écrit.
+
+Sous les traces, chaque journée montre le verdict du jury (statut, confiance,
+motif, prescription) et ses réflexions. Vous pouvez y répondre :
+**Confirmer**, **Nuancer** ou **Contester**, et ajouter une **note privée**.
+Votre réponse reste dans ce navigateur, n'est envoyée à personne et ne change
+pas le soleil : elle prépare votre entretien avec votre cartographe (chapitre
+[Relire sa cartographie](#/guides/apprenant/05-relire-sa-cartographie)).
+
+## Choisir les journées qui comptent
+
+L'espace **Gestionnaire** liste vos journées, chacune avec une case à cocher :
+une journée décochée sort du soleil, de la heatmap et des comparaisons
+(Maj+clic coche une plage). Quand deux analyses existent pour une même
+journée, elles ne s'additionnent jamais : le Gestionnaire vous demande
+laquelle compte, ou de laisser la journée « à examiner ». Il signale aussi les
+passages de votre portfolio sans date, auxquels vous pouvez en donner une.
+
+## Vous comparer à vous-même
+
+- **Comparaison** : deux ensembles de journées côte à côte, en huit vues.
+  Des préréglages préparent les cas courants (depuis la dernière évaluation,
+  depuis le début du trimestre ou de l'année scolaire, année scolaire
+  précédente). Un avertissement s'affiche quand les deux côtés n'ont pas la
+  même taille. Rien n'y est classé.
+- **Tableau de bord** : profil, rythme, constance, moments remarquables… Une
+  carte dont les données manquent se masque.
+- **Dialogue** : des questions tirées de vos traces, pour relire votre
+  parcours. Vos réponses vont dans un carnet qui reste dans ce navigateur.
+
+## Garder une copie, partager
+
+- **Export** : l'**archive complète** (JSON, à réimporter sans perte), une
+  **copie autonome** (une page HTML lisible hors ligne) ou un **rapport
+  imprimable** (en PDF par la fenêtre d'impression du navigateur). Votre
+  cartographie vit dans ce navigateur : exportez l'archive pour la garder
+  ailleurs. L'archive contient tout ce que vous y avez mis — vos réponses, vos
+  notes privées, votre carnet : pensez-y avant de la confier à quelqu'un.
+- **Partage** (avec un compte, réservé aux adultes) : vous composez une
+  **version partagée** — les compétences, la précision des dates et les
+  extraits que vous choisissez, relus avant la publication. C'est la seule
+  chose qui part sur le serveur, jamais votre portfolio. Le lien, avec ou sans
+  mot de passe, se révoque à tout moment ; une nouvelle version peut remplacer
+  l'ancienne sous le même lien. Voir aussi
   [Confidentialité et partage](#/guides/apprenant/06-confidentialite-et-partage).
 
 ## Trois gestes à retenir
 
-1. Secteur → `w` → « Pourquoi ce rayon ? » : la chaîne compétence → journées → passages est
-   votre meilleure amie pour préparer un entretien.
-2. Heatmap → clic → lire les preuves de la journée → confirmer ou contester : cinq minutes par
-   semaine suffisent à garder une cartographie fidèle.
-3. Mode « Employeur » : regardez votre profil avec les yeux d'un destinataire avant de préparer
-   un partage.
-
-Tout reste dans votre navigateur : le dossier privé n'est jamais transmis, l'export employeur est
-un fichier que vous remettez vous-même.
+1. Un secteur, puis **w** : la chaîne compétence → journées → traces, pour
+   préparer un entretien.
+2. Une trace, puis **« Ouvrir dans le portfolio »** : lire, puis confirmer,
+   nuancer ou contester. Quelques minutes par semaine gardent votre lecture
+   fidèle.
+3. **Export → archive complète** à chaque étape importante : c'est votre
+   sauvegarde.

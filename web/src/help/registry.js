@@ -25,7 +25,7 @@ const BASE = {
     titre: 'Votre cartographie',
     intro:
       'Chaque secteur du soleil est une compétence relevée dans votre portfolio : son angle compte ' +
-      'ses traces (un point par preuve, moins pour un indice), sa hauteur est la confiance du jury. ' +
+      'ses traces (un point par preuve, moins pour un indice), sa hauteur est la confiance moyenne du jury. ' +
       'Vous êtes comparé à vos propres états antérieurs, jamais à d’autres personnes. Tout reste ' +
       'dans votre navigateur.',
     points: [

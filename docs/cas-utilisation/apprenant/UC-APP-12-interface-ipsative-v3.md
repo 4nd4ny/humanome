@@ -354,7 +354,7 @@ L'apprenant ouvre `#/cartographie` (menu « Découvrir » → « Cartographie
 - `web/src/v3/core/import.test.js` — identifiants, empreintes, adaptateurs, arbitrage, admissibilité, métriques.
 - `web/src/v3/core/share.test.js` — révisions, comparaison, panneaux, partage (AC-SHARE-01 à 07, 09 à 11, 13, 15, 17, 19, 20 ; les critères 08, 12, 14, 16 et 18 n'y figurent pas), réimport.
 - `web/src/v3/ui/V3View.test.jsx` (dont le titre « Référentiel » qui retire un filtre posé depuis le soleil), `web/src/v3/ui/tile-grid.test.jsx` (colonnes par largeur, déplacement, tailles, redimensionnement au pointeur).
-- Guides : `content/formation/apprenant/07-interface-cartographie-ipsative.md`, `content/formation/cartographe/07-…`, `content/formation/employeur/06-…`.
+- Guides : `content/formation/apprenant/07-interface-cartographie-ipsative.md`, `content/formation/cartographe/07-…`, `content/formation/employeur/06-…` — réécrits le 2026-10-14 pour l'interface de cartographie (`#/cartographie`) et la version partagée ; leurs noms de fichier, qui servent de clés à la progression de formation, sont inchangés.
 
 ### Exécuter
 

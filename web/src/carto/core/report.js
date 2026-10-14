@@ -8,7 +8,7 @@ import { observationKey } from './model.js'
 const sum = (xs) => xs.reduce((s, x) => s + x, 0)
 
 /**
- * Pages 1 et 2 : période, ensemble, pôles, compétences et confiance cumulée.
+ * Pages 1 et 2 : période, ensemble, pôles, compétences et confiance moyenne du jury.
  * @param {object} dataset
  * @param {object} state computeState(...) de l'ensemble coché jusqu'à t
  * @param {object} ref référentiel normalisé

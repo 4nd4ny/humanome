@@ -12,7 +12,9 @@
 // facteur « × confiance du verdict » du §5.2 sont abandonnés (le cumul
 // plafonnait à 1 en quelques semaines : les compétences fréquentes
 // recevaient toutes le même angle).
-//   confiance cumulée      C(c) = moyenne des confiances des verdicts retenus
+//   confiance moyenne      C(c) = moyenne des confiances des verdicts retenus
+//                          (« confiance cumulée » au §5.5 ; à l'écran : « confiance
+//                          moyenne du jury », les mots de Christian)
 //   confiance d'un pôle    C(p) = Σ θ(c)·C(c) / Σ θ(c)
 //   rayon (anneaux fixes)  r_ext² = r_int² + k·C   (k : C = 1 atteint le bord)
 //   aire d'un secteur      A = θ·k·C / 2  (θ en radians) — identique dans les

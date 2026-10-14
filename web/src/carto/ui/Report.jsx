@@ -3,7 +3,7 @@
 // Pages A4 en CSS d'impression et SVG natif : aucune capture raster
 // (jsPDF / html2canvas écartés). Page 1 : identité (pseudonyme), période,
 // ensemble, soleil, légende ; page 2 : profil chiffré, compétences et
-// confiance cumulée, précautions de lecture ; pages suivantes : réflexions du
+// confiance moyenne du jury, précautions de lecture ; pages suivantes : réflexions du
 // jury choisies, dépliées, avec les extraits ; en option, la comparaison A/B.
 //
 // L'aperçu s'ouvre dans un dialogue rattaché à <body> ; tant qu'il est
@@ -47,7 +47,7 @@ export function ReadingPrecautions() {
         </li>
         <li>L’absence d’une trace ne signifie pas l’absence de la compétence : une compétence sans secteur n’a simplement pas été observée dans ces journées.</li>
         <li>
-          L’angle d’un secteur est la part des points de la compétence (un point par preuve, moins pour un indice : plus il y a de traces, plus il est large) ; sa hauteur est la confiance cumulée des verdicts, qui n’est ni un
+          L’angle d’un secteur est la part des points de la compétence (un point par preuve, moins pour un indice : plus il y a de traces, plus il est large) ; sa hauteur est la confiance moyenne du jury dans ses verdicts, qui n’est ni un
           niveau de maîtrise ni une force.
         </li>
         <li>
@@ -130,12 +130,12 @@ function Profile({ refl, summary }) {
         ]}
       />
       <table className="carto-print-table">
-        <caption>Pôles : part du soleil et confiance cumulée</caption>
+        <caption>Pôles : part du soleil et confiance moyenne du jury</caption>
         <thead>
           <tr>
             <th scope="col">Pôle</th>
             <th scope="col">Part</th>
-            <th scope="col">Confiance cumulée</th>
+            <th scope="col">Confiance moyenne</th>
             <th scope="col">Compétences</th>
           </tr>
         </thead>
@@ -158,7 +158,7 @@ function Profile({ refl, summary }) {
           <tr>
             <th scope="col">Compétence</th>
             <th scope="col">Part</th>
-            <th scope="col">Confiance cumulée</th>
+            <th scope="col">Confiance moyenne</th>
             <th scope="col">Preuves</th>
             <th scope="col">Indices</th>
             <th scope="col">Journées</th>
@@ -281,7 +281,7 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
         <span className="carto-code">{code}</span> {meta.name}
       </h3>
       <p className="carto-print-faint">
-        {pole?.symbol} {pole?.name} · part {pct(s.theta / 360)} · confiance cumulée {nf(s.confidence)} · {plural(s.days.length, 'journée', 'journées')} ·{' '}
+        {pole?.symbol} {pole?.name} · part {pct(s.theta / 360)} · confiance moyenne {nf(s.confidence)} · {plural(s.days.length, 'journée', 'journées')} ·{' '}
         {plural(s.proofs, 'preuve', 'preuves')}, {plural(s.hints, 'indice', 'indices')}
       </p>
       {options.extracts && traces.length > 0 ? <Extracts traces={traces} code={code} getDetail={getDetail} /> : null}

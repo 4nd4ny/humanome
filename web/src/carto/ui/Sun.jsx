@@ -1,7 +1,7 @@
 // Interface ultime — le soleil (spec §5.4–§5.6, §6.1).
 //
 // Deux anneaux FIXES : pôles à l'intérieur, compétences à l'extérieur. Angle =
-// part des points (Σ des poids des traces) ; hauteur = confiance cumulée
+// part des points (Σ des poids des traces) ; hauteur = confiance moyenne du jury
 // (r_ext² = r_int² + k·C) ; la surface est donc proportionnelle à confiance × points. Ordre angulaire du
 // référentiel, départ à −90°. Cercles guides pointillés = échelle de confiance
 // (0,25 · 0,5 · 0,75 · 1), pas des niveaux. Secteurs de renvoi hachurés sans
@@ -229,7 +229,7 @@ export function SunTable({ refl, state, open = false }) {
     <details className="carto-sun-table" open={open || undefined}>
       <summary>Tableau équivalent ({rows.length} compétence{rows.length > 1 ? 's' : ''})</summary>
       <table>
-        <caption>Part du soleil, confiance cumulée et journées observées, dans l’ordre du référentiel</caption>
+        <caption>Part du soleil, confiance moyenne du jury et journées observées, dans l’ordre du référentiel</caption>
         <thead>
           <tr>
             <th scope="col">Compétence</th>

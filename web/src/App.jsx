@@ -713,7 +713,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
           </div>
         </div>
       </header>
-      {/* L'interface V3 occupe toute la largeur disponible (grille de tuiles). */}
+      {/* L'interface de cartographie occupe toute la largeur disponible. */}
       <main className={`app-main${route.name === 'cartographie' || route.name === 'redirect' ? ' app-main--full' : ''}`}>
         {view}
       </main>
