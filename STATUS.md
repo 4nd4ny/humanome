@@ -95,6 +95,12 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
   - **Question 30** (D-47, accord de Christian) : le script anti-FOUC autorisé par son hash dans
     la CSP de production (le thème choisi par un visiteur n'était pas réappliqué au chargement) ;
     garde `web/src/anti-fouc.test.js` ; déployé (front seul) et vérifié en ligne.
+  - **Démonstration avec portfolio** (D-48, demande de Christian) : le journal dont viennent les
+    extraits de la démonstration, découpé à ses titres datés, est déposé **sur le site seulement**
+    (`data/demo/carto/archive.json`, archive de l'interface, hors manifeste du front ; jamais dans
+    le dépôt) ; « Ouvrir dans le portfolio » surligne les passages (97,4 % retrouvés tels quels sur
+    2 392 traces). Constaté : échappements Markdown et séparateurs mal rendus par `lib/md.js`
+    (question 31).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
