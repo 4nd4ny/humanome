@@ -1638,6 +1638,13 @@ kbd {
   text-decoration: underline dotted #9a3412;
   text-underline-offset: 3px;
 }
+.carto-hl--approx {
+  /* Passage APPROCHÉ (extrait reformulé) : pas de fond plein, un cadre
+     pointillé — jamais confondu avec un passage retrouvé. */
+  background: transparent;
+  outline: 2px dashed #7c3aed;
+  outline-offset: 1px;
+}
 .carto-hl--current {
   box-shadow: 0 0 0 2px #b45309;
 }

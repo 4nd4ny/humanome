@@ -131,6 +131,22 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     expect(marks(r)).toHaveLength(0)
   })
 
+  it('extrait reformulé par l’analyse : passage approché, encadré en pointillés et dit comme tel (jamais « retrouvé »)', async () => {
+    const reformulated = LOU_PORTFOLIO.replace(
+      'J’ai écouté Sam expliquer son idée jusqu’au bout sans l’interrompre, puis j’ai reformulé ce que j’avais compris.\n',
+      'Hier soir, Sam a pu expliquer son idée jusqu’au bout sans être interrompu, puis j’ai reformulé ce que j’en avais compris, avec soin.\n',
+    )
+    await mount(await storeWith(louFiles({ portfolio: reformulated })))
+    fireEvent.click(sector('2.01 '))
+    fireEvent.click((await openTraceButtons())[0])
+    const r = await screen.findByRole('region', { name: 'mardi 23 décembre 2025' })
+    await waitFor(() => expect(within(r).getByRole('status').textContent).toMatch(/^Passage approché : l’extrait du jury ne figure pas mot pour mot dans le portfolio/))
+    expect(within(r).getByRole('status').textContent).toMatch(/qui en contient 82 % des mots, est encadré en pointillés : à vérifier/)
+    expect(marks(r).every((m) => m.classList.contains('carto-hl--approx'))).toBe(true)
+    expect(markedText(r)).toBe('expliquer son idée jusqu’au bout sans être interrompu, puis j’ai reformulé ce que j’en avais compris')
+    expect(within(r).getByText('Extrait cité par le jury')).toBeTruthy()
+  })
+
   it('sans portfolio importé : le volet invite à l’importer', async () => {
     await mount(await storeWith(louFiles({ portfolio: null })))
     fireEvent.click(sector('1.01 '))

@@ -245,6 +245,73 @@ export function locateRendered(text, anchors, opts) {
   return direct.length > 0 ? direct : retry
 }
 
+// ---------------------------------------------------------------------------
+// Surlignage APPROCHÉ (décision du 2026-10-14, question 9 du journal) : pour
+// un extrait que l'analyse a reformulé (défaut connu d'AuroraCore, D-12), le
+// passage du texte qui en contient le plus de mots, s'il en contient au moins
+// 75 % — toujours signalé comme approché, jamais comme retrouvé.
+
+const APPROX_WORD_RE = /[\p{L}\p{N}]+/gu
+const APPROX_MIN_LETTERS = 4
+
+/** Mots pleins (≥ 4 lettres) d'une chaîne REPLIÉE, avec leurs positions. */
+function approxTokens(collapsed) {
+  const out = []
+  for (const m of collapsed.matchAll(APPROX_WORD_RE)) {
+    if ([...m[0]].length >= APPROX_MIN_LETTERS) out.push({ word: m[0], start: m.index, end: m.index + m[0].length })
+  }
+  return out
+}
+
+/**
+ * Passage le plus proche d'un extrait reformulé : la fenêtre du texte (au
+ * plus ~1,6 fois la longueur de l'extrait, en mots) qui contient le plus de
+ * ses mots pleins, si elle en contient au moins `minShare`.
+ * @param {string} text texte affiché
+ * @param {string} extract extrait du jury
+ * @param {{minShare?: number, minWords?: number}} [opts]
+ * @returns {{from: number, to: number, share: number} | null} plage en index d'ORIGINE (`to` exclu)
+ */
+export function locateApproximate(text, extract, { minShare = 0.75, minWords = 4 } = {}) {
+  const wanted = approxTokens(normalizeNeedle(String(extract ?? '').replace(TRUNCATION_RE, ' ')))
+  if (wanted.length < minWords) return null
+  const need = new Map()
+  for (const t of wanted) need.set(t.word, (need.get(t.word) ?? 0) + 1)
+  const map = collapseText(String(text ?? ''))
+  const tokens = approxTokens(map.collapsed)
+  if (tokens.length === 0) return null
+  const span = Math.ceil(wanted.length * 1.6) + 2
+  const have = new Map()
+  let matched = 0
+  let best = null
+  let i = 0
+  const add = (w) => {
+    if (!need.has(w)) return
+    const n = (have.get(w) ?? 0) + 1
+    have.set(w, n)
+    if (n <= need.get(w)) matched++
+  }
+  const remove = (w) => {
+    if (!need.has(w)) return
+    const n = have.get(w)
+    have.set(w, n - 1)
+    if (n <= need.get(w)) matched--
+  }
+  for (let j = 0; j < tokens.length; j++) {
+    add(tokens[j].word)
+    if (j - i + 1 > span) remove(tokens[i++].word)
+    if (best === null || matched > best.matched) best = { matched, i, j }
+  }
+  const share = best.matched / wanted.length
+  if (share < minShare) return null
+  // Bornes : du premier au dernier mot de l'extrait présent dans la fenêtre.
+  let a = best.i
+  let b = best.j
+  while (a < b && !need.has(tokens[a].word)) a++
+  while (b > a && !need.has(tokens[b].word)) b--
+  return { from: map.origStart[tokens[a].start], to: map.origEnd[tokens[b].end - 1] + 1, share }
+}
+
 /**
  * Le passage d'une trace est-il retrouvable dans un texte ? (utilisé par les
  * tests et par l'outil d'anonymisation pour vérifier que les substitutions

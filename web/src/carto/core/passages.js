@@ -46,19 +46,26 @@ export function searchOrder(primary, secondary, dates) {
  *   dates: string[],                 // journées dont le portfolio est connu
  *   locate: (date: string) => Array<{from: number, to: number, complete: boolean, exact?: boolean}> | null,
  *                                    // null = pas de texte pour ce jour
+ *   approximate?: (date: string) => {from: number, to: number, share: number} | null,
+ *                                    // passage le plus proche d'un extrait reformulé
  * }} input
  * @returns {{
  *   date: string,                    // journée à afficher
- *   ranges: Array<{from: number, to: number, complete: boolean, exact?: boolean}>,
- *   status: 'found' | 'partial' | 'relocated' | 'not-found' | 'no-text',
+ *   ranges: Array<{from: number, to: number, complete: boolean, exact?: boolean, approximate?: boolean}>,
+ *   status: 'found' | 'partial' | 'relocated' | 'approximate' | 'not-found' | 'no-text',
  *   searchedDays: number,
+ *   share?: number,                  // part des mots de l'extrait (approximate)
  * }}
  *   - found : début et fin retrouvés dans la journée de la trace ;
  *   - partial : un seul bout retrouvé (orange) dans la journée de la trace ;
  *   - relocated : retrouvé tel quel dans la feuille d'un autre jour ;
+ *   - approximate : rien de tel quel, mais la journée de la trace contient un
+ *     passage où figurent au moins 75 % des mots de l'extrait (reformulé par
+ *     l'analyse) — toujours présenté comme approché, jamais comme retrouvé
+ *     (décision du 2026-10-14) ;
  *   - not-found : nulle part ; no-text : aucune journée n'a de texte.
  */
-export function findPassage({ primary, secondary = null, dates, locate }) {
+export function findPassage({ primary, secondary = null, dates, locate, approximate = null }) {
   const order = searchOrder(primary, secondary, dates)
   const headCount = secondary && secondary !== primary ? 2 : 1
   let searched = 0
@@ -80,5 +87,20 @@ export function findPassage({ primary, secondary = null, dates, locate }) {
   }
   const partial = own.find((o) => o.ranges.length > 0)
   if (partial) return { date: partial.date, ranges: partial.ranges, status: 'partial', searchedDays: searched }
+  // Approché : seulement dans la journée de la trace (ailleurs, ce serait deviner).
+  if (approximate) {
+    for (const o of own) {
+      const near = approximate(o.date)
+      if (near) {
+        return {
+          date: o.date,
+          ranges: [{ from: near.from, to: near.to, complete: false, exact: false, approximate: true }],
+          status: 'approximate',
+          share: near.share,
+          searchedDays: searched,
+        }
+      }
+    }
+  }
   return { date: own[0]?.date ?? primary, ranges: [], status: searched > 0 ? 'not-found' : 'no-text', searchedDays: searched }
 }

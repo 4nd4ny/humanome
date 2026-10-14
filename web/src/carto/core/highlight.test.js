@@ -1,6 +1,6 @@
 // Moteur de recherche des passages à surligner (spec §8.1).
 import { describe, expect, it } from 'vitest'
-import { collapseText, isLocatable, locateExtract, normalizeNeedle, splitExtract } from './highlight.js'
+import { collapseText, isLocatable, locateApproximate, locateExtract, normalizeNeedle, splitExtract } from './highlight.js'
 
 describe('ancres début / fin (split_extract_for_highlight)', () => {
   it('marqueurs de troncature : premier et dernier segments', () => {
@@ -93,5 +93,35 @@ describe('localisation (jaune / orange)', () => {
     const decomposed = `🙂 cafe${String.fromCharCode(0x301)} 🙂 crème`
     const [n] = locateExtract(decomposed, { extract: 'café 🙂 crème' })
     expect(decomposed.slice(n.from, n.to)).toBe(`cafe${String.fromCharCode(0x301)} 🙂 crème`)
+  })
+})
+
+describe('surlignage approché (extrait reformulé, décision du 2026-10-14)', () => {
+  const text = 'Lundi. Ce matin, nous avons longuement discuté du projet de jardin avec la classe, puis chacun a proposé une plante. Le soir, rien de spécial.'
+
+  it('trouve le passage qui contient au moins 75 % des mots pleins de l’extrait, bornes sur des mots de l’extrait', () => {
+    const near = locateApproximate(text, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')
+    expect(near).not.toBeNull()
+    expect(near.share).toBeGreaterThanOrEqual(0.75)
+    expect(text.slice(near.from, near.to)).toBe('nous avons longuement discuté du projet de jardin avec la classe')
+  })
+
+  it('sous 75 %, rien : on ne devine pas', () => {
+    expect(locateApproximate(text, 'Nous avons planté des tomates et arrosé le potager toute la semaine')).toBeNull()
+  })
+
+  it('un extrait trop court (moins de 4 mots pleins) n’est jamais approché', () => {
+    expect(locateApproximate(text, 'Le projet de jardin')).toBeNull()
+  })
+
+  it('les mots répétés ne comptent qu’autant de fois que dans l’extrait', () => {
+    const repeated = 'jardin jardin jardin jardin jardin jardin jardin jardin'
+    expect(locateApproximate(repeated, 'jardin potager classe projet plante')).toBeNull()
+  })
+
+  it('index d’origine même après un émoji et des espaces insécables', () => {
+    const withEmoji = '🌱 Ce\u00a0matin, nous avons longuement discuté du projet de jardin avec la classe.'
+    const near = locateApproximate(withEmoji, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')
+    expect(withEmoji.slice(near.from, near.to)).toBe('nous avons longuement discuté du projet de jardin avec la classe')
   })
 })

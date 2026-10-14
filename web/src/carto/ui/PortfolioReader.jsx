@@ -16,7 +16,7 @@ import { formatLong, formatShort, weekdayName } from '../core/dates.js'
 import { hasPortfolio } from '../core/model.js'
 import { splitExtract } from '../core/highlight.js'
 import { findPassage } from '../core/passages.js'
-import { highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
+import { approximateInPortfolio, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
 
 const ROLE_LABELS = { preuve: 'preuve', indice: 'indice' }
 
@@ -111,6 +111,7 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
       secondary: want.secondary,
       dates: needAll ? portfolioDates : own,
       locate: (d) => (getDetail(d) === undefined ? null : locateInPortfolio(getDetail(d)?.portfolio, want.anchors)),
+      approximate: (d) => (getDetail(d) === undefined ? null : approximateInPortfolio(getDetail(d)?.portfolio, want.extract)),
     })
   }, [ownLoaded, want, needAll, portfolioDates, own, getDetail])
 
@@ -152,6 +153,11 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
   else if (searching) status = { tone: 'muted', text: 'Passage non retrouvé en entier dans sa journée : recherche dans les autres journées…' }
   else if (result?.status === 'found') status = { tone: 'ok', text: ranges.some((r) => r.complete) ? 'Passage retrouvé : début et fin, surligné en jaune.' : 'Passage retrouvé.' }
   else if (result?.status === 'partial') status = { tone: 'warn', text: 'Un seul bout du passage est retrouvé (surligné en orange) : l’extrait du jury a pu être tronqué ou reformulé.' }
+  else if (result?.status === 'approximate')
+    status = {
+      tone: 'warn',
+      text: `Passage approché : l’extrait du jury ne figure pas mot pour mot dans le portfolio (reformulé par l’analyse). Le passage le plus proche, qui en contient ${Math.round((result.share ?? 0) * 100)} % des mots, est encadré en pointillés : à vérifier. Voici l’extrait tel que le jury l’a cité.`,
+    }
   else if (result?.status === 'relocated')
     status = { tone: 'warn', text: `Passage retrouvé tel quel dans la feuille du ${formatLong(result.date)}, alors que la trace est datée du ${formatLong(want.primary)} (décalage de date dans l’analyse).` }
   else if (result?.status === 'not-found' || result?.status === 'no-text')

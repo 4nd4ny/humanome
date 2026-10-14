@@ -1,7 +1,7 @@
 // P2 — où lire le passage d'une trace (spec §8.1) et synthèses évolutives (§6.4).
 import { describe, expect, it } from 'vitest'
 import { findPassage, searchOrder } from './passages.js'
-import { locateExtract } from './highlight.js'
+import { locateApproximate, locateExtract } from './highlight.js'
 import { narrativesFor, sameDates } from './narratives.js'
 
 const TEXTS = {
@@ -52,6 +52,38 @@ describe('findPassage', () => {
     const r = findPassage({ primary: '2025-12-27', dates, locate: locateIn(TEXTS, { extract: 'La maquette a cédé [...] puis tout est reparti de zéro' }) })
     expect(r).toMatchObject({ date: '2025-12-27', status: 'partial' })
     expect(r.ranges[0].complete).toBe(false)
+  })
+
+  it('extrait reformulé : rien de tel quel, mais 75 % de ses mots dans un passage de SA journée → approché (jamais « retrouvé »)', () => {
+    // Reformulé aux deux bouts : ni le début ni la fin ne figurent tels quels (sinon : partiel).
+    const extract = 'Vérification de deux sources contradictoires avant de conclure sur la date exacte'
+    const r = findPassage({
+      primary: '2025-12-22',
+      dates,
+      locate: locateIn(TEXTS, { extract }),
+      approximate: (d) => (d in TEXTS ? locateApproximate(TEXTS[d], extract) : null),
+    })
+    expect(r).toMatchObject({ date: '2025-12-22', status: 'approximate' })
+    expect(r.share).toBeGreaterThanOrEqual(0.75)
+    expect(r.ranges).toEqual([expect.objectContaining({ approximate: true, complete: false, exact: false })])
+    expect(TEXTS['2025-12-22'].slice(r.ranges[0].from, r.ranges[0].to)).toBe('deux sources contradictoires avant de conclure sur la date')
+  })
+
+  it('un bout retrouvé tel quel l’emporte sur l’approché (partiel, orange)', () => {
+    const extract = 'J’ai contrôlé deux sources contradictoires avant de conclure quant à la date du chantier'
+    const r = findPassage({ primary: '2025-12-22', dates, locate: locateIn(TEXTS, { extract }), approximate: (d) => locateApproximate(TEXTS[d], extract) })
+    expect(r.status).toBe('partial')
+  })
+
+  it('un passage approché ne se cherche jamais dans une autre journée', () => {
+    const extract = 'Nous avons recommencé la maquette en modifiant tous les appuis du pont'
+    const r = findPassage({
+      primary: '2025-12-22',
+      dates,
+      locate: locateIn(TEXTS, { extract }),
+      approximate: (d) => (d in TEXTS ? locateApproximate(TEXTS[d], extract) : null),
+    })
+    expect(r.status).toBe('not-found')
   })
 
   it('nulle part : non retrouvé ; aucun texte : no-text', () => {
