@@ -22,7 +22,7 @@ clic.
 >
 > À l'issue de ce chapitre, vous saurez :
 > - expliquer où sont stockées vos données selon vos choix (navigateur seul ou serveur en opt-in) ;
-> - régler la confidentialité de chaque cartographie : privée, partagée avec votre cartographe, ou publique ;
+> - régler la confidentialité de chaque cartographie : « Privée », « Partagée avec mon cartographe » ou « Partager » ;
 > - partager une version choisie de votre cartographie depuis l'interface de cartographie, avec un lien limité dans le temps et révocable ;
 > - exporter l'archive complète de votre compte, la réimporter, ou supprimer votre compte avec purge réelle.
 
@@ -60,9 +60,9 @@ cartographies » (espace apprenant). Le menu déroulant offre trois niveaux :
   cartographie produite.
 - **Partagée avec mon cartographe** — votre cartographe peut la relire,
   l'annoter, la corriger et la garantir (voir le chapitre 5).
-- **Publique (partageable)** — lisible aussi par votre cartographe ; ce
-  réglage ne crée aucun lien : le partage avec un employeur se fait depuis
-  l'interface de cartographie (section 4).
+- **Partager** — lisible aussi par votre cartographe ; ce réglage ne crée
+  aucun lien : pour montrer votre cartographie à un employeur, partagez-la
+  depuis l'interface de cartographie (section 4).
 
 Ce réglage est **individuel** — un choix par cartographie, jamais global ni
 implicite — et **réversible** à tout moment. Changer la confidentialité ne

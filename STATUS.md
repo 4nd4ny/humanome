@@ -68,8 +68,7 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     D5) — **toute la suite e2e est verte** (11 fichiers).
   - **Reste (décision utilisateur)** : valider la branche, puis autoriser un déploiement
     (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11 ; la migration 023
-    part avec la release API) ; questions 25 à 27 du journal (anciens liens de comptes sans
-    attestation de majorité, libellé « Publique (partageable) », formulation de `CLAUDE.md`).
+    part avec la release API).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1372,8 +1371,8 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
 - Partage historique (`#/espace`, jour / merge / twin9) **retiré sur la branche
   `feat/ultimate-cartography`** (décision du 2026-10-14, journal carto D-43 : plus de nouveau
   lien, `422 share_retired`). Les liens déjà créés restent servis jusqu'à leur échéance — y
-  compris ceux de comptes sans attestation de majorité : révocation au déploiement à décider
-  (journal carto, question 25). « Liens déjà créés » et les tests `legacyShareLink` pourront
+  compris ceux de comptes sans attestation de majorité : pas de révocation (décision du
+  2026-10-14, journal carto question 25 : le site n'est pas encore ouvert au public). « Liens déjà créés » et les tests `legacyShareLink` pourront
   partir après le 2027-11-13 (dernière échéance + 30 jours de purge).
 
 ## Jalons

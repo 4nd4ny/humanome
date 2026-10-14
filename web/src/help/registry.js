@@ -86,7 +86,7 @@ const BASE = {
       'lancez une cartographie, choisissez sa confidentialité, la partagez et exportez vos données.',
     points: [
       'Lancer une cartographie : choisissez la version de prompt, le fournisseur (votre clé ou le service humanome), voyez l’estimation de coût, suivez la progression.',
-      'Confidentialité par cartographie : privée, partagée avec votre cartographe, ou publique.',
+      'Confidentialité par cartographie : « Privée », « Partagée avec mon cartographe » ou « Partager ».',
       'Partage employeur : « Partager depuis l’interface » ouvre la cartographie dans l’interface de cartographie, où vous composez une version partagée (réservée aux adultes) ; votre cartographe peut aussi la publier avec sa garantie. Les liens créés avant restent révocables ici.',
       'RGPD : exportez toutes vos données en un fichier, ou supprimez votre compte (effacement réel).',
     ],

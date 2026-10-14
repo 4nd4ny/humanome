@@ -104,7 +104,8 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
    seulement la gestion des liens créés avant — D-43) et **« Retirer du
    serveur »**.
 6. L'apprenant choisit un niveau dans « Confidentialité » : **Privée**,
-   **Partagée avec mon cartographe** ou **Publique (partageable)**. Le
+   **Partagée avec mon cartographe** ou **Partager** (valeur `publique` ;
+   « Publique (partageable) » jusqu'au 2026-10-14). Le
    navigateur envoie `PATCH /api/cartographies/{serverId}` `{visibility}`.
 7. Le serveur vérifie la propriété, met à jour la ligne et répond `200` avec
    les **métadonnées** (sans document) ; le navigateur reporte la visibilité
@@ -383,9 +384,9 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
 - Le retrait et la suppression détruisent sans avertissement le travail du
   cartographe lié (annotations, révisions) et la garantie (RG8).
 - La visibilité `privee` ne coupe pas les liens créés avant le retrait de
-  l'ancien partage (D-43) ; le libellé « Publique (partageable) » est hérité
-  de ce partage : aucun lien ne se crée plus depuis « Mes cartographies »
-  (libellé à revoir, question posée à Christian).
+  l'ancien partage (D-43). Le niveau `publique`, hérité de ce partage, ne
+  crée aucun lien ; il s'intitule « Partager » depuis le 2026-10-14 (décision
+  de Christian, journal de la cartographie D-44).
 - Un refus `422` n'est affiché que « Validation échouée » : l'apprenant ne
   voit pas le champ en cause (`fields`).
 - Avec un cookie de session expiré, une mutation affiche « Jeton CSRF absent

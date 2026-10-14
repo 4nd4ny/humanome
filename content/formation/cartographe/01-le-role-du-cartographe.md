@@ -78,7 +78,7 @@ section « Mes apprentis », et les cartographies qu'il a partagées avec vous
 tombent dans la section « Cartographies à relire ».
 
 Un apprenant ne partage avec vous que ce qu'il choisit de partager :
-confidentialité « partagée avec mon cartographe », ou « publique ». S'il n'a
+confidentialité « Partagée avec mon cartographe », ou « Partager ». S'il n'a
 encore rien partagé, votre file reste vide, même une fois le rattachement fait.
 C'est normal et c'est voulu : le portfolio ne quitte jamais le navigateur de
 l'apprenant sans une décision explicite de sa part.

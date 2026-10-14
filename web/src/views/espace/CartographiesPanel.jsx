@@ -25,7 +25,7 @@ import ShareDialog, { shareDialogId } from './ShareDialog.jsx'
 const VISIBILITY_LABELS = {
   privee: 'Privée',
   cartographe: 'Partagée avec mon cartographe',
-  publique: 'Publique (partageable)',
+  publique: 'Partager', // valeur serveur « publique » ; libellé décidé le 2026-10-14 (journal D-44)
 }
 
 const TYPE_LABELS = { jour: 'Journée', merge: 'Parcours (merge)', twin9: 'Analyse Twin9' }

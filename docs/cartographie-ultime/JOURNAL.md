@@ -1370,11 +1370,11 @@ cartographe publie avec sa garantie (D-42).
   cartographie d'une autre personne : l'interface lui propose aussitôt de
   l'effacer (« Effacer « … » de ce navigateur », en deux temps) ; le registre
   RGPD (§3 bis A) et le chapitre 7 du parcours cartographe le disent.
-- **À décider** (§4, questions 25 à 27) : les liens créés avant restent
-  servis jusqu'à leur échéance — y compris ceux d'un compte qui n'a jamais
-  attesté sa majorité (l'ancien partage ne l'exigeait pas) ; le libellé
-  « Publique (partageable) » ; la formulation « lien + mot de passe » de
-  `CLAUDE.md`.
+- **Décidé ensuite** (§4, questions 25 à 29) : les liens créés avant ne sont
+  pas révoqués (le site n'est pas encore ouvert au public) ; le niveau
+  « Publique (partageable) » s'intitule « Partager » et `CLAUDE.md` décrit le
+  nouveau partage (D-44) ; la publication par l'apprenant seul et le code de
+  demande sans invitation préalable sont confirmés.
 - **À retirer plus tard** : les liens créés avant expirent au plus tard le
   2027-10-14 et sont purgés 30 jours après ; « Liens déjà créés », le
   dialogue et les tests `legacyShareLink` pourront alors partir.
@@ -1386,6 +1386,21 @@ cartographe publie avec sa garantie (D-42).
 - Docs : matrice des autorisations, registre RGPD (§5), politique de
   confidentialité, chapitres de formation (apprenant 01 et 06, cartographe 01
   et 07, employeur 01 et 06, visiteur 04), `docs/tests-e2e.md`.
+
+### D-44 — « Partager », et le partage décrit dans `CLAUDE.md` **[décidé]**
+
+Christian (2026-10-14), réponses aux questions 25 à 29 (§4) :
+
+- Le niveau de confidentialité `publique` s'intitule **« Partager »** (il
+  s'appelait « Publique (partageable) ») : « Mes cartographies », aide de
+  l'espace apprenant, file du cartographe, formation (apprenant 06,
+  cartographe 01 et 04), fiches UC-APP-03 et UC-APP-04. La valeur enregistrée
+  et l'effet ne changent pas : lisible par le cartographe lié, aucun lien
+  créé — le partage avec un employeur passe par l'interface (D-43).
+- `CLAUDE.md` (résumé et principe RGPD 4) : « lien vers une version choisie
+  par la personne, mot de passe facultatif, jamais automatique ».
+- Rien à changer pour le reste : les liens créés avant ne sont pas révoqués,
+  l'apprenant peut publier seul, et le code de demande suffit au cartographe.
 
 ---
 
@@ -1744,23 +1759,25 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 24. Attestation sur le compte et à chaque publication ; compte exigé pour
     partager seulement (D-31). → **Validé.**
 
-Questions ouvertes (2026-10-14, D-43) :
+Questions du 2026-10-14 sur l'ancien partage et la version garantie (D-42,
+D-43), réponses du même jour :
 
-25. Liens créés avant le retrait de l'ancien partage : ils restent servis
-    jusqu'à leur échéance (90 jours par défaut, 365 au plus). L'ancien partage
-    n'exigeait pas l'attestation de majorité : faut-il, au déploiement,
-    révoquer les liens des comptes qui ne l'ont jamais posée, voire tous les
-    anciens liens ? (Ma recommandation : révoquer ceux des comptes sans
-    attestation — une migration d'une ligne — et laisser les autres
-    expirer.)
-26. Le niveau de confidentialité « Publique (partageable) » ne crée plus
-    aucun lien : il ouvre seulement la lecture au cartographe lié, comme
-    « Partagée avec mon cartographe ». Garder ce libellé, le renommer
-    (« Publique »), ou retirer ce niveau ?
-27. `CLAUDE.md` décrit encore le partage employeur comme « lien + mot de
-    passe » (résumé et principe RGPD 4). Proposition : « lien vers une
-    version partagée choisie par la personne, mot de passe facultatif, jamais
-    automatique ». C'est votre texte : je ne l'ai pas modifié.
+25. Anciens liens (l'ancien partage n'exigeait pas l'attestation de
+    majorité) : les révoquer au déploiement ? → **Non** : le site n'est pas
+    encore ouvert au public, Christian est seul à l'utiliser. Ils expirent
+    normalement.
+26. Le niveau « Publique (partageable) » ne crée plus aucun lien. →
+    **Décidé** : il s'intitule « Partager ». Suite : fait (D-44).
+27. `CLAUDE.md` décrivait le partage employeur comme « lien + mot de
+    passe ». → **Proposition acceptée** : « lien vers une version choisie par
+    la personne, mot de passe facultatif, jamais automatique ». Suite : fait
+    (D-44).
+28. Publication par l'apprenant seul, sans cartographe (D-42, choix
+    d'implémentation) : la garder ? → **Oui**, elle reste possible ; le
+    destinataire lit « Publiée par la personne elle-même ».
+29. Le code de demande suffit-il pour qu'un cartographe publie, sans
+    invitation préalable acceptée (D-42, choix d'implémentation) ? →
+    **Oui** : « laisser comme ça, le code suffit ».
 
 ---
 

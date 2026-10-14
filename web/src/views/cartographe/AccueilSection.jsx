@@ -138,7 +138,7 @@ export default function AccueilSection({ fetchFn }) {
         ) : queue.length === 0 ? (
           <p className="privacy-note">
             Aucune cartographie dans votre file : vos apprentis n’ont encore rien partagé avec
-            vous (confidentialité « partagée avec mon cartographe » ou « publique »).
+            vous (confidentialité « Partagée avec mon cartographe » ou « Partager »).
           </p>
         ) : (
           <div className="table-scroll">

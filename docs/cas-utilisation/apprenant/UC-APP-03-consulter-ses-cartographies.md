@@ -65,7 +65,7 @@ la page Confidentialité.
    dernière modification (JJ/MM/AAAA), badge « copie serveur » si un
    `serverId` est enregistré localement (RG1 ; non revérifié côté serveur),
    confidentialité courante (« Privée », « Partagée avec mon cartographe »,
-   « Publique (partageable) »).
+   « Partager » — libellé « Publique (partageable) » jusqu'au 2026-10-14).
 4. Il clique « Voir » sur la fusion : la visionneuse remplace le tableau de
    bord, charge le référentiel publié (repli sur la copie embarquée) et rend
    la **vue chronologique** (sunburst cumulé, frise, calendrier) sous le
