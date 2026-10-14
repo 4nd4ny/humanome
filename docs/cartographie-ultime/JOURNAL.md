@@ -43,7 +43,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | `f55b036` |
 | Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | `9e7685c` |
 | Q25–29 | « Partager » ; `CLAUDE.md` décrit le nouveau partage (D-44) | ✅ | ✅ tests de libellés mis à jour | ✅ | `8f3b196` |
-| Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | voir §5 |
+| Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | `1377f2b` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
