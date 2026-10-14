@@ -98,30 +98,37 @@ describe('localisation (jaune / orange)', () => {
 
 describe('surlignage approché (extrait reformulé, décision du 2026-10-14)', () => {
   const text = 'Lundi. Ce matin, nous avons longuement discuté du projet de jardin avec la classe, puis chacun a proposé une plante. Le soir, rien de spécial.'
+  const parts = (t, near) => near.ranges.map((r) => t.slice(r.from, r.to))
 
-  it('trouve le passage qui contient au moins 75 % des mots pleins de l’extrait, bornes sur des mots de l’extrait', () => {
+  it('au moins 75 % des mots pleins de l’extrait dans la feuille : la phrase d’où ils viennent, de son premier à son dernier mot de l’extrait', () => {
     const near = locateApproximate(text, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')
-    expect(near).not.toBeNull()
-    expect(near.share).toBeGreaterThanOrEqual(0.75)
-    expect(text.slice(near.from, near.to)).toBe('nous avons longuement discuté du projet de jardin avec la classe')
+    expect(near.share).toBeCloseTo(0.8) // discuté, projet, jardin, classe sur 5 (« longtemps » manque)
+    expect(parts(text, near)).toEqual(['discuté du projet de jardin avec la classe'])
+  })
+
+  it('un extrait qui résume plusieurs phrases : chacune est encadrée', () => {
+    const t = 'Le matin, la maquette a cédé sous le poids. Nous avons cherché pourquoi pendant une heure. L’après-midi, nous avons changé les appuis et la structure a tenu.'
+    const near = locateApproximate(t, 'Maquette cédé sous le poids ; appuis changé, structure tenu')
+    expect(near.share).toBe(1)
+    expect(parts(t, near)).toEqual(['maquette a cédé sous le poids', 'changé les appuis et la structure a tenu'])
   })
 
   it('sous 75 %, rien : on ne devine pas', () => {
     expect(locateApproximate(text, 'Nous avons planté des tomates et arrosé le potager toute la semaine')).toBeNull()
   })
 
-  it('un extrait trop court (moins de 4 mots pleins) n’est jamais approché', () => {
+  it('un extrait trop court (moins de 4 mots pleins) n’est jamais approché ; les mots-outils ne comptent pas', () => {
     expect(locateApproximate(text, 'Le projet de jardin')).toBeNull()
+    expect(locateApproximate(text, 'avec tous nous pour dans mais aussi bien')).toBeNull()
   })
 
-  it('les mots répétés ne comptent qu’autant de fois que dans l’extrait', () => {
-    const repeated = 'jardin jardin jardin jardin jardin jardin jardin jardin'
-    expect(locateApproximate(repeated, 'jardin potager classe projet plante')).toBeNull()
+  it('une phrase qui ne répète qu’un mot n’apporte rien', () => {
+    expect(locateApproximate('jardin jardin jardin jardin jardin jardin jardin jardin', 'jardin potager classe projet plante')).toBeNull()
   })
 
   it('index d’origine même après un émoji et des espaces insécables', () => {
     const withEmoji = '🌱 Ce\u00a0matin, nous avons longuement discuté du projet de jardin avec la classe.'
     const near = locateApproximate(withEmoji, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')
-    expect(withEmoji.slice(near.from, near.to)).toBe('nous avons longuement discuté du projet de jardin avec la classe')
+    expect(parts(withEmoji, near)).toEqual(['discuté du projet de jardin avec la classe'])
   })
 })

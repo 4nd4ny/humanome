@@ -56,7 +56,7 @@ describe('findPassage', () => {
 
   it('extrait reformulé : rien de tel quel, mais 75 % de ses mots dans un passage de SA journée → approché (jamais « retrouvé »)', () => {
     // Reformulé aux deux bouts : ni le début ni la fin ne figurent tels quels (sinon : partiel).
-    const extract = 'Vérification de deux sources contradictoires avant de conclure sur la date exacte'
+    const extract = 'Bilan : deux sources contradictoires vérifié, conclure sur la date du chantier, ensuite'
     const r = findPassage({
       primary: '2025-12-22',
       dates,
@@ -66,7 +66,7 @@ describe('findPassage', () => {
     expect(r).toMatchObject({ date: '2025-12-22', status: 'approximate' })
     expect(r.share).toBeGreaterThanOrEqual(0.75)
     expect(r.ranges).toEqual([expect.objectContaining({ approximate: true, complete: false, exact: false })])
-    expect(TEXTS['2025-12-22'].slice(r.ranges[0].from, r.ranges[0].to)).toBe('deux sources contradictoires avant de conclure sur la date')
+    expect(TEXTS['2025-12-22'].slice(r.ranges[0].from, r.ranges[0].to)).toBe('vérifié deux sources contradictoires avant de conclure sur la date du chantier')
   })
 
   it('un bout retrouvé tel quel l’emporte sur l’approché (partiel, orange)', () => {

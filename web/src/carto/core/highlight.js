@@ -247,69 +247,97 @@ export function locateRendered(text, anchors, opts) {
 
 // ---------------------------------------------------------------------------
 // Surlignage APPROCHÉ (décision du 2026-10-14, question 9 du journal) : pour
-// un extrait que l'analyse a reformulé (défaut connu d'AuroraCore, D-12), le
-// passage du texte qui en contient le plus de mots, s'il en contient au moins
-// 75 % — toujours signalé comme approché, jamais comme retrouvé.
+// un extrait que l'analyse a reformulé (défaut connu d'AuroraCore, D-12), si
+// la feuille du jour contient au moins 75 % de ses mots pleins, on encadre les
+// phrases d'où ils viennent (au plus quatre) — toujours signalé comme
+// approché, jamais comme retrouvé. Sur les journaux réels, un extrait
+// reformulé résume souvent plusieurs phrases : d'où des phrases, pas une
+// fenêtre d'un seul tenant.
 
 const APPROX_WORD_RE = /[\p{L}\p{N}]+/gu
 const APPROX_MIN_LETTERS = 4
+/** Mots-outils de 4 lettres ou plus : ils ne disent rien du passage. */
+const APPROX_STOPWORDS = new Set(
+  'avec pour dans mais plus sont cette comme tout tous toute toutes elle elles nous vous leur leurs même aussi bien très fait faire être avoir avait était sans sous entre après avant encore alors donc ainsi quand chaque autre autres cela ceci celle celui ceux dont quoi puis déjà peut vers chez parce lors étais avais avons ayant étant'.split(' '),
+)
 
-/** Mots pleins (≥ 4 lettres) d'une chaîne REPLIÉE, avec leurs positions. */
+/** Mots pleins d'une chaîne REPLIÉE, avec leurs positions. */
 function approxTokens(collapsed) {
   const out = []
   for (const m of collapsed.matchAll(APPROX_WORD_RE)) {
-    if ([...m[0]].length >= APPROX_MIN_LETTERS) out.push({ word: m[0], start: m.index, end: m.index + m[0].length })
+    if ([...m[0]].length >= APPROX_MIN_LETTERS && !APPROX_STOPWORDS.has(m[0])) out.push({ word: m[0], start: m.index, end: m.index + m[0].length })
   }
   return out
 }
 
 /**
- * Passage le plus proche d'un extrait reformulé : la fenêtre du texte (au
- * plus ~1,6 fois la longueur de l'extrait, en mots) qui contient le plus de
- * ses mots pleins, si elle en contient au moins `minShare`.
+ * Phrases d'où vient un extrait reformulé : couverture gloutonne des mots
+ * pleins de l'extrait par les phrases de la feuille (chaque phrase retenue
+ * apporte au moins deux mots), si elle atteint `minShare`.
  * @param {string} text texte affiché
  * @param {string} extract extrait du jury
- * @param {{minShare?: number, minWords?: number}} [opts]
- * @returns {{from: number, to: number, share: number} | null} plage en index d'ORIGINE (`to` exclu)
+ * @param {{minShare?: number, minWords?: number, maxSentences?: number}} [opts]
+ * @returns {{ranges: Array<{from: number, to: number}>, share: number} | null} plages en
+ *   index d'ORIGINE (`to` exclu), dans l'ordre du texte
  */
-export function locateApproximate(text, extract, { minShare = 0.75, minWords = 4 } = {}) {
+export function locateApproximate(text, extract, { minShare = 0.75, minWords = 4, maxSentences = 4 } = {}) {
   const wanted = approxTokens(normalizeNeedle(String(extract ?? '').replace(TRUNCATION_RE, ' ')))
   if (wanted.length < minWords) return null
-  const need = new Map()
-  for (const t of wanted) need.set(t.word, (need.get(t.word) ?? 0) + 1)
+  const remaining = new Map()
+  for (const t of wanted) remaining.set(t.word, (remaining.get(t.word) ?? 0) + 1)
   const map = collapseText(String(text ?? ''))
-  const tokens = approxTokens(map.collapsed)
-  if (tokens.length === 0) return null
-  const span = Math.ceil(wanted.length * 1.6) + 2
-  const have = new Map()
-  let matched = 0
-  let best = null
-  let i = 0
-  const add = (w) => {
-    if (!need.has(w)) return
-    const n = (have.get(w) ?? 0) + 1
-    have.set(w, n)
-    if (n <= need.get(w)) matched++
+  const hay = map.collapsed
+  // Phrases : jusqu'à une ponctuation forte (incluse).
+  const sentences = []
+  for (const m of hay.matchAll(/[^.!?…]+[.!?…]*/gu)) {
+    const tokens = approxTokens(m[0]).map((t) => ({ ...t, start: t.start + m.index, end: t.end + m.index }))
+    if (tokens.length > 0) sentences.push({ tokens, used: false })
   }
-  const remove = (w) => {
-    if (!need.has(w)) return
-    const n = have.get(w)
-    have.set(w, n - 1)
-    if (n <= need.get(w)) matched--
+  const gainOf = (s) => {
+    const seen = new Map()
+    let gain = 0
+    for (const t of s.tokens) {
+      const left = (remaining.get(t.word) ?? 0) - (seen.get(t.word) ?? 0)
+      if (left > 0) {
+        gain++
+        seen.set(t.word, (seen.get(t.word) ?? 0) + 1)
+      }
+    }
+    return gain
   }
-  for (let j = 0; j < tokens.length; j++) {
-    add(tokens[j].word)
-    if (j - i + 1 > span) remove(tokens[i++].word)
-    if (best === null || matched > best.matched) best = { matched, i, j }
+  const chosen = []
+  let covered = 0
+  while (chosen.length < maxSentences) {
+    let best = null
+    let bestGain = 1
+    for (const s of sentences) {
+      if (s.used) continue
+      const g = gainOf(s)
+      if (g > bestGain) {
+        best = s
+        bestGain = g
+      }
+    }
+    if (!best) break
+    best.used = true
+    chosen.push(best)
+    covered += bestGain
+    for (const t of best.tokens) {
+      const n = remaining.get(t.word)
+      if (n > 0) remaining.set(t.word, n - 1)
+    }
   }
-  const share = best.matched / wanted.length
+  const share = covered / wanted.length
   if (share < minShare) return null
-  // Bornes : du premier au dernier mot de l'extrait présent dans la fenêtre.
-  let a = best.i
-  let b = best.j
-  while (a < b && !need.has(tokens[a].word)) a++
-  while (b > a && !need.has(tokens[b].word)) b--
-  return { from: map.origStart[tokens[a].start], to: map.origEnd[tokens[b].end - 1] + 1, share }
+  // Chaque phrase retenue : de son premier à son dernier mot de l'extrait.
+  const words = new Set(wanted.map((t) => t.word))
+  const ranges = chosen
+    .map((s) => {
+      const hits = s.tokens.filter((t) => words.has(t.word))
+      return { from: map.origStart[hits[0].start], to: map.origEnd[hits.at(-1).end - 1] + 1 }
+    })
+    .sort((a, b) => a.from - b.from)
+  return { ranges, share }
 }
 
 /**
