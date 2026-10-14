@@ -36,6 +36,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Pages V3 | `#/merge` et `#/cartographie-v3` renvoient vers `#/cartographie` ; l'accueil ouvre l'interface ultime (D-38) | ✅ | ✅ tests du site réécrits, ceux de la V3 retirés | ✅ suite du site | `080e04f` |
 | Q15 — version partagée | une nouvelle version remplace l'ancienne sous le même lien (D-33) | ✅ | ✅ API, interface, e2e | ✅ | `c4eb6ff` |
 | Q9 — surlignage approché | extraits reformulés encadrés en pointillés, dits « approchés » (D-39) | ✅ | ✅ 10 tests + validation sur les journaux réels | ✅ 304 verts (carto) | `b82ebd5`, `693f079` |
+| Formation | chapitres de la V3 réécrits pour la nouvelle interface ; « confiance moyenne du jury » à l'écran (D-38, D-8) | ✅ | ✅ suites des guides et de l'aide | ✅ | `5ff7201` |
+| Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1070,10 +1072,31 @@ externe qui lit le portfolio ».
   du module Portfolio du site (`segmentText`, celui de l'import), le fichier
   redonne les mêmes journées. Chaque journée s'ouvre sur son en-tête de date
   (sinon `## AAAA-MM-JJ` est ajouté : passage rattaché à la main, titre du
-  document) ; une ligne qui ouvrirait une autre journée (une date seule sur
-  sa ligne, un séparateur `---`, dans une réponse par exemple) est précédée
-  d'un tiret « — » ; les passages sans date viennent à la fin, chacun après
-  un séparateur, et restent sans date.
+  document ; jamais en double). Une ligne qui ouvrirait une autre journée est
+  neutralisée : un séparateur (`---`…) devient le même trait espacé
+  (`- - -`), qui s'affiche pareil sans rien couper ; une date seule sur sa
+  ligne (dans une réponse, ou dans une feuille qui cite un autre jour) est
+  précédée d'un tiret « — ». Les passages sans date viennent à la fin, chacun
+  après un séparateur, et restent sans date.
+
+Validation sur les journaux réels (sur le Mac, compteurs seulement) : le
+portfolio de chaque journal, plus deux dialogues synthétiques versés — l'un
+tenu un jour écrit, l'autre un jour sans texte, avec dans la réponse une date
+seule et un séparateur —, exporté puis redécoupé comme à l'import :
+
+| Journal | journées écrites | sans date | redécoupé : mêmes journées | textes repris tels quels | séparateurs en traits espacés | dates neutralisées | dialogues dans leur journée |
+|---|---|---|---|---|---|---|---|
+| 200 | 47 | 2 | oui (48 avec le jour du dialogue) ; 2 sans date | 47 / 47 | 0 | 0 | 2 / 2 |
+| 300 | 51 | 0 | oui (52) | 0 / 51 (feuilles séparées) | 120 | 15 | 2 / 2 |
+| GEN1 | 160 | 1 | oui (161) ; 1 sans date | 160 / 160 | 0 | 0 | 2 / 2 |
+
+Le journal 300 vient de feuilles séparées, datées par leur nom de fichier,
+avec des séparateurs à l'intérieur des journées et 15 lignes qui portent la
+date d'un autre jour : la première version de l'export (`f52b0ed`) leur
+ajoutait un en-tête en double et préfixait 139 lignes d'un tiret ; corrigé
+(`1ed2786`) : traits espacés, en-tête jamais doublé, seules les 15 dates
+précédées d'un tiret. (Les lignes neutralisées des dialogues synthétiques ne
+sont pas comptées.)
 
 ---
 
@@ -1308,7 +1331,7 @@ contre l'API locale, P7) verts.
 | | `core/passages.test.js` | approché seulement dans sa journée ; un bout retrouvé tel quel l'emporte ; jamais dans une autre journée | 11 (+3) |
 | | `ui/P2.test.jsx` | extrait reformulé : cadre pointillé, « approché … à vérifier », jamais « retrouvé » | 16 (+1) |
 
-| Carnet → portfolio (Q20, D-40) | `core/portfolio-md.test.js` (nouveau) | verser, retirer : un drapeau, rien de recopié ; dialogue en Markdown (questions répondues seulement, passage daté et attribué, relance attribuée au modèle, aucune ligne qui ouvre une journée) ; **portfolio exporté puis redécoupé = mêmes journées**, dialogue dans la sienne ; dialogue non versé absent, retiré : sorti ; réponse avec une date seule sur sa ligne ou un séparateur : la journée tient ; journée sans en-tête, titre du document, passage sans date ; rien à exporter | 7 |
+| Carnet → portfolio (Q20, D-40) | `core/portfolio-md.test.js` (nouveau) | verser, retirer : un drapeau, rien de recopié ; dialogue en Markdown (questions répondues seulement, passage daté et attribué, relance attribuée au modèle, aucune ligne qui ouvre une journée) ; **portfolio exporté puis redécoupé = mêmes journées**, dialogue dans la sienne ; dialogue non versé absent, retiré : sorti ; réponse avec une date seule sur sa ligne ou un séparateur : la journée tient ; feuilles séparées (séparateurs en traits espacés, date d'un autre jour neutralisée, en-tête jamais doublé) ; journée sans en-tête, titre du document, passage sans date ; rien à exporter | 8 |
 | | `core/archive.test.js` | le versement fait l'aller-retour ; « versed » n'emporte que les dialogues versés | 7 (+1) |
 | | `core/dialogue.test.js` | versement illisible écarté à la réimportation | 13 |
 | | `ui/P5.test.jsx` | copie autonome : du carnet, les seuls dialogues versés, et avec le portfolio seulement ; portfolio en Markdown téléchargé (texte, dialogue versé, pas le dialogue gardé) ; rien à exporter : bouton désactivé | 10 (+1) |
