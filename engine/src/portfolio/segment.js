@@ -14,8 +14,9 @@
 //   markdown heading marks (`#` .. `######`), a French weekday, a leading
 //   « le », and a short trailing title after `:`, `—`, `–` or `-`.
 //   Supported date formats: ISO « 2025-12-22 », numeric FR « 22/12/2025 »
-//   (also `.` or `-` as separator), textual FR « 22 décembre 2025 »
-//   (« 1er » accepted, accents optional). A textual date WITHOUT a year is
+//   (also `.` or `-` as separator, and « 1er.01.2026 » for the first of the
+//   month), textual FR « 22 décembre 2025 » (« 1er » accepted, accents
+//   optional). A textual date WITHOUT a year is
 //   accepted only when anchored by a weekday or a heading mark
 //   (« Lundi 22 décembre ») and yields `date: null` (the user names it).
 // - A date in the middle of a sentence NEVER splits: the pattern is anchored
@@ -50,7 +51,8 @@ const MONTHS = {
 
 const MONTH_RE = /^(\d{1,2})(?:er)?\s+(janvier|f[ée]vrier|mars|avril|mai|juin|juillet|ao[ûu]t|septembre|octobre|novembre|d[ée]cembre)(?:\s+(\d{4}))?\b/i
 const ISO_RE = /^(\d{4})-(\d{2})-(\d{2})\b/
-const NUMERIC_RE = /^(\d{1,2})([/.-])(\d{1,2})\2(\d{4})\b/
+// « 1er » only right after a lone 1 at the start: « 1er.01.2026 », never « 11er ».
+const NUMERIC_RE = /^(\d{1,2})(?:(?<=^1)er)?([/.-])(\d{1,2})\2(\d{4})\b/
 const SEPARATOR_RE = /^\s{0,3}(?:-{3,}|={3,}|\*{3,}|_{3,})\s*$/
 const HEADING_RE = /^\s{0,3}(#{1,6})\s+(.*)$/
 
