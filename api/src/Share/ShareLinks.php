@@ -143,24 +143,6 @@ final class ShareLinks
     }
 
     /**
-     * Révoque tous les liens actifs des versions partagées d'un compte
-     * (retrait de l'attestation de majorité). Renvoie le nombre de liens
-     * révoqués.
-     */
-    public function revokeSharedVersionsOf(int $userId): int
-    {
-        $stmt = $this->pdo->prepare(
-            "UPDATE share_links s
-               JOIN cartographies c ON c.id = s.cartographie_id
-                SET s.revoked_at = NOW()
-              WHERE c.user_id = ? AND c.type = 'partage' AND s.revoked_at IS NULL"
-        );
-        $stmt->execute([$userId]);
-
-        return $stmt->rowCount();
-    }
-
-    /**
      * Public consultation lookup. Returns the row with its cartography fields
      * REGARDLESS of expiration/revocation: the route collapses every failure
      * mode (unknown, expired, revoked) into one homogeneous 404 and decides

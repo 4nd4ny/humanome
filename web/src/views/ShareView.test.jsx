@@ -131,16 +131,19 @@ import sharedFixture from '../../../schemas/fixtures/partage/carto-partage-exemp
 describe('ShareView — version partagée (interface ultime, §12)', () => {
   const shared = { titre: 'Mes compétences — année 2025-2026', type: 'partage', document: sharedFixture, garantie: null }
 
-  it('lien ouvert : GET api/share/<token> dès l’ouverture, puis vue lecture seule (soleil, extraits)', async () => {
+  it('lien ouvert : lecture dès l’ouverture, jeton dans l’en-tête (jamais dans l’URL), puis vue lecture seule', async () => {
     const token = 'd'.repeat(32)
     const fetchFn = vi.fn().mockResolvedValueOnce(jsonResponse(200, shared))
     const getRef = vi.fn(getReferentiel)
     render(<ShareView token={token} open lib={fakeLib} fetchFn={fetchFn} getReferentiel={getRef} />)
 
     expect(await screen.findByRole('heading', { level: 1, name: 'Mes compétences — année 2025-2026' })).toBeDefined()
+    expect(fetchFn).toHaveBeenCalledTimes(1)
     const [url, init] = fetchFn.mock.calls[0]
-    expect(url).toBe(`api/share/${token}`)
+    expect(url).toBe('api/share/open')
+    expect(url).not.toContain(token)
     expect(init.method).toBe('GET')
+    expect(init.headers['X-Share-Token']).toBe(token)
     expect(screen.getByText('J’ai vérifié chaque source avant de conclure.')).toBeDefined()
     expect(screen.getByText(/Pensée critique/)).toBeDefined()
     expect(screen.getByText('de décembre 2025 à janvier 2026')).toBeDefined()
@@ -165,6 +168,13 @@ describe('ShareView — version partagée (interface ultime, §12)', () => {
     expect(screen.getByLabelText('Mot de passe du lien')).toBeDefined() // le formulaire reste
     await submitPassword('sesame-employeur')
     expect(await screen.findByRole('heading', { level: 1, name: 'Mes compétences — année 2025-2026' })).toBeDefined()
+  })
+
+  it('une version illisible (autre version du site) est signalée, sans plantage', async () => {
+    const broken = { ...shared, document: { ...sharedFixture, state: { ...sharedFixture.state, poles: [{ num: 1, theta: 1, intensity: 1, confidence: 1, codes: ['9.99'], needsReviewOnly: false }] }, referential: { ...sharedFixture.referential, competences: [] } } }
+    const fetchFn = vi.fn().mockResolvedValueOnce(jsonResponse(200, broken))
+    render(<ShareView token={'9'.repeat(32)} open lib={fakeLib} fetchFn={fetchFn} getReferentiel={getReferentiel} />)
+    expect((await screen.findByRole('alert')).textContent).toMatch(/Cette version partagée est illisible/)
   })
 
   it('lien ouvert révoqué ou expiré : message homogène, sans formulaire', async () => {

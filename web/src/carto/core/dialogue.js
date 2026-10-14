@@ -47,10 +47,15 @@ const quoted = (s) => `«\u00a0${s}\u00a0»`
 const label = (ref, code) => `${quoted(nameOf(ref, code))} (${code})`
 const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`
 
+/** Coupe à `max` points de code (jamais au milieu d'un émoji), avec « … ». */
+function cut(text, max) {
+  const chars = Array.from(String(text ?? ''))
+  return chars.length > max ? `${chars.slice(0, max - 1).join('').trimEnd()}…` : chars.join('')
+}
+
 /** Passage cité, nettoyé et borné. */
 export function quoteText(extract) {
-  const s = stripMarkdownMarks(String(extract ?? '')).replace(/\s+/gu, ' ').trim()
-  return s.length > MAX_QUOTE_CHARS ? `${s.slice(0, MAX_QUOTE_CHARS - 1).trimEnd()}…` : s
+  return cut(stripMarkdownMarks(String(extract ?? '')).replace(/\s+/gu, ' ').trim(), MAX_QUOTE_CHARS)
 }
 
 /**
@@ -218,14 +223,13 @@ export const MAX_RELAUNCH_CHARS = 400
 export function buildRelaunchRequest({ question, answer, quote = null }) {
   const lines = [`Question posée : ${String(question ?? '').trim()}`]
   if (quote) lines.push(`Passage cité de son journal : ${quoted(quoteText(quote))}`)
-  lines.push(`Sa réponse : ${String(answer ?? '').trim().slice(0, MAX_ANSWER_CHARS)}`)
+  lines.push(`Sa réponse : ${Array.from(String(answer ?? '').trim()).slice(0, MAX_ANSWER_CHARS).join('')}`)
   return { system: RELAUNCH_SYSTEM, prompt: lines.join('\n') }
 }
 
 /** Texte de relance affichable : simple texte, une question, bornée. */
 export function cleanRelaunch(text) {
-  const s = stripMarkdownMarks(String(text ?? '')).replace(/\s+/gu, ' ').trim()
-  return s.length > MAX_RELAUNCH_CHARS ? `${s.slice(0, MAX_RELAUNCH_CHARS - 1).trimEnd()}…` : s
+  return cut(stripMarkdownMarks(String(text ?? '')).replace(/\s+/gu, ' ').trim(), MAX_RELAUNCH_CHARS)
 }
 
 // ---------------------------------------------------------------------------

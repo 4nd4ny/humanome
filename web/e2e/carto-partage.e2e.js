@@ -7,8 +7,9 @@
 // partagée ou d'en créer un lien même si on l'appelle directement ; une fois
 // l'attestation posée, l'apprenant compose, relit (un nom de tiers remplacé),
 // publie et crée un lien sans mot de passe ; un navigateur anonyme ouvre le
-// lien (vue employeur, jamais indexée) ; l'auteur voit la consultation dans
-// son journal des accès ; retirer l'attestation révoque le lien.
+// lien (vue employeur, jamais indexée, jeton jamais dans l'URL de l'API) ;
+// l'auteur voit la consultation dans son journal des accès ; retirer
+// l'attestation efface la version et son lien.
 //
 // LOCAL UNIQUEMENT (docs/tests-e2e.md) : API docker sur :8080 avec les
 // migrations à jour (dont 022), dev-server Vite lancé par Playwright. Le code
@@ -132,6 +133,8 @@ test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage,
     const preview = page.getByLabel('Aperçu verrouillé de la version partagée')
     await expect(preview.getByRole('heading', { name: 'Lou — compétences de décembre' })).toBeVisible()
     await page.getByRole('checkbox', { name: /Je demande l’enregistrement/ }).check()
+    await expect(page.getByRole('button', { name: 'Publier la version partagée' })).toBeDisabled()
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }).check()
     await page.getByRole('button', { name: 'Publier la version partagée' }).click()
     await expect(page.getByText(/est publiée\. Créez maintenant un lien/)).toBeVisible()
 
@@ -158,19 +161,23 @@ test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage,
     await expect(visitor.getByText(/Singularité/)).toHaveCount(0) // compétence retirée
     expect(await visitor.locator('meta[name="robots"]').getAttribute('content')).toBe('noindex, nofollow, noarchive')
     expect(responses.length).toBeGreaterThan(0)
+    // Le jeton voyage dans un en-tête, jamais dans l'URL de l'API.
+    expect(responses.every((r) => !r.url().includes(url.split('/partage/')[1].split('/')[0]))).toBe(true)
     expect(responses[0].headers()['x-robots-tag']).toBe('noindex, nofollow, noarchive')
     await context.close()
   })
 
-  await test.step('L’auteur voit la consultation ; retirer l’attestation révoque le lien', async () => {
+  await test.step('L’auteur voit la consultation ; retirer l’attestation efface la version et son lien', async () => {
     await page.reload()
     await page.getByRole('link', { name: 'Partage', exact: true }).click()
     const item = page.locator('.carto-share-version').filter({ hasText: 'Lou — compétences de décembre' })
     await item.getByRole('button', { name: 'Liens et accès' }).click()
     await expect(item.getByText(/Consulté 1 fois/)).toBeVisible()
     await page.getByRole('button', { name: 'Retirer mon attestation' }).click()
-    await page.getByRole('button', { name: 'Confirmer : révoquer tous mes liens' }).click()
+    await page.getByRole('button', { name: 'Confirmer : effacer mes versions partagées' }).click()
     await expect(page.getByRole('heading', { name: 'Le partage par lien est réservé aux personnes majeures' })).toBeVisible()
+    await expect(page.getByText('Attestation retirée : 1 version partagée et ses liens ont été effacés du serveur.')).toBeVisible()
+    expect(devSql(`SELECT COUNT(*) FROM cartographies c JOIN users u ON u.id = c.user_id WHERE u.email = '${email}'`)).toBe('0')
 
     const context = await browser.newContext({ locale: 'fr-FR' })
     const visitor = await context.newPage()

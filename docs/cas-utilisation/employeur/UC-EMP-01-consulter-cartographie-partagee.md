@@ -255,7 +255,8 @@ cd web && npx vitest run test/usecases --testNamePattern UC-EMP-01
 Un lien vers une **version partagée** (type `partage`, publiée par un
 apprenant adulte depuis `#/cartographie/partage`) peut se passer de mot de
 passe : il arrive alors en `#/partage/<jeton>/ouvert`, et `ShareView` demande
-la version dès l'ouverture par `GET /api/share/{token}` (même quota par IP que
+la version dès l'ouverture par `GET /api/share/open`, le jeton voyageant dans
+l'en-tête `X-Share-Token` et jamais dans l'URL de l'API (même quota par IP que
 le POST, 404 homogène ; `401 {code: 'password_required'}` si le lien a
 finalement un mot de passe, et le formulaire habituel s'affiche). La version
 est rendue par `SharedView` : soleil, heatmap à la précision choisie par

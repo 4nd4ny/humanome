@@ -306,12 +306,13 @@ un type de cartographie dédié, `partage`, **réservé aux adultes** :
   `POST /api/cartographies/{id}/share` sur une telle cartographie répondent
   `403 {code: 'adult_required'}` tant que le compte n'a pas attesté sa
   majorité (`PUT /api/auth/me/adult {adult: true}`) ; retirer l'attestation
-  révoque aussitôt tous les liens actifs de ces versions ;
+  efface aussitôt ces versions et leurs liens ;
 - le document est un instantané `carto-partage` vérifié par liste blanche
   (`api/src/Share/SharedVersion.php`), toujours en visibilité `privee` ;
 - le mot de passe d'un tel lien est **facultatif** : sans mot de passe, l'URL
-  renvoyée se termine par `/ouvert` et `GET /api/share/{token}` sert la
-  version ;
+  renvoyée se termine par `/ouvert` et `GET /api/share/open` (jeton dans
+  l'en-tête `X-Share-Token`) sert la version ; une version publiée est figée
+  (titre compris) et hors du module de relecture du cartographe ;
 - l'auteur lit le journal des accès d'un lien
   (`GET /api/shares/{shareId}/consultations` : dates seulement).
 

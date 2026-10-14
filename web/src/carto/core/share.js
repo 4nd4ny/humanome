@@ -72,6 +72,19 @@ export function formatSharedDate(key, precision) {
 
 const round = (n, d = 4) => (typeof n === 'number' && Number.isFinite(n) ? Math.round(n * 10 ** d) / 10 ** d : null)
 
+/**
+ * Coupe une chaîne à `max` caractères (points de code, jamais au milieu d'un
+ * émoji : une moitié de paire de substitution rendrait le JSON illisible pour
+ * le serveur), avec « … » si elle était plus longue.
+ */
+export function cut(text, max) {
+  const chars = Array.from(String(text ?? ''))
+  return chars.length > max ? `${chars.slice(0, max - 1).join('').trimEnd()}…` : chars.join('')
+}
+
+/** Longueur en points de code (celle que compte le serveur, mb_strlen). */
+export const charLength = (text) => Array.from(String(text ?? '')).length
+
 /** Texte d'un extrait tel qu'il sera publié : sans Markdown, blancs réduits, borné. */
 export function cleanExtractText(text, replacer = null) {
   // Marques imbriquées (« > ### titre ») : on retire jusqu'à stabilité.
@@ -83,7 +96,13 @@ export function cleanExtractText(text, replacer = null) {
   }
   out = out.replace(/\s+/gu, ' ').trim()
   if (replacer) out = replacer.apply(out)
-  if (out.length > MAX_EXTRACT_CHARS) out = `${out.slice(0, MAX_EXTRACT_CHARS - 1).trimEnd()}…`
+  return cut(out, MAX_EXTRACT_CHARS)
+}
+
+/** Titre tel qu'il sera publié : blancs réduits, mêmes masques et remplacements de noms que les extraits. */
+export function cleanTitle(title, replacer = null) {
+  let out = String(title ?? '').replace(/\s+/gu, ' ').trim()
+  if (replacer) out = replacer.apply(out)
   return out
 }
 
@@ -129,9 +148,11 @@ export function extractCandidates(state, ref, codes) {
  */
 export function buildSharedVersion({ state, ref, title, codes, precision = 'month', extracts = [], dictionary = [], patterns = DEFAULT_SHARE_PATTERNS, now = new Date().toISOString() }) {
   if (!DATE_PRECISIONS.includes(precision)) throw new Error('Précision des dates inconnue.')
-  const cleanTitle = String(title ?? '').replace(/\s+/gu, ' ').trim()
-  if (cleanTitle === '') throw new Error('Donnez un titre à la version partagée.')
-  if (cleanTitle.length > MAX_TITLE_CHARS) throw new Error(`Le titre compte ${MAX_TITLE_CHARS} caractères au plus.`)
+  // Les mêmes masques et remplacements de noms que pour les extraits.
+  const replacer = makeReplacer({ dictionary, patterns })
+  const publishedTitle = cleanTitle(title, replacer)
+  if (publishedTitle === '') throw new Error('Donnez un titre à la version partagée.')
+  if (charLength(publishedTitle) > MAX_TITLE_CHARS) throw new Error(`Le titre compte ${MAX_TITLE_CHARS} caractères au plus.`)
 
   // 1. Compétences retenues, dans l'ordre du référentiel, chiffres recalculés.
   const wanted = new Set(codes)
@@ -190,7 +211,6 @@ export function buildSharedVersion({ state, ref, title, codes, precision = 'mont
   }
 
   // 4. Extraits choisis : relus, masqués, bornés ; jamais d'une compétence retirée.
-  const replacer = makeReplacer({ dictionary, patterns })
   const seen = new Set()
   const cleanExtracts = []
   for (const e of extracts) {
@@ -208,20 +228,21 @@ export function buildSharedVersion({ state, ref, title, codes, precision = 'mont
   // 5. Référentiel embarqué : tous les pôles (donnée publique, symboles
   //    stables), les seules compétences retenues.
   const kept = new Set(competencies.map((c) => c.code))
+  const color = (c) => (typeof c === 'string' && /^#[0-9A-Fa-f]{3,8}$/u.test(c) ? c : null)
   const referential = {
-    id: String(ref.id ?? 'referentiel').slice(0, 100),
-    version: String(ref.version ?? '0.0.0').slice(0, 40),
-    label: String(ref.label ?? ref.id ?? 'Référentiel').slice(0, 300),
-    poles: ref.poles.map((p) => ({ num: p.num, nom: String(p.name).slice(0, 300), couleur: p.color ?? null })),
+    id: cut(ref.id ?? 'referentiel', 100),
+    version: cut(ref.version ?? '0.0.0', 40),
+    label: cut(ref.label ?? ref.id ?? 'Référentiel', 300),
+    poles: ref.poles.map((p) => ({ num: p.num, nom: cut(p.name, 300), couleur: color(p.color) })),
     competences: ref.competencies
       .filter((c) => kept.has(c.code))
-      .map((c) => ({ code: c.code, nom: String(c.name).slice(0, 300), pole: c.pole, description: String(c.description ?? '').slice(0, 4000) })),
+      .map((c) => ({ code: c.code, nom: cut(c.name, 300), pole: c.pole, description: cut(c.description ?? '', 4000) })),
   }
 
   return {
     kind: SHARE_KIND,
     schemaVersion: SHARE_SCHEMA_VERSION,
-    title: cleanTitle,
+    title: publishedTitle,
     publishedAt: now,
     datePrecision: precision,
     period,
@@ -257,7 +278,9 @@ export function sharedState(doc) {
       verdicts: [],
     })
   }
-  const poles = new Map((doc.state.poles ?? []).map((p) => [p.num, { ...p }]))
+  const poles = new Map(
+    (doc.state.poles ?? []).map((p) => [p.num, { ...p, codes: (Array.isArray(p.codes) ? p.codes : []).filter((code) => competencies.has(code)) }]),
+  )
   return {
     ref,
     state: {

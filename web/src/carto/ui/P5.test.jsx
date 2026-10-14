@@ -13,7 +13,7 @@ import { importFiles } from '../core/import.js'
 import { buildArchive, looksLikeArchive } from '../core/archive.js'
 import { DATA_SLOT } from '../core/standalone.js'
 import { createDataset, observationKey } from '../core/model.js'
-import { setPreferences, setReview } from '../core/ops.js'
+import { addReflection, setPreferences, setReview } from '../core/ops.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
@@ -116,7 +116,7 @@ describe('P5 — archive JSON', () => {
     expect(back.dataset.days.map((d) => d.date)).toEqual(['2025-12-22', '2025-12-23', '2025-12-24'])
     expect(back.dataset.reviews).toEqual(archive.reviews)
 
-    fireEvent.click(within(page).getByRole('checkbox', { name: 'inclure le texte du portfolio' }))
+    fireEvent.click(within(page).getByRole('checkbox', { name: 'inclure le texte du portfolio (et le carnet du dialogue)' }))
     expect(within(page).getByText(/Sans le texte, le surlignage des passages sera indisponible/)).toBeTruthy()
     fireEvent.click(within(page).getByRole('button', { name: 'Télécharger l’archive' }))
     await waitFor(() => expect(downloads).toHaveLength(2))
@@ -128,9 +128,10 @@ describe('P5 — archive JSON', () => {
 })
 
 describe('P5 — copie autonome HTML', () => {
-  it('un seul fichier : le modèle et l’archive embarquée ; portfolio seulement sur demande, avec avertissement', async () => {
+  it('un seul fichier : le modèle et l’archive embarquée ; portfolio seulement sur demande, avec avertissement ; jamais le carnet', async () => {
     const fetchFn = templateFetch()
-    const page = await openExport(await louStore(), fetchFn)
+    const withNotebook = (ds) => addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Que s’est-il passé ?', answer: 'Une réponse intime.' }] }, { now: NOW })
+    const page = await openExport(await louStore({ mutate: withNotebook }), fetchFn)
     fireEvent.click(within(page).getByRole('button', { name: 'Télécharger la copie' }))
     let file = await lastDownload()
     expect(file.name).toMatch(/^cartographie-copie-\d{4}-\d{2}-\d{2}\.html$/)
@@ -150,6 +151,9 @@ describe('P5 — copie autonome HTML', () => {
     archive = readEmbeddedArchive(new DOMParser().parseFromString(file.text, 'text/html'))
     expect(archive.includesPortfolio).toBe(true)
     expect(archive.details['2025-12-22'].portfolio.text).toMatch(/Ce matin j’ai relu mes notes/)
+    // Une copie autonome se donne : le carnet du dialogue n'y entre jamais, même avec le portfolio.
+    expect(archive.reflections).toEqual([])
+    expect(file.text).not.toContain('Une réponse intime')
   })
 
   it('modèle absent : un message dit quoi faire, rien n’est téléchargé', async () => {

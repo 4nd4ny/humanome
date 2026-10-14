@@ -7,7 +7,42 @@ déployés sur https://humanome.xyz (`health` → `v1.1.0`) et vérifiés en lig
 https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Actions restantes
 (utilisateur) » en fin de fichier.
 
+Branche `feat/ultimate-cartography` : interface ultime de cartographie, **non déployée**, en
+attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
+
 ## Fait
+
+- 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
+  `feat/ultimate-cartography`, NON déployée — aucun déploiement avant validation).**
+  - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
+    dépôt). Journal d'avancement, décisions D-1 → D-37, état des tests et 24 questions
+    ouvertes : `docs/cartographie-ultime/JOURNAL.md`.
+  - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
+    l'ancienne vue V3 passe en `#/cartographie-v3` (D-2, **[écart]**). P0 noyau (master v4,
+    importeurs Aurora v3 / AuroraCore / Merge v2, formules §5, IndexedDB) ; P1 soleil,
+    heatmap, gestionnaire, date t ; P2 lecteur de portfolio surligné, détail, jury ; P3
+    comparaison de soi à soi ; P4 tableau de bord ; P5 archive JSON, copie autonome HTML
+    (lisible hors ligne en `file://`), rapport imprimable, démo anonymisée ; P6 version
+    partagée réservée aux adultes (auto-attestation gardée par le serveur, liste blanche,
+    lien à mot de passe facultatif jamais indexé, journal des accès) ; P7 dialogue scripté
+    local, relances LLM facultatives sur accord explicite ; puis relecture indépendante de P6
+    et P7 (13 corrections, D-37).
+  - API : migration `022_carto_partage_adultes.sql` (type `partage`, mot de passe de lien
+    facultatif, `users.adult_attested_at`) — elle part avec la release API (`deploy.mjs api`
+    appelle `migrate`) ; routes `partage.php` (attestation), `GET /api/share/open` (jeton en
+    en-tête), `GET /api/shares/{id}/consultations`. Registre RGPD (3 bis, 3 ter), politique de
+    confidentialité, matrice d'autorisations, UC-APP-05 et UC-EMP-01 mis à jour.
+  - Données réelles (journaux 300 / 200 / GEN1) : importeurs, lecteur et anonymisation validés
+    sur le Mac, compteurs seulement ; rien de personnel n'est versionné.
+  - **Vérification** : front **2 231 verts** sur 2 232 (dont 285 de la cartographie ; l'échec,
+    `UC-ADM-05-F01`, sans lien avec la cartographie, est instable sous charge et passe seul 3
+    fois sur 3 ; `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ;
+    moteur 1 069 verts + 17 sautés (inchangé) ; API **1 481 verts** (14 132 assertions, 23 min 20 s) ; e2e Chromium P5, P6
+    (contre l'API docker locale) et P7 verts.
+  - **Reste (décision utilisateur)** : valider la branche ; questions 1 → 24 du journal,
+    notamment 17 (le partage historique `#/espace` n'exige pas l'attestation de majorité) et
+    22 (la CSP `connect-src 'self'` bloque les relances LLM du dialogue comme les runs « clé
+    personnelle »).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1302,6 +1337,12 @@ https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Ac
   informatif, non bloquant — code-splitting à envisager (backlog outillage).
 - `npm audit` complet : 5 findings **outillage de dev uniquement** (vite/vitest/esbuild),
   non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
+- CSP de production `connect-src 'self'` (`web/public/.htaccess`) : bloque tout appel direct du
+  navigateur vers un fournisseur LLM ou Ollama — runs « clé personnelle » et relances du
+  dialogue de la cartographie. Décision en attente (journal carto, question 22).
+- Partage historique (`#/espace`, jour / merge / twin9) non soumis à l'attestation de majorité
+  de l'interface ultime (§12 : « pour les mineurs, ni copie serveur ni partage ») — décision en
+  attente (journal carto, question 17).
 
 ## Jalons
 

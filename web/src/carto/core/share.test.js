@@ -22,6 +22,7 @@ import {
   sharedState,
 } from './share.js'
 import fixture from '../../../../schemas/fixtures/partage/carto-partage-exemple.json'
+import { contractInput } from '../test/share-contract.js'
 
 const ref = normalizeReferential(miniReferential())
 const ds = indexDataset([
@@ -144,11 +145,27 @@ describe('extraits', () => {
 })
 
 describe('contrat avec le serveur', () => {
-  it('même forme que la fixture partagée (que la liste blanche PHP accepte)', () => {
+  it('la sortie réelle du constructeur EST la fixture partagée (que la liste blanche PHP accepte)', () => {
+    // En cas d'écart voulu : cd web && npx vite-node scripts/carto-share-fixture.mjs
+    expect(buildSharedVersion(contractInput())).toEqual(fixture)
     const doc = build({ precision: 'month', extracts: [{ code: '1.01', date: '2025-12-22', role: 'preuve', text: 'Un passage.' }] })
     expect(shape(doc)).toEqual(shape(fixture))
     expect(isSharedVersion(doc)).toBe(true)
     expect(isSharedVersion({ ...doc, schemaVersion: '2.0.0' })).toBe(false)
+  })
+
+  it('le titre passe par les mêmes masques et remplacements que les extraits', () => {
+    const doc = build({ title: 'Mon année avec Camille — camille@exemple.org', dictionary: [{ from: 'Camille', to: '‹nom›' }] })
+    expect(doc.title).toBe('Mon année avec ‹nom› — ‹courriel›')
+  })
+
+  it('les coupes ne tombent jamais au milieu d’un émoji (JSON lisible par le serveur)', () => {
+    const text = `${'a'.repeat(1998)}😀😀 la suite`
+    const doc = build({ extracts: [{ code: '1.01', date: '2025-12-22', role: 'preuve', text }] })
+    const out = doc.extracts[0].text
+    expect(Array.from(out)).toHaveLength(MAX_EXTRACT_CHARS)
+    expect(out.endsWith('😀…')).toBe(true)
+    expect(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])/u.test(out.replace(/[\u{10000}-\u{10FFFF}]/gu, ''))).toBe(false)
   })
 
   it('aucun champ privé : ni portfolio, ni jury, ni traces, ni notes', () => {

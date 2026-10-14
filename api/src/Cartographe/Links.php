@@ -168,6 +168,11 @@ final class Links
         if ($row === false) {
             return null;
         }
+        // Une version partagée (interface ultime, §12) est un instantané figé,
+        // sans cartographe tiers : ni annotation, ni révision, ni garantie.
+        if ((string) $row['type'] === 'partage') {
+            return null;
+        }
         if ((int) $row['user_id'] === $userId) {
             return ['level' => 'owner', 'type' => (string) $row['type']];
         }

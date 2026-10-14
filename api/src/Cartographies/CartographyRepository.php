@@ -179,6 +179,19 @@ final class CartographyRepository
         return $stmt->rowCount() > 0;
     }
 
+    /**
+     * Efface toutes les versions partagées d'un compte (et leurs liens, par
+     * clé étrangère) : retrait de l'attestation de majorité (§12 : « pour les
+     * mineurs, ni copie serveur ni partage »). Renvoie le nombre de versions.
+     */
+    public function deleteSharedVersionsOf(int $userId): int
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM cartographies WHERE user_id = ? AND type = 'partage'");
+        $stmt->execute([$userId]);
+
+        return $stmt->rowCount();
+    }
+
     public function ownedBy(int $id, int $userId): bool
     {
         $stmt = $this->pdo->prepare('SELECT 1 FROM cartographies WHERE id = ? AND user_id = ?');

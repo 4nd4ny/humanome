@@ -14,10 +14,12 @@ use Psr\Http\Message\ResponseInterface;
  * Critère d'acceptation : « un mineur n'a jamais accès à la fonction ». Sans
  * auto-attestation de majorité, le serveur refuse de stocker une version
  * partagée et d'en créer un lien, quoi que fasse le client ; retirer
- * l'attestation révoque les liens actifs. La version partagée est vérifiée
- * par liste blanche de champs (jamais de portfolio, jamais de jury), le lien
- * peut se passer de mot de passe, n'est jamais indexé, et son auteur voit le
- * journal des consultations.
+ * l'attestation EFFACE les versions partagées et leurs liens. La version
+ * partagée est vérifiée par liste blanche de champs et de types (jamais de
+ * portfolio, jamais de jury), elle est figée (ni titre modifiable, ni
+ * relecture de cartographe), le lien peut se passer de mot de passe (jeton
+ * dans un en-tête, jamais dans l'URL de l'API), n'est jamais indexé, et son
+ * auteur voit le journal des consultations.
  */
 final class CartoPartageTest extends AuthTestBase
 {
@@ -69,7 +71,7 @@ final class CartoPartageTest extends AuthTestBase
                 ],
                 'competences' => [
                     ['code' => 'C1.1', 'nom' => 'Analyser', 'pole' => 1, 'description' => 'Décomposer une situation.'],
-                    ['code' => 'C2.3', 'nom' => 'Coopérer', 'pole' => 2],
+                    ['code' => 'C2.3', 'nom' => 'Coopérer', 'pole' => 2, 'description' => ''],
                 ],
             ],
             'state' => [
@@ -89,15 +91,18 @@ final class CartoPartageTest extends AuthTestBase
         ], $overrides);
     }
 
-    /** @param array<string, mixed> $document */
-    private function publish(array $document, string $visibility = 'privee'): ResponseInterface
+    /**
+     * @param array<string, mixed> $document
+     * @param array<string, mixed> $extra champs ajoutés au corps de la requête
+     */
+    private function publish(array $document, string $visibility = 'privee', array $extra = []): ResponseInterface
     {
         return $this->call('POST', '/api/cartographies', [
             'type' => 'partage',
             'titre' => (string) ($document['title'] ?? 'Version partagée'),
             'visibility' => $visibility,
             'document' => $document,
-        ]);
+        ] + $extra);
     }
 
     private function publishedId(): int
@@ -118,22 +123,40 @@ final class CartoPartageTest extends AuthTestBase
         return self::json($response);
     }
 
-    /** Navigateur anonyme du destinataire (aucun cookie de session). */
-    private function anonymous(string $method, string $path, ?array $body = null): ResponseInterface
+    /**
+     * Navigateur anonyme du destinataire (aucun cookie de session).
+     *
+     * @param array<string, string> $headers
+     */
+    private function anonymous(string $method, string $path, ?array $body = null, array $headers = []): ResponseInterface
     {
         [$sid, $ip] = [$this->cookieSid, $this->clientIp];
         $this->cookieSid = null;
         $this->clientIp = '198.51.100.23';
         try {
-            return $this->request($method, $path, $body);
+            return $this->request($method, $path, $body, $headers);
         } finally {
             [$this->cookieSid, $this->clientIp] = [$sid, $ip];
         }
     }
 
+    /** Lecture d'un lien ouvert : le jeton dans l'en-tête, jamais dans l'URL. */
+    private function open(string $token): ResponseInterface
+    {
+        return $this->anonymous('GET', '/api/share/open', null, ['X-Share-Token' => $token]);
+    }
+
     private static function rows(string $sql): int
     {
         return (int) self::$pdo->query($sql)->fetchColumn();
+    }
+
+    private function jourCartography(): int
+    {
+        $jour = $this->call('POST', '/api/cartographies', ['type' => 'jour', 'titre' => 'Journée', 'document' => ['kind' => 'cartographie-jour', 'date' => '2026-01-05']]);
+        self::assertSame(201, $jour->getStatusCode());
+
+        return (int) self::json($jour)['id'];
     }
 
     public function testWithoutAttestationNothingIsStoredNorShared(): void
@@ -144,10 +167,9 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame(0, self::rows("SELECT COUNT(*) FROM cartographies WHERE type = 'partage'"), 'rien n’est écrit');
 
         // Les autres usages du compte ne changent pas (copie serveur d'une
-        // journée, lien employeur avec mot de passe).
-        $jour = $this->call('POST', '/api/cartographies', ['type' => 'jour', 'titre' => 'Journée', 'document' => ['kind' => 'cartographie-jour', 'date' => '2026-01-05']]);
-        self::assertSame(201, $jour->getStatusCode());
-        $share = $this->call('POST', '/api/cartographies/' . self::json($jour)['id'] . '/share', ['password' => 'sesame-employeur']);
+        // journée, lien employeur avec mot de passe) : décision à confirmer,
+        // journal D-31, question 17.
+        $share = $this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', ['password' => 'sesame-employeur']);
         self::assertSame(201, $share->getStatusCode());
     }
 
@@ -169,29 +191,45 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame(422, $this->call('PUT', '/api/auth/me/adult', ['adult' => 'oui'])->getStatusCode());
         self::assertSame(422, $this->call('PUT', '/api/auth/me/adult', [])->getStatusCode());
 
+        // Sans jeton CSRF (session portée par le cookie) : refusé.
+        self::assertSame(403, $this->request('PUT', '/api/auth/me/adult', ['adult' => false])->getStatusCode());
+
         // Un visiteur n'a ni attestation ni fonction.
         $this->cookieSid = null;
         self::assertSame(401, $this->request('GET', '/api/auth/me/adult')->getStatusCode());
         self::assertSame(401, $this->request('PUT', '/api/auth/me/adult', ['adult' => true])->getStatusCode());
     }
 
-    public function testSharedVersionIsCheckedByWhitelist(): void
+    public function testSharedVersionIsCheckedByWhitelistOfFieldsAndTypes(): void
     {
         $this->attest(true);
         $doc = self::sharedDoc();
+        $state = $doc['state'];
+        $ref = $doc['referential'];
 
         $cases = [
             'portfolio en tête' => $doc + ['portfolio' => ['2025-09-14' => 'texte intégral']],
             'traces de jury' => array_replace_recursive($doc, ['state' => ['competencies' => [0 => ['traces' => [['extract' => 'x']]]]]]),
-            'référentiel augmenté' => array_replace_recursive($doc, ['referential' => ['notes' => 'privé']]),
+            'champ manquant' => array_replace($doc, ['state' => array_replace($state, ['competencies' => [array_diff_key($state['competencies'][0], ['hints' => 0]), $state['competencies'][1]]])]),
+            'référentiel augmenté d’un champ' => array_replace_recursive($doc, ['referential' => ['notes' => 'privé']]),
+            'référentiel augmenté d’une compétence non retenue' => array_replace($doc, ['referential' => array_replace($ref, ['competences' => [...$ref['competences'], ['code' => 'C3.1', 'nom' => 'Texte libre', 'pole' => 1, 'description' => str_repeat('portfolio ', 300)]]])]),
+            'couleur qui n’en est pas une' => array_replace_recursive($doc, ['referential' => ['poles' => [0 => ['couleur' => 'url(https://exemple.org/x.png)']]]]),
             'compétence inconnue du référentiel' => array_replace_recursive($doc, ['state' => ['competencies' => [0 => ['code' => 'C9.9']]]]),
-            'aucune compétence' => array_replace($doc, ['state' => array_replace($doc['state'], ['competencies' => []])]),
+            'compétence d’un autre pôle' => array_replace_recursive($doc, ['state' => ['competencies' => [0 => ['pole' => 2]]]]),
+            'aucune compétence' => array_replace($doc, ['state' => array_replace($state, ['competencies' => []])]),
+            'texte glissé dans needsReviewOnly' => array_replace_recursive($doc, ['state' => ['poles' => [0 => ['needsReviewOnly' => 'texte du portfolio']]]]),
+            'code inconnu dans un pôle' => array_replace_recursive($doc, ['state' => ['poles' => [0 => ['codes' => ['C1.1', '2025-09-14']]]]]),
+            'compteur de journées texte' => array_replace_recursive($doc, ['heatmap' => ['cells' => [0 => ['days' => 'deux']]]]),
+            'angle hors bornes' => array_replace_recursive($doc, ['state' => ['competencies' => [0 => ['theta' => 9000]]]]),
             'extrait trop long' => array_replace($doc, ['extracts' => [['code' => 'C1.1', 'date' => '2025-09', 'role' => 'preuve', 'text' => str_repeat('a', 2001)]]]),
             'extrait d’une compétence retirée' => array_replace($doc, ['extracts' => [['code' => 'C3.1', 'date' => '2025-09', 'role' => 'preuve', 'text' => 'x']]]),
             'extrait daté au jour en précision mois' => array_replace($doc, ['extracts' => [['code' => 'C1.1', 'date' => '2025-09-14', 'role' => 'preuve', 'text' => 'x']]]),
             'journée plus fine que le mois' => array_replace_recursive($doc, ['state' => ['dates' => [0 => '2025-09-14']]]),
-            'période avec dates masquées' => array_replace($doc, ['datePrecision' => 'none', 'heatmap' => null, 'state' => array_replace($doc['state'], ['dates' => []]), 'extracts' => []]),
+            'mois impossible' => array_replace_recursive($doc, ['state' => ['dates' => [0 => '2025-13']]]),
+            'période à l’envers' => array_replace($doc, ['period' => ['from' => '2025-10', 'to' => '2025-09']]),
+            'période avec dates masquées' => array_replace($doc, ['datePrecision' => 'none', 'heatmap' => null, 'state' => array_replace($state, ['dates' => []]), 'extracts' => []]),
             'heatmap de précision différente' => array_replace($doc, ['heatmap' => ['precision' => 'day', 'cells' => []]]),
+            'date de publication libre' => array_replace($doc, ['publishedAt' => 'hier, chez Sam']),
             'mauvais kind' => array_replace($doc, ['kind' => 'competency-map-master']),
             'version de format inconnue' => array_replace($doc, ['schemaVersion' => '2.0.0']),
         ];
@@ -202,6 +240,11 @@ final class CartoPartageTest extends AuthTestBase
         }
         self::assertStringContainsString('portfolio', self::json($this->publish($cases['portfolio en tête']))['fields']['document']);
 
+        // Une version partagée ne porte que son document : ni métadonnées de
+        // run, ni versions de paquet ou de référentiel.
+        $withRunMeta = $this->publish($doc, 'privee', ['runMeta' => ['notes' => str_repeat('portfolio ', 100)]]);
+        self::assertSame(422, $withRunMeta->getStatusCode());
+        self::assertArrayHasKey('runMeta', self::json($withRunMeta)['fields']);
         // Une version partagée reste privée : seul un lien la montre.
         self::assertSame(422, $this->publish($doc, 'publique')->getStatusCode());
         self::assertSame(0, self::rows('SELECT COUNT(*) FROM cartographies'), 'aucun refus n’écrit quoi que ce soit');
@@ -211,7 +254,7 @@ final class CartoPartageTest extends AuthTestBase
             'datePrecision' => 'none',
             'period' => null,
             'heatmap' => null,
-            'state' => array_replace($doc['state'], ['dates' => []]),
+            'state' => array_replace($state, ['dates' => []]),
             'extracts' => [['code' => 'C1.1', 'date' => null, 'role' => 'indice', 'text' => 'Un passage choisi.']],
         ]);
         self::assertSame(201, $this->publish($hidden)->getStatusCode());
@@ -219,11 +262,20 @@ final class CartoPartageTest extends AuthTestBase
         $daily = array_replace($doc, [
             'datePrecision' => 'day',
             'period' => ['from' => '2025-09-14', 'to' => '2025-10-02'],
-            'state' => array_replace($doc['state'], ['dates' => ['2025-09-14', '2025-09-20', '2025-10-02']]),
+            'state' => array_replace($state, ['dates' => ['2025-09-14', '2025-09-20', '2025-10-02']]),
             'heatmap' => ['precision' => 'day', 'cells' => [['key' => '2025-09-14', 'level' => 5, 'days' => 1]]],
             'extracts' => [],
         ]);
         self::assertSame(201, $this->publish($daily)->getStatusCode());
+        self::assertSame(422, $this->publish(array_replace($daily, ['period' => ['from' => '2025-02-30', 'to' => '2025-10-02']]))->getStatusCode(), 'jour impossible');
+    }
+
+    public function testTitleIsTheReviewedSnapshotTitle(): void
+    {
+        $this->attest(true);
+        $response = $this->call('POST', '/api/cartographies', ['type' => 'partage', 'titre' => 'Autre chose, non relu', 'visibility' => 'privee', 'document' => self::sharedDoc()]);
+        self::assertSame(201, $response->getStatusCode());
+        self::assertSame('Mes compétences 2025-2026', self::$pdo->query('SELECT titre FROM cartographies WHERE id = ' . (int) self::json($response)['id'])->fetchColumn());
     }
 
     public function testPasswordlessLinkOpensDirectlyAndIsNeverIndexed(): void
@@ -234,7 +286,7 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame('/#/partage/' . $share['token'] . '/ouvert', $share['url']);
         self::assertNull(self::$pdo->query('SELECT password_hash FROM share_links WHERE id = ' . $share['shareId'])->fetchColumn());
 
-        $open = $this->anonymous('GET', '/api/share/' . $share['token']);
+        $open = $this->open($share['token']);
         self::assertSame(200, $open->getStatusCode());
         self::assertSame('noindex, nofollow, noarchive', $open->getHeaderLine('X-Robots-Tag'));
         self::assertSame('no-store', $open->getHeaderLine('Cache-Control'));
@@ -242,13 +294,15 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame('partage', $body['type']);
         self::assertEquals(self::sharedDoc(), $body['document'], 'l’instantané figé, tel que publié');
 
+        // Le jeton n'a jamais à passer dans l'URL de l'API : l'ancienne forme n'existe pas.
+        self::assertNotSame(200, $this->anonymous('GET', '/api/share/' . $share['token'])->getStatusCode());
         // Le POST reste possible (le mot de passe est alors ignoré).
         self::assertSame(200, $this->anonymous('POST', '/api/share/' . $share['token'], ['password' => 'quelconque'])->getStatusCode());
         self::assertSame(2, self::rows("SELECT COUNT(*) FROM audit_events WHERE type = 'share_consulted'"));
 
         // Les échecs ne sont pas indexés non plus, et restent homogènes.
-        foreach (['/api/share/' . str_repeat('0', 32), '/api/share/pas-un-jeton'] as $path) {
-            $missing = $this->anonymous('GET', $path);
+        foreach ([str_repeat('0', 32), 'pas-un-jeton', ''] as $token) {
+            $missing = $this->open($token);
             self::assertSame(404, $missing->getStatusCode());
             self::assertSame('noindex, nofollow, noarchive', $missing->getHeaderLine('X-Robots-Tag'));
         }
@@ -261,11 +315,16 @@ final class CartoPartageTest extends AuthTestBase
         $this->attest(true);
         $id = $this->publishedId();
         self::assertSame(422, $this->call('POST', '/api/cartographies/' . $id . '/share', ['password' => 'court'])->getStatusCode());
+        // Un mot de passe qui n'est pas un texte n'est jamais lu comme « sans mot de passe ».
+        $numeric = $this->call('POST', '/api/cartographies/' . $id . '/share', ['password' => 12345678]);
+        self::assertSame(422, $numeric->getStatusCode());
+        self::assertArrayHasKey('password', self::json($numeric)['fields']);
+        self::assertSame(0, self::rows('SELECT COUNT(*) FROM share_links'));
 
         $share = $this->link($id, 'sesame-employeur');
         self::assertSame('/#/partage/' . $share['token'], $share['url']);
 
-        $locked = $this->anonymous('GET', '/api/share/' . $share['token']);
+        $locked = $this->open($share['token']);
         self::assertSame(401, $locked->getStatusCode());
         self::assertSame('password_required', self::json($locked)['code']);
         self::assertArrayNotHasKey('document', self::json($locked));
@@ -274,8 +333,7 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame(1, self::rows("SELECT COUNT(*) FROM audit_events WHERE type = 'share_consulted'"), 'seule la consultation réussie compte');
 
         // Les autres types gardent leur mot de passe obligatoire.
-        $jour = $this->call('POST', '/api/cartographies', ['type' => 'jour', 'titre' => 'Journée', 'document' => ['kind' => 'cartographie-jour', 'date' => '2026-01-05']]);
-        $noPassword = $this->call('POST', '/api/cartographies/' . self::json($jour)['id'] . '/share', []);
+        $noPassword = $this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', []);
         self::assertSame(422, $noPassword->getStatusCode());
         self::assertArrayHasKey('password', self::json($noPassword)['fields']);
     }
@@ -285,8 +343,8 @@ final class CartoPartageTest extends AuthTestBase
         $this->attest(true);
         $id = $this->publishedId();
         $share = $this->link($id);
-        $this->anonymous('GET', '/api/share/' . $share['token']);
-        $this->anonymous('GET', '/api/share/' . $share['token']);
+        $this->open($share['token']);
+        $this->open($share['token']);
 
         $journal = $this->call('GET', '/api/shares/' . $share['shareId'] . '/consultations');
         self::assertSame(200, $journal->getStatusCode());
@@ -309,59 +367,64 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame(404, $this->call('GET', '/api/shares/999999/consultations')->getStatusCode());
     }
 
-    public function testWithdrawingTheAttestationRevokesEveryLinkButKeepsTheRights(): void
+    public function testWithdrawingTheAttestationErasesTheSharedVersions(): void
     {
         $this->attest(true);
         $id = $this->publishedId();
         $open = $this->link($id);
         $protected = $this->link($id, 'sesame-employeur');
-        $jour = $this->call('POST', '/api/cartographies', ['type' => 'jour', 'titre' => 'Journée', 'document' => ['kind' => 'cartographie-jour', 'date' => '2026-01-05']]);
-        $jourShare = self::json($this->call('POST', '/api/cartographies/' . self::json($jour)['id'] . '/share', ['password' => 'sesame-employeur']));
+        $jourShare = self::json($this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', ['password' => 'sesame-employeur']));
+
+        // Avant : l'export complet est possible (l'interface le propose).
+        self::assertEquals(self::sharedDoc(), self::json($this->call('GET', '/api/cartographies/' . $id))['document']);
 
         $off = $this->attest(false);
-        self::assertSame(['adult' => false, 'attestedAt' => null, 'required' => true], self::json($off));
+        self::assertSame(['adult' => false, 'attestedAt' => null, 'required' => true, 'deletedVersions' => 1], self::json($off));
         $details = json_decode((string) self::$pdo->query("SELECT details FROM audit_events WHERE type = 'adult_attestation_withdrawn'")->fetchColumn(), true);
-        self::assertSame(['revokedLinks' => 2], $details);
+        self::assertSame(['deletedVersions' => 1], $details);
 
-        // Plus rien n'est visible par les destinataires…
-        self::assertSame(404, $this->anonymous('GET', '/api/share/' . $open['token'])->getStatusCode());
+        // Plus aucune copie serveur, plus aucun lien…
+        self::assertSame(0, self::rows("SELECT COUNT(*) FROM cartographies WHERE type = 'partage'"));
+        self::assertSame(0, self::rows('SELECT COUNT(*) FROM share_links WHERE cartographie_id = ' . $id));
+        self::assertSame(404, $this->open($open['token'])->getStatusCode());
         self::assertSame(404, $this->anonymous('POST', '/api/share/' . $protected['token'], ['password' => 'sesame-employeur'])->getStatusCode());
+        self::assertSame(404, $this->call('GET', '/api/cartographies/' . $id)->getStatusCode());
         // … sauf ce qui ne relève pas de la version partagée.
         self::assertSame(200, $this->anonymous('POST', '/api/share/' . $jourShare['token'], ['password' => 'sesame-employeur'])->getStatusCode());
 
         // La fonction a disparu : ni nouvelle version, ni nouveau lien.
         self::assertSame(403, $this->publish(self::sharedDoc())->getStatusCode());
-        $relink = $this->call('POST', '/api/cartographies/' . $id . '/share', []);
-        self::assertSame(403, $relink->getStatusCode());
-        self::assertSame('adult_required', self::json($relink)['code']);
-
-        // Les droits demeurent : export complet, puis effacement immédiat.
-        $export = $this->call('GET', '/api/cartographies/' . $id);
-        self::assertSame(200, $export->getStatusCode());
-        self::assertEquals(self::sharedDoc(), self::json($export)['document']);
-        self::assertSame(204, $this->call('DELETE', '/api/cartographies/' . $id)->getStatusCode());
-        self::assertSame(0, self::rows('SELECT COUNT(*) FROM share_links WHERE cartographie_id = ' . $id), 'liens effacés avec la version');
+        self::assertSame(0, self::rows("SELECT COUNT(*) FROM cartographies WHERE type = 'partage'"));
     }
 
-    public function testSnapshotStaysFrozen(): void
+    public function testSnapshotStaysFrozenAndOutsideTheReviewModule(): void
     {
         $this->attest(true);
         $id = $this->publishedId();
         $share = $this->link($id);
 
         self::assertSame(422, $this->call('PATCH', '/api/cartographies/' . $id, ['visibility' => 'cartographe'])->getStatusCode());
-        $renamed = $this->call('PATCH', '/api/cartographies/' . $id, ['titre' => 'Nouveau titre', 'document' => ['kind' => 'autre']]);
-        self::assertSame(200, $renamed->getStatusCode());
+        $renamed = $this->call('PATCH', '/api/cartographies/' . $id, ['titre' => 'Nouveau titre, non relu']);
+        self::assertSame(422, $renamed->getStatusCode());
+        self::assertArrayHasKey('titre', self::json($renamed)['fields']);
 
-        $served = self::json($this->anonymous('GET', '/api/share/' . $share['token']));
-        self::assertSame('Nouveau titre', $served['titre']);
+        // Ni annotation, ni révision, ni garantie : pas de cartographe tiers ici.
+        self::assertSame(404, $this->call('POST', '/api/cartographies/' . $id . '/annotations', ['competenceCode' => '1.01', 'type' => 'commentaire', 'texte' => 'note'])->getStatusCode());
+        self::assertSame(404, $this->call('GET', '/api/cartographies/' . $id . '/annotations')->getStatusCode());
+        self::assertSame(404, $this->call('POST', '/api/cartographies/' . $id . '/revisions', ['document' => self::sharedDoc()])->getStatusCode());
+        // La garantie est réservée aux cartographes (403 pour l'apprenant) ; aucun
+        // cartographe n'atteint une version partagée (privée, hors du module).
+        self::assertSame(403, $this->call('POST', '/api/cartographies/' . $id . '/garantie', [])->getStatusCode());
+
+        $served = self::json($this->open($share['token']));
+        self::assertSame('Mes compétences 2025-2026', $served['titre']);
         self::assertEquals(self::sharedDoc(), $served['document'], 'le document ne change qu’en publiant une nouvelle version');
     }
 
     /**
-     * Contrat avec le client : la fixture partagée (que web/src/carto/core/
-     * share.test.js compare à la sortie de buildSharedVersion) est acceptée
-     * telle quelle par la liste blanche.
+     * Contrat avec le client : la fixture partagée — EXACTEMENT la sortie de
+     * buildSharedVersion (web/src/carto/core/share.test.js le vérifie) — est
+     * acceptée telle quelle par la liste blanche.
      */
     public function testSharedFixtureIsTheContractWithTheClient(): void
     {
@@ -376,10 +439,10 @@ final class CartoPartageTest extends AuthTestBase
     public function testOpenConsultationIsRateLimitedLikeThePasswordForm(): void
     {
         for ($i = 0; $i < 20; $i++) {
-            self::assertSame(404, $this->anonymous('GET', '/api/share/' . str_repeat('a', 32))->getStatusCode());
+            self::assertSame(404, $this->open(str_repeat('a', 32))->getStatusCode());
         }
         $blocked = $this->anonymous('POST', '/api/share/' . str_repeat('a', 32), ['password' => 'sesame-employeur']);
-        self::assertSame(429, $blocked->getStatusCode(), 'même quota par IP pour GET et POST');
+        self::assertSame(429, $blocked->getStatusCode(), 'même quota par IP pour la lecture ouverte et le formulaire');
         self::assertNotSame('', $blocked->getHeaderLine('Retry-After'));
     }
 }

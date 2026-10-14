@@ -554,7 +554,7 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <EspaceView section={route.section} lib={lib} />
       break
     case 'share':
-      view = <ShareView token={route.token} open={Boolean(route.open)} lib={lib} />
+      view = <ShareView key={`${route.token}${route.open ? '/ouvert' : ''}`} token={route.token} open={Boolean(route.open)} lib={lib} />
       break
     case 'cartographe':
       view = <CartographeView section={route.section} lib={lib} />

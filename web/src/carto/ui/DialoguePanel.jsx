@@ -101,8 +101,9 @@ function Carnet({ reflections, readOnly, onRemove }) {
   return (
     <ul className="carto-dialogue-carnet">
       {[...reflections].reverse().map((r) => {
-        const md = reflectionMarkdown(r)
-        const answered = r.entries.filter((e) => e.answer).length
+        const md = reflectionMarkdown({ ...r, entries: Array.isArray(r.entries) ? r.entries.filter((e) => e && typeof e.question === 'string') : [] })
+        const entries = Array.isArray(r.entries) ? r.entries.filter((e) => e && typeof e.question === 'string') : []
+        const answered = entries.filter((e) => e.answer).length
         return (
           <li key={r.id}>
             <button type="button" className="carto-link-btn" aria-expanded={open === r.id} onClick={() => setOpen(open === r.id ? null : r.id)}>
@@ -113,7 +114,7 @@ function Carnet({ reflections, readOnly, onRemove }) {
             </span>
             {open === r.id ? (
               <div className="carto-dialogue-entry">
-                {r.entries.map((e, i) => (
+                {entries.map((e, i) => (
                   <div key={i}>
                     <p className="carto-small">
                       <strong>{e.question}</strong>
@@ -201,6 +202,9 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
     return { provider: first?.id ?? '', model: first?.defaultModel ?? '', key: '', consent: false }
   })
   const inputRef = useRef(null)
+  // Génération du dialogue : une relance qui revient après « Recommencer »
+  // appartient à l'ancien dialogue et n'est jamais rattachée au nouveau.
+  const generation = useRef(0)
 
   const threads = script ?? []
   const current = !finished && index < threads.length ? threads[index] : null
@@ -214,6 +218,8 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
   }
 
   function restart() {
+    generation.current += 1
+    setRelaunching(null)
     setScript(dialogueThreads(dataset, state, refl, { getDetail, params }))
     setIndex(0)
     setAnswers({})
@@ -250,6 +256,7 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
   async function relaunch(thread) {
     if (!canRelaunch) return
     const answer = answers[thread.id]?.answer ?? ''
+    const gen = generation.current
     setRelaunching(thread.id)
     setStatus(null)
     try {
@@ -257,13 +264,26 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
       const provider = llm.createProvider({ provider: llmProvider.id, transport: 'direct', apiKey })
       const request = buildRelaunchRequest({ question: thread.text, answer, quote: thread.quote?.text ?? null })
       const result = await provider.complete({ model: llmSettings.model.trim(), ...request, maxTokens: RELAUNCH_MAX_TOKENS })
+      if (gen !== generation.current) return
       const text = cleanRelaunch(result?.text)
       if (!text) throw new Error('le modèle n’a rien répondu')
       setAnswers((a) => ({ ...a, [thread.id]: { ...a[thread.id], relaunch: { text, model: `${llmProvider.label} — ${result?.model ?? llmSettings.model}` } } }))
     } catch (err) {
-      setStatus({ kind: 'error', text: `Relance impossible : ${err?.message ?? 'erreur inconnue'}.` })
+      if (gen !== generation.current) return
+      // Appel qui n'aboutit pas : bloqué par le navigateur (politique de
+      // sécurité du site, qui l'arrête AVANT tout envoi) ou fournisseur
+      // injoignable. Une coupure en cours de route ne se distingue pas d'un
+      // blocage : le message ne promet donc rien de plus que l'absence de
+      // relance.
+      const blocked = err instanceof TypeError || /fetch|network|réseau/i.test(String(err?.message ?? ''))
+      setStatus({
+        kind: 'error',
+        text: blocked
+          ? `Relance impossible : ${llmProvider.label} n’a pas pu être joint depuis cette page (fournisseur injoignable, ou appel bloqué par la politique de sécurité du site). Aucune relance n’a été reçue.`
+          : `Relance impossible : ${err?.message ?? 'erreur inconnue'}.`,
+      })
     } finally {
-      setRelaunching(null)
+      if (gen === generation.current) setRelaunching(null)
     }
   }
 
@@ -283,7 +303,8 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
             </p>
           ) : (
             <>
-              <ol className="carto-dialogue-log" role="log" aria-live="polite" aria-label="Échanges">
+              <div role="log" aria-live="polite" aria-label="Échanges">
+              <ol className="carto-dialogue-log">
                 <li className="carto-dialogue-msg is-bot">
                   <p>{threads.length ? OPENING : NO_THREAD}</p>
                 </li>
@@ -337,6 +358,7 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
                   </li>
                 ) : null}
               </ol>
+              </div>
               {current ? (
                 <form
                   className="carto-dialogue-answer"
@@ -400,7 +422,10 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
             <h3 id={`${uid}-carnet`} className="carto-share-h">
               Mon carnet
             </h3>
-            <p className="carto-small carto-muted">Vos réponses gardées, dans ce navigateur. Elles partent dans l’archive JSON si vous y incluez votre portfolio, jamais dans une version partagée ni dans une démo.</p>
+            <p className="carto-small carto-muted">
+              Vos réponses gardées, dans ce navigateur. Elles partent dans l’archive JSON si vous y incluez votre portfolio ; jamais dans une copie autonome, une
+              version partagée ni une démo.
+            </p>
             <Carnet reflections={reflections} readOnly={readOnly} onRemove={(id) => data.update((ds) => removeReflection(ds, id))} />
           </section>
           {llm && !readOnly ? <RelaunchSettings llm={llm} value={llmSettings} onChange={setLlmSettings} /> : null}

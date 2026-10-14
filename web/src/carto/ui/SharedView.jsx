@@ -126,14 +126,31 @@ function SharedCalendar({ from, to, cells, label }) {
 }
 
 /**
- * @param {{doc: object, titre?: string, garantie?: object | null, preview?: boolean}} props
- *   `titre` : titre courant de la version (renommage possible côté serveur) ;
- *   `preview` : aperçu verrouillé avant publication
+ * @param {{doc: object, garantie?: object | null, preview?: boolean}} props
+ *   `preview` : aperçu verrouillé avant publication. Le titre affiché est
+ *   celui de l'instantané (figé, relu avant publication).
  */
-export function SharedView({ doc, titre, garantie = null, preview = false }) {
+export function SharedView({ doc, garantie = null, preview = false }) {
+  const read = useMemo(() => {
+    try {
+      const shared = sharedState(doc)
+      return { ...shared, layout: layoutSun(shared.state, shared.ref, GEOMETRY, { minThickness: DEFAULT_PARAMS.minThicknessPx }) }
+    } catch {
+      return null
+    }
+  }, [doc])
+  if (!read) {
+    return (
+      <p role="alert" className="carto-error">
+        Cette version partagée est illisible : elle a peut-être été produite par une autre version du site.
+      </p>
+    )
+  }
+  return <SharedDocument doc={doc} garantie={garantie} preview={preview} refl={read.ref} state={read.state} layout={read.layout} />
+}
+
+function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
   const uid = useId()
-  const { ref, state } = useMemo(() => sharedState(doc), [doc])
-  const layout = useMemo(() => layoutSun(state, ref, GEOMETRY, { minThickness: DEFAULT_PARAMS.minThicknessPx }), [state, ref])
   const [selection, setSelection] = useState(null)
   const [hover, setHover] = useState(null)
   const precision = doc.datePrecision
@@ -146,7 +163,7 @@ export function SharedView({ doc, titre, garantie = null, preview = false }) {
     for (const list of map.values()) list.sort((a, b) => String(a.date ?? '').localeCompare(String(b.date ?? '')))
     return map
   }, [doc])
-  const title = titre || doc.title
+  const title = doc.title
   const periodText = doc.period ? periodLabel(doc.period, precision) : 'dates masquées par son auteur'
   const Heading = preview ? 'h3' : 'h1'
   const Sub = preview ? 'h4' : 'h2'
@@ -187,7 +204,7 @@ export function SharedView({ doc, titre, garantie = null, preview = false }) {
       <div className="carto-shared-grid">
         <section className="carto-shared-visual" aria-label="Soleil des compétences">
           <Sun
-            refl={ref}
+            refl={refl}
             state={state}
             layout={layout}
             geometry={GEOMETRY}
@@ -214,7 +231,7 @@ export function SharedView({ doc, titre, garantie = null, preview = false }) {
           <Sub id={`${uid}-list`} className="carto-visually-hidden">
             Compétences et extraits
           </Sub>
-          {ref.poles
+          {refl.poles
             .filter((p) => state.poles.has(p.num))
             .map((p) => (
               <section key={p.num} className="carto-shared-pole" style={{ '--pole-color': p.color }} aria-label={`Pôle ${p.name}`}>
@@ -226,7 +243,7 @@ export function SharedView({ doc, titre, garantie = null, preview = false }) {
                     .get(p.num)
                     .codes.map((code) => {
                       const c = state.competencies.get(code)
-                      const meta = ref.compByCode.get(code)
+                      const meta = refl.compByCode.get(code)
                       const extracts = extractsByCode.get(code) ?? []
                       const dimmed = focusCodes && !focusCodes.has(code)
                       return (
@@ -266,7 +283,7 @@ export function SharedView({ doc, titre, garantie = null, preview = false }) {
           Version figée : elle ne change pas tant que son auteur n’en publie pas une nouvelle. Dates {PRECISION_LABELS[precision] ?? 'masquées'}.
           {preview ? null : ' Son auteur peut révoquer ce lien à tout moment.'}
         </p>
-        <p>Référentiel : {doc.referential?.label ?? ref.label}. humanome.xyz ne dépose ni traceur ni statistique tierce.</p>
+        <p>Référentiel : {doc.referential?.label ?? refl.label}. humanome.xyz ne dépose ni traceur ni statistique tierce.</p>
       </footer>
     </article>
   )

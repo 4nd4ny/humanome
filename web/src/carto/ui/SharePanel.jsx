@@ -44,7 +44,20 @@ const SNIPPET = 260
 
 function apiMessage(err) {
   if (err instanceof ApiError && err.code === 'adult_required') return 'Le partage est réservé aux personnes majeures : votre attestation n’est plus enregistrée.'
-  return err?.message ?? 'Erreur inattendue.'
+  // Refus détaillé du serveur (422) : on montre la raison, pas seulement « Validation échouée ».
+  const detail = err?.fields && typeof err.fields === 'object' ? Object.values(err.fields).filter((v) => typeof v === 'string').join(' ; ') : ''
+  return detail ? `${err.message} : ${detail}` : (err?.message ?? 'Erreur inattendue.')
+}
+
+/** Export JSON complet des versions partagées du compte (document, liens, journal des accès). */
+async function exportVersions(api, versions) {
+  const full = []
+  for (const v of versions) {
+    const doc = await api.getVersion(v.id)
+    const links = await api.listLinks(v.id)
+    full.push({ ...doc, links: await Promise.all(links.map(async (l) => ({ ...l, consultations: await api.consultations(l.shareId).catch(() => null) }))) })
+  }
+  return new Blob([JSON.stringify({ kind: 'carto-partage-export', exportedAt: new Date().toISOString(), versions: full }, null, 2)], { type: 'application/json' })
 }
 
 function Status({ value }) {
@@ -210,6 +223,7 @@ function Composer({ refl, state, data, t, api, onPublished }) {
   const [patterns, setPatterns] = useState(() => ({ ...DEFAULT_SHARE_PATTERNS }))
   const [reviewed, setReviewed] = useState(false)
   const [consent, setConsent] = useState(false)
+  const [adultNow, setAdultNow] = useState(false)
   const [openCode, setOpenCode] = useState(null)
   const [status, setStatus] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -248,7 +262,16 @@ function Composer({ refl, state, data, t, api, onPublished }) {
   const shares = useMemo(() => new Map((built?.state.competencies ?? []).map((c) => [c.code, c.theta])), [built])
   const replacer = useMemo(() => makeReplacer({ dictionary, patterns }), [dictionary, patterns])
   const points = useMemo(() => reviewPoints({ title, extracts: extractInput }, dictionary), [title, extractInput, dictionary])
-  const counts = useMemo(() => patternCounts(extractInput.map((e) => e.text)), [extractInput])
+  const counts = useMemo(() => patternCounts([title, ...extractInput.map((e) => e.text)]), [title, extractInput])
+  // Toute modification de ce qui serait publié (titre, dates, compétences,
+  // extraits, masques, noms) annule la relecture, l'accord et l'attestation :
+  // on confirme toujours la version exacte qui part.
+  const contentKey = useMemo(() => (built ? JSON.stringify({ ...built, publishedAt: null }) : ''), [built])
+  useEffect(() => {
+    setReviewed(false)
+    setConsent(false)
+    setAdultNow(false)
+  }, [contentKey])
 
   function toggleExtract(c, on) {
     setChosen((prev) => {
@@ -279,6 +302,7 @@ function Composer({ refl, state, data, t, api, onPublished }) {
       setEdits(new Map())
       setReviewed(false)
       setConsent(false)
+      setAdultNow(false)
       onPublished(id, built.title)
     } catch (err) {
       setStatus({ kind: 'error', text: apiMessage(err) })
@@ -351,6 +375,9 @@ function Composer({ refl, state, data, t, api, onPublished }) {
           <p className="carto-small">
             Un portfolio parle souvent d’autres personnes. Avant toute publication, vérifiez que le titre et les extraits ne révèlent ni le nom ni les confidences
             de quelqu’un sans son accord.
+          </p>
+          <p className="carto-small">
+            Titre publié : <strong>{built.title}</strong>
           </p>
           <fieldset className="carto-share-field">
             <legend>Masquer automatiquement</legend>
@@ -480,12 +507,16 @@ function Composer({ refl, state, data, t, api, onPublished }) {
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} /> Je demande l’enregistrement de cette version partagée
               sur le serveur de humanome.xyz.
             </label>
+            <label className="carto-small carto-share-check">
+              <input type="checkbox" checked={adultNow} onChange={(e) => setAdultNow(e.target.checked)} /> J’atteste avoir 18 ans ou plus au moment de cette
+              publication.
+            </label>
           </aside>
           <div className="carto-share-actions">
             <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setStep('review')}>
               Retour
             </button>
-            <button type="button" className="carto-btn" disabled={!consent || busy} onClick={publish}>
+            <button type="button" className="carto-btn" disabled={!consent || !adultNow || busy} onClick={publish}>
               Publier la version partagée
             </button>
           </div>
@@ -736,7 +767,7 @@ function VersionItem({ version, api, autoOpen, onRemoved }) {
           <Status value={status} />
           {preview ? (
             <div className="carto-share-preview">
-              <SharedView doc={preview} titre={version.titre} preview />
+              <SharedView doc={preview} preview />
             </div>
           ) : null}
         </div>
@@ -810,14 +841,35 @@ export function SharePanel({ refl, state, data, t, api, config }) {
   async function attest(on) {
     setBusy(true)
     setGateError(null)
+    setNotice(null)
     try {
       const a = await api.setAdult(on)
       setAdult({ status: 'ready', ...a })
-      if (!on) setNotice({ kind: 'ok', text: 'Attestation retirée : tous vos liens de version partagée sont révoqués.' })
+      if (!on) {
+        const n = Number(a?.deletedVersions ?? 0)
+        setNotice({
+          kind: 'ok',
+          text:
+            n > 0
+              ? `Attestation retirée : ${n} version${n > 1 ? 's' : ''} partagée${n > 1 ? 's' : ''} et ${n > 1 ? 'leurs' : 'ses'} liens ont été effacés du serveur.`
+              : 'Attestation retirée : aucune version partagée ne reste sur le serveur.',
+        })
+      }
     } catch (err) {
       setGateError(apiMessage(err))
     } finally {
       setBusy(false)
+    }
+  }
+
+  async function downloadAll() {
+    setNotice(null)
+    try {
+      const versions = await api.listVersions()
+      downloadBlob(await exportVersions(api, versions), 'versions-partagees.json')
+      setNotice({ kind: 'ok', text: `Export JSON téléchargé (${versions.length} version${versions.length > 1 ? 's' : ''}).` })
+    } catch (err) {
+      setNotice({ kind: 'error', text: apiMessage(err) })
     }
   }
 
@@ -848,7 +900,6 @@ export function SharePanel({ refl, state, data, t, api, config }) {
             setNotice({ kind: 'ok', text: `« ${title} » est publiée. Créez maintenant un lien pour la montrer.` })
           }}
         />
-        <Status value={notice} />
         <Versions
           api={api}
           refresh={refresh}
@@ -864,10 +915,16 @@ export function SharePanel({ refl, state, data, t, api, config }) {
             Export complet en JSON et effacement immédiat de chaque version ; journal des accès de chaque lien. {HOSTING_TEXT} Les liens expirés ou révoqués
             sont effacés au plus tard 30 jours après. Supprimer votre compte efface aussi vos versions partagées et leurs liens.
           </p>
+          <p>
+            <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" onClick={downloadAll}>
+              Télécharger toutes mes versions (JSON)
+            </button>
+          </p>
           {adult.adult ? (
             <p>
-              Vous avez attesté être majeur·e le {formatShort(String(adult.attestedAt).slice(0, 10))}.{' '}
-              <TwoStepButton label="Retirer mon attestation" confirmLabel="Confirmer : révoquer tous mes liens" className="carto-btn--small" onConfirm={() => attest(false)} />
+              Vous avez attesté avoir 18 ans ou plus le {formatShort(String(adult.attestedAt).slice(0, 10))}. Retirer cette attestation efface aussitôt vos
+              versions partagées du serveur, et leurs liens : téléchargez-les d’abord si vous voulez les garder.{' '}
+              <TwoStepButton label="Retirer mon attestation" confirmLabel="Confirmer : effacer mes versions partagées" className="carto-btn--small" onConfirm={() => attest(false)} />
             </p>
           ) : null}
         </section>
@@ -880,6 +937,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
         <h2 id={`${uid}-title`}>Partager par lien</h2>
         <p className="carto-small carto-muted">Réservé aux adultes. Rien ne quitte ce navigateur tant que vous ne publiez pas une version partagée.</p>
       </header>
+      <Status value={notice} />
       {body}
     </section>
   )

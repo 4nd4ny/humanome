@@ -26,18 +26,19 @@ export function archiveFileName(type, now = new Date().toISOString(), ext = 'jso
 /**
  * Construit l'archive à partir de ce que le magasin exporte (`exportAll`).
  * @param {{dataset: object, details: Record<string, object>, runDetails: Record<string, object>}} exported
- * @param {{includePortfolio?: boolean, now?: string}} [opts]
+ * @param {{includePortfolio?: boolean, includeReflections?: boolean, now?: string}} [opts]
+ *   includeReflections : le carnet du dialogue (P7), écrit par la personne comme
+ *   son journal — par défaut le même choix que le portfolio ; la copie autonome
+ *   HTML ne l'emporte jamais.
  */
-export function buildArchive(exported, { includePortfolio = true, now = new Date().toISOString() } = {}) {
+export function buildArchive(exported, { includePortfolio = true, includeReflections = includePortfolio, now = new Date().toISOString() } = {}) {
   const dataset = structuredClone(exported.dataset)
   const details = structuredClone(exported.details ?? {})
   if (!includePortfolio) {
     for (const d of Object.values(details)) if (d && d.portfolio) d.portfolio = null
     if (dataset.portfolio) dataset.portfolio = { ...dataset.portfolio, undated: [] }
-    // Le carnet du dialogue (P7) est écrit par la personne, comme son journal :
-    // il suit le même choix.
-    dataset.reflections = []
   }
+  if (!includeReflections) dataset.reflections = []
   return {
     ...dataset,
     kind: KIND,

@@ -26,6 +26,7 @@ import { importMetrics, looksLikeMetrics } from './importers/metrics.js'
 import { importArchive, looksLikeArchive } from './archive.js'
 import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { canonicalJson } from './model.js'
+import { cleanReflectionEntries } from './ops.js'
 
 const IGNORED = /(^|\/)(__MACOSX\/|\.DS_Store$|\._[^/]*$|Thumbs\.db$)/
 const ISO_SEGMENT = /^(\d{4}-\d{2}-\d{2})(?:\.zip)?$/
@@ -382,8 +383,11 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     if (newCmp.length) ds.comparisons = [...ds.comparisons, ...structuredClone(newCmp)]
     ds.reflections ??= []
     const reflectionIds = new Set(ds.reflections.map((r) => r.id))
-    const newReflections = (ex.reflections ?? []).filter((r) => r?.id && Array.isArray(r.entries) && !reflectionIds.has(r.id))
-    if (newReflections.length) ds.reflections = [...ds.reflections, ...structuredClone(newReflections)].sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
+    const newReflections = (Array.isArray(ex.reflections) ? ex.reflections : [])
+      .filter((r) => r && typeof r.id === 'string' && typeof r.at === 'string' && !reflectionIds.has(r.id))
+      .map((r) => ({ id: r.id, at: r.at, entries: cleanReflectionEntries(r.entries) }))
+      .filter((r) => r.entries.length > 0)
+    if (newReflections.length) ds.reflections = [...ds.reflections, ...newReflections].sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
     if (newSets.length || newReviews.length || newMarkers.length || newCmp.length || newReflections.length) {
       report.push({
         severity: 'info',

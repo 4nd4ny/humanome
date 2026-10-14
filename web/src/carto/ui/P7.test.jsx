@@ -140,6 +140,44 @@ describe('P7 — aucune donnée envoyée sans consentement explicite', () => {
     expect(screen.getByRole('checkbox', { name: /J’accepte que/ }).disabled).toBe(false)
   })
 
+  it('une relance revenue après « Recommencer » n’est jamais rattachée au nouveau dialogue', async () => {
+    const { llm, complete } = fakeLlm()
+    let resolve
+    complete.mockImplementationOnce(() => new Promise((r) => (resolve = r)))
+    render(<Harness store={await louStore()} llm={llm} />)
+    await firstQuestion()
+    fireEvent.change(screen.getByLabelText('Votre réponse'), { target: { value: 'Première réponse.' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Répondre' }))
+    fireEvent.click(screen.getByRole('checkbox', { name: /J’accepte que, pour chaque relance que je demande/ }))
+    fireEvent.click(await screen.findByRole('button', { name: /Demander une relance/ }))
+    expect(await screen.findByText('Relance en cours…')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'M’arrêter là' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Recommencer' }))
+    resolve({ text: 'Une relance de l’ancien dialogue ?', model: 'llama3.1' })
+    await waitFor(() => expect(screen.getByLabelText('Votre réponse')).toBeTruthy())
+    await new Promise((r) => setTimeout(r, 0))
+    expect(screen.queryByText('Une relance de l’ancien dialogue ?')).toBeNull()
+    expect(screen.queryByText('Première réponse.')).toBeNull()
+  })
+
+  it('un appel bloqué (politique de sécurité du site) est dit comme tel, sans relance inventée', async () => {
+    const { llm, complete } = fakeLlm()
+    complete.mockImplementationOnce(async () => {
+      throw new TypeError('Failed to fetch')
+    })
+    render(<Harness store={await louStore()} llm={llm} />)
+    await firstQuestion()
+    fireEvent.change(screen.getByLabelText('Votre réponse'), { target: { value: 'Une réponse.' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Répondre' }))
+    fireEvent.click(screen.getByRole('checkbox', { name: /J’accepte que, pour chaque relance que je demande/ }))
+    fireEvent.click(await screen.findByRole('button', { name: /Demander une relance/ }))
+    expect((await screen.findByRole('alert')).textContent).toBe(
+      'Relance impossible : Ollama (modèle local, sans clé) n’a pas pu être joint depuis cette page (fournisseur injoignable, ou appel bloqué par la politique de sécurité du site). Aucune relance n’a été reçue.',
+    )
+    expect(screen.queryByText(/Relance proposée par/)).toBeNull()
+    expect(screen.queryByText('Relance en cours…')).toBeNull()
+  })
+
   it('copie autonome : ni relance, ni carnet enregistré', async () => {
     const { llm } = fakeLlm()
     render(<Harness store={await louStore()} llm={llm} mode="viewer" />)

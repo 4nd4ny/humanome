@@ -12,14 +12,19 @@ namespace Humanome\Share;
  *
  * Forme (schemaVersion 1.x) : {kind, schemaVersion, title, publishedAt,
  * datePrecision, period, referential{id, version, label, poles[], competences[]
- * — compétences retenues seulement}, state{dayCount, dates, competencies[],
+ * — EXACTEMENT les compétences retenues}, state{dayCount, dates, competencies[],
  * poles[]}, heatmap{precision, cells[]} | null, extracts[]}.
  *
- * Le serveur le vérifie par LISTE BLANCHE de champs, à tous les niveaux : un
- * champ inconnu est refusé. C'est la garantie structurelle qu'aucun texte de
- * portfolio, aucune délibération du jury, aucune note privée et aucune date
- * plus fine que la précision choisie ne peut être déposé sous ce type, quoi
- * qu'envoie le client.
+ * Le serveur le vérifie par LISTE BLANCHE de champs ET de types, à tous les
+ * niveaux : un champ inconnu ou manquant, un type inattendu, une date plus
+ * fine que la précision choisie, une compétence ou un pôle inconnus sont
+ * refusés. C'est la garantie structurelle qu'aucun texte de portfolio, aucune
+ * délibération du jury, aucune note privée ne peut être déposé sous ce type,
+ * quoi qu'envoie le client — les seuls textes libres sont le titre, les
+ * extraits choisis et les libellés du référentiel retenu, tous bornés. La
+ * sortie de `buildSharedVersion` (web/src/carto/core/share.js) est tenue
+ * pour égale à la fixture schemas/fixtures/partage/carto-partage-exemple.json,
+ * que ce validateur accepte (tests des deux côtés).
  */
 final class SharedVersion
 {
@@ -27,7 +32,10 @@ final class SharedVersion
     public const MAX_EXTRACTS = 300;
     public const MAX_EXTRACT_CHARS = 2000;
     public const MAX_COMPETENCIES = 500;
+    public const MAX_POLES = 50;
     public const MAX_DATES = 1000;
+    /** 360° et la marge des arrondis (angles à 4 décimales, sommés par pôle). */
+    private const MAX_THETA = 360.5;
 
     private const TOP = ['kind', 'schemaVersion', 'title', 'publishedAt', 'datePrecision', 'period', 'referential', 'state', 'heatmap', 'extracts'];
     private const REFERENTIAL = ['id', 'version', 'label', 'poles', 'competences'];
@@ -47,150 +55,219 @@ final class SharedVersion
      */
     public static function validate(array $doc): array
     {
-        $fail = static fn (string $message): array => ['document' => $message];
+        try {
+            self::check($doc);
+        } catch (InvalidSharedVersion $e) {
+            return ['document' => $e->getMessage()];
+        }
 
+        return [];
+    }
+
+    /** @param array<mixed> $doc */
+    private static function check(array $doc): void
+    {
         if (($doc['kind'] ?? null) !== self::KIND) {
-            return $fail('Version partagée attendue (kind « ' . self::KIND . ' »)');
+            self::fail('Version partagée attendue (kind « ' . self::KIND . ' »)');
         }
-        if (!\is_string($doc['schemaVersion'] ?? null) || !str_starts_with($doc['schemaVersion'], '1.')) {
-            return $fail('Version de format inconnue (1.x attendue)');
+        if (!\is_string($doc['schemaVersion'] ?? null) || preg_match('/^1\.\d+\.\d+$/', $doc['schemaVersion']) !== 1) {
+            self::fail('Version de format inconnue (1.x attendue)');
         }
-        if (($extra = self::unknownKey($doc, self::TOP)) !== null) {
-            return $fail('Champ non autorisé dans une version partagée : ' . $extra);
-        }
-        $precision = $doc['datePrecision'] ?? null;
+        self::exactKeys($doc, self::TOP, 'version partagée');
+        $precision = $doc['datePrecision'];
         if (!\in_array($precision, self::PRECISIONS, true)) {
-            return $fail('Précision des dates invalide (day, month ou none)');
+            self::fail('Précision des dates invalide (day, month ou none)');
         }
-        $title = $doc['title'] ?? null;
-        if (!\is_string($title) || trim($title) === '' || mb_strlen($title) > 190) {
-            return $fail('Titre requis (190 caractères maximum)');
+        if (!self::text($doc['title'], 190)) {
+            self::fail('Titre requis (190 caractères maximum)');
         }
-        if (!\is_string($doc['publishedAt'] ?? null) || mb_strlen($doc['publishedAt']) > 40) {
-            return $fail('Date de publication requise');
+        if (!\is_string($doc['publishedAt'])
+            || preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(?::\d{2}(?:\.\d{1,6})?)?(?:Z|[+-]\d{2}:\d{2})$/', $doc['publishedAt']) !== 1) {
+            self::fail('Date de publication invalide (ISO 8601 attendue)');
         }
-        // Référentiel embarqué (donnée publique) : pôles et compétences
-        // retenues, rien d'autre.
-        $referential = $doc['referential'] ?? null;
-        if (!self::isObject($referential) || self::unknownKey($referential, self::REFERENTIAL) !== null
-            || !self::text($referential['id'] ?? null, 100) || !self::text($referential['version'] ?? null, 40)
-            || !self::text($referential['label'] ?? null, 300)) {
-            return $fail('Référentiel embarqué invalide');
+
+        // Référentiel embarqué (donnée publique) : tous les pôles, EXACTEMENT
+        // les compétences retenues.
+        $referential = $doc['referential'];
+        if (!self::isObject($referential)) {
+            self::fail('Référentiel embarqué invalide');
         }
-        $refPoles = $referential['poles'] ?? null;
-        $refCompetences = $referential['competences'] ?? null;
-        if (!\is_array($refPoles) || !array_is_list($refPoles) || $refPoles === [] || \count($refPoles) > 50
-            || !\is_array($refCompetences) || !array_is_list($refCompetences) || $refCompetences === [] || \count($refCompetences) > self::MAX_COMPETENCIES) {
-            return $fail('Référentiel embarqué invalide');
+        self::exactKeys($referential, self::REFERENTIAL, 'référentiel');
+        if (!self::text($referential['id'], 100) || !self::text($referential['version'], 40) || !self::text($referential['label'], 300)) {
+            self::fail('Référentiel embarqué invalide (id, version, label)');
         }
+        $refPoles = self::listOf($referential['poles'], 1, self::MAX_POLES, 'pôles du référentiel');
         $poleNums = [];
         foreach ($refPoles as $p) {
-            if (!self::isObject($p) || self::unknownKey($p, self::REF_POLE) !== null || !\is_int($p['num'] ?? null)
-                || !self::text($p['nom'] ?? null, 300) || (($p['couleur'] ?? null) !== null && !self::text($p['couleur'], 40, true))) {
-                return $fail('Pôle du référentiel invalide');
+            if (!self::isObject($p)) {
+                self::fail('Pôle du référentiel invalide');
+            }
+            self::exactKeys($p, self::REF_POLE, 'pôle du référentiel');
+            if (!\is_int($p['num']) || isset($poleNums[$p['num']]) || !self::text($p['nom'], 300)
+                || ($p['couleur'] !== null && (!\is_string($p['couleur']) || preg_match('/^#[0-9A-Fa-f]{3,8}$/', $p['couleur']) !== 1))) {
+                self::fail('Pôle du référentiel invalide (numéro unique, nom, couleur #rrggbb ou null)');
             }
             $poleNums[$p['num']] = true;
         }
-        $refCodes = [];
+        $refCompetences = self::listOf($referential['competences'], 1, self::MAX_COMPETENCIES, 'compétences du référentiel');
+        $refPoleOf = [];
         foreach ($refCompetences as $c) {
-            if (!self::isObject($c) || self::unknownKey($c, self::REF_COMPETENCE) !== null
-                || !self::text($c['code'] ?? null, 32) || !self::text($c['nom'] ?? null, 300)
-                || !\is_int($c['pole'] ?? null) || !isset($poleNums[$c['pole']])
-                || (\array_key_exists('description', $c) && !self::text($c['description'], 4000, true))) {
-                return $fail('Compétence du référentiel invalide');
+            if (!self::isObject($c)) {
+                self::fail('Compétence du référentiel invalide');
             }
-            $refCodes[$c['code']] = true;
+            self::exactKeys($c, self::REF_COMPETENCE, 'compétence du référentiel');
+            if (!self::text($c['code'], 32) || isset($refPoleOf[$c['code']]) || !self::text($c['nom'], 300)
+                || !\is_int($c['pole']) || !isset($poleNums[$c['pole']]) || !self::text($c['description'], 4000, true)) {
+                self::fail('Compétence du référentiel invalide (code unique, nom, pôle connu, description)');
+            }
+            $refPoleOf[$c['code']] = $c['pole'];
         }
 
-        // Période : à la précision choisie (masquée = absente).
-        $period = $doc['period'] ?? null;
-        if ($period !== null) {
-            if (!self::isObject($period) || self::unknownKey($period, ['from', 'to']) !== null
-                || !self::dateAt($period['from'] ?? null, $precision) || !self::dateAt($period['to'] ?? null, $precision)
-                || $precision === 'none') {
-                return $fail('Période invalide pour la précision choisie');
+        // Période : à la précision choisie, dans l'ordre (masquée = null).
+        $period = $doc['period'];
+        if ($precision === 'none') {
+            if ($period !== null) {
+                self::fail('Période interdite quand les dates sont masquées');
+            }
+        } else {
+            if (!self::isObject($period)) {
+                self::fail('Période requise pour la précision choisie');
+            }
+            self::exactKeys($period, ['from', 'to'], 'période');
+            if (!self::dateAt($period['from'], $precision) || !self::dateAt($period['to'], $precision) || $period['from'] > $period['to']) {
+                self::fail('Période invalide pour la précision choisie');
             }
         }
 
         // État chiffré du soleil.
-        $state = $doc['state'] ?? null;
-        if (!self::isObject($state) || ($extra = self::unknownKey($state, self::STATE)) !== null) {
-            return $fail('État du soleil invalide' . (isset($extra) && $extra !== null ? ' (champ non autorisé : ' . $extra . ')' : ''));
+        $state = $doc['state'];
+        if (!self::isObject($state)) {
+            self::fail('État du soleil invalide');
         }
-        $dayCount = $state['dayCount'] ?? null;
-        if (!\is_int($dayCount) || $dayCount < 0 || $dayCount > 100000) {
-            return $fail('Nombre de journées invalide');
+        self::exactKeys($state, self::STATE, 'état du soleil');
+        if (!\is_int($state['dayCount']) || $state['dayCount'] < 0 || $state['dayCount'] > 100000) {
+            self::fail('Nombre de journées invalide');
         }
-        $dates = $state['dates'] ?? null;
-        if (!\is_array($dates) || !array_is_list($dates) || \count($dates) > self::MAX_DATES) {
-            return $fail('Liste des journées invalide');
+        $dates = self::listOf($state['dates'], 0, self::MAX_DATES, 'journées');
+        if ($precision === 'none' && $dates !== []) {
+            self::fail('Journées interdites quand les dates sont masquées');
         }
         foreach ($dates as $date) {
-            if (!self::dateAt($date, $precision, true)) {
-                return $fail('Journée plus précise que la précision choisie');
+            if (!self::dateAt($date, $precision)) {
+                self::fail('Journée plus précise que la précision choisie');
             }
         }
-        $competencies = $state['competencies'] ?? null;
-        if (!\is_array($competencies) || !array_is_list($competencies) || $competencies === [] || \count($competencies) > self::MAX_COMPETENCIES) {
-            return $fail('Liste des compétences invalide (au moins une compétence retenue)');
-        }
+        $competencies = self::listOf($state['competencies'], 1, self::MAX_COMPETENCIES, 'compétences (au moins une compétence retenue)');
         $codes = [];
         foreach ($competencies as $c) {
-            if (!self::isObject($c) || ($extra = self::unknownKey($c, self::COMPETENCY)) !== null) {
-                return $fail('Compétence invalide' . ($extra !== null ? ' (champ non autorisé : ' . $extra . ')' : ''));
+            if (!self::isObject($c)) {
+                self::fail('Compétence invalide');
             }
-            if (!\is_string($c['code'] ?? null) || !isset($refCodes[$c['code']])
-                || !\in_array($c['status'] ?? null, ['established', 'needs_review'], true)
-                || !self::numbers($c, ['theta', 'intensity', 'confidence', 'pole', 'days', 'proofs', 'hints'])) {
-                return $fail('Compétence invalide');
+            self::exactKeys($c, self::COMPETENCY, 'compétence');
+            $code = $c['code'];
+            if (!\is_string($code) || !isset($refPoleOf[$code]) || isset($codes[$code]) || $c['pole'] !== $refPoleOf[$code]
+                || !\in_array($c['status'], ['established', 'needs_review'], true)
+                || !self::number($c['theta'], 0, self::MAX_THETA) || !self::number($c['intensity'], 0) || !self::number($c['confidence'], 0, 1, true)
+                || !self::count($c['days']) || !self::count($c['proofs']) || !self::count($c['hints'])) {
+                self::fail('Compétence invalide (code du référentiel, pôle, chiffres)');
             }
-            $codes[$c['code']] = true;
+            $codes[$code] = $c['pole'];
         }
-        $poles = $state['poles'] ?? null;
-        if (!\is_array($poles) || !array_is_list($poles) || \count($poles) > 50) {
-            return $fail('Liste des pôles invalide');
+        if (\count($codes) !== \count($refPoleOf)) {
+            self::fail('Le référentiel embarqué ne contient que les compétences retenues');
         }
+        $poles = self::listOf($state['poles'], 1, self::MAX_POLES, 'pôles');
+        $seenPoles = [];
         foreach ($poles as $p) {
-            if (!self::isObject($p) || ($extra = self::unknownKey($p, self::POLE)) !== null
-                || !self::numbers($p, ['num', 'theta', 'intensity', 'confidence'])
-                || !\is_array($p['codes'] ?? null) || !array_is_list($p['codes'])) {
-                return $fail('Pôle invalide');
+            if (!self::isObject($p)) {
+                self::fail('Pôle invalide');
+            }
+            self::exactKeys($p, self::POLE, 'pôle');
+            if (!\is_int($p['num']) || !isset($poleNums[$p['num']]) || isset($seenPoles[$p['num']])
+                || !self::number($p['theta'], 0, self::MAX_THETA) || !self::number($p['intensity'], 0) || !self::number($p['confidence'], 0, 1, true)
+                || !\is_bool($p['needsReviewOnly'])) {
+                self::fail('Pôle invalide (numéro du référentiel, chiffres, needsReviewOnly booléen)');
+            }
+            $seenPoles[$p['num']] = true;
+            foreach (self::listOf($p['codes'], 1, self::MAX_COMPETENCIES, 'compétences du pôle') as $code) {
+                if (!\is_string($code) || ($codes[$code] ?? null) !== $p['num']) {
+                    self::fail('Pôle invalide (compétence absente de la version ou d\'un autre pôle)');
+                }
             }
         }
 
         // Heatmap : par jour, par mois, ou absente quand les dates sont masquées.
-        $heatmap = $doc['heatmap'] ?? null;
-        if ($heatmap !== null) {
-            if ($precision === 'none' || !self::isObject($heatmap) || self::unknownKey($heatmap, self::HEATMAP) !== null
-                || ($heatmap['precision'] ?? null) !== $precision
-                || !\is_array($heatmap['cells'] ?? null) || !array_is_list($heatmap['cells']) || \count($heatmap['cells']) > self::MAX_DATES) {
-                return $fail('Heatmap invalide pour la précision choisie');
+        $heatmap = $doc['heatmap'];
+        if ($precision === 'none') {
+            if ($heatmap !== null) {
+                self::fail('Heatmap interdite quand les dates sont masquées');
             }
-            foreach ($heatmap['cells'] as $cell) {
-                if (!self::isObject($cell) || self::unknownKey($cell, self::CELL) !== null
-                    || !self::dateAt($cell['key'] ?? null, $precision) || !self::numbers($cell, ['level'])) {
-                    return $fail('Case de heatmap invalide');
+        } elseif ($heatmap !== null) {
+            if (!self::isObject($heatmap)) {
+                self::fail('Heatmap invalide');
+            }
+            self::exactKeys($heatmap, self::HEATMAP, 'heatmap');
+            if ($heatmap['precision'] !== $precision) {
+                self::fail('Heatmap invalide pour la précision choisie');
+            }
+            foreach (self::listOf($heatmap['cells'], 0, self::MAX_DATES, 'cases de heatmap') as $cell) {
+                if (!self::isObject($cell)) {
+                    self::fail('Case de heatmap invalide');
+                }
+                self::exactKeys($cell, self::CELL, 'case de heatmap');
+                if (!self::dateAt($cell['key'], $precision) || !\is_int($cell['level']) || $cell['level'] < 0 || $cell['level'] > 5 || !self::count($cell['days'])) {
+                    self::fail('Case de heatmap invalide');
                 }
             }
         }
 
         // Extraits choisis.
-        $extracts = $doc['extracts'] ?? null;
-        if (!\is_array($extracts) || !array_is_list($extracts) || \count($extracts) > self::MAX_EXTRACTS) {
-            return $fail('Liste des extraits invalide (' . self::MAX_EXTRACTS . ' au plus)');
+        foreach (self::listOf($doc['extracts'], 0, self::MAX_EXTRACTS, 'extraits (' . self::MAX_EXTRACTS . ' au plus)') as $e) {
+            if (!self::isObject($e)) {
+                self::fail('Extrait invalide');
+            }
+            self::exactKeys($e, self::EXTRACT, 'extrait');
+            $dateOk = $precision === 'none' ? $e['date'] === null : ($e['date'] === null || self::dateAt($e['date'], $precision));
+            if (!\is_string($e['code']) || !isset($codes[$e['code']]) || !\in_array($e['role'], ['preuve', 'indice'], true)
+                || !self::text($e['text'], self::MAX_EXTRACT_CHARS) || !$dateOk) {
+                self::fail('Extrait invalide (compétence retenue, texte de ' . self::MAX_EXTRACT_CHARS . ' caractères au plus, date à la précision choisie)');
+            }
         }
-        foreach ($extracts as $e) {
-            if (!self::isObject($e) || ($extra = self::unknownKey($e, self::EXTRACT)) !== null) {
-                return $fail('Extrait invalide' . ($extra !== null ? ' (champ non autorisé : ' . $extra . ')' : ''));
+    }
+
+    private static function fail(string $message): never
+    {
+        throw new InvalidSharedVersion($message);
+    }
+
+    /**
+     * Les clés exactes d'un objet : aucune inconnue, aucune manquante.
+     *
+     * @param array<mixed> $value
+     * @param list<string> $expected
+     */
+    private static function exactKeys(array $value, array $expected, string $what): void
+    {
+        foreach (array_keys($value) as $key) {
+            if (!\in_array((string) $key, $expected, true)) {
+                self::fail('Champ non autorisé dans une version partagée (' . $what . ') : ' . $key);
             }
-            if (!\is_string($e['code'] ?? null) || !isset($codes[$e['code']]) || !\in_array($e['role'] ?? null, ['preuve', 'indice'], true)
-                || !\is_string($e['text'] ?? null) || trim($e['text']) === '' || mb_strlen($e['text']) > self::MAX_EXTRACT_CHARS
-                || !self::dateAt($e['date'] ?? null, $precision, true)) {
-                return $fail('Extrait invalide (compétence retenue, texte de ' . self::MAX_EXTRACT_CHARS . ' caractères au plus, date à la précision choisie)');
+        }
+        foreach ($expected as $key) {
+            if (!\array_key_exists($key, $value)) {
+                self::fail('Champ manquant dans une version partagée (' . $what . ') : ' . $key);
             }
+        }
+    }
+
+    /** @return list<mixed> */
+    private static function listOf(mixed $value, int $min, int $max, string $what): array
+    {
+        if (!\is_array($value) || !array_is_list($value) || \count($value) < $min || \count($value) > $max) {
+            self::fail('Liste invalide : ' . $what);
         }
 
-        return [];
+        return $value;
     }
 
     /** Chaîne non vide (ou vide si $allowEmpty) d'au plus $max caractères. */
@@ -204,47 +281,38 @@ final class SharedVersion
         return \is_array($value) && ($value === [] || !array_is_list($value));
     }
 
-    /** @param array<mixed> $value @param list<string> $allowed */
-    private static function unknownKey(array $value, array $allowed): ?string
-    {
-        foreach (array_keys($value) as $key) {
-            if (!\in_array((string) $key, $allowed, true)) {
-                return (string) $key;
-            }
-        }
-
-        return null;
-    }
-
-    /** @param array<mixed> $value @param list<string> $keys numériques s'ils sont présents */
-    private static function numbers(array $value, array $keys): bool
-    {
-        foreach ($keys as $key) {
-            if (\array_key_exists($key, $value) && $value[$key] !== null && !\is_int($value[$key]) && !\is_float($value[$key])) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Une date à la précision choisie : AAAA-MM-JJ (jour), AAAA-MM (mois),
-     * null (masquée). `nullable` : null accepté à toute précision.
-     */
-    private static function dateAt(mixed $value, string $precision, bool $nullable = false): bool
+    /** Nombre fini dans [min ; max] (null accepté si $nullable). */
+    private static function number(mixed $value, float $min, ?float $max = null, bool $nullable = false): bool
     {
         if ($value === null) {
-            return $nullable || $precision === 'none';
+            return $nullable;
         }
-        if (!\is_string($value)) {
+        if (!\is_int($value) && !\is_float($value)) {
             return false;
         }
 
-        return match ($precision) {
-            'day' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $value) === 1,
-            'month' => preg_match('/^\d{4}-\d{2}$/', $value) === 1,
-            default => false,
-        };
+        return is_finite((float) $value) && $value >= $min && ($max === null || $value <= $max + 1e-9);
+    }
+
+    /** Entier positif ou nul. */
+    private static function count(mixed $value): bool
+    {
+        return \is_int($value) && $value >= 0;
+    }
+
+    /** Une date réelle à la précision choisie : AAAA-MM-JJ (jour), AAAA-MM (mois). */
+    private static function dateAt(mixed $value, string $precision): bool
+    {
+        if (!\is_string($value)) {
+            return false;
+        }
+        if ($precision === 'day' && preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $value, $m) === 1) {
+            return checkdate((int) $m[2], (int) $m[3], (int) $m[1]);
+        }
+        if ($precision === 'month' && preg_match('/^(\d{4})-(\d{2})$/', $value, $m) === 1) {
+            return (int) $m[2] >= 1 && (int) $m[2] <= 12;
+        }
+
+        return false;
     }
 }

@@ -81,7 +81,11 @@ return function (App $app): void {
         if ($type === 'partage' && Users::adultAttestedAt(Db::get(), $userId) === null) {
             return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
         }
-        $titre = \is_string($data['titre'] ?? null) ? trim($data['titre']) : '';
+        // Le titre d'une version partagée est celui de l'instantané (relu avant
+        // publication) : le titre envoyé à côté est ignoré.
+        $titre = $type === 'partage' && \is_array($data['document'] ?? null) && \is_string($data['document']['title'] ?? null)
+            ? trim($data['document']['title'])
+            : (\is_string($data['titre'] ?? null) ? trim($data['titre']) : '');
         if ($titre === '' || mb_strlen($titre) > 190) {
             $errors['titre'] = 'Titre requis (190 caractères maximum)';
         }
@@ -99,6 +103,15 @@ return function (App $app): void {
         } elseif ($type === 'partage') {
             // Liste blanche de champs : ni portfolio, ni jury, ni dates plus fines que choisi.
             $errors += SharedVersion::validate($document);
+        }
+        if ($type === 'partage') {
+            // Une version partagée ne porte que son document : ni métadonnées de
+            // run, ni versions de paquet ou de référentiel (liste blanche, §12).
+            foreach (['runMeta', 'promptPackageId', 'promptPackageVersion', 'referentielId', 'referentielVersion'] as $field) {
+                if (($data[$field] ?? null) !== null) {
+                    $errors[$field] = 'Champ non autorisé pour une version partagée';
+                }
+            }
         }
         $runMeta = $data['runMeta'] ?? null;
         if ($runMeta !== null) {
@@ -151,7 +164,7 @@ return function (App $app): void {
             return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
         }
 
-        $id = $repo()->create(
+        $create = static fn (): int => $repo()->create(
             $userId,
             (string) $type,
             $titre,
@@ -161,6 +174,29 @@ return function (App $app): void {
             $referentielVersionId,
             $runMeta,
         );
+        if ($type !== 'partage') {
+            return $json($response, ['id' => $create()], 201);
+        }
+
+        // Version partagée : attestation relue SOUS VERROU et insertion dans la
+        // même transaction — un retrait d'attestation simultané ne laisse
+        // jamais une version derrière lui (routes/partage.php).
+        $pdo = Db::get();
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+            }
+            $id = $create();
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
 
         return $json($response, ['id' => $id], 201);
     }))->add($apprenant);
@@ -192,10 +228,13 @@ return function (App $app): void {
         $userId = (int) $request->getAttribute('userId');
 
         $errors = [];
+        $sharedVersion = $repo()->typeOwnedBy((int) $args['id'], $userId) === 'partage';
         $titre = null;
         if (\array_key_exists('titre', $data)) {
             $titre = \is_string($data['titre']) ? trim($data['titre']) : '';
-            if ($titre === '' || mb_strlen($titre) > 190) {
+            if ($sharedVersion) {
+                $errors['titre'] = 'Une version partagée est figée : publiez-en une nouvelle pour changer son titre';
+            } elseif ($titre === '' || mb_strlen($titre) > 190) {
                 $errors['titre'] = 'Titre requis (190 caractères maximum)';
             }
         }
@@ -204,7 +243,7 @@ return function (App $app): void {
             $visibility = $data['visibility'];
             if (!\in_array($visibility, ['privee', 'cartographe', 'publique'], true)) {
                 $errors['visibility'] = 'Visibilité invalide (attendu : "privee", "cartographe" ou "publique")';
-            } elseif ($visibility !== 'privee' && $repo()->typeOwnedBy((int) $args['id'], $userId) === 'partage') {
+            } elseif ($visibility !== 'privee' && $sharedVersion) {
                 $errors['visibility'] = 'Une version partagée reste privée : seul un lien la montre';
             }
         }

@@ -5,6 +5,8 @@ import { describe, expect, it } from 'vitest'
 import { computeState } from './state.js'
 import { normalizeReferential } from './referential.js'
 import { addReflection, removeReflection, setPreferences } from './ops.js'
+import { importFiles } from './import.js'
+import { createDataset } from './model.js'
 import { indexDataset, miniReferential } from '../test/fixtures.js'
 import {
   MAX_QUOTE_CHARS,
@@ -153,6 +155,22 @@ describe('carnet', () => {
     expect(md).toContain('> Relance (Ollama — llama3.1) : Et alors ?')
 
     expect(removeReflection(withOne, r.id, { now: NOW }).reflections).toEqual([])
+  })
+
+  it('un carnet réimporté est nettoyé : une entrée illisible est écartée, jamais affichée', async () => {
+    const archive = {
+      kind: 'competency-map-master',
+      schemaVersion: '4.0.0',
+      days: [],
+      reflections: [
+        { id: 'rf-ok', at: NOW, entries: [null, 'texte', { question: 'Q ?', answer: 'R', refs: { dates: ['pas-une-date'] } }] },
+        { id: 'rf-vide', at: NOW, entries: [null] },
+        { id: 42, at: NOW, entries: [{ question: 'Q ?', answer: 'R' }] },
+      ],
+    }
+    const res = await importFiles([{ path: 'a.json', text: JSON.stringify(archive) }], createDataset({ datasetId: 'ds', referential: miniReferential(), now: NOW }), { now: NOW })
+    expect(res.dataset.reflections).toHaveLength(1)
+    expect(res.dataset.reflections[0]).toMatchObject({ id: 'rf-ok', entries: [{ question: 'Q ?', answer: 'R', refs: { dates: [], codes: [] }, quote: null, relaunch: null }] })
   })
 
   it('les citations sont bornées', () => {

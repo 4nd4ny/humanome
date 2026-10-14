@@ -30,6 +30,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P5 | exports JSON / HTML / PDF, anonymisation | ✅ | ✅ 39 tests (cœur, interface, e2e Chromium) + validation sur les journaux réels (D-29) | ✅ 239 verts (carto) + suite du site + e2e | `c7e200c`, corrections `90aacee` → `3ff2dcd` |
 | P6 | copie serveur et partage (adultes) | ✅ | ✅ 39 tests (cœur, interface, API, e2e Chromium contre l'API locale) | ✅ 262 verts (carto) + suites du site et de l'API + e2e | `a6972bb` |
 | P7 | dialogue scripté (option) | ✅ | ✅ 18 tests (cœur, interface, e2e Chromium) | ✅ 279 verts (carto) + suites du site + e2e | `e08f8c9` |
+| Vérification | relecture indépendante de P6 et P7 : 13 corrections, 2 décisions à prendre (D-37) | ✅ | ✅ +8 tests, d'autres renforcés (cœur, interface, API, e2e) | ✅ 285 verts (carto) + suites du site et de l'API + e2e | — |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -602,14 +603,20 @@ sauvegarde serveur de tout le travail n'est pas faite (question 14).
   relecture (D-33), sans Markdown, bornés à 2 000 caractères.
 - **Référentiel embarqué** : tous les pôles (donnée publique ; les symboles du
   mode renforcé restent stables), les seules compétences retenues.
-- Le serveur vérifie la même forme **par liste blanche de champs**, à tous
-  les niveaux (`api/src/Share/SharedVersion.php`) : un champ inconnu, une
-  date plus fine que la précision choisie, un extrait d'une compétence
-  retirée ou trop long, un référentiel augmenté sont refusés (422). Les deux
-  listes sont tenues ensemble par une fixture partagée
-  (`schemas/fixtures/partage/carto-partage-exemple.json`) : le test PHP
-  l'accepte, le test du client compare sa forme à celle de
-  `buildSharedVersion`.
+- Le serveur vérifie la même forme **par liste blanche de champs et de
+  types**, à tous les niveaux (`api/src/Share/SharedVersion.php`) : un champ
+  inconnu ou manquant, un type inattendu (un booléen qui porte du texte, un
+  nombre en chaîne), un code de compétence inconnu, en double ou rangé dans
+  un autre pôle, une date impossible ou plus fine que la précision choisie,
+  une période inversée, un extrait d'une compétence retirée ou trop long, un
+  référentiel augmenté (une compétence non retenue), une couleur qui n'est
+  pas un code hexadécimal sont refusés (422). Une version partagée n'accepte
+  ni `runMeta` ni versions de paquet ou de référentiel. Les deux listes sont
+  tenues ensemble par une fixture **produite par le client lui-même**
+  (`web/scripts/carto-share-fixture.mjs` écrit la sortie exacte de
+  `buildSharedVersion` dans
+  `schemas/fixtures/partage/carto-partage-exemple.json`) : le test du client
+  exige l'égalité exacte, le test PHP l'accepte et la publie.
 - **[écart]** §12.2 propose « PHP 8 + SQLite (ou fichiers JSON) ». Le site a
   déjà une API PHP déployée par FTP, avec comptes, liens de partage hachés,
   quotas, audit et migrations par point d'entrée : la version partagée en
@@ -625,10 +632,30 @@ sauvegarde serveur de tout le travail n'est pas faite (question 14).
 - **Le serveur tient la règle**, quoi qu'envoie le client : sans
   attestation, `POST /api/cartographies` de type `partage` et
   `POST /api/cartographies/{id}/share` sur une telle version répondent
-  `403 {code: 'adult_required'}` et n'écrivent rien. Retirer l'attestation
-  révoque aussitôt tous les liens actifs des versions partagées du compte ;
-  les versions restent consultables, téléchargeables et effaçables par leur
-  auteur (droits d'export et d'effacement).
+  `403 {code: 'adult_required'}` et n'écrivent rien. L'attestation est relue
+  sous verrou de la ligne `users` (`SELECT … FOR UPDATE`), dans la
+  transaction même de l'insertion : un retrait simultané ne laisse passer ni
+  version ni lien.
+- **Retirer l'attestation efface** aussitôt toutes les versions partagées du
+  compte et leurs liens (§12 : « pour les mineurs, ni copie serveur ni
+  partage ») : aucun compte sans attestation ne garde de copie serveur, et
+  personne n'a à se redéclarer majeur pour effacer ce qu'il a publié.
+  L'interface propose d'abord de tout télécharger (« Télécharger toutes mes
+  versions (JSON) »), demande une confirmation en deux temps (« Confirmer :
+  effacer mes versions partagées »), puis dit combien de versions ont été
+  effacées ; la réponse et l'audit ne portent que ce compteur
+  (`deletedVersions`).
+- **À chaque publication**, une case est exigée en plus de l'attestation du
+  compte : « J'atteste avoir 18 ans ou plus au moment de cette
+  publication » (§12.1 : « au moment de la publication »). Lecture de « La
+  création de compte n'est pas obligatoire » : toute l'interface s'utilise
+  sans compte (tout reste local) ; seul le partage en demande un, puisque
+  l'attestation est portée par un compte et que l'API authentifie
+  l'apprenant (§12.2) **[à valider]** (question 24).
+- Le partage historique du site (`#/espace`, cartographies du moteur, mot de
+  passe obligatoire) n'est **pas** soumis à l'attestation : le changer
+  toucherait un parcours existant (UC-APP-05) ; décision laissée à Christian
+  (question 17).
 - **Le client** : le module se règle par `{serverEnabled, adultOnly}`
   (§12.2, `deps.share` de `CartoApp`, normalisé par `normalizeShareConfig`) ;
   `serverEnabled` est faux par défaut (copie autonome, phase 1) et vrai sur le
@@ -648,9 +675,13 @@ sauvegarde serveur de tout le travail n'est pas faite (question 14).
   (1 à 365), révocation immédiate. Pour une version partagée, le mot de
   passe est **facultatif** (§12.1) : `share_links.password_hash` devient
   NULL-able ; sans mot de passe, l'URL se termine par `/ouvert` et
-  `GET /api/share/{token}` (public, même quota par IP que le formulaire,
-  404 homogène, 401 `password_required` si le lien a un mot de passe) sert
-  la version. Les autres types gardent le mot de passe obligatoire.
+  `GET /api/share/open` (public, même quota par IP que le formulaire, 404
+  homogène, 401 `password_required` si le lien a un mot de passe) sert la
+  version. Le jeton y voyage dans l'en-tête `X-Share-Token`, **jamais dans
+  l'URL de l'API** : sans mot de passe, il suffit à lire la version, et une
+  URL finit dans les journaux d'accès du serveur. Un mot de passe qui n'est
+  pas du texte est refusé (422) au lieu d'être pris pour une absence de mot
+  de passe. Les autres types gardent le mot de passe obligatoire.
 - **Jamais indexé** : `X-Robots-Tag: noindex, nofollow, noarchive` et
   `Cache-Control: no-store` sur toutes les réponses publiques de partage,
   plus une balise `robots` tant que la page de partage est affichée. Aucune
@@ -669,24 +700,37 @@ Espace `ui/SharePanel.jsx`, en trois étapes puis la gestion :
 
 1. **Choisir** : titre (« Ma cartographie de compétences » par défaut, jamais
    le nom du jeu de données, qui peut contenir celui de la personne),
-   précision des dates, arbre pôles → compétences à cases à trois états,
-   extraits proposés par compétence (traces de l'ensemble coché, chargées à
-   la demande). La version part de l'état affiché (journées cochées, date t).
+   précision des dates, arbre pôles → compétences à cases à trois états
+   (toutes les compétences observées partent cochées, les extraits partent
+   décochés **[à valider]**, question 23), extraits proposés par compétence
+   (traces de l'ensemble coché, chargées à la demande). La version part de
+   l'état affiché (journées cochées, date t).
 2. **Relire** (§12.2, contenus tiers) : masques des courriels, liens,
-   téléphones et adresses (actifs par défaut, avec leurs nombres) ; mots à
-   majuscule repérés dans le titre et les extraits, à remplacer d'un clic
-   par « ‹nom› » (ou un autre nom) ; chaque extrait peut être modifié ou
-   « Retiré de cette version partagée » ; une case « j'ai relu » est exigée.
+   téléphones et adresses (actifs par défaut, avec leurs nombres), appliqués
+   au titre comme aux extraits ; mots à majuscule repérés dans le titre et
+   les extraits, à remplacer d'un clic par « ‹nom› » (ou un autre nom),
+   dans le titre publié comme dans les extraits ; chaque extrait peut être
+   modifié ou « Retiré de cette version partagée » ; une case « j'ai relu »
+   est exigée, et se décoche dès que le titre, un extrait, un masque ou un
+   remplacement change.
 3. **Aperçu verrouillé** : le composant même du destinataire (`SharedView`),
    avec les données mêmes ; encart RGPD (ce qui part, hébergement, durée de
-   conservation, droits, journal, pas d'indexation) et case de demande
-   explicite, puis « Publier la version partagée ».
+   conservation, droits, journal, pas d'indexation), case de demande
+   explicite et case d'attestation de cette publication (D-31), puis
+   « Publier la version partagée ».
 
 Vocabulaire : on **retire** d'une version partagée ; « Supprimer » n'apparaît
 nulle part (le retrait d'une version du serveur s'appelle « Retirer cette
 version du serveur »). **Instantané figé** : aucune route ne modifie le
-document d'une version ; une nouvelle version est une nouvelle publication,
-les anciennes restent jusqu'à leur retrait (question 15).
+document d'une version, ni son titre (le titre servi est celui du document ;
+un `PATCH` du titre est refusé) ; une version partagée est hors du module de
+relecture des cartographes (annotations, révisions, garantie : 404) ; une
+nouvelle version est une nouvelle publication, les anciennes restent jusqu'à
+leur retrait (question 15).
+
+Les textes sont coupés par caractères entiers (un émoji n'est jamais coupé
+en deux, ce qui rendait la requête illisible pour le serveur) ; un refus du
+serveur s'affiche avec son motif (« document : … »).
 
 Gestion : versions publiées (privée / lien partagé), liens (création avec
 expiration et mot de passe facultatif, révocation en deux temps, état
@@ -706,7 +750,9 @@ les compétences par pôle avec leurs chiffres, leur description et les
 extraits choisis ; « Comment lire ce soleil » (ce document ne classe pas, ne
 compare pas, ne dit rien de ce qui n'a pas été partagé). Lecture seule, sans
 comparaison ni droit de réponse, sans aucun appel réseau autre que la
-lecture du lien (le référentiel est embarqué).
+lecture du lien (le référentiel est embarqué). Un document illisible affiche
+un message au lieu de casser la page ; la vue est remontée à chaque lien
+ouvert, si bien qu'un lien ne montre jamais le document d'un autre.
 
 
 ### D-35 — Dialogue d'accompagnement : un questionnement scripté, tiré des traces
@@ -740,11 +786,14 @@ d'analyse : « fonction candidate 3 et 4 ») :
   carnet » enregistre questions et réponses (bornées) dans le jeu de données
   (`reflections[]`, dans le navigateur) ; chaque dialogue se relit, se copie
   ou se télécharge en Markdown (pour le recopier dans son journal) et se
-  retire en deux temps. Le carnet suit le portfolio dans l'archive (exclu
-  quand on exporte sans le texte du portfolio), n'entre **jamais** dans une
-  version partagée (liste blanche, D-30) ni dans une démo anonymisée (le
-  rapport de la démo le compte), et se restaure à la réimportation d'une
-  archive (doublons ignorés). Dans une copie autonome, rien n'est enregistré.
+  retire en deux temps. Le carnet suit le portfolio dans l'archive JSON
+  (exclu quand on exporte sans le texte du portfolio), n'entre **jamais**
+  dans la copie HTML autonome (même « avec portfolio » : une copie se
+  transmet), ni dans une version partagée (liste blanche, D-30), ni dans une
+  démo anonymisée (le rapport de la démo le compte), et se restaure à la
+  réimportation d'une archive (doublons ignorés, entrées nettoyées et
+  bornées comme à la saisie). Dans une copie autonome, rien n'est
+  enregistré.
 
 ### D-36 — Relances par un modèle de langage : facultatives, sur accord explicite
 
@@ -769,7 +818,48 @@ demander, après une réponse, une question de relance :
   s'affiche en texte simple, bornée, marquée comme venant d'un modèle de
   langage, et se garde dans le carnet avec le nom du modèle ;
 - l'option n'existe pas dans la copie autonome (le module est fourni par le
-  site : `deps.llm` dans `App.jsx`).
+  site : `deps.llm` dans `App.jsx`) ;
+- une relance encore en attente quand on recommence le dialogue est
+  écartée : elle ne s'attache jamais au dialogue suivant.
+
+**Sur le site déployé, l'option ne peut pas aboutir en l'état** : la
+politique de sécurité du site (`connect-src 'self'`, `web/public/.htaccess`)
+interdit au navigateur tout appel vers un fournisseur ou vers Ollama. La
+relance échoue alors avec un message qui le dit (« … n'a pas pu être joint
+depuis cette page (fournisseur injoignable, ou appel bloqué par la politique
+de sécurité du site). Aucune relance n'a été reçue. »). Les runs « clé
+personnelle » du site ont le même défaut, antérieur à ce travail. Ouvrir
+`connect-src` aux fournisseurs est une décision de sécurité laissée à
+Christian (question 22) ; l'e2e tourne sur le serveur de développement, sans
+cette politique.
+
+### D-37 — Vérification indépendante de P6 et P7
+
+Une relecture indépendante de P6 et P7 (un agent distinct, qui n'a pas écrit
+le code, avec des sondes écrites hors du dépôt : PHPUnit, Vitest, Node) a
+relevé 15 points ; 13 sont corrigés, 2 relèvent d'une décision.
+
+| # | Constat | Suite |
+|---|---|---|
+| 1 | Retirer l'attestation gardait les versions sur le serveur et cachait le seul moyen de les effacer ; le message du retrait ne s'affichait pas ; annotations et renommage restaient possibles sur une version partagée | corrigé : le retrait efface versions et liens (D-31), message affiché ; version hors du module de relecture, titre figé (D-33) |
+| 2 | Liste blanche du serveur trop lâche (types non vérifiés : du texte passait par un booléen ; référentiel augmenté ; `runMeta` accepté ; période inversée) ; certaines versions acceptées faisaient planter la vue du destinataire | corrigé : liste blanche des champs et des types, contrat par la sortie exacte du client (D-30) ; vue du destinataire qui ne plante plus (D-34) |
+| 3 | Remplacements de noms et masques jamais appliqués au titre | corrigé (D-33) |
+| 4 | La copie HTML « avec portfolio » emportait le carnet du dialogue | corrigé : jamais de carnet dans une copie HTML (D-35) |
+| 5 | Le partage historique du site n'exige pas l'attestation | **décision à prendre** (question 17) |
+| 6 | La politique de sécurité du site bloque les relances (et les runs « clé personnelle ») | **décision à prendre** (question 22) ; message d'échec explicite (D-36) |
+| 7 | Un mot de passe numérique créait un lien sans mot de passe | corrigé : 422 (D-32) |
+| 8 | Le jeton d'un lien ouvert figurait dans l'URL de l'API, donc dans les journaux d'accès | corrigé : en-tête `X-Share-Token` (D-32) |
+| 9 | Création de lien et retrait de l'attestation non atomiques | corrigé : verrou de la ligne `users` (D-31) |
+| 10 | Version « figée » renommable | corrigé : titre du document, `PATCH` refusé (D-33) |
+| 11 | Révisions demandées sur une version partagée : erreur 500 | corrigé : 404 (D-33) |
+| 12 | Coupe au milieu d'un émoji (publication refusée sans raison lisible) ; motif des refus du serveur masqué | corrigé : coupes par caractères entiers, motif affiché (D-33) |
+| 13 | La vue du destinataire gardait le document d'un lien ouvert avant | corrigé (D-34). Laissé : un lien sans mot de passe ouvert sans `/ouvert` (adresse tronquée à la main) montre le formulaire, et n'importe quel mot de passe l'ouvre ; pour un lien ordinaire, rien ne part avant la saisie |
+| 14 | Une relance en attente s'attachait au dialogue recommencé ; un carnet réimporté n'était pas nettoyé | corrigé (D-35, D-36) |
+| 15 | `role="log"` posé sur la liste lui retirait sa sémantique | corrigé : le journal enveloppe la liste |
+
+Lectures de la spécification signalées et retenues : attestation redemandée
+à chaque publication (D-31) ; compétences cochées par défaut (question 23).
+Chaque correction a son test, qui échoue si on la défait (§3).
 
 ---
 
@@ -913,6 +1003,9 @@ dev-server Vite seul, sans API).
 
 ### P6 — copie serveur et lien de partage (adultes)
 
+État à la livraison de P6 ; les corrections de la vérification indépendante
+(D-37) et leurs tests sont décrits plus bas.
+
 | Fichier de test | Contenu | Tests |
 |---|---|---|
 | `core/share.test.js` | liste positive (angles recalculés sur les seules compétences retenues, 360° sans trou, compétence retirée absente partout, référentiel réduit) ; journées comptées ; version vide ou sans titre refusée ; précision au mois et masquée (période, heatmap, dates d'extraits) ; candidats extraits ; extraits relus (Markdown, blancs, courriel et téléphone masqués, nom remplacé, borne de 2 000 caractères, doublons, compétence retirée) ; **même forme que la fixture partagée acceptée par le serveur** ; aucun champ privé ; lecture par le destinataire (même soleil) ; configuration `serverEnabled` / `adultOnly` ; lien absolu ; propositions de relecture | 15 |
@@ -935,6 +1028,9 @@ la migration 022 (`POST /api/admin/migrate`).
 
 ### P7 — dialogue d'accompagnement scripté
 
+État à la livraison de P7 ; voir aussi la vérification indépendante (D-37),
+plus bas.
+
 | Fichier de test | Contenu | Tests |
 |---|---|---|
 | `core/dialogue.test.js` | ordre fixe des fils, présents seulement si leurs données existent ; citation (preuve la plus sûre, la plus récente à confiance égale, sans Markdown ; absente sans détail chargé ; bornée) ; silence relatif au rythme de la personne ; apparition, constance, renvoi ; changement de vocabulaire ; écart seulement s'il y a une comparaison ; **aucune valence, toujours une question** ; jeu d'une journée : aucun fil inventé ; relance : **seulement la question, la réponse et le passage**, consigne système ; relance affichée en texte simple ; carnet (bornes, retrait, Markdown) | 12 |
@@ -954,6 +1050,29 @@ moteur **1 069 verts**, 17 sautés ; les trois scénarios e2e de la
 cartographie (P5, P6, P7) verts. API inchangée depuis P6. Le modèle de la
 copie autonome passe de 620 à 711 Ko (les espaces Partage et Dialogue y sont
 compilés, inactifs ou sans relance dans une copie).
+
+### Vérification indépendante (P6, P7) — D-37
+
+| Fichier de test | Ajouts et renforts | Tests |
+|---|---|---|
+| `api/tests/CartoPartageTest.php` | **liste blanche des types** (booléen qui porte du texte, nombre en chaîne, couleur `url()`, compétence inconnue, d'un autre pôle ou absente, code inconnu dans un pôle, référentiel augmenté d'un champ ou d'une compétence, extrait trop long, d'une compétence retirée ou daté trop finement, mois 13, période inversée, angle hors bornes, mauvaise précision de heatmap, date de publication libre, mauvais `kind`, version 2.0.0) ; `runMeta` refusé ; titre = celui du document, `PATCH` du titre refusé ; module de relecture fermé (annotations et révisions 404, garantie 403) ; mot de passe numérique refusé sans créer de lien ; `GET /api/share/open` par en-tête, l'ancienne adresse ne sert plus rien ; **retrait de l'attestation = versions et liens effacés** (compteur, audit, lien 404, publication 403, partage historique intact) | 11 (+1) |
+| `core/share.test.js` | **la fixture partagée est la sortie exacte de `buildSharedVersion`** ; masques et remplacements dans le titre ; jamais de coupe au milieu d'un émoji | 17 (+2) |
+| `ui/P6.test.jsx` | retrait : versions effacées, message affiché ; case d'attestation à chaque publication ; nom du titre proposé et remplacé, relecture annulée si le titre change | 9 (+1) |
+| `views/ShareView.test.jsx` | jeton dans l'en-tête, jamais dans l'URL ; version illisible signalée sans plantage | 12 (+1) |
+| `core/dialogue.test.js` | carnet réimporté nettoyé (entrée illisible écartée) | 13 (+1) |
+| `ui/P7.test.jsx` | relance revenue après « Recommencer » écartée ; appel bloqué dit comme tel, sans relance inventée | 6 (+2) |
+| `ui/P5.test.jsx` | copie HTML « avec portfolio » : jamais le carnet | 9 |
+| `e2e/carto-partage.e2e.js` | case d'attestation à la publication ; jeton absent des URL de l'API ; retrait confirmé en deux temps → message, plus aucune ligne en base, lien 404 | 1 |
+
+Suites complètes après la vérification (2026-10-14) : front **2 231 verts**
+sur 2 232 (229 fichiers ; 285 pour la cartographie) — l'unique échec,
+`UC-ADM-05-F01` (supervision Twin9 par l'administrateur, sans lien avec la
+cartographie), attend un message une seconde au plus et cède sous la charge
+(l'API tournait en même temps) : il passe seul 3 fois sur 3 ;
+`twin6-prompt-package.test.js` toujours non chargeable (anomalie connue).
+API **1 481 verts** (14 132 assertions, 23 min 20 s). Moteur inchangé
+(1 069 verts, 17 sautés). Les trois scénarios e2e de la cartographie (P5, P6
+contre l'API locale, P7) verts.
 
 ---
 
@@ -1002,7 +1121,12 @@ compilés, inactifs ou sans relance dans une copie).
 17. Deux entrées « partager » coexistent pour un apprenant connecté : celle
     du site (« Partager ma cartographie », `#/espace`, cartographies du
     moteur, mot de passe obligatoire) et l'espace Partage de l'interface
-    ultime. Faut-il les réunir ?
+    ultime. Faut-il les réunir ? **Surtout** : la première n'exige pas
+    l'attestation de majorité, alors que §12 dit « pour les mineurs, ni copie
+    serveur ni partage ». La soumettre aussi à l'attestation (et effacer ses
+    copies au retrait) change un parcours existant (UC-APP-05) : laissée
+    telle quelle en attendant votre décision ; un test PHP fige ce
+    comportement pour qu'il ne change pas par mégarde (D-37, point 5).
 18. §12.2 (D-30, **[écart]**) : la version partagée vit dans l'API PHP/MySQL
     existante du site plutôt que dans un stockage SQLite ou JSON séparé.
 19. Dialogue (D-35) : vouvoiement (comme le reste de l'interface) ou
@@ -1014,6 +1138,21 @@ compilés, inactifs ou sans relance dans une copie).
 21. Relances (D-36) : faut-il aussi proposer le « service humanome » (proxy
     du site, sans clé personnelle), au prix d'un passage des réponses par le
     serveur ?
+22. Politique de sécurité du site (D-36, D-37 point 6) : `connect-src 'self'`
+    (`web/public/.htaccess`) bloque les relances du dialogue sur le site
+    déployé, comme les runs « clé personnelle » existants. Ouvrir
+    `connect-src` à `https://api.anthropic.com https://api.openai.com
+    https://generativelanguage.googleapis.com https://api.x.ai
+    https://openrouter.ai http://localhost:11434`, ou retirer l'option (et le
+    mode « clé personnelle ») ? Non modifié ici : c'est une décision de
+    sécurité.
+23. Compétences cochées par défaut (D-33) : toutes les compétences observées
+    partent cochées (on retire ce qu'on ne veut pas montrer), les extraits
+    partent décochés (on ajoute ce qu'on veut montrer). Préférez-vous des
+    compétences décochées au départ ?
+24. Attestation (D-31) : posée une fois sur le compte **et** redemandée par
+    une case à chaque publication ; un compte est exigé pour partager, pas
+    pour utiliser l'interface. Lecture de §12.1 à confirmer.
 
 ---
 
@@ -1057,3 +1196,8 @@ compilés, inactifs ou sans relance dans une copie).
   (Ollama local proposé d'abord, appel direct du navigateur, seulement la
   question, la réponse et le passage) ; e2e : aucune requête sans accord
   (D-35, D-36).
+- **2026-10-14** — Vérification indépendante de P6 et P7 : 13 corrections
+  (retrait de l'attestation qui efface, liste blanche des types, titre relu
+  et figé, jeton hors des URL, carnet hors de la copie HTML, verrous,
+  robustesse de la vue du destinataire et du dialogue), 2 décisions
+  soumises (questions 17 et 22) (D-37).

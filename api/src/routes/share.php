@@ -14,7 +14,8 @@ declare(strict_types=1);
  * spécification §12, routes/partage.php): creating their link requires the
  * account's adult attestation (403 `adult_required`), the password is
  * OPTIONAL (password_hash NULL), and a passwordless link is read with
- * GET /api/share/{token}. Every public answer carries noindex + no-store.
+ * GET /api/share/open (token in the X-Share-Token header, never in the URL).
+ * Every public answer carries noindex + no-store.
  *
  * Anti-enumeration on the public side: unknown token, expired link and
  * revoked link all collapse into ONE identical 404, with a dummy
@@ -130,8 +131,11 @@ return function (App $app): void {
 
         $data = (array) ($request->getParsedBody() ?? []);
         $errors = [];
-        $password = \is_string($data['password'] ?? null) ? $data['password'] : '';
-        if ($sharedVersion && $password === '') {
+        $rawPassword = $data['password'] ?? null;
+        $password = \is_string($rawPassword) ? $rawPassword : '';
+        if ($rawPassword !== null && !\is_string($rawPassword)) {
+            $errors['password'] = 'Mot de passe invalide (texte attendu)';
+        } elseif ($sharedVersion && $password === '') {
             $password = null; // lien sans mot de passe : le jeton (128 bits) suffit
         } elseif (mb_strlen($password) < 8) {
             $errors['password'] = 'Le mot de passe doit contenir au moins 8 caractères';
@@ -147,7 +151,27 @@ return function (App $app): void {
         }
 
         $links = new ShareLinks($pdo);
-        ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
+        if ($sharedVersion) {
+            // Attestation relue SOUS VERROU dans la transaction de l'insertion :
+            // un retrait simultané (qui efface les versions) ne laisse aucun lien.
+            $pdo->beginTransaction();
+            try {
+                if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                    $pdo->rollBack();
+
+                    return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+                }
+                ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
+                $pdo->commit();
+            } catch (\Throwable $e) {
+                if ($pdo->inTransaction()) {
+                    $pdo->rollBack();
+                }
+                throw $e;
+            }
+        } else {
+            ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
+        }
 
         // Counters and ids only — never the token, never the password (§6.5).
         Audit::record($pdo, $userId, 'share_created', [
@@ -265,13 +289,16 @@ return function (App $app): void {
     }));
 
     // ------------------------------------------------------------------
-    // GET /api/share/{token} — PUBLIC, lien SANS mot de passe (version
-    // partagée de l'interface ultime, §12). 200 {titre, type, document,
-    // garantie} ; 401 {code: password_required} si le lien a un mot de passe
-    // (le destinataire passe alors par le POST) ; 404 homogène sinon. Même
-    // quota par IP que le POST ; jamais indexé.
+    // GET /api/share/open — PUBLIC, lien SANS mot de passe (version partagée
+    // de l'interface ultime, §12). Le jeton voyage dans l'en-tête
+    // X-Share-Token, jamais dans l'URL : sans mot de passe, il suffit à lire
+    // la version, il n'a donc rien à faire dans les journaux d'accès du
+    // serveur. 200 {titre, type, document, garantie} ; 401 {code:
+    // password_required} si le lien a un mot de passe (le destinataire passe
+    // alors par le POST) ; 404 homogène sinon. Même quota par IP que le POST ;
+    // jamais indexé.
     // ------------------------------------------------------------------
-    $app->get('/share/{token}', $wrap(function (Request $request, Response $response, array $args) use ($json, $publicAttemptsPerHour, $noindex, $serve): Response {
+    $app->get('/share/open', $wrap(function (Request $request, Response $response) use ($json, $publicAttemptsPerHour, $noindex, $serve): Response {
         $pdo = Db::get();
         $ip = (string) ($request->getServerParams()['REMOTE_ADDR'] ?? $_SERVER['REMOTE_ADDR'] ?? '');
         $limiter = new RateLimiter($pdo, $publicAttemptsPerHour, 3600);
@@ -282,7 +309,7 @@ return function (App $app): void {
                 ->withHeader('Retry-After', (string) $limiter->retryAfter($attempts)));
         }
 
-        $token = (string) $args['token'];
+        $token = $request->getHeaderLine('X-Share-Token');
         $row = preg_match('/^[0-9a-f]{32}$/', $token) === 1
             ? (new ShareLinks($pdo))->findByToken($token)
             : null;

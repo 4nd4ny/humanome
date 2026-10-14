@@ -9,8 +9,9 @@
 // Version partagée de l'interface ultime (spec §12) : type « partage », rendue
 // par SharedView (soleil, heatmap, extraits choisis — tout est dans le
 // document). Un lien SANS mot de passe arrive en #/partage/<token>/ouvert
-// (`open`) : la version est demandée dès l'ouverture (GET api/share/<token>) ;
-// sinon RIEN ne part avant que le destinataire ait saisi le mot de passe.
+// (`open`) : la version est demandée dès l'ouverture (GET api/share/open,
+// jeton dans l'en-tête X-Share-Token) ; sinon RIEN ne part avant que le
+// destinataire ait saisi le mot de passe.
 // Tant que la page est montée, elle demande aux moteurs de ne pas l'indexer.
 import { useEffect, useMemo, useState } from 'react'
 import { ApiError, apiFetch } from '../api/client.js'
@@ -62,7 +63,9 @@ function GarantieNotice({ garantie }) {
 const openRequests = new Map()
 function readOpenShare(token, fetchFn) {
   if (!openRequests.has(token)) {
-    const request = apiFetch(`share/${encodeURIComponent(token)}`, fetchFn ? { fetchFn } : {})
+    // Le jeton voyage dans un en-tête, jamais dans l'URL de l'API : sans mot
+    // de passe, il suffit à lire la version (pas de trace dans les journaux).
+    const request = apiFetch('share/open', { headers: { 'X-Share-Token': token }, ...(fetchFn ? { fetchFn } : {}) })
     openRequests.set(token, request)
     const forget = () => setTimeout(() => openRequests.delete(token), 0)
     request.then(forget, forget)
@@ -224,7 +227,7 @@ export default function ShareView({ token, open = false, lib, fetchFn, getRefere
     return (
       <div className="share-view share-view--carto">
         {isSharedVersion(shared.document) ? (
-          <SharedView doc={shared.document} titre={shared.titre} garantie={shared.garantie} />
+          <SharedView doc={shared.document} garantie={shared.garantie} />
         ) : (
           <p role="alert">Cette version partagée n’est pas lisible par cette version du site.</p>
         )}

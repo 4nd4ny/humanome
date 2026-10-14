@@ -193,20 +193,31 @@ export function setComparisonNote(ds, { a, b, note }, { now } = {}) {
  */
 export function addReflection(ds, { entries }, { now } = {}) {
   const at = now ?? new Date().toISOString()
-  const clean = (entries ?? [])
-    .filter((e) => e && typeof e.question === 'string')
-    .map((e) => ({
-      threadId: String(e.threadId ?? ''),
-      kind: String(e.kind ?? ''),
-      question: e.question.slice(0, 2000),
-      quote: typeof e.quote === 'string' ? e.quote.slice(0, 2000) : null,
-      answer: String(e.answer ?? '').slice(0, 4000),
-      refs: { dates: (e.refs?.dates ?? []).filter(isIsoDate), codes: (e.refs?.codes ?? []).map(String) },
-      relaunch: e.relaunch?.text ? { text: String(e.relaunch.text).slice(0, 1000), model: String(e.relaunch.model ?? '').slice(0, 120) } : null,
-    }))
+  const clean = cleanReflectionEntries(entries)
   if (clean.length === 0) return ds
   const reflection = { id: stableId('rf', [at, clean.map((e) => e.question + e.answer).join('|')]), at, entries: clean }
   return touch({ ...ds, reflections: [...(ds.reflections ?? []), reflection] }, at)
+}
+
+/** Points de code (jamais une moitié d'émoji). */
+const cutChars = (s, n) => Array.from(String(s ?? '')).slice(0, n).join('')
+
+/**
+ * Entrées de carnet propres et bornées (saisie, ou archive réimportée : une
+ * entrée illisible est écartée, jamais affichée telle quelle).
+ */
+export function cleanReflectionEntries(entries) {
+  return (Array.isArray(entries) ? entries : [])
+    .filter((e) => e && typeof e === 'object' && typeof e.question === 'string')
+    .map((e) => ({
+      threadId: cutChars(e.threadId, 200),
+      kind: cutChars(e.kind, 40),
+      question: cutChars(e.question, 2000),
+      quote: typeof e.quote === 'string' ? cutChars(e.quote, 2000) : null,
+      answer: cutChars(e.answer, 4000),
+      refs: { dates: (Array.isArray(e.refs?.dates) ? e.refs.dates : []).filter(isIsoDate), codes: (Array.isArray(e.refs?.codes) ? e.refs.codes : []).map(String) },
+      relaunch: typeof e.relaunch?.text === 'string' && e.relaunch.text ? { text: cutChars(e.relaunch.text, 1000), model: cutChars(e.relaunch.model, 120) } : null,
+    }))
 }
 
 /** Retire un dialogue du carnet. */

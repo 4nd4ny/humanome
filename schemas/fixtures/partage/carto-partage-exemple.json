@@ -4,41 +4,120 @@
   "title": "Mes compétences — année 2025-2026",
   "publishedAt": "2026-10-14T10:00:00.000Z",
   "datePrecision": "month",
-  "period": { "from": "2025-12", "to": "2026-01" },
+  "period": {
+    "from": "2025-12",
+    "to": "2026-01"
+  },
   "referential": {
     "id": "mini",
     "version": "1.0.0",
     "label": "Mini 1.0",
     "poles": [
-      { "num": 1, "nom": "TÊTE — Penser", "couleur": "#2563eb" },
-      { "num": 2, "nom": "CŒUR — Relier", "couleur": "#10b981" },
-      { "num": 3, "nom": "MAIN — Créer", "couleur": "#ec4899" }
+      {
+        "num": 1,
+        "nom": "TÊTE — Penser",
+        "couleur": "#2563eb"
+      },
+      {
+        "num": 2,
+        "nom": "CŒUR — Relier",
+        "couleur": "#10b981"
+      },
+      {
+        "num": 3,
+        "nom": "MAIN — Créer",
+        "couleur": "#ec4899"
+      }
     ],
     "competences": [
-      { "code": "1.01", "nom": "Pensée critique", "pole": 1, "description": "Douter avec méthode." },
-      { "code": "2.01", "nom": "Écoute", "pole": 2, "description": "Accueillir autrui." }
+      {
+        "code": "1.01",
+        "nom": "Pensée critique",
+        "pole": 1,
+        "description": "Douter avec méthode."
+      },
+      {
+        "code": "2.01",
+        "nom": "Écoute",
+        "pole": 2,
+        "description": "Accueillir autrui."
+      }
     ]
   },
   "state": {
     "dayCount": 3,
-    "dates": ["2025-12", "2026-01"],
+    "dates": [
+      "2025-12",
+      "2026-01"
+    ],
     "competencies": [
-      { "code": "1.01", "pole": 1, "theta": 225.4237, "intensity": 0.8, "confidence": 0.7, "status": "established", "days": 2, "proofs": 1, "hints": 1 },
-      { "code": "2.01", "pole": 2, "theta": 134.5763, "intensity": 0.4776, "confidence": 0.5, "status": "needs_review", "days": 1, "proofs": 0, "hints": 1 }
+      {
+        "code": "1.01",
+        "pole": 1,
+        "theta": 282.3469,
+        "intensity": 0.909,
+        "confidence": 0.7,
+        "status": "established",
+        "days": 3,
+        "proofs": 1,
+        "hints": 2
+      },
+      {
+        "code": "2.01",
+        "pole": 2,
+        "theta": 77.6531,
+        "intensity": 0.25,
+        "confidence": 0.5,
+        "status": "established",
+        "days": 1,
+        "proofs": 0,
+        "hints": 1
+      }
     ],
     "poles": [
-      { "num": 1, "theta": 225.4237, "intensity": 0.8, "confidence": 0.7, "codes": ["1.01"], "needsReviewOnly": false },
-      { "num": 2, "theta": 134.5763, "intensity": 0.4776, "confidence": 0.5, "codes": ["2.01"], "needsReviewOnly": true }
+      {
+        "num": 1,
+        "theta": 282.3469,
+        "intensity": 0.909,
+        "confidence": 0.7,
+        "codes": [
+          "1.01"
+        ],
+        "needsReviewOnly": false
+      },
+      {
+        "num": 2,
+        "theta": 77.6531,
+        "intensity": 0.25,
+        "confidence": 0.5,
+        "codes": [
+          "2.01"
+        ],
+        "needsReviewOnly": false
+      }
     ]
   },
   "heatmap": {
     "precision": "month",
     "cells": [
-      { "key": "2025-12", "level": 5, "days": 2 },
-      { "key": "2026-01", "level": 1, "days": 1 }
+      {
+        "key": "2025-12",
+        "level": 5,
+        "days": 2
+      },
+      {
+        "key": "2026-01",
+        "level": 1,
+        "days": 1
+      }
     ]
   },
   "extracts": [
-    { "code": "1.01", "date": "2025-12", "role": "preuve", "text": "J’ai vérifié chaque source avant de conclure." }
+    {
+      "code": "1.01",
+      "date": "2025-12",
+      "role": "preuve",
+      "text": "J’ai vérifié chaque source avant de conclure."
+    }
   ]
 }

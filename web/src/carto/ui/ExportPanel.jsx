@@ -45,11 +45,11 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
   const setOpt = (patch) => setOptions((o) => ({ ...o, ...patch }))
   const reportOptions = useMemo(() => ({ ...options, codes: chosen, comparison: options.comparison && hasComparison }), [options, chosen, hasComparison])
 
-  async function currentArchive(includePortfolio) {
+  async function currentArchive(includePortfolio, { includeReflections = includePortfolio } = {}) {
     await data.flush()
     const exported = await data.store.exportAll(dataset.datasetId)
     if (!exported) throw new Error('jeu de données introuvable')
-    return buildArchive(exported, { includePortfolio })
+    return buildArchive(exported, { includePortfolio, includeReflections })
   }
 
   async function run(key, label, fn) {
@@ -82,7 +82,8 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
       } catch (err) {
         throw new Error(`La copie autonome n’a pas pu être produite : ${err.message}.`)
       }
-      const archive = await currentArchive(htmlPortfolio)
+      // Une copie autonome se donne : le carnet du dialogue n'y entre jamais.
+      const archive = await currentArchive(htmlPortfolio, { includeReflections: false })
       const blob = new Blob([injectArchive(template, archive)], { type: 'text/html' })
       const name = archiveFileName('copie', archive.exportedAt, 'html')
       downloadBlob(blob, name)
@@ -104,7 +105,8 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
             autre navigateur ; ce qui est déjà présent est ignoré.
           </p>
           <label className="carto-small">
-            <input type="checkbox" checked={jsonPortfolio} onChange={(e) => setJsonPortfolio(e.target.checked)} /> inclure le texte du portfolio
+            <input type="checkbox" checked={jsonPortfolio} onChange={(e) => setJsonPortfolio(e.target.checked)} /> inclure le texte du portfolio (et le carnet du
+            dialogue)
           </label>
           {jsonPortfolio ? null : (
             <p className="carto-small carto-muted">

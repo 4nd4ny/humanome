@@ -80,7 +80,7 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Données | Instantané figé `carto-partage` : compétences retenues et leurs chiffres recalculés, dates à la précision choisie (jour, mois ou masquées), extraits choisis et relus (masques de courriels, liens, téléphones, adresses ; remplacements de noms), titre. **Jamais** le portfolio, les délibérations du jury, les notes. Liste blanche de champs vérifiée par le serveur (`Share\SharedVersion`). |
 | Localisation | Local par défaut ; serveur uniquement sur demande explicite (case à cocher + publication), version par version. |
 | Base légale | **a** (consentement explicite, après aperçu verrouillé et relecture des contenus tiers). |
-| Durée | Jusqu'au retrait de la version (effacement immédiat), au retrait de l'attestation (liens révoqués aussitôt) ou à la suppression du compte. Liens : 90 jours par défaut (1-365), révocables, purgés au plus tard 30 jours après expiration ou révocation. |
+| Durée | Jusqu'au retrait de la version (effacement immédiat), au retrait de l'attestation (versions et liens **effacés** aussitôt) ou à la suppression du compte. Liens : 90 jours par défaut (1-365), révocables, purgés au plus tard 30 jours après expiration ou révocation. |
 | Destinataires | Toute personne munie du lien (et du mot de passe s'il y en a un). Pages et réponses non indexées (`noindex`, `no-store`), aucune statistique tierce. |
 | Journal | Dates des consultations réussies, visibles par l'auteur (`share_consulted` : ids seulement, ni IP ni navigateur). |
 | Tables | `cartographies` (`type = 'partage'`, `visibility = 'privee'` imposée), `share_links` (`password_hash` NULL = lien sans mot de passe), `audit_events`. |
@@ -93,7 +93,7 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Finalité | Réserver la copie serveur et le partage par lien aux adultes (spécification §12 : « pas de contrôle d'âge, mais une auto-certification »). |
 | Données | Date de l'attestation (`users.adult_attested_at`), posée par la personne elle-même au moment de partager ; aucune date de naissance, aucun justificatif. |
 | Base légale | **b** (condition d'accès à la fonction). |
-| Durée | Jusqu'à son retrait (qui révoque tous les liens actifs des versions partagées) ou à la suppression du compte. |
+| Durée | Jusqu'à son retrait (qui efface les versions partagées du compte et leurs liens) ou à la suppression du compte. |
 | Sort à la suppression | Colonne de la ligne `users` : purgée avec le compte. |
 
 ## 4. Progression de formation

@@ -133,6 +133,20 @@ final class Users
         return $value === false || $value === null ? null : (string) $value;
     }
 
+    /**
+     * Même lecture, ligne VERROUILLÉE (SELECT … FOR UPDATE) : à appeler dans
+     * une transaction, pour qu'une publication et un retrait d'attestation
+     * simultanés ne se croisent pas.
+     */
+    public static function lockAdultAttestedAt(PDO $pdo, int $userId): ?string
+    {
+        $stmt = $pdo->prepare('SELECT adult_attested_at FROM users WHERE id = ? AND deleted_at IS NULL FOR UPDATE');
+        $stmt->execute([$userId]);
+        $value = $stmt->fetchColumn();
+
+        return $value === false || $value === null ? null : (string) $value;
+    }
+
     /** Pose (date du jour) ou retire l'attestation de majorité. */
     public static function setAdultAttested(PDO $pdo, int $userId, bool $adult): void
     {

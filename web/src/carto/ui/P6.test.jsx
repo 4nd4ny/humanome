@@ -38,8 +38,12 @@ function fakeApi({ adult = false, required = true } = {}) {
     getAdult: vi.fn(async () => attestation),
     setAdult: vi.fn(async (on) => {
       attestation = { adult: on, attestedAt: on ? '2026-10-14T09:00:00' : null, required }
-      if (!on) for (const l of links) l.revokedAt ??= '2026-10-14T09:30:00'
-      return attestation
+      if (on) return attestation
+      // Retrait : le serveur efface les versions partagées et leurs liens.
+      const deletedVersions = versions.length
+      versions.splice(0)
+      links.splice(0)
+      return { ...attestation, deletedVersions }
     }),
     listVersions: vi.fn(async () => versions.map(({ document, ...meta }) => ({ ...meta, shares: links.filter((l) => l.cartoId === meta.id && !l.revokedAt).length }))),
     publish: vi.fn(async (document) => {
@@ -139,21 +143,27 @@ describe('P6 — un mineur n’a jamais accès à la fonction', () => {
     expect(screen.queryByRole('heading', { name: 'Nouvelle version partagée' })).toBeNull()
   })
 
-  it('l’attestation ouvre la fonction ; la retirer la referme (liens révoqués)', async () => {
-    const { api, links } = fakeApi({ adult: false })
+  it('l’attestation ouvre la fonction ; la retirer efface les versions du serveur et referme la fonction', async () => {
+    const { api, versions, links } = fakeApi({ adult: false })
     window.location.hash = '#/cartographie/partage'
     render(<Harness store={await louStore()} api={api} />)
     fireEvent.click(await screen.findByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus/ }))
     fireEvent.click(screen.getByRole('button', { name: 'Confirmer et continuer' }))
     expect(await screen.findByRole('heading', { name: 'Nouvelle version partagée' })).toBeTruthy()
     expect(api.setAdult).toHaveBeenCalledWith(true)
-    links.push({ shareId: 1, cartoId: 1, revokedAt: null })
+    await api.publish({ kind: 'carto-partage', title: 'Une version' })
+    links.push({ shareId: 1, cartoId: 10, revokedAt: null })
 
+    // On propose de tout télécharger avant ; le retrait dit qu'il efface.
+    expect(screen.getByText(/Retirer cette attestation efface aussitôt vos versions partagées du serveur/)).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Retirer mon attestation' }))
-    fireEvent.click(screen.getByRole('button', { name: 'Confirmer : révoquer tous mes liens' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Confirmer : effacer mes versions partagées' }))
     expect(await screen.findByRole('heading', { name: 'Le partage par lien est réservé aux personnes majeures' })).toBeTruthy()
     expect(api.setAdult).toHaveBeenLastCalledWith(false)
-    expect(links[0].revokedAt).not.toBeNull()
+    expect(versions).toHaveLength(0)
+    expect(links).toHaveLength(0)
+    // L'avis s'affiche aussi après le retrait (hors de l'espace réservé aux adultes).
+    expect(screen.getByText('Attestation retirée : 1 version partagée et ses liens ont été effacés du serveur.')).toBeTruthy()
     expect(screen.queryByRole('heading', { name: 'Nouvelle version partagée' })).toBeNull()
   })
 })
@@ -192,6 +202,8 @@ describe('P6 — composer, relire, publier', () => {
     const publish = screen.getByRole('button', { name: 'Publier la version partagée' })
     expect(publish.disabled).toBe(true)
     fireEvent.click(screen.getByRole('checkbox', { name: /Je demande l’enregistrement de cette version partagée/ }))
+    expect(publish.disabled).toBe(true) // l'attestation vaut pour CETTE publication aussi
+    fireEvent.click(screen.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }))
     fireEvent.click(publish)
 
     await waitFor(() => expect(api.publish).toHaveBeenCalledTimes(1))
@@ -235,6 +247,7 @@ describe('P6 — composer, relire, publier', () => {
     fireEvent.click(screen.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }))
     fireEvent.click(screen.getByRole('button', { name: 'Suivant : aperçu' }))
     fireEvent.click(await screen.findByRole('checkbox', { name: /Je demande l’enregistrement/ }))
+    fireEvent.click(screen.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }))
     fireEvent.click(screen.getByRole('button', { name: 'Publier la version partagée' }))
     await waitFor(() => expect(api.publish).toHaveBeenCalledTimes(1))
     const doc = api.publish.mock.calls[0][0]
@@ -242,6 +255,32 @@ describe('P6 — composer, relire, publier', () => {
     expect(doc.extracts[0]).toMatchObject({ code: '2.01', date: '2025-12', role: 'preuve' })
     expect(doc.extracts[0].text).toContain('‹nom›')
     expect(JSON.stringify(doc)).not.toContain('Sam')
+  })
+})
+
+describe('P6 — le titre se relit comme les extraits', () => {
+  it('un nom du titre est proposé et remplacé ; changer le titre après relecture annule la relecture', async () => {
+    const { api } = fakeApi({ adult: true })
+    window.location.hash = '#/cartographie/partage'
+    render(<Harness store={await louStore()} api={api} />)
+    await screen.findByRole('heading', { name: 'Nouvelle version partagée' })
+    fireEvent.change(screen.getByRole('textbox', { name: 'Titre vu par le destinataire' }), { target: { value: 'Mon année avec Camille, camille@exemple.org' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Suivant : relire' }))
+    await screen.findByRole('heading', { name: 'Relire avant de publier' })
+    expect(screen.getByText('Mon année avec Camille, ‹courriel›')).toBeTruthy() // titre publié, masque appliqué
+    expect(screen.getByRole('checkbox', { name: /courriels \(1\)/ })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Remplacer « Camille » par ‹nom›' }))
+    expect(await screen.findByText('Mon année avec ‹nom›, ‹courriel›')).toBeTruthy()
+
+    fireEvent.click(screen.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }))
+    expect(screen.getByRole('button', { name: 'Suivant : aperçu' }).disabled).toBe(false)
+    // Retour au choix, titre modifié : la relecture est à refaire.
+    fireEvent.click(screen.getByRole('button', { name: 'Retour' }))
+    fireEvent.change(await screen.findByRole('textbox', { name: 'Titre vu par le destinataire' }), { target: { value: 'Mon année' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Suivant : relire' }))
+    await screen.findByRole('heading', { name: 'Relire avant de publier' })
+    expect(screen.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }).checked).toBe(false)
+    expect(screen.getByRole('button', { name: 'Suivant : aperçu' }).disabled).toBe(true)
   })
 })
 
