@@ -9,7 +9,7 @@ import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
-import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 const VALENCE = /progr|amélior|régress|meilleur|pire|mieux|recul|déclin|classement|\brang\b|\b1er\b|\b2e\b/i
@@ -50,12 +50,45 @@ beforeEach(() => {
 afterEach(cleanup)
 
 describe('P3 — comparaison de soi à soi', () => {
-  it('par défaut « depuis la dernière évaluation » : tailles différentes et recouvrement sont signalés (critère P3)', async () => {
+  it('sans janvier ni mars analysés, par défaut « depuis la dernière évaluation » : tailles différentes et recouvrement sont signalés (critère P3)', async () => {
     const page = await openCompare(await louStore())
     const warnings = await within(page).findByRole('list', { name: 'Avertissements' })
     expect(within(warnings).getByText(/A et B n’ont pas la même taille : 2 journées analysées dans A, 3 dans B/)).toBeTruthy()
     expect(within(warnings).getByText(/se recouvrent : 2 journées en commun/)).toBeTruthy()
     expect(within(page).getByRole('group', { name: 'Ensemble A' }) ?? null).toBeTruthy()
+  })
+
+  it('par défaut, janvier contre mars quand ces deux mois ont des journées analysées (D-50) ; le préréglage y ramène', async () => {
+    const st = createCartoStore({ adapter: createMemoryAdapter() })
+    await st.commit({
+      dataset: indexDataset([
+        { date: '2026-01-12', verdicts: [{ code: '1.01', roles: ['preuve'] }] },
+        { date: '2026-01-19', verdicts: [{ code: '2.01', roles: ['preuve'] }] },
+        { date: '2026-02-09', verdicts: [{ code: '2.01', roles: ['indice'] }] },
+        { date: '2026-03-16', verdicts: [{ code: '3.01', roles: ['preuve'] }] },
+      ]),
+    })
+    const page = await openCompare(st)
+    const a = within(page).getByRole('group', { name: 'Ensemble A' })
+    const b = within(page).getByRole('group', { name: 'Ensemble B' })
+    await waitFor(() => expect(within(a).getByRole('textbox', { name: 'Nom' }).value).toBe('Janvier 2026'))
+    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Mars 2026')
+    expect([within(a).getByLabelText('Du').value, within(a).getByLabelText('Au').value]).toEqual(['2026-01-01', '2026-01-31'])
+    expect([within(b).getByLabelText('Du').value, within(b).getByLabelText('Au').value]).toEqual(['2026-03-01', '2026-03-31'])
+    expect(within(a).getByText(/: 2 journées, dont 2 analysées/)).toBeTruthy()
+    expect(within(b).getByText(/: 1 journée, dont 1 analysée/)).toBeTruthy()
+    // Changer de vue est gardé, sans figer A et B : la comparaison reste celle par défaut.
+    fireEvent.click(within(page).getByRole('tab', { name: 'Tableau' }))
+    await waitFor(async () => expect((await st.loadDataset('ds-test')).preferences.compare?.view).toBe('table'))
+    expect((await st.loadDataset('ds-test')).preferences.compare).not.toHaveProperty('a')
+    // Une autre période choisie pour B, puis le préréglage ramène janvier et mars.
+    fireEvent.change(within(b).getByLabelText('Du'), { target: { value: '2026-02-01' } })
+    await waitFor(() => expect(within(b).getByLabelText('Du').value).toBe('2026-02-01'))
+    await waitFor(async () => expect((await st.loadDataset('ds-test')).preferences.compare?.b?.def?.from).toBe('2026-02-01'))
+    expect((await st.loadDataset('ds-test')).preferences.compare.a.name).toBe('Janvier 2026')
+    fireEvent.click(within(page).getByRole('button', { name: 'Janvier et mars' }))
+    await waitFor(() => expect(within(b).getByLabelText('Du').value).toBe('2026-03-01'))
+    expect(within(b).getByRole('textbox', { name: 'Nom' }).value).toBe('Mars 2026')
   })
 
   it('les huit vues existent, au clavier ; aucune ne contient de rang ni de mot de verdict (critère P3)', async () => {

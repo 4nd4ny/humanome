@@ -47,6 +47,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Q30 — thème au chargement | le script anti-FOUC autorisé par son hash dans la CSP de production ; garde de synchronisation ; déployé (D-47) | ✅ | ✅ 1 test (garde du hash) + vérification Chromium avant et après, sur le bundle puis en ligne | ✅ | voir §5 |
 | Démo avec portfolio | le journal de la démonstration sur le site seulement (archive de l'interface), passages surlignés ; guide du visiteur (D-48) | ✅ | ✅ 2 392 traces vérifiées par le chemin du lecteur + vérification en ligne | ✅ | voir §5 |
 | Q31 — portfolio de Google Docs | échappements, traits, sauts de ligne et images rendus ; « 1er » lu par le découpage ; démonstration redéposée, front redéployé (D-49) | ✅ | ✅ 9 tests (rendu, surlignage, découpage) + 2 392 traces revérifiées + vérification en ligne | ✅ | voir §5 |
+| Comparaison par défaut | janvier face à mars ; préréglage « Janvier et mars » ; changer de vue ne fige plus A et B ; déployé (D-50) | ✅ | ✅ 2 tests (cœur, interface) + vérification en ligne | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1671,6 +1672,37 @@ fichiers corrigés sur le site web. »
 - Docs : commentaire d'en-tête de `lib/md.js` (les chapitres de formation ont
   des tableaux, contrairement à ce qu'il disait).
 
+### D-50 — La comparaison s'ouvre sur janvier face à mars **[décidé]**
+
+Christian (2026-10-14, 21 h 09) : « Par défaut, dans l'onglet comparaison,
+comparer janvier et mars. »
+
+- **Par défaut**, tant que la personne n'a choisi ni A ni B : A = **janvier**,
+  B = **mars** — deux périodes d'un mois entier, journées cochées seulement,
+  nommées « Janvier 2026 » et « Mars 2026 ». Sur la démonstration :
+  26 journées analysées face à 19 ; l'avertissement de tailles différentes
+  s'affiche, comme pour toute comparaison de tailles inégales.
+- **[choix d'implémentation]** L'année est la plus récente où janvier et mars
+  ont chacun une journée analysée et cochée ; la date t n'y joue pas. Sans une
+  telle année (un portfolio qui commence en avril, par exemple), la
+  comparaison par défaut reste celle d'avant : « depuis la dernière
+  évaluation », sinon la sélection courante des deux côtés.
+- **[choix d'implémentation]** Un préréglage « Janvier et mars », en tête des
+  préréglages, y ramène après un autre choix.
+- **Corrigé en chemin** : changer de vue (Tableau, Radar…) enregistrait A et B
+  tels qu'affichés, ce qui figeait la comparaison par défaut. Seule la vue est
+  désormais gardée ; A et B ne le sont qu'une fois choisis (un côté modifié,
+  un préréglage). Un navigateur où la comparaison de la démonstration a déjà
+  été ouverte, et une vue changée, avant ce déploiement garde l'ancienne
+  comparaison : le préréglage « Janvier et mars » la remplace.
+- Code : `comparePreset(…, 'january-march')` (`core/compare.js`) ;
+  `ComparePanel.jsx` (préréglages, comparaison par défaut, enregistrement).
+- **Déployé** (front seul, depuis la VM du Mac) et **vérifié en ligne**
+  (Chromium) : la démonstration s'ouvre sur « Janvier 2026 » (26 journées
+  analysées) face à « Mars 2026 » (19) ; une vue changée est gardée au
+  rechargement, A et B restent janvier et mars.
+- Docs : guides de l'apprenant (chapitre 7) et du visiteur (chapitre 2).
+
 ---
 
 ## 3. État des tests
@@ -1993,6 +2025,19 @@ suivantes entièrement vertes) ; moteur **1 072 verts** (+ 17 ignorés) ; e2e
 Chromium verts : copie autonome (P5), dialogue (P7), soleil (D-45), guides
 publics. API inchangée.
 
+### Comparaison par défaut (D-50)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/compare.test.js` | « janvier et mars » : l'année la plus récente où les deux mois ont une journée analysée et cochée (2026 plutôt que 2025 ; 2027, sans mars, écartée), mois entiers, noms, journées résolues ; date de référence sans effet ; mars décoché → l'année d'avant ; sans janvier ni mars : indisponible, dit comme tel | +1 |
+| `ui/P3.test.jsx` | **application complète** : la comparaison s'ouvre sur « Janvier 2026 » contre « Mars 2026 » (bornes, nombres de journées) ; changer de vue est gardé sans figer A et B ; une autre période pour B est gardée avec A ; « Janvier et mars » y ramène (le test échoue avec l'ancien défaut, et avec l'ancien enregistrement) ; sans janvier ni mars, « depuis la dernière évaluation » reste le défaut | +1 |
+
+Suites complètes après D-50 : site **2 296 verts** (235 fichiers) ; une
+exécution précédente, avant la dernière retouche, a vu échouer une fois
+`UC-ADM-05-F01` (supervision Twin9, sans lien : il cède sous la charge, déjà
+noté plus haut ; seul, 3 fois sur 3 vert). Moteur inchangé. e2e Chromium
+verts : copie autonome (P5), dialogue (P7), soleil (D-45), guides publics.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2226,3 +2271,6 @@ Questions ouvertes après D-49 :
   images ; le découpage lit « 1er » ; archive de la démonstration
   reconstruite et redéposée, front redéployé ; 98,5 % des passages retrouvés
   tels quels ; questions 32 (tableaux) et 33 (traits à l'import).
+- **2026-10-14** — Comparaison par défaut (D-50), à la demande de Christian :
+  janvier face à mars ; préréglage « Janvier et mars » ; changer de vue ne
+  fige plus A et B ; déployé et vérifié en ligne.

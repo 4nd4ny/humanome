@@ -112,10 +112,11 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
 ## Vous comparer à vous-même
 
 - **Comparaison** : deux ensembles de journées côte à côte, en huit vues.
-  Des préréglages préparent les cas courants (depuis la dernière évaluation,
-  depuis le début du trimestre ou de l'année scolaire, année scolaire
-  précédente). Un avertissement s'affiche quand les deux côtés n'ont pas la
-  même taille. Rien n'y est classé.
+  D'emblée, janvier face à mars, quand ces deux mois ont des journées
+  analysées. Des préréglages préparent les cas courants (janvier et mars,
+  depuis la dernière évaluation, depuis le début du trimestre ou de l'année
+  scolaire, année scolaire précédente). Un avertissement s'affiche quand les
+  deux côtés n'ont pas la même taille. Rien n'y est classé.
 - **Tableau de bord** : profil, rythme, constance, moments remarquables… Une
   carte dont les données manquent se masque.
 - **Dialogue** : des questions tirées de vos traces, pour relire votre
