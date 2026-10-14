@@ -1339,7 +1339,9 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
   non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
 - CSP de production `connect-src 'self'` (`web/public/.htaccess`) : bloque tout appel direct du
   navigateur vers un fournisseur LLM ou Ollama — runs « clé personnelle » et relances du
-  dialogue de la cartographie. Décision en attente (journal carto, question 22).
+  dialogue de la cartographie. **Corrigé sur la branche `feat/ultimate-cartography`** (décision
+  du 2026-10-14, question 22 : `connect-src` ouvert aux seuls fournisseurs) ; en ligne au
+  prochain déploiement.
 - Partage historique (`#/espace`, jour / merge / twin9) non soumis à l'attestation de majorité
   de l'interface ultime (§12 : « pour les mineurs, ni copie serveur ni partage ») — décision en
   attente (journal carto, question 17).

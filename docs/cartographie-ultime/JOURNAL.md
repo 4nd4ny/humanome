@@ -867,16 +867,24 @@ demander, après une réponse, une question de relance :
 - une relance encore en attente quand on recommence le dialogue est
   écartée : elle ne s'attache jamais au dialogue suivant.
 
-**Sur le site déployé, l'option ne peut pas aboutir en l'état** : la
-politique de sécurité du site (`connect-src 'self'`, `web/public/.htaccess`)
-interdit au navigateur tout appel vers un fournisseur ou vers Ollama. La
-relance échoue alors avec un message qui le dit (« … n'a pas pu être joint
-depuis cette page (fournisseur injoignable, ou appel bloqué par la politique
-de sécurité du site). Aucune relance n'a été reçue. »). Les runs « clé
-personnelle » du site ont le même défaut, antérieur à ce travail. Ouvrir
-`connect-src` aux fournisseurs est une décision de sécurité laissée à
-Christian (question 22) ; l'e2e tourne sur le serveur de développement, sans
-cette politique.
+**Politique de sécurité du site** : jusqu'au 2026-10-14, `connect-src 'self'`
+(`web/public/.htaccess`) interdisait au navigateur tout appel vers un
+fournisseur ou vers Ollama — les relances ne pouvaient pas aboutir sur le
+site déployé, pas plus que les runs « clé personnelle » existants (défaut
+antérieur, constaté sur l'en-tête en ligne). **Décision de Christian
+(question 22)** : les runs avec clé personnelle doivent fonctionner sur le
+site déployé. `connect-src` autorise désormais, en plus de notre API,
+exactement les fournisseurs que le moteur appelle en direct (Anthropic,
+OpenAI, Google, xAI, OpenRouter, Ollama sur `localhost:11434`) ; la clé ne
+passe jamais par notre serveur. Gardes : `web/src/lib/csp-providers.test.js`
+(la liste suit les adaptateurs du moteur, rien d'autre ne s'ouvre) et
+`web/e2e/csp-cle-personnelle.e2e.js` (sous la directive de production : la
+relance avec clé personnelle part vers le fournisseur, un autre hôte reste
+bloqué ; le même test échoue avec l'ancienne directive). La sandbox
+promptologue reste fermée (`sandbox-isolation.e2e.js` vert). Pour Ollama
+depuis le site, l'utilisateur autorise l'origine (`OLLAMA_ORIGINS`) ; un
+appel qui n'aboutit pas affiche « … n'a pas pu être joint depuis cette page
+(…). Aucune relance n'a été reçue. »
 
 ### D-37 — Vérification indépendante de P6 et P7
 
@@ -891,7 +899,7 @@ relevé 15 points ; 13 sont corrigés, 2 relèvent d'une décision.
 | 3 | Remplacements de noms et masques jamais appliqués au titre | corrigé (D-33) |
 | 4 | La copie HTML « avec portfolio » emportait le carnet du dialogue | corrigé : jamais de carnet dans une copie HTML (D-35) |
 | 5 | Le partage historique du site n'exige pas l'attestation | **décision à prendre** (question 17) |
-| 6 | La politique de sécurité du site bloque les relances (et les runs « clé personnelle ») | **décision à prendre** (question 22) ; message d'échec explicite (D-36) |
+| 6 | La politique de sécurité du site bloque les relances (et les runs « clé personnelle ») | décidé le 2026-10-14 (question 22) : `connect-src` ouvert aux seuls fournisseurs (D-36) |
 | 7 | Un mot de passe numérique créait un lien sans mot de passe | corrigé : 422 (D-32) |
 | 8 | Le jeton d'un lien ouvert figurait dans l'URL de l'API, donc dans les journaux d'accès | corrigé : en-tête `X-Share-Token` (D-32) |
 | 9 | Création de lien et retrait de l'attestation non atomiques | corrigé : verrou de la ligne `users` (D-31) |
@@ -1173,7 +1181,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
     `#/admin/reglages`).
 22. Politique de sécurité (D-36, D-37). → **Décidé** : les runs avec clé
     personnelle doivent fonctionner sur le site déployé ; `connect-src`
-    s'ouvre aux fournisseurs. Suite : à venir.
+    s'ouvre aux fournisseurs. Suite : fait (D-36).
 23. Compétences cochées par défaut (D-33). → **Validé.**
 24. Attestation sur le compte et à chaque publication ; compte exigé pour
     partager seulement (D-31). → **Validé.**
