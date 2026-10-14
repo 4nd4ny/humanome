@@ -1,19 +1,20 @@
 # STATUS — journal de bord
 
-## État : v1.1.0 — EN PRODUCTION
+## État : v1.1.0 + interface ultime de cartographie — EN PRODUCTION
 
 Les 14 prompts P0→P13 (v1.0) puis les 11 chantiers v1.1 (D1→D11) sont appliqués, intégrés,
-déployés sur https://humanome.xyz (`health` → `v1.1.0`) et vérifiés en ligne. Code public :
+déployés sur https://humanome.xyz et vérifiés en ligne. Code public :
 https://github.com/4nd4ny/humanome (`main` + tags `v1.0.0`/`v1.1.0`). Voir « Actions restantes
 (utilisateur) » en fin de fichier.
 
-Branche `feat/ultimate-cartography` : interface ultime de cartographie, **non déployée**, en
-attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
+Interface ultime de cartographie (branche `feat/ultimate-cartography`) : validée par Christian,
+**déployée le 2026-10-14** (`health` → `v1.1.0-106-gc6a0231`, migrations 022 et 023) puis fusionnée
+dans `main` (entrée du 2026-10-14 ci-dessous).
 
 ## Fait
 
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
-  `feat/ultimate-cartography`, NON déployée — aucun déploiement avant validation).**
+  `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
     dépôt). Journal d'avancement, décisions D-1 → D-45, état des tests, les 29 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
@@ -80,9 +81,17 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     `navigation-burger.e2e.js` (le tiroir rétracté laisse dépasser 10 px depuis `189f20e` ;
     position lue après la transition) et `parcours-promptologue.e2e.js` (inscription d'avant
     D5) — **toute la suite e2e est verte** (11 fichiers).
-  - **Reste (décision utilisateur)** : valider la branche, puis autoriser un déploiement
-    (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11 ; la migration 023
-    part avec la release API).
+  - **Déploiement** (2026-10-14, autorisé par Christian ; journal carto D-46) : release API
+    `20261014-133427-v1.1.0-106-gc6a0231`, migrations `022` et `023` appliquées (référentiel,
+    compétences, fiches et paquets de prompts inchangés), front (4 fichiers changés, ancien
+    bundle retiré ; données de démo inchangées). `health` → `v1.1.0-106-gc6a0231`. Fait depuis la
+    VM Linux du Mac (le FTP n'est pas joignable depuis le conteneur cloud) ; la release API a été
+    complétée et vérifiée fichier par fichier avant l'écriture du pointeur. Vérifié en ligne dans
+    Chromium (démo, pôle ouvert sur 360°, retour). Release précédente (`v1.1.0-20-g471d7cd`)
+    gardée pour un retour arrière. La démo anonymisée (`data/demo/carto/archive.json`) n'est pas
+    partie : aucune n'a été préparée (« Préparer une démo », relecture de Christian) ; le site
+    garde les 59 journées publiques.
+  - **Fusion** : PR `feat/ultimate-cartography` → `main` (CI verte), fusionnée le 2026-10-14.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1377,11 +1386,20 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
   informatif, non bloquant — code-splitting à envisager (backlog outillage).
 - `npm audit` complet : 5 findings **outillage de dev uniquement** (vite/vitest/esbuild),
   non déployés, non exploitables en prod (cf. checklist A06) — bump majeur reporté au backlog.
-- CSP de production `connect-src 'self'` (`web/public/.htaccess`) : bloque tout appel direct du
-  navigateur vers un fournisseur LLM ou Ollama — runs « clé personnelle » et relances du
-  dialogue de la cartographie. **Corrigé sur la branche `feat/ultimate-cartography`** (décision
-  du 2026-10-14, question 22 : `connect-src` ouvert aux seuls fournisseurs) ; en ligne au
-  prochain déploiement.
+- CSP de production `connect-src 'self'` : corrigé (décision du 2026-10-14, question 22 :
+  `connect-src` ouvert aux seuls fournisseurs) — en ligne depuis le déploiement du 2026-10-14.
+- CSP de production et script anti-FOUC (`web/index.html`) : le script en ligne qui applique le
+  thème choisi avant le premier rendu est **refusé par la CSP depuis qu'elle existe** (seul le
+  hash du bootstrap de la sandbox est autorisé) ; le thème s'applique donc après le chargement
+  du bundle (bref flash). Constaté lors de la vérification en ligne du 2026-10-14 ; correctif
+  proposé (ajouter son hash à `script-src`, avec un test de synchronisation comme
+  `csp-hash.test.js`) en attente de l'accord de Christian (journal carto, question 30).
+- `npm run test:dist` (`web/scripts/smoke-dist.mjs`) vise encore la vue merge retirée en D-38
+  (`#/merge`, `svg.sunburst`) : il échoue depuis ; à réécrire pour l'interface ultime.
+- `deploy.mjs api` téléverse la release fichier par fichier sur une seule connexion (~4 min
+  pour 723 fichiers) : trop long pour un shell distant limité à 180 s. Le déploiement du
+  2026-10-14 a suivi les mêmes étapes avec un téléversement reprenable et parallèle (outil
+  ponctuel, hors dépôt) ; à intégrer à `deploy.mjs` si ce mode de déploiement se répète.
 - Partage historique (`#/espace`, jour / merge / twin9) **retiré sur la branche
   `feat/ultimate-cartography`** (décision du 2026-10-14, journal carto D-43 : plus de nouveau
   lien, `422 share_retired`). Les liens déjà créés restent servis jusqu'à leur échéance — y

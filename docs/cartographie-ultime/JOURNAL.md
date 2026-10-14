@@ -9,10 +9,9 @@ l'inventaire `00_inventaire.xlsx`. Les références « §n » ci-dessous renvoie
 aux sections de `04_specifications.md`.
 
 Branche de travail : `feat/ultimate-cartography` (issue de `main` @ `28969a2`).
-**Aucun déploiement** sur https://humanome.xyz tant que Christian n'a pas
-validé : le déploiement ne se fait que par `scripts/deploy/deploy.mjs`
-(identifiants FTP absents de ce poste) ; pousser la branche sur GitHub ne
-déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
+Aucun déploiement sur https://humanome.xyz tant que Christian n'avait pas
+validé. **Validé le 2026-10-14** : déployé le même jour, avec son
+autorisation, puis fusionné dans `main` (D-46).
 
 ---
 
@@ -44,6 +43,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | `9e7685c` |
 | Q25–29 | « Partager » ; `CLAUDE.md` décrit le nouveau partage (D-44) | ✅ | ✅ tests de libellés mis à jour | ✅ | `8f3b196` |
 | Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | `1377f2b` |
+| Déploiement | humanome.xyz : release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en ligne ; branche fusionnée dans `main` (D-46) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-46 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1481,6 +1481,59 @@ permet de revenir à la vue complète des 7 domaines de compétence. »
 - Docs : aide de la cartographie, formation (apprenant 07, cartographe 07,
   visiteur 02, employeur 06).
 
+### D-46 — Déploiement sur humanome.xyz et fusion dans `main` **[fait]**
+
+Christian (2026-10-14, 15 h 16) : « Tu peux déployer sur le site de
+démonstration à l'aide des identifiants et mot de passe FTP présents dans
+“humanome.xyz/cahier des charges/ftp-humanome.xyz.txt” puis valider la PR et
+merger la branche avec main de Github. »
+
+- **Avant** : la production tournait `v1.1.0-20-g471d7cd`, un ancêtre de
+  `main` et de la branche (rien en ligne ne se perdait). Migrations nouvelles :
+  `022` et `023` seulement, toutes deux additives (valeur d'énumération, colonne
+  facultative, table neuve).
+- **Ce qui est parti** : release API `20261014-133427-v1.1.0-106-gc6a0231`
+  (723 fichiers) ; `migrate` → `022_carto_partage_adultes.sql` et
+  `023_carto_publication_garantie.sql` appliquées, 21 déjà là ; référentiels
+  7.0.0 et 7.1.0, compétences (61), fiches et paquets de prompts **inchangés** ;
+  `health` → `{"status":"ok","version":"v1.1.0-106-gc6a0231","db":"ok"}`. Front :
+  `.htaccess` (CSP `connect-src` des fournisseurs, question 22), `index.html`,
+  le bundle, le modèle de la copie autonome ; l'ancien bundle retiré ; données
+  de démo inchangées. Les deux exports statiques du référentiel restent ceux de
+  la production (même contenu ; l'export local ne différait que par la mise en
+  forme et les dates de publication de la base locale).
+- **Comment** : le FTP n'est pas joignable depuis le conteneur cloud ; il l'est
+  depuis la VM Linux du Mac, où le déploiement a tourné. Les artefacts ont été
+  construits dans le conteneur (`npm run build` ; `stage-api.sh`, dont les
+  dépendances de production viennent du `vendor/` installé, élagué par
+  `composer install --no-dev` hors ligne — le téléchargement depuis GitHub
+  échouait à travers le proxy) puis remis à la VM par le dossier partagé. Les
+  identifiants : ceux du fichier désigné par Christian (identiques à ceux du
+  `.env.deploy` de sa copie du dépôt, d'où vient aussi le jeton de
+  migration) ; un `.env.deploy` éphémère dans la VM, jamais affiché, effacé
+  ensuite. Le shell distant s'arrête au bout de 180 s : `deploy.mjs api` a été
+  coupé à 175 fichiers sur 723, **avant** l'écriture du pointeur (production
+  intacte) ; la même release a ensuite été complétée par un téléversement
+  reprenable et parallèle (mêmes étapes, même ordre, outil ponctuel hors
+  dépôt), vérifiée fichier par fichier (tailles), puis le pointeur écrit et
+  l'étape HTTPS jouée comme dans `deploy.mjs`. Front par `deploy.mjs static`,
+  après un `--dry-run` relu (4 envois, 1 suppression).
+- **Vérifié en ligne** (Chromium, depuis le conteneur) : démonstration (7 pôles,
+  56 compétences), TETE ouvert sur 360° (1.01 à 1.10, « Centre : revenir aux
+  7 pôles »), retour ; CSP servie ; ancien bundle en 404. Releases gardées :
+  `v1.1.0-4`, `v1.1.0-20` (retour arrière possible : `deploy.mjs rollback`) et
+  la nouvelle.
+- **Non déployé** : la démo anonymisée `data/demo/carto/archive.json` (question
+  11) — aucune n'a été préparée (« Préparer une démo » sur un journal choisi,
+  avec la relecture de Christian) ; « Explorer la démonstration » garde les 59
+  journées publiques.
+- **Constaté** (antérieur à ce déploiement) : le script anti-FOUC de
+  `index.html` est refusé par la CSP de production depuis qu'elle existe (le
+  seul hash autorisé est celui du bootstrap de la sandbox) ; le thème choisi
+  s'applique après le chargement du bundle. Question 30.
+- **Fusion** : PR `feat/ultimate-cartography` → `main`, CI verte
+  (`check-publiable`, moteur), fusionnée par un commit de fusion.
+
 ---
 
 ## 3. État des tests
@@ -1815,8 +1868,10 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
     sauvegarde aussi la cartographie de l'interface ; schéma JSON du master
     v4 dans `schemas/`. Suite : fait (D-25).
 11. Démo anonymisée du site (D-28). → **Décidé** : par FTP sur le site, jamais
-    dans GitHub, lors d'un déploiement autorisé par Christian (identifiants
-    FTP sur son Mac, non lus ici).
+    dans GitHub, lors d'un déploiement autorisé par Christian. Suite : au
+    déploiement du 2026-10-14 (D-46), aucune démo anonymisée n'était préparée ;
+    elle partira quand Christian l'aura produite et relue (« Préparer une
+    démo »).
 12. Rapport imprimable d'AuroraCore sans les délibérations complètes (D-27).
     → **Validé** (elles restent lisibles à l'écran).
 13. Règle d'impression de la facture Twin9 limitée à sa page (D-27). →
@@ -1871,6 +1926,15 @@ D-43), réponses du même jour :
 29. Le code de demande suffit-il pour qu'un cartographe publie, sans
     invitation préalable acceptée (D-42, choix d'implémentation) ? →
     **Oui** : « laisser comme ça, le code suffit ».
+
+Question ouverte après le déploiement du 2026-10-14 (D-46) :
+
+30. Le script anti-FOUC de `index.html` (thème clair ou sombre appliqué avant
+    le premier rendu) est refusé par la CSP de production depuis qu'elle
+    existe : le thème choisi n'arrive qu'avec le bundle (bref flash). Ajouter
+    son hash à `script-src`, avec un test qui le garde synchronisé comme celui
+    du bootstrap de la sandbox ? Changement de quelques lignes, mais il touche
+    la politique de sécurité : pas fait sans votre accord.
 
 ---
 
@@ -1964,3 +2028,6 @@ D-43), réponses du même jour :
   gauche défile seule et la liste y suit la sélection. Relu par un agent
   distinct avant le commit : six corrections (Échap, dernière trame, focus du
   centre, passage inversé, « o » avec modificateur, liste).
+- **2026-10-14** — Déploiement sur humanome.xyz autorisé par Christian (D-46) :
+  release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en
+  ligne ; branche fusionnée dans `main`.
