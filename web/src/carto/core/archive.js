@@ -26,10 +26,11 @@ export function archiveFileName(type, now = new Date().toISOString(), ext = 'jso
 /**
  * Construit l'archive à partir de ce que le magasin exporte (`exportAll`).
  * @param {{dataset: object, details: Record<string, object>, runDetails: Record<string, object>}} exported
- * @param {{includePortfolio?: boolean, includeReflections?: boolean, now?: string}} [opts]
+ * @param {{includePortfolio?: boolean, includeReflections?: boolean | 'versed', now?: string}} [opts]
  *   includeReflections : le carnet du dialogue (P7), écrit par la personne comme
- *   son journal — par défaut le même choix que le portfolio ; la copie autonome
- *   HTML ne l'emporte jamais.
+ *   son journal — par défaut le même choix que le portfolio. 'versed' : les
+ *   seuls dialogues versés au portfolio (question 20) — c'est ce qu'emporte une
+ *   copie autonome avec portfolio, jamais le reste du carnet.
  */
 export function buildArchive(exported, { includePortfolio = true, includeReflections = includePortfolio, now = new Date().toISOString() } = {}) {
   const dataset = structuredClone(exported.dataset)
@@ -38,7 +39,8 @@ export function buildArchive(exported, { includePortfolio = true, includeReflect
     for (const d of Object.values(details)) if (d && d.portfolio) d.portfolio = null
     if (dataset.portfolio) dataset.portfolio = { ...dataset.portfolio, undated: [] }
   }
-  if (!includeReflections) dataset.reflections = []
+  if (includeReflections === 'versed') dataset.reflections = (dataset.reflections ?? []).filter((r) => r?.versedAt)
+  else if (!includeReflections) dataset.reflections = []
   return {
     ...dataset,
     kind: KIND,

@@ -220,9 +220,30 @@ export function cleanReflectionEntries(entries) {
     }))
 }
 
-/** Retire un dialogue du carnet. */
+/** Retire un dialogue du carnet (et donc du portfolio, s'il y était versé). */
 export function removeReflection(ds, id, { now } = {}) {
   return touch({ ...ds, reflections: (ds.reflections ?? []).filter((r) => r.id !== id) }, now)
+}
+
+/**
+ * Verse un dialogue du carnet au portfolio, ou l'en retire (décision du
+ * 2026-10-14, question 20). Un dialogue versé fait partie du portfolio : il
+ * figure dans le portfolio exporté en Markdown (pour qui lit le portfolio, et
+ * pour l'évaluation suivante) et dans une copie autonome avec portfolio. Rien
+ * n'est recopié : le dialogue reste un seul objet, et le retrait est entier.
+ */
+export function setReflectionVersed(ds, id, versed, { now } = {}) {
+  const at = now ?? new Date().toISOString()
+  let changed = false
+  const reflections = (ds.reflections ?? []).map((r) => {
+    if (r.id !== id || Boolean(r.versedAt) === Boolean(versed)) return r
+    changed = true
+    if (versed) return { ...r, versedAt: at }
+    const rest = { ...r }
+    delete rest.versedAt
+    return rest
+  })
+  return changed ? touch({ ...ds, reflections }, at) : ds
 }
 
 // ---- Préférences ------------------------------------------------------------------------------

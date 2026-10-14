@@ -8,11 +8,16 @@
 // le choisir, donner son accord explicite (jamais enregistré, décoché par
 // défaut), puis le demander réponse par réponse. La requête n'emporte que la
 // question, la réponse et le passage cité.
+//
+// Un dialogue du carnet peut être versé au portfolio (décision du 2026-10-14,
+// question 20) : il en fait alors partie, dans la journée où il a été tenu —
+// portfolio exporté en Markdown, copie autonome avec portfolio — pour qui lit
+// le portfolio et pour l'évaluation suivante. Le versement se défait.
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { formatShort } from '../core/dates.js'
 import { hasPortfolio } from '../core/model.js'
-import { addReflection, removeReflection } from '../core/ops.js'
+import { addReflection, removeReflection, setReflectionVersed } from '../core/ops.js'
 import {
   CLOSING,
   NO_THREAD,
@@ -94,10 +99,11 @@ function RelaunchSettings({ llm, value, onChange }) {
   )
 }
 
-function Carnet({ reflections, readOnly, onRemove }) {
+function Carnet({ reflections, readOnly, onRemove, onVersed }) {
   const [open, setOpen] = useState(null)
   const [copied, setCopied] = useState(null)
-  if (reflections.length === 0) return <p className="carto-small carto-muted">Votre carnet est vide.</p>
+  const [notice, setNotice] = useState(null) // {id, text}
+  if (reflections.length === 0) return <p className="carto-small carto-muted">{readOnly ? 'Aucun dialogue versé au portfolio.' : 'Votre carnet est vide.'}</p>
   return (
     <ul className="carto-dialogue-carnet">
       {[...reflections].reverse().map((r) => {
@@ -112,6 +118,7 @@ function Carnet({ reflections, readOnly, onRemove }) {
             <span className="carto-small carto-muted">
               {answered} réponse{answered > 1 ? 's' : ''}
             </span>
+            {r.versedAt ? <span className="carto-chip carto-dialogue-versed">versé au portfolio</span> : null}
             {open === r.id ? (
               <div className="carto-dialogue-entry">
                 {entries.map((e, i) => (
@@ -150,8 +157,43 @@ function Carnet({ reflections, readOnly, onRemove }) {
                   >
                     Télécharger (.md)
                   </button>
-                  {readOnly ? null : <TwoStepButton label="Retirer du carnet" confirmLabel="Confirmer le retrait" className="carto-btn--small" onConfirm={() => onRemove(r.id)} />}
+                  {readOnly ? null : (
+                    <button
+                      type="button"
+                      className="carto-btn carto-btn--quiet carto-btn--small"
+                      onClick={() => {
+                        const versed = !r.versedAt
+                        onVersed(r.id, versed)
+                        setNotice({
+                          id: r.id,
+                          text: versed
+                            ? `Versé à votre portfolio, à la journée du ${reflectionDay(r.at)} : il figure désormais dans le portfolio exporté en Markdown (espace Export) et dans une copie autonome avec portfolio.`
+                            : 'Retiré de votre portfolio ; il reste dans votre carnet. Les fichiers déjà exportés ne changent pas.',
+                        })
+                      }}
+                    >
+                      {r.versedAt ? 'Retirer de mon portfolio' : 'Verser à mon portfolio'}
+                    </button>
+                  )}
+                  {readOnly ? null : (
+                    <TwoStepButton
+                      label={r.versedAt ? 'Retirer du carnet (et du portfolio)' : 'Retirer du carnet'}
+                      confirmLabel="Confirmer le retrait"
+                      className="carto-btn--small"
+                      onConfirm={() => onRemove(r.id)}
+                    />
+                  )}
                 </div>
+                {r.versedAt ? (
+                  <p className="carto-small carto-muted">
+                    {readOnly ? 'Versé à son portfolio par son auteur' : 'Dans votre portfolio'}, à la journée du {reflectionDay(r.at)}.
+                  </p>
+                ) : null}
+                {notice?.id === r.id ? (
+                  <p role="status" className="carto-small carto-export-done">
+                    {notice.text}
+                  </p>
+                ) : null}
               </div>
             ) : null}
           </li>
@@ -422,11 +464,21 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
             <h3 id={`${uid}-carnet`} className="carto-share-h">
               Mon carnet
             </h3>
-            <p className="carto-small carto-muted">
-              Vos réponses gardées, dans ce navigateur. Elles partent dans l’archive JSON si vous y incluez votre portfolio ; jamais dans une copie autonome, une
-              version partagée ni une démo.
-            </p>
-            <Carnet reflections={reflections} readOnly={readOnly} onRemove={(id) => data.update((ds) => removeReflection(ds, id))} />
+            {readOnly ? (
+              <p className="carto-small carto-muted">Les dialogues que l’auteur de cette copie a versés à son portfolio.</p>
+            ) : (
+              <p className="carto-small carto-muted">
+                Vos réponses gardées, dans ce navigateur. Elles partent dans l’archive JSON si vous y incluez votre portfolio. Un dialogue que vous versez à votre
+                portfolio en fait partie : il figure dans le portfolio exporté en Markdown et dans une copie autonome avec portfolio. Jamais dans une version partagée
+                ni une démo.
+              </p>
+            )}
+            <Carnet
+              reflections={reflections}
+              readOnly={readOnly}
+              onRemove={(id) => data.update((ds) => removeReflection(ds, id))}
+              onVersed={(id, versed) => data.update((ds) => setReflectionVersed(ds, id, versed))}
+            />
           </section>
           {llm && !readOnly ? <RelaunchSettings llm={llm} value={llmSettings} onChange={setLlmSettings} /> : null}
         </aside>

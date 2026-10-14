@@ -8,9 +8,12 @@
 // aucune. Puis l'option de relance : sans accord, rien ; avec accord pour
 // Ollama (modèle local, simulé ici), une seule requête vers
 // localhost:11434, qui n'emporte que la question, la réponse et le passage.
+// Enfin (question 20) : le dialogue gardé, versé au portfolio, figure dans le
+// portfolio exporté en Markdown — sans aucune requête réseau.
 //
 // LOCAL UNIQUEMENT (docs/tests-e2e.md) : npx playwright test e2e/carto-dialogue.e2e.js
 
+import { readFileSync } from 'node:fs'
 import { test, expect } from '@playwright/test'
 import { LOU_PORTFOLIO, kairosDoc, louDays } from '../src/carto/test/fixtures.js'
 
@@ -71,6 +74,24 @@ test('P7 : le dialogue n’envoie rien ; une relance ne part qu’avec un accord
     expect(user.content).toContain('Sa réponse : Je reformulais pour vérifier.')
     // Rien d'autre : ni le reste du journal, ni la cartographie.
     expect(JSON.stringify(ollama[0])).not.toMatch(/maquette|Ce matin|J’apprenais|Pensée critique|kairos/)
+  })
+
+  await test.step('Verser le dialogue gardé au portfolio, exporter le portfolio en Markdown : aucune requête réseau', async () => {
+    const before = requests.length
+    const carnet = page.getByRole('region', { name: 'Mon carnet' })
+    await carnet.getByRole('button', { name: /Dialogue du/ }).click()
+    await carnet.getByRole('button', { name: 'Verser à mon portfolio' }).click()
+    await expect(carnet.getByText('versé au portfolio')).toBeVisible()
+    await page.getByRole('link', { name: 'Export', exact: true }).click()
+    await expect(page.getByText('1 dialogue versé au portfolio.')).toBeVisible()
+    const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Télécharger le portfolio (.md)' }).click()])
+    expect(download.suggestedFilename()).toMatch(/^cartographie-portfolio-\d{4}-\d{2}-\d{2}\.md$/)
+    const text = readFileSync(await download.path(), 'utf8')
+    expect(text).toContain('Ce matin j’ai relu mes notes avant d’écrire.')
+    expect(text).toMatch(/### Dialogue d’accompagnement du \S+ \S+ \d{4}/)
+    expect(text).toContain('**Réponse.** J’apprenais à écouter sans couper.')
+    // Seul le téléchargement, une URL blob: produite dans la page : aucune requête réseau.
+    expect(requests.slice(before).filter((r) => !/ blob:/.test(r))).toEqual([])
   })
 
   expect(errors).toEqual([])

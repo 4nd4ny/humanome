@@ -13,7 +13,7 @@ import { importFiles } from '../core/import.js'
 import { buildArchive, looksLikeArchive } from '../core/archive.js'
 import { DATA_SLOT } from '../core/standalone.js'
 import { createDataset, observationKey } from '../core/model.js'
-import { addReflection, setPreferences, setReview } from '../core/ops.js'
+import { addReflection, setPreferences, setReflectionVersed, setReview } from '../core/ops.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
@@ -98,6 +98,7 @@ describe('P5 — archive JSON', () => {
     expect(within(page).getAllByRole('heading', { level: 3 }).map((h) => h.textContent)).toEqual([
       'Archive complète (JSON)',
       'Copie autonome (HTML)',
+      'Portfolio (Markdown)',
       'Rapport imprimable (PDF)',
       'Préparer une démo',
     ])
@@ -128,9 +129,13 @@ describe('P5 — archive JSON', () => {
 })
 
 describe('P5 — copie autonome HTML', () => {
-  it('un seul fichier : le modèle et l’archive embarquée ; portfolio seulement sur demande, avec avertissement ; jamais le carnet', async () => {
+  it('un seul fichier : le modèle et l’archive embarquée ; portfolio seulement sur demande, avec avertissement ; du carnet, les seuls dialogues versés au portfolio', async () => {
     const fetchFn = templateFetch()
-    const withNotebook = (ds) => addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Que s’est-il passé ?', answer: 'Une réponse intime.' }] }, { now: NOW })
+    const withNotebook = (ds) => {
+      let out = addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Que s’est-il passé ?', answer: 'Une réponse intime.' }] }, { now: NOW })
+      out = addReflection(out, { entries: [{ threadId: 'u', kind: 'apparition', question: 'Et ensuite ?', answer: 'Une réponse versée.' }] }, { now: '2026-10-13T13:00:00.000Z' })
+      return setReflectionVersed(out, out.reflections[1].id, true, { now: NOW })
+    }
     const page = await openExport(await louStore({ mutate: withNotebook }), fetchFn)
     fireEvent.click(within(page).getByRole('button', { name: 'Télécharger la copie' }))
     let file = await lastDownload()
@@ -139,20 +144,21 @@ describe('P5 — copie autonome HTML', () => {
     let archive = readEmbeddedArchive(new DOMParser().parseFromString(file.text, 'text/html'))
     expect(archive.includesPortfolio).toBe(false)
     expect(archive.days).toHaveLength(3)
+    expect(archive.reflections).toEqual([]) // sans le portfolio, aucun dialogue
     expect(fetchFn).toHaveBeenCalledWith('carto/viewer-template.html')
 
     const box = within(page).getByRole('checkbox', { name: /inclure le portfolio/ })
     expect(within(page).queryByText(/contiendra le texte intégral/)).toBeNull()
     fireEvent.click(box)
-    expect((within(page).getByRole('note')).textContent).toMatch('Le fichier contiendra le texte intégral de votre portfolio')
+    expect((within(page).getByRole('note')).textContent).toMatch('Le fichier contiendra le texte intégral de votre portfolio, avec les dialogues que vous y avez versés')
     fireEvent.click(within(page).getByRole('button', { name: 'Télécharger la copie' }))
     await waitFor(() => expect(downloads).toHaveLength(2))
     file = await lastDownload()
     archive = readEmbeddedArchive(new DOMParser().parseFromString(file.text, 'text/html'))
     expect(archive.includesPortfolio).toBe(true)
     expect(archive.details['2025-12-22'].portfolio.text).toMatch(/Ce matin j’ai relu mes notes/)
-    // Une copie autonome se donne : le carnet du dialogue n'y entre jamais, même avec le portfolio.
-    expect(archive.reflections).toEqual([])
+    // Une copie autonome se donne : du carnet, seuls les dialogues versés au portfolio y entrent, avec lui.
+    expect(archive.reflections.map((r) => r.entries[0].answer)).toEqual(['Une réponse versée.'])
     expect(file.text).not.toContain('Une réponse intime')
   })
 
@@ -161,6 +167,39 @@ describe('P5 — copie autonome HTML', () => {
     fireEvent.click(within(page).getByRole('button', { name: 'Télécharger la copie' }))
     expect((await within(page).findByRole('alert')).textContent).toMatch(/copie autonome n’a pas pu être produite/)
     expect(downloads).toHaveLength(0)
+  })
+})
+
+describe('P5 — portfolio en Markdown (question 20)', () => {
+  it('le texte de chaque journée et les dialogues versés, chacun à sa journée ; rien à exporter : bouton désactivé', async () => {
+    const versedOne = (ds) => {
+      const out = addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Que s’est-il passé ?', answer: 'Une pause voulue.' }] }, { now: NOW })
+      return setReflectionVersed(addReflection(out, { entries: [{ threadId: 'u', kind: 'silence', question: 'Et là ?', answer: 'Une réponse gardée pour moi.' }] }, { now: NOW }), out.reflections[0].id, true, { now: NOW })
+    }
+    const page = await openExport(await louStore({ mutate: versedOne }))
+    expect(within(page).getByText('1 dialogue versé au portfolio.')).toBeTruthy()
+    fireEvent.click(within(page).getByRole('button', { name: 'Télécharger le portfolio (.md)' }))
+    const file = await lastDownload()
+    expect(file.name).toMatch(/^cartographie-portfolio-\d{4}-\d{2}-\d{2}\.md$/)
+    expect(file.type).toBe('text/markdown')
+    expect(file.text).toContain('Ce matin j’ai relu mes notes avant d’écrire.')
+    expect(file.text).toContain('### Dialogue d’accompagnement du 13 octobre 2026')
+    expect(file.text).toContain('**Réponse.** Une pause voulue.')
+    expect(file.text).not.toContain('Une réponse gardée pour moi.')
+    expect((await within(page).findByRole('status')).textContent).toMatch(/cartographie-portfolio-.*téléchargé : 4 journées, 1 dialogue versé\./)
+    cleanup()
+
+    const empty = createCartoStore({ adapter: createMemoryAdapter() })
+    await empty.commit(
+      await importFiles(
+        [{ path: '2025-12-22/carto_P1.json', text: JSON.stringify(louDays()['2025-12-22'][0]) }],
+        createDataset({ datasetId: 'ds-sans', title: 'Sans portfolio', referential: miniReferential(), now: NOW }),
+        { now: NOW },
+      ),
+    )
+    const bare = await openExport(empty)
+    expect(within(bare).getByRole('button', { name: 'Télécharger le portfolio (.md)' }).disabled).toBe(true)
+    expect(within(bare).getByText('Rien à exporter : importez votre portfolio, ou versez-y un dialogue.')).toBeTruthy()
   })
 })
 

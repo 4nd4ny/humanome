@@ -860,10 +860,11 @@ d'analyse : « fonction candidate 3 et 4 ») :
   (`reflections[]`, dans le navigateur) ; chaque dialogue se relit, se copie
   ou se télécharge en Markdown (pour le recopier dans son journal) et se
   retire en deux temps. Le carnet suit le portfolio dans l'archive JSON
-  (exclu quand on exporte sans le texte du portfolio), n'entre **jamais**
-  dans la copie HTML autonome (même « avec portfolio » : une copie se
-  transmet), ni dans une version partagée (liste blanche, D-30), ni dans une
-  démo anonymisée (le rapport de la démo le compte), et se restaure à la
+  (exclu quand on exporte sans le texte du portfolio), n'entre dans la copie
+  HTML autonome que pour les dialogues versés au portfolio, et avec lui
+  seulement (D-40 ; auparavant jamais : une copie se transmet), jamais dans
+  une version partagée (liste blanche, D-30) ni dans une démo anonymisée (le
+  rapport de la démo le compte), et se restaure à la
   réimportation d'une archive (doublons ignorés, entrées nettoyées et
   bornées comme à la saisie). Dans une copie autonome, rien n'est
   enregistré.
@@ -926,7 +927,7 @@ relevé 15 points ; 13 sont corrigés, 2 relèvent d'une décision.
 | 1 | Retirer l'attestation gardait les versions sur le serveur et cachait le seul moyen de les effacer ; le message du retrait ne s'affichait pas ; annotations et renommage restaient possibles sur une version partagée | corrigé : le retrait efface versions et liens (D-31), message affiché ; version hors du module de relecture, titre figé (D-33) |
 | 2 | Liste blanche du serveur trop lâche (types non vérifiés : du texte passait par un booléen ; référentiel augmenté ; `runMeta` accepté ; période inversée) ; certaines versions acceptées faisaient planter la vue du destinataire | corrigé : liste blanche des champs et des types, contrat par la sortie exacte du client (D-30) ; vue du destinataire qui ne plante plus (D-34) |
 | 3 | Remplacements de noms et masques jamais appliqués au titre | corrigé (D-33) |
-| 4 | La copie HTML « avec portfolio » emportait le carnet du dialogue | corrigé : jamais de carnet dans une copie HTML (D-35) |
+| 4 | La copie HTML « avec portfolio » emportait le carnet du dialogue | corrigé : jamais de carnet dans une copie HTML (D-35) ; depuis la question 20, les seuls dialogues versés au portfolio y entrent, avec lui (D-40) |
 | 5 | Le partage historique du site n'exige pas l'attestation | **décision à prendre** (question 17) |
 | 6 | La politique de sécurité du site bloque les relances (et les runs « clé personnelle ») | décidé le 2026-10-14 (question 22) : `connect-src` ouvert aux seuls fournisseurs (D-36) |
 | 7 | Un mot de passe numérique créait un lien sans mot de passe | corrigé : 422 (D-32) |
@@ -1031,6 +1032,48 @@ phrases, les mots pleins de l'extrait n'atteignent jamais 75 % : moins de la
 moitié pour 49 sur 61 (journal 200) et 10 sur 15 (journal 300), 74 % au plus
 pour les autres. Le volet continue de les dire non retrouvées et cite
 l'extrait.
+
+### D-40 — Verser un dialogue au portfolio **[décidé]**
+
+Question 20 : le prototype annonçait que le texte consigné « fera partie du
+portfolio à la prochaine évaluation » ; fallait-il un chemin du carnet vers le
+portfolio ? Christian (2026-10-14) : oui, c'est utile « pour la personne
+externe qui lit le portfolio ».
+
+- **Un geste explicite, dialogue par dialogue** : « Verser à mon portfolio »
+  dans le carnet ; « Retirer de mon portfolio » le défait. Rien n'est
+  recopié : un drapeau `versedAt` sur le dialogue (`setReflectionVersed`),
+  qui fait l'aller-retour de l'archive. Retirer un dialogue du carnet le
+  retire du portfolio.
+- **Dans la journée où il a été tenu** (date locale), après le texte de
+  cette journée s'il y en a un.
+- **Ce que cela change** : (1) espace Export, un format de plus,
+  **Portfolio (Markdown)** — le texte de chaque journée (cochées ou non),
+  dans l'ordre des dates, suivi des dialogues versés, puis les passages
+  restés sans date : à relire, à transmettre à qui lit le portfolio, à
+  réimporter, ou à faire analyser lors de l'évaluation suivante ; (2) la
+  **copie autonome avec portfolio** emporte les dialogues versés, et eux
+  seuls, lisibles dans son espace Dialogue (« versé à son portfolio par son
+  auteur ») ; sans portfolio, aucun.
+- **Inchangé** : l'archive JSON garde tout le carnet quand on y inclut le
+  portfolio ; jamais de carnet dans une version partagée (D-30) ni dans une
+  démo (D-28). L'interface ne mêle pas un dialogue versé au texte des
+  journées déjà analysées (ni heatmap, ni surlignage, ni volume) : il attend
+  l'évaluation suivante.
+- **Forme** (`versedDialogueMarkdown`) : `### Dialogue d'accompagnement du …`,
+  puis une ligne qui dit d'où viennent les questions et que les réponses sont
+  de l'auteur ; seulement les questions répondues (« **Question.** »,
+  « **Réponse.** ») ; le passage cité, daté et attribué au dialogue ; la
+  relance, attribuée au modèle de langage qui l'a proposée. Le lecteur — et
+  l'analyse suivante — savent ainsi ce qui est de la main de la personne.
+- **Contrat de redécoupage** (`core/portfolio-md.js`) : relu par le découpage
+  du module Portfolio du site (`segmentText`, celui de l'import), le fichier
+  redonne les mêmes journées. Chaque journée s'ouvre sur son en-tête de date
+  (sinon `## AAAA-MM-JJ` est ajouté : passage rattaché à la main, titre du
+  document) ; une ligne qui ouvrirait une autre journée (une date seule sur
+  sa ligne, un séparateur `---`, dans une réponse par exemple) est précédée
+  d'un tiret « — » ; les passages sans date viennent à la fin, chacun après
+  un séparateur, et restent sans date.
 
 ---
 
@@ -1265,6 +1308,13 @@ contre l'API locale, P7) verts.
 | | `core/passages.test.js` | approché seulement dans sa journée ; un bout retrouvé tel quel l'emporte ; jamais dans une autre journée | 11 (+3) |
 | | `ui/P2.test.jsx` | extrait reformulé : cadre pointillé, « approché … à vérifier », jamais « retrouvé » | 16 (+1) |
 
+| Carnet → portfolio (Q20, D-40) | `core/portfolio-md.test.js` (nouveau) | verser, retirer : un drapeau, rien de recopié ; dialogue en Markdown (questions répondues seulement, passage daté et attribué, relance attribuée au modèle, aucune ligne qui ouvre une journée) ; **portfolio exporté puis redécoupé = mêmes journées**, dialogue dans la sienne ; dialogue non versé absent, retiré : sorti ; réponse avec une date seule sur sa ligne ou un séparateur : la journée tient ; journée sans en-tête, titre du document, passage sans date ; rien à exporter | 7 |
+| | `core/archive.test.js` | le versement fait l'aller-retour ; « versed » n'emporte que les dialogues versés | 7 (+1) |
+| | `core/dialogue.test.js` | versement illisible écarté à la réimportation | 13 |
+| | `ui/P5.test.jsx` | copie autonome : du carnet, les seuls dialogues versés, et avec le portfolio seulement ; portfolio en Markdown téléchargé (texte, dialogue versé, pas le dialogue gardé) ; rien à exporter : bouton désactivé | 10 (+1) |
+| | `ui/P7.test.jsx` | verser puis retirer, dans le carnet : messages, mention, enregistrement, aucune requête ; copie autonome : les dialogues versés se lisent, rien à verser ni retirer | 8 (+2) |
+| | `e2e/carto-dialogue.e2e.js` | dans Chromium : verser le dialogue gardé, télécharger le portfolio (.md) — le texte et le dialogue y sont, aucune requête réseau | (dans le 1) |
+
 Validation du surlignage approché sur les journaux réels : D-39.
 
 ---
@@ -1314,7 +1364,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 19. Vouvoiement du dialogue (D-35). → **Validé.**
 20. Chemin du carnet vers le portfolio (D-35). → **Décidé** : oui (le carnet,
     espace de métacognition, sert au lecteur du portfolio et à l'évaluation
-    suivante). Suite : à venir.
+    suivante). Suite : fait (D-40).
 21. « Service humanome » pour les relances (D-36). → **Décidé** : non ; seule
     la démo des visiteurs passe par la clé de Christian, plafonnée par jour
     (par défaut 5 $ et 2 millions de tokens, réglables dans
@@ -1379,4 +1429,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   personnelle (D-36) ; pages V3 retirées, `#/merge` renvoie vers
   `#/cartographie` (D-38) ; une nouvelle version partagée remplace l'ancienne
   sous le même lien (D-33) ; surlignage approché des extraits reformulés,
-  validé sur les journaux réels (D-39).
+  validé sur les journaux réels (D-39) ; un dialogue du carnet se verse au
+  portfolio, exporté en Markdown (D-40). Chapitres de formation consacrés à la
+  V3 réécrits pour la nouvelle interface (D-38) ; à l'écran, « confiance
+  moyenne du jury » (D-8).

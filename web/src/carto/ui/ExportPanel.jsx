@@ -1,13 +1,15 @@
-// Interface ultime — espace Export (spec §11) : trois formats, toujours
+// Interface ultime — espace Export (spec §11) : quatre formats, toujours
 // produits dans le navigateur (rien n'est envoyé), et l'outil « Préparer une
 // démo » (§11.1).
 //   1. archive JSON : le master complet, réimportable sans perte ;
 //   2. copie autonome : un seul fichier HTML, lisible en file:// sans réseau ;
-//   3. rapport imprimable : pages A4 (CSS d'impression, SVG natif).
+//   3. portfolio en Markdown, avec les dialogues versés (question 20) ;
+//   4. rapport imprimable : pages A4 (CSS d'impression, SVG natif).
 
 import { useId, useMemo, useState } from 'react'
 import { archiveFileName, buildArchive } from '../core/archive.js'
 import { injectArchive } from '../core/standalone.js'
+import { buildPortfolioMarkdown, hasPortfolioToExport } from '../core/portfolio-md.js'
 import { formatLong } from '../core/dates.js'
 import { downloadBlob } from '../../lib/download-json.js'
 import { loadViewerTemplate } from './viewerTemplate.js'
@@ -82,12 +84,31 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
       } catch (err) {
         throw new Error(`La copie autonome n’a pas pu être produite : ${err.message}.`)
       }
-      // Une copie autonome se donne : le carnet du dialogue n'y entre jamais.
-      const archive = await currentArchive(htmlPortfolio, { includeReflections: false })
+      // Une copie autonome se donne : du carnet du dialogue, seuls y entrent
+      // les dialogues versés au portfolio, et seulement avec le portfolio.
+      const archive = await currentArchive(htmlPortfolio, { includeReflections: htmlPortfolio ? 'versed' : false })
       const blob = new Blob([injectArchive(template, archive)], { type: 'text/html' })
       const name = archiveFileName('copie', archive.exportedAt, 'html')
       downloadBlob(blob, name)
       return `${name} (${formatBytes(blob.size)}) téléchargé.`
+    })
+
+  const versedCount = (dataset.reflections ?? []).filter((r) => r?.versedAt).length
+  const canExportPortfolio = hasPortfolioToExport(dataset)
+
+  const downloadPortfolio = () =>
+    run('md', 'Préparation du portfolio…', async () => {
+      await data.flush()
+      const exported = await data.store.exportAll(dataset.datasetId)
+      if (!exported) throw new Error('jeu de données introuvable')
+      const out = buildPortfolioMarkdown(exported)
+      if (!out.text) throw new Error('Rien à exporter : importez votre portfolio, ou versez-y un dialogue depuis votre carnet.')
+      const blob = new Blob([out.text], { type: 'text/markdown' })
+      const name = archiveFileName('portfolio', new Date().toISOString(), 'md')
+      downloadBlob(blob, name)
+      const parts = [`${out.days} journée${out.days > 1 ? 's' : ''}`, `${out.dialogues} dialogue${out.dialogues > 1 ? 's' : ''} versé${out.dialogues > 1 ? 's' : ''}`]
+      if (out.undated) parts.push(`${out.undated} passage${out.undated > 1 ? 's' : ''} sans date`)
+      return `${name} (${formatBytes(blob.size)}) téléchargé : ${parts.join(', ')}.`
     })
 
   return (
@@ -127,11 +148,12 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
           </p>
           <label className="carto-small">
             <input type="checkbox" checked={htmlPortfolio} onChange={(e) => setHtmlPortfolio(e.target.checked)} /> inclure le portfolio (nécessaire au surlignage des
-            passages)
+            passages){versedCount > 0 ? ' et les dialogues que vous y avez versés' : ''}
           </label>
           {htmlPortfolio ? (
             <p className="carto-note carto-note--warn carto-small" role="note">
-              Le fichier contiendra le texte intégral de votre portfolio : toute personne qui le reçoit pourra le lire.
+              Le fichier contiendra le texte intégral de votre portfolio{versedCount > 0 ? ', avec les dialogues que vous y avez versés' : ''} : toute personne qui le
+              reçoit pourra le lire.
             </p>
           ) : (
             <p className="carto-small carto-muted">Sans le portfolio, les extraits cités par le jury restent lisibles, mais les passages ne sont pas surlignés.</p>
@@ -140,6 +162,24 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
             Télécharger la copie
           </button>
           <Status value={status.html} />
+        </section>
+
+        <section className="carto-export-card" aria-labelledby={`${uid}-md`}>
+          <h3 id={`${uid}-md`}>Portfolio (Markdown)</h3>
+          <p className="carto-small">
+            Le texte de votre portfolio, journée par journée (cochées ou non), avec les dialogues que vous y avez versés depuis votre carnet, chacun à la journée où il a
+            été tenu. À relire, à transmettre à qui lit votre portfolio, à réimporter ici, ou à faire analyser lors de votre prochaine évaluation.
+          </p>
+          <p className="carto-small carto-muted">
+            {versedCount > 0
+              ? `${versedCount} dialogue${versedCount > 1 ? 's' : ''} versé${versedCount > 1 ? 's' : ''} au portfolio.`
+              : 'Aucun dialogue versé : depuis votre carnet (espace Dialogue), « Verser à mon portfolio ».'}
+          </p>
+          <button type="button" className="carto-btn" onClick={downloadPortfolio} disabled={Boolean(busy) || !canExportPortfolio}>
+            Télécharger le portfolio (.md)
+          </button>
+          {canExportPortfolio ? null : <p className="carto-small carto-muted">Rien à exporter : importez votre portfolio, ou versez-y un dialogue.</p>}
+          <Status value={status.md} />
         </section>
 
         <section className="carto-export-card carto-export-card--wide" aria-labelledby={`${uid}-pdf`}>

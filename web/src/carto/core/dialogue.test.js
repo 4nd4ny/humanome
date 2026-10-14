@@ -163,7 +163,7 @@ describe('carnet', () => {
       schemaVersion: '4.0.0',
       days: [],
       reflections: [
-        { id: 'rf-ok', at: NOW, entries: [null, 'texte', { question: 'Q ?', answer: 'R', refs: { dates: ['pas-une-date'] } }] },
+        { id: 'rf-ok', at: NOW, versedAt: 'pas une date', entries: [null, 'texte', { question: 'Q ?', answer: 'R', refs: { dates: ['pas-une-date'] } }] },
         { id: 'rf-vide', at: NOW, entries: [null] },
         { id: 42, at: NOW, entries: [{ question: 'Q ?', answer: 'R' }] },
       ],
@@ -171,6 +171,7 @@ describe('carnet', () => {
     const res = await importFiles([{ path: 'a.json', text: JSON.stringify(archive) }], createDataset({ datasetId: 'ds', referential: miniReferential(), now: NOW }), { now: NOW })
     expect(res.dataset.reflections).toHaveLength(1)
     expect(res.dataset.reflections[0]).toMatchObject({ id: 'rf-ok', entries: [{ question: 'Q ?', answer: 'R', refs: { dates: [], codes: [] }, quote: null, relaunch: null }] })
+    expect(res.dataset.reflections[0]).not.toHaveProperty('versedAt') // versement illisible : écarté
   })
 
   it('les citations sont bornées', () => {

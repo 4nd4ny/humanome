@@ -11,12 +11,13 @@ import CartoApp from './CartoApp.jsx'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
+import { addReflection, setReflectionVersed } from '../core/ops.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
-async function louStore() {
+async function louStore({ mutate } = {}) {
   const store = createCartoStore({ adapter: createMemoryAdapter() })
   const ds = createDataset({ datasetId: 'ds-lou', title: 'Lou', referential: miniReferential(), now: NOW })
   const files = [{ path: 'lou.md', text: LOU_PORTFOLIO }]
@@ -24,7 +25,9 @@ async function louStore() {
     for (const p of poles) files.push({ path: `${date}/carto_P${p.poleNum}.json`, text: JSON.stringify(p) })
     files.push({ path: `${date}/kairos.json`, text: JSON.stringify(kairosDoc(date)) })
   }
-  await store.commit(await importFiles(files, ds, { now: NOW }))
+  const res = await importFiles(files, ds, { now: NOW })
+  if (mutate) res.dataset = mutate(res.dataset)
+  await store.commit(res)
   return store
 }
 
@@ -89,6 +92,46 @@ describe('P7 — dialogue scripté, local', () => {
     fireEvent.click(within(carnet).getByRole('button', { name: 'Retirer du carnet' }))
     fireEvent.click(within(carnet).getByRole('button', { name: 'Confirmer le retrait' }))
     expect(await within(carnet).findByText('Votre carnet est vide.')).toBeTruthy()
+  })
+
+  it('verser un dialogue au portfolio, puis l’en retirer : versement enregistré, puis défait — sans aucune requête', async () => {
+    const store = await louStore()
+    render(<Harness store={store} />)
+    await firstQuestion()
+    fireEvent.change(screen.getByLabelText('Votre réponse'), { target: { value: 'J’apprenais à écouter sans couper.' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Répondre' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'M’arrêter là' }))
+    fireEvent.click(await screen.findByRole('button', { name: 'Garder dans mon carnet' }))
+    const carnet = await screen.findByRole('region', { name: 'Mon carnet' })
+    fireEvent.click(await within(carnet).findByRole('button', { name: /Dialogue du/ }))
+
+    fireEvent.click(within(carnet).getByRole('button', { name: 'Verser à mon portfolio' }))
+    expect((await within(carnet).findByRole('status')).textContent).toMatch(/^Versé à votre portfolio, à la journée du .+ : il figure désormais dans le portfolio exporté en Markdown/)
+    expect(within(carnet).getByText('versé au portfolio')).toBeTruthy()
+    expect(within(carnet).getByText(/^Dans votre portfolio, à la journée du /)).toBeTruthy()
+    expect(within(carnet).getByRole('button', { name: 'Retirer du carnet (et du portfolio)' })).toBeTruthy()
+    await waitFor(async () => expect((await store.exportAll('ds-lou')).dataset.reflections[0].versedAt).toBeTruthy())
+
+    fireEvent.click(within(carnet).getByRole('button', { name: 'Retirer de mon portfolio' }))
+    expect((await within(carnet).findByRole('status')).textContent).toBe('Retiré de votre portfolio ; il reste dans votre carnet. Les fichiers déjà exportés ne changent pas.')
+    expect(within(carnet).queryByText('versé au portfolio')).toBeNull()
+    expect(within(carnet).getByRole('button', { name: 'Verser à mon portfolio' })).toBeTruthy()
+    await waitFor(async () => expect((await store.exportAll('ds-lou')).dataset.reflections[0]).not.toHaveProperty('versedAt'))
+    expect(fetchSpy).not.toHaveBeenCalled()
+  })
+
+  it('copie autonome : les dialogues versés par l’auteur se lisent, sans rien à verser ni retirer', async () => {
+    const versed = (ds) => {
+      const out = addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Que s’est-il passé ?', answer: 'Une pause voulue.' }] }, { now: NOW })
+      return setReflectionVersed(out, out.reflections[0].id, true, { now: NOW })
+    }
+    render(<Harness store={await louStore({ mutate: versed })} mode="viewer" />)
+    const carnet = await screen.findByRole('region', { name: 'Mon carnet' })
+    expect(screen.getByText('Les dialogues que l’auteur de cette copie a versés à son portfolio.')).toBeTruthy()
+    fireEvent.click(within(carnet).getByRole('button', { name: /Dialogue du/ }))
+    expect(within(carnet).getByText('Une pause voulue.')).toBeTruthy()
+    expect(within(carnet).getByText(/^Versé à son portfolio par son auteur, à la journée du /)).toBeTruthy()
+    expect(within(carnet).queryByRole('button', { name: /Verser|Retirer/ })).toBeNull()
   })
 
   it('s’arrêter à tout moment ; recommencer', async () => {

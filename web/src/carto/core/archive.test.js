@@ -5,7 +5,7 @@ import { archiveFileName, buildArchive, importArchive, looksLikeArchive } from '
 import { importFiles } from './import.js'
 import { createDataset, observationKey } from './model.js'
 import { createCartoStore, createMemoryAdapter } from './store.js'
-import { addMarker, addReflection, addTag, chooseVariant, saveSet, setActive, setComparisonNote, setPreferences, setReview } from './ops.js'
+import { addMarker, addReflection, addTag, chooseVariant, saveSet, setActive, setComparisonNote, setPreferences, setReflectionVersed, setReview } from './ops.js'
 import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { importJourDocuments } from '../../v3/core/import.js'
 import { reviewEvidenceLink } from '../../v3/core/master.js'
@@ -97,6 +97,30 @@ describe('archive : sans perte', () => {
     expect(res.counts.daysAdded).toBe(0)
     expect(stable(res.dataset)).toEqual(stable(exported.dataset))
     expect(res.report.filter((r) => r.code === 'referentiel-candidat')).toEqual([])
+  })
+
+  it('dialogues versés au portfolio (question 20) : le versement fait l’aller-retour ; « versed » n’emporte qu’eux', async () => {
+    const store = await richStore()
+    let ds = (await store.exportAll('ds-lou')).dataset
+    ds = addReflection(ds, { entries: [{ threadId: 't', kind: 'silence', question: 'Et ensuite ?', answer: 'Une pause.' }] }, { now: LATER })
+    const [kept, versed] = ds.reflections.map((r) => r.id)
+    ds = setReflectionVersed(ds, versed, true, { now: LATER })
+    await store.saveDataset(ds)
+    const exported = await store.exportAll('ds-lou')
+
+    const full = JSON.parse(JSON.stringify(buildArchive(exported, { now: LATER })))
+    expect(full.reflections.map((r) => [r.id, r.versedAt ?? null])).toEqual([
+      [kept, null],
+      [versed, LATER],
+    ])
+    // Ce qu'emporte une copie autonome avec portfolio : les seuls dialogues versés.
+    const onlyVersed = buildArchive(exported, { includeReflections: 'versed', now: LATER })
+    expect(onlyVersed.reflections.map((r) => r.id)).toEqual([versed])
+    expect(JSON.stringify(onlyVersed)).not.toContain('Je doutais')
+
+    const res = await importFiles([{ path: 'a.json', text: JSON.stringify(full) }], empty(), { now: LATER })
+    expect(res.dataset.reflections.find((r) => r.id === versed).versedAt).toBe(LATER)
+    expect(res.dataset.reflections.find((r) => r.id === kept)).not.toHaveProperty('versedAt')
   })
 
   it('sans le portfolio : le texte part, les volumes par jour restent', async () => {

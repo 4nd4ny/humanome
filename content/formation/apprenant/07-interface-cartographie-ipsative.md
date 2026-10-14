@@ -111,15 +111,23 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
   carte dont les données manquent se masque.
 - **Dialogue** : des questions tirées de vos traces, pour relire votre
   parcours. Vos réponses vont dans un carnet qui reste dans ce navigateur.
+  Un dialogue du carnet peut être **versé à votre portfolio** (« Verser à mon
+  portfolio ») : il en fait alors partie, à la journée où vous l'avez tenu,
+  pour qui lit votre portfolio et pour votre prochaine évaluation. Vous pouvez
+  l'en retirer à tout moment.
 
 ## Garder une copie, partager
 
 - **Export** : l'**archive complète** (JSON, à réimporter sans perte), une
-  **copie autonome** (une page HTML lisible hors ligne) ou un **rapport
-  imprimable** (en PDF par la fenêtre d'impression du navigateur). Votre
-  cartographie vit dans ce navigateur : exportez l'archive pour la garder
-  ailleurs. L'archive contient tout ce que vous y avez mis — vos réponses, vos
-  notes privées, votre carnet : pensez-y avant de la confier à quelqu'un.
+  **copie autonome** (une page HTML lisible hors ligne), votre **portfolio en
+  Markdown** (le texte de chaque journée, avec les dialogues que vous y avez
+  versés : à transmettre, ou à faire analyser lors de votre prochaine
+  évaluation) ou un **rapport imprimable** (en PDF par la fenêtre
+  d'impression du navigateur). Votre cartographie vit dans ce navigateur :
+  exportez l'archive pour la garder ailleurs. L'archive contient tout ce que
+  vous y avez mis — vos réponses, vos notes privées, votre carnet : pensez-y
+  avant de la confier à quelqu'un. Une copie autonome avec portfolio emporte
+  les dialogues versés, jamais le reste du carnet.
 - **Partage** (avec un compte, réservé aux adultes) : vous composez une
   **version partagée** — les compétences, la précision des dates et les
   extraits que vous choisissez, relus avant la publication. C'est la seule

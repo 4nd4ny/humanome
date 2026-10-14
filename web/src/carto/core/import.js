@@ -385,7 +385,12 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     const reflectionIds = new Set(ds.reflections.map((r) => r.id))
     const newReflections = (Array.isArray(ex.reflections) ? ex.reflections : [])
       .filter((r) => r && typeof r.id === 'string' && typeof r.at === 'string' && !reflectionIds.has(r.id))
-      .map((r) => ({ id: r.id, at: r.at, entries: cleanReflectionEntries(r.entries) }))
+      .map((r) => ({
+        id: r.id,
+        at: r.at,
+        entries: cleanReflectionEntries(r.entries),
+        ...(typeof r.versedAt === 'string' && !Number.isNaN(Date.parse(r.versedAt)) ? { versedAt: r.versedAt } : {}),
+      }))
       .filter((r) => r.entries.length > 0)
     if (newReflections.length) ds.reflections = [...ds.reflections, ...newReflections].sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
     if (newSets.length || newReviews.length || newMarkers.length || newCmp.length || newReflections.length) {

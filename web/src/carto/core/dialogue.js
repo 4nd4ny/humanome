@@ -17,7 +17,7 @@
 // requête n'emporte que la question, la réponse et le passage cité
 // (`buildRelaunchRequest`).
 
-import { daysBetween, formatLong, todayIso } from './dates.js'
+import { daysBetween, formatLong, isIsoDate, todayIso } from './dates.js'
 import { hasAnalysis, hasPortfolio } from './model.js'
 import { stripMarkdownMarks } from './highlight.js'
 import { median, lexicalData } from './dashboard.js'
@@ -235,6 +235,14 @@ export function cleanRelaunch(text) {
 // ---------------------------------------------------------------------------
 // Carnet
 
+/** Journée (AAAA-MM-JJ) où un dialogue a été tenu, dans le fuseau de la personne ; null si illisible. */
+export function reflectionIsoDay(at) {
+  const d = new Date(at)
+  if (!Number.isNaN(d.getTime())) return todayIso(d)
+  const head = String(at ?? '').slice(0, 10)
+  return isIsoDate(head) ? head : null
+}
+
 /** Jour d'un dialogue gardé, dans le fuseau de la personne (l'horodatage est en UTC). */
 export function reflectionDay(at) {
   const d = new Date(at)
@@ -252,6 +260,38 @@ export function reflectionMarkdown(reflection) {
     if (e.quote) lines.push(`> ${quoted(e.quote)}`, '')
     lines.push(e.answer ? e.answer : '_(sans réponse)_', '')
     if (e.relaunch?.text) lines.push(`> Relance (${e.relaunch.model}) : ${e.relaunch.text}`, '')
+  }
+  return lines.join('\n').trim() + '\n'
+}
+
+/** Une seule ligne : blancs repliés. */
+const oneLine = (s) => String(s ?? '').replace(/\s+/gu, ' ').trim()
+
+/**
+ * Un dialogue versé au portfolio (décision du 2026-10-14, question 20), en
+ * Markdown. Il prend place dans la journée où il a été tenu, pour le lecteur
+ * du portfolio et pour l'évaluation suivante. N'y figurent que les questions
+ * auxquelles la personne a répondu ; le passage cité et la relance d'un
+ * modèle de langage sont attribués, pour qu'on sache ce qui est de sa main.
+ * Aucune ligne produite ici n'est un en-tête de date : redécoupé, le
+ * portfolio garde le dialogue dans sa journée (`portfolio-md.js` neutralise
+ * de même les lignes des réponses).
+ * @returns {string} '' quand aucune question n'a de réponse
+ */
+export function versedDialogueMarkdown(reflection) {
+  const entries = (Array.isArray(reflection?.entries) ? reflection.entries : []).filter(
+    (e) => e && typeof e.question === 'string' && String(e.answer ?? '').trim() !== '',
+  )
+  if (entries.length === 0) return ''
+  const lines = [`### Dialogue d’accompagnement du ${reflectionDay(reflection.at)}`, '', '*Questions tirées de la cartographie ; les réponses sont de l’auteur du portfolio.*', '']
+  for (const e of entries) {
+    lines.push(`**Question.** ${oneLine(e.question)}`, '')
+    if (e.quote) {
+      const day = e.refs?.dates?.[0]
+      lines.push(`> Passage ${isIsoDate(day) ? `du ${formatLong(day)} ` : ''}cité par le dialogue : ${quoted(oneLine(e.quote))}`, '')
+    }
+    lines.push(`**Réponse.** ${String(e.answer).trim()}`, '')
+    if (e.relaunch?.text) lines.push(`> Relance proposée par un modèle de langage (${oneLine(e.relaunch.model)}) : ${oneLine(e.relaunch.text)}`, '')
   }
   return lines.join('\n').trim() + '\n'
 }
