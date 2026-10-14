@@ -12,14 +12,18 @@ const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLoc
 
 /**
  * @param {{refl: object, state: object, selection: object, layout: object,
+ *   zoomLayout?: object | null, // pôle ouvert sur 360° (D-45) : la part dans ce pôle est dite aussi
  *   onClose: () => void, onOpenDay: (d: string, code?: string) => void}} props
  */
-export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }) {
+export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, onClose, onOpenDay }) {
   const ref = useRef(null)
   useFocusTrap(ref, true, onClose)
   const e = explainSurface(state, selection)
-  const sector =
-    selection.type === 'competency' ? layout.competencies.find((s) => s.code === selection.code) : layout.poles.find((s) => s.num === selection.num)
+  // Le secteur DESSINÉ : celui du pôle ouvert s'il y figure, sinon celui du soleil principal.
+  const drawn = (l) => (selection.type === 'competency' ? l?.competencies.find((s) => s.code === selection.code) : l?.poles.find((s) => s.num === selection.num))
+  const opened = selection.type === 'competency' ? drawn(zoomLayout) : null
+  const sector = opened ?? drawn(layout)
+  const poleOpened = opened ? refl.poleByNum.get(opened.pole) : null
   const title =
     selection.type === 'competency'
       ? `${selection.code} ${refl.compByCode.get(selection.code)?.name ?? ''}`
@@ -58,7 +62,21 @@ export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }
                 <dt>Confiance (hauteur)</dt>
                 <dd>{fmt(e.confidence)}</dd>
               </div>
+              {opened ? (
+                <div>
+                  <dt>Dans le pôle ouvert</dt>
+                  <dd>
+                    {fmt(opened.thetaInPole, 1)}° ({fmt((opened.thetaInPole / 360) * 100, 1)} %)
+                  </dd>
+                </div>
+              ) : null}
             </dl>
+            {opened ? (
+              <p className="carto-small carto-muted">
+                Le pôle {poleOpened?.name ?? opened.pole} est ouvert sur 360° : ses compétences se partagent tout le cercle, chacune selon sa part des
+                points du pôle (θ = 360° × points / points du pôle). La hauteur ne change pas.
+              </p>
+            ) : null}
             {sector?.floored ? (
               <p className="carto-note">
                 Épaisseur minimale d’affichage appliquée :{' '}

@@ -6,11 +6,79 @@
 // référentiel, départ à −90°. Cercles guides pointillés = échelle de confiance
 // (0,25 · 0,5 · 0,75 · 1), pas des niveaux. Secteurs de renvoi hachurés sans
 // changer leur surface. Disque central = retour à la racine / désélection.
+//
+// Pôle ouvert sur 360° (journal D-45) : un double-clic sur un arc de pôle (ou
+// « o », Maj+Entrée) l'ouvre — ses seules compétences occupent tout le cercle,
+// selon leur part des points du pôle (`layoutPole`) ; le centre (ou Échap, ou
+// un nouveau double-clic sur l'anneau du pôle) revient à tous les pôles. L'arc
+// s'ouvre et se referme en une demi-seconde, sans animation si le mouvement est
+// réduit.
 
-import { useId, useMemo } from 'react'
-import { poleFill } from './colors.js'
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { inkOn, poleFill } from './colors.js'
 import { poleShortName } from '../core/referential.js'
 import { formatShort } from '../core/dates.js'
+import { easeInOutCubic, interpolateSunLayout, poleLabelAngle } from './sunTransition.js'
+
+/** Durée de l'ouverture (et de la fermeture) d'un pôle, en millisecondes. */
+export const ZOOM_MS = 480
+
+/** Longueur d'arc minimale (unités du dessin) pour écrire le code d'une compétence. */
+const CODE_LABEL_PX = 22
+
+/**
+ * Ce que le soleil montre quand le pôle ouvert change : les trames qui mènent
+ * de ce qui était à l'écran à la nouvelle disposition, puis celle-ci. Rien
+ * d'animé si le mouvement est réduit, ni quand seule la disposition change
+ * (date t, cases cochées). Le départ est noté pendant le rendu, pour qu'un
+ * double appel des effets (mode strict de React) ne fasse pas sauter l'animation.
+ */
+function useZoomTransition(layout, zoom, reducedMotion) {
+  const shown = useRef(layout)
+  // L'arrivée suit la disposition courante (la date t peut bouger pendant le passage).
+  const target = useRef(layout)
+  const [run, setRun] = useState({ zoom, from: null })
+  const [frame, setFrame] = useState(null)
+  if (run.zoom !== zoom) {
+    setRun({ zoom, from: reducedMotion ? null : shown.current })
+    setFrame(null)
+  }
+  useEffect(() => {
+    if (!run.from) return undefined
+    const raf = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (f) => setTimeout(() => f(Date.now()), 16)
+    const cancel = typeof cancelAnimationFrame === 'function' ? cancelAnimationFrame : clearTimeout
+    let start = null
+    let id = null
+    const step = (now) => {
+      if (start === null) start = now
+      const x = (now - start) / ZOOM_MS
+      if (x >= 1) {
+        setFrame(null)
+        setRun((r) => (r === run ? { ...r, from: null } : r))
+        return
+      }
+      setFrame(interpolateSunLayout(run.from, target.current, easeInOutCubic(x)))
+      id = raf(step)
+    }
+    id = raf(step)
+    return () => cancel(id)
+  }, [run])
+  const display = run.from ? (frame ?? interpolateSunLayout(run.from, layout, 0)) : layout
+  useLayoutEffect(() => {
+    shown.current = display
+    target.current = layout
+  })
+  return { display, moving: Boolean(run.from) }
+}
+
+/**
+ * Le retour d'un pôle ouvert, dit au nombre de pôles du soleil complet (ceux
+ * qui ont des points à la date t) : « revenir aux 7 pôles ».
+ */
+export function returnToPoles(state) {
+  const n = state?.poles?.size ?? 0
+  return n > 1 ? { phrase: `revenir aux ${n} pôles`, short: `${n} pôles` } : { phrase: 'revenir au soleil entier', short: 'soleil' }
+}
 
 const TAU = Math.PI * 2
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toFixed(d) : '—')
@@ -23,7 +91,10 @@ const pt = (r, a) => `${(r * Math.cos(a)).toFixed(3)} ${(r * Math.sin(a)).toFixe
  * un tour complet est un anneau exact (règle de remplissage evenodd).
  */
 export function sectorPath(r0, r1, a0, a1) {
-  if (a1 - a0 >= TAU - 1e-9) {
+  // Presque un tour (fin de l'ouverture d'un pôle) : un anneau. Sinon, les deux
+  // extrémités de l'arc, arrondies au millième, se confondraient et le
+  // navigateur ne tracerait rien.
+  if (a1 - a0 >= TAU - 1e-4) {
     const outer = `M ${pt(r1, a0)} A ${r1} ${r1} 0 1 1 ${pt(r1, a0 + Math.PI)} A ${r1} ${r1} 0 1 1 ${pt(r1, a0)} Z`
     if (r0 <= 0) return outer
     return `${outer} M ${pt(r0, a0)} A ${r0} ${r0} 0 1 0 ${pt(r0, a0 + Math.PI)} A ${r0} ${r0} 0 1 0 ${pt(r0, a0)} Z`
@@ -51,13 +122,25 @@ const PATTERN_SHAPES = {
  *   highlightCodes?: Set<string> | null,
  *   reinforced?: boolean, label?: string, caption?: string, compact?: boolean,
  *   onSelect?: (target: object | null) => void, onHover?: (target: object | null) => void,
+ *   zoom?: number | null,            // pôle ouvert sur 360° (layout = layoutPole), ou null
+ *   onZoom?: (num: number | null) => void, // absent : pas d'ouverture de pôle
+ *   reducedMotion?: boolean,
  * }} props
  */
-export function Sun({ refl, state, layout, geometry, selection = null, hover = null, highlightCodes = null, reinforced = false, label, caption, compact = false, onSelect = () => {}, onHover = () => {} }) {
+export function Sun({ refl, state, layout, geometry, selection = null, hover = null, highlightCodes = null, reinforced = false, label, caption, compact = false, onSelect = () => {}, onHover = () => {}, zoom = null, onZoom, reducedMotion = false }) {
   const uid = useId().replace(/:/g, '')
   const R = geometry.competencies.rOut
   const pad = 6
   const box = R + pad
+  const { display, moving } = useZoomTransition(layout, zoom, reducedMotion)
+  const zoomable = typeof onZoom === 'function' && !compact
+  const zoomed = zoom != null
+  const back = returnToPoles(state)
+  const zoomPole = zoomed ? refl.poleByNum.get(zoom) : null
+  const openPole = (num) => {
+    onZoom(num)
+    onSelect({ type: 'pole', num })
+  }
 
   const guides = useMemo(() => {
     const out = []
@@ -77,52 +160,94 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
     return true
   }
 
+  // Part d'une compétence dans le pôle ouvert (null hors de ce pôle).
+  const inPole = (code) => layout.competencies.find((s) => s.code === code)?.thetaInPole ?? null
+
+  const empty = layout.competencies.length === 0
+  const count = `${layout.competencies.length} compétence${layout.competencies.length > 1 ? 's' : ''}`
+  const backHint = `clic au centre : ${back.phrase}`
+
   const hoverName = (() => {
     const t = hover ?? selection
     if (!t) return null
     if (t.type === 'pole') {
       const p = refl.poleByNum.get(t.num)
       const s = state.poles.get(t.num)
-      return { title: p?.name ?? `Pôle ${t.num}`, sub: s ? `${fmt((s.theta / 360) * 100, 1)} % du soleil · confiance ${fmt(s.confidence)}` : '' }
+      // Ouvrir un pôle le sélectionne : la légende garde alors le chemin du retour.
+      const open = zoomed && t.num === zoom
+      return {
+        title: `${p?.name ?? `Pôle ${t.num}`}${open ? ' — ouvert sur 360°' : ''}`,
+        sub: [open ? count : null, s ? `${fmt((s.theta / 360) * 100, 1)} % du soleil · confiance ${fmt(s.confidence)}` : null, open ? backHint : null].filter(Boolean).join(' · '),
+      }
     }
     const c = refl.compByCode.get(t.code)
     const s = state.competencies.get(t.code)
-    return { title: c ? `${c.code} ${c.name}` : t.code, sub: s ? `${fmt((s.theta / 360) * 100, 1)} % · confiance ${fmt(s.confidence)} · ${s.days.length} j.` : '' }
+    const share = zoomed ? inPole(t.code) : null
+    return {
+      title: c ? `${c.code} ${c.name}` : t.code,
+      sub: s ? `${share != null ? `${fmt((share / 360) * 100, 1)} % du pôle · ` : ''}${fmt((s.theta / 360) * 100, 1)} %${share != null ? ' du soleil' : ''} · confiance ${fmt(s.confidence)} · ${s.days.length} j.` : '',
+    }
   })()
 
-  const empty = layout.competencies.length === 0
-  const summary = label ?? `Soleil : ${layout.competencies.length} compétence${layout.competencies.length > 1 ? 's' : ''} observée${layout.competencies.length > 1 ? 's' : ''}, ${state.dates.length} journée${state.dates.length > 1 ? 's' : ''}`
+  const summary = zoomed
+    ? `Pôle ${zoomPole?.name ?? zoom} ouvert sur 360° : ${count}. Centre : ${back.phrase}.`
+    : label ?? `Soleil : ${count} observée${layout.competencies.length > 1 ? 's' : ''}, ${state.dates.length} journée${state.dates.length > 1 ? 's' : ''}`
 
-  const sectorProps = (target, name, extra) => ({
-    tabIndex: compact ? -1 : 0,
-    role: 'button',
-    'aria-pressed': Boolean(isSelected(target)),
-    'aria-label': name,
-    onClick: (e) => {
-      e.stopPropagation()
-      onSelect(isSelected(target) ? null : target)
-    },
-    onKeyDown: (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault()
-        onSelect(isSelected(target) ? null : target)
-      }
-    },
-    onMouseEnter: () => onHover(target),
-    onMouseLeave: () => onHover(null),
-    onFocus: () => onHover(target),
-    onBlur: () => onHover(null),
-    ...extra,
-  })
+  // Ouvrir ou refermer le pôle : double-clic, « o », Maj+Entrée.
+  const togglePole = (num) => (zoomed && zoom === num ? onZoom(null) : openPole(num))
+  const sectorProps = (target, name, transient) =>
+    transient
+      ? { 'aria-hidden': true, pointerEvents: 'none' }
+      : {
+          tabIndex: compact ? -1 : 0,
+          role: 'button',
+          'aria-pressed': Boolean(isSelected(target)),
+          'aria-label': name,
+          onClick: (e) => {
+            e.stopPropagation()
+            onSelect(isSelected(target) ? null : target)
+          },
+          onDoubleClick:
+            zoomable && target.type === 'pole'
+              ? (e) => {
+                  e.stopPropagation()
+                  togglePole(target.num)
+                }
+              : undefined,
+          onKeyDown: (e) => {
+            if (zoomable && target.type === 'pole' && !e.ctrlKey && !e.metaKey && !e.altKey && ((e.key === 'Enter' && e.shiftKey) || e.key === 'o' || e.key === 'O')) {
+              e.preventDefault()
+              togglePole(target.num)
+            } else if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onSelect(isSelected(target) ? null : target)
+            }
+          },
+          onMouseEnter: () => onHover(target),
+          onMouseLeave: () => onHover(null),
+          onFocus: () => onHover(target),
+          onBlur: () => onHover(null),
+        }
+  // Fondu d'un secteur qui apparaît ou disparaît, multiplié en CSS par
+  // l'atténuation d'un secteur hors sélection (sans éclat à la fin du passage).
+  const fade = (s) => (s.opacity != null && s.opacity < 1 ? { '--carto-fade': s.opacity } : undefined)
 
   return (
-    <figure className={`carto-sun${compact ? ' carto-sun--compact' : ''}${selection ? ' carto-sun--selecting' : ''}`}>
+    <figure className={`carto-sun${compact ? ' carto-sun--compact' : ''}${selection ? ' carto-sun--selecting' : ''}${zoomed ? ' carto-sun--zoomed' : ''}`}>
       <svg
         viewBox={`${-box} ${-box} ${2 * box} ${2 * box}`}
         role="group"
         aria-label={summary}
         onKeyDown={(e) => {
-          if (e.key === 'Escape') onSelect(null)
+          // Échap désélectionne ; sans sélection, referme le pôle ouvert. Une
+          // seule de ces deux choses par appui : l'événement est marqué traité
+          // (preventDefault), pour que les raccourcis de la page ne refassent
+          // pas le pas suivant avec l'état déjà mis à jour.
+          if (e.key === 'Escape') {
+            e.preventDefault()
+            if (!selection && zoomed && zoomable) onZoom(null)
+            else onSelect(null)
+          }
         }}
       >
         <defs>
@@ -143,20 +268,24 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           <circle key={i} r={r} className={`carto-sun-guide${i % 5 === 4 ? ' carto-sun-guide--base' : ''}`} />
         ))}
 
-        {layout.poles.map((s) => {
+        {display.poles.map((s) => {
           const p = refl.poleByNum.get(s.num)
           const target = { type: 'pole', num: s.num }
-          const name = `Pôle ${p.name} : ${fmt((s.theta / 360) * 100, 1)} % du soleil, confiance ${fmt(s.confidence)}${s.needsReviewOnly ? ', en renvoi' : ''}. Entrée : sélectionner.`
+          const how = zoomable ? (zoomed ? ` ; double-clic ou o : ${back.phrase}` : ' ; double-clic ou o : ouvrir ce pôle sur 360°') : ''
+          const name = `Pôle ${p.name}${zoomed ? ' ouvert sur 360°' : ''} : ${fmt((s.theta / 360) * 100, 1)} % du soleil, confiance ${fmt(s.confidence)}${s.needsReviewOnly ? ', en renvoi' : ''}. Entrée : sélectionner${how}.`
+          // Un anneau entier (pôle ouvert) porte son nom en haut ; pendant
+          // l'ouverture, le nom y glisse depuis le milieu de l'arc.
+          const labelAngle = poleLabelAngle(s)
           return (
-            <g key={`p${s.num}`} className={`carto-sun-sector${related(target) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}`}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={poleFill(p.color)} fillRule="evenodd" {...sectorProps(target, name)} />
+            <g key={`p${s.num}`} className={`carto-sun-sector${related(target) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}`} style={fade(s)}>
+              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={poleFill(p.color)} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
               {!compact && s.a1 - s.a0 > 0.42 ? (
                 <text
                   className="carto-sun-pole-label"
-                  x={((s.rIn + s.rOut) / 2) * Math.cos((s.a0 + s.a1) / 2)}
-                  y={((s.rIn + s.rOut) / 2) * Math.sin((s.a0 + s.a1) / 2)}
+                  x={((s.rIn + s.rOut) / 2) * Math.cos(labelAngle)}
+                  y={((s.rIn + s.rOut) / 2) * Math.sin(labelAngle)}
                   aria-hidden="true"
                 >
                   {poleShortName(p)}
@@ -166,18 +295,31 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           )
         })}
 
-        {layout.competencies.map((s) => {
+        {display.competencies.map((s) => {
           const p = refl.poleByNum.get(s.pole)
           const c = refl.compByCode.get(s.code)
           const target = { type: 'competency', code: s.code }
           const st = state.competencies.get(s.code)
-          const name = `${s.code} ${c.name} : ${fmt((s.theta / 360) * 100, 1)} % du soleil, confiance ${fmt(s.confidence)}, ${st?.days.length ?? 0} journée${(st?.days.length ?? 0) > 1 ? 's' : ''}${s.status === 'needs_review' ? ', en renvoi au cartographe' : ''}. Entrée : sélectionner.`
+          const share = zoomed && s.thetaInPole != null ? `${fmt((s.thetaInPole / 360) * 100, 1)} % du pôle (${fmt((s.theta / 360) * 100, 1)} % du soleil)` : `${fmt((s.theta / 360) * 100, 1)} % du soleil`
+          const name = `${s.code} ${c.name} : ${share}, confiance ${fmt(s.confidence)}, ${st?.days.length ?? 0} journée${(st?.days.length ?? 0) > 1 ? 's' : ''}${s.status === 'needs_review' ? ', en renvoi au cartographe' : ''}. Entrée : sélectionner.`
           const lit = highlightCodes?.has(s.code)
+          // Pôle ouvert, une fois arrêté : le code de chaque compétence dont l'arc
+          // a la place de l'écrire — dans le secteur s'il est assez épais (encre
+          // contrastée sur sa couleur), juste au-dessus sinon (encre du fond).
+          const thick = s.rOut - s.rIn >= 18
+          const rCode = thick ? (s.rIn + s.rOut) / 2 : s.rOut + 8
+          const showCode = zoomed && !moving && !compact && (s.a1 - s.a0) * rCode >= CODE_LABEL_PX
+          const aMid = (s.a0 + s.a1) / 2
           return (
-            <g key={s.code} className={`carto-sun-sector${related({ ...target, pole: s.pole }) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}${lit ? ' is-lit' : ''}`}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={p.color} fillRule="evenodd" {...sectorProps(target, name)} />
+            <g key={s.code} className={`carto-sun-sector${related({ ...target, pole: s.pole }) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}${lit ? ' is-lit' : ''}`} style={fade(s)}>
+              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={p.color} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.pole})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
+              {showCode ? (
+                <text className="carto-sun-code-label" x={rCode * Math.cos(aMid)} y={rCode * Math.sin(aMid)} style={thick ? { fill: inkOn(p.color) } : undefined} aria-hidden="true">
+                  {s.code}
+                </text>
+              ) : null}
             </g>
           )
         })}
@@ -186,17 +328,27 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           className="carto-sun-center"
           role="button"
           tabIndex={compact ? -1 : 0}
-          aria-label="Centre : tout désélectionner"
-          onClick={() => onSelect(null)}
+          aria-label={zoomed ? `Centre : ${back.phrase}` : 'Centre : tout désélectionner'}
+          onClick={() => (zoomed ? onZoom(null) : onSelect(null))}
           onKeyDown={(e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault()
-              onSelect(null)
+              if (zoomed) onZoom(null)
+              else onSelect(null)
             }
           }}
         >
           <circle r={geometry.center} />
-          {empty ? (
+          {zoomed ? (
+            <>
+              <text className="carto-sun-center-text carto-sun-center-back" y="-3" aria-hidden="true">
+                ↩
+              </text>
+              <text className="carto-sun-center-text carto-sun-center-small" y="11" aria-hidden="true">
+                {back.short}
+              </text>
+            </>
+          ) : empty ? (
             <text className="carto-sun-center-text" y="4">∅</text>
           ) : (
             <text className="carto-sun-center-text" y="5">{state.dates.length} j.</text>
@@ -210,7 +362,14 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
             <span>{hoverName.sub}</span>
           </>
         ) : empty ? (
-          <span>Aucune compétence observée pour cette sélection de journées.</span>
+          <span>{zoomed ? `Aucune compétence de ce pôle n’est observée dans cette sélection de journées. Centre : ${back.phrase}.` : 'Aucune compétence observée pour cette sélection de journées.'}</span>
+        ) : zoomed ? (
+          <>
+            <strong>
+              {zoomPole?.name ?? `Pôle ${zoom}`} — ouvert sur 360°
+            </strong>
+            <span>{[count, caption, backHint].filter(Boolean).join(' · ')}</span>
+          </>
         ) : (
           <span>{caption ?? summary}</span>
         )}

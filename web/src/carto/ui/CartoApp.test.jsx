@@ -259,6 +259,14 @@ describe('soleil (composant)', () => {
     expect(path.match(/A /g)).toHaveLength(4) // deux arcs extérieurs + deux arcs intérieurs
     expect(sectorPath(10, 20, 0, 1)).toMatch(/^M .* A 10 10 0 0 1 .* L .* A 20 20 0 0 0 .* Z$/)
   })
+
+  it('presque un tour (fin de l’ouverture d’un pôle) : un anneau, jamais un arc dont les extrémités se confondent', () => {
+    const nearly = sectorPath(140, 190, -Math.PI / 2, (3 * Math.PI) / 2 - 2e-5)
+    expect(nearly.match(/A /g)).toHaveLength(4)
+    expect(nearly).not.toMatch(/ L /)
+    // Un arc encore visiblement ouvert garde son tracé ordinaire.
+    expect(sectorPath(140, 190, -Math.PI / 2, (3 * Math.PI) / 2 - 1e-2)).toMatch(/ L /)
+  })
 })
 
 describe('« Pourquoi cette surface ? » (composant)', () => {

@@ -281,6 +281,13 @@ kbd {
 }
 .carto-col-left {
   padding-right: 0.25rem;
+  /* Comme le détail : la colonne défile seule, et la liste y suit la sélection
+     sans faire défiler la page (un clic dans le soleil ne déplace pas le
+     soleil, journal D-45). */
+  position: sticky;
+  top: 4.25rem;
+  max-height: calc(100vh - 5rem);
+  overflow: auto;
 }
 .carto-col-right {
   /* Sous les boutons fixes de l'en-tête du site (thème, aide, menu). */
@@ -369,6 +376,11 @@ kbd {
   height: auto;
   margin: 0 auto;
   overflow: visible;
+  /* Un double-clic ouvre un pôle (journal D-45) : il ne doit pas surligner le nom
+     du pôle, ni, au doigt, agrandir la page au lieu d'ouvrir le pôle. */
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
 }
 .carto-sun--compact svg {
   max-width: 320px;
@@ -390,8 +402,12 @@ kbd {
   cursor: pointer;
   transition: opacity 120ms ease;
 }
+/* --carto-fade : fondu d'un secteur pendant l'ouverture d'un pôle (journal D-45). */
+.carto-sun-sector {
+  opacity: var(--carto-fade, 1);
+}
 .carto-sun-sector.is-dimmed {
-  opacity: 0.22;
+  opacity: calc(0.22 * var(--carto-fade, 1));
 }
 .carto-sun-sector.is-selected path:first-child {
   stroke: var(--viz-ink);
@@ -443,6 +459,38 @@ kbd {
   text-anchor: middle;
   fill: #475569;
   pointer-events: none;
+}
+/* Pôle ouvert sur 360° (D-45) : le centre ramène à tous les pôles. */
+.carto-sun-center-back {
+  font-size: 15px;
+}
+.carto-sun-center-small {
+  font-size: 8.5px;
+}
+.carto-sun--zoomed .carto-sun-center circle {
+  fill: #ffffff;
+  stroke: #94a3b8;
+}
+.carto-sun--zoomed .carto-sun-center:focus-visible circle {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+/* Code d'une compétence du pôle ouvert. Au-dessus d'un secteur mince : encre du
+   fond (clair dans les deux thèmes) ; dans un secteur épais, le soleil donne
+   une encre contrastée sur sa couleur (style en ligne, qui l'emporte ici). */
+.carto-sun-code-label {
+  font-size: 8.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  fill: var(--viz-ink);
+  pointer-events: none;
+}
+.carto-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.4rem 0;
 }
 .carto-sun-caption {
   min-height: 2.6em;

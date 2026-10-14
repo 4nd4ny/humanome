@@ -70,6 +70,15 @@ formules. Sous le soleil, la **tête de lecture** rejoue la construction de
 votre cartographie journée après journée, et la **heatmap** montre l'année
 scolaire, une case par jour ; un double-clic sur un jour l'ouvre seul.
 
+**Ouvrir un pôle sur 360°.** Un double-clic sur un pôle de l'anneau intérieur
+l'ouvre : à la place du soleil complet, ses seules compétences font tout le
+tour, chacune selon sa part des points du pôle, avec son code écrit. La
+hauteur ne change pas (c'est toujours la confiance moyenne du jury). Le
+centre (↩) ramène à tous les pôles, comme Échap ou un nouveau double-clic sur
+l'anneau. Au clavier, « o » sur un pôle l'ouvre ; le panneau de détail d'un
+pôle offre aussi « Ouvrir ce pôle sur 360° ». Le pôle reste ouvert quand
+vous déplacez la date t ; choisir une compétence d'un autre pôle le referme.
+
 ## Relire une trace, et y répondre
 
 Dans le panneau de détail, chaque trace a son bouton **« Ouvrir dans le

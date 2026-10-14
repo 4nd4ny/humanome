@@ -261,6 +261,83 @@ export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 }
 }
 
 /**
+ * Un pôle « ouvert » sur 360° (journal D-45) : le soleil de ce seul pôle, à la
+ * place du soleil principal. Ses compétences se partagent tout le cercle, chacune
+ * selon sa part des points DU PÔLE (θ_pôle(c) = 360° × P(c) / P(pôle)), dans
+ * l'ordre du référentiel, à partir de −90° ; la hauteur ne change pas (confiance
+ * moyenne du jury, mêmes anneaux), ni la largeur minimale d'un secteur trop
+ * étroit. L'anneau intérieur est le pôle lui-même, en entier.
+ *
+ * Même forme que `layoutSun` (un seul pôle) ; chaque compétence porte en plus
+ * `thetaInPole` (degrés, part exacte dans le pôle), et le résultat porte `zoom`.
+ * Un pôle sans compétence observée dans l'état donne un soleil vide.
+ *
+ * @param {ReturnType<typeof computeState>} state
+ * @param {ReturnType<import('./referential.js').normalizeReferential>} ref
+ * @param {ReturnType<import('./formulas.js').ringGeometry>} geometry
+ * @param {number} poleNum
+ * @param {{minThickness?: number, minArc?: number}} [opts]
+ */
+export function layoutPole(state, ref, geometry, poleNum, { minThickness = 0, minArc = 0 } = {}) {
+  const START = -Math.PI / 2
+  const pState = state.poles.get(poleNum)
+  const codes = pState ? (ref.codesByPole.get(poleNum) ?? []).filter((code) => state.competencies.get(code)?.theta > 0) : []
+  if (!pState || codes.length === 0 || !(pState.theta > 0)) return { poles: [], competencies: [], zoom: poleNum }
+
+  const inPole = codes.map((code) => (360 * state.competencies.get(code).theta) / pState.theta)
+  const outer = geometry.competencies.rOut
+  const drawn = widenNarrowSectors(
+    inPole.map((deg) => (deg * Math.PI) / 180),
+    minArc > 0 && outer > 0 ? minArc / outer : 0,
+  )
+
+  const comps = []
+  let cursor = START
+  codes.forEach((code, i) => {
+    const c = state.competencies.get(code)
+    const a0 = cursor
+    const a1 = cursor + drawn.angles[i]
+    cursor = a1
+    const { rOut, rOutExact, floored } = displayedOuterRadius(geometry.competencies.rIn, geometry.k, c.confidence, minThickness)
+    comps.push({
+      code,
+      pole: poleNum,
+      a0,
+      a1,
+      rIn: geometry.competencies.rIn,
+      rOut,
+      rOutExact,
+      floored,
+      widened: drawn.widened[i],
+      confidence: c.confidence ?? 0,
+      theta: c.theta,
+      thetaInPole: inPole[i],
+      status: c.status,
+    })
+  })
+  const ring = displayedOuterRadius(geometry.poles.rIn, geometry.k, pState.confidence, minThickness)
+  return {
+    zoom: poleNum,
+    poles: [
+      {
+        num: poleNum,
+        a0: START,
+        a1: START + 2 * Math.PI,
+        rIn: geometry.poles.rIn,
+        rOut: ring.rOut,
+        rOutExact: ring.rOutExact,
+        floored: ring.floored,
+        widened: drawn.widened.some(Boolean),
+        confidence: pState.confidence ?? 0,
+        theta: pState.theta,
+        needsReviewOnly: pState.needsReviewOnly,
+      },
+    ],
+    competencies: comps,
+  }
+}
+
+/**
  * Explication « Pourquoi cette surface ? » (§1.7, §6.1) pour une compétence ou
  * un pôle : traces et journées qui fondent l'angle, confiances qui fondent la
  * hauteur, formules, et signalement de l'épaisseur minimale.

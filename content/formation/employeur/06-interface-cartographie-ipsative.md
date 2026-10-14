@@ -49,7 +49,9 @@ chapitre 1 décrit ce qu'il montre.
   jury** dans ses verdicts, de 0 à 1 — ni un niveau de maîtrise ni une note.
   L'anneau intérieur regroupe les compétences par pôle ; un secteur hachuré
   signale une présence « à confirmer ». Choisissez un secteur pour mettre la
-  compétence en avant dans la liste.
+  compétence en avant dans la liste. Un double-clic sur un pôle l'ouvre sur
+  tout le cercle : ses seules compétences, chacune selon sa part des traces du
+  pôle ; un clic au centre ramène à tous les pôles.
 - **La heatmap**, si les dates ne sont pas masquées : une case par jour, ou
   une par mois. Plus elle est foncée, plus les compétences partagées y sont
   observées, en niveaux relatifs à cette personne.

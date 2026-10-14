@@ -2,7 +2,7 @@
 // (spec §14) : 1 compétence = 360° ; l'ajout d'une 2ᵉ la fait passer à 180° ;
 // aire = θ·k·C/2.
 import { describe, expect, it } from 'vitest'
-import { computeDayState, computeState, explainSurface, layoutSun } from './state.js'
+import { computeDayState, computeState, explainSurface, layoutPole, layoutSun } from './state.js'
 import { normalizeReferential } from './referential.js'
 import { annularSectorArea, encodedArea, ringGeometry, toRadians } from './formulas.js'
 import { indexDataset, miniReferential } from '../test/fixtures.js'
@@ -225,5 +225,63 @@ describe('journée seule et explication', () => {
     expect(e.formulas.intensity).toMatch(/points = Σ w/)
     const p = explainSurface(s, { type: 'pole', num: 2 })
     expect(p.members).toEqual([{ code: '2.01', theta: expect.any(Number), confidence: 0.5, days: 1 }])
+  })
+})
+
+describe('pôle ouvert sur 360° (layoutPole, journal D-45)', () => {
+  // Pôle 1 : 1.01 (3 preuves) et 1.02 (1 preuve) ; pôle 2 : 2.01 (1 preuve).
+  const ds = indexDataset([
+    { date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: ['preuve', 'preuve', 'preuve'] }, { code: '1.02', confidence: 0.4, roles: ['preuve'] }] },
+    { date: '2025-12-23', verdicts: [{ code: '2.01', confidence: 0.9, roles: ['preuve'] }] },
+  ])
+  const s = computeState(ds, { ref })
+  const full = layoutSun(s, ref, geometry)
+  const rad = (deg) => (deg * Math.PI) / 180
+
+  it('ses seules compétences se partagent tout le cercle, selon leur part des points du pôle, à partir de −90°', () => {
+    const z = layoutPole(s, ref, geometry, 1)
+    expect(z.zoom).toBe(1)
+    expect(z.competencies.map((c) => c.code)).toEqual(['1.01', '1.02'])
+    const [a, b] = z.competencies
+    expect(a.thetaInPole).toBeCloseTo(270) // 3 points sur 4
+    expect(b.thetaInPole).toBeCloseTo(90)
+    expect(a.a0).toBeCloseTo(-Math.PI / 2)
+    expect(a.a1 - a.a0).toBeCloseTo(rad(270))
+    expect(b.a0).toBeCloseTo(a.a1) // contigus, dans l'ordre du référentiel
+    expect(b.a1).toBeCloseTo(-Math.PI / 2 + 2 * Math.PI)
+    // L'angle du soleil principal reste dit (θ) : la part dans le pôle est en plus.
+    expect(a.theta).toBeCloseTo(s.competencies.get('1.01').theta)
+  })
+
+  it('la hauteur ne change pas : mêmes rayons que dans le soleil principal ; l’anneau intérieur est le pôle entier', () => {
+    const z = layoutPole(s, ref, geometry, 1)
+    for (const c of z.competencies) {
+      const same = full.competencies.find((x) => x.code === c.code)
+      expect(c.rIn).toBe(same.rIn)
+      expect(c.rOut).toBeCloseTo(same.rOut)
+    }
+    expect(z.poles).toHaveLength(1)
+    const [ring] = z.poles
+    expect(ring.num).toBe(1)
+    expect(ring.a1 - ring.a0).toBeCloseTo(2 * Math.PI)
+    expect(ring.rOut).toBeCloseTo(full.poles.find((p) => p.num === 1).rOut)
+  })
+
+  it('une compétence du pôle trop étroite reçoit la largeur minimale, signalée ; la somme reste un tour', () => {
+    const many = indexDataset([
+      { date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: Array.from({ length: 400 }, () => 'preuve') }, { code: '1.02', confidence: 0.8, roles: ['indice'] }] },
+    ])
+    const z = layoutPole(computeState(many, { ref }), ref, geometry, 1, { minArc: 4 })
+    const narrow = z.competencies.find((c) => c.code === '1.02')
+    expect(narrow.widened).toBe(true)
+    expect((narrow.a1 - narrow.a0) * geometry.competencies.rOut).toBeCloseTo(4)
+    expect(narrow.thetaInPole).toBeLessThan(0.5) // l'exact reste dit
+    expect(z.competencies.at(-1).a1 - z.competencies[0].a0).toBeCloseTo(2 * Math.PI)
+    expect(z.poles[0].widened).toBe(true)
+  })
+
+  it('un pôle sans compétence observée (ou inconnu) donne un soleil vide', () => {
+    expect(layoutPole(s, ref, geometry, 3)).toEqual({ poles: [], competencies: [], zoom: 3 })
+    expect(layoutPole(s, ref, geometry, 9)).toEqual({ poles: [], competencies: [], zoom: 9 })
   })
 })

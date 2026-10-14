@@ -79,6 +79,12 @@ Pédagogue et les pièces du Greffier — pour une analyse AuroraCore, les six
 les formules. La case **mode expert** affiche les réglages de l'encodage
 (poids d'un indice, épaisseur minimale d'un secteur).
 
+Pour examiner un pôle seul, double-cliquez sur son arc dans l'anneau intérieur
+(au clavier : « o ») : ses compétences occupent tout le cercle, chacune selon
+sa part des points du pôle, codes écrits, hauteurs inchangées ; « Pourquoi
+cette surface ? » donne alors aussi cette part. Le centre (↩) ou Échap
+ramène à tous les pôles.
+
 Pour vérifier contre la source, **« Ouvrir dans le portfolio »** :
 
 - **surligné en jaune** : retrouvé tel quel, du début à la fin ;

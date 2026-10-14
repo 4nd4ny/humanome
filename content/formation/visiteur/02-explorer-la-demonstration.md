@@ -67,6 +67,12 @@ sous l'onglet **Détails** sur écran étroit) montre ses chiffres, ses traces
 journée par journée, les verdicts et la réflexion du jury. Échap désélectionne.
 Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 
+Pour regarder un pôle de près, **double-cliquez** sur son arc dans l'anneau
+intérieur (au clavier : « o ») : il s'ouvre sur tout le cercle, à la place du
+soleil complet. Ses compétences se partagent alors les 360°, chacune selon sa
+part des points du pôle, et portent leur code ; leur hauteur ne change pas.
+Le centre, marqué ↩, ramène à tous les pôles (Échap aussi).
+
 ## « Pourquoi cette surface ? »
 
 Un secteur sélectionné, appuyez sur **w** : une fenêtre détaille ce qui fonde

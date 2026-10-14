@@ -31,6 +31,7 @@ const BASE = {
     points: [
       'Importez vos analyses (journées, merge, archive) et votre portfolio, ou explorez la démonstration.',
       '« Pourquoi cette surface ? » (touche w sur un secteur) montre les traces, les points et la confiance.',
+      'Un double-clic sur un pôle (anneau intérieur du soleil) l’ouvre sur 360° : ses seules compétences, chacune selon sa part des points du pôle. Un clic au centre (ou Échap) ramène à tous les pôles.',
       'Un clic sur une journée de la heatmap déplace la date t ; un double-clic ouvre la journée seule.',
       'Confirmez, nuancez ou contestez chaque verdict du jury : c’est votre droit de réponse.',
       'Comparaison, tableau de bord, dialogue, export et partage : les autres espaces, en haut de la cartographie.',

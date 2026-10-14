@@ -10,6 +10,30 @@ import { formatShort } from '../core/dates.js'
 const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
 /**
+ * Amène `el` dans la partie visible des boîtes défilantes qui l'entourent,
+ * jusqu'à la colonne de la liste (`root.closest('.carto-col')`) comprise, au
+ * plus près, SANS JAMAIS faire défiler la page. Une sélection faite dans le
+ * soleil ne doit pas déplacer le soleil sous le pointeur : entre les deux clics
+ * d'un double-clic (qui ouvre un pôle, journal D-45), la page fuyait de
+ * plusieurs centaines de pixels avec `scrollIntoView`. Le détail, collant,
+ * montre déjà la sélection.
+ */
+export function revealInList(el, root) {
+  const limit = root?.closest?.('.carto-col') ?? root
+  if (!el || !limit) return
+  for (let box = el.parentElement; box && box !== document.body && box !== document.documentElement; box = box.parentElement) {
+    const { overflowY } = window.getComputedStyle(box)
+    if ((overflowY === 'auto' || overflowY === 'scroll') && box.scrollHeight > box.clientHeight) {
+      const b = box.getBoundingClientRect()
+      const r = el.getBoundingClientRect()
+      if (r.top < b.top) box.scrollTop -= b.top - r.top
+      else if (r.bottom > b.bottom) box.scrollTop += Math.min(r.bottom - b.bottom, r.top - b.top)
+    }
+    if (box === limit) break
+  }
+}
+
+/**
  * @param {{
  *   refl: object, state: object, selection: object | null,
  *   dayFilter?: {date: string, codes: Set<string>} | null,
@@ -21,6 +45,7 @@ export function CompetencyList({ refl, state, selection, dayFilter = null, onSel
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(() => new Set())
   const itemRefs = useRef(new Map())
+  const navRef = useRef(null)
 
   const tree = useMemo(() => {
     const q = fold(query.trim())
@@ -43,13 +68,23 @@ export function CompetencyList({ refl, state, selection, dayFilter = null, onSel
     return out
   }, [refl, state, query, dayFilter])
 
-  // Défile jusqu'à la sélection (y compris après un clic sur un jour).
+  // Défile jusqu'à la sélection (y compris après un clic sur un jour), dans la
+  // liste seulement : jamais la page (revealInList). Une compétence d'un pôle
+  // replié n'est dessinée qu'une fois son pôle ouvert (effet suivant) : on la
+  // montre alors, une seule fois.
+  const pendingReveal = useRef(null)
   useEffect(() => {
     const key = selection?.type === 'competency' ? `c:${selection.code}` : selection?.type === 'pole' ? `p:${selection.num}` : null
-    if (!key) return
-    const el = itemRefs.current.get(key)
-    if (el && typeof el.scrollIntoView === 'function') el.scrollIntoView({ block: 'nearest' })
+    const el = key ? itemRefs.current.get(key) : null
+    if (el?.isConnected) revealInList(el, navRef.current)
+    pendingReveal.current = el?.isConnected ? null : key
   }, [selection, dayFilter])
+  useEffect(() => {
+    const key = pendingReveal.current
+    pendingReveal.current = null
+    const el = key ? itemRefs.current.get(key) : null
+    if (el?.isConnected) revealInList(el, navRef.current)
+  }, [open])
 
   // Une compétence sélectionnée ouvre son pôle (révélation, jamais fermeture).
   useEffect(() => {
@@ -70,7 +105,7 @@ export function CompetencyList({ refl, state, selection, dayFilter = null, onSel
     selection && ((t.type === 'pole' && selection.type === 'pole' && selection.num === t.num) || (t.type === 'competency' && selection.type === 'competency' && selection.code === t.code))
 
   return (
-    <nav className="carto-list" aria-label="Compétences observées">
+    <nav ref={navRef} className="carto-list" aria-label="Compétences observées">
       <div className="carto-list-search">
         <label htmlFor="carto-list-q">Chercher une compétence</label>
         <input id="carto-list-q" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="nom, code, pôle…" autoComplete="off" />

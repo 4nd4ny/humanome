@@ -42,6 +42,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés ; surlignage approché revalidé sur les journaux réels (D-39) | ✅ suite du site 2 255 verts | `b651f38` |
 | Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | `f55b036` |
 | Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | `9e7685c` |
+| Q25–29 | « Partager » ; `CLAUDE.md` décrit le nouveau partage (D-44) | ✅ | ✅ tests de libellés mis à jour | ✅ | `8f3b196` |
+| Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1402,6 +1404,83 @@ Christian (2026-10-14), réponses aux questions 25 à 29 (§4) :
 - Rien à changer pour le reste : les liens créés avant ne sont pas révoqués,
   l'apprenant peut publier seul, et le code de demande suffit au cartographe.
 
+### D-45 — Ouvrir un pôle sur 360° **[décidé]**
+
+Christian (2026-10-14) : « lorsque l'on double clique sur un des 7 domaines de
+compétences du référentiel (sur les arc-cercles centraux), j'aimerai “ouvrir”
+l'arc de cercle et présenter sur 360 degrés toutes les compétences associées au
+domaine correspondant, à la place du carto-sun principal. Un clic au centre
+permet de revenir à la vue complète des 7 domaines de compétence. »
+
+- **Disposition** (`core/state.js`, `layoutPole`) : les compétences observées
+  du pôle se partagent le tour, chacune selon sa **part des points du pôle**
+  (θ = 360° × points / points du pôle), dans l'ordre du référentiel à partir
+  de −90°, avec la même largeur minimale dessinée que le soleil principal. Les
+  **hauteurs ne changent pas** (confiance moyenne du jury, mêmes anneaux) ;
+  l'anneau du pôle fait le tour entier, à la hauteur de sa confiance.
+- **Ouvrir** : double-clic sur l'arc du pôle ; au clavier, « o » ou
+  Maj+Entrée sur le pôle ; dans le panneau de détail d'un pôle, « Ouvrir ce
+  pôle sur 360° ». Le pôle ouvert est sélectionné.
+- **Revenir** : le **centre** (↩ et « N pôles »), un nouveau double-clic sur
+  l'anneau, Échap (un appui désélectionne s'il y a une sélection, le suivant
+  referme), ou « Revenir aux N pôles » dans le détail. **[choix d'implémentation]** N est
+  le nombre de pôles du soleil complet à la date t — 7 pour une cartographie
+  complète, moins tant que des pôles n'ont aucune trace (« revenir au soleil
+  entier » s'il n'y en a qu'un) : le centre annonce ce qu'on retrouvera.
+- **Ce qui reste** : la date t, les journées cochées, les réglages — le pôle
+  ouvert suit l'état cumulé, y compris pendant le passage animé. Choisir une
+  compétence d'un autre pôle (dans la liste, par exemple) le referme ; une du
+  même pôle le garde.
+- **Lecture** : chaque compétence porte son **code**, dans le secteur s'il est
+  assez épais (encre contrastée sur sa couleur), juste au-dessus sinon, dès
+  que l'arc a la place de l'écrire. Les libellés accessibles disent « x % du
+  pôle (y % du soleil) » ; la légende sous le soleil garde le chemin du
+  retour ; « Pourquoi cette surface ? » ajoute « Dans le pôle ouvert » (angle
+  et part) et la formule.
+- **Animation** (`ui/sunTransition.js`, pure) : l'arc s'ouvre en une
+  demi-seconde (480 ms, départ et arrivée en douceur) — le pôle et ses
+  compétences glissent et s'élargissent en tournant le moins possible, les
+  autres pôles s'effacent dessous, le nom du pôle glisse vers le haut de
+  l'anneau ; la fermeture fait l'inverse, l'arc qui se resserre découvre les
+  autres. Aucune animation si le mouvement est réduit (préférence du système
+  ou de l'interface). Pendant le passage, les secteurs qui s'effacent ne sont
+  ni cliquables ni atteignables au clavier.
+- **Version partagée** (vue du destinataire et aperçu verrouillé) : même
+  geste **[choix d'implémentation]** — c'est le même soleil ; « Comment lire
+  ce soleil » le dit. Les petits soleils (journée, comparaison, rapport) ne
+  s'ouvrent pas.
+- **Corrigé en chemin** : un clic sur un secteur du soleil faisait défiler
+  **toute la page** jusqu'à l'élément choisi de la liste (`scrollIntoView`) —
+  306 px dans une fenêtre de 1 280 × 720 — et le second clic d'un double-clic
+  tombait à côté du soleil. **[choix d'implémentation]** La colonne de gauche
+  (journées et compétences) défile désormais seule, collante comme celle du
+  détail (au-delà de 767 px) ; la liste y suit la sélection — y compris une
+  compétence d'un pôle replié, montrée dès que son pôle s'ouvre — sans jamais
+  faire défiler la page (`revealInList`). Le double-clic ne surligne plus le
+  nom du pôle, et au doigt un double appui ouvre le pôle au lieu d'agrandir la
+  page (vérifié en émulation mobile Chromium).
+- **Revue visuelle** (captures sur des données synthétiques couvrant les 61
+  compétences, non versionnées) : les 7 pôles ouverts, les trames
+  d'ouverture et de fermeture, thèmes clair et sombre, largeur de téléphone.
+  Corrigé à sa suite : codes en encre contrastée (une règle CSS l'emportait
+  sur l'attribut), saut du nom du pôle en fin d'animation, éclat des secteurs
+  atténués à la fin de la fermeture, ordre de dessin à la fermeture.
+- **Relecture indépendante** (agent distinct, avant le commit ; suites
+  repassées, vérifications dans Chromium) : rien de bloquant. Corrigé à sa
+  suite : un seul appui d'Échap, le soleil ayant le focus, désélectionnait
+  **et** refermait le pôle (le raccourci de la page repassait derrière celui
+  du soleil, avec l'état déjà mis à jour) — le soleil marque l'événement
+  traité, la page n'y touche plus (l'e2e le reproduit, jsdom non) ; à la toute
+  fin de l'ouverture, sur un écran à plus de 60 Hz, un arc presque complet
+  disparaissait une trame (extrémités confondues à l'arrondi) — tracé en
+  anneau dès 1e-4 rad du tour ; anneau de focus du centre effacé quand le pôle
+  est ouvert ; un passage inversé en cours de route faisait sauter l'opacité ;
+  l'arrivée du passage suit la date t si elle bouge ; « o » avec Ctrl, Cmd ou
+  Alt reste au navigateur ; la liste ne suivait plus la sélection (voir
+  ci-dessus).
+- Docs : aide de la cartographie, formation (apprenant 07, cartographe 07,
+  visiteur 02, employeur 06).
+
 ---
 
 ## 3. État des tests
@@ -1695,6 +1774,20 @@ Validation du surlignage approché sur les journaux réels : D-39.
 | UC-CAR-05 (fonctionnels, IHM) | l'encadré de signature ne promet plus le lien de partage : « … sera figée et signée. Pour qu'un employeur voie votre garantie, publiez la version partagée… » | 2 réécrits |
 | `api/tests/CartoPartageTest.php` | lien protégé d'une version partagée : audit `{cartographieId, shareId, expiresInDays, withPassword: true}`, ni jeton ni mot de passe | renforcé |
 
+### Pôle ouvert sur 360° (D-45)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/state.test.js` | `layoutPole` : parts 270° / 90° à partir de −90°, mêmes rayons, anneau du pôle entier ; largeur minimale dessinée ; pôle sans trace | +4 |
+| `ui/sunTransition.test.js` (nouveau) | départ (chaque secteur à sa place), arrivée (au tour près), mi-chemin (l'arc s'élargit, ceux qui partent s'effacent dessous), nom du pôle qui glisse vers le haut sans quitter l'arc, rotation minimale pour chaque pôle, fermeture (les autres dessous, puis à leur place), passage inversé en cours de route (repart de l'opacité affichée), adoucissement | 8 |
+| `ui/PoleZoom.test.jsx` (nouveau) | **application complète** : double-clic sur MAIN → seules 3.01 et 3.02, à 20 % et 80 % du pôle, codes écrits, légende avec le retour ; centre → tous les pôles, sélection gardée ; nouveau double-clic qui referme ; « o », Maj+Entrée, Échap (désélectionne, puis referme), aussi sur le soleil même ; « o » avec Ctrl, Cmd ou Alt sans effet ; boutons du panneau de détail ; compétence d'un autre pôle qui referme, du même pôle qui garde ; date t : le pôle suit l'état cumulé, retour « aux 2 pôles » ; « Pourquoi cette surface ? » : 288,0° (80,0 %) ; mouvement réduit sans passage ; **version partagée** : même geste, au clavier aussi | 11 |
+| `ui/CartoApp.test.jsx` | presque un tour : un anneau, jamais un arc aux extrémités confondues | +1 |
+| `ui/CompetencyList.test.jsx` (nouveau) | `revealInList` : la boîte défilante de la liste suit la sélection au plus près (dessous, dessus, déjà visible), la colonne aussi ; jamais une boîte qui contient aussi le soleil, jamais la page | 4 |
+| `e2e/carto-soleil.e2e.js` (nouveau) | Chromium, vrai double-clic (deux clics, puis le double-clic) : un clic sur un pôle ne fait pas défiler la page ; MAIN s'ouvre, géométrie vérifiée **degré par degré sur le tracé rendu** (anneau sur 360°, 3.01 ≈ 72°, 3.02 ≈ 288°) ; centre → retour ; « o », puis un appui d'Échap qui ne fait **qu'une** chose (vérifié après plus qu'un passage), puis le suivant ; la liste montre la compétence choisie dans le soleil, dans sa colonne, page immobile | +1 |
+
+Suites complètes après D-45 : site 2 285 verts (235 fichiers), moteur 1 071
+(+ 17 ignorés), API 1 489 (14 328 assertions), e2e 16 sur 16 dans Chromium.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -1859,3 +1952,15 @@ D-43), réponses du même jour :
   l'interface, pour la publier avec sa garantie ; parcours e2e apprenant et
   cartographe réécrits et remis en état ; catalogue des cas d'utilisation
   recompté.
+- **2026-10-14** — Réponses aux questions 25 à 29 (D-44) : le niveau
+  « Publique (partageable) » devient « Partager » ; `CLAUDE.md` décrit le
+  partage par une version choisie, mot de passe facultatif.
+- **2026-10-14** — Pôle ouvert sur 360° (D-45), à la demande de Christian :
+  un double-clic sur un pôle du soleil l'ouvre, ses compétences font tout le
+  tour selon leur part des points du pôle ; un clic au centre ramène à tous
+  les pôles ; passage animé d'une demi-seconde (aucun si le mouvement est
+  réduit) ; même geste dans la version partagée. Corrigé en chemin : un clic
+  dans le soleil ne fait plus défiler la page jusqu'à la liste — la colonne de
+  gauche défile seule et la liste y suit la sélection. Relu par un agent
+  distinct avant le commit : six corrections (Échap, dernière trame, focus du
+  centre, passage inversé, « o » avec modificateur, liste).

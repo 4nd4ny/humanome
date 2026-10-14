@@ -6,12 +6,13 @@
 // données, donc exactement ce que verra le destinataire.
 
 import { useId, useMemo, useState } from 'react'
-import { layoutSun } from '../core/state.js'
+import { layoutPole, layoutSun } from '../core/state.js'
 import { DEFAULT_PARAMS, ringGeometry } from '../core/formulas.js'
 import { calendarGrid } from '../core/heatmap.js'
 import { formatLong, monthName, todayIso } from '../core/dates.js'
 import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
 import { Sun } from './Sun.jsx'
+import { usePrefersReducedMotion } from './Player.jsx'
 import { heatColor, inkOn } from './colors.js'
 import './carto.css'
 
@@ -156,6 +157,19 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
   const uid = useId()
   const [selection, setSelection] = useState(null)
   const [hover, setHover] = useState(null)
+  // Pôle ouvert sur 360° (journal D-45), comme dans l'interface.
+  const [zoom, setZoom] = useState(null)
+  const reducedMotion = usePrefersReducedMotion()
+  const zoomLayout = useMemo(
+    () => (zoom != null ? layoutPole(state, refl, GEOMETRY, zoom, { minThickness: DEFAULT_PARAMS.minThicknessPx, minArc: DEFAULT_PARAMS.minArcPx }) : null),
+    [state, refl, zoom],
+  )
+  // Choisir une compétence (ou un pôle) d'un autre pôle referme le pôle ouvert.
+  const select = (t) => {
+    setSelection(t)
+    const pole = t?.type === 'pole' ? t.num : t?.type === 'competency' ? refl.compByCode.get(t.code)?.pole : null
+    if (zoom != null && pole != null && pole !== zoom) setZoom(null)
+  }
   const precision = doc.datePrecision
   const extractsByCode = useMemo(() => {
     const map = new Map()
@@ -216,14 +230,17 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
           <Sun
             refl={refl}
             state={state}
-            layout={layout}
+            layout={zoomLayout ?? layout}
             geometry={GEOMETRY}
             selection={selection}
             hover={hover}
             label={`Soleil : ${plural(state.competencies.size, 'compétence partagée', 'compétences partagées')}`}
             caption="Choisissez un secteur pour lire la compétence et ses extraits."
-            onSelect={setSelection}
+            onSelect={select}
             onHover={setHover}
+            zoom={zoom}
+            onZoom={setZoom}
+            reducedMotion={reducedMotion}
           />
           {doc.heatmap ? <SharedHeatmap heatmap={doc.heatmap} period={doc.period} /> : <p className="carto-small carto-muted">Les dates ont été masquées : la heatmap n’est pas partagée.</p>}
           <details className="carto-shared-howto">
@@ -231,6 +248,7 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
             <ul className="carto-small">
               <li>Chaque secteur extérieur est une compétence observée dans le portfolio réflexif de la personne. Son angle est sa part des traces relevées dans l’ensemble partagé : plus une compétence a de traces, plus son secteur est large.</li>
               <li>Sa hauteur est la confiance moyenne du jury dans ses verdicts (de 0 à 1) : ce n’est ni un niveau de maîtrise ni une note. L’anneau intérieur regroupe les compétences par pôle.</li>
+              <li>Un double-clic sur un pôle de l’anneau intérieur l’ouvre sur tout le cercle : ses seules compétences, chacune selon sa part des traces du pôle. Un clic au centre ramène à tous les pôles.</li>
               <li>Un secteur hachuré signale une présence encore à confirmer.</li>
               <li>Ce document montre ce que la personne a choisi de partager : il ne classe pas, ne compare à personne et ne dit rien de ce qui n’a pas été partagé.</li>
             </ul>

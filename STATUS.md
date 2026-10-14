@@ -15,8 +15,8 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`, NON déployée — aucun déploiement avant validation).**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-43, état des tests, les questions (24
-    répondues, 3 ouvertes) et les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
+    dépôt). Journal d'avancement, décisions D-1 → D-45, état des tests, les 29 questions et
+    les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
     importeurs Aurora v3 / AuroraCore / Merge v2, formules §5, IndexedDB) ; P1 soleil,
@@ -51,6 +51,20 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     de relecture du cartographe ouvre sa révision dans l'interface pour la publier garantie ;
     les liens déjà créés restent servis jusqu'à leur échéance. Relu par un agent distinct
     avant le commit (rien de bloquant, corrections intégrées).
+  - **Questions 25 à 29** (D-44) : le niveau « Publique (partageable) » s'intitule « Partager » ;
+    `CLAUDE.md` décrit le partage par une version choisie, mot de passe facultatif ; anciens
+    liens non révoqués, publication par l'apprenant seul et code de demande confirmés.
+  - **Pôle ouvert sur 360°** (D-45, demande du 2026-10-14) : un double-clic sur un pôle du soleil
+    (ou « o ») l'ouvre — ses compétences font tout le tour selon leur part des points du pôle,
+    hauteurs inchangées, codes écrits ; le centre (ou Échap) ramène à tous les pôles ; passage
+    animé de 480 ms, aucun si le mouvement est réduit ; même geste dans la version partagée.
+    Corrigé en chemin : un clic dans le soleil faisait défiler toute la page jusqu'à la liste
+    (le second clic d'un double-clic tombait à côté) ; la colonne de gauche défile désormais
+    seule, la liste y suit la sélection. Relu par un agent distinct (six corrections).
+  - **Vérification après D-45** (2026-10-14) : front **2 285 verts** (235 fichiers) ; moteur
+    **1 071 verts** + 17 sautés ; API **1 489 verts** (14 328 assertions) ; e2e Chromium
+    **16 sur 16** (dont `carto-soleil.e2e.js`, nouveau : vrai double-clic, géométrie vérifiée
+    sur le tracé rendu).
   - **Vérification** (2026-10-14, `b651f38`) : front **2 255 verts** (231 fichiers ;
     `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ; moteur
     **1 071 verts** + 17 sautés ; API **1 484 verts** (14 162 assertions, 23 min 36 s) ; e2e

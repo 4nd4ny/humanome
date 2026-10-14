@@ -9,7 +9,7 @@
 
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
 import { useCartoData } from './useCartoData.js'
-import { computeState, layoutSun } from '../core/state.js'
+import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
 import { resolveParams, ringGeometry } from '../core/formulas.js'
 import { contributingVariant, todoCount } from '../core/model.js'
@@ -60,6 +60,7 @@ const initialUi = {
   why: false,
   expert: false,
   reader: null, // cible du lecteur de portfolio (trace ou passage)
+  zoom: null, // pôle ouvert sur 360° dans le soleil (D-45), ou null
 }
 
 function reducer(state, action) {
@@ -67,7 +68,10 @@ function reducer(state, action) {
     case 'setT':
       return { ...state, t: action.t }
     case 'select':
-      return { ...state, selection: action.selection }
+      // Une sélection dans un autre pôle referme le pôle ouvert.
+      return { ...state, selection: action.selection, zoom: state.zoom != null && action.pole != null && action.pole !== state.zoom ? null : state.zoom }
+    case 'zoom':
+      return { ...state, zoom: action.num }
     case 'hover':
       return { ...state, hover: action.hover }
     case 'focusDate':
@@ -157,6 +161,11 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
 
   const state = useMemo(() => (dataset && refl ? computeState(dataset, { ref: refl, until: ui.t, params }) : null), [dataset, refl, ui.t, params])
   const layout = useMemo(() => (state ? layoutSun(state, refl, GEOMETRY, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null), [state, refl, params])
+  // Pôle ouvert sur 360° (D-45) : le soleil de ce seul pôle, à la place du soleil principal.
+  const zoomLayout = useMemo(
+    () => (state && ui.zoom != null ? layoutPole(state, refl, GEOMETRY, ui.zoom, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null),
+    [state, refl, params, ui.zoom],
+  )
 
   const allDates = useMemo(() => (dataset ? dataset.days.map((d) => d.date) : []), [dataset])
   const span = useMemo(() => dateRange(allDates), [allDates])
@@ -178,7 +187,16 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   }, [dataset, refl, ui.selection])
 
   const setT = useCallback((t) => dispatch({ type: 'setT', t }), [])
-  const select = useCallback((selection) => dispatch({ type: 'select', selection }), [])
+  const select = useCallback(
+    (selection) =>
+      dispatch({
+        type: 'select',
+        selection,
+        pole: selection?.type === 'pole' ? selection.num : selection?.type === 'competency' ? (refl?.compByCode.get(selection.code)?.pole ?? null) : null,
+      }),
+    [refl],
+  )
+  const zoomTo = useCallback((num) => dispatch({ type: 'zoom', num }), [])
   const hover = useCallback((h) => dispatch({ type: 'hover', hover: h }), [])
   const openDay = useCallback((date, code) => go(`#/cartographie/jour/${date}${code ? `?focus=${encodeURIComponent(code)}` : ''}`), [])
   const closeDay = useCallback(() => go('#/cartographie'), [])
@@ -264,13 +282,15 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
       if (e.key === 'w' && ui.selection) {
         e.preventDefault()
         dispatch({ type: 'why', open: true })
-      } else if (e.key === 'Escape' && ui.selection) {
-        select(null)
+      } else if (e.key === 'Escape' && !e.defaultPrevented) {
+        // Un soleil qui a déjà traité Échap l'a marqué : rien de plus ici.
+        if (ui.selection) select(null)
+        else if (ui.zoom != null) zoomTo(null) // sans sélection, Échap referme le pôle ouvert
       }
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [modalDate, ui.why, ui.selection, ui.reader, select])
+  }, [modalDate, ui.why, ui.selection, ui.reader, ui.zoom, select, zoomTo])
 
   if (data.status === 'loading') {
     return (
@@ -359,7 +379,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
               <Sun
                 refl={refl}
                 state={state}
-                layout={layout}
+                layout={zoomLayout ?? layout}
                 geometry={GEOMETRY}
                 selection={ui.selection}
                 hover={ui.hover}
@@ -368,6 +388,9 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
                 caption={ui.t ? `État cumulé jusqu’au ${formatShort(ui.t)}` : 'État complet des journées cochées'}
                 onSelect={select}
                 onHover={hover}
+                zoom={ui.zoom}
+                onZoom={zoomTo}
+                reducedMotion={reducedMotion}
               />
               <div className="carto-sun-options">
                 <label className="carto-small">
@@ -410,6 +433,11 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
                 onSelect={select}
                 onOpenDay={openDay}
                 onWhy={() => dispatch({ type: 'why', open: true })}
+                zoom={ui.zoom}
+                onZoom={(num) => {
+                  zoomTo(num)
+                  if (num != null) select({ type: 'pole', num })
+                }}
               >
                 <SelectionDetails
                   dataset={dataset}
@@ -555,6 +583,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           state={state}
           selection={ui.selection}
           layout={layout}
+          zoomLayout={zoomLayout}
           onClose={() => dispatch({ type: 'why', open: false })}
           onOpenDay={(d, code) => {
             dispatch({ type: 'why', open: false })

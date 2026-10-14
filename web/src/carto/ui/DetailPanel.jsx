@@ -3,7 +3,9 @@
 
 import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
+import { returnToPoles } from './Sun.jsx'
 
+const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
 const pct = (theta) => `${fmt((theta / 360) * 100, 1)} %`
 
@@ -29,10 +31,11 @@ export function SunLegend() {
  * @param {{
  *   refl: object, dataset: object, state: object, selection: object | null, t: string | null,
  *   onSelect: (t: object | null) => void, onOpenDay: (d: string, code?: string) => void, onWhy: () => void,
+ *   zoom?: number | null, onZoom?: (num: number | null) => void, // pôle ouvert sur 360° (journal D-45)
  *   children?: React.ReactNode,
  * }} props children : sections supplémentaires (traces, jury… en P2)
  */
-export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, children }) {
+export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, zoom = null, onZoom, children }) {
   if (selection?.type === 'competency') {
     const meta = refl.compByCode.get(selection.code)
     const c = state.competencies.get(selection.code)
@@ -130,9 +133,23 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
                 <dd>{p.codes.filter((code) => state.competencies.get(code).status === 'needs_review').length}</dd>
               </div>
             </dl>
-            <button type="button" className="carto-btn carto-btn--quiet" onClick={onWhy}>
-              Pourquoi cette surface ? <kbd>w</kbd>
-            </button>
+            <p className="carto-detail-actions">
+              <button type="button" className="carto-btn carto-btn--quiet" onClick={onWhy}>
+                Pourquoi cette surface ? <kbd>w</kbd>
+              </button>
+              {onZoom ? (
+                // Ouvrir le pôle sur 360° dans le soleil (D-45) — comme un double-clic sur son arc.
+                zoom === selection.num ? (
+                  <button type="button" className="carto-btn carto-btn--quiet" onClick={() => onZoom(null)}>
+                    {capitalize(returnToPoles(state).phrase)}
+                  </button>
+                ) : (
+                  <button type="button" className="carto-btn carto-btn--quiet" onClick={() => onZoom(selection.num)}>
+                    Ouvrir ce pôle sur 360°
+                  </button>
+                )
+              ) : null}
+            </p>
             <ul className="carto-member-list">
               {p.codes.map((code) => {
                 const c = state.competencies.get(code)
