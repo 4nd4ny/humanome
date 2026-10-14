@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://humanome.xyz/schemas/competency-map-master.schema.json",
+  "title": "Archive de l'interface de cartographie (master v4)",
+  "description": "Archive complète d'un jeu de données de l'interface de cartographie (#/cartographie), produite par son espace Export (« Archive complète (JSON) ») et embarquée dans l'archive de compte (archive-export, « jeuxCartographie »). Autoporteuse : référentiel embarqué, journées et variantes d'analyse (verdicts résumés), détail de chaque journée (extraits, ancres de surlignage, réflexions du jury, portfolio du jour), délibérations de run, et l'état de l'apprenant (cases cochées, étiquettes, choix de variante, ensembles, réponses au jury, repères, notes de comparaison, carnet du dialogue, préférences). Réimportable sans perte (web/src/carto/core/archive.js) ; tout ce que ce schéma ne nomme pas est ignoré à la réimportation. Contrat de structure : les champs dont dépendent les calculs (journées, variantes, verdicts, traces) et l'état de l'apprenant sont typés ; les contenus produits par les analyses (réflexions du jury, rapports de pôle, kairos, délibérations), dont la forme varie selon la chaîne d'analyse (Aurora v3, AuroraCore, site, fusion), restent ouverts (additionalProperties: true, délibéré). Toute évolution doit rester rétro-compatible en lecture : une version 4.x ultérieure peut ajouter des champs (journal de la cartographie, D-25 ; docs/contrats.md).",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["kind", "schemaVersion", "datasetId", "title", "referential", "days", "exportedAt", "includesPortfolio", "details"],
+  "properties": {
+    "kind": {
+      "const": "competency-map-master",
+      "description": "Discriminant de type de document (même enveloppe que le master V3, que l'interface convertit ; les versions 3.x ne relèvent pas de ce schéma)."
+    },
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^4\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$",
+      "description": "Version 4.x du conteneur. Exemple : « 4.0.0 »."
+    },
+    "datasetId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifiant du jeu de données. À la réimportation, un jeu de même identifiant est complété (doublons ignorés) ; sinon un jeu est créé."
+    },
+    "title": {
+      "type": "string",
+      "description": "Nom du jeu de données donné par l'apprenant (souvent un pseudonyme)."
+    },
+    "origin": {
+      "enum": ["demo"],
+      "description": "Provenance particulière : « demo » = la démonstration publique du site, rechargeable depuis le site (elle n'entre pas dans l'archive de compte). Absent pour les données de l'apprenant."
+    },
+    "createdAt": { "type": "string", "description": "Création du jeu (ISO 8601)." },
+    "updatedAt": { "type": "string", "description": "Dernière modification du jeu (ISO 8601)." },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Horodatage de l'export de cette archive (ISO 8601 avec heure)."
+    },
+    "includesPortfolio": {
+      "type": "boolean",
+      "description": "L'archive contient-elle le texte du portfolio ? Sans lui, les volumes par journée restent mais le texte part (surlignage indisponible), et le carnet du dialogue aussi."
+    },
+    "referential": { "$ref": "#/$defs/embeddedReferential" },
+    "portfolio": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "description": "Métadonnées du portfolio importé (le texte de chaque journée est dans « details »), dont les passages restés sans date.",
+      "properties": {
+        "title": { "type": ["string", "null"] },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "importedAt": { "type": ["string", "null"] },
+        "undated": {
+          "type": "array",
+          "description": "Passages du portfolio sans date reconnue, à dater dans le gestionnaire. Vide dans une archive sans portfolio.",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["text"],
+            "properties": {
+              "title": { "type": ["string", "null"] },
+              "text": { "type": "string" },
+              "source": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "days": {
+      "type": "array",
+      "description": "Index des journées, une entrée par date : c'est tout ce dont les calculs ont besoin (le détail ne sert qu'à l'affichage).",
+      "items": { "$ref": "#/$defs/day" }
+    },
+    "details": {
+      "type": "object",
+      "description": "Détail de chaque journée, par date : portfolio du jour et, par variante, verdicts détaillés (traces avec extraits et ancres de surlignage, réflexions du jury), passages, rapports de pôle, kairos, émergences.",
+      "propertyNames": { "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+      "additionalProperties": { "$ref": "#/$defs/dayDetail" }
+    },
+    "runDetails": {
+      "type": "object",
+      "description": "Délibérations de run (AuroraCore : six éclairages, président, débat, pièces), par clé de run. Contenu produit par l'analyse : structure ouverte.",
+      "additionalProperties": { "type": "object" }
+    },
+    "sets": {
+      "type": "array",
+      "description": "Ensembles nommés de journées (comparaison, préréglages), éventuellement figés.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "name", "definition"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string" },
+          "definition": { "type": "object", "description": "Définition de l'ensemble (dates, étiquettes, période, cases…)." },
+          "frozenDates": {
+            "type": ["array", "null"],
+            "items": { "$ref": "#/$defs/isoDate" },
+            "description": "Instantané des dates d'un ensemble figé ; null sinon."
+          },
+          "createdAt": { "type": "string" }
+        }
+      }
+    },
+    "reviews": {
+      "type": "object",
+      "description": "Droit de réponse de l'apprenant, par observation (clé « date|variante|code ») : stocké, jamais envoyé, sans effet sur les calculs.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["state"],
+        "properties": {
+          "state": { "enum": ["unreviewed", "confirmed", "nuanced", "contested"] },
+          "note": { "type": "string", "description": "Note privée de l'apprenant." },
+          "updatedAt": { "type": "string" }
+        }
+      }
+    },
+    "markers": {
+      "type": "array",
+      "description": "Repères (moments de bascule) et phases (périodes nommées) posés par l'apprenant.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "date"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "date": { "$ref": "#/$defs/isoDate" },
+          "to": { "anyOf": [{ "$ref": "#/$defs/isoDate" }, { "type": "null" }] },
+          "kind": { "type": "string" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "comparisons": {
+      "type": "array",
+      "description": "Notes libres de l'apprenant sur une comparaison A/B.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["key"],
+        "properties": {
+          "key": { "type": "string" },
+          "a": { "type": "string" },
+          "b": { "type": "string" },
+          "note": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      }
+    },
+    "reflections": {
+      "type": "array",
+      "description": "Carnet du dialogue d'accompagnement : questions tirées des traces et réponses de l'apprenant. Un dialogue « versé » (versedAt) fait partie du portfolio (portfolio exporté en Markdown, copie autonome avec portfolio). Absent d'une archive sans portfolio ; jamais dans une version partagée ni une démo.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "at", "entries"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "at": { "type": "string", "description": "Moment du dialogue (ISO 8601) ; sa date locale est la journée où il a été tenu." },
+          "versedAt": { "type": "string", "description": "Versé au portfolio à ce moment (ISO 8601) ; absent sinon." },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "required": ["question", "answer"],
+              "properties": {
+                "threadId": { "type": "string" },
+                "kind": { "type": "string" },
+                "question": { "type": "string", "maxLength": 2000 },
+                "quote": { "type": ["string", "null"], "maxLength": 2000 },
+                "answer": { "type": "string", "maxLength": 4000 },
+                "refs": {
+                  "type": "object",
+                  "properties": {
+                    "dates": { "type": "array", "items": { "$ref": "#/$defs/isoDate" } },
+                    "codes": { "type": "array", "items": { "type": "string" } }
+                  }
+                },
+                "relaunch": {
+                  "description": "Relance proposée par un modèle de langage, gardée avec le nom du modèle ; null sinon.",
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "required": ["text", "model"],
+                      "properties": { "text": { "type": "string", "maxLength": 1000 }, "model": { "type": "string" } }
+                    },
+                    { "type": "null" }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "narratives": {
+      "type": "array",
+      "description": "Synthèses évolutives importées (fusions) : par compétence, par pôle, kairos. Contenu produit par l'analyse : structure ouverte.",
+      "items": { "type": "object" }
+    },
+    "metrics": {
+      "type": ["object", "null"],
+      "description": "Métriques importées (miroir HumanoTwin, métriques de style). Structure ouverte."
+    },
+    "preferences": {
+      "type": "object",
+      "description": "Préférences d'affichage du jeu (calendrier, vitesse, réglages de l'encodage, comparaison, tableau de bord). Structure ouverte : complétée par défaut à la réimportation."
+    },
+    "importLog": {
+      "type": "array",
+      "description": "Journal des imports (date, fichiers, compteurs, gravités, entrées du rapport).",
+      "items": { "type": "object" }
+    }
+  },
+  "$defs": {
+    "isoDate": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Journée AAAA-MM-JJ (jamais de fuseau : la journée de la personne)."
+    },
+    "confidence": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confiance du jury dans son verdict, de 0 à 1 ; null si inconnue (on n'en invente jamais)."
+    },
+    "embeddedReferential": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Référentiel embarqué (l'archive reste lisible sans le site) : pôles et compétences.",
+      "required": ["id", "version", "poles", "competences"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "label": { "type": "string" },
+        "poles": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["num", "nom"],
+            "properties": {
+              "num": { "type": "integer", "minimum": 1 },
+              "nom": { "type": "string" },
+              "couleur": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "competences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["code", "nom", "pole"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "nom": { "type": "string" },
+              "pole": { "type": "integer", "minimum": 1 },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "anomaly": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["severity"],
+      "properties": {
+        "severity": { "enum": ["blocking", "arbitrate", "warning", "info"] },
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    },
+    "day": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["date", "variants"],
+      "properties": {
+        "date": { "$ref": "#/$defs/isoDate" },
+        "active": { "type": "boolean", "description": "Journée cochée (prise en compte par le soleil, la heatmap et les comparaisons)." },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "activeVariantId": { "type": ["string", "null"], "description": "Variante qui contribue ; null si aucune n'a été choisie." },
+        "variantChoice": {
+          "enum": ["auto", "learner", "pending", "examine"],
+          "description": "« pending » : à arbitrer ; « examine » : « à examiner », la journée ne contribue pas. Deux variantes ne s'additionnent jamais."
+        },
+        "variants": { "type": "array", "items": { "$ref": "#/$defs/variant" } },
+        "portfolio": {
+          "description": "Volume du portfolio de cette journée (le texte est dans « details ») ; null sans portfolio.",
+          "anyOf": [
+            {
+              "type": "object",
+              "required": ["chars", "words"],
+              "properties": { "chars": { "type": "integer", "minimum": 0 }, "words": { "type": "integer", "minimum": 0 } }
+            },
+            { "type": "null" }
+          ]
+        },
+        "anomalies": { "type": "array", "items": { "$ref": "#/$defs/anomaly" } }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "verdicts"],
+      "description": "Une analyse de la journée (une variante), avec sa provenance et ses verdicts RÉSUMÉS.",
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "description": "Empreinte de contenu (reconnaissance d'une analyse déjà importée, jamais une garantie d'intégrité)." },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "source": { "type": "string", "description": "Chaîne d'analyse : aurora-v3, aurora-core, site-jour, merge-v2, site-merge, v3-master, archive…" },
+            "run": { "type": ["string", "null"] },
+            "files": { "type": "array", "items": { "type": "string" } },
+            "model": { "type": ["string", "null"] },
+            "prompt": { "type": ["string", "null"] },
+            "analysedAt": { "type": ["string", "null"] },
+            "importedAt": { "type": ["string", "null"] }
+          }
+        },
+        "verdicts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["code", "status", "traces"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "status": { "enum": ["established", "needs_review", "not_established", "unknown"] },
+              "rawStatus": { "type": ["string", "null"] },
+              "courtCircuit": { "type": "boolean", "description": "Compétence non instruite (aucune pièce) : jamais une absence." },
+              "confidence": { "$ref": "#/$defs/confidence" },
+              "proofs": { "type": "integer", "minimum": 0 },
+              "hints": { "type": "integer", "minimum": 0 },
+              "traces": {
+                "type": "array",
+                "description": "Traces du verdict : une preuve compte un point pour l'angle du secteur, un indice α (½ par défaut).",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "required": ["id", "role"],
+                  "properties": {
+                    "id": { "type": "string", "minLength": 1 },
+                    "role": { "enum": ["preuve", "indice"] }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "anomalies": { "type": "array", "items": { "$ref": "#/$defs/anomaly" } }
+      }
+    },
+    "dayDetail": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["variants"],
+      "properties": {
+        "date": { "$ref": "#/$defs/isoDate" },
+        "portfolio": {
+          "description": "Texte du portfolio de la journée ; null sans portfolio (ou dans une archive exportée sans lui).",
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": true,
+              "required": ["text"],
+              "properties": {
+                "title": { "type": ["string", "null"] },
+                "text": { "type": "string" },
+                "source": { "type": ["string", "null"] }
+              }
+            },
+            { "type": "null" }
+          ]
+        },
+        "variants": {
+          "type": "object",
+          "description": "Par identifiant de variante : verdicts détaillés et contenus de l'analyse (structure ouverte).",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "verdicts": {
+                "type": "object",
+                "description": "Par code de compétence : traces détaillées, motif, prescription, réflexions du jury, pièces.",
+                "additionalProperties": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "traces": {
+                      "type": "object",
+                      "description": "Par identifiant de trace (le même que dans l'index) : extrait verbatim et ancres de surlignage.",
+                      "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "required": ["role"],
+                        "properties": {
+                          "role": { "enum": ["preuve", "indice"] },
+                          "extract": { "type": "string", "description": "Extrait cité par le jury ('' pour une trace reconstituée depuis des compteurs)." },
+                          "start": { "type": ["string", "null"], "description": "Ancre de début du surlignage." },
+                          "end": { "type": ["string", "null"], "description": "Ancre de fin du surlignage." },
+                          "sourceDate": { "anyOf": [{ "$ref": "#/$defs/isoDate" }, { "type": "null" }] },
+                          "synthetic": { "type": "boolean" }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "passages": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

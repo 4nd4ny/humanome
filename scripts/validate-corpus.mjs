@@ -7,6 +7,8 @@
 //   2. web/public/data/demo/merge.json                       -> cartographie-merge
 //   3. web/public/data/referentiel/respire-v7.json           -> referentiel
 //   4. schemas/fixtures/*.json                               -> kind read from each doc
+//   5. schemas/fixtures/carto/*.json (master v4 of the cartography interface,
+//      cartography journal D-25)                             -> kind read from each doc
 //
 // Output: one compact line per file (OK / KO + errors), summary, exit 1 on failure.
 //
@@ -64,6 +66,10 @@ const fixturesDir = join(repoRoot, 'schemas/fixtures')
 for (const name of readdirSync(fixturesDir).sort()) {
   if (!name.endsWith('.json')) continue
   targets.push({ file: join(fixturesDir, name), kind: null }) // kind read from the doc
+}
+for (const name of readdirSync(join(fixturesDir, 'carto')).sort()) {
+  if (!name.endsWith('.json')) continue
+  targets.push({ file: join(fixturesDir, 'carto', name), kind: null })
 }
 
 // ---------------------------------------------------------------------------

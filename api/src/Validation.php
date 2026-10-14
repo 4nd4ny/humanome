@@ -27,6 +27,7 @@ final class Validation
         'prompt-package',
         'cartographie-jour',
         'cartographie-merge',
+        'competency-map-master',
         'archive-export',
     ];
 

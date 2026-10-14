@@ -10,6 +10,7 @@ import { exportArchive, importArchive } from '../../lib/archive.js'
  * @param {{
  *   cartoStore: object,               // store cartographies (contrat carto-store)
  *   portfolioStore?: object,          // store portfolios (lib/portfolio-store)
+ *   interfaceStore?: object,          // store de l'interface de cartographie (carto/core/store), test seam
  *   onImported?: () => void,          // recharge la liste du panneau parent
  *   fetchFn?: typeof fetch,           // test seam (compte / prompt-packages)
  *   download?: (filename: string, text: string) => void, // test seam
@@ -19,6 +20,7 @@ import { exportArchive, importArchive } from '../../lib/archive.js'
 export default function ExportSection({
   cartoStore,
   portfolioStore,
+  interfaceStore,
   onImported,
   fetchFn,
   download,
@@ -37,6 +39,7 @@ export default function ExportSection({
       const { filename, counts } = await exportArchive({
         cartoStore,
         portfolioStore,
+        interfaceStore,
         fetchFn,
         download,
         getAccount,
@@ -47,7 +50,12 @@ export default function ExportSection({
         kind: 'info',
         text:
           `Archive téléchargée (${filename}) : ${counts.portfolios} portfolio(s), ` +
-          `${counts.cartographies} cartographie(s).`,
+          `${counts.cartographies} cartographie(s)` +
+          (counts.jeux ? `, ${counts.jeux} jeu(x) de l’interface de cartographie.` : '.') +
+          (counts.jeuxError
+            ? ` Vos jeux de l’interface de cartographie n’ont pas pu être lus (${counts.jeuxError}) : ` +
+              'exportez-les depuis l’espace Export de la cartographie.'
+            : ''),
       })
     } catch (error) {
       setNotice({ kind: 'error', text: error.message })
@@ -63,12 +71,17 @@ export default function ExportSection({
     setBusy(true)
     setNotice(null)
     try {
-      const report = await importArchive(file, { cartoStore, portfolioStore })
+      const report = await importArchive(file, { cartoStore, portfolioStore, interfaceStore })
       setNotice({
-        kind: 'info',
-        text:
-          `Import terminé : ${report.portfolios} portfolio(s) et ` +
-          `${report.cartographies} cartographie(s) restaurés (les doublons sont ignorés).`,
+        kind: report.jeuxError ? 'error' : 'info',
+        text: (report.jeux
+          ? `Import terminé : ${report.portfolios} portfolio(s), ${report.cartographies} cartographie(s) et ` +
+            `${report.jeux} jeu(x) de l’interface de cartographie restaurés (les doublons sont ignorés).`
+          : `Import terminé : ${report.portfolios} portfolio(s) et ` +
+            `${report.cartographies} cartographie(s) restaurés (les doublons sont ignorés).`) +
+          (report.jeuxError
+            ? ` Les jeux de l’interface de cartographie n’ont pas pu être restaurés (${report.jeuxError}).`
+            : ''),
       })
       onImported?.()
     } catch (error) {
@@ -83,7 +96,9 @@ export default function ExportSection({
       <h3>Mes données</h3>
       <p>
         L’archive contient vos portfolios, vos cartographies, le référentiel et les prompts
-        utilisés : elle est autoporteuse et reste lisible hors ligne (format ouvert, RGPD §6).
+        utilisés, ainsi que vos jeux de données de l’interface de cartographie (analyses,
+        réponses, carnet du dialogue) : elle est autoporteuse et reste lisible hors ligne
+        (format ouvert, RGPD §6).
       </p>
       <div className="mes-donnees-actions">
         <button type="button" className="button button-primary" onClick={handleExport} disabled={busy}>

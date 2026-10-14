@@ -26,7 +26,7 @@ final class ValidationTest extends TestCase
         sort($kinds);
 
         self::assertSame(
-            ['archive-export', 'cartographie-jour', 'cartographie-merge', 'competence', 'prompt-package', 'referentiel'],
+            ['archive-export', 'cartographie-jour', 'cartographie-merge', 'competence', 'competency-map-master', 'prompt-package', 'referentiel'],
             $kinds,
         );
     }
@@ -69,6 +69,49 @@ final class ValidationTest extends TestCase
         self::assertFalse($result['valid']);
         self::assertArrayHasKey('/domains/0/competences/0/statut', $result['errors']);
         self::assertNotEmpty($result['errors']['/domains/0/competences/0/statut']);
+    }
+
+    /**
+     * Question 10 (cartography journal, 2026-10-14): the cartography interface's
+     * master v4 archive has a written contract, embedded by the account archive
+     * (archive-export 1.1.0, « jeuxCartographie »). Same fixture as the JS
+     * twin (engine/test/usecases/unit/uc-app-06-exporter-importer-archive.test.js).
+     */
+    public function testAcceptsTheMasterV4FixtureAndAnArchiveThatEmbedsIt(): void
+    {
+        $master = $this->fixture('carto/competency-map-master-exemple.json');
+
+        $result = Validation::validate('competency-map-master', $master);
+        self::assertSame([], $result['errors']);
+        self::assertTrue($result['valid']);
+
+        $archive = $this->fixture('archive-export-exemple.json');
+        $archive->schemaVersion = '1.1.0';
+        $archive->jeuxCartographie = [$master];
+        $result = Validation::validate('archive-export', $archive);
+        self::assertSame([], $result['errors']);
+        self::assertTrue($result['valid']);
+    }
+
+    public function testRejectsAMasterWhoseTraceRoleIsUnknown(): void
+    {
+        $master = $this->fixture('carto/competency-map-master-exemple.json');
+        $master->days[0]->variants[0]->verdicts[0]->traces[0]->role = 'proof';
+
+        $result = Validation::validate('competency-map-master', $master);
+
+        self::assertFalse($result['valid']);
+        self::assertArrayHasKey('/days/0/variants/0/verdicts/0/traces/0/role', $result['errors']);
+    }
+
+    private function fixture(string $name): object
+    {
+        $path = dirname(__DIR__, 2) . '/schemas/fixtures/' . $name;
+        if (!is_file($path)) {
+            $path = dirname(__DIR__) . '/schemas/fixtures/' . $name;
+        }
+
+        return json_decode((string) file_get_contents($path), false, 512, JSON_THROW_ON_ERROR);
     }
 
     /**

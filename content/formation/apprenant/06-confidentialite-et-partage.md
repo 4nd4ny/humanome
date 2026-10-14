@@ -138,12 +138,16 @@ besoin ; sur un ordinateur partagé, évitez de mémoriser la clé.
 **Exporter.** Dans « Mes cartographies », la section **« Mes données »** propose
 **« Exporter toutes mes données »**. L'archive produite (un fichier JSON) est
 **autoporteuse** : elle contient vos portfolios, vos cartographies, le
-référentiel et les prompts utilisés, et reste lisible hors ligne. C'est votre
-format de **portabilité** — vous emportez tout, dans un format ouvert.
+référentiel et les prompts utilisés, ainsi que vos jeux de données de
+l'interface de cartographie (analyses, réponses au jury, carnet du dialogue ;
+la démonstration publique n'y est pas, elle se recharge depuis le site), et
+reste lisible hors ligne. C'est votre format de **portabilité** — vous
+emportez tout, dans un format ouvert.
 
-**Importer.** **« Importer une archive »** restaure vos portfolios et
-cartographies dans les stores locaux (les doublons sont ignorés). L'import ne
-crée **jamais** de copie serveur implicite : ce qui était local le reste.
+**Importer.** **« Importer une archive »** restaure vos portfolios,
+cartographies et jeux de l'interface de cartographie dans les stockages de
+votre navigateur (les doublons sont ignorés). L'import ne crée **jamais** de
+copie serveur implicite : ce qui était local le reste.
 
 **Supprimer votre compte.** La suppression se fait depuis votre **espace compte**
 (`#/compte`), dans la **« Zone de danger »**. Elle est **immédiate et

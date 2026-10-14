@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Precompiles the five JSON Schemas into engine/src/validation-compiled.js
+// Precompiles the six JSON Schemas into engine/src/validation-compiled.js
 // (ajv standalone code). Why: ajv's runtime compilation uses new Function(),
 // which the production CSP (script-src 'self', no 'unsafe-eval') forbids —
 // precompiled validators run eval-free in the browser (found the hard way on
@@ -30,6 +30,7 @@ const KINDS = [
   'prompt-package',
   'cartographie-jour',
   'cartographie-merge',
+  'competency-map-master',
   'archive-export',
 ]
 

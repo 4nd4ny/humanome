@@ -77,7 +77,7 @@ describe('UC-APP-06 — export : assemblage de l’archive (étapes 2-4)', () =>
     const { archive, filename, counts } = await exportArchive({ cartoStore, portfolioStore, ...deps })
 
     expect(filename).toBe('humanome-export-2026-07-12.json')
-    expect(counts).toEqual({ portfolios: 1, cartographies: 0 })
+    expect(counts).toEqual({ portfolios: 1, cartographies: 0, jeux: 0, jeuxError: null })
     expect(archive.portfolios[0]).toMatchObject({
       titre: 'Portfolio sans titre',
       source: 'colle',
@@ -183,7 +183,7 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
 
     const report = await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })
 
-    expect(report).toEqual({ portfolios: 1, cartographies: 2 })
+    expect(report).toEqual({ portfolios: 1, cartographies: 2, jeux: 0 })
     const [portfolio] = await portfolioStore.list()
     const source = exemple.portfolios[0]
     // (portfolio-store.create génère toujours son identifiant : pas de contrôle ici.)
@@ -217,8 +217,8 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
     archive.portfolios = [archive.portfolios[0], { ...archive.portfolios[0], id: 'copie', titre: 'Copie' }]
     archive.cartographies = [archive.cartographies[0], { ...archive.cartographies[0], id: 'copie' }]
 
-    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 1, cartographies: 1 })
-    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 0, cartographies: 0 })
+    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 1, cartographies: 1, jeux: 0 })
+    expect(await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })).toEqual({ portfolios: 0, cartographies: 0, jeux: 0 })
   })
 
   it.each([
@@ -240,7 +240,7 @@ describe('UC-APP-06 — import : restauration dans les stores locaux (étape 8, 
 
     const report = await importArchive(JSON.stringify(archive), { cartoStore, portfolioStore })
 
-    expect(report).toEqual({ portfolios: 1, cartographies: 1 })
+    expect(report).toEqual({ portfolios: 1, cartographies: 1, jeux: 0 })
     const [carto] = await cartoStore.listCartographies()
     expect(carto.promptPackage).toEqual({ id: 'aurora-demo', version: '1.0.0' })
   })

@@ -127,7 +127,9 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
   exportez l'archive pour la garder ailleurs. L'archive contient tout ce que
   vous y avez mis — vos réponses, vos notes privées, votre carnet : pensez-y
   avant de la confier à quelqu'un. Une copie autonome avec portfolio emporte
-  les dialogues versés, jamais le reste du carnet.
+  les dialogues versés, jamais le reste du carnet. « Exporter toutes mes
+  données » (section « Mes données » de votre espace) emporte, en plus, tous
+  vos jeux de données d'un coup.
 - **Partage** (avec un compte, réservé aux adultes) : vous composez une
   **version partagée** — les compétences, la précision des dates et les
   extraits que vous choisissez, relus avant la publication. C'est la seule

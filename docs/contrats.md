@@ -15,7 +15,7 @@ npm run validate:corpus          # à la racine (ou dans web/)
 
 Le script valide, via `engine/src/validation.js` (ajv), les 59 documents jour
 réels, `merge.json`, le référentiel réel et toutes les fixtures de
-`schemas/fixtures/`. État actuel : **68 fichiers, 68 OK**. Le jumeau PHP
+`schemas/fixtures/` (et `schemas/fixtures/carto/`). État actuel : **69 fichiers, 69 OK**. Le jumeau PHP
 (`api/src/Validation.php`, opis/json-schema) charge les mêmes fichiers de
 schémas ; les deux runtimes sont testés (`engine/src/validation.test.js`,
 `api/tests/ValidationTest.php`) sur des documents jumeaux.
@@ -28,11 +28,14 @@ schémas ; les deux runtimes sont testés (`engine/src/validation.test.js`,
 | `cartographie-jour.schema.json` | `cartographie-jour` | Résultat de la cartographie d'UNE feuille de portfolio (une journée) : 7 pôles (pièces, examen adversarial du pédagogue, verdicts, rapport narratif) + synthèse kairos. Documents réels : `web/public/data/demo/jours/<date>.json` (59 feuilles). |
 | `cartographie-merge.schema.json` | `cartographie-merge` | Agrégat chronologique de TOUTES les feuilles (merge évolutif v3) : séries temporelles par pôle et par compétence, archétypes, profil ipsatif, narratifs HTML. Source du sunburst. Document réel : `web/public/data/demo/merge.json`. |
 | `prompt-package.schema.json` | `prompt-package` | Paquet promptologue : textes de prompts + variables + code JS d'orchestration (sandbox Web Worker) + métadonnées (version, auteur, modèle cible, référentiel compatible, changelog). |
-| `archive-export.schema.json` | `archive-export` | Format pivot de portabilité (ADR-006) : archive autoporteuse embarquant portfolios en texte intégral, référentiels et prompt-packages COMPLETS, cartographies produites et journal d'audit. Sert l'export/suppression RGPD, l'import de compte et le seed d'instance. Référence les 4 autres schémas par `$ref` sur leur `$id` absolu. |
+| `competency-map-master.schema.json` | `competency-map-master` | Archive de l'interface de cartographie (`#/cartographie`, master v4, `schemaVersion` 4.x) : référentiel embarqué, journées et variantes (verdicts résumés), détail par journée (extraits, ancres, jury, portfolio du jour), délibérations de run, état de l'apprenant (cases, étiquettes, choix de variante, ensembles, réponses au jury, repères, notes, carnet du dialogue, préférences). Produite par l'espace Export de l'interface et embarquée par l'archive de compte. Fixture : `schemas/fixtures/carto/competency-map-master-exemple.json`, sortie EXACTE de l'interface (`web/scripts/carto-master-fixture.mjs`). |
+| `archive-export.schema.json` | `archive-export` | Format pivot de portabilité (ADR-006) : archive autoporteuse embarquant portfolios en texte intégral, référentiels et prompt-packages COMPLETS, cartographies produites, jeux de l'interface de cartographie (`jeuxCartographie`, depuis la 1.1.0) et journal d'audit. Sert l'export/suppression RGPD, l'import de compte et le seed d'instance. Référence les 5 autres schémas par `$ref` sur leur `$id` absolu. |
 
-Chaque document porte `schemaVersion` (semver du schéma d'enveloppe, « 1.0.0 »
-partout aujourd'hui) et `kind` (discriminant, `const` dans chaque schéma) —
-c'est la clé de dispatch de `validateDocument(kind, data)` des deux runtimes.
+Chaque document porte `schemaVersion` (semver du schéma d'enveloppe : « 1.0.0 »
+partout, sauf l'archive de compte, « 1.1.0 » depuis le 2026-10-14, et le master
+de l'interface de cartographie, « 4.x ») et `kind` (discriminant, `const` dans
+chaque schéma) — c'est la clé de dispatch de `validateDocument(kind, data)` des
+deux runtimes.
 
 Philosophie de fermeture : les **enveloppes** construites par nos
 convertisseurs sont fermées (`additionalProperties: false`) ; les **blocs de
@@ -193,6 +196,32 @@ par `scripts/extract-referentiel.mjs`.
      `engine://…(twin6)` : le banc d'essai et `#/twin6-ouverte` appellent
      `executerTwin6` sur le portfolio **entier** (7 scan-pôle + kairos →
      `cartographie-merge`), jamais l'extraction par jour d'aurora.
+
+9. **Archive de compte 1.1.0 : les jeux de l'interface de cartographie
+   (2026-10-14, journal de la cartographie D-25, question 10 : « tout
+   sauvegarder »).** `archive-export` gagne une propriété OPTIONNELLE,
+   `jeuxCartographie[]` : chaque jeu de données de l'interface (`#/cartographie`,
+   son propre stockage IndexedDB) y est embarqué en archive complète du master
+   v4 (`competency-map-master`), portfolio et carnet du dialogue compris ; la
+   démonstration publique (`origin: "demo"`) n'y est pas. Ajout rétro-compatible
+   en lecture : une archive 1.0.0 reste valide et s'importe ; en revanche une
+   instance 1.0.0 refuserait une archive 1.1.0 (racine fermée) — sans objet
+   tant qu'il n'existe qu'une instance, à garder en tête pour le seed d'une
+   instance clonée.
+   - **Schéma du master v4 ouvert à la racine, contrairement aux enveloppes.**
+     Le master est l'état vivant d'une interface qui évolue, et l'archive de
+     compte, qui l'embarque, sert la portabilité RGPD : un champ inattendu ne
+     doit jamais faire échouer l'export de quelqu'un. Le schéma type donc
+     strictement l'ossature dont dépendent les calculs (journées, variantes,
+     verdicts, traces, énumérations de statut, de rôle et de choix de variante,
+     confiances dans [0 ; 1], compteurs entiers) et l'état de l'apprenant
+     (réponses, ensembles, repères, carnet), et laisse ouverts la racine
+     (version 4.x ultérieure) et les contenus produits par les analyses
+     (réflexions du jury, rapports de pôle, kairos, délibérations), dont la
+     forme varie selon la chaîne (Aurora v3, AuroraCore, site, fusion).
+   - **Stockage illisible ≠ export bloqué.** Si le stockage de l'interface ne
+     peut pas être lu, l'archive part sans les jeux et le compte rendu le dit
+     (« exportez-les depuis l'espace Export de la cartographie »).
 
 ## 5. Note d'outillage
 

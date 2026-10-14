@@ -474,7 +474,7 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
   ouvert 7.
 
 
-### D-25 — Archive de l'apprenant : le master v4 complet
+### D-25 — Archive de l'apprenant : le master v4 complet **[décidé]**
 
 - `core/archive.js` : l'index du master v4 (`kind: "competency-map-master"`,
   `schemaVersion: "4.0.0"`) augmenté de `details` (journée → détail : verdicts,
@@ -496,11 +496,37 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
   (`importers/v3-master.js`) : mêmes verdicts, traces et extraits que l'import
   direct (test) ; la réponse V3, posée sur chaque lien de preuve, devient celle
   de l'observation (état commun, ou « nuancée » avec une note qui le dit).
-- **[à valider]** Cette archive est distincte de l'archive de compte du site
-  (`archive-export` 1.0.0, UC-APP-06, schéma dans `schemas/`), qui ne contient
-  pas le master de cartographie. Deux suites possibles : l'embarquer dans
-  l'archive de compte, et/ou écrire un schéma JSON du master v4 dans
-  `schemas/` (aujourd'hui, le contrat est le code et ses tests).
+- **[décidé]** Christian (2026-10-14, question 10) : « tout sauvegarder ».
+  « Exporter toutes mes données » (archive de compte `archive-export`,
+  UC-APP-06) passe en **1.1.0** et embarque chaque jeu de données de
+  l'interface en archive complète (`jeuxCartographie`) — portfolio, réponses
+  au jury et carnet compris ; la démonstration publique, marquée
+  `origin: "demo"` à son chargement, n'y est pas (elle se recharge depuis le
+  site). L'import les restaure par la chaîne d'import de l'interface : un jeu
+  de même identifiant est complété (ce qui est là gagne, doublons ignorés),
+  sinon il est créé ; il ne compte comme restauré que s'il gagne quelque
+  chose (réimporter ne restaure rien). Une archive 1.0.0 reste valide.
+- **Schéma** : `schemas/competency-map-master.schema.json`. Ossature typée
+  (journées, variantes, verdicts résumés : statut, rôle des traces et choix de
+  variante énumérés, confiance dans [0 ; 1] ou null, compteurs entiers ;
+  détails par date ; réponses, ensembles, repères, carnet), racine et
+  contenus produits par l'analyse ouverts (réflexions du jury, rapports de
+  pôle, kairos, délibérations), car un champ inattendu ne doit jamais faire
+  échouer l'export de quelqu'un (`docs/contrats.md`, décision 9). Fixture :
+  la sortie exacte de l'interface pour un jeu qui touche chaque partie du
+  conteneur (`schemas/fixtures/carto/competency-map-master-exemple.json`,
+  régénérée par `web/scripts/carto-master-fixture.mjs`), validée par les
+  deux runtimes (moteur, PHP) et par `validate-corpus` ; le corpus réel des
+  59 journées publiques est conforme.
+- **Robustesse** : un stockage de l'interface illisible n'empêche pas
+  l'export — l'archive part sans les jeux, et le message le dit (« exportez-les
+  depuis l'espace Export de la cartographie ») ; à l'import, le reste est
+  restauré et le message le dit.
+- **Au passage** : les validateurs précompilés du moteur, à recompiler pour le
+  nouveau schéma, étaient périmés — anomalie AN-1 d'UC-SYS-04 : le
+  référentiel 7.1.0 publié faisait échouer l'export « en un clic ». Recompilés ;
+  UC-SYS-04-F06 vérifie désormais leur fraîcheur (recompilés = versionnés,
+  octet pour octet).
 
 ### D-26 — Copie autonome : un modèle construit à part, les données insérées à l'export
 
@@ -1337,6 +1363,12 @@ contre l'API locale, P7) verts.
 | | `ui/P5.test.jsx` | copie autonome : du carnet, les seuls dialogues versés, et avec le portfolio seulement ; portfolio en Markdown téléchargé (texte, dialogue versé, pas le dialogue gardé) ; rien à exporter : bouton désactivé | 10 (+1) |
 | | `ui/P7.test.jsx` | verser puis retirer, dans le carnet : messages, mention, enregistrement, aucune requête ; copie autonome : les dialogues versés se lisent, rien à verser ni retirer | 8 (+2) |
 | | `e2e/carto-dialogue.e2e.js` | dans Chromium : verser le dialogue gardé, télécharger le portfolio (.md) — le texte et le dialogue y sont, aucune requête réseau | (dans le 1) |
+| Archive de compte 1.1.0 (Q10, D-25) | `core/master-schema.test.js` (nouveau) | fixture = sortie exacte de l'interface, conforme ; archive sans portfolio ; champ inconnu et version 4.x ultérieure acceptés, master 3.x refusé ; douze refus localisés (date, choix de variante, statut, confiance, compteur, rôle, clé de détail, réponse, carnet, référentiel, journées) ; **les 59 journées publiques conformes** | 5 |
+| | `lib/archive.test.js` | export : un master complet par jeu, démonstration exceptée, archive conforme, jeu non conforme localisé ; archive 1.0.0 importée sans jeux ; import : jeu retrouvé à l'identique, réimport sans effet, jeu complété compté ; stockage illisible : export abouti et signalé, reste importé | 16 (+4) |
+| | `ui/CartoApp.test.jsx` | la démonstration chargée est marquée `origin: "demo"` | 14 (+1) |
+| | UC-APP-06 (fonctionnels) | **F17** : dans l'application entière, IndexedDB factice — jeux dans l'archive (démonstration exceptée), conforme, portfolio, réponses et carnet compris ; navigateur neuf : jeu restauré à l'identique ; réimport : rien. Faux IndexedDB étendu (transactions sur plusieurs magasins, fin de transaction, plage de clés) | 16 (+1) |
+| | moteur : UC-APP-06 U17, U18 ; `validation.test.js` ; UC-SYS-04 F06, F07 | master conforme et embarqué ; jeu non conforme localisé dans l'archive ; six schémas ; **fraîcheur des validateurs** ; `validate-corpus` avec la fixture du master | +2, et 3 renforcés |
+| | API : `ValidationTest.php` | le validateur PHP (opis) accepte la fixture du master et l'archive qui l'embarque, refuse un rôle inconnu à son emplacement | +2 |
 
 Validation du surlignage approché sur les journaux réels : D-39.
 
@@ -1365,7 +1397,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
    **Décidé** : à ajouter, signalé comme tel. Suite : fait (D-39).
 10. Archive (D-25). → **Décidé** : « Exporter toutes mes données » du site
     sauvegarde aussi la cartographie de l'interface ; schéma JSON du master
-    v4 dans `schemas/`. Suite : à venir.
+    v4 dans `schemas/`. Suite : fait (D-25).
 11. Démo anonymisée du site (D-28). → **Décidé** : par FTP sur le site, jamais
     dans GitHub, lors d'un déploiement autorisé par Christian (identifiants
     FTP sur son Mac, non lus ici).

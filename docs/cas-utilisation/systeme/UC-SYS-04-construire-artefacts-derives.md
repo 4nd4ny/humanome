@@ -49,8 +49,8 @@ et sans jamais retoucher un JSON produit à la main.
 - `web/public/data/demo/merge.json` (`cartographie-merge`),
   `web/public/data/demo/jours/<date>.json` (59 `cartographie-jour`) et leur
   `index.json`, `web/public/data/referentiel/respire-v7.json` (7.0.0) et
-  `respire-v7.1.0.json` sont produits et conformes aux schémas (le 7.1.0 l'est
-  au schéma source, **pas** aux validateurs versionnés du moteur : AN-1).
+  `respire-v7.1.0.json` sont produits et conformes aux schémas (et, depuis la
+  correction d'AN-1 le 2026-10-14, aux validateurs versionnés du moteur).
 - `build/prompt-packages/aurora-v3-reconstruit-1.0.0.json` et
   `twin6-ouverte-1.0.0.json` sont validés par le moteur **avant** écriture ;
   `web/public/data/twin6/prompts/P1..P7.md` et le paquet statique
@@ -231,8 +231,10 @@ Ordre réel, reconstitué d'`INSTALL.md` §2 et §6, du `prebuild` de
   (`metadata.reserved`) et délègue l'exécution au moteur (`engine://…(twin6)`,
   `executerTwin6`).
 - **RG7** — Validateurs précompilés (CSP sans `unsafe-eval`) : à régénérer à
-  chaque modification de `schemas/`. Étape manuelle : aucune étape de la chaîne
-  ne vérifie qu'ils sont à jour (AN-1).
+  chaque modification de `schemas/`. Étape manuelle, mais vérifiée depuis le
+  2026-10-14 : UC-SYS-04-F06 recompile les validateurs depuis les schémas du
+  dépôt et exige qu'ils soient identiques, octet pour octet, au fichier
+  versionné (AN-1, corrigée).
 
 ## Données et RGPD
 
@@ -301,8 +303,8 @@ par le catalogue, comme UC-SYS-01-F22, UC-SYS-02-F19 et UC-PRO-08-F17.
 | UC-SYS-04-F03 | Nominal, étape 2 | CLI | 7.0.0 conforme, pôles colorés, `contentHash` recalculé, égal à la fixture versionnée, déterministe (RG3) | idem |
 | UC-SYS-04-F04 | Nominal, étape 3 | CLI | 7.1.0 : 61 définitions exactes, même `contentHash`, déterministe (RG3) | idem |
 | UC-SYS-04-F05 | E2 (AN-3) | CLI | Définitions manquantes / surnuméraires → code 1 sans sortie ; structure modifiée → code 1 mais 7.1.0 écrit (comportement actuel) | idem |
-| UC-SYS-04-F06 | Nominal, étape 4 (AN-1) | CLI | Validateurs recompilés identiques d'un passage à l'autre, sans `eval` ni `require`, acceptant le 7.1.0 et une archive qui l'embarque ; validateurs versionnés : 61 erreurs `additionalProperties` (comportement actuel) | idem |
-| UC-SYS-04-F07 | Nominal, étape 5, E6 | CLI | Tout OK, code 0 ; journée non conforme, JSON illisible, `kind` absent, plus de 8 erreurs tronquées → code 1 ; 7.1.0 hors périmètre | idem |
+| UC-SYS-04-F06 | Nominal, étape 4 (AN-1, corrigée) | CLI | Validateurs recompilés identiques d'un passage à l'autre, sans `eval` ni `require`, acceptant le 7.1.0 et une archive qui l'embarque ; **fraîcheur** : identiques, octet pour octet, aux validateurs versionnés, qui acceptent donc le 7.1.0 et l'archive | idem |
+| UC-SYS-04-F07 | Nominal, étape 5, E6 | CLI | Tout OK, code 0 (fixtures de `schemas/fixtures/` et `schemas/fixtures/carto/`, dont le master v4 de l'interface de cartographie) ; journée non conforme, JSON illisible, `kind` absent, plus de 8 erreurs tronquées → code 1 ; 7.1.0 hors périmètre | idem |
 | UC-SYS-04-F08 | E3 | CLI | Prérequis absents → `ENOENT`, code 1, rien d'écrit sauf `validation-compiled.js` | idem |
 | UC-SYS-04-F09 | Nominal, étape 7, E7 | CLI | Paquet `aurora-v3-reconstruit` conforme, placeholders, variables documentées, aucune sentinelle, déterministe ; gabarit du moteur modifié → construction refusée (RG5) | idem |
 | UC-SYS-04-F10 | Nominal, étape 6, A3, A4, E4 | CLI | 7 P*.md, `--verify` OK, `extract-fiches` redonne le corpus versionné octet pour octet ; parité rompue, code dupliqué, en-tête manquant → code 1, corpus intact (RG4) | idem |
@@ -356,7 +358,11 @@ cd engine && npx vitest run test/usecases/unit/uc-sys-04-construire-artefacts-de
   détecte la dérive : `validate-corpus.mjs` ne valide que la 7.0.0 et le
   validateur PHP lit les schémas directement. Correctif : relancer
   `node scripts/build-validators.mjs` et ajouter à la chaîne une vérification
-  de fraîcheur des validateurs. Figé par UC-SYS-04-F06.
+  de fraîcheur des validateurs. **Corrigée le 2026-10-14** : les validateurs ont
+  été recompilés (à l'ajout du schéma `competency-map-master`, journal de la
+  cartographie D-25), et UC-SYS-04-F06 vérifie désormais leur fraîcheur
+  (recompilés = versionnés, octet pour octet) : l'export d'archive avec le
+  référentiel 7.1.0 n'échoue plus.
 - **AN-2 — La construction Twin6 n'est pas reproductible depuis le dépôt.**
   `web/public/data/` est gitignoré et les gabarits Twin6 publics
   `0-mega-prompt.md`, `1-scan-pole.md` et `2-kairos-final.md` n'ont **aucune**

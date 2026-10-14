@@ -198,7 +198,7 @@ export function useCartoData(deps = {}) {
    * @param {{title?: string, newDataset?: boolean}} [opts]
    */
   const importInto = useCallback(
-    async (files, { title, newDataset = false } = {}) => {
+    async (files, { title, newDataset = false, origin = null } = {}) => {
       setBusy('Import en cours…')
       try {
         await flush()
@@ -206,6 +206,9 @@ export function useCartoData(deps = {}) {
         if (!base) {
           const { doc } = await loadReferential()
           base = createDataset({ title: title ?? 'Ma cartographie', referential: doc })
+          // La démonstration publique est marquée : elle n'entre pas dans
+          // l'archive de compte (elle se recharge depuis le site).
+          if (origin) base = { ...base, origin }
         }
         const res = await importFiles(files, base)
         await store.commit(res)
@@ -267,7 +270,7 @@ export function useCartoData(deps = {}) {
     setBusy('Chargement de la démonstration…')
     try {
       const archive = await fetchDemoArchive(fetchFn)
-      if (archive) return await importInto([{ path: DEMO_ARCHIVE, text: archive }], { title: 'Démonstration', newDataset: true })
+      if (archive) return await importInto([{ path: DEMO_ARCHIVE, text: archive }], { title: 'Démonstration', newDataset: true, origin: 'demo' })
       const res = await fetchFn('data/demo/jours/index.json')
       if (!res.ok) throw new Error(`index de démonstration introuvable (HTTP ${res.status})`)
       const index = await res.json()
@@ -277,7 +280,7 @@ export function useCartoData(deps = {}) {
         const r = await fetchFn(`data/demo/jours/${date}.json`)
         if (r.ok) files.push({ path: `demonstration/${date}.json`, text: await r.text() })
       }
-      return await importInto(files, { title: 'Démonstration', newDataset: true })
+      return await importInto(files, { title: 'Démonstration', newDataset: true, origin: 'demo' })
     } catch (err) {
       setError(
         `La démonstration n'a pas pu être chargée (${err.message}). Sur une copie ouverte directement depuis le disque, importez vos fichiers à la place.`,

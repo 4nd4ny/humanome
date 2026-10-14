@@ -92,3 +92,25 @@ describe('UC-APP-06 — contrat archive-export (ADR-006)', () => {
     expect(paths(errors)).toContain('/cartographies/0/runMeta')
   })
 })
+
+describe('UC-APP-06 — archive 1.1.0 : les jeux de l’interface de cartographie (question 10)', () => {
+  it('UC-APP-06-U17 — le master v4 de l’interface (fixture) est conforme à son schéma ; une archive de compte 1.1.0 l’embarque', () => {
+    const master = fixture('carto/competency-map-master-exemple.json')
+    expect(validateDocument('competency-map-master', master)).toEqual({ valid: true, errors: [] })
+    const archive = { ...fixture('archive-export-exemple.json'), schemaVersion: '1.1.0', jeuxCartographie: [master] }
+    expect(validateDocument('archive-export', archive)).toEqual({ valid: true, errors: [] })
+    // Optionnel : une archive 1.0.0 sans jeux reste valide (rétro-compatibilité, ADR-006).
+    expect(validateDocument('archive-export', fixture('archive-export-exemple.json')).valid).toBe(true)
+  })
+
+  it('UC-APP-06-U18 — un jeu non conforme rend l’archive non conforme, à son emplacement (E4 : rien n’est téléchargé)', () => {
+    const master = fixture('carto/competency-map-master-exemple.json')
+    master.days[0].variants[0].verdicts[0].traces[0].role = 'proof'
+    const archive = { ...fixture('archive-export-exemple.json'), schemaVersion: '1.1.0', jeuxCartographie: [master] }
+    const { valid, errors } = validateDocument('archive-export', archive)
+    expect(valid).toBe(false)
+    expect(paths(errors)).toContain('/jeuxCartographie/0/days/0/variants/0/verdicts/0/traces/0/role')
+    const notAMaster = { ...fixture('archive-export-exemple.json'), jeuxCartographie: [{ kind: 'cartographie-merge' }] }
+    expect(validateDocument('archive-export', notAMaster).valid).toBe(false)
+  })
+})

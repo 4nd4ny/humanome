@@ -59,6 +59,29 @@ describe('accueil', () => {
   })
 })
 
+describe('démonstration', () => {
+  it('la démonstration chargée est marquée comme telle (elle n’entre pas dans l’archive de compte)', async () => {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const days = louDays()
+    const fetchFn = async (url) => {
+      if (url === 'data/demo/jours/index.json') return { ok: true, status: 200, json: async () => Object.keys(days).map((date) => ({ date })) }
+      const m = /^data\/demo\/jours\/(\d{4}-\d{2}-\d{2})\.json$/.exec(url)
+      if (m) return { ok: true, status: 200, text: async () => JSON.stringify({ date: m[1], poles: days[m[1]], kairos: kairosDoc(m[1]) }) }
+      return { ok: false, status: 404, text: async () => '' }
+    }
+    function DemoHarness() {
+      const [route, setRoute] = useState(() => parseHash(window.location.hash))
+      useEffect(() => subscribe(setRoute), [])
+      return <CartoApp route={route} deps={{ store, fetchFn, loadReferential: async () => ({ doc: miniReferential() }) }} />
+    }
+    render(<DemoHarness />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    const [summary] = await store.listDatasets()
+    expect((await store.loadDataset(summary.datasetId)).origin).toBe('demo')
+  })
+})
+
 describe('P1 — soleil, heatmap, gestionnaire', () => {
   it('le soleil montre les compétences observées des journées cochées, dans l’ordre du référentiel', async () => {
     render(<Harness store={await louStore()} />)

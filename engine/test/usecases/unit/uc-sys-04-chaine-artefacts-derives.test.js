@@ -414,7 +414,7 @@ describe('UC-SYS-04 — fonctionnels (scripts en sous-processus, miroir temporai
     expect(written.contentHash).not.toBe(base.contentHash)
   }, TIMEOUT)
 
-  it('UC-SYS-04-F06 — Nominal, étape 4 (AN-1) : build-validators recompile des validateurs identiques d’un passage à l’autre, qui acceptent le 7.1.0 ; les validateurs VERSIONNÉS le refusent (comportement ACTUEL)', () => {
+  it('UC-SYS-04-F06 — Nominal, étape 4 (AN-1, corrigée) : build-validators recompile des validateurs identiques d’un passage à l’autre, qui acceptent le 7.1.0 ; les validateurs VERSIONNÉS sont ces validateurs-là (fraîcheur), octet pour octet', () => {
     const root = mirrorWith([`${REF_DIR}/respire-v7.json`, `${REF_DIR}/respire-v7.1.0.json`])
     const compiled = join(root, 'engine/src/validation-compiled.js')
     const first = run(root, 'scripts/build-validators.mjs')
@@ -435,32 +435,29 @@ describe('UC-SYS-04 — fonctionnels (scripts en sous-processus, miroir temporai
     expect(validateInMirror(root, 'referentiel', v710File)).toEqual({ valid: true, errors: [] })
     expect(validateDocument('referentiel', readJson(v700File)).valid).toBe(true)
 
-    // Comportement ACTUEL (AN-1) : engine/src/validation-compiled.js versionné
-    // précède l'ajout de competences[].description au schéma.
-    const stale = validateDocument('referentiel', v710)
-    expect(stale.valid).toBe(false)
-    expect(stale.errors).toHaveLength(61)
-    expect(new Set(stale.errors.map((e) => `${e.keyword}|${e.message}`))).toEqual(
-      new Set(['additionalProperties|must NOT have additional properties']),
-    )
-    expect(stale.errors.map((e) => e.path)).toEqual(v710.competences.map((_, i) => `/competences/${i}`))
+    // AN-1 corrigée (2026-10-14) : les validateurs versionnés
+    // (engine/src/validation-compiled.js) ont été recompilés ; ils SONT ceux que
+    // produit build-validators depuis les schémas du dépôt — un schéma modifié
+    // sans recompiler fait échouer ce test (vérification de fraîcheur).
+    expect(sha(compiled)).toBe(sha(join(REPO, 'engine/src/validation-compiled.js')))
+    expect(validateDocument('referentiel', v710)).toEqual({ valid: true, errors: [] })
 
-    // Conséquence : une archive qui embarque ce référentiel est refusée par le moteur versionné.
+    // Conséquence : une archive qui embarque ce référentiel est acceptée par le moteur versionné.
     const archive = readJson(join(root, 'schemas/fixtures/archive-export-exemple.json'))
     archive.referentiels = [v710]
     const archiveFile = join(root, 'archive-avec-7.1.0.json')
     writeFileSync(archiveFile, JSON.stringify(archive))
-    const staleArchive = validateDocument('archive-export', archive)
-    expect(staleArchive.valid).toBe(false)
-    expect(staleArchive.errors.some((e) => e.path === '/referentiels/0/competences/0' && e.keyword === 'additionalProperties')).toBe(true)
+    expect(validateDocument('archive-export', archive)).toEqual({ valid: true, errors: [] })
     expect(validateInMirror(root, 'archive-export', archiveFile)).toEqual({ valid: true, errors: [] })
   }, TIMEOUT)
 
   it('UC-SYS-04-F07 — Nominal, étape 5, E6 : validate-corpus → tout le corpus démo, le 7.0.0 et les fixtures OK (code 0) ; document non conforme, JSON illisible ou kind absent → KO, code 1', () => {
     const root = mirrorWith(['web/public/data/demo', `${REF_DIR}/respire-v7.json`])
     const fixtures = readdirSync(join(root, 'schemas/fixtures')).filter((name) => name.endsWith('.json'))
+    const cartoFixtures = readdirSync(join(root, 'schemas/fixtures/carto')).filter((name) => name.endsWith('.json'))
     const days = readdirSync(join(root, 'web/public/data/demo/jours')).filter((name) => name !== 'index.json')
-    const total = days.length + 2 + fixtures.length
+    const total = days.length + 2 + fixtures.length + cartoFixtures.length
+    expect(cartoFixtures).toEqual(['competency-map-master-exemple.json'])
     expect(days).toHaveLength(59)
 
     const ok = run(root, 'scripts/validate-corpus.mjs')
@@ -470,6 +467,7 @@ describe('UC-SYS-04 — fonctionnels (scripts en sous-processus, miroir temporai
     expect(lines).toContain('OK  web/public/data/demo/merge.json  (cartographie-merge)')
     expect(lines).toContain('OK  web/public/data/referentiel/respire-v7.json  (referentiel)')
     expect(lines).toContain('OK  schemas/fixtures/archive-export-exemple.json  (archive-export)')
+    expect(lines).toContain('OK  schemas/fixtures/carto/competency-map-master-exemple.json  (competency-map-master)')
     expect(ok.stdout).not.toContain('index.json')
     // Hors périmètre : le 7.1.0 n'est jamais validé par cette étape (voir AN-1).
     expect(ok.stdout).not.toContain('respire-v7.1.0')
