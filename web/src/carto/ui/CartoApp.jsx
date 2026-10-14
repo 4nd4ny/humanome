@@ -114,15 +114,16 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const viewer = mode === 'viewer'
   const data = useCartoData(deps)
 
-  // Fichiers ouverts depuis l'accueil du site : importés UNE fois, dans un
-  // nouveau jeu, dès que le magasin local est prêt ; le rapport d'import
-  // s'affiche comme pour un dépôt ici.
+  // Fichiers ouverts depuis l'accueil du site, ou cartographie remise par
+  // « Partager depuis l'interface » (Mes cartographies, D-43, avec son titre) :
+  // importés UNE fois, dans un nouveau jeu, dès que le magasin local est
+  // prêt ; le rapport d'import s'affiche comme pour un dépôt ici.
   const handledIncoming = useRef(new Set())
   useEffect(() => {
     if (viewer || !incoming || handledIncoming.current.has(incoming.id) || data.status === 'loading' || data.busy) return
     handledIncoming.current.add(incoming.id)
     data
-      .importInto(incoming.files, { newDataset: true })
+      .importInto(incoming.files, { newDataset: true, ...(incoming.title ? { title: incoming.title } : {}) })
       .catch((e) => data.setError?.(e.message ?? String(e)))
       .finally(() => onIncomingHandled?.(incoming.id))
   }, [viewer, incoming, data, onIncomingHandled])

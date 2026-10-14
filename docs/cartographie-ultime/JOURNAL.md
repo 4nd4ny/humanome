@@ -40,7 +40,8 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
 | Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
 | Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés ; surlignage approché revalidé sur les journaux réels (D-39) | ✅ suite du site 2 255 verts | `b651f38` |
-| Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | voir §5 |
+| Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | `f55b036` |
+| Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1302,6 +1303,90 @@ classe qui travaille également avec l'apprenant sur un projet commun). »
   confidentialité, chapitres de formation (apprenant 07, cartographe 07,
   employeur 06).
 
+### D-43 — L'ancien partage est retiré **[décidé]**
+
+Christian (2026-10-14), question 17 : « retire l'ancien partage » — le partage
+par lien d'une cartographie du site, depuis « Mes cartographies »
+(`#/espace`). Le partage passe désormais par la version partagée de
+l'interface (D-30 à D-34), que l'apprenant publie lui-même ou que son
+cartographe publie avec sa garantie (D-42).
+
+- **Serveur** (`api/src/routes/share.php`) : `POST
+  /api/cartographies/{id}/share` ne crée plus de lien que pour une version
+  partagée ; tout autre type (journée, parcours, Twin9) → `422 {code:
+  'share_retired'}`, rien n'est écrit ni audité. **[choix
+  d'implémentation]** Les liens **déjà créés** restent servis (consultation
+  publique, garantie d'une révision comprise), listés et révocables jusqu'à
+  leur échéance — 90 jours par défaut : rien n'est révoqué d'office, la
+  personne qui a donné un lien n'est pas désavouée. La maintenance les purge
+  ensuite comme les autres. Les tests créent ces liens comme le faisait
+  l'ancienne route (`AuthTestBase::legacyShareLink`).
+- **« Mes cartographies »** : le bouton « Partager » disparaît.
+  **« Partager depuis l'interface »** (toute cartographie, copie serveur ou
+  non) remet la cartographie à l'interface, dans un **nouveau jeu qui porte
+  son titre**, et ouvre l'espace Partage — rien ne quitte le navigateur
+  (`lib/interface-handoff.js`, même mécanisme que les fichiers ouverts depuis
+  l'accueil). Une analyse Twin9 passe d'abord par l'adaptateur du moteur
+  (`twin9ToMergeDocument`, comme la visionneuse « Voir ») ; sans journée
+  datée, un message, et rien ne part. **« Liens déjà créés »** (copie serveur
+  seulement) ne crée plus rien : il annonce le retrait, liste les liens
+  (dates, jamais le jeton), dit « expiré le » d'un lien échu — que le serveur
+  ne sert plus — sans lui offrir « Révoquer », et révoque les autres ; il
+  renvoie lui aussi vers l'interface. La visibilité « publique » ne crée
+  toujours aucun lien : les deux anomalies d'UC-APP-05 (visibilité qui n'est
+  pas une condition du partage, expiration en notation scientifique) tombent
+  avec la création.
+- **Relecture du cartographe** : sa garantie d'une révision n'atteignait
+  l'employeur que par l'ancien partage. **[choix d'implémentation]** La page
+  de relecture offre **« Ouvrir dans l'interface de cartographie »** : la
+  cartographie, ou la révision consultée (jeu « … — révision N »), arrive dans
+  son interface, à l'espace Partage, où il ouvre la demande de la personne et
+  publie avec sa garantie (D-42). La correction voyage : une compétence
+  renvoyée au cartographe est « à confirmer » dans la version publiée.
+- **Navigation et aide** : « Partager ma cartographie » reste l'alias du
+  tableau de bord ; sa précision devient « version choisie, réservée aux
+  adultes ». Aide de l'espace apprenant, du cartographe et de l'employeur
+  réécrite en conséquence.
+- **Parcours e2e** : le parcours apprenant partage désormais par l'interface
+  (attestation, version publiée, lien avec mot de passe, lu par l'employeur,
+  mort après la suppression du compte) ; le parcours cartographe se termine
+  par la version garantie publiée depuis la révision et lue par l'employeur.
+  Les deux parcours étaient arrêtés à l'inscription depuis l'activation par
+  code (D5, juillet) : ils activent leur compte jetable dans la base de
+  développement, comme `carto-partage.e2e.js`, et la page du cartographe se
+  recharge après l'attribution de son rôle.
+- **Relecture indépendante** (agent distinct, avant le commit) : rien de
+  bloquant ; API correcte (CSRF, rôle, propriété en 404 avant le refus en
+  422, rien d'écrit ni d'audité). Corrigé à sa suite : l'encadré de
+  signature du cartographe promettait encore « via le lien de partage » ; le
+  retrait est testé pour les trois types (journée, parcours, Twin9) ; l'audit
+  d'un lien protégé est vérifié (identifiants seuls) ; la phrase du retrait
+  est aussi l'`error` de la réponse (un onglet resté sur l'ancien front
+  l'affiche) ; « Révoquer » ne disparaît qu'un jour après l'échéance (heure du
+  serveur sans fuseau) ; `aria-controls` ; un seul envoi par clic ; bouton de
+  la relecture inactif sans document ; textes restants (aide, guides, README,
+  offre employeur, registre). **[choix d'implémentation]** Après une
+  publication garantie, le jeu ouvert chez le cartographe est une copie de la
+  cartographie d'une autre personne : l'interface lui propose aussitôt de
+  l'effacer (« Effacer « … » de ce navigateur », en deux temps) ; le registre
+  RGPD (§3 bis A) et le chapitre 7 du parcours cartographe le disent.
+- **À décider** (§4, questions 25 à 27) : les liens créés avant restent
+  servis jusqu'à leur échéance — y compris ceux d'un compte qui n'a jamais
+  attesté sa majorité (l'ancien partage ne l'exigeait pas) ; le libellé
+  « Publique (partageable) » ; la formulation « lien + mot de passe » de
+  `CLAUDE.md`.
+- **À retirer plus tard** : les liens créés avant expirent au plus tard le
+  2027-10-14 et sont purgés 30 jours après ; « Liens déjà créés », le
+  dialogue et les tests `legacyShareLink` pourront alors partir.
+- **Catalogue des cas d'utilisation** : UC-APP-05 (fiche, tests), UC-APP-04,
+  UC-EMP-01, UC-CAR-05, UC-CPT-06, UC-VIS-04 mis à jour ; les totaux comptent de nouveau
+  les seuls identifiants présents dans les tests — ceux d'UC-VIS-01 et
+  d'UC-APP-12 n'avaient pas suivi le retrait des pages V3 (D-38) : 962 tests
+  unitaires, 1 102 fonctionnels, 212 anomalies.
+- Docs : matrice des autorisations, registre RGPD (§5), politique de
+  confidentialité, chapitres de formation (apprenant 01 et 06, cartographe 01
+  et 07, employeur 01 et 06, visiteur 04), `docs/tests-e2e.md`.
+
 ---
 
 ## 3. État des tests
@@ -1579,6 +1664,22 @@ Validation du surlignage approché sur les journaux réels : D-39.
 | `ui/P6.test.jsx` | faux serveur partagé (`test/fake-share-api.js`) ; les onze scénarios inchangés | 11 |
 | `e2e/carto-partage.e2e.js` | **deux comptes réels contre l'API locale** : Lou crée un code ; Carl (cartographe) importe la cartographie de Lou, ouvre la demande, compose, voit sa garantie dans l'aperçu, publie ; en base : version privée de Lou, garantie de Carl, demande consommée, rien dans le compte de Carl ; Lou crée le lien ; l'employeur lit « Relue et garantie par Carl E2E, le …, qui atteste avoir vérifié … » | +1 |
 
+### Retrait de l'ancien partage (Q17, D-43)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `api/tests/ShareTest.php`, `CartoPartageTest.php`, `CartographiesTest.php`, `CartographiesPurgeTest.php`, `CartographeGarantieTest.php` et les cas d'utilisation UC-APP-03/04/05, UC-CAR-04/05, UC-CPT-06, UC-EMP-01, UC-ADM-06 | `422 share_retired` pour une journée, un parcours, une analyse Twin9 (rien d'écrit ni d'audité) ; les liens créés avant (helper `legacyShareLink`) restent servis, listés, révocables, purgés avec le compte, comptés par le suivi | 194 réécrits ou gardés ; UC-APP-05 F02, F06, F07 retirés |
+| `web/test/usecases/unit/uc-app-05-…` | dialogue isolé : retrait annoncé, aucun formulaire ; renvoi vers l'interface ; lien échu « expiré le » sans « Révoquer » ; panneau : « Liens déjà créés » et « Partager depuis l'interface » ; remise d'une journée (fichier, titre du jeu), d'une analyse Twin9 adaptée, refus sans journée datée | 8 (4 ajoutés, 2 réécrits ; 8 retirés) |
+| `web/test/usecases/functional/uc-app-05-…` | **application complète** : « Partager depuis l'interface » → `#/cartographie/partage`, nouveau jeu au titre de la cartographie, attestation d'abord, aucune requête de partage ; le dialogue des liens mène au même endroit ; gestion des liens créés avant (révocation, 401, 404, échec, lien échu) | 8 (2 ajoutés, 6 réécrits ; 7 retirés) |
+| `src/views/espace/CartographiesPanel.test.jsx` | bloc « ancien partage retiré » | 5 (3 de création remplacés) |
+| `src/views/cartographe/RelectureSection.test.jsx` | « Ouvrir dans l'interface de cartographie » : l'origine, puis la révision consultée (motif corrigé), avec leur titre ; absent sans rappel | +2 |
+| UC-APP-04 F, UC-VIS-04 U et F, aide | « Liens déjà créés » ; précision « version choisie, réservée aux adultes » | réécrits |
+| `e2e/parcours-apprenant.e2e.js` | inscription D5 ; « Partager depuis l'interface », attestation, version publiée, lien avec mot de passe ; l'employeur (contexte neuf) : mauvais mot de passe refusé, version lue, « publiée par la personne elle-même » ; archive avec le jeu de l'interface ; compte supprimé : lien mort | réécrit |
+| `e2e/parcours-cartographe.e2e.js` | ancien partage refusé (IHM et `422`) ; code de demande ; révision garantie ouverte dans l'interface, demande ouverte, version publiée avec la garantie ; lien avec mot de passe ; l'employeur lit « Relue et garantie par Cartographe E2E » et la compétence corrigée « à confirmer » | réécrit |
+| `ui/Garantie.test.jsx` | après la publication garantie, le cartographe efface en deux temps la copie de la cartographie de la personne ; l'interface revient à l'accueil | renforcé |
+| UC-CAR-05 (fonctionnels, IHM) | l'encadré de signature ne promet plus le lien de partage : « … sera figée et signée. Pour qu'un employeur voie votre garantie, publiez la version partagée… » | 2 réécrits |
+| `api/tests/CartoPartageTest.php` | lien protégé d'une version partagée : audit `{cartographieId, shareId, expiresInDays, withPassword: true}`, ni jeton ni mot de passe | renforcé |
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -1624,7 +1725,8 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
     chemin par lequel un employeur voyait la **garantie** d'un cartographe.
     → **Décidé** : un cartographe publie la cartographie de l'apprenant, à sa
     demande, et s'en porte garant ; rien ne change dans l'interface. Suite :
-    fait (D-42) ; retrait de l'ancien partage : D-43.
+    fait (D-42) ; ancien partage retiré, liens déjà créés servis jusqu'à leur
+    échéance (D-43).
 18. Version partagée dans l'API PHP/MySQL (D-30, écart au §12.2). →
     **Validé.**
 19. Vouvoiement du dialogue (D-35). → **Validé.**
@@ -1641,6 +1743,24 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 23. Compétences cochées par défaut (D-33). → **Validé.**
 24. Attestation sur le compte et à chaque publication ; compte exigé pour
     partager seulement (D-31). → **Validé.**
+
+Questions ouvertes (2026-10-14, D-43) :
+
+25. Liens créés avant le retrait de l'ancien partage : ils restent servis
+    jusqu'à leur échéance (90 jours par défaut, 365 au plus). L'ancien partage
+    n'exigeait pas l'attestation de majorité : faut-il, au déploiement,
+    révoquer les liens des comptes qui ne l'ont jamais posée, voire tous les
+    anciens liens ? (Ma recommandation : révoquer ceux des comptes sans
+    attestation — une migration d'une ligne — et laisser les autres
+    expirer.)
+26. Le niveau de confidentialité « Publique (partageable) » ne crée plus
+    aucun lien : il ouvre seulement la lecture au cartographe lié, comme
+    « Partagée avec mon cartographe ». Garder ce libellé, le renommer
+    (« Publique »), ou retirer ce niveau ?
+27. `CLAUDE.md` décrit encore le partage employeur comme « lien + mot de
+    passe » (résumé et principe RGPD 4). Proposition : « lien vers une
+    version partagée choisie par la personne, mot de passe facultatif, jamais
+    automatique ». C'est votre texte : je ne l'ai pas modifié.
 
 ---
 
@@ -1715,3 +1835,10 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   demande (code à usage unique), dans le compte de celui-ci, et s'en porte
   garant ; l'employeur le lit ; remplacer soi-même une version garantie lui
   retire sa garantie (D-42, migration 023).
+- **2026-10-14** — Ancien partage retiré (D-43) : plus de lien vers une
+  cartographie du site (`422 share_retired`) ; « Partager depuis
+  l'interface » et « Liens déjà créés » dans « Mes cartographies » ; la page
+  de relecture du cartographe ouvre la cartographie ou sa révision dans
+  l'interface, pour la publier avec sa garantie ; parcours e2e apprenant et
+  cartographe réécrits et remis en état ; catalogue des cas d'utilisation
+  recompté.

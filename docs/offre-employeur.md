@@ -42,7 +42,8 @@ l'outil ailleurs.
 ## Garde-fous (rappel)
 
 - Recherche uniquement sur les cartographies **publiées et consenties** ; le
-  partage employeur individuel (lien + mot de passe) reste le seul canal en v1.
+  partage employeur individuel (lien vers une version partagée, mot de passe
+  facultatif) reste le seul canal en v1.
 - Aucune donnée personnelle compilée hors du périmètre du consentement (RGPD,
   cahier §6).
 - Le moteur n'est **pas** disponible : la communication doit rester au futur

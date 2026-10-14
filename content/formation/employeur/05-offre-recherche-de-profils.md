@@ -8,7 +8,8 @@ statut: complet
 # L'offre de recherche de profils (à venir)
 
 Aujourd'hui, vous recevez une cartographie **parce qu'un candidat vous l'a
-partagée** : c'est le canal individuel, sur invitation (lien + mot de passe). Une
+partagée** : c'est le canal individuel, sur invitation (un lien, avec ou sans mot
+de passe). Une
 offre complémentaire est **en préparation** — elle n'est pas encore disponible,
 et ce chapitre en présente le principe pour que vous sachiez à quoi vous
 attendre.

@@ -69,7 +69,7 @@ export const FAMILIES = [
       },
       { href: '#/twin6-ouverte', label: 'Cartographie ouverte', route: 'twin6ouverte', badge: 'gratuit', hint: 'Twin6 — open source' },
       { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin9' },
-      { href: '#/espace', label: 'Partager ma cartographie', hint: 'lien protégé par mot de passe' },
+      { href: '#/espace', label: 'Partager ma cartographie', hint: 'version choisie, réservée aux adultes' },
     ],
   },
   {

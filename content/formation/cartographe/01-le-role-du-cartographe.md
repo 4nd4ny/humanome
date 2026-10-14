@@ -12,8 +12,9 @@ greffe : structuré, argumenté, mais non jugé. Le cartographe est celui qui
 juge en dernier ressort — il relit les verdicts, tranche les « renvois au
 cartographe » que le moteur lui adresse explicitement, corrige ce qui doit
 l'être et, s'il l'estime juste, garantit la cartographie de sa signature.
-Cette garantie est ce qu'un employeur lira : « garantie par » un humain
-identifié, à une date donnée, sur une version figée. Ce chapitre décrit le
+Cette garantie est ce qu'un employeur lira : « Relue et garantie par » un
+humain identifié, à une date donnée, sur la version qu'il a publiée à la
+demande de la personne. Ce chapitre décrit le
 périmètre du rôle, la relation avec l'apprenant qui vous confie ses feuilles,
 et la déontologie qui va avec l'accès à un matériau aussi personnel qu'un
 journal de bord.
@@ -44,8 +45,9 @@ où celui des autres s'arrête.
   toujours *contre* une version précise de ce référentiel : c'est le cadre,
   vous ne le modifiez pas.
 - L'**employeur potentiel** est le lecteur final d'une cartographie garantie,
-  via un lien protégé par mot de passe. C'est pour lui, in fine, que votre
-  garantie a une valeur.
+  via le lien que la personne lui transmet : il lit « Relue et garantie par »
+  sur la version partagée que vous avez publiée à sa demande (chapitre 7).
+  C'est pour lui, in fine, que votre garantie a une valeur.
 
 Au milieu de cette chaîne, le **cartographe** est le rôle humain de contrôle
 qualité. Le moteur produit ; vous relisez, commentez, corrigez, validez et
@@ -111,9 +113,9 @@ confirmez, la plateforme :
 
 - **fige une version** de la cartographie (le document d'origine, ou la
   révision que vous consultez) : c'est cette version-là, et pas une autre, que
-  l'employeur verra ;
-- **appose votre signature horodatée** : l'employeur lit « Cartographie
-  garantie par *votre nom* le *date* (révision *N* figée) ».
+  vous publierez pour la personne, à sa demande (chapitre 7) ;
+- **appose votre signature horodatée** : sur la version publiée, l'employeur
+  lit « Relue et garantie par *votre nom*, le *date* ».
 
 Ce que vous attestez, c'est d'avoir **relu**. Vous garantissez que les
 verdicts ont été examinés par un humain, que les renvois ont été instruits,

@@ -401,7 +401,7 @@ describe('UC-VIS-04 — liens du panneau pour un compte multi-rôles', () => {
       name: 'Partager ma cartographie',
       href: '#/espace',
       badge: null,
-      hint: 'lien protégé par mot de passe',
+      hint: 'version choisie, réservée aux adultes',
       reached: async () => {
         await h1('Espace apprenant')
         // Session reconnue par la vue (le tableau de bord s'affiche AUSSI en anonyme).

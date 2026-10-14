@@ -8,22 +8,30 @@ statut: complet
 # Recevoir une cartographie
 
 Un candidat, un apprenti ou un membre de l'écosystème RESPIRE vous a transmis un lien
-et un mot de passe. Ce lien ouvre sa **cartographie de compétences humaines** :
+(et, s'il l'a protégé, un mot de passe). Ce lien ouvre sa **cartographie de compétences humaines** :
 une lecture, secteur par secteur, de ce que son portfolio réflexif donne à voir
 de sa façon de penser, de relier, de créer, de discerner. Vous n'avez pas de compte
-à créer, rien à installer, rien à payer : le lien est public, protégé par un simple
-mot de passe, et la cartographie s'affiche en **lecture seule**. Ce premier chapitre
+à créer, rien à installer, rien à payer : le lien est public, protégé au besoin par un
+simple mot de passe, et la cartographie s'affiche en **lecture seule**. Ce premier chapitre
 décrit exactement ce que vous recevez, comment y accéder, et — tout aussi important —
 sous quelles conditions cette personne a choisi de vous l'ouvrir.
 
 > **Objectifs d'apprentissage**
 >
 > À l'issue de ce chapitre, vous saurez :
-> - accéder à une cartographie partagée via son lien `#/partage/<jeton>` et son mot de passe ;
+> - accéder à une cartographie partagée via son lien `#/partage/<jeton>` et, s'il y en a un, son mot de passe ;
 > - reconnaître les deux formes qu'elle peut prendre (une journée, ou toute une trajectoire) ;
 > - comprendre ce que « lecture seule » implique concrètement pour vous ;
 > - situer ce partage dans la logique de consentement de la plateforme : c'est une décision
 >   individuelle et explicite de l'apprenant, jamais un versement automatique dans une base.
+
+> **Depuis le 14 octobre 2026**, une personne vous partage une **version
+> partagée** qu'elle compose elle-même dans son interface de cartographie
+> (compétences, précision des dates, extraits choisis), avec ou sans mot de
+> passe, parfois publiée avec la garantie de son cartographe : le chapitre 6
+> la décrit. Les liens plus anciens, décrits ci-dessous (une journée ou une
+> trajectoire, toujours avec un mot de passe), restent valables jusqu'à leur
+> expiration.
 
 ## 1. Ce que vous recevez : un lien et un mot de passe
 

@@ -1,5 +1,16 @@
 # UC-APP-04 — Stocker une cartographie sur le serveur et régler sa confidentialité
 
+> **Mise à jour du 2026-10-14 : ancien partage retiré** (journal de la
+> cartographie, D-43). La copie serveur ne sert plus à partager par lien :
+> elle sert à la relecture par le cartographe lié (et à la promesse
+> multi-appareils, anomalie 2). Le bouton « Partager » devient « Liens déjà
+> créés » (gestion des liens créés avant, UC-APP-05) ; l'encart d'opt-in dit
+> désormais « … afin de le faire relire par votre cartographe et de le
+> retrouver depuis un autre appareil ». Le partage avec un employeur passe
+> par une version partagée de l'interface de cartographie. Test réécrit :
+> UC-APP-04-F15 (bouton « Liens déjà créés » après la copie). Le reste de la
+> fiche décrit l'état antérieur sur ce point.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Apprenant (compte actif, rôle `apprenant`) |
@@ -12,8 +23,9 @@
 ## Objectif
 
 Permettre à l'apprenant de confier, **cartographie par cartographie et par un
-geste explicite**, une copie de sa cartographie au serveur (condition du
-partage par lien et de la relecture par un cartographe), de régler qui peut la
+geste explicite**, une copie de sa cartographie au serveur (condition de la
+relecture par un cartographe ; jusqu'au 2026-10-14, aussi du partage par
+lien), de régler qui peut la
 voir — **privée**, **partagée avec mon cartographe**, **publique
 (partageable)** — et de retirer cette copie à tout moment.
 
@@ -37,12 +49,14 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
 - Une ligne `cartographies` existe pour ce compte avec `opt_in_at` horodaté
   **par l'INSERT lui-même** : la copie serveur est la trace datée du
   consentement (§6.2). Le navigateur mémorise son `serverId` ; la cartographie
-  porte le badge « copie serveur » et devient partageable (UC-APP-05).
+  porte le badge « copie serveur » (jusqu'au 2026-10-14, elle devenait
+  partageable par lien, UC-APP-05).
 - La visibilité serveur est celle choisie ; un cartographe **lié** voit la
   cartographie dans sa file si, et seulement si, elle est `cartographe` ou
   `publique` — un retour à `privee` coupe son accès immédiatement. La
   visibilité ne gouverne **pas** le partage employeur : un retour à `privee`
-  ne révoque pas les liens de partage actifs (RG9, UC-APP-05 anomalie 1).
+  ne révoque pas les liens créés avant le retrait de l'ancien partage (RG9,
+  D-43).
 - « Retirer du serveur » purge réellement la ligne, **ses liens de partage**
   et **tout le travail du cartographe lié** posé dessus — annotations,
   révisions et garantie (UC-CAR-03, UC-CAR-04, UC-CAR-05) — par les FK
@@ -85,8 +99,10 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
    ligne avec `opt_in_at = NOW()` et répond `201 {id}`.
 5. Le navigateur enregistre `serverId = id` dans le carto-store et affiche le
    badge « copie serveur », le message « « *titre* » est copiée sur le serveur
-   (retrait possible à tout moment). » et les boutons **« Partager »**
-   (UC-APP-05) et **« Retirer du serveur »**.
+   (retrait possible à tout moment). » et les boutons **« Liens déjà
+   créés »** (UC-APP-05 : depuis le 2026-10-14, plus de création de lien,
+   seulement la gestion des liens créés avant — D-43) et **« Retirer du
+   serveur »**.
 6. L'apprenant choisit un niveau dans « Confidentialité » : **Privée**,
    **Partagée avec mon cartographe** ou **Publique (partageable)**. Le
    navigateur envoie `PATCH /api/cartographies/{serverId}` `{visibility}`.
@@ -197,10 +213,10 @@ serveur »** sur une cartographie, ou change son menu **« Confidentialité »**
   compte purge aussi toutes les copies (UC-CPT-06).
 - **RG9** — Seuls `cartographe` et `publique` ouvrent la lecture au
   cartographe **lié** ; `publique` n'ouvre rien de plus côté serveur (le
-  partage employeur passe par un lien, UC-APP-05). Réciproquement, la
-  visibilité n'est pas une condition du partage : « Partager » est offert dès
-  qu'une copie serveur existe, et le passage à `privee` ne révoque pas les
-  liens actifs (UC-APP-05, anomalie 1).
+  partage employeur passe, depuis le 2026-10-14, par une version partagée de
+  l'interface de cartographie, UC-APP-05). Le passage à `privee` ne révoque
+  pas les liens créés avant le retrait de l'ancien partage (D-43) : ils se
+  révoquent dans « Liens déjà créés ».
 
 ## Données et RGPD
 
@@ -327,8 +343,8 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
    (UC-EMP-01) ni par la relecture. Figé par UC-APP-04-F14 (UC-APP-04-U10
    établit seulement que le Repository, par conception, ne valide pas).
 2. **« Retrouver depuis un autre appareil » : promesse non tenue par l'IHM.**
-   L'encart d'opt-in (« … afin de pouvoir le partager par lien et le
-   retrouver depuis un autre appareil ») et le chapitre de formation apprenant
+   L'encart d'opt-in (« … afin de le faire relire par votre cartographe et
+   de le retrouver depuis un autre appareil ») et le chapitre de formation apprenant
    6 annoncent l'accès multi-appareils, mais le panneau « Mes cartographies »
    ne lit que le carto-store local et n'appelle jamais `GET
    /api/cartographies` (utilisé seulement par l'atelier promptologue) : sur un
@@ -366,9 +382,10 @@ cd web && npx vitest run test/usecases --testNamePattern UC-APP-04
   une seconde.
 - Le retrait et la suppression détruisent sans avertissement le travail du
   cartographe lié (annotations, révisions) et la garantie (RG8).
-- La visibilité `privee` ne coupe pas les liens de partage employeur actifs ;
-  le libellé « Publique (partageable) » laisse croire le contraire (voir
-  UC-APP-05, anomalie 1).
+- La visibilité `privee` ne coupe pas les liens créés avant le retrait de
+  l'ancien partage (D-43) ; le libellé « Publique (partageable) » est hérité
+  de ce partage : aucun lien ne se crée plus depuis « Mes cartographies »
+  (libellé à revoir, question posée à Christian).
 - Un refus `422` n'est affiché que « Validation échouée » : l'apprenant ne
   voit pas le champ en cause (`fields`).
 - Avec un cookie de session expiré, une mutation affiche « Jeton CSRF absent

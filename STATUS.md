@@ -15,8 +15,8 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`, NON déployée — aucun déploiement avant validation).**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-41, état des tests, les 24 questions et
-    les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
+    dépôt). Journal d'avancement, décisions D-1 → D-43, état des tests, les questions (24
+    répondues, 3 ouvertes) et les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
     importeurs Aurora v3 / AuroraCore / Merge v2, formules §5, IndexedDB) ; P1 soleil,
@@ -43,15 +43,32 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     Markdown (D-40) ; « Exporter toutes mes données » emporte les jeux de l'interface
     (archive 1.1.0), schéma JSON du master v4 (D-25) ; chapitres de formation V3 réécrits.
     Puis relecture indépendante de ces décisions : 9 corrections (D-41, `b651f38`).
+  - **Question 17 (2026-10-14)** : la garantie passe par la publication — un cartographe publie
+    la version partagée de l'apprenant, à sa demande (code à usage unique), avec sa garantie,
+    que l'employeur lit (D-42, migration 023, `f55b036`) ; puis **l'ancien partage est retiré**
+    (D-43) : plus de nouveau lien vers une cartographie du site (`422 share_retired`) ;
+    « Partager depuis l'interface » et « Liens déjà créés » dans « Mes cartographies » ; la page
+    de relecture du cartographe ouvre sa révision dans l'interface pour la publier garantie ;
+    les liens déjà créés restent servis jusqu'à leur échéance. Relu par un agent distinct
+    avant le commit (rien de bloquant, corrections intégrées).
   - **Vérification** (2026-10-14, `b651f38`) : front **2 255 verts** (231 fichiers ;
     `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ; moteur
     **1 071 verts** + 17 sautés ; API **1 484 verts** (14 162 assertions, 23 min 36 s) ; e2e
     Chromium de la cartographie verts : P5 (copie autonome, démo anonymisée), P6 (contre l'API
     docker locale), P7 (dialogue), clé personnelle sous la CSP de production.
+  - **Vérification après D-43** (2026-10-14) : front **2 257 verts** (232 fichiers, dont
+    `twin6-prompt-package.test.js`, chargeable une fois les gabarits Twin6 non versionnés
+    déposés — `INSTALL.md` §4) ; moteur **1 071 verts** + 17 sautés ; API **1 489 verts**
+    (suite complète) ; e2e Chromium verts : parcours apprenant et cartographe (réécrits pour le
+    partage par l'interface, et remis en état : ils s'arrêtaient à l'inscription depuis
+    l'activation par code D5), P6 et version garantie contre l'API docker, P5, P7, CSP, guides,
+    sandbox. Échecs **antérieurs** et sans rapport : `navigation-burger.e2e.js` (2 tests, le
+    tiroir laisse dépasser 10 px depuis `189f20e`, juillet) ; `parcours-promptologue.e2e.js`
+    (inscription d'avant D5, non rejoué).
   - **Reste (décision utilisateur)** : valider la branche, puis autoriser un déploiement
-    (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11) ; question 17
-    (retrait de l'ancien partage `#/espace`) : précision demandée avant de le faire, car la
-    garantie du cartographe, que seul l'ancien partage montre à l'employeur, disparaîtrait.
+    (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11 ; la migration 023
+    part avec la release API) ; questions 25 à 27 du journal (anciens liens de comptes sans
+    attestation de majorité, libellé « Publique (partageable) », formulation de `CLAUDE.md`).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
@@ -1351,9 +1368,12 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
   dialogue de la cartographie. **Corrigé sur la branche `feat/ultimate-cartography`** (décision
   du 2026-10-14, question 22 : `connect-src` ouvert aux seuls fournisseurs) ; en ligne au
   prochain déploiement.
-- Partage historique (`#/espace`, jour / merge / twin9) non soumis à l'attestation de majorité
-  de l'interface ultime (§12 : « pour les mineurs, ni copie serveur ni partage ») — décision en
-  attente (journal carto, question 17).
+- Partage historique (`#/espace`, jour / merge / twin9) **retiré sur la branche
+  `feat/ultimate-cartography`** (décision du 2026-10-14, journal carto D-43 : plus de nouveau
+  lien, `422 share_retired`). Les liens déjà créés restent servis jusqu'à leur échéance — y
+  compris ceux de comptes sans attestation de majorité : révocation au déploiement à décider
+  (journal carto, question 25). « Liens déjà créés » et les tests `legacyShareLink` pourront
+  partir après le 2027-11-13 (dernière échéance + 30 jours de purge).
 
 ## Jalons
 

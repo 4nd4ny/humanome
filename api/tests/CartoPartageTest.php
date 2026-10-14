@@ -166,11 +166,13 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame('adult_required', self::json($refused)['code']);
         self::assertSame(0, self::rows("SELECT COUNT(*) FROM cartographies WHERE type = 'partage'"), 'rien n’est écrit');
 
-        // Les autres usages du compte ne changent pas (copie serveur d'une
-        // journée, lien employeur avec mot de passe) : décision à confirmer,
-        // journal D-31, question 17.
+        // La copie serveur d'une journée reste possible ; son ancien partage
+        // par lien est retiré pour tous (question 17, journal D-43) : il n'y a
+        // plus de chemin par lien qui échappe à l'attestation.
         $share = $this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', ['password' => 'sesame-employeur']);
-        self::assertSame(201, $share->getStatusCode());
+        self::assertSame(422, $share->getStatusCode());
+        self::assertSame('share_retired', self::json($share)['code']);
+        self::assertSame(0, self::rows('SELECT COUNT(*) FROM share_links'));
     }
 
     public function testAttestationIsSelfDeclaredDatedAndAudited(): void
@@ -323,6 +325,11 @@ final class CartoPartageTest extends AuthTestBase
 
         $share = $this->link($id, 'sesame-employeur');
         self::assertSame('/#/partage/' . $share['token'], $share['url']);
+        // Audit : des identifiants et la durée, jamais le jeton ni le mot de passe.
+        $raw = (string) self::$pdo->query("SELECT details FROM audit_events WHERE type = 'share_created' ORDER BY id DESC LIMIT 1")->fetchColumn();
+        self::assertEquals(['cartographieId' => $id, 'shareId' => $share['shareId'], 'expiresInDays' => 90, 'withPassword' => true], json_decode($raw, true));
+        self::assertStringNotContainsString($share['token'], $raw);
+        self::assertStringNotContainsString('sesame-employeur', $raw);
 
         $locked = $this->open($share['token']);
         self::assertSame(401, $locked->getStatusCode());
@@ -332,10 +339,10 @@ final class CartoPartageTest extends AuthTestBase
         self::assertSame(200, $this->anonymous('POST', '/api/share/' . $share['token'], ['password' => 'sesame-employeur'])->getStatusCode());
         self::assertSame(1, self::rows("SELECT COUNT(*) FROM audit_events WHERE type = 'share_consulted'"), 'seule la consultation réussie compte');
 
-        // Les autres types gardent leur mot de passe obligatoire.
+        // Les autres types ne se partagent plus par lien (D-43), avec ou sans mot de passe.
         $noPassword = $this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', []);
         self::assertSame(422, $noPassword->getStatusCode());
-        self::assertArrayHasKey('password', self::json($noPassword)['fields']);
+        self::assertSame('share_retired', self::json($noPassword)['code']);
     }
 
     public function testConsultationJournalIsVisibleToItsAuthorOnly(): void
@@ -373,7 +380,8 @@ final class CartoPartageTest extends AuthTestBase
         $id = $this->publishedId();
         $open = $this->link($id);
         $protected = $this->link($id, 'sesame-employeur');
-        $jourShare = self::json($this->call('POST', '/api/cartographies/' . $this->jourCartography() . '/share', ['password' => 'sesame-employeur']));
+        // Un lien vers une journée du site, créé avant le retrait de l'ancien partage (D-43).
+        $jourShare = self::legacyShareLink($this->jourCartography(), 'sesame-employeur');
 
         // Avant : l'export complet est possible (l'interface le propose).
         self::assertEquals(self::sharedDoc(), self::json($this->call('GET', '/api/cartographies/' . $id))['document']);

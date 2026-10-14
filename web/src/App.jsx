@@ -476,6 +476,16 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
     navigate('#/cartographie')
   }
 
+  // L'ancien partage est retiré (journal de la cartographie D-43) : une
+  // cartographie du site s'ouvre dans l'interface, dans un nouveau jeu qui
+  // porte son titre, à l'espace Partage — « Partager depuis l'interface »
+  // (Mes cartographies, apprenant) ou « Ouvrir dans l'interface » (relecture,
+  // cartographe, qui y publie la version garantie qu'une personne demande).
+  function openInSharingSpace(files, { title } = {}) {
+    setIncomingCarto({ id: `${Date.now()}-${Math.random()}`, files, title })
+    navigate('#/cartographie/partage')
+  }
+
   // Anciennes adresses de l'interface V3 (#/merge, #/cartographie-v3) : on
   // remplace l'entrée d'historique par #/cartographie.
   useEffect(() => {
@@ -540,13 +550,13 @@ export default function App({ lib, fetchMeFn = fetchMe }) {
       view = <Twin6OuverteView lib={lib} />
       break
     case 'espace':
-      view = <EspaceView section={route.section} lib={lib} />
+      view = <EspaceView section={route.section} lib={lib} onShareInInterface={openInSharingSpace} />
       break
     case 'share':
       view = <ShareView key={`${route.token}${route.open ? '/ouvert' : ''}`} token={route.token} open={Boolean(route.open)} lib={lib} />
       break
     case 'cartographe':
-      view = <CartographeView section={route.section} lib={lib} />
+      view = <CartographeView section={route.section} lib={lib} onOpenInInterface={openInSharingSpace} />
       break
     case 'promptologue':
       view = <PromptologueView section={route.section} lib={lib} />

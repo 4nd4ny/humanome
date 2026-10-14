@@ -3,12 +3,17 @@
 declare(strict_types=1);
 
 /**
- * Employer sharing (P8, cahier §3.6): link + password, expiration,
- * revocation, and the PUBLIC consultation endpoint.
+ * Employer sharing (P8, cahier §3.6): link (password optional for a shared
+ * version), expiration, revocation, and the PUBLIC consultation endpoint.
  *
  * Owner side (`apprenant`, CSRF): create link on an owned cartography, list
  * links, read a link's access journal, revoke. Public side (no session, no
  * account — §3.6): POST the password against the token.
+ *
+ * Since 2026-10-14 (cartography journal D-43) a link is created ONLY for a
+ * shared version (type `partage`): the historical share of the site's
+ * cartographies (jour, merge, twin9) is retired — 422 `share_retired`. Links
+ * created before stay served, listed and revocable until they expire.
  *
  * Shared versions of the ultimate cartography interface (type `partage`,
  * spécification §12, routes/partage.php): creating their link requires the
@@ -109,8 +114,10 @@ return function (App $app): void {
     };
 
     // ------------------------------------------------------------------
-    // POST /api/cartographies/{id}/share — {password (>= 8), expiresInDays
-    // (1..365, default 90)} -> 201 {shareId, token, url}. The clear token
+    // POST /api/cartographies/{id}/share — {expiresInDays (1..365, default
+    // 90), password? (>= 8)} -> 201 {shareId, token, url}. Une VERSION
+    // PARTAGÉE seulement (interface ultime, §12) : réservée aux comptes qui
+    // ont attesté leur majorité, mot de passe facultatif. The clear token
     // exists only in this response.
     // ------------------------------------------------------------------
     $app->post('/cartographies/{id:[0-9]+}/share', $wrap(function (Request $request, Response $response, array $args) use ($json): Response {
@@ -122,10 +129,22 @@ return function (App $app): void {
         if ($type === null) {
             return $json($response, ['error' => 'Cartographie introuvable'], 404);
         }
-        // Version partagée (interface ultime, §12) : réservée aux comptes qui
-        // ont attesté leur majorité ; le mot de passe y est facultatif.
-        $sharedVersion = $type === 'partage';
-        if ($sharedVersion && Users::adultAttestedAt($pdo, $userId) === null) {
+        // Ancien partage RETIRÉ (décision du 2026-10-14, journal de la
+        // cartographie D-43) : on ne partage plus par lien qu'une version
+        // partagée, réservée aux adultes. Les liens déjà créés vers les autres
+        // types restent servis jusqu'à leur expiration ou leur révocation.
+        if ($type !== 'partage') {
+            // The sentence is also the `error`: a tab still running the
+            // previous front end shows it as is.
+            $retired = 'Le partage par lien de cette cartographie est retiré : publiez une version partagée depuis l’interface de cartographie (espace Partage)';
+
+            return $json($response, [
+                'error' => $retired,
+                'code' => 'share_retired',
+                'fields' => ['type' => $retired],
+            ], 422);
+        }
+        if (Users::adultAttestedAt($pdo, $userId) === null) {
             return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
         }
 
@@ -135,7 +154,7 @@ return function (App $app): void {
         $password = \is_string($rawPassword) ? $rawPassword : '';
         if ($rawPassword !== null && !\is_string($rawPassword)) {
             $errors['password'] = 'Mot de passe invalide (texte attendu)';
-        } elseif ($sharedVersion && $password === '') {
+        } elseif ($password === '') {
             $password = null; // lien sans mot de passe : le jeton (128 bits) suffit
         } elseif (mb_strlen($password) < 8) {
             $errors['password'] = 'Le mot de passe doit contenir au moins 8 caractères';
@@ -150,27 +169,22 @@ return function (App $app): void {
             return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
         }
 
-        $links = new ShareLinks($pdo);
-        if ($sharedVersion) {
-            // Attestation relue SOUS VERROU dans la transaction de l'insertion :
-            // un retrait simultané (qui efface les versions) ne laisse aucun lien.
-            $pdo->beginTransaction();
-            try {
-                if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
-                    $pdo->rollBack();
+        // Attestation relue SOUS VERROU dans la transaction de l'insertion :
+        // un retrait simultané (qui efface les versions) ne laisse aucun lien.
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
 
-                    return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
-                }
-                ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
-                $pdo->commit();
-            } catch (\Throwable $e) {
-                if ($pdo->inTransaction()) {
-                    $pdo->rollBack();
-                }
-                throw $e;
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
             }
-        } else {
-            ['shareId' => $shareId, 'token' => $token] = $links->create($cartoId, $password, $expiresInDays);
+            ['shareId' => $shareId, 'token' => $token] = (new ShareLinks($pdo))->create($cartoId, $password, $expiresInDays);
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
         }
 
         // Counters and ids only — never the token, never the password (§6.5).
@@ -178,7 +192,8 @@ return function (App $app): void {
             'cartographieId' => $cartoId,
             'shareId' => $shareId,
             'expiresInDays' => $expiresInDays,
-        ] + ($sharedVersion ? ['withPassword' => $password !== null] : []));
+            'withPassword' => $password !== null,
+        ]);
 
         return $json($response, [
             'shareId' => $shareId,

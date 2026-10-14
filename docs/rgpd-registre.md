@@ -93,7 +93,7 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Finalité | Qu'une version partagée puisse porter la **garantie** d'un cartographe : à la demande de l'apprenant, le cartographe qui a relu sa cartographie avec lui la publie dans son compte et atteste avoir vérifié ce que la personne a fait, ce que l'analyse par IA a détecté et ce qu'en a vu le groupe classe. |
 | Personnes concernées | Apprenants adultes (demandeurs) ; cartographes (garants) ; destinataires des liens (aucune donnée collectée sur eux). |
 | Données | Demande : un code à usage unique (10 caractères), la version éventuellement visée, des dates — aucun contenu. Garantie : nom affiché du cartographe **figé** à la publication, date (`cartography_garanties`). La version elle-même relève du §3 bis. |
-| Localisation | Serveur. La composition se fait dans le navigateur du cartographe, depuis le jeu de données qu'il a relu avec la personne ; rien d'autre n'est envoyé. |
+| Localisation | Serveur. La composition se fait dans le navigateur du cartographe, depuis le jeu de données qu'il a relu avec la personne ; rien d'autre n'est envoyé. Ce jeu est une **copie locale** de la cartographie de la personne dans le navigateur du cartographe (IndexedDB) — fichiers qu'elle lui a remis, ou cartographie ouverte depuis la page de relecture (« Ouvrir dans l'interface de cartographie », D-43) : elle survit au passage en « privée », au retrait de la copie serveur ou à la suppression du compte de la personne, et entre dans l'archive de compte du cartographe s'il l'exporte. Après la publication, l'interface lui propose de l'effacer ; la formation cartographe (chapitre 7) l'y invite. |
 | Base légale | **a** pour l'apprenant (demande explicite, attestation de majorité de la demande) ; **a** pour le cartographe (sa garantie, case explicite à chaque publication : son nom figurera sur la version). |
 | Durée | Demande : jusqu'à sa publication (consommée), son annulation, son expiration (30 jours), la disparition de la version visée, le retrait de l'attestation de l'apprenant ou la suppression de son compte. Garantie : tant que la version reste celle que le cartographe a publiée — l'apprenant qui la remplace lui-même la lui retire — et que le compte du cartographe existe. |
 | Destinataires | Garantie : toute personne munie d'un lien vers la version (« Relue et garantie par … »). Le cartographe n'a plus accès à la version après publication, ni à ses liens. |
@@ -127,12 +127,12 @@ exécution du service/contrat, **f** = intérêt légitime.
 
 | Élément | Détail |
 |---|---|
-| Finalité | Partager une cartographie validée avec un employeur (lien + mot de passe), décision individuelle explicite (§3.6). |
+| Finalité | Partager une cartographie validée avec un employeur (lien, avec ou sans mot de passe), décision individuelle explicite (§3.6). Depuis le 2026-10-14 (ancien partage retiré, journal de la cartographie D-43), un lien ne se crée plus que vers une **version partagée** de l'interface (§3 bis) ; les liens créés avant vers une cartographie du site restent servis jusqu'à leur échéance ou leur révocation, puis sont purgés comme les autres. |
 | Personnes concernées | Apprenants (émetteurs), employeurs (destinataires). |
-| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage (facultatif pour une version partagée de l'interface ultime, §3 bis), échéance, date de révocation — **jamais** les valeurs en clair. |
+| Données | Empreinte (sha256) du jeton de lien, empreinte (Argon2id) du mot de passe de partage (facultatif pour une version partagée de l'interface ultime, §3 bis ; obligatoire pour les liens créés avant le retrait de l'ancien partage), échéance, date de révocation — **jamais** les valeurs en clair. |
 | Base légale | **a** (consentement, décision individuelle). |
 | Durée | Validité **90 jours par défaut** (réglable 1-365 j à la création, `share.php` `expiresInDays`) ; révocable à tout moment ; liens expirés/révoqués **purgés au plus tard 30 jours** après expiration (`scripts/maintenance.php`). |
-| Destinataires | Employeur muni du lien + mot de passe. |
+| Destinataires | Employeur muni du lien (et du mot de passe s'il y en a un). |
 | Tables | `share_links`. |
 | Sort à la suppression | CASCADE via la cartographie ; entretien périodique pour les liens dormants. |
 

@@ -196,7 +196,7 @@ la section Export de son espace) et utilise la « Zone de danger ».
 
 | ID | Scénario | Niveau | Vérifie | Fichier |
 |---|---|---|---|---|
-| UC-CPT-06-F01 | Nominal | API | Compte peuplé par les routes réelles → 204 ; **aucune ligne de session sous ses deux identifiants juste après la réponse (étape 6, RG5)** ; 8 tables vides pour lui ; audit anonymisé ; lien de partage 404 ; avatar 404 ; ses deux sessions mortes ; login 401 ; Bob intact | `api/tests/UseCases/Functional/UcCpt06SupprimerCompteTest.php` |
+| UC-CPT-06-F01 | Nominal | API | Compte peuplé par les routes réelles (son lien de partage écrit comme le faisait l'ancienne route, `AuthTestBase::legacyShareLink` : on n'en crée plus vers une cartographie du site, D-43) → 204 ; **aucune ligne de session sous ses deux identifiants juste après la réponse (étape 6, RG5)** ; 8 tables vides pour lui ; audit anonymisé ; lien de partage 404 ; avatar 404 ; ses deux sessions mortes ; login 401 ; Bob intact | `api/tests/UseCases/Functional/UcCpt06SupprimerCompteTest.php` |
 | UC-CPT-06-F02 | A2 | API | Cartographe supprimé : lien de l'apprenant sans garantie, document de base ; révision anonymisée, toujours listée et lisible par l'apprenante via l'API (`author` null) | idem |
 | UC-CPT-06-F03 | A3 | API | Compte peuplé supprimé, même email réinscrit : compte neuf sans rôle hérité, photo, clé, progression ni cartographie | idem |
 | UC-CPT-06-F04 | E1 | API | 401 « Authentification requise » sans session ; cookie périmé → 403 ; rien supprimé | idem |

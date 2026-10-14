@@ -21,8 +21,11 @@ import RunWizard from '../components/RunWizard.jsx'
  * @param {object} [props.lib] lib sunburst (App) — visionneuse « Voir » du tableau de bord
  * @param {object} [props.deps] coutures de test : {fetchMeFn, portfolioStore,
  *   trainingStore, cartographiesPanel, getReferentiel, runWizardDeps}
+ * @param {(files: Array<{path: string, text: string}>, opts: {title: string}) => void} [props.onShareInInterface]
+ *   « Partager depuis l'interface » de Mes cartographies (App) : ouvre la
+ *   cartographie dans l'interface de cartographie, espace Partage (D-43)
  */
-export default function EspaceView({ section, lib, deps = {} }) {
+export default function EspaceView({ section, lib, deps = {}, onShareInInterface }) {
   const fetchMeFn = deps.fetchMeFn ?? fetchMe
   const [session, setSession] = useState({ status: 'loading', user: null })
 
@@ -56,6 +59,7 @@ export default function EspaceView({ section, lib, deps = {} }) {
         cartographiesPanel={deps.cartographiesPanel}
         lib={lib}
         getReferentiel={deps.getReferentiel}
+        onShareInInterface={onShareInInterface}
       />
     )
   } else if (section === 'formation' || section.startsWith('formation/')) {

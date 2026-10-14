@@ -152,7 +152,7 @@ const ITEM = {
   },
   ouverte: { href: '#/twin6-ouverte', label: 'Cartographie ouverte', route: 'twin6ouverte', badge: 'gratuit', hint: 'Twin6 — open source' },
   approfondie: { href: '#/twin9', label: 'Analyse approfondie', route: 'twin9', badge: 'premium', hint: 'Twin9' },
-  partager: { href: '#/espace', label: 'Partager ma cartographie', hint: 'lien protégé par mot de passe' },
+  partager: { href: '#/espace', label: 'Partager ma cartographie', hint: 'version choisie, réservée aux adultes' },
   file: { href: '#/cartographe', label: 'Ma file de relecture', route: 'cartographe' },
   comparer: { href: '#/cartographe/comparer', label: 'Comparer', route: 'cartographe', section: 'comparer' },
   consistance: {

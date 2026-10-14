@@ -157,6 +157,14 @@ describe('le cartographe publie pour la personne, avec sa garantie', () => {
     expect(await screen.findByText(/est publiée dans le compte de Lou, avec votre garantie\. C’est à Lou de décider de la partager\./)).toBeTruthy()
     expect(screen.queryByRole('heading', { name: 'Version garantie pour Lou' })).toBeNull()
     expect(draftKeys()).toEqual([]) // la version n'est pas à lui : rien n'est gardé ici
+
+    // La copie de la cartographie de Lou, dans ce navigateur : il peut l'effacer aussitôt (D-43).
+    const erase = screen.getByTestId('erase-after-publication')
+    expect(erase.textContent).toContain('« Lou » est, dans ce navigateur, une copie de la cartographie de Lou.')
+    fireEvent.click(within(erase).getByRole('button', { name: 'Effacer « Lou » de ce navigateur' }))
+    fireEvent.click(within(erase).getByRole('button', { name: 'Confirmer : effacer ce jeu' }))
+    // Plus aucun jeu : l'interface revient à l'accueil (fichiers ou démonstration).
+    expect(await screen.findByRole('button', { name: 'Explorer la démonstration' })).toBeTruthy()
   })
 
   it('compte apprenant et cartographe : ouvrir une demande remplace le temps de la publication son propre compositeur', async () => {

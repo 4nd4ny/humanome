@@ -119,7 +119,10 @@ demande** dans son espace Partage et vous le remet (il sert une seule fois,
 pendant 30 jours).
 
 1. Ouvrez sa cartographie dans votre interface : le jeu de données que vous
-   avez relu avec lui.
+   avez relu avec lui. Si vous l'avez relue (et corrigée) dans votre espace
+   cartographe, le bouton **« Ouvrir dans l'interface de cartographie »**, en
+   tête de la page de relecture, l'y ouvre directement, à l'espace Partage :
+   la cartographie d'origine, ou la révision que vous consultez.
 2. Espace **Partage**, « Publier pour une personne, avec votre garantie » :
    saisissez le code. Vérifiez le nom de la personne et le jeu de données
    ouvert.
@@ -133,7 +136,10 @@ pendant 30 jours).
 
 La version arrive dans son compte, privée et sans lien : c'est elle qui
 décide de la partager, et vous n'y avez plus accès. Votre nom et la date y
-figurent. Si elle la remplace un jour par une version qu'elle publie
+figurent. Le jeu de données que vous avez ouvert reste, lui, une copie de sa
+cartographie dans **votre** navigateur : l'interface vous propose aussitôt de
+l'effacer (« Effacer « … » de ce navigateur ») — faites-le, sauf si vous en
+avez encore besoin pour la relecture. Si elle la remplace un jour par une version qu'elle publie
 elle-même, votre garantie en est retirée : elle ne couvre que ce que vous
 avez publié. Supprimer votre compte la retire aussi.
 

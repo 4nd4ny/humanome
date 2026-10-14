@@ -12,17 +12,18 @@ quitte jamais votre navigateur sans votre décision explicite. Par défaut, tout
 reste local ; le stockage sur le serveur Harmonia est une option (opt-in) que
 vous activez cartographie par cartographie, et que vous pouvez révoquer. Le
 partage suit la même logique : rien n'est jamais publié automatiquement, et
-un employeur ne voit une cartographie que si vous lui en donnez le lien et le
-mot de passe. Ce chapitre vous donne les clés pour décider, en connaissance de
-cause, où vivent vos données, qui y accède, et comment tout récupérer ou tout
-effacer en un clic.
+un employeur ne voit une version de votre cartographie que si vous lui en
+donnez le lien (et, si vous en avez mis un, le mot de passe). Ce chapitre
+vous donne les clés pour décider, en connaissance de cause, où vivent vos
+données, qui y accède, et comment tout récupérer ou tout effacer en un
+clic.
 
 > **Objectifs d'apprentissage**
 >
 > À l'issue de ce chapitre, vous saurez :
 > - expliquer où sont stockées vos données selon vos choix (navigateur seul ou serveur en opt-in) ;
-> - régler la confidentialité de chaque cartographie : privée, partagée avec votre cartographe, ou publique-partageable ;
-> - créer, limiter dans le temps et révoquer un lien de partage employeur protégé par mot de passe ;
+> - régler la confidentialité de chaque cartographie : privée, partagée avec votre cartographe, ou publique ;
+> - partager une version choisie de votre cartographie depuis l'interface de cartographie, avec un lien limité dans le temps et révocable ;
 > - exporter l'archive complète de votre compte, la réimporter, ou supprimer votre compte avec purge réelle.
 
 ## 1. Où vivent vos données
@@ -59,8 +60,9 @@ cartographies » (espace apprenant). Le menu déroulant offre trois niveaux :
   cartographie produite.
 - **Partagée avec mon cartographe** — votre cartographe peut la relire,
   l'annoter, la corriger et la garantir (voir le chapitre 5).
-- **Publique (partageable)** — l'état requis pour créer un lien de partage
-  employeur.
+- **Publique (partageable)** — lisible aussi par votre cartographe ; ce
+  réglage ne crée aucun lien : le partage avec un employeur se fait depuis
+  l'interface de cartographie (section 4).
 
 Ce réglage est **individuel** — un choix par cartographie, jamais global ni
 implicite — et **réversible** à tout moment. Changer la confidentialité ne
@@ -68,13 +70,13 @@ publie rien en soi : c'est un préalable, pas une diffusion.
 
 ## 3. Le stockage serveur en option
 
-Par défaut, une cartographie ne quitte pas votre navigateur. Pour la partager
-par lien, ou la retrouver depuis un autre appareil, il faut d'abord en déposer
-une **copie sur le serveur** — un choix explicite.
+Par défaut, une cartographie ne quitte pas votre navigateur. Pour la faire
+relire par votre cartographe, ou la retrouver depuis un autre appareil, il faut
+d'abord en déposer une **copie sur le serveur** — un choix explicite.
 
 Dans « Mes cartographies », le bouton **« Copier sur le serveur »** ouvre un
 encart qui rappelle l'engagement RGPD : seule *la cartographie* (jamais votre
-portfolio) est copiée, uniquement pour permettre le partage et l'accès
+portfolio) est copiée, uniquement pour permettre la relecture et l'accès
 multi-appareils, et vous pouvez la retirer à tout moment. Vous confirmez avec
 **« Je confirme la copie sur le serveur »**. La cartographie porte alors un
 badge **« copie serveur »**.
@@ -82,39 +84,50 @@ badge **« copie serveur »**.
 Quand une copie serveur est utile :
 
 - vous changez d'appareil et voulez retrouver vos cartographies ;
-- vous travaillez avec un cartographe distant ;
-- vous voulez partager la carte avec un employeur (le partage exige la copie
-  serveur).
+- vous travaillez avec un cartographe distant.
 
 Pour l'annuler : **« Retirer du serveur »**. La copie serveur est supprimée
-et **tous les liens de partage associés sont purgés** du même geste.
+et les liens créés avant le 14 octobre 2026 vers cette cartographie sont
+**purgés** du même geste.
 
 ## 4. Le partage avec un employeur
 
-Une fois une cartographie **copiée sur le serveur**, le bouton **« Partager »**
-ouvre le dialogue de partage. Le principe (cahier des charges §3.6, §6.4) : une
-décision explicite, individuelle, révocable.
+Le principe (cahier des charges §3.6, §6.4) : une décision explicite,
+individuelle, révocable. Depuis le 14 octobre 2026, on partage une **version
+partagée**, composée dans l'**interface de cartographie** (espace
+« Partage », avec un compte, réservé aux adultes) — on ne crée plus de lien
+vers une cartographie de « Mes cartographies ».
 
-Pour créer un lien :
+Pour partager une cartographie de votre espace :
 
-1. Choisissez un **mot de passe** pour le lien — **8 caractères minimum**.
-2. Fixez une **expiration** en jours (par défaut 90 ; entre 1 et 365).
-3. Cliquez **« Créer le lien de partage »**.
+1. Dans « Mes cartographies », cliquez **« Partager depuis l'interface »** :
+   la cartographie s'ouvre dans l'interface, à l'espace Partage, dans un
+   nouveau jeu qui porte son titre (elle ne quitte pas votre navigateur).
+2. Attestez avoir 18 ans ou plus (une fois), puis composez la version : son
+   titre, les compétences gardées, la précision des dates, les extraits que
+   vous choisissez — relus avant la publication.
+3. Publiez-la : c'est elle, et elle seule, qui part sur le serveur — jamais
+   votre portfolio.
+4. Créez un **lien** : expiration en jours (90 par défaut, de 1 à 365), et
+   un **mot de passe** si vous le souhaitez (8 caractères minimum). Le lien
+   complet n'est **affiché qu'une seule fois** : copiez-le aussitôt. Si vous
+   mettez un mot de passe, **transmettez-le par un autre canal que le lien**.
 
-Le lien complet (de la forme `…#/partage/<jeton>`) n'est **affiché qu'une seule
-fois**, à la création : copiez-le immédiatement (bouton « Copier le lien »). Le
-jeton est stocké *haché* côté serveur ; ni le serveur ni la liste des liens ne
-peuvent le réafficher ensuite. **Transmettez le mot de passe par un autre canal
-que le lien** (ne les envoyez pas dans le même message).
+Le lien ouvre la version **en lecture seule**. Vous voyez quand il a été
+consulté, vous pouvez le **révoquer** à tout moment, et publier une nouvelle
+version **à la place** de l'ancienne : le même lien montre alors la nouvelle.
+Le chapitre 7 détaille chaque étape.
 
-Le lien ouvre la cartographie **en lecture seule**, protégée par ce mot de
-passe. La section « Liens actifs » récapitule vos liens (date de création, date
-d'expiration) et permet de **« Révoquer »** l'un d'eux à tout moment : le lien
-cesse alors de fonctionner, immédiatement.
+Votre cartographe peut aussi **publier lui-même** une version, avec sa
+**garantie** : créez un code de demande dans l'espace Partage et
+remettez-le-lui. Il publie dans votre compte la version qu'il a vérifiée avec
+vous ; l'employeur lit « Relue et garantie par … ». C'est toujours vous qui
+décidez de la partager.
 
-Enfin, si votre cartographe a relu et validé la version partagée, celle-ci porte
-une **mention de garantie** : l'employeur voit qu'un humain répond de la carte,
-et pas seulement un moteur.
+Les liens que vous aviez créés **avant** le 14 octobre 2026 restent valables
+jusqu'à leur expiration : le bouton **« Liens déjà créés »** de « Mes
+cartographies » les liste (un lien échu y apparaît « expiré ») et permet de
+les **révoquer**.
 
 ## 5. Votre clé API personnelle
 

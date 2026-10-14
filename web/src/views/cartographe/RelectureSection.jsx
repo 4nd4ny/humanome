@@ -10,10 +10,18 @@
 // déroulante (codes + noms du référentiel). Le diagramme DayView garde sa
 // sélection interne pour la lecture des verdicts — le contrat P9 admet
 // « depuis le diagramme OU liste déroulante ».
+//
+// Ancien partage retiré (journal de la cartographie D-43) : la garantie
+// d'une révision n'est plus servie par un lien vers la cartographie. « Ouvrir
+// dans l'interface de cartographie » remet le document affiché (l'origine ou
+// la révision consultée) à l'interface, espace Partage : le cartographe y
+// publie, sur le code de demande de la personne, sa version partagée avec sa
+// garantie (D-42).
 
 import { useEffect, useMemo, useState } from 'react'
 import { validateDocument } from '@engine/validation.js'
 import { loadPublishedReferentiel } from '../../data/referentiel.js'
+import { interfaceFiles } from '../../lib/interface-handoff.js'
 import DayView from '../DayView.jsx'
 import MergeView from '../MergeView.jsx'
 import {
@@ -54,6 +62,8 @@ function frDateTime(iso) {
  *   lib?: object,                   // module sunburst (App / tests)
  *   fetchFn?: typeof fetch,         // seam de test
  *   getReferentiel?: typeof loadPublishedReferentiel, // seam de test
+ *   onOpenInInterface?: (files: Array<{path: string, text: string}>, opts: {title: string}) => void,
+ *                                   // App : interface de cartographie, espace Partage (D-43)
  * }} props
  */
 export default function RelectureSection({
@@ -62,6 +72,7 @@ export default function RelectureSection({
   lib,
   fetchFn,
   getReferentiel = loadPublishedReferentiel,
+  onOpenInInterface,
 }) {
   const [data, setData] = useState(null) // {cartographie, annotations, revisions, garantie}
   const [loadError, setLoadError] = useState(null)
@@ -87,6 +98,8 @@ export default function RelectureSection({
   const [garantieBusy, setGarantieBusy] = useState(false)
   const [garantieError, setGarantieError] = useState(null)
   const [historyError, setHistoryError] = useState(null)
+  const [handoffError, setHandoffError] = useState(null)
+  const [handoffBusy, setHandoffBusy] = useState(false)
 
   useEffect(() => {
     let alive = true
@@ -270,6 +283,27 @@ export default function RelectureSection({
   const garantieTargetId =
     viewing.kind === 'revision' ? viewing.id : (sortedRevisions[0]?.id ?? null)
 
+  // Le document affiché (origine ou révision consultée) part vers l'interface.
+  async function openInInterface() {
+    if (!displayedDocument) return
+    setHandoffError(null)
+    setHandoffBusy(true) // un seul envoi par clic
+    let files
+    try {
+      files = await interfaceFiles(
+        { type: cartographie.type, document: displayedDocument, updatedAt: cartographie.updatedAt },
+        { getReferentiel },
+      )
+    } catch {
+      setHandoffError('Cette cartographie ne peut pas s’ouvrir dans l’interface : aucune journée datée à y placer.')
+      return
+    } finally {
+      setHandoffBusy(false)
+    }
+    const title = viewing.kind === 'revision' ? `${cartographie.titre} — révision ${viewing.id}` : cartographie.titre
+    onOpenInInterface(files, { title })
+  }
+
   async function confirmGarantie() {
     setGarantieBusy(true)
     setGarantieError(null)
@@ -370,6 +404,25 @@ export default function RelectureSection({
               Revenir au document d’origine
             </button>
           </p>
+        ) : null}
+        {onOpenInInterface ? (
+          <div className="cartographe-relecture-handoff" data-testid="relecture-interface">
+            <p className="privacy-note">
+              Pour qu’un employeur voie votre garantie, ouvrez{' '}
+              {viewing.kind === 'revision' ? 'cette révision' : 'cette cartographie'} dans
+              l’interface de cartographie : sur le code de demande que la personne vous donne,
+              vous y publiez sa version partagée, avec votre garantie.
+            </p>
+            <button
+              type="button"
+              className="button"
+              onClick={openInInterface}
+              disabled={handoffBusy || !displayedDocument}
+            >
+              Ouvrir dans l’interface de cartographie
+            </button>
+            {handoffError ? <p role="alert">{handoffError}</p> : null}
+          </div>
         ) : null}
       </header>
 
@@ -630,8 +683,10 @@ export default function RelectureSection({
               Vous allez garantir cette cartographie <strong>en votre nom</strong> (
               {user?.displayName ?? user?.email ?? 'cartographe'}), avec signature horodatée.{' '}
               {garantieTargetId != null
-                ? `La révision ${garantieTargetId} sera figée : c'est elle que verra l'employeur via le lien de partage.`
-                : 'Le document d’origine sera présenté comme garanti via le lien de partage.'}
+                ? `La révision ${garantieTargetId} sera figée et signée.`
+                : 'Le document d’origine sera signé.'}{' '}
+              Pour qu’un employeur voie votre garantie, publiez la version partagée que la personne
+              vous demande (« Ouvrir dans l’interface de cartographie »).
             </p>
             <p>
               <button

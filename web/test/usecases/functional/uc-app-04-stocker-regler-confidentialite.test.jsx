@@ -166,7 +166,8 @@ describe('UC-APP-04 — copier une cartographie sur le serveur (opt-in) et régl
     expect(post.headers['X-CSRF-Token']).toBe(APPS_CSRF)
     expect(post.body).toMatchObject({ type: 'jour', titre: TITRE, visibility: 'privee', document: dayFixture })
     expect((await store.getCartography(id)).serverId).toBe(42)
-    expect(within(itemOf(TITRE)).getByRole('button', { name: 'Partager' })).toBeDefined()
+    // Ancien partage retiré (D-43) : la copie serveur ouvre la gestion des liens déjà créés.
+    expect(within(itemOf(TITRE)).getByRole('button', { name: 'Liens déjà créés' })).toBeDefined()
     expect(within(itemOf(TITRE)).getByRole('button', { name: 'Retirer du serveur' })).toBeDefined()
     expect(screen.queryByTestId('carto-optin')).toBeNull()
 

@@ -44,10 +44,11 @@ Cette carte sert trois usages, dans cet ordre d'importance.
   quelqu'un — n'apparaît sur aucun bulletin. La cartographie donne un nom, un
   code et des preuves à ces compétences que le monde scolaire classique laisse
   dans l'angle mort.
-- **Un document partageable, si vous le décidez.** Une cartographie que vous
-  avez choisi de rendre partageable, et qu'un cartographe a relue et garantie,
-  peut être transmise à un employeur par un lien protégé par mot de passe. Rien
-  n'est jamais partagé automatiquement (voir le chapitre 6).
+- **Un document partageable, si vous le décidez.** Une version de votre
+  cartographie que vous composez vous-même — ou que votre cartographe, qui l'a
+  relue avec vous, publie avec sa garantie — peut être transmise à un employeur
+  par un lien, avec ou sans mot de passe. Rien n'est jamais partagé
+  automatiquement (voir le chapitre 6).
 
 Vous pouvez voir à quoi ressemble une cartographie complète sans compte : la
 **démonstration sur données réelles** est accessible depuis l'accueil, dans la

@@ -31,8 +31,10 @@ jamais indexée par les moteurs de recherche et ne dépose aucun traceur. Un
 lien expiré ou révoqué affiche « Ce lien de partage n'existe pas, a expiré ou
 a été révoqué par son auteur. »
 
-Vous pouvez aussi recevoir le lien d'une cartographie relue sur le site,
-toujours protégé par un mot de passe : le chapitre 1 la décrit.
+Depuis le 14 octobre 2026, c'est la seule forme de partage que l'on peut
+vous envoyer. Un lien plus ancien vers une cartographie du site, toujours
+protégé par un mot de passe, reste valable jusqu'à son expiration : le
+chapitre 1 décrit ce qu'il montre.
 
 ## Ce que vous voyez
 

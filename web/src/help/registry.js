@@ -86,8 +86,8 @@ const BASE = {
       'lancez une cartographie, choisissez sa confidentialité, la partagez et exportez vos données.',
     points: [
       'Lancer une cartographie : choisissez la version de prompt, le fournisseur (votre clé ou le service humanome), voyez l’estimation de coût, suivez la progression.',
-      'Confidentialité par cartographie : privée, partagée avec votre cartographe, ou partageable par lien.',
-      'Partage employeur : un lien protégé par mot de passe, en lecture seule.',
+      'Confidentialité par cartographie : privée, partagée avec votre cartographe, ou publique.',
+      'Partage employeur : « Partager depuis l’interface » ouvre la cartographie dans l’interface de cartographie, où vous composez une version partagée (réservée aux adultes) ; votre cartographe peut aussi la publier avec sa garantie. Les liens créés avant restent révocables ici.',
       'RGPD : exportez toutes vos données en un fichier, ou supprimez votre compte (effacement réel).',
     ],
   },
@@ -109,7 +109,7 @@ const BASE = {
     points: [
       'Acceptez un apprenti via son code d’invitation, puis relisez sa file de cartographies.',
       'Annotez par compétence (commentaire, hallucination, oubli) et corrigez les verdicts (une révision validée).',
-      '« Valider et garantir » fige une révision : le lien de partage affiche « garantie par vous ».',
+      '« Valider et garantir » fige une révision ; pour qu’un employeur voie votre garantie, publiez la version partagée qu’une personne vous demande (code de demande, espace Partage de la cartographie).',
       'Comparez deux cartographies, lisez un rapport de consistance multi-run.',
     ],
   },
@@ -192,7 +192,7 @@ const BASE = {
   employeur: {
     titre: 'Employeur : lire un profil, et bientôt en chercher',
     intro:
-      'Aujourd’hui, un candidat vous partage sa cartographie (lien + mot de passe) : c’est le canal ' +
+      'Aujourd’hui, un candidat vous partage sa cartographie (un lien, avec ou sans mot de passe) : c’est le canal ' +
       'individuel, sur invitation. Une offre complémentaire est EN PRÉPARATION — un moteur de recherche ' +
       'de compétences sur les profils PUBLIÉS par les utilisateurs consentants, sur abonnement payant.',
     points: [
@@ -238,8 +238,9 @@ const BASE = {
   share: {
     titre: 'Cartographie partagée',
     intro:
-      'Une cartographie qu’un apprenant vous a partagée. Saisissez le mot de passe transmis pour la ' +
-      'consulter en lecture seule. La mention « garantie par » indique qu’un cartographe l’a validée.',
+      'Une cartographie qu’une personne vous a partagée, en lecture seule. Si le lien est protégé, ' +
+      'saisissez le mot de passe qu’elle vous a transmis. La mention « Relue et garantie par » indique ' +
+      'qu’un cartographe a vérifié et publié cette version.',
   },
 }
 

@@ -39,11 +39,8 @@ final class CartographiesPurgeTest extends AuthTestBase
         self::assertSame(201, $carto->getStatusCode());
         $cartoId = (int) self::json($carto)['id'];
 
-        $share = $this->request('POST', '/api/cartographies/' . $cartoId . '/share', [
-            'password' => 'sesame-employeur',
-        ], ['X-CSRF-Token' => $csrf]);
-        self::assertSame(201, $share->getStatusCode());
-        $token = (string) self::json($share)['token'];
+        // Un lien créé avant le retrait de l'ancien partage (D-43).
+        $token = self::legacyShareLink($cartoId, 'sesame-employeur', 90, $userId)['token'];
 
         self::assertSame(200, $this->request('PUT', '/api/training/progress', [
             'parcours' => 'apprenant', 'chapitre' => '01-bien-rediger', 'completed' => true,

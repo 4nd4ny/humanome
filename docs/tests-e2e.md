@@ -10,7 +10,10 @@ Un seul scénario séquentiel, `web/e2e/parcours-apprenant.e2e.js` — LE parcou
 cœur du MVP (plan-prompts P8, cahier §3.2/§3.6/§6), chaque étape étant un
 `test.step` nommé en français :
 
-1. Création de compte (email unique par run : rejouable sans nettoyage).
+1. Création de compte (email unique par run : rejouable sans nettoyage),
+   double saisie de l'email ; le code d'activation (D5) part par `mail()`,
+   absent en dev : le compte jetable est activé dans la base de
+   **développement** (`docker compose exec mysql`), puis connexion par l'UI.
 2. Création d'un portfolio : collage de la fixture
    `schemas/fixtures/portfolio-3-jours.md`, segmentation automatique vérifiée
    (3 journées datées 2026-01-05..07), sauvegarde locale (IndexedDB).
@@ -21,13 +24,19 @@ cœur du MVP (plan-prompts P8, cahier §3.2/§3.6/§6), chaque étape étant un
    (3 journées × (7 pôles + 1 synthèse kairos)).
 5. Les 4 cartographies (3 jours + 1 merge) apparaissent dans le tableau de
    bord ; ouverture de la visualisation (sunburst rendu).
-6. Opt-in explicite « copie serveur » (RGPD §6.2), puis partage : lien +
-   mot de passe (`partage-test-1`), expiration par défaut 90 jours.
+6. Opt-in explicite « copie serveur » (RGPD §6.2), puis partage — l'ancien
+   partage par lien est retiré (journal de la cartographie D-43) : plus de
+   bouton « Partager » ; « Partager depuis l'interface » ouvre le parcours
+   dans un nouveau jeu de l'interface, à l'espace Partage ; attestation de
+   majorité, composition, relecture, publication de la version partagée,
+   puis lien avec mot de passe (`partage-test-1`).
 7. Ouverture du lien dans un **contexte navigateur neuf** (équivalent
    navigation privée) : mauvais mot de passe refusé (403), bon mot de passe →
-   document rendu en lecture seule.
+   version partagée rendue en lecture seule (« Publiée par la personne
+   elle-même »).
 8. Export de l'archive : téléchargement réel, puis **validation au schéma**
-   `archive-export` par le moteur (`engine/src/validation.js`) dans le test.
+   `archive-export` par le moteur (`engine/src/validation.js`) dans le test ;
+   le jeu ouvert dans l'interface y figure.
 9. Suppression du compte (confirmation par email) : purge réelle.
 10. Après la purge, le lien de partage répond 404 (réponse homogène
     anti-énumération).
@@ -128,13 +137,22 @@ navigateur distincts** (l'apprenant et le cartographe sont deux personnes) :
    compétence corrigée est choisie dynamiquement (première « présence établie »
    du document réellement produit par le run mock, lue via l'API) : robuste aux
    variations du mock.
-3. **Apprenant** — crée un lien de partage employeur (lien + mot de passe).
-4. **Employeur** (contexte NEUF) — la page de partage affiche la mention
-   **« garantie par Cartographe E2E »** ET le **verdict corrigé** : sélection
-   au clavier du secteur de la compétence dans le sunburst, le panneau verdict
-   montre « renvoi au cartographe » et le motif sentinelle — qui n'existent que
-   dans la **révision garantie**. C'est la preuve que `POST /api/share/{token}`
-   sert le document de la révision figée (§8), pas le document d'origine.
+3. **Apprenant** — l'ancien partage est retiré (D-43) : « Liens déjà créés »
+   ne propose aucune création et `POST …/share` répond `422 share_retired` ;
+   « Partager depuis l'interface », attestation de majorité, **code de
+   demande** de version garantie (D-42).
+4. **Cartographe** — page rechargée après l'attribution du rôle (la session
+   de l'application est relue) ; relecture → « Voir » la révision garantie →
+   **« Ouvrir dans l'interface de cartographie »** (nouveau jeu « … —
+   révision N », espace Partage) → ouvre la demande → compose, coche « Je
+   garantis cette version », publie dans le compte de l'apprenant.
+5. **Apprenant** — la version porte « Garantie par Cartographe E2E… : publiée
+   à votre demande » ; il en crée le lien, avec mot de passe.
+6. **Employeur** (contexte NEUF) — la page affiche **« Relue et garantie par
+   Cartographe E2E »** ET la **correction** : la compétence dont le verdict
+   « présence établie » a été corrigé en « renvoi au cartographe » est « à
+   confirmer » — elle ne l'est pas dans le document d'origine. C'est la
+   preuve que la version publiée vient de la **révision garantie** (§8).
 
 ### `web/e2e/parcours-promptologue.e2e.js` (DoD P10)
 

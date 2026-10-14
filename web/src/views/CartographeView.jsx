@@ -52,8 +52,10 @@ function RoleExplanation() {
  * @param {object} [props.lib] lib sunburst (App / tests)
  * @param {object} [props.deps] coutures de test : {fetchMeFn, fetchFn,
  *   getReferentiel, trainingStore}
+ * @param {(files: Array<{path: string, text: string}>, opts: {title: string}) => void} [props.onOpenInInterface]
+ *   relecture : ouvre la cartographie relue dans l'interface, espace Partage (App, D-43)
  */
-export default function CartographeView({ section, lib, deps = {} }) {
+export default function CartographeView({ section, lib, deps = {}, onOpenInInterface }) {
   const fetchMeFn = deps.fetchMeFn ?? fetchMe
   const [session, setSession] = useState({ status: 'loading', user: null })
 
@@ -132,6 +134,7 @@ export default function CartographeView({ section, lib, deps = {} }) {
         lib={lib}
         fetchFn={deps.fetchFn}
         getReferentiel={deps.getReferentiel}
+        onOpenInInterface={onOpenInInterface}
       />
     )
   } else if (section === 'comparer') {

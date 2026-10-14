@@ -27,7 +27,9 @@ Site en ligne : **https://humanome.xyz** — démo publique sans compte :
 - **Espace apprenant** — portfolio local (le texte ne quitte jamais le
   navigateur par défaut), lancement de cartographie avec sa propre clé API ou le
   service de la plateforme, confidentialité par cartographie, partage à un
-  employeur par lien + mot de passe, export/suppression RGPD en un clic.
+  employeur d'une version choisie depuis l'interface de cartographie (lien,
+  mot de passe facultatif, réservé aux adultes), export/suppression RGPD en un
+  clic.
 - **Cartographe** — relecture, annotation, correction contrôlée par schéma, et
   garantie humaine horodatée (jamais de cartographie 100 % automatisée présentée
   comme validée).

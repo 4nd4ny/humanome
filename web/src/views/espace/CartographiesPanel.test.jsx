@@ -167,7 +167,7 @@ describe('CartographiesPanel — opt-in copie serveur (RGPD §6.2)', () => {
     expect(await screen.findByText('copie serveur')).toBeDefined()
     expect(fetchFn).toHaveBeenCalledTimes(1)
     expect((await store.getCartography(id)).serverId).toBe(42)
-    expect(screen.getByRole('button', { name: 'Partager' })).toBeDefined()
+    expect(screen.getByRole('button', { name: 'Liens déjà créés' })).toBeDefined()
   })
 
   it('401 (pas de session) -> message français, pas de serverId stocké', async () => {
@@ -258,66 +258,75 @@ describe('CartographiesPanel — confidentialité', () => {
   })
 })
 
-describe('CartographiesPanel — partage par lien + mot de passe (§3.6)', () => {
-  async function openDialog(store, fetchFn) {
-    render(<CartographiesPanel store={store} portfolioStore={makePortfolioStore()} fetchFn={fetchFn} />)
-    fireEvent.click(await screen.findByRole('button', { name: 'Partager' }))
-    return screen.findByRole('button', { name: 'Créer le lien de partage' })
+describe('CartographiesPanel — ancien partage retiré (D-43) : liens déjà créés, partage depuis l’interface', () => {
+  async function openDialog(store, fetchFn, props = {}) {
+    render(
+      <CartographiesPanel store={store} portfolioStore={makePortfolioStore()} fetchFn={fetchFn} {...props} />,
+    )
+    fireEvent.click(await screen.findByRole('button', { name: 'Liens déjà créés' }))
+    return screen.findByRole('region', { name: 'Liens de partage de Journée du 05/01/2026' })
   }
 
-  it('mot de passe < 8 : erreur client, aucun POST', async () => {
+  it('le dialogue ne crée plus de lien : ni mot de passe, ni bouton de création, aucun POST', async () => {
     const store = makeStore()
     await store.saveCartography({ ...baseEntry, serverId: 7 })
     const fetchFn = routedFetch({ 'GET api/cartographies/7/shares': jsonResponse(200, []) })
 
-    const submit = await openDialog(store, fetchFn)
-    expect(await screen.findByText('Aucun lien de partage pour cette cartographie.')).toBeDefined()
-
-    fireEvent.change(screen.getByLabelText('Mot de passe du lien (8 caractères min)'), {
-      target: { value: 'court' },
-    })
-    fireEvent.click(submit)
-
-    expect((await screen.findByRole('alert')).textContent).toContain('au moins 8 caractères')
+    const dialog = await openDialog(store, fetchFn)
+    expect(await within(dialog).findByText('Aucun lien de partage pour cette cartographie.')).toBeDefined()
+    expect(dialog.textContent).toContain('on n’en crée plus de nouveau')
+    expect(within(dialog).queryByLabelText(/Mot de passe/)).toBeNull()
+    expect(within(dialog).queryByRole('button', { name: /Créer/ })).toBeNull()
     expect(fetchFn).toHaveBeenCalledTimes(1) // seulement le GET des liens
   })
 
-  it('création : POST {password, expiresInDays} -> URL complète affichée une seule fois', async () => {
+  it('« Partager depuis l’interface » : la cartographie part vers l’interface (nom de fichier, JSON du document)', async () => {
     const store = makeStore()
-    await store.saveCartography({ ...baseEntry, serverId: 7 })
-    const token = 'f'.repeat(32)
-    let shares = []
-    const fetchFn = routedFetch({
-      'GET api/cartographies/7/shares': () => jsonResponse(200, shares),
-      'POST api/cartographies/7/share': (init) => {
-        expect(JSON.parse(init.body)).toEqual({ password: 'secret-employeur', expiresInDays: 30 })
-        shares = [
-          { shareId: 1, createdAt: '2026-07-12T10:00:00Z', expiresAt: '2026-08-11T10:00:00Z', revokedAt: null },
-        ]
-        return jsonResponse(201, { shareId: 1, token, url: `/#/partage/${token}` })
-      },
-    })
+    await store.saveCartography(baseEntry) // pas besoin de copie serveur
+    const onShareInInterface = vi.fn()
 
-    const submit = await openDialog(store, fetchFn)
-    fireEvent.change(screen.getByLabelText('Mot de passe du lien (8 caractères min)'), {
-      target: { value: 'secret-employeur' },
-    })
-    fireEvent.change(screen.getByLabelText('Expiration (jours)'), { target: { value: '30' } })
-    fireEvent.click(submit)
+    render(
+      <CartographiesPanel
+        store={store}
+        portfolioStore={makePortfolioStore()}
+        fetchFn={vi.fn()}
+        onShareInInterface={onShareInInterface}
+      />,
+    )
+    fireEvent.click(await screen.findByRole('button', { name: 'Partager depuis l’interface' }))
 
-    const url = await screen.findByTestId('share-url')
-    expect(url.textContent).toContain(`#/partage/${token}`)
-    expect(url.textContent).toMatch(/^https?:\/\//) // URL absolue prête à copier
-    // La liste des liens actifs est rafraîchie.
-    expect(await screen.findByText(/expire le/)).toBeDefined()
-    expect(screen.getByRole('button', { name: 'Révoquer' })).toBeDefined()
+    await waitFor(() => expect(onShareInInterface).toHaveBeenCalledTimes(1))
+    const [files] = onShareInInterface.mock.calls[0]
+    expect(files).toHaveLength(1)
+    expect(files[0].path).toBe(`cartographie-jour-${dayFixture.date}.json`)
+    expect(JSON.parse(files[0].text)).toEqual(dayFixture)
   })
 
-  it('révocation : DELETE api/shares/{shareId} puis liste rafraîchie', async () => {
+  it('sans câblage vers l’interface, le bouton n’apparaît pas (aucune impasse)', async () => {
+    const store = makeStore()
+    await store.saveCartography(baseEntry)
+    render(<CartographiesPanel store={store} portfolioStore={makePortfolioStore()} fetchFn={vi.fn()} />)
+    expect(await screen.findByRole('button', { name: 'Télécharger le JSON' })).toBeDefined()
+    expect(screen.queryByRole('button', { name: 'Partager depuis l’interface' })).toBeNull()
+  })
+
+  it('le dialogue des liens renvoie lui aussi vers l’interface', async () => {
+    const store = makeStore()
+    await store.saveCartography({ ...baseEntry, serverId: 7 })
+    const fetchFn = routedFetch({ 'GET api/cartographies/7/shares': jsonResponse(200, []) })
+    const onShareInInterface = vi.fn()
+
+    const dialog = await openDialog(store, fetchFn, { onShareInInterface })
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Partager depuis l’interface' }))
+    await waitFor(() => expect(onShareInInterface).toHaveBeenCalledTimes(1))
+    expect(JSON.parse(onShareInInterface.mock.calls[0][0][0].text)).toEqual(dayFixture)
+  })
+
+  it('révocation d’un lien déjà créé : DELETE api/shares/{shareId} puis liste rafraîchie', async () => {
     const store = makeStore()
     await store.saveCartography({ ...baseEntry, serverId: 7 })
     let shares = [
-      { shareId: 1, createdAt: '2026-07-01T10:00:00Z', expiresAt: '2026-09-29T10:00:00Z', revokedAt: null },
+      { shareId: 1, createdAt: '2026-07-01T10:00:00Z', expiresAt: '2099-09-29T10:00:00Z', revokedAt: null },
     ]
     const fetchFn = routedFetch({
       'GET api/cartographies/7/shares': () => jsonResponse(200, shares),
@@ -327,11 +336,16 @@ describe('CartographiesPanel — partage par lien + mot de passe (§3.6)', () =>
       },
     })
 
-    await openDialog(store, fetchFn)
-    fireEvent.click(await screen.findByRole('button', { name: 'Révoquer' }))
+    const dialog = await openDialog(store, fetchFn)
+    expect(await within(dialog).findByText(/expire le/)).toBeDefined()
+    // Le bouton qui l'ouvre la désigne (aria-controls).
+    const toggle = screen.getByRole('button', { name: 'Liens déjà créés' })
+    expect(toggle.getAttribute('aria-expanded')).toBe('true')
+    expect(toggle.getAttribute('aria-controls')).toBe(dialog.id)
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Révoquer' }))
 
-    expect(await screen.findByText(/révoqué le/)).toBeDefined()
-    expect(screen.queryByRole('button', { name: 'Révoquer' })).toBeNull()
+    expect(await within(dialog).findByText(/révoqué le/)).toBeDefined()
+    expect(within(dialog).queryByRole('button', { name: 'Révoquer' })).toBeNull()
   })
 })
 

@@ -13,8 +13,9 @@ l'apprenant, signalement d'hallucination ou d'oubli — sans rien modifier. La
 correction propose une modification du document de cartographie lui-même,
 contrôlée par le schéma de données et conservée dans un historique de
 révisions : rien ne s'écrase, tout se trace. La garantie, enfin, fige une
-version et y appose votre signature horodatée ; c'est elle que le lien de
-partage employeur affichera avec la mention « garantie par ». Ce chapitre
+version et y appose votre signature horodatée ; pour qu'un employeur la lise
+(« Relue et garantie par »), vous publiez ensuite, à la demande de la
+personne, sa version partagée (chapitre 7). Ce chapitre
 apprend à doser ces trois gestes : annoter souvent, corriger avec retenue,
 garantir en connaissance de cause.
 
@@ -136,15 +137,19 @@ point précis qui bloque.
 **Par où passer.** Section « Garantie », cliquez sur **Valider et garantir**.
 Un encadré de confirmation rappelle que vous garantissez *en votre nom*, avec
 signature horodatée, et précise quelle version sera figée (« La révision *N*
-sera figée : c'est elle que verra l'employeur via le lien de partage », ou le
-document d'origine s'il n'y a pas de révision). Cliquez sur **Confirmer et
-garantir** (ou **Annuler**).
+sera figée et signée », ou le document d'origine s'il n'y a pas de révision).
+Cliquez sur **Confirmer et garantir** (ou **Annuler**).
 
 Ce que vous attestez exactement : la **relecture**, pas la personne. La
-signature dit « un humain identifié a relu cette version à cette date », et
-c'est cette version-là — figée — que l'employeur consultera, avec la mention
-« Cartographie garantie par *votre nom* le *date* (révision *N* figée) ». Elle
-ne dit pas que l'apprenant « vaut » un score, ni que sa cartographie est
+signature dit « un humain identifié a relu cette version à cette date ».
+Depuis le 14 octobre 2026, l'employeur ne la lit plus par un lien vers cette
+cartographie : la personne vous remet un code de demande, vous ouvrez la
+version relue dans l'interface de cartographie (« Ouvrir dans l'interface de
+cartographie », en tête de la page de relecture) et y publiez sa version
+partagée, avec votre garantie — l'employeur lit « Relue et garantie par
+*votre nom*, le *date* » (chapitre 7). Les liens créés avant cette date
+montrent encore « Cartographie garantie par *votre nom* le *date* (révision
+*N* figée) » jusqu'à leur expiration. Elle ne dit pas que l'apprenant « vaut » un score, ni que sa cartographie est
 exhaustive (chapitre 1, §4).
 
 ## 6. Après la garantie

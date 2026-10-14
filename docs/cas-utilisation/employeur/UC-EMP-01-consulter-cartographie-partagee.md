@@ -1,5 +1,18 @@
 # UC-EMP-01 — Consulter une cartographie partagée
 
+> **Mise à jour du 2026-10-14 : ancien partage retiré** (décision de
+> Christian ; journal de la cartographie, D-43). On ne crée plus de lien vers
+> une cartographie du site (UC-APP-05) : ceux qui existent restent servis
+> jusqu'à leur expiration ou leur révocation, et cette fiche décrit leur
+> consultation (les tests créent ces liens comme le faisait l'ancienne route,
+> `AuthTestBase::legacyShareLink`). Les nouveaux liens ouvrent une **version
+> partagée** de l'interface de cartographie (même adresse `#/partage/<jeton>`,
+> suffixe `/ouvert` sans mot de passe) : vue `SharedView`, et la mention
+> « Relue et garantie par … » quand le cartographe de la personne l'a publiée
+> à sa demande (D-42) — tests `api/tests/CartoPartageTest.php`,
+> `api/tests/CartoGarantieTest.php`, `web/src/carto/ui/Garantie.test.jsx`,
+> `web/e2e/carto-partage.e2e.js`, et les deux parcours e2e.
+
 | Champ | Valeur |
 |---|---|
 | **Acteur principal** | Employeur potentiel (aucun compte requis) |
@@ -210,7 +223,8 @@ l'apprenant.
 - `api/tests/ShareTest.php` — création, hachage, expiration, révocation, quota, audit.
 - `api/tests/CartographeGarantieTest.php` — partage public d'une cartographie garantie.
 - `web/src/views/ShareView.test.jsx` — composant isolé.
-- `web/e2e/parcours-apprenant.e2e.js` — étapes 8, 9 et 12 du parcours (« Partage : lien + mot de passe, expiration par défaut (90 jours) », « Lien ouvert dans un contexte neuf : mauvais mot de passe refusé, bon mot de passe -> document », « Après la purge, le lien de partage répond 404 ») — navigateur réel.
+- `web/e2e/parcours-apprenant.e2e.js` — étapes « Partage depuis l’interface : attestation, version partagée publiée, lien + mot de passe », « Lien ouvert dans un contexte neuf : mauvais mot de passe refusé, bon mot de passe -> version partagée » et « Après la purge, le lien de partage répond 404 » — navigateur réel, lien d'une version partagée (D-43).
+- `web/e2e/parcours-cartographe.e2e.js` — l'employeur lit « Relue et garantie par Cartographe E2E » et la correction du cartographe (version publiée avec sa garantie, D-42/D-43).
 
 ### Exécuter
 
@@ -223,8 +237,12 @@ cd web && npx vitest run test/usecases --testNamePattern UC-EMP-01
 
 - **AN1 — Une analyse Twin9 partagée fait planter la page de l'employeur.**
   Le type `twin9` est admis au stockage (`POST /api/cartographies`, migration
-  021) et le bouton « Partager » est proposé pour toute copie serveur ; la
-  route publique renvoie le type tel quel (UC-EMP-01-F20). `ShareView` ne
+  021) et, jusqu'au retrait de l'ancien partage (2026-10-14, D-43), le bouton
+  « Partager » était proposé pour toute copie serveur ; la route publique
+  renvoie le type tel quel (UC-EMP-01-F20). Depuis, on ne crée plus de tel
+  lien : l'anomalie ne se reproduit plus que par un lien Twin9 créé avant,
+  jusqu'à son expiration (une analyse Twin9 se partage désormais par
+  l'interface, convertie par `twin9ToMergeDocument`). `ShareView` ne
   distingue que `merge` et passe tout autre type à `DayView` : le
   `carto_evolutive` natif (pas de tableau `poles`) fait lever une `TypeError`
   à `buildDayTree` pendant le rendu. Aucun composant de l'application

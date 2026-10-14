@@ -1144,6 +1144,10 @@ export function SharePanel({ refl, state, data, t, api, config, roles = ['appren
   const isCartographe = roles.includes('cartographe')
   const [adult, setAdult] = useState(() => ({ status: isLearner ? 'loading' : 'none' }))
   const [guarantee, setGuarantee] = useState(null)
+  // Après une publication garantie : le jeu ouvert est la copie, dans ce
+  // navigateur, de la cartographie d'une autre personne — on propose de
+  // l'effacer (journal D-43 ; chapitre 7 du parcours cartographe).
+  const [publishedFor, setPublishedFor] = useState(null) // {datasetId, title, name}
   const [busy, setBusy] = useState(false)
   const [gateError, setGateError] = useState(null)
   const [refresh, setRefresh] = useState(0)
@@ -1333,6 +1337,25 @@ export function SharePanel({ refl, state, data, t, api, config, roles = ['appren
         <p className="carto-small carto-muted">Réservé aux adultes. Rien ne quitte ce navigateur tant que vous ne publiez pas une version partagée.</p>
       </header>
       <Status value={notice} />
+      {isCartographe && !guarantee && publishedFor && data.dataset?.datasetId === publishedFor.datasetId ? (
+        <div className="carto-note carto-small" data-testid="erase-after-publication">
+          <p>
+            « {publishedFor.title} » est, dans ce navigateur, une copie de la cartographie de {publishedFor.name}. Sa version est publiée : effacez
+            ce jeu, sauf si vous en avez encore besoin pour votre relecture.
+          </p>
+          <TwoStepButton
+            label={`Effacer « ${publishedFor.title} » de ce navigateur`}
+            confirmLabel="Confirmer : effacer ce jeu"
+            className="carto-btn--small"
+            onConfirm={() => {
+              const id = publishedFor.datasetId
+              setPublishedFor(null)
+              setNotice(null)
+              data.deleteDataset?.(id)
+            }}
+          />
+        </div>
+      ) : null}
       {isCartographe ? (
         <GuaranteeDesk
           api={api}
@@ -1358,6 +1381,7 @@ export function SharePanel({ refl, state, data, t, api, config, roles = ['appren
           headingRef={composerHeading}
           onPublished={(_id, title, replaced) => {
             setGuarantee(null)
+            if (data.dataset) setPublishedFor({ datasetId: data.dataset.datasetId, title: data.dataset.title, name: forName })
             setNotice({
               kind: 'ok',
               text: replaced

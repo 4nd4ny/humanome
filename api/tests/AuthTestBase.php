@@ -120,6 +120,30 @@ abstract class AuthTestBase extends TestCase
     }
 
     /**
+     * Lien de partage d'une cartographie du site (jour, merge, twin9) CRÉÉ
+     * AVANT le retrait de l'ancien partage (journal de la cartographie D-43) :
+     * la route n'en crée plus, mais ceux qui existent restent servis jusqu'à
+     * leur expiration ou leur révocation. Écrit comme le faisait la route
+     * (empreintes, échéance) ; `$auditUserId` : avec son événement
+     * `share_created`, comme alors.
+     *
+     * @return array{shareId: int, token: string, url: string}
+     */
+    protected static function legacyShareLink(int $cartoId, string $password, int $expiresInDays = 90, ?int $auditUserId = null): array
+    {
+        ['shareId' => $shareId, 'token' => $token] = (new \Humanome\Share\ShareLinks(self::$pdo))->create($cartoId, $password, $expiresInDays);
+        if ($auditUserId !== null) {
+            \Humanome\Auth\Audit::record(self::$pdo, $auditUserId, 'share_created', [
+                'cartographieId' => $cartoId,
+                'shareId' => $shareId,
+                'expiresInDays' => $expiresInDays,
+            ]);
+        }
+
+        return ['shareId' => $shareId, 'token' => $token, 'url' => '/#/partage/' . $token];
+    }
+
+    /**
      * Inscription BRUTE (D5) : appelle uniquement /auth/register (compte NON
      * activé, pas de session). Renvoie la réponse « pending » (201) ou l'erreur.
      * La double saisie email est satisfaite par défaut (emailConfirm = email).
