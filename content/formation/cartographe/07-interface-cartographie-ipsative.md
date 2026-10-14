@@ -107,8 +107,35 @@ sur plusieurs runs, gardez l'outil dédié (chapitre 6).
 Si l'apprenant vous a remis son archive, ses réponses y sont : sous chaque
 observation, « Confirmée », « Nuancée » ou « Contestée », avec sa note s'il en
 a laissé une. Elles ne changent pas le soleil : ce sont des points
-d'entretien, pas des corrections. Corriger, proposer une révision et garantir
-restent les gestes de votre espace cartographe (chapitre 5).
+d'entretien, pas des corrections. Corriger et proposer une révision restent
+les gestes de votre espace cartographe (chapitre 5) ; garantir une version
+partagée se fait ici, à la demande de l'apprenant (ci-dessous).
+
+## Publier une version garantie, à la demande de l'apprenant
+
+Quand l'apprenant vous le demande, c'est vous qui publiez sa version
+partagée, et vous vous en portez garant. Il crée pour cela un **code de
+demande** dans son espace Partage et vous le remet (il sert une seule fois,
+pendant 30 jours).
+
+1. Ouvrez sa cartographie dans votre interface : le jeu de données que vous
+   avez relu avec lui.
+2. Espace **Partage**, « Publier pour une personne, avec votre garantie » :
+   saisissez le code. Vérifiez le nom de la personne et le jeu de données
+   ouvert.
+3. Composez la version comme il le ferait : compétences, précision des
+   dates, extraits. Ne gardez que ce que vous avez vérifié ; relisez noms et
+   confidences de tiers.
+4. Dans l'aperçu — exactement ce que verra le destinataire — figure votre
+   garantie. Cochez-la : vous attestez avoir vérifié ce que la personne a
+   fait, ce que l'analyse par IA a détecté et ce qu'en a vu le groupe classe
+   qui travaille avec elle sur un projet commun. Puis publiez.
+
+La version arrive dans son compte, privée et sans lien : c'est elle qui
+décide de la partager, et vous n'y avez plus accès. Votre nom et la date y
+figurent. Si elle la remplace un jour par une version qu'elle publie
+elle-même, votre garantie en est retirée : elle ne couvre que ce que vous
+avez publié. Supprimer votre compte la retire aussi.
 
 ## Méthode suggérée
 
@@ -121,4 +148,5 @@ restent les gestes de votre espace cartographe (chapitre 5).
    décision dans votre espace cartographe.
 
 Rien de ce que vous faites ici n'est visible par d'autres : ni l'apprenant, ni
-un employeur ne voient votre navigateur.
+un employeur ne voient votre navigateur — sauf la version que vous publiez, à
+sa demande, dans le compte de l'apprenant.

@@ -64,12 +64,16 @@ session ; un id étranger répond `404` exactement comme un id inexistant
 | `/api/cartographies/{id}` | GET | `apprenant`, propriétaire | Rôle + propriété ; document inclus |
 | `/api/cartographies/{id}` | PATCH | `apprenant`, propriétaire | Rôle + propriété + CSRF ; titre/visibilité uniquement (une version partagée est figée : ni titre, ni visibilité autre que `privee`) |
 | `/api/cartographies/{id}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; purge réelle (ligne + share_links par FK) |
-| `/api/cartographies/{id}/document` | PUT | `apprenant`, propriétaire | Version partagée seulement (422 sinon, 404 si absente ou d'un autre compte) : nouvelle version publiée **à la place** (même lien, ancien document effacé) ; rôle + propriété + CSRF, **403 `adult_required`** sans attestation (relue sous verrou, même transaction que la mise à jour), liste blanche `Share\SharedVersion` ; audit `shared_version_replaced` (ids seulement) |
+| `/api/cartographies/{id}/document` | PUT | `apprenant`, propriétaire | Version partagée seulement (422 sinon, 404 si absente ou d'un autre compte) : nouvelle version publiée **à la place** (même lien, ancien document effacé) ; rôle + propriété + CSRF, **403 `adult_required`** sans attestation (relue sous verrou, même transaction que la mise à jour), liste blanche `Share\SharedVersion` ; **retire la garantie** d'une version publiée par un cartographe (le document change d'une autre main, §8) ; audit `shared_version_replaced` (ids seulement, `garantieRemoved` le cas échéant) |
 | `/api/cartographies/{id}/share` | POST | `apprenant`, propriétaire | Rôle + propriété + CSRF ; jeton stocké haché (sha256), mdp en `password_hash` ; audit `share_created` (ids seulement). Version partagée : **403 `adult_required` sans attestation** (relue sous verrou, même transaction que l'insertion), mot de passe facultatif (URL `…/ouvert` sans mot de passe ; un mot de passe non textuel est refusé, 422) |
 | `/api/cartographies/{id}/shares` | GET | `apprenant`, propriétaire | Rôle + propriété ; jamais le jeton en clair |
 | `/api/shares/{shareId}` | DELETE | `apprenant`, propriétaire | Rôle + propriété + CSRF ; révocation (`revoked_at`) ; audit `share_revoked` |
 | `/api/shares/{shareId}/consultations` | GET | `apprenant`, propriétaire | Rôle + propriété (404 sinon) ; journal des accès : dates des consultations réussies (`share_consulted`), ni IP ni navigateur |
-| `/api/auth/me/adult` | GET / PUT | `apprenant` (le sien) | Rôle (+ CSRF sur PUT) ; auto-attestation de majorité (§12.1) ; `false` **efface** les versions partagées du compte et leurs liens, dans une transaction (`deletedVersions`) ; audit `adult_attested` / `adult_attestation_withdrawn` (compteur seulement) |
+| `/api/auth/me/adult` | GET / PUT | `apprenant` (le sien) | Rôle (+ CSRF sur PUT) ; auto-attestation de majorité (§12.1) ; `false` **efface** les versions partagées du compte, leurs liens et garanties, et ses demandes de publication garantie en attente, dans une transaction (`deletedVersions`) ; audit `adult_attested` / `adult_attestation_withdrawn` (compteur seulement) |
+| `/api/partage/versions` | GET | `apprenant` (les siennes) | Rôle ; ses versions partagées, sans document, avec leur garantie `{par, date}` ou `null` |
+| `/api/partage/demandes` | POST | `apprenant` | Rôle + CSRF ; **demande de publication garantie** (journal de la cartographie D-42) : case `adult: true` exigée (422) **et** attestation du compte relue sous verrou (403 `adult_required`) ; `replacesId` = une de SES versions partagées (422 sinon) ; 5 demandes en attente au plus (429) → 201 `{code, createdAt, expiresAt, replaces}` (code à usage unique, 10 caractères A-Z2-9, 30 jours) ; audit `publication_request_created` (ids seulement, jamais le code) |
+| `/api/partage/demandes` | GET | `apprenant` (les siennes) | Rôle ; ses demandes en attente (les expirées sont effacées) |
+| `/api/partage/demandes/{code}` | DELETE | `apprenant` (la sienne) | Rôle + CSRF ; annulation ; 404 si ce n'est pas une de ses demandes ; audit `publication_request_cancelled` |
 | `/api/share/open` | GET (sans mdp) | **Public** | Lien SANS mot de passe d'une version partagée (§12) : jeton dans l'en-tête `X-Share-Token`, **jamais dans l'URL** (pas de trace dans les journaux d'accès) ; même quota IP que le POST, 404 homogène, 401 `password_required` si le lien a un mot de passe ; `X-Robots-Tag: noindex, nofollow, noarchive` et `Cache-Control: no-store` sur toutes les réponses publiques de partage |
 | `/api/share/{token}` | POST (mdp) | **Public** (employeur, §3.6 — pas de compte) | Rate-limit IP (buckets hachés, /64 IPv6 via `ClientIp`) ; 404 homogène inconnu/expiré/révoqué (anti-énumération, vérif factice du mdp) ; 403 mauvais mdp ; depuis P9, `garantie` = état figé `{par, date, revisionId}` ou `null`, et le document servi est **celui de la révision garantie** quand `revisionId` est présent (§8). Si le navigateur porte une session, le SPA joint son jeton CSRF comme partout |
 | `/api/training/progress` | GET/PUT | Connecté (tout rôle), sa propre progression | Session (+ CSRF sur PUT) |
@@ -137,6 +141,8 @@ unique, homogènes en 404 (inconnu = expiré = déjà utilisé = auto-lien).
 | `/api/revisions/{revisionId}` | GET | Propriétaire **ou** `cartographe` lié | Document ; l'accès suit la cartographie parente |
 | `/api/cartographies/{id}/garantie` | POST | `cartographe` **lié uniquement** | + CSRF ; jamais le propriétaire (on ne garantit pas sa propre carto, §8 — 404), jamais automatique ; fige `{par, date, revisionId?}` ; 409 si déjà garantie par un **autre** cartographe (une signature humaine ne s'écrase pas en silence) ; re-pose par le même = remplacement ; audit `garantie_posee` |
 | `/api/cartographies/{id}/garantie` | DELETE | Le cartographe **signataire** | + CSRF ; toujours possible (c'est son nom) même si la visibilité a changé ; audit `garantie_retiree` |
+| `/api/cartographe/demandes/{code}` | GET | `cartographe` **porteur du code** | Rôle ; ouvre la demande qu'une personne lui a remise (journal de la cartographie D-42) : `{apprenant: {displayName}, garant: {displayName}, createdAt, expiresAt, replaces: {titre} \| null}` ; inconnu, mal formé, expiré, consommé ou **sa propre demande** (on ne garantit jamais sa propre cartographie) : même 404 ; 30 essais de code par heure et par cartographe (429) — le code est la seule clé, aucun lien `cartographe_links` n'est requis |
+| `/api/cartographe/demandes/{code}/publier` | POST | `cartographe` **porteur du code** | Rôle + CSRF + même quota ; `garant: true` exigé (422) ; document vérifié par la liste blanche de la version partagée (`Share\SharedVersion`) ; **attestation de majorité de l'apprenant** relue sous verrou de sa ligne `users` (403 `adult_required`, rien n'est écrit) ; publie **dans le compte de l'apprenant** une version partagée privée, sans lien (ou remplace celle que vise la demande : mêmes liens), y pose la garantie du cartographe (`cartography_garanties`, nom figé), consomme la demande — une transaction ; le cartographe ne reçoit pas l'identifiant de la version et n'y a plus accès ; audit `shared_version_guaranteed` (ids seulement) |
 
 Purge RGPD (migration 008) : suppression du compte **apprenant** → cascade
 cartographies → annotations/révisions/garanties + invitations + liens ;
@@ -234,7 +240,12 @@ Marketplace employeur (bibliothèque payante des cartographies consenties,
   des accès), `cartographies.php` (type `partage`) ; domaine
   `api/src/Share/SharedVersion.php` ; migration
   `scripts/migrations/022_carto_partage_adultes.sql` ; tests
-  `api/tests/CartoPartageTest.php`.
+  `api/tests/CartoPartageTest.php`. Version garantie (journal D-42) : une
+  version publiée par un cartographe, à la demande de l'apprenant, porte sa
+  garantie (`cartography_garanties`, posée à la publication, jamais par le
+  module de relecture) ; domaine `api/src/Share/PublicationRequests.php` ;
+  migration `scripts/migrations/023_carto_publication_garantie.sql` ; tests
+  `api/tests/CartoGarantieTest.php`.
 - P9 (M7) : routes `api/src/routes/{cartographe,annotations}.php` (+ garantie
   dans `share.php`) ; domaine `api/src/Cartographe/` (`Invitations`, `Links`,
   `Annotations`, `Revisions`, `Garanties`) ; migration

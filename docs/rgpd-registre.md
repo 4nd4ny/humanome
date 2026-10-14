@@ -86,6 +86,20 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Tables | `cartographies` (`type = 'partage'`, `visibility = 'privee'` imposée), `share_links` (`password_hash` NULL = lien sans mot de passe), `audit_events`. |
 | Sort à la suppression | Comme les cartographies : CASCADE (versions et liens). |
 
+### 3 bis A. Version garantie par un cartographe (journal de la cartographie, D-42)
+
+| Élément | Détail |
+|---|---|
+| Finalité | Qu'une version partagée puisse porter la **garantie** d'un cartographe : à la demande de l'apprenant, le cartographe qui a relu sa cartographie avec lui la publie dans son compte et atteste avoir vérifié ce que la personne a fait, ce que l'analyse par IA a détecté et ce qu'en a vu le groupe classe. |
+| Personnes concernées | Apprenants adultes (demandeurs) ; cartographes (garants) ; destinataires des liens (aucune donnée collectée sur eux). |
+| Données | Demande : un code à usage unique (10 caractères), la version éventuellement visée, des dates — aucun contenu. Garantie : nom affiché du cartographe **figé** à la publication, date (`cartography_garanties`). La version elle-même relève du §3 bis. |
+| Localisation | Serveur. La composition se fait dans le navigateur du cartographe, depuis le jeu de données qu'il a relu avec la personne ; rien d'autre n'est envoyé. |
+| Base légale | **a** pour l'apprenant (demande explicite, attestation de majorité de la demande) ; **a** pour le cartographe (sa garantie, case explicite à chaque publication : son nom figurera sur la version). |
+| Durée | Demande : jusqu'à sa publication (consommée), son annulation, son expiration (30 jours), la disparition de la version visée, le retrait de l'attestation de l'apprenant ou la suppression de son compte. Garantie : tant que la version reste celle que le cartographe a publiée — l'apprenant qui la remplace lui-même la lui retire — et que le compte du cartographe existe. |
+| Destinataires | Garantie : toute personne munie d'un lien vers la version (« Relue et garantie par … »). Le cartographe n'a plus accès à la version après publication, ni à ses liens. |
+| Tables | `carto_publication_requests` (migration 023), `cartography_garanties` (008), `audit_events` (`publication_request_created`, `publication_request_cancelled`, `shared_version_guaranteed` : ids seulement, jamais le code). |
+| Sort à la suppression | Compte de l'apprenant : demandes, versions et garanties CASCADE. Compte du cartographe : sa garantie CASCADE ; la version reste à l'apprenant, sans garantie. |
+
 ### 3 ter. Attestation de majorité
 
 | Élément | Détail |
@@ -93,7 +107,7 @@ exécution du service/contrat, **f** = intérêt légitime.
 | Finalité | Réserver la copie serveur et le partage par lien aux adultes (spécification §12 : « pas de contrôle d'âge, mais une auto-certification »). |
 | Données | Date de l'attestation (`users.adult_attested_at`), posée par la personne elle-même au moment de partager ; aucune date de naissance, aucun justificatif. |
 | Base légale | **b** (condition d'accès à la fonction). |
-| Durée | Jusqu'à son retrait (qui efface les versions partagées du compte et leurs liens) ou à la suppression du compte. |
+| Durée | Jusqu'à son retrait (qui efface les versions partagées du compte, leurs liens et leurs garanties, et ses demandes de publication garantie) ou à la suppression du compte. |
 | Sort à la suppression | Colonne de la ligne `users` : purgée avec le compte. |
 
 ## 4. Progression de formation

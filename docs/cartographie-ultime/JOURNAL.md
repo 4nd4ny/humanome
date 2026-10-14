@@ -40,6 +40,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
 | Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
 | Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés ; surlignage approché revalidé sur les journaux réels (D-39) | ✅ suite du site 2 255 verts | `b651f38` |
+| Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1228,6 +1229,79 @@ destinations où envoyer des données avec la clé d'un attaquant ; compromis
 accepté avec D-36, désormais consigné dans `docs/securite-checklist.md`
 (risque résiduel, défense en amont).
 
+### D-42 — Une version garantie : publiée par un cartographe, à la demande de l'apprenant **[décidé]**
+
+Christian (2026-10-14), en réponse à la question 17 (retirer l'ancien
+partage, alors le seul chemin par lequel un employeur voyait la garantie d'un
+cartographe) : la génération du JSON précède la publication ; le cartographe
+valide le résultat de l'évaluation par IA, modifie ce qui doit l'être et en
+discute avec l'apprenant ; l'apprenant partage ensuite librement, sans que le
+cartographe intervienne. Comme les fichiers JSON peuvent être artificiellement
+modifiés, **un cartographe publie la cartographie de l'apprenant, à sa
+demande** : « au niveau de l'interface, rien ne change. C'est juste que le
+cartographe qui publie se porte garant d'avoir vérifié ce que la personne qui
+est cartographiée a fait et de ce que l'IA a détectée (ainsi que le groupe
+classe qui travaille également avec l'apprenant sur un projet commun). »
+
+- **La demande** (« sous sa demande ») : dans son espace Partage, l'apprenant
+  adulte crée un **code de demande** à usage unique (10 caractères A-Z2-9,
+  30 jours, cinq en attente au plus) et le remet au cartographe de son choix
+  — le modèle des invitations de cartographe. Il coche l'attestation de
+  majorité pour cette demande (comme à chaque publication, D-31) ; il peut
+  viser une de ses versions, à remplacer sous le même lien (question 15). Il
+  voit ses demandes en attente et les annule en deux temps. **[choix
+  d'implémentation]** Le code seul autorise la publication : aucun lien
+  `cartographe_links` n'est exigé (l'interface n'a pas d'écran d'invitation,
+  anomalie connue d'UC-APP-07), et le code est déjà la décision explicite de
+  l'apprenant, pour un cartographe qu'il choisit.
+- **La publication** : le cartographe ouvre la cartographie de la personne
+  dans son interface (le jeu de données qu'il a relu avec elle), saisit le
+  code dans l'espace Partage (« Publier pour une personne, avec votre
+  garantie »), puis compose la version avec le **même compositeur** (choisir,
+  relire, aperçu verrouillé) — rien ne change dans l'interface. À l'aperçu, la
+  vue du destinataire montre déjà sa garantie ; à la place de la demande de
+  copie et de l'attestation de l'apprenant, une case : « Je garantis cette
+  version : j'atteste avoir vérifié ce que <nom> a fait, ce que l'analyse par
+  IA a détecté et ce qu'en a vu le groupe classe qui travaille avec <nom> sur
+  un projet commun. » La version arrive **dans le compte de l'apprenant**,
+  privée, sans lien ; le cartographe ne reçoit pas son identifiant, n'y a
+  plus accès, et rien n'est gardé dans son navigateur. Un compte peut être
+  apprenant et cartographe : ouvrir une demande remplace, le temps de la
+  publication, son propre compositeur.
+- **Le serveur** (`api/src/routes/partage.php`, `Share\PublicationRequests`,
+  migration 023) : rôle cartographe ; jamais la demande de son propre compte
+  (on ne garantit pas sa propre cartographie) ; liste blanche de la version
+  partagée (D-30) ; `garant: true` exigé ; l'attestation de **l'apprenant**
+  relue sous verrou de sa ligne `users` (même ordre de verrous que le retrait
+  de l'attestation) ; version créée (ou remplacée), garantie posée dans
+  `cartography_garanties` (nom du cartographe figé, date), demande consommée
+  — une seule transaction ; 30 essais de code par heure et par cartographe ;
+  audit `shared_version_guaranteed`, ids seulement, jamais le code.
+- **Ce qui est garanti est exactement ce qui a été vérifié** (cahier §8) :
+  l'apprenant qui remplace lui-même une version garantie lui retire sa
+  garantie (`PUT …/document`, audit `garantieRemoved`) — l'interface le dit
+  avant (« la garantie de … sera retirée ») ; un cartographe qui supprime son
+  compte retire sa garantie, la version reste à l'apprenant ; retirer
+  l'attestation efface versions, garanties et demandes.
+- **Ce que voit le destinataire** (`SharedView`) : « Relue et garantie par
+  <nom>, le <date>, qui atteste avoir vérifié ce que la personne a fait, ce
+  que l'analyse par IA a détecté et ce qu'en a vu le groupe classe qui
+  travaille avec elle sur un projet commun. » Une version publiée par la
+  personne elle-même le dit aussi : « Publiée par la personne elle-même :
+  aucun cartographe ne l'a garantie. » **[choix d'implémentation]** La
+  publication par l'apprenant lui-même reste possible (« rien ne change ») ;
+  le destinataire sait laquelle il lit.
+- **Côté apprenant** : chaque version de « Mes versions partagées » dit
+  « Garantie par <nom>, le <date> : publiée à votre demande » ou « Publiée par
+  vous, sans garantie de cartographe » ; l'aperçu et l'export JSON portent la
+  garantie.
+- Le module de relecture historique (annotations, révisions, garantie des
+  cartographies du site, chapitre 5 du parcours cartographe) est inchangé ;
+  sa garantie n'atteignait l'employeur que par l'ancien partage (question 17).
+- Docs : matrice des autorisations, registre RGPD (§3 bis A), politique de
+  confidentialité, chapitres de formation (apprenant 07, cartographe 07,
+  employeur 06).
+
 ---
 
 ## 3. État des tests
@@ -1495,6 +1569,16 @@ Validation du surlignage approché sur les journaux réels : D-39.
 | 9 | `core/formulas.test.js`, `core/state.test.js` | épaisseur affichée : confiance nulle ou inconnue → épaisseur minimale signalée ; le pôle d'une compétence élargie est marqué | renforcés |
 | 9 | `ui/CartoApp.test.jsx` | « Pourquoi cette surface ? » : la note dit « confiance inconnue » ou « confiance si faible » ; un pôle dit qu'une de ses compétences est élargie, un autre non | +2 |
 
+### Version garantie (Q17, D-42)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `api/tests/CartoGarantieTest.php` (nouveau) | **nominal** : code créé (forme, liste, audit sans code), ouvert par le cartographe (nom de la personne, son nom de garant), publication dans le compte de l'apprenant — privée, sans lien, garantie figée, demande consommée, audit d'ids ; le cartographe n'a ensuite ni lecture ni lien ; le destinataire lit la garantie ; un code ne sert qu'une fois — **refus** : sans attestation, sans la case de la demande, version d'un autre ou d'un autre type, rôle, CSRF, plus de cinq demandes ; rôle cartographe exigé, jamais sa propre demande, code inconnu, mal formé ou expiré ; garantie non confirmée, version hors liste blanche, CSRF, attestation de l'apprenant retirée entre-temps : rien n'est écrit — **à la place de** : même lien, garantie du cartographe ; remplacée par l'apprenant : garantie retirée (audit) ; demande effacée avec la version visée — annulation, retrait de l'attestation, départ du cartographe (sa garantie part, la version reste) et de l'apprenant ; quota de codes | 8 |
+| `api/tests/RgpdAuditTest.php`, `scripts/rgpd-audit.php` | `carto_publication_requests.apprenant_id` : CASCADE ; couverture d'export « — » | renforcés |
+| `ui/Garantie.test.jsx` (nouveau) | l'apprenant crée un code (attestation de la demande), l'annule en deux temps ; demande « pour remplacer » une version ; compte cartographe seul : l'espace Partage s'offre, sans attestation de sa part, code faux ou inconnu refusé ; **le cartographe ouvre la demande, compose avec le même compositeur, voit sa garantie dans l'aperçu, coche sa garantie et publie** (ni demande de copie ni attestation de l'apprenant, aucun brouillon gardé) ; compte apprenant et cartographe ; l'apprenant voit la garantie et est prévenu qu'il la retire en remplaçant lui-même la version ; le destinataire lit qui garantit et ce que couvre la garantie, ou « publiée par la personne elle-même » ; code recopié | 8 |
+| `ui/P6.test.jsx` | faux serveur partagé (`test/fake-share-api.js`) ; les onze scénarios inchangés | 11 |
+| `e2e/carto-partage.e2e.js` | **deux comptes réels contre l'API locale** : Lou crée un code ; Carl (cartographe) importe la cartographie de Lou, ouvre la demande, compose, voit sa garantie dans l'aperçu, publie ; en base : version privée de Lou, garantie de Carl, demande consommée, rien dans le compte de Carl ; Lou crée le lien ; l'employeur lit « Relue et garantie par Carl E2E, le …, qui atteste avoir vérifié … » | +1 |
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -1536,14 +1620,11 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 16. Hébergement affiché (D-33). → **Validé** pour le prototype (OVHcloud,
     UE) ; la version finale migrera probablement chez Infomaniak (Suisse).
 17. Deux entrées « partager ». → **Décidé** : retirer l'ancien partage
-    (`#/espace`). Suite : **précision demandée avant de le faire**. L'ancien
-    partage est aujourd'hui le seul chemin par lequel un employeur voit la
-    **garantie** d'un cartographe (UC-EMP-01) ; la version partagée de
-    l'interface ne la porte pas (elle est hors du module de relecture, D-33).
-    Le retirer, c'est donc aussi retirer la garantie de ce que voit
-    l'employeur. Deux voies : (1) retirer quand même ; (2) le garder, réservé
-    aux adultes (même attestation que D-31), jusqu'à ce que la version
-    partagée puisse porter la garantie.
+    (`#/espace`). Précision demandée ensuite : l'ancien partage était le seul
+    chemin par lequel un employeur voyait la **garantie** d'un cartographe.
+    → **Décidé** : un cartographe publie la cartographie de l'apprenant, à sa
+    demande, et s'en porte garant ; rien ne change dans l'interface. Suite :
+    fait (D-42) ; retrait de l'ancien partage : D-43.
 18. Version partagée dans l'API PHP/MySQL (D-30, écart au §12.2). →
     **Validé.**
 19. Vouvoiement du dialogue (D-35). → **Validé.**
@@ -1629,3 +1710,8 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   brouillons de partage effacés avec le jeu et avec le compte, notes de
   « Pourquoi cette surface ? » ; risque résiduel de la politique de sécurité
   consigné dans `docs/securite-checklist.md`.
+- **2026-10-14** — Question 17 précisée par Christian : la garantie passe par
+  la publication. Un cartographe publie la version de l'apprenant, à sa
+  demande (code à usage unique), dans le compte de celui-ci, et s'en porte
+  garant ; l'employeur le lit ; remplacer soi-même une version garantie lui
+  retire sa garantie (D-42, migration 023).

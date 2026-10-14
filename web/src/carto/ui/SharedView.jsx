@@ -10,7 +10,7 @@ import { layoutSun } from '../core/state.js'
 import { DEFAULT_PARAMS, ringGeometry } from '../core/formulas.js'
 import { calendarGrid } from '../core/heatmap.js'
 import { formatLong, monthName, todayIso } from '../core/dates.js'
-import { PRECISION_LABELS, formatSharedDate, sharedState } from '../core/share.js'
+import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
 import { Sun } from './Sun.jsx'
 import { heatColor, inkOn } from './colors.js'
 import './carto.css'
@@ -129,6 +129,9 @@ function SharedCalendar({ from, to, cells, label }) {
  * @param {{doc: object, garantie?: object | null, preview?: boolean}} props
  *   `preview` : aperçu verrouillé avant publication. Le titre affiché est
  *   celui de l'instantané (figé, relu avant publication).
+ *   `garantie` : {par, date} quand un cartographe a publié la version à la
+ *   demande de l'apprenant (journal D-42) ; sinon la vue dit qu'elle a été
+ *   publiée par la personne elle-même.
  */
 export function SharedView({ doc, garantie = null, preview = false }) {
   const read = useMemo(() => {
@@ -194,11 +197,18 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
           </div>
         </dl>
         {garantie ? (
-          <p className="carto-small" data-testid="share-garantie">
-            Relue et garantie par {garantie.par || 'son cartographe'}
-            {garantie.date ? ` le ${formatLong(String(garantie.date).slice(0, 10))}` : ''}.
+          <p className="carto-shared-garantie" data-testid="share-garantie">
+            <strong>
+              Relue et garantie par {garantie.par || 'son cartographe'}
+              {garantie.date ? `, le ${formatLong(String(garantie.date).slice(0, 10))}` : ''}
+            </strong>
+            , qui atteste avoir vérifié {garantieScope()}.
           </p>
-        ) : null}
+        ) : (
+          <p className="carto-small carto-muted" data-testid="share-sans-garantie">
+            Publiée par la personne elle-même : aucun cartographe ne l’a garantie.
+          </p>
+        )}
       </header>
 
       <div className="carto-shared-grid">

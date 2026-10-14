@@ -69,9 +69,20 @@ toujours protégé par un mot de passe : le chapitre 1 la décrit.
 - **Un classement** ou un score : le document ne compare la personne à
   personne.
 
-Une version partagée ne porte pas de mention de garantie : c'est la sélection
-de la personne, à partir des analyses de son portfolio, pas une cartographie
-relue par un cartographe (chapitre 3).
+## Une version garantie, ou publiée par la personne elle-même
+
+Sous l'en-tête, la version dit qui l'a publiée :
+
+- **« Relue et garantie par … , le … »** : à la demande de la personne, le
+  cartographe qui a relu sa cartographie avec elle a publié lui-même cette
+  version. Il atteste avoir vérifié ce que la personne a fait, ce que
+  l'analyse par IA a détecté et ce qu'en a vu le groupe classe qui travaille
+  avec elle sur un projet commun. Si la personne remplace ensuite la version
+  par une autre, la mention disparaît : elle ne couvre que ce que le
+  cartographe a publié.
+- **« Publiée par la personne elle-même : aucun cartographe ne l'a
+  garantie. »** : c'est sa sélection, à partir des analyses de son
+  portfolio, sans relecture humaine attestée.
 
 ## Une version figée, que son auteur peut remplacer ou retirer
 

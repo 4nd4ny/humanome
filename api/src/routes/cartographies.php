@@ -17,6 +17,7 @@ declare(strict_types=1);
 
 use Humanome\Auth\Audit;
 use Humanome\Auth\Users;
+use Humanome\Cartographe\Garanties;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\Db;
 use Humanome\Middleware\RequireRole;
@@ -270,7 +271,8 @@ return function (App $app): void {
     // partagée publiée À LA PLACE d'une autre (décision du 2026-10-14) : même
     // contrôle que la publication (attestation sous verrou, liste blanche),
     // les liens restent et montrent désormais ce document ; l'ancien est
-    // effacé. Réservé aux versions partagées (type « partage »).
+    // effacé. Réservé aux versions partagées (type « partage »). Une version
+    // garantie par un cartographe (D-42) perd sa garantie.
     // ------------------------------------------------------------------
     $app->put('/cartographies/{id:[0-9]+}/document', $wrap(function (Request $request, Response $response, array $args) use ($json, $repo, $maxDocumentBytes): Response {
         $data = (array) ($request->getParsedBody() ?? []);
@@ -314,7 +316,10 @@ return function (App $app): void {
 
                 return $json($response, ['error' => 'Cartographie introuvable'], 404);
             }
-            Audit::record($pdo, $userId, 'shared_version_replaced', ['cartographyId' => $id]);
+            // Une version publiée par un cartographe portait sa garantie : le
+            // document change d'une autre main, elle tombe (cahier §8, D-42).
+            $garantieRemoved = (new Garanties($pdo))->removeForCartography($id);
+            Audit::record($pdo, $userId, 'shared_version_replaced', ['cartographyId' => $id] + ($garantieRemoved ? ['garantieRemoved' => true] : []));
             $pdo->commit();
         } catch (\Throwable $e) {
             if ($pdo->inTransaction()) {

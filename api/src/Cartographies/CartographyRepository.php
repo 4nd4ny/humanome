@@ -97,6 +97,42 @@ final class CartographyRepository
     }
 
     /**
+     * Versions partagées du compte (interface ultime, §12), sans document,
+     * avec leur garantie quand un cartographe les a publiées à la demande de
+     * l'apprenant (journal D-42) : {par, date} ou null.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function listSharedVersionsForUser(int $userId): array
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT c.id, c.titre, c.created_at, c.updated_at,
+                    (SELECT COUNT(*) FROM share_links s
+                      WHERE s.cartographie_id = c.id
+                        AND s.revoked_at IS NULL
+                        AND (s.expires_at IS NULL OR s.expires_at > NOW())) AS shares,
+                    g.par AS garantie_par, g.created_at AS garantie_at
+               FROM cartographies c
+               LEFT JOIN cartography_garanties g ON g.cartographie_id = c.id
+              WHERE c.user_id = ? AND c.type = 'partage'
+              ORDER BY c.updated_at DESC, c.id DESC"
+        );
+        $stmt->execute([$userId]);
+
+        return array_map(static fn (array $row): array => [
+            'id' => (int) $row['id'],
+            'type' => 'partage',
+            'titre' => (string) $row['titre'],
+            'createdAt' => self::iso($row['created_at']),
+            'updatedAt' => self::iso($row['updated_at']),
+            'shares' => (int) $row['shares'],
+            'garantie' => $row['garantie_par'] === null
+                ? null
+                : ['par' => (string) $row['garantie_par'], 'date' => self::iso($row['garantie_at'])],
+        ], $stmt->fetchAll());
+    }
+
+    /**
      * Full cartography (document included) — owner only.
      *
      * @return array<string, mixed>|null

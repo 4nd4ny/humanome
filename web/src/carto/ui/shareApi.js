@@ -3,7 +3,7 @@
 // activé (serverEnabled) ET que la personne l'a demandé. Contrat :
 //   GET    api/auth/me/adult                    -> {adult, attestedAt, required}
 //   PUT    api/auth/me/adult {adult}            -> idem (false : efface les versions et leurs liens)
-//   GET    api/cartographies                    -> métadonnées (on garde type « partage »)
+//   GET    api/partage/versions                 -> [{id, titre, createdAt, updatedAt, shares, garantie: {par, date} | null}]
 //   POST   api/cartographies {type: 'partage', titre, visibility: 'privee', document} -> {id}
 //   GET    api/cartographies/{id}               -> {…, document}
 //   PUT    api/cartographies/{id}/document {document} -> métadonnées (nouvelle version À LA PLACE : même lien)
@@ -12,6 +12,12 @@
 //   GET    api/cartographies/{id}/shares        -> [{shareId, createdAt, expiresAt, revokedAt}]
 //   GET    api/shares/{shareId}/consultations   -> {shareId, withPassword, count, lastAt, items[{at}]}
 //   DELETE api/shares/{shareId}                 -> 204
+// Version garantie par un cartographe (décision du 2026-10-14, journal D-42) :
+//   POST   api/partage/demandes {adult: true, replacesId?} -> {code, createdAt, expiresAt, replaces: {id, titre} | null}
+//   GET    api/partage/demandes                 -> [{code, createdAt, expiresAt, replaces}] (en attente)
+//   DELETE api/partage/demandes/{code}          -> 204
+//   GET    api/cartographe/demandes/{code}      -> {code, apprenant: {displayName}, garant: {displayName}, createdAt, expiresAt, replaces: {titre} | null}
+//   POST   api/cartographe/demandes/{code}/publier {document, garant: true} -> {replaced, apprenant, garantie}
 
 import { apiFetch } from '../../api/client.js'
 
@@ -25,8 +31,8 @@ export function createShareApi(seams = {}) {
     getAdult: () => apiFetch('auth/me/adult', opts()),
     setAdult: (adult) => apiFetch('auth/me/adult', opts({ method: 'PUT', body: { adult } })),
     async listVersions() {
-      const list = await apiFetch('cartographies', opts())
-      return (Array.isArray(list) ? list : []).filter((c) => c?.type === 'partage')
+      const list = await apiFetch('partage/versions', opts())
+      return Array.isArray(list) ? list : []
     },
     publish: (document) =>
       apiFetch('cartographies', opts({ method: 'POST', body: { type: 'partage', titre: document.title, visibility: 'privee', document } })),
@@ -41,6 +47,15 @@ export function createShareApi(seams = {}) {
     },
     consultations: (shareId) => apiFetch(`shares/${id(shareId)}/consultations`, opts()),
     revokeLink: (shareId) => apiFetch(`shares/${id(shareId)}`, opts({ method: 'DELETE' })),
+    requestGuarantee: ({ replacesId = null } = {}) =>
+      apiFetch('partage/demandes', opts({ method: 'POST', body: replacesId == null ? { adult: true } : { adult: true, replacesId } })),
+    async listRequests() {
+      const list = await apiFetch('partage/demandes', opts())
+      return Array.isArray(list) ? list : []
+    },
+    cancelRequest: (code) => apiFetch(`partage/demandes/${id(code)}`, opts({ method: 'DELETE' })),
+    openRequest: (code) => apiFetch(`cartographe/demandes/${id(code)}`, opts()),
+    publishGuaranteed: (code, document) => apiFetch(`cartographe/demandes/${id(code)}/publier`, opts({ method: 'POST', body: { document, garant: true } })),
   }
 }
 

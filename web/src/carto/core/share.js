@@ -36,6 +36,19 @@ export const LINK_PASSWORD_MIN = 8
 export const DEFAULT_SHARE_PATTERNS = Object.freeze({ emails: true, urls: true, phones: true, addresses: true })
 
 /**
+ * Ce que couvre la garantie d'un cartographe qui publie une version à la
+ * demande de l'apprenant (décision de Christian du 2026-10-14, journal D-42) :
+ * il a vérifié ce que la personne a fait, ce que l'analyse par IA a détecté
+ * et ce qu'en a vu le groupe classe qui travaille avec elle. `who` : « la
+ * personne » pour le destinataire, le nom de l'apprenant pour le cartographe.
+ * @param {string} [who]
+ */
+export function garantieScope(who = 'la personne') {
+  const withWhom = who === 'la personne' ? 'elle' : who
+  return `ce que ${who} a fait, ce que l’analyse par IA a détecté et ce qu’en a vu le groupe classe qui travaille avec ${withWhom} sur un projet commun`
+}
+
+/**
  * Configuration du module (spec §12.2) : `serverEnabled` active la copie
  * serveur et le lien (faux par défaut : la phase 1 et la copie autonome n'en
  * ont pas besoin) ; `adultOnly` réserve la fonction aux comptes qui ont

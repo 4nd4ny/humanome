@@ -20,12 +20,18 @@
 // version à la place » reprend la composition d'une version (gardée dans ce
 // navigateur à chaque publication ; à défaut, son titre, ses dates et ses
 // compétences).
+//
+// Version GARANTIE (décision du 2026-10-14, journal D-42) : l'apprenant crée
+// un code de demande et le remet à son cartographe ; le cartographe ouvre la
+// demande ici, compose la version avec le même compositeur, depuis le jeu de
+// données qu'il a relu avec la personne, et la publie dans le compte de
+// celle-ci avec sa garantie. La personne décide seule de la partager.
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { ApiError } from '../../api/client.js'
 import { downloadBlob } from '../../lib/download-json.js'
 import { PATTERNS, makeReplacer, patternCounts } from '../core/anonymize.js'
-import { formatLong, formatShort } from '../core/dates.js'
+import { formatLong, formatShort, todayIso } from '../core/dates.js'
 import {
   DEFAULT_LINK_DAYS,
   DEFAULT_SHARE_PATTERNS,
@@ -37,6 +43,7 @@ import {
   buildSharedVersion,
   cleanExtractText,
   extractCandidates,
+  garantieScope,
   reviewPoints,
 } from '../core/share.js'
 import { verdictDetailOf } from './Observations.jsx'
@@ -74,7 +81,7 @@ async function exportVersions(api, versions) {
   for (const v of versions) {
     const doc = await api.getVersion(v.id)
     const links = await api.listLinks(v.id)
-    full.push({ ...doc, links: await Promise.all(links.map(async (l) => ({ ...l, consultations: await api.consultations(l.shareId).catch(() => null) }))) })
+    full.push({ ...doc, garantie: v.garantie ?? null, links: await Promise.all(links.map(async (l) => ({ ...l, consultations: await api.consultations(l.shareId).catch(() => null) }))) })
   }
   return new Blob([JSON.stringify({ kind: 'carto-partage-export', exportedAt: new Date().toISOString(), versions: full }, null, 2)], { type: 'application/json' })
 }
@@ -223,8 +230,16 @@ function ExtractPicker({ code, refl, state, data, chosen, onToggle, textOf }) {
   )
 }
 
-function Composer({ refl, state, data, t, api, onPublished, versions = [], target = 'new', onTarget, seed = null, headingRef }) {
+/**
+ * Compositeur d'une version partagée. `guarantee` (journal D-42) : la demande
+ * qu'un cartographe a ouverte — il compose alors la version de cette
+ * personne, depuis le jeu de données ouvert, et la publie dans son compte
+ * avec sa garantie ({code, apprenant: {displayName}, garant: {displayName},
+ * replaces: {titre} | null}).
+ */
+function Composer({ refl, state, data, t, api, onPublished, versions = [], target = 'new', onTarget, seed = null, headingRef, guarantee = null }) {
   const uid = useId()
+  const forName = guarantee?.apprenant?.displayName || 'cette personne'
   const [step, setStepState] = useState('choose')
   const [moved, setMoved] = useState(false)
   const setStep = (next) => {
@@ -243,6 +258,7 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
   const [reviewed, setReviewed] = useState(false)
   const [consent, setConsent] = useState(false)
   const [adultNow, setAdultNow] = useState(false)
+  const [garant, setGarant] = useState(false)
   const [openCode, setOpenCode] = useState(null)
   const [status, setStatus] = useState(null)
   const [busy, setBusy] = useState(false)
@@ -297,13 +313,14 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
   const points = useMemo(() => reviewPoints({ title, extracts: extractInput }, dictionary), [title, extractInput, dictionary])
   const counts = useMemo(() => patternCounts([title, ...extractInput.map((e) => e.text)]), [title, extractInput])
   // Toute modification de ce qui serait publié (titre, dates, compétences,
-  // extraits, masques, noms) annule la relecture, l'accord et l'attestation :
-  // on confirme toujours la version exacte qui part.
+  // extraits, masques, noms) annule la relecture, l'accord, l'attestation et
+  // la garantie : on confirme toujours la version exacte qui part.
   const contentKey = useMemo(() => (built ? JSON.stringify({ ...built, publishedAt: null }) : ''), [built])
   useEffect(() => {
     setReviewed(false)
     setConsent(false)
     setAdultNow(false)
+    setGarant(false)
   }, [contentKey])
 
   function toggleExtract(c, on) {
@@ -323,7 +340,7 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
     setReviewed(false)
   }
 
-  const replacing = target !== 'new' ? versions.find((v) => v.id === target) ?? null : null
+  const replacing = !guarantee && target !== 'new' ? versions.find((v) => v.id === target) ?? null : null
 
   async function publish() {
     if (!built) return
@@ -331,6 +348,14 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
     setStatus({ kind: 'busy', text: 'Publication…' })
     try {
       const doc = { ...built, publishedAt: new Date().toISOString() }
+      if (guarantee) {
+        // Dans le compte de la personne, avec la garantie : rien n'est gardé
+        // ici (la version n'est pas à vous, aucun brouillon).
+        const res = await api.publishGuaranteed(guarantee.code, doc)
+        setStatus(null)
+        onPublished(null, built.title, Boolean(res?.replaced), { guaranteed: true })
+        return
+      }
       let id
       if (replacing) {
         await api.replaceVersion(replacing.id, doc)
@@ -371,7 +396,7 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
   return (
     <section className="carto-share-composer" aria-labelledby={`${uid}-title`}>
       <h3 id={`${uid}-title`} className="carto-share-h" ref={headingRef} tabIndex={-1}>
-        Nouvelle version partagée
+        {guarantee ? `Version garantie pour ${forName}` : 'Nouvelle version partagée'}
       </h3>
       <ol className="carto-share-steps" aria-label="Étapes">
         {steps.map(([id, label], i) => (
@@ -384,9 +409,15 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
       {step === 'choose' ? (
         <div className="carto-share-step">
           <StepTitle id={`${uid}-choose`} focus={moved}>Choisir ce qui est partagé</StepTitle>
+          {guarantee ? (
+            <p className="carto-note carto-small">
+              Vous composez la version de {forName} depuis le jeu de données ouvert, « {data.dataset?.title ?? 'sans titre'} » : vérifiez que c’est bien la
+              cartographie que vous avez relue avec {forName}. Ne gardez que ce que vous avez vérifié.
+            </p>
+          ) : null}
           <p className="carto-small">
             La version part de l’état affiché : les journées cochées dans le gestionnaire{t ? `, jusqu’au ${formatLong(t)}` : ''}. Ce que vous ne cochez pas ici
-            n’est pas envoyé. Décocher retire l’élément de cette version partagée : rien n’est supprimé de votre cartographie.
+            n’est pas envoyé. Décocher retire l’élément de cette version partagée : rien n’est supprimé de {guarantee ? 'la' : 'votre'} cartographie.
           </p>
           <label className="carto-share-field">
             <span>Titre vu par le destinataire</span>
@@ -543,8 +574,31 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
         <div className="carto-share-step">
           <StepTitle id={`${uid}-preview`} focus={moved}>Aperçu : exactement ce que verra le destinataire</StepTitle>
           <div className="carto-share-preview" aria-label="Aperçu verrouillé de la version partagée">
-            <SharedView doc={built} preview />
+            <SharedView doc={built} preview garantie={guarantee ? { par: guarantee.garant?.displayName || 'vous', date: todayIso() } : null} />
           </div>
+          {guarantee ? (
+            <aside className="carto-note carto-share-rgpd" aria-label="Publication avec votre garantie">
+              <h4>Publication dans le compte de {forName}, avec votre garantie</h4>
+              <ul className="carto-small">
+                <li>
+                  La version arrive dans le compte de {forName}, privée et sans lien : c’est {forName} qui décide de la montrer (lien), et qui peut la
+                  retirer à tout moment. Vous n’y aurez plus accès ; ses partages ne vous sont pas signalés.
+                </li>
+                <li>
+                  {guarantee.replaces
+                    ? `Elle remplace « ${guarantee.replaces.titre} » : les liens déjà donnés montreront cette version.`
+                    : 'C’est une nouvelle version, distincte des autres.'}
+                </li>
+                <li>Votre nom et la date figurent sur la version, avec ce que couvre votre garantie (ci-dessus). Supprimer votre compte retire votre garantie.</li>
+                <li>Si {forName} remplace un jour cette version par une autre, votre garantie en est retirée : elle ne couvre que ce que vous publiez ici.</li>
+                <li>{HOSTING_TEXT}</li>
+              </ul>
+              <label className="carto-small carto-share-check">
+                <input type="checkbox" checked={garant} onChange={(e) => setGarant(e.target.checked)} /> Je garantis cette version : j’atteste avoir vérifié{' '}
+                {garantieScope(forName)}.
+              </label>
+            </aside>
+          ) : (
           <aside className="carto-note carto-share-rgpd" aria-label="Copie sur le serveur">
             <h4>Copie sur le serveur</h4>
             <ul className="carto-small">
@@ -563,13 +617,15 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
               publication.
             </label>
           </aside>
-          {versions.length > 0 ? (
+          )}
+          {!guarantee && versions.length > 0 ? (
             <fieldset className="carto-share-field">
               <legend>Publier</legend>
               {versions.map((v) => (
                 <label key={v.id} className="carto-small">
                   <input type="radio" name={`${uid}-target`} checked={target === v.id} onChange={() => onTarget?.(v.id)} /> à la place de « {v.titre} » (publiée le{' '}
                   {formatShort(String(v.createdAt).slice(0, 10))}) : même lien, vos destinataires verront cette nouvelle version et plus l’ancienne
+                  {v.garantie ? ` ; la garantie de ${v.garantie.par || 'votre cartographe'} sera retirée` : ''}
                 </label>
               ))}
               <label className="carto-small">
@@ -582,8 +638,12 @@ function Composer({ refl, state, data, t, api, onPublished, versions = [], targe
             <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setStep('review')}>
               Retour
             </button>
-            <button type="button" className="carto-btn" disabled={!consent || !adultNow || busy} onClick={publish}>
-              {replacing ? `Publier à la place de « ${replacing.titre} »` : 'Publier la version partagée'}
+            <button type="button" className="carto-btn" disabled={(guarantee ? !garant : !consent || !adultNow) || busy} onClick={publish}>
+              {guarantee
+                ? `Publier pour ${forName}, avec ma garantie`
+                : replacing
+                  ? `Publier à la place de « ${replacing.titre} »`
+                  : 'Publier la version partagée'}
             </button>
           </div>
           <Status value={status} />
@@ -766,7 +826,7 @@ function VersionItem({ version, api, autoOpen, onRemoved, onReplace }) {
       const full = await api.getVersion(version.id)
       const list = await api.listLinks(version.id)
       const withLogs = await Promise.all(list.map(async (l) => ({ ...l, consultations: await api.consultations(l.shareId).catch(() => null) })))
-      const blob = new Blob([JSON.stringify({ kind: 'carto-partage-export', exportedAt: new Date().toISOString(), version: { ...full, links: withLogs } }, null, 2)], { type: 'application/json' })
+      const blob = new Blob([JSON.stringify({ kind: 'carto-partage-export', exportedAt: new Date().toISOString(), version: { ...full, garantie: version.garantie ?? null, links: withLogs } }, null, 2)], { type: 'application/json' })
       downloadBlob(blob, `version-partagee-${version.id}.json`)
       setStatus({ kind: 'ok', text: 'Export JSON téléchargé.' })
     } catch (err) {
@@ -786,6 +846,14 @@ function VersionItem({ version, api, autoOpen, onRemoved, onReplace }) {
               : ''}
             . {active > 0 ? `Lien partagé : ${active} lien${active > 1 ? 's' : ''} actif${active > 1 ? 's' : ''}.` : 'Privée : aucun lien actif.'}
           </p>
+          {version.garantie ? (
+            <p className="carto-small carto-share-garantie">
+              Garantie par {version.garantie.par || 'votre cartographe'}
+              {version.garantie.date ? `, le ${formatShort(String(version.garantie.date).slice(0, 10))}` : ''} : publiée à votre demande.
+            </p>
+          ) : (
+            <p className="carto-small carto-muted">Publiée par vous, sans garantie de cartographe.</p>
+          )}
         </div>
         <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? 'Replier' : 'Liens et accès'}
@@ -840,12 +908,204 @@ function VersionItem({ version, api, autoOpen, onRemoved, onReplace }) {
           <Status value={status} />
           {preview ? (
             <div className="carto-share-preview">
-              <SharedView doc={preview} preview />
+              <SharedView doc={preview} preview garantie={version.garantie ?? null} />
             </div>
           ) : null}
         </div>
       ) : null}
     </li>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Version garantie (journal D-42)
+
+/** Code saisi : majuscules, sans espaces ni tirets (on le recopie souvent d'un papier). */
+export function normalizeRequestCode(raw) {
+  return String(raw ?? '')
+    .toUpperCase()
+    .replace(/[\s-]/g, '')
+}
+
+/** L'apprenant demande à un cartographe de publier pour lui une version garantie. */
+function GuaranteeRequests({ api, versions }) {
+  const uid = useId()
+  const [list, setList] = useState(null)
+  const [replacesId, setReplacesId] = useState('new')
+  const [adultNow, setAdultNow] = useState(false)
+  const [created, setCreated] = useState(null)
+  const [status, setStatus] = useState(null)
+  const [busy, setBusy] = useState(false)
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    let alive = true
+    api
+      .listRequests()
+      .then((l) => alive && setList(l))
+      .catch((err) => alive && setStatus({ kind: 'error', text: apiMessage(err) }))
+    return () => {
+      alive = false
+    }
+  }, [api, tick])
+  const target = replacesId !== 'new' && versions.some((v) => v.id === replacesId) ? replacesId : 'new'
+
+  async function create() {
+    setBusy(true)
+    setStatus(null)
+    try {
+      const made = await api.requestGuarantee({ replacesId: target === 'new' ? null : target })
+      setCreated(made)
+      setAdultNow(false)
+      setTick((n) => n + 1)
+    } catch (err) {
+      setStatus({ kind: 'error', text: apiMessage(err) })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="carto-share-requests" aria-labelledby={`${uid}-t`}>
+      <h3 id={`${uid}-t`} className="carto-share-h">
+        Faire publier une version par votre cartographe
+      </h3>
+      <p className="carto-small">
+        Le cartographe qui a relu votre cartographie avec vous peut publier lui-même votre version partagée. Il la garantit alors : il atteste avoir vérifié
+        ce que vous avez fait, ce que l’analyse par IA a détecté et ce qu’en a vu le groupe classe qui travaille avec vous sur un projet commun. Qui ouvre
+        votre lien le lit sur la version.
+      </p>
+      <p className="carto-small">
+        Créez un code de demande et remettez-le au cartographe de votre choix : il sert une seule fois, pendant 30 jours. La version arrivera dans « Mes
+        versions partagées », privée : c’est vous qui décidez de la partager.
+      </p>
+      {versions.length > 0 ? (
+        <fieldset className="carto-share-field">
+          <legend>Le cartographe publiera</legend>
+          <label className="carto-small">
+            <input type="radio" name={`${uid}-target`} checked={target === 'new'} onChange={() => setReplacesId('new')} /> une nouvelle version
+          </label>
+          {versions.map((v) => (
+            <label key={v.id} className="carto-small">
+              <input type="radio" name={`${uid}-target`} checked={target === v.id} onChange={() => setReplacesId(v.id)} /> une version pour remplacer « {v.titre} » :
+              même lien, vos destinataires verront la version garantie
+            </label>
+          ))}
+        </fieldset>
+      ) : null}
+      <label className="carto-small carto-share-check">
+        <input type="checkbox" checked={adultNow} onChange={(e) => setAdultNow(e.target.checked)} /> J’atteste avoir 18 ans ou plus au moment de cette
+        demande.
+      </label>
+      <div className="carto-share-actions">
+        <button type="button" className="carto-btn" disabled={!adultNow || busy} onClick={create}>
+          Créer un code de demande
+        </button>
+      </div>
+      {created ? (
+        <div className="carto-share-created" role="status">
+          <p className="carto-small">
+            <strong>Code de demande : </strong>
+            <code className="carto-share-code">{created.code}</code>. Remettez-le à votre cartographe ; il est valable jusqu’au{' '}
+            {formatShort(String(created.expiresAt).slice(0, 10))}
+            {created.replaces ? `, pour remplacer « ${created.replaces.titre} »` : ''}.
+          </p>
+        </div>
+      ) : null}
+      <Status value={status} />
+      {list && list.length > 0 ? (
+        <>
+          <h4>Demandes en attente</h4>
+          <ul className="carto-share-requests-list">
+            {list.map((r) => (
+              <li key={r.code} className="carto-small">
+                Code <code className="carto-share-code">{r.code}</code>, valable jusqu’au {formatShort(String(r.expiresAt).slice(0, 10))}
+                {r.replaces ? `, à la place de « ${r.replaces.titre} »` : ', nouvelle version'}.{' '}
+                <TwoStepButton
+                  label="Annuler la demande"
+                  confirmLabel="Confirmer l’annulation"
+                  className="carto-btn--small"
+                  onConfirm={async () => {
+                    try {
+                      await api.cancelRequest(r.code)
+                      if (created?.code === r.code) setCreated(null)
+                      setTick((n) => n + 1)
+                    } catch (err) {
+                      setStatus({ kind: 'error', text: apiMessage(err) })
+                    }
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+    </section>
+  )
+}
+
+/** Le cartographe ouvre la demande qu'une personne lui a remise. */
+function GuaranteeDesk({ api, request, onOpen, onClose, datasetTitle }) {
+  const uid = useId()
+  const [code, setCode] = useState('')
+  const [status, setStatus] = useState(null)
+  const [busy, setBusy] = useState(false)
+
+  async function open(e) {
+    e.preventDefault()
+    const clean = normalizeRequestCode(code)
+    if (!/^[A-Z2-9]{10}$/.test(clean)) {
+      setStatus({ kind: 'error', text: 'Un code de demande compte 10 caractères : lettres majuscules et chiffres de 2 à 9.' })
+      return
+    }
+    setBusy(true)
+    setStatus(null)
+    try {
+      onOpen(await api.openRequest(clean))
+      setCode('')
+    } catch (err) {
+      setStatus({
+        kind: 'error',
+        text: err instanceof ApiError && err.status === 404 ? 'Aucune demande en attente ne correspond à ce code (inconnu, expiré, déjà utilisé, ou le vôtre).' : apiMessage(err),
+      })
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <section className="carto-export-card carto-share-desk" aria-labelledby={`${uid}-t`}>
+      <h3 id={`${uid}-t`}>Publier pour une personne, avec votre garantie</h3>
+      {request ? (
+        <>
+          <p className="carto-small">
+            Demande de <strong>{request.apprenant?.displayName}</strong>, créée le {formatShort(String(request.createdAt).slice(0, 10))},
+            {request.replaces ? ` pour remplacer « ${request.replaces.titre} »` : ' pour une nouvelle version'} ; valable jusqu’au{' '}
+            {formatShort(String(request.expiresAt).slice(0, 10))}. Jeu de données ouvert : « {datasetTitle ?? 'sans titre'} ».
+          </p>
+          <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" onClick={onClose}>
+            Fermer cette demande sans publier
+          </button>
+        </>
+      ) : (
+        <>
+          <p className="carto-small">
+            Une personne que vous accompagnez vous a remis un code de demande. Ouvrez d’abord ici sa cartographie (le jeu de données que vous avez relu avec
+            elle), puis saisissez son code : vous composerez sa version partagée comme elle le ferait, et la publierez dans son compte avec votre garantie
+            — vous attestez avoir vérifié {garantieScope()}.
+          </p>
+          <form className="carto-share-inline" onSubmit={open}>
+            <label className="carto-small">
+              Code de demande{' '}
+              <input type="text" value={code} autoComplete="off" spellCheck={false} maxLength={14} onChange={(e) => setCode(e.target.value)} />
+            </label>
+            <button type="submit" className="carto-btn carto-btn--small" disabled={busy}>
+              Ouvrir la demande
+            </button>
+          </form>
+          <Status value={status} />
+        </>
+      )}
+    </section>
   )
 }
 
@@ -872,11 +1132,18 @@ function Versions({ api, state, justPublished, onChanged, onReplace }) {
 
 /**
  * @param {{dataset: object, refl: object, state: object, data: object, t: string | null,
- *   api: ReturnType<import('./shareApi.js').createShareApi>, config: {serverEnabled: boolean, adultOnly: boolean}}} props
+ *   api: ReturnType<import('./shareApi.js').createShareApi>, config: {serverEnabled: boolean, adultOnly: boolean},
+ *   roles?: string[]}} props
+ *   roles : un compte apprenant publie et partage ses versions ; un compte
+ *   cartographe publie, à la demande d'une personne, une version garantie
+ *   dans le compte de celle-ci (journal D-42) ; un compte peut être les deux.
  */
-export function SharePanel({ refl, state, data, t, api, config }) {
+export function SharePanel({ refl, state, data, t, api, config, roles = ['apprenant'] }) {
   const uid = useId()
-  const [adult, setAdult] = useState({ status: 'loading' })
+  const isLearner = roles.includes('apprenant')
+  const isCartographe = roles.includes('cartographe')
+  const [adult, setAdult] = useState(() => ({ status: isLearner ? 'loading' : 'none' }))
+  const [guarantee, setGuarantee] = useState(null)
   const [busy, setBusy] = useState(false)
   const [gateError, setGateError] = useState(null)
   const [refresh, setRefresh] = useState(0)
@@ -895,6 +1162,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
   const target = chosenTarget !== null && (chosenTarget === 'new' || versions.list.some((v) => v.id === chosenTarget)) ? chosenTarget : ownLatest
 
   useEffect(() => {
+    if (!isLearner) return undefined
     let alive = true
     api
       .getAdult()
@@ -909,7 +1177,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
     return () => {
       alive = false
     }
-  }, [api])
+  }, [api, isLearner])
 
   const adultReady = adult.status === 'ready' && (adult.adult || !attestationRequired(config, adult))
   useEffect(() => {
@@ -1023,6 +1291,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
             })
           }}
         />
+        <GuaranteeRequests api={api} versions={versions.list} />
         <Versions
           api={api}
           state={versions}
@@ -1056,6 +1325,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
       </>
     )
 
+  const forName = guarantee?.apprenant?.displayName || 'cette personne'
   return (
     <section className="carto-export carto-share" aria-labelledby={`${uid}-title`}>
       <header className="carto-export-head">
@@ -1063,7 +1333,42 @@ export function SharePanel({ refl, state, data, t, api, config }) {
         <p className="carto-small carto-muted">Réservé aux adultes. Rien ne quitte ce navigateur tant que vous ne publiez pas une version partagée.</p>
       </header>
       <Status value={notice} />
-      {body}
+      {isCartographe ? (
+        <GuaranteeDesk
+          api={api}
+          request={guarantee}
+          datasetTitle={data.dataset?.title}
+          onOpen={(request) => {
+            setNotice(null)
+            setGuarantee(request)
+            requestAnimationFrame(() => composerHeading.current?.focus())
+          }}
+          onClose={() => setGuarantee(null)}
+        />
+      ) : null}
+      {guarantee ? (
+        <Composer
+          key={guarantee.code}
+          refl={refl}
+          state={state}
+          data={data}
+          t={t}
+          api={api}
+          guarantee={guarantee}
+          headingRef={composerHeading}
+          onPublished={(_id, title, replaced) => {
+            setGuarantee(null)
+            setNotice({
+              kind: 'ok',
+              text: replaced
+                ? `« ${title} » remplace la version que ${forName} vous a demandé de reprendre, avec votre garantie : ses liens la montrent désormais.`
+                : `« ${title} » est publiée dans le compte de ${forName}, avec votre garantie. C’est à ${forName} de décider de la partager.`,
+            })
+          }}
+        />
+      ) : isLearner ? (
+        body
+      ) : null}
     </section>
   )
 }

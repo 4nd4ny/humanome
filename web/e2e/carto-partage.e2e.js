@@ -58,6 +58,40 @@ async function api(page, method, path, body) {
   )
 }
 
+/** Compte activé et connecté dans cette page (le code d'activation part par mail(), absent en dev). */
+async function signUp(page, { email, displayName, roles = [] }) {
+  await page.goto('/#/cartographie')
+  const created = await page.evaluate(
+    async ({ email, password, displayName }) => {
+      const res = await fetch('api/auth/register', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ email, emailConfirm: email, password, displayName }),
+      })
+      return res.status
+    },
+    { email, password: PASSWORD, displayName },
+  )
+  expect(created).toBe(201)
+  devSql(`UPDATE users SET email_verified_at = NOW() WHERE email = '${email}'`)
+  for (const role of roles) devSql(`INSERT IGNORE INTO user_roles (user_id, role_id) SELECT u.id, r.id FROM users u, roles r WHERE u.email = '${email}' AND r.name = '${role}'`)
+  const login = await page.evaluate(
+    async ({ email, password }) => {
+      const res = await fetch('api/auth/login', {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ email, password }),
+      })
+      window.dispatchEvent(new Event('humanome:auth'))
+      return res.status
+    },
+    { email, password: PASSWORD },
+  )
+  expect(login).toBe(200)
+}
+
 test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage, puis tout se referme', async ({ page, browser }) => {
   const email = `e2e-partage-${Date.now()}@humanome.test`
   const errors = []
@@ -213,5 +247,87 @@ test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage,
     devSql(`DELETE FROM users WHERE email = '${email}'`)
   })
 
+  expect(errors).toEqual([])
+})
+
+test('Version garantie : la personne demande, son cartographe publie dans son compte avec sa garantie, l’employeur la lit', async ({ page, browser }) => {
+  const stamp = Date.now()
+  const learnerEmail = `e2e-garantie-lou-${stamp}@humanome.test`
+  const cartographeEmail = `e2e-garantie-carl-${stamp}@humanome.test`
+  const errors = []
+  page.on('pageerror', (e) => errors.push(e.message))
+  const carlContext = await browser.newContext({ locale: 'fr-FR' })
+  const carl = await carlContext.newPage()
+  carl.on('pageerror', (e) => errors.push(e.message))
+
+  let code = ''
+  await test.step('Lou, adulte, crée un code de demande dans son espace Partage', async () => {
+    await signUp(page, { email: learnerEmail, displayName: 'Lou E2E' })
+    await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
+    await page.locator('.carto-col-center .carto-sun').waitFor()
+    await page.getByRole('link', { name: 'Partage', exact: true }).click()
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus/ }).check()
+    await page.getByRole('button', { name: 'Confirmer et continuer' }).click()
+    const section = page.locator('section').filter({ has: page.getByRole('heading', { name: 'Faire publier une version par votre cartographe' }) })
+    await section.getByRole('checkbox', { name: /au moment de cette demande/ }).check()
+    await section.getByRole('button', { name: 'Créer un code de demande' }).click()
+    code = (await section.locator('.carto-share-created code').innerText()).trim()
+    expect(code).toMatch(/^[A-Z2-9]{10}$/)
+    expect(devSql(`SELECT COUNT(*) FROM carto_publication_requests r JOIN users u ON u.id = r.apprenant_id WHERE u.email = '${learnerEmail}'`)).toBe('1')
+  })
+
+  await test.step('Carl, cartographe, ouvre la cartographie de Lou qu’il a relue avec elle, puis la demande', async () => {
+    await signUp(carl, { email: cartographeEmail, displayName: 'Carl E2E', roles: ['cartographe'] })
+    await carl.locator('input[type="file"][accept]').setInputFiles(louFiles())
+    await carl.locator('.carto-col-center .carto-sun').waitFor()
+    await carl.getByRole('link', { name: 'Partage', exact: true }).click()
+    await carl.getByLabel(/Code de demande/).fill(code.toLowerCase())
+    await carl.getByRole('button', { name: 'Ouvrir la demande' }).click()
+    await expect(carl.getByRole('heading', { name: 'Version garantie pour Lou E2E' })).toBeVisible()
+  })
+
+  await test.step('Il compose, relit, voit sa garantie dans l’aperçu, et publie dans le compte de Lou', async () => {
+    await carl.getByRole('textbox', { name: 'Titre vu par le destinataire' }).fill('Lou — relue avec Carl')
+    await carl.getByRole('button', { name: 'Suivant : relire' }).click()
+    await carl.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }).check()
+    await carl.getByRole('button', { name: 'Suivant : aperçu' }).click()
+    const preview = carl.getByLabel('Aperçu verrouillé de la version partagée')
+    await expect(preview.getByTestId('share-garantie')).toContainText('Relue et garantie par Carl E2E')
+    await expect(carl.getByRole('button', { name: 'Publier pour Lou E2E, avec ma garantie' })).toBeDisabled()
+    await carl.getByRole('checkbox', { name: /Je garantis cette version/ }).check()
+    await carl.getByRole('button', { name: 'Publier pour Lou E2E, avec ma garantie' }).click()
+    await expect(carl.getByText(/est publiée dans le compte de Lou E2E, avec votre garantie/)).toBeVisible()
+
+    // Dans le compte de Lou, privée, sans lien ; la demande est consommée.
+    expect(devSql(`SELECT CONCAT(c.visibility, '|', g.par) FROM cartographies c JOIN users u ON u.id = c.user_id JOIN cartography_garanties g ON g.cartographie_id = c.id WHERE u.email = '${learnerEmail}' AND c.type = 'partage'`)).toBe('privee|Carl E2E')
+    expect(devSql(`SELECT COUNT(*) FROM carto_publication_requests r JOIN users u ON u.id = r.apprenant_id WHERE u.email = '${learnerEmail}'`)).toBe('0')
+    expect(devSql(`SELECT COUNT(*) FROM cartographies c JOIN users u ON u.id = c.user_id WHERE u.email = '${cartographeEmail}'`)).toBe('0')
+  })
+
+  let url = ''
+  await test.step('Lou trouve la version garantie et crée seule le lien ; l’employeur lit la garantie', async () => {
+    await page.reload()
+    await page.getByRole('link', { name: 'Partage', exact: true }).click()
+    const item = page.locator('.carto-share-version').filter({ hasText: 'Lou — relue avec Carl' })
+    await expect(item.getByText(/Garantie par Carl E2E, le .* : publiée à votre demande\./)).toBeVisible()
+    await item.getByRole('button', { name: 'Liens et accès' }).click()
+    await item.getByRole('button', { name: 'Créer le lien' }).click()
+    url = await page.getByRole('textbox', { name: 'Lien de partage' }).inputValue()
+
+    const context = await browser.newContext({ locale: 'fr-FR' })
+    const visitor = await context.newPage()
+    await visitor.goto(url)
+    await expect(visitor.getByRole('heading', { level: 1, name: 'Lou — relue avec Carl' })).toBeVisible()
+    await expect(visitor.getByTestId('share-garantie')).toHaveText(
+      /^Relue et garantie par Carl E2E, le .+, qui atteste avoir vérifié ce que la personne a fait, ce que l’analyse par IA a détecté et ce qu’en a vu le groupe classe qui travaille avec elle sur un projet commun\.$/,
+    )
+    await context.close()
+  })
+
+  await test.step('Nettoyage : suppression des deux comptes de test (purge réelle)', async () => {
+    devSql(`DELETE FROM users WHERE email IN ('${learnerEmail}', '${cartographeEmail}')`)
+  })
+
+  await carlContext.close()
   expect(errors).toEqual([])
 })

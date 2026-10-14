@@ -135,7 +135,11 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
   extraits que vous choisissez, relus avant la publication. C'est la seule
   chose qui part sur le serveur, jamais votre portfolio. Le lien, avec ou sans
   mot de passe, se révoque à tout moment ; une nouvelle version peut remplacer
-  l'ancienne sous le même lien. Voir aussi
+  l'ancienne sous le même lien. Vous pouvez aussi la **faire publier par
+  votre cartographe** : créez un code de demande et remettez-le-lui ; il
+  publie dans votre compte la version qu'il a vérifiée avec vous, et s'en
+  porte garant — qui ouvre votre lien le lit. C'est toujours vous qui
+  décidez de la partager. Voir aussi
   [Confidentialité et partage](#/guides/apprenant/06-confidentialite-et-partage).
 
 ## Trois gestes à retenir

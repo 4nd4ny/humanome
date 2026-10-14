@@ -105,7 +105,8 @@ const go = (hash) => {
  *   slots?: Record<string, (ctx: object) => React.ReactNode>}} props
  *   slots : espaces fournis par les phases suivantes (comparaison, tableau de bord, export…)
  *   deps.share : module de partage (spec §12.2) — absent ou serverEnabled faux, l'espace
- *   n'existe pas ; session.roles : il n'est offert qu'à un compte apprenant connecté.
+ *   n'existe pas ; session.roles : il n'est offert qu'à un compte connecté, apprenant (ses
+ *   versions) ou cartographe (une version garantie publiée à la demande d'une personne, D-42).
  *   deps.llm : relances facultatives du dialogue (P7) par un modèle de langage — absent,
  *   le dialogue reste entièrement scripté et local (copie autonome).
  */
@@ -126,7 +127,10 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
       .finally(() => onIncomingHandled?.(incoming.id))
   }, [viewer, incoming, data, onIncomingHandled])
   const shareConfig = useMemo(() => normalizeShareConfig(deps.share), [deps.share])
-  const canShare = !viewer && shareConfig.serverEnabled && (session?.roles ?? []).includes('apprenant')
+  // Un compte apprenant publie et partage ses versions ; un compte cartographe
+  // publie, à la demande d'une personne, une version garantie (journal D-42).
+  const roles = session?.roles ?? []
+  const canShare = !viewer && shareConfig.serverEnabled && (roles.includes('apprenant') || roles.includes('cartographe'))
   const shareApi = useMemo(() => deps.shareApi ?? createShareApi(deps.fetchFn ? { fetchFn: deps.fetchFn } : {}), [deps.shareApi, deps.fetchFn])
   const [ui, dispatch] = useReducer(reducer, initialUi)
   const rootRef = useRef(null)
@@ -491,14 +495,14 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         />
       ) : space === 'partage' && !slots.partage ? (
         canShare ? (
-          <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} />
+          <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} roles={roles} />
         ) : (
           <p className="carto-muted carto-pad">
             {viewer
               ? 'Le partage n’est pas disponible dans une copie autonome.'
               : !shareConfig.serverEnabled
                 ? 'Le partage par lien n’est pas activé sur ce site : votre cartographie reste dans ce navigateur.'
-                : 'Le partage par lien est réservé aux comptes apprenants connectés, et aux adultes. Tout le reste fonctionne sans compte, dans ce navigateur.'}
+                : 'Le partage par lien est réservé aux comptes apprenants connectés, et aux adultes ; un cartographe y publie la version garantie qu’une personne lui a demandée. Tout le reste fonctionne sans compte, dans ce navigateur.'}
             {!viewer && shareConfig.serverEnabled ? (
               <>
                 {' '}

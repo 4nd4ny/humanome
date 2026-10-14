@@ -13,6 +13,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { fakeShareApi } from '../test/fake-share-api.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
@@ -28,61 +29,8 @@ async function louStore() {
   return store
 }
 
-/** Faux serveur de partage : même contrat que shareApi.js, en mémoire. */
-function fakeApi({ adult = false, required = true } = {}) {
-  let attestation = { adult, attestedAt: adult ? '2026-10-01T09:00:00' : null, required }
-  const versions = []
-  const links = []
-  let nextId = 10
-  const api = {
-    getAdult: vi.fn(async () => attestation),
-    setAdult: vi.fn(async (on) => {
-      attestation = { adult: on, attestedAt: on ? '2026-10-14T09:00:00' : null, required }
-      if (on) return attestation
-      // Retrait : le serveur efface les versions partagées et leurs liens.
-      const deletedVersions = versions.length
-      versions.splice(0)
-      links.splice(0)
-      return { ...attestation, deletedVersions }
-    }),
-    listVersions: vi.fn(async () => versions.map(({ document, ...meta }) => ({ ...meta, shares: links.filter((l) => l.cartoId === meta.id && !l.revokedAt).length }))),
-    publish: vi.fn(async (document) => {
-      const id = nextId++
-      versions.push({ id, type: 'partage', titre: document.title, visibility: 'privee', createdAt: '2026-10-14T10:00:00', updatedAt: '2026-10-14T10:00:00', hasDocument: true, document })
-      return { id }
-    }),
-    replaceVersion: vi.fn(async (id, document) => {
-      const v = versions.find((x) => x.id === id)
-      Object.assign(v, { titre: document.title, document, updatedAt: '2026-10-15T09:00:00' })
-      const { document: _d, ...meta } = v
-      return meta
-    }),
-    getVersion: vi.fn(async (id) => ({ ...versions.find((v) => v.id === id) })),
-    deleteVersion: vi.fn(async (id) => {
-      versions.splice(versions.findIndex((v) => v.id === id), 1)
-      return null
-    }),
-    createLink: vi.fn(async (cartoId, { password }) => {
-      const shareId = 100 + links.length
-      const token = String(shareId).padStart(32, 'f')
-      links.push({ shareId, cartoId, createdAt: '2026-10-14T10:05:00', expiresAt: '2027-01-12T10:05:00', revokedAt: null, password: Boolean(password) })
-      return { shareId, token, url: `/#/partage/${token}${password ? '' : '/ouvert'}` }
-    }),
-    listLinks: vi.fn(async (cartoId) => links.filter((l) => l.cartoId === cartoId).map(({ shareId, createdAt, expiresAt, revokedAt }) => ({ shareId, createdAt, expiresAt, revokedAt }))),
-    consultations: vi.fn(async (shareId) => ({
-      shareId,
-      withPassword: links.find((l) => l.shareId === shareId)?.password ?? false,
-      count: 2,
-      lastAt: '2026-10-14T11:20:00',
-      items: [{ at: '2026-10-14T11:20:00' }, { at: '2026-10-14T10:40:00' }],
-    })),
-    revokeLink: vi.fn(async (shareId) => {
-      links.find((l) => l.shareId === shareId).revokedAt = '2026-10-14T12:00:00'
-      return null
-    }),
-  }
-  return { api, versions, links }
-}
+/** Faux serveur de partage : même contrat que shareApi.js, en mémoire (src/carto/test/fake-share-api.js). */
+const fakeApi = (opts) => fakeShareApi(opts)
 
 function Harness({ store, roles = ['apprenant'], share = { serverEnabled: true, adultOnly: true }, api, mode }) {
   const [route, setRoute] = useState(() => parseHash(window.location.hash))

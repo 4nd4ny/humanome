@@ -3275,6 +3275,15 @@ label.carto-share-field span {
   margin: 0;
   color: var(--ink-soft);
 }
+/* Garantie d'un cartographe (D-42) : la couleur de la famille « Encadrer et garantir ». */
+.carto-shared-garantie {
+  margin: 0.6rem 0 0;
+  padding: 0.45rem 0.7rem;
+  max-width: 70ch;
+  font-size: 0.9rem;
+  background: var(--surface-2);
+  border-left: 3px solid var(--fam-encadrer);
+}
 .carto-shared-facts {
   display: flex;
   flex-wrap: wrap;
