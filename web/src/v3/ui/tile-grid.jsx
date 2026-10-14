@@ -71,6 +71,15 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onH
   // redimensionner ; la taille finale n'est persistée qu'au relâchement.
   const [resizing, setResizing] = useState(null) // {id, w, h}
   const resizingRef = useRef(null)
+  // Déplacer une tuile au clavier (◀ ▶) réinsère son nœud : le focus revient
+  // sur le même bouton de la tuile déplacée (sinon il tombe sur la page).
+  const refocus = useRef(null)
+  useEffect(() => {
+    const r = refocus.current
+    if (!r) return
+    refocus.current = null
+    ref.current?.querySelector(`[data-tile-id="${r.id}"] [data-move="${r.delta}"]`)?.focus()
+  }, [layout])
 
   useEffect(() => {
     const el = ref.current
@@ -166,6 +175,7 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onH
     if (j < 0 || j >= fullOrder.length) return
     const next = [...fullOrder]
     ;[next[i], next[j]] = [next[j], next[i]]
+    refocus.current = { id, delta }
     onLayoutChange({ order: next, sizes: layout?.sizes ?? {} })
   }
 
@@ -186,6 +196,7 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onH
           <div
             key={tile.id}
             role="listitem"
+            data-tile-id={tile.id}
             className={`v3-tile${resizing?.id === tile.id ? ' v3-tile-resizing' : ''}`}
             style={{ gridColumn: `span ${w}`, gridRow: `span ${h}` }}
             onDragOver={(e) => {
@@ -217,8 +228,8 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onH
                 ⠿
               </span>
               <strong className="v3-tile-label">{tile.label}</strong>
-              <button type="button" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
-              <button type="button" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
+              <button type="button" data-move="-1" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
+              <button type="button" data-move="1" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
               <label className="v3-tile-size">
                 <span className="v3-visually-hidden">Taille de {tile.label}</span>
                 <select value={sizeId ?? 'libre'} onChange={(e) => setSize(tile.id, e.target.value)}>

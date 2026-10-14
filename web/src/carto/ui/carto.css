@@ -366,8 +366,15 @@ kbd {
   height: 100%;
   max-width: none;
 }
-.carto-tile--detail .carto-detail {
-  padding: 0;
+/* Équivalent textuel du soleil quand sa tuile est masquée : lu par les
+   lecteurs d'écran, imprimé, invisible à l'écran (D-53). */
+.carto-sr-table {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 /* Rapport d'import hors de la tuile Importer (après un import, D-53). */
 .carto-report-banner {
@@ -2378,6 +2385,19 @@ kbd {
   }
   .carto-tiles .v3-tile-content {
     overflow: visible;
+  }
+  .carto-tile--sun .carto-sun svg {
+    max-width: 560px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .carto-sr-table {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
   }
 }
 

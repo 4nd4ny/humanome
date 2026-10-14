@@ -35,6 +35,7 @@ describe('afficher, masquer, ranger', () => {
     expect(l.order.slice(0, 4)).toEqual(['sun', 'detail', 'tags', 'days'])
     l = setTileShown(l, 'tags', false)
     expect(l.shown).toEqual(['sun', 'detail', 'days'])
+    expect(l.order.slice(0, 4)).toEqual(['sun', 'detail', 'tags', 'days']) // masquée, elle garde sa place
     expect(setTileShown(l, 'days', true)).toBe(l) // déjà affichée : rien ne change
     expect(setTileShown(l, 'inconnue', true)).toBe(l)
   })

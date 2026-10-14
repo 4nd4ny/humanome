@@ -13,6 +13,7 @@ import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 import { TILES_KEY } from './tiles.js'
+import { browserFile } from '../../../test/usecases/support/vis.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
@@ -55,9 +56,10 @@ describe('vue de départ (D-53)', () => {
   it('le soleil et, dessous, le détail, en pleine largeur ; rien d’autre', async () => {
     render(<Harness store={await louStore()} />)
     await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
-    for (const id of ['sun', 'detail']) expect(tile(id).closest('.v3-tile').style.gridColumn).toMatch(/^span \d+$/)
-    const spans = ['sun', 'detail'].map((id) => tile(id).closest('.v3-tile').style.gridColumn)
-    expect(spans[0]).toBe(spans[1]) // même largeur : toute la grille
+    // Toute la largeur : autant de colonnes que la grille en compte.
+    const columns = Number(/\((\d+) colonnes?\)/.exec(document.querySelector('.v3-tile-grid').getAttribute('aria-label'))[1])
+    expect(columns).toBeGreaterThan(1)
+    for (const id of ['sun', 'detail']) expect(tile(id).closest('.v3-tile').style.gridColumn).toBe(`span ${columns}`)
     expect(screen.queryByRole('navigation', { name: 'Compétences observées' })).toBeNull()
     expect(screen.queryByRole('toolbar', { name: 'Tête de lecture' })).toBeNull()
     expect(within(menu()).getByText('2/12')).toBeTruthy()
@@ -122,6 +124,8 @@ describe('la disposition est gardée dans ce navigateur', () => {
     await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail', 'competencies']))
     fireEvent.click(screen.getByRole('button', { name: 'Reculer Soleil' }))
     await waitFor(() => expect(tileIds()).toEqual(['detail', 'sun', 'competencies']))
+    // Au clavier, le focus reste sur le bouton de la tuile déplacée.
+    await waitFor(() => expect(document.activeElement).toBe(screen.getByRole('button', { name: 'Reculer Soleil' })))
     fireEvent.change(screen.getByRole('combobox', { name: 'Taille de Compétences' }), { target: { value: '2x2' } })
     await waitFor(() => expect(stored().sizes.competencies).toEqual({ w: 2, h: 2 }))
     expect(stored()).toMatchObject({ v: 1, shown: ['sun', 'detail', 'competencies'] })
@@ -166,5 +170,58 @@ describe('la date t dans l’en-tête', () => {
     expect(document.querySelector('[data-tile="sun"] .carto-sun-caption').textContent).toMatch(/jusqu’au mar\. 23 déc\. 2025/)
     fireEvent.click(within(head()).getByRole('button', { name: 'revenir à l’état complet' }))
     await waitFor(() => expect(head().textContent).not.toMatch(/Date t/))
+  })
+})
+
+describe('après la relecture indépendante', () => {
+  it('l’équivalent textuel du soleil reste dans la page, une seule fois, que sa tuile soit affichée ou non', async () => {
+    render(<Harness store={await louStore()} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    const captionText = /Part du soleil, confiance moyenne du jury et journées observées/
+    // Tuile masquée : le tableau est dans la tuile du soleil, hors de la vue (lecteurs d'écran, impression).
+    expect(tile('sun').querySelector('.carto-sr-table table')).toBeTruthy()
+    expect(screen.getAllByText(captionText)).toHaveLength(1)
+    fireEvent.click(panel('Tableau équivalent'))
+    await waitFor(() => expect(tile('table')).toBeTruthy())
+    expect(tile('sun').querySelector('.carto-sr-table')).toBeNull()
+    expect(screen.getAllByText(captionText)).toHaveLength(1)
+  })
+
+  it('« revenir à l’état complet » retire aussi les contours du jour choisi dans le soleil', async () => {
+    render(<Harness store={await louStore()} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    fireEvent.click(panel('Journées'))
+    await waitFor(() => expect(tile('days')).toBeTruthy())
+    fireEvent.click(within(tile('days')).getByRole('button', { name: 'mar. 23 déc. 2025' }))
+    await waitFor(() => expect(tile('sun').querySelectorAll('.carto-sun-sector.is-lit').length).toBeGreaterThan(0))
+    fireEvent.click(within(head()).getByRole('button', { name: 'revenir à l’état complet' }))
+    await waitFor(() => expect(tile('sun').querySelectorAll('.carto-sun-sector.is-lit')).toHaveLength(0))
+  })
+
+  it('le focus ne se perd pas : masquer une tuile le donne à « Panneaux » ; « Réinitialiser » à « Annuler », puis au bouton', async () => {
+    render(<Harness store={await louStore()} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    fireEvent.click(screen.getByRole('button', { name: 'Masquer le panneau Détail' }))
+    await waitFor(() => expect(document.activeElement).toBe(menu().querySelector('summary')))
+    fireEvent.click(within(head()).getByRole('button', { name: 'Réinitialiser l’affichage' }))
+    await waitFor(() => expect(document.activeElement).toBe(within(head()).getByRole('button', { name: 'Annuler' })))
+    fireEvent.click(within(head()).getByRole('button', { name: 'Annuler' }))
+    await waitFor(() => expect(document.activeElement).toBe(within(head()).getByRole('button', { name: 'Réinitialiser l’affichage' })))
+  })
+
+  it('un rapport d’import fermé dans le Gestionnaire ne revient pas en bandeau dans la cartographie', async () => {
+    window.location.hash = '#/cartographie/gestionnaire'
+    render(<Harness store={await louStore()} />)
+    const manager = await screen.findByRole('region', { name: 'Gestionnaire des journées' })
+    const input = manager.querySelector('input[type="file"][accept]')
+    fireEvent.change(input, { target: { files: [browserFile(JSON.stringify({ kind: 'autre' }), 'autre.json')] } })
+    const report = await within(manager).findByRole('region', { name: 'Rapport du dernier import' })
+    fireEvent.click(within(report).getByRole('button', { name: 'Fermer' }))
+    await waitFor(() => expect(within(manager).queryByRole('region', { name: 'Rapport du dernier import' })).toBeNull())
+    window.location.hash = '#/cartographie'
+    window.dispatchEvent(new HashChangeEvent('hashchange'))
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    expect(document.querySelector('.carto-report-banner')).toBeNull()
+    expect(screen.queryByText(/format JSON non reconnu/)).toBeNull()
   })
 })

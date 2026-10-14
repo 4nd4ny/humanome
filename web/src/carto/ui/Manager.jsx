@@ -41,25 +41,56 @@ export function TriStateCheckbox({ state, label, onChange }) {
   )
 }
 
-/** Bouton de suppression en deux temps : « Supprimer », puis « Confirmer ». */
+/**
+ * Bouton de suppression en deux temps : « Supprimer », puis « Confirmer ».
+ * Le focus suit au clavier : sur « Annuler » quand la confirmation apparaît
+ * (le choix le plus sûr), puis de nouveau sur le bouton (D-53).
+ */
 export function TwoStepButton({ label = 'Supprimer', confirmLabel = 'Confirmer la suppression', onConfirm, className = '' }) {
   const [armed, setArmed] = useState(false)
+  const mainRef = useRef(null)
+  const cancelRef = useRef(null)
+  const moved = useRef(false) // un geste de la personne : le focus doit suivre
   useEffect(() => {
     if (!armed) return undefined
     const timer = setTimeout(() => setArmed(false), 6000)
     return () => clearTimeout(timer)
   }, [armed])
+  useEffect(() => {
+    if (!moved.current) return
+    moved.current = false
+    ;(armed ? cancelRef : mainRef).current?.focus()
+  }, [armed])
+  const disarm = () => {
+    moved.current = true
+    setArmed(false)
+  }
   return armed ? (
     <span className="carto-two-step">
-      <button type="button" className={`carto-btn carto-btn--danger ${className}`} onClick={() => { setArmed(false); onConfirm() }}>
+      <button
+        type="button"
+        className={`carto-btn carto-btn--danger ${className}`}
+        onClick={() => {
+          disarm()
+          onConfirm()
+        }}
+      >
         {confirmLabel}
       </button>
-      <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setArmed(false)}>
+      <button ref={cancelRef} type="button" className="carto-btn carto-btn--quiet" onClick={disarm}>
         Annuler
       </button>
     </span>
   ) : (
-    <button type="button" className={`carto-btn carto-btn--quiet ${className}`} onClick={() => setArmed(true)}>
+    <button
+      ref={mainRef}
+      type="button"
+      className={`carto-btn carto-btn--quiet ${className}`}
+      onClick={() => {
+        moved.current = true
+        setArmed(true)
+      }}
+    >
       {label}
     </button>
   )
@@ -105,7 +136,11 @@ function Section({ title, bare = false, open = false, children }) {
 
 export function Manager(props) {
   const { dataset, t, layout = 'full', update, onSetT, onOpenDay, readOnly = false } = props
-  const [showReport, setShowReport] = useState(false)
+  // Rapport d'import : tenu par la cartographie quand elle le fournit (un seul
+  // état pour tous les espaces : fermé ici, il ne revient pas ailleurs).
+  const [ownReport, setOwnReport] = useState(false)
+  const showReport = props.showReport ?? ownReport
+  const setShowReport = props.setShowReport ?? setOwnReport
   const selected = useSelected(dataset)
 
   return (

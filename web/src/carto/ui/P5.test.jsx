@@ -16,6 +16,7 @@ import { createDataset, observationKey } from '../core/model.js'
 import { addReflection, setPreferences, setReflectionVersed, setReview } from '../core/ops.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { showCartoTiles } from '../test/tiles.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 const TEMPLATE = `<!doctype html><html><head><title>copie</title></head><body><div id="root"></div>${DATA_SLOT}<script>/* moteur */</script></body></html>`
@@ -350,6 +351,18 @@ describe('P5 — copie autonome ouverte (lecture seule)', () => {
     expect(panels).not.toContain('Importer')
     expect(panels).not.toContain('Jeux de données')
     expect(panels).toEqual(expect.arrayContaining(['Soleil', 'Détail', 'Journées', 'Compétences', 'Heatmap et lecture', 'Légende']))
+  })
+
+  it('une disposition gardée qui affiche « Importer » et « Jeux de données » ne les fait pas apparaître dans une copie (D-53)', async () => {
+    showCartoTiles()
+    const store = await louStore()
+    const archive = JSON.parse(JSON.stringify(buildArchive(await store.exportAll('ds-lou'), { includePortfolio: false, now: NOW })))
+    window.location.hash = '#/cartographie'
+    render(<ViewerApp archive={archive} />)
+    await waitFor(() => expect(document.querySelector('[data-tile="days"]')).toBeTruthy())
+    expect(document.querySelector('[data-tile="import"]')).toBeNull()
+    expect(document.querySelector('[data-tile="datasets"]')).toBeNull()
+    expect(screen.queryByRole('region', { name: 'Importer des fichiers' })).toBeNull()
   })
 
   it('sans archive lisible : un message, pas d’écran vide', () => {

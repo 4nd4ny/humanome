@@ -148,8 +148,20 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const seenReport = useRef(lastReport)
   useEffect(() => {
     if (lastReport && lastReport !== seenReport.current && data.dataset?.origin !== 'demo') setShowReport(true)
+    if (!lastReport && seenReport.current) setShowReport(false) // fermé (dans un autre espace) : il ne revient pas
     seenReport.current = lastReport
   }, [lastReport, data.dataset?.origin])
+  // Masquer une tuile : le focus va au menu « Panneaux » (le bouton ✕ disparaît avec sa tuile).
+  const panelsRef = useRef(null)
+  const hideTile = useCallback((id) => {
+    setTiles((l) => setTileShown(l, id, false))
+    requestAnimationFrame(() => panelsRef.current?.focus())
+  }, [])
+  // Revenir à l'état complet retire aussi le filtre du jour choisi (contours du soleil).
+  const resetT = useCallback(() => {
+    dispatch({ type: 'setT', t: null })
+    dispatch({ type: 'dayFilter', filter: null })
+  }, [])
   // « Réinitialiser l'affichage » remonte aussi les tuiles (recherche, regroupements, focus…).
   const [resetKey, setResetKey] = useState(0)
   const rootRef = useRef(null)
@@ -330,22 +342,30 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   // Les tuiles de la cartographie (D-53) ; null : indisponible ici (copie autonome).
   const tileNodes = {
     sun: (
-      <Sun
-        refl={refl}
-        state={state}
-        layout={zoomLayout ?? layout}
-        geometry={GEOMETRY}
-        selection={ui.selection}
-        hover={ui.hover}
-        reinforced={Boolean(prefs.reinforced)}
-        highlightCodes={ui.dayFilter?.codes ?? null}
-        caption={ui.t ? `État cumulé jusqu’au ${formatShort(ui.t)}` : 'État complet des journées cochées'}
-        onSelect={select}
-        onHover={hover}
-        zoom={ui.zoom}
-        onZoom={zoomTo}
-        reducedMotion={reducedMotion}
-      />
+      <>
+        <Sun
+          refl={refl}
+          state={state}
+          layout={zoomLayout ?? layout}
+          geometry={GEOMETRY}
+          selection={ui.selection}
+          hover={ui.hover}
+          reinforced={Boolean(prefs.reinforced)}
+          highlightCodes={ui.dayFilter?.codes ?? null}
+          caption={ui.t ? `État cumulé jusqu’au ${formatShort(ui.t)}` : 'État complet des journées cochées'}
+          onSelect={select}
+          onHover={hover}
+          zoom={ui.zoom}
+          onZoom={zoomTo}
+          reducedMotion={reducedMotion}
+        />
+        {tiles.shown.includes('table') ? null : (
+          // Sa tuile masquée, l'équivalent textuel reste lu par les lecteurs d'écran, et imprimé.
+          <div className="carto-sr-table">
+            <SunTable refl={refl} state={state} bare />
+          </div>
+        )}
+      </>
     ),
     detail: (
       <DetailPanel
@@ -472,11 +492,11 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
       <ContextBar
         dataset={dataset}
         t={ui.t}
-        onResetT={() => setT(null)}
+        onResetT={resetT}
         tools={
           space === 'cartographie' ? (
             <>
-              <PanelsMenu tiles={available} shown={tiles.shown} onToggle={showTile} />
+              <PanelsMenu tiles={available} shown={tiles.shown} onToggle={showTile} summaryRef={panelsRef} />
               <TwoStepButton label="Réinitialiser l’affichage" confirmLabel="Revenir à la vue de départ" onConfirm={resetDisplay} />
             </>
           ) : null
@@ -520,7 +540,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
               layout={tiles}
               onLayoutChange={(change) => setTiles((l) => arrangeTiles(l, change))}
               defaultSizes={defaultTileSizes}
-              onHide={(id) => showTile(id, false)}
+              onHide={hideTile}
             />
           ) : (
             <p className="carto-muted carto-pad">Aucun panneau affiché : choisissez-en dans « Panneaux », en haut de la page.</p>
@@ -533,6 +553,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           t={ui.t}
           readOnly={viewer}
           layout="full"
+          showReport={showReport}
+          setShowReport={setShowReport}
           update={data.update}
           commitWithDetails={data.commitWithDetails}
           importInto={data.importInto}
@@ -771,7 +793,7 @@ function ContextBar({ dataset, t, onResetT, tools = null }) {
 }
 
 /** Menu « Panneaux » : une case par tuile de la cartographie (D-53). */
-function PanelsMenu({ tiles, shown, onToggle }) {
+function PanelsMenu({ tiles, shown, onToggle, summaryRef = null }) {
   const ref = useRef(null)
   // Se referme au clic ailleurs, et sur Échap (le focus revient au bouton).
   useEffect(() => {
@@ -793,7 +815,7 @@ function PanelsMenu({ tiles, shown, onToggle }) {
         ref.current.querySelector('summary')?.focus()
       }}
     >
-      <summary>
+      <summary ref={summaryRef}>
         Panneaux{' '}
         <span className="carto-count">
           {count}/{tiles.length}
