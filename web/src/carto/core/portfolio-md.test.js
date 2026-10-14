@@ -122,7 +122,24 @@ describe('verser un dialogue au portfolio', () => {
     const back = importPortfolioText(out.text)
     expect(back.segments.map((s) => s.date)).toEqual(['2026-10-14'])
     expect(back.undated).toEqual([])
-    expect(out.text).toContain('— Le 5 janvier 2026\n— ---\n— ## 2026-01-06\nFin de ma réponse.')
+    expect(out.text).toContain('— Le 5 janvier 2026\n- - -\n— ## 2026-01-06\nFin de ma réponse.')
+  })
+
+  it('feuilles séparées (une par journée) : séparateurs gardés comme traits espacés, date d’un autre jour neutralisée, en-tête jamais doublé', () => {
+    const exported = {
+      dataset: { reflections: [], portfolio: null },
+      details: {
+        '2026-01-05': { portfolio: { text: '## 2026-01-05\n\nMatin.\n\n---\n\nAprès-midi.\n\n***\n\n06/01/2026\n\nNote pour demain.\n\n---\n' } },
+        '2026-01-06': { portfolio: { text: '## 2026-01-06\n\nSecond jour.\n' } },
+      },
+    }
+    const out = buildPortfolioMarkdown(exported)
+    const back = importPortfolioText(out.text)
+    expect(back.segments.map((s) => s.date)).toEqual(['2026-01-05', '2026-01-06'])
+    expect(back.undated).toEqual([])
+    expect(back.segments[0].text).toContain('Matin.\n\n- - -\n\nAprès-midi.\n\n* * *\n\n— 06/01/2026\n\nNote pour demain.')
+    expect(out.text.match(/## 2026-01-05/g)).toHaveLength(1) // pas d'en-tête en double
+    expect(out.text.startsWith('## 2026-01-05\n\nMatin.')).toBe(true)
   })
 
   it('une journée qui ne s’ouvre pas sur son en-tête le reçoit ; un passage sans date reste sans date, à la fin', () => {

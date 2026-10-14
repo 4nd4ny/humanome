@@ -9,10 +9,14 @@
 // découpage qu'à l'import), le fichier redonne les mêmes journées, chacune
 // avec son texte et ses dialogues. Chaque journée s'ouvre sur son en-tête de
 // date : celle dont le texte ne commence pas par le sien (passage rattaché à
-// la main dans le gestionnaire, titre du document) reçoit `## AAAA-MM-JJ`, et
-// une ligne qui y ouvrirait une autre journée (une date seule sur sa ligne, un
-// séparateur `---`) est précédée d'un tiret « — ». Les passages restés sans date viennent à la
-// fin, chacun après un séparateur : ils restent sans date.
+// la main dans le gestionnaire, titre du document) reçoit `## AAAA-MM-JJ`.
+// Une ligne qui y ouvrirait une autre journée est neutralisée : un séparateur
+// (`---`, `***`, `___`, `===`) devient le même trait espacé (`- - -`…), qui
+// s'affiche pareil sans rien couper ; une date seule sur sa ligne est
+// précédée d'un tiret « — ». C'est fréquent quand le portfolio vient de
+// feuilles séparées (AuroraCore : une feuille par journée, datée par son nom
+// de fichier). Les passages restés sans date viennent à la fin, chacun après
+// un séparateur : ils restent sans date.
 
 import { segmentText } from '@engine/portfolio/segment.js'
 import { isIsoDate } from './dates.js'
@@ -45,16 +49,36 @@ function opensAndStaysInDay(text, date) {
   return segs.length > 0 && segs.every((s) => s.date === date)
 }
 
-/** Précède d'un « — » chaque ligne qui ouvrirait une autre journée que `date`. */
+const SEPARATOR_RE = /^(\s{0,3})([-=*_])\2{2,}\s*$/u
+
+/**
+ * Neutralise chaque ligne qui ouvrirait une autre journée que `date` : un
+ * séparateur devient le même trait espacé (« - - - », « * * * », « _ _ _ » ;
+ * « * * * » pour « === »), une date seule est précédée d'un « — ».
+ */
 function keepInDay(text, date) {
   return text
     .split('\n')
     .map((line) => {
       if (line.trim() === '') return line
       const d = boundaryDate(line)
-      return d === undefined || d === date ? line : `— ${line}`
+      if (d === undefined || d === date) return line
+      const sep = line.match(SEPARATOR_RE)
+      if (sep) {
+        const spaced = `${sep[1]}${sep[2] === '=' ? '* * *' : `${sep[2]} ${sep[2]} ${sep[2]}`}`
+        if (boundaryDate(spaced) === undefined) return spaced
+      }
+      return `— ${line}`
     })
     .join('\n')
+}
+
+/** Le bloc d'une journée : son texte, ouvert par son en-tête, qui ne coupe rien. */
+function dayBlock(text, date) {
+  if (opensAndStaysInDay(text, date)) return text
+  const first = text.split('\n').find((l) => l.trim() !== '')
+  const body = keepInDay(text, date)
+  return first !== undefined && boundaryDate(first) === date ? body : `## ${date}\n\n${body}`
 }
 
 /**
@@ -84,7 +108,7 @@ export function buildPortfolioMarkdown(exported) {
   for (const date of dates) {
     const text = textOf(date)
     const parts = []
-    if (text.trim() !== '') parts.push(opensAndStaysInDay(text, date) ? text : `## ${date}\n\n${keepInDay(text, date)}`)
+    if (text.trim() !== '') parts.push(dayBlock(text, date))
     const mine = (versed.get(date) ?? [])
       .slice()
       .sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0))
