@@ -31,6 +31,11 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | P6 | copie serveur et partage (adultes) | ✅ | ✅ 39 tests (cœur, interface, API, e2e Chromium contre l'API locale) | ✅ 262 verts (carto) + suites du site et de l'API + e2e | `a6972bb` |
 | P7 | dialogue scripté (option) | ✅ | ✅ 18 tests (cœur, interface, e2e Chromium) | ✅ 279 verts (carto) + suites du site + e2e | `e08f8c9` |
 | Vérification | relecture indépendante de P6 et P7 : 13 corrections, 2 décisions à prendre (D-37) | ✅ | ✅ +8 tests, d'autres renforcés (cœur, interface, API, e2e) | ✅ 285 verts (carto) + suites du site et de l'API + e2e | `47af23e` |
+| Q3 — angle | l'angle compte les points, la confiance du jury ne fait que la hauteur ; largeur minimale dessinée (D-8) | ✅ | ✅ formules, état, corpus réel réécrits | ✅ carto + suite du site | `ce0cf13` |
+| Q22 — clé personnelle | `connect-src` de production ouvert aux seuls fournisseurs (D-36) | ✅ | ✅ 3 tests + 1 e2e sous la CSP de production | ✅ | `38d3c66` |
+| Pages V3 | `#/merge` et `#/cartographie-v3` renvoient vers `#/cartographie` ; l'accueil ouvre l'interface ultime (D-38) | ✅ | ✅ tests du site réécrits, ceux de la V3 retirés | ✅ suite du site | `080e04f` |
+| Q15 — version partagée | une nouvelle version remplace l'ancienne sous le même lien (D-33) | ✅ | ✅ API, interface, e2e | ✅ | `c4eb6ff` |
+| Q9 — surlignage approché | extraits reformulés encadrés en pointillés, dits « approchés » (D-39) | ✅ | ✅ 10 tests + validation sur les journaux réels | ✅ 304 verts (carto) | `b82ebd5`, `693f079` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -296,7 +301,8 @@ puis dans les autres journées, et dit clairement d'où vient le passage.
 - Jaune = début et fin retrouvés, orange (et souligné pointillé, pour ne pas
   dépendre de la couleur) = un seul bout ; toutes les occurrences, avec
   navigation ; l'occurrence courante est cerclée quand il y en a plusieurs ;
-  défilement centré (sans animation sous mouvement réduit).
+  défilement centré (sans animation sous mouvement réduit). Un cadre
+  pointillé, sans fond, marque un passage approché (D-39).
 
 ### D-14 — Où chercher le passage d'une trace
 
@@ -308,9 +314,10 @@ lecteur, et le volet le dit : « retrouvé tel quel dans la feuille du X, alors
 que la trace est datée du Y » (cas réel, D-12), avec un lien vers la journée
 de la trace. Une ancre raccourcie à deux mots se trouve n'importe où : elle
 ne suffit jamais. Les autres journées ne sont chargées que si le passage
-n'est pas retrouvé en entier dans la sienne. Introuvable : le volet le dit
-et cite l'extrait du jury (défaut d'AuroraCore). Sans portfolio : il invite à
-l'importer.
+n'est pas retrouvé en entier dans la sienne. Rien de tel quel nulle part : un
+passage **approché** est cherché dans la seule journée de la trace (D-39).
+Introuvable : le volet le dit et cite l'extrait du jury (défaut
+d'AuroraCore). Sans portfolio : il invite à l'importer.
 
 ### D-15 — Panneau de détail d'une compétence : traces, verdicts, jury, réponse
 
@@ -964,6 +971,52 @@ décision : retirer les pages V3 et renvoyer vers `#/cartographie`.
   02, apprenant 01 et 05) réécrits pour la nouvelle interface ; fiches
   UC-VIS-01, UC-VIS-04, UC-APP-03, UC-APP-12, UC-ETA-04, ADR-009 mises à jour.
 
+### D-39 — Surlignage approché des extraits reformulés **[décidé]**
+
+Christian (2026-10-14, question 9) : « Un surlignage approché signalé comme
+tel convient. »
+
+- **Quand** : dans la seule journée de la trace, quand rien n'y est retrouvé
+  tel quel (ni le passage entier, ni un de ses bouts) et que le passage n'est
+  retrouvé tel quel dans aucune autre journée. Ordre (`core/passages.js`) :
+  trouvé → retrouvé ailleurs → partiel → **approché** → non retrouvé. Jamais
+  dans une autre journée : avec des mots seulement, on finirait toujours par
+  trouver quelque chose quelque part.
+- **Comment** (`locateApproximate`, `core/highlight.js`) : on garde les mots
+  pleins de l'extrait (quatre lettres au moins, hors mots-outils) ; la feuille
+  est découpée en phrases ; on retient tour à tour la phrase qui apporte le
+  plus de mots de l'extrait encore manquants (deux au moins), quatre phrases
+  au plus. Les phrases retenues doivent réunir **au moins 75 %** des mots
+  pleins de l'extrait, qui doit en compter quatre au moins ; chacune est
+  encadrée de son premier à son dernier mot de l'extrait. En dessous : « non
+  retrouvé », on ne devine pas.
+- **Signalé comme tel** : un cadre **pointillé** violet, sans fond (ni le
+  jaune ni l'orange des passages retrouvés tels quels, et lisible sans les
+  couleurs). Le volet dit : « Passage approché : l'extrait du jury ne figure
+  pas mot pour mot dans le portfolio (reformulé par l'analyse). La phrase la
+  plus proche, qui en contient 89 % des mots, est encadrée en pointillés : à
+  vérifier », puis cite l'extrait du jury ; la navigation dit « Phrase 1 sur
+  3 », pas « Occurrence ».
+- **Premier essai écarté** : une fenêtre de mots glissante, de la longueur de
+  l'extrait (`b82ebd5`), ne rattrapait qu'une trace par journal. Un extrait
+  reformulé résume souvent plusieurs phrases, parfois éloignées : d'où la
+  couverture par phrases (`693f079`).
+
+Validation sur les journaux réels (sur le Mac, compteurs seulement, même
+chaîne que l'interface) :
+
+| Journal | non retrouvés avant | approchés (fenêtre) | approchés (phrases) | non retrouvés après | mots de l'extrait couverts | phrases encadrées par trace | part de la feuille encadrée |
+|---|---|---|---|---|---|---|---|
+| 200 | 65 | 1 | 4 | 61 | 75, 78, 89, 100 % | 1, 2, 3, 3 | 2 à 5 % |
+| 300 | 21 | 1 | 6 | 15 | 75 à 92 % | 2, 2, 3, 3, 3, 3 | 1 à 6 % |
+| GEN1 | 0 | 0 | 0 | 0 | — | — | — |
+
+Pour les traces qui restent non retrouvées, même sans limite du nombre de
+phrases, les mots pleins de l'extrait n'atteignent jamais 75 % : moins de la
+moitié pour 49 sur 61 (journal 200) et 10 sur 15 (journal 300), 74 % au plus
+pour les autres. Le volet continue de les dire non retrouvées et cite
+l'extrait.
+
 ---
 
 ## 3. État des tests
@@ -1039,7 +1092,9 @@ la feuille du jour : l'extrait a été **reformulé** par l'analyse (défaut
 d'AuroraCore prévu au §8.1). Le lecteur le dit et cite l'extrait. Piste (point
 ouvert 9) : un surlignage « approché », clairement signalé, pour les extraits
 dont au moins 75 % des mots figurent dans la feuille (18 traces sur ces deux
-journaux).
+journaux, estimait-on alors). → Fait le 2026-10-14 (D-39) : 10 traces
+approchées (4 et 6) ; les autres restent sous 75 % une fois les mots-outils
+écartés.
 
 Suite complète du front après P2 : **2 096 verts** sur 214 fichiers (seul
 `twin6-prompt-package.test.js` reste non chargeable, anomalie connue).
@@ -1177,6 +1232,26 @@ API **1 481 verts** (14 132 assertions, 23 min 20 s). Moteur inchangé
 (1 069 verts, 17 sautés). Les trois scénarios e2e de la cartographie (P5, P6
 contre l'API locale, P7) verts.
 
+### Décisions du 2026-10-14 (réponses de Christian, §4)
+
+| Décision | Fichier de test | Contenu | Tests |
+|---|---|---|---|
+| Angle = points (Q3, D-8) | `core/formulas.test.js` | une preuve = 1 point, un indice = ½ ; **rien ne plafonne** (cent preuves = cent points) ; plus de traces, plus de points ; largeur minimale dessinée : seul le secteur trop étroit est élargi, pris aux autres au prorata, somme inchangée, en cascade si besoin, angles exacts sans minimum | 25 |
+| | `core/state.test.js` | **la confiance du jury n'entre pas dans l'angle** (mêmes traces, confiances différentes → même angle, hauteurs différentes) ; trois preuves contre une → 270° et 90° ; confiance inconnue : l'angle compte la trace, la hauteur l'ignore ; secteur trop étroit élargi, θ exact | 20 |
+| | `core/real-corpus.test.js` | D-8 sur la démonstration : le plus grand secteur dépasse trois fois la médiane, θ / 360° = P / ΣP, secteurs élargis signalés | 6 |
+| | `compare.test.js`, `heatmap.test.js`, `CartoApp.test.jsx`, fixture partagée | suivent la nouvelle formule (fixture régénérée) | — |
+| Clé personnelle (Q22, D-36) | `lib/csp-providers.test.js` | le `connect-src` de `web/public/.htaccess` = `'self'` + exactement les fournisseurs du moteur, ni plus ni moins | 3 |
+| | `e2e/csp-cle-personnelle.e2e.js` (Chromium) | **sous la CSP de production** : relance avec clé personnelle → une requête vers Anthropic (simulé), clé dans l'en-tête seulement ; un autre hôte bloqué (violation signalée) ; le test échoue avec l'ancienne CSP | 1 |
+| Pages V3 (D-38) | `App.test.jsx`, `router.test.js`, `views/HomeView.test.jsx` (nouveau, 4), `DayView.test.jsx`, fiches UC-VIS-01, UC-VIS-04, UC-APP-03, UC-ETA-04, aide | `#/merge` et `#/cartographie-v3` → `#/cartographie` (entrée d'historique remplacée) ; l'accueil lit les fichiers dans le navigateur et les remet à l'interface, importés une fois, dans un nouveau jeu ; retours vers `#/cartographie` ; tests de la V3 retirés avec elle | — |
+| Version partagée (Q15, D-33) | `api/tests/CartoPartageTest.php` | `PUT …/document` : même lien, consultations conservées, audit `shared_version_replaced` ; 404 (inconnue, autre compte), 422 (autre type), 403 sans attestation ; même liste blanche qu'à la création | 12 (+1) |
+| | `ui/P6.test.jsx` | par défaut, à la place de la plus récente ; version distincte au choix | 10 (+1) |
+| | `e2e/carto-partage.e2e.js` | republier à la place : même lien, le visiteur voit le nouveau titre | (dans le 1) |
+| Surlignage approché (Q9, D-39) | `core/highlight.test.js` | 75 % des mots pleins : la phrase, de son premier à son dernier mot de l'extrait ; extrait qui résume plusieurs phrases ; sous 75 %, rien ; extrait trop court jamais approché, mots-outils exclus ; une phrase qui ne répète qu'un mot n'apporte rien ; index d'origine après un émoji | 20 (+6) |
+| | `core/passages.test.js` | approché seulement dans sa journée ; un bout retrouvé tel quel l'emporte ; jamais dans une autre journée | 11 (+3) |
+| | `ui/P2.test.jsx` | extrait reformulé : cadre pointillé, « approché … à vérifier », jamais « retrouvé » | 16 (+1) |
+
+Validation du surlignage approché sur les journaux réels : D-39.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -1199,7 +1274,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 7. Routes sous `#/cartographie` (D-2). → **Validé.**
 8. Démonstration sans portfolio (D-11). → **Validé.**
 9. Surlignage approché des extraits reformulés (validation de P2). →
-   **Décidé** : à ajouter, signalé comme tel. Suite : à venir.
+   **Décidé** : à ajouter, signalé comme tel. Suite : fait (D-39).
 10. Archive (D-25). → **Décidé** : « Exporter toutes mes données » du site
     sauvegarde aussi la cartographie de l'interface ; schéma JSON du master
     v4 dans `schemas/`. Suite : à venir.
@@ -1283,3 +1358,10 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   et figé, jeton hors des URL, carnet hors de la copie HTML, verrous,
   robustesse de la vue du destinataire et du dialogue), 2 décisions
   soumises (questions 17 et 22) (D-37).
+- **2026-10-14** — Réponses de Christian aux 24 questions (§4). L'angle compte
+  les points, la confiance du jury ne fait que la hauteur (D-8) ; politique de
+  sécurité ouverte aux seuls fournisseurs, pour les runs et relances avec clé
+  personnelle (D-36) ; pages V3 retirées, `#/merge` renvoie vers
+  `#/cartographie` (D-38) ; une nouvelle version partagée remplace l'ancienne
+  sous le même lien (D-33) ; surlignage approché des extraits reformulés,
+  validé sur les journaux réels (D-39).
