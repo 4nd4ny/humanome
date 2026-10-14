@@ -8,8 +8,9 @@
 // l'attestation posée, l'apprenant compose, relit (un nom de tiers remplacé),
 // publie et crée un lien sans mot de passe ; un navigateur anonyme ouvre le
 // lien (vue employeur, jamais indexée, jeton jamais dans l'URL de l'API) ;
-// l'auteur voit la consultation dans son journal des accès ; retirer
-// l'attestation efface la version et son lien.
+// l'auteur voit la consultation dans son journal des accès ; une nouvelle
+// version publiée À LA PLACE de la première est servie par le même lien ;
+// retirer l'attestation efface la version et son lien.
 //
 // LOCAL UNIQUEMENT (docs/tests-e2e.md) : API docker sur :8080 avec les
 // migrations à jour (dont 022), dev-server Vite lancé par Playwright. Le code
@@ -167,12 +168,34 @@ test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage,
     await context.close()
   })
 
-  await test.step('L’auteur voit la consultation ; retirer l’attestation efface la version et son lien', async () => {
+  await test.step('L’auteur voit la consultation, puis publie une nouvelle version À LA PLACE : même lien', async () => {
     await page.reload()
     await page.getByRole('link', { name: 'Partage', exact: true }).click()
     const item = page.locator('.carto-share-version').filter({ hasText: 'Lou — compétences de décembre' })
     await item.getByRole('button', { name: 'Liens et accès' }).click()
     await expect(item.getByText(/Consulté 1 fois/)).toBeVisible()
+
+    await item.getByRole('button', { name: 'Publier une nouvelle version à la place' }).click()
+    await page.getByRole('textbox', { name: 'Titre vu par le destinataire' }).fill('Lou — version allégée')
+    await page.getByRole('button', { name: 'Suivant : relire' }).click()
+    await page.getByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }).check()
+    await page.getByRole('button', { name: 'Suivant : aperçu' }).click()
+    await expect(page.getByRole('radio', { name: /à la place de « Lou — compétences de décembre »/ })).toBeChecked()
+    await page.getByRole('checkbox', { name: /Je demande l’enregistrement/ }).check()
+    await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }).check()
+    await page.getByRole('button', { name: 'Publier à la place de « Lou — compétences de décembre »' }).click()
+    await expect(page.getByText(/« Lou — version allégée » remplace la version précédente/)).toBeVisible()
+    expect(devSql(`SELECT COUNT(*) FROM cartographies c JOIN users u ON u.id = c.user_id WHERE u.email = '${email}' AND c.type = 'partage'`)).toBe('1')
+
+    const context = await browser.newContext({ locale: 'fr-FR' })
+    const visitor = await context.newPage()
+    await visitor.goto(url)
+    await expect(visitor.getByRole('heading', { level: 1, name: 'Lou — version allégée' })).toBeVisible()
+    await expect(visitor.getByRole('heading', { level: 1, name: 'Lou — compétences de décembre' })).toHaveCount(0)
+    await context.close()
+  })
+
+  await test.step('Retirer l’attestation efface la version et son lien', async () => {
     await page.getByRole('button', { name: 'Retirer mon attestation' }).click()
     await page.getByRole('button', { name: 'Confirmer : effacer mes versions partagées' }).click()
     await expect(page.getByRole('heading', { name: 'Le partage par lien est réservé aux personnes majeures' })).toBeVisible()

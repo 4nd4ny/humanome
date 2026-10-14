@@ -170,6 +170,31 @@ final class CartographyRepository
         return $stmt->rowCount() > 0 || $this->ownedBy($id, $userId);
     }
 
+    /**
+     * Nouvelle version partagée publiée À LA PLACE d'une autre (décision du
+     * 2026-10-14, journal D-33) : le document et son titre sont remplacés, les
+     * liens et le journal des accès restent. L'ancien document est effacé.
+     * Faux si la version n'existe pas, n'est pas au compte ou n'est pas une
+     * version partagée.
+     *
+     * @param array<string, mixed> $document
+     */
+    public function replaceSharedDocument(int $id, int $userId, string $titre, array $document): bool
+    {
+        $stmt = $this->pdo->prepare(
+            "UPDATE cartographies SET document = ?, titre = ?, updated_at = NOW()
+              WHERE id = ? AND user_id = ? AND type = 'partage'"
+        );
+        $stmt->execute([
+            json_encode($document, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+            $titre,
+            $id,
+            $userId,
+        ]);
+
+        return $stmt->rowCount() > 0 || $this->typeOwnedBy($id, $userId) === 'partage';
+    }
+
     /** Real purge: the row and its share_links (FK ON DELETE CASCADE, 004). */
     public function deleteForUser(int $id, int $userId): bool
     {

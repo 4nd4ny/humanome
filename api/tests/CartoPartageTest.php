@@ -422,6 +422,71 @@ final class CartoPartageTest extends AuthTestBase
     }
 
     /**
+     * Décision du 2026-10-14 (journal D-33, question 15) : une nouvelle version
+     * se publie À LA PLACE d'une autre — même lien, les destinataires voient la
+     * nouvelle version ; l'ancien document est effacé ; mêmes gardes que la
+     * publication (attestation sous verrou, liste blanche, propriétaire).
+     */
+    public function testANewVersionReplacesTheOldOneUnderTheSameLink(): void
+    {
+        $this->attest(true);
+        $id = $this->publishedId();
+        $share = $this->link($id);
+        $consulted = $this->open($share['token']);
+        self::assertSame(200, $consulted->getStatusCode());
+
+        // Version B : une compétence et l'extrait en moins, un autre titre.
+        $b = self::sharedDoc([
+            'title' => 'Version allégée',
+            'referential' => array_replace(self::sharedDoc()['referential'], [
+                'competences' => [['code' => 'C2.3', 'nom' => 'Coopérer', 'pole' => 2, 'description' => '']],
+            ]),
+            'state' => [
+                'dayCount' => 1,
+                'dates' => ['2025-10'],
+                'competencies' => [['code' => 'C2.3', 'pole' => 2, 'theta' => 360.0, 'intensity' => 0.5, 'confidence' => 0.5, 'status' => 'needs_review', 'days' => 1, 'proofs' => 0, 'hints' => 1]],
+                'poles' => [['num' => 2, 'theta' => 360.0, 'intensity' => 0.5, 'confidence' => 0.5, 'codes' => ['C2.3'], 'needsReviewOnly' => true]],
+            ],
+            'period' => ['from' => '2025-10', 'to' => '2025-10'],
+            'heatmap' => ['precision' => 'month', 'cells' => [['key' => '2025-10', 'level' => 1, 'days' => 1]]],
+            'extracts' => [],
+        ]);
+        $replaced = $this->call('PUT', '/api/cartographies/' . $id . '/document', ['document' => $b]);
+        self::assertSame(200, $replaced->getStatusCode(), (string) $replaced->getBody());
+        self::assertSame('Version allégée', self::json($replaced)['titre']);
+        self::assertArrayNotHasKey('document', self::json($replaced));
+
+        // Même lien, nouvelle version ; l'ancien document n'existe plus.
+        $served = self::json($this->open($share['token']));
+        self::assertSame('Version allégée', $served['titre']);
+        self::assertEquals($b, $served['document']);
+        self::assertSame(1, self::rows("SELECT COUNT(*) FROM cartographies WHERE type = 'partage'"));
+        self::assertStringNotContainsString('organisé la sortie', (string) self::$pdo->query('SELECT document FROM cartographies WHERE id = ' . $id)->fetchColumn());
+        // Le journal des accès du lien continue : avant et après le remplacement.
+        self::assertSame(2, self::json($this->call('GET', '/api/shares/' . $share['shareId'] . '/consultations'))['count']);
+        $details = json_decode((string) self::$pdo->query("SELECT details FROM audit_events WHERE type = 'shared_version_replaced'")->fetchColumn(), true);
+        self::assertSame(['cartographyId' => $id], $details);
+
+        // Mêmes gardes que la publication.
+        $smuggled = $this->call('PUT', '/api/cartographies/' . $id . '/document', ['document' => self::sharedDoc(['portfolio' => 'texte intégral'])]);
+        self::assertSame(422, $smuggled->getStatusCode());
+        self::assertSame(422, $this->call('PUT', '/api/cartographies/' . $this->jourCartography() . '/document', ['document' => $b])->getStatusCode());
+        self::assertSame(404, $this->call('PUT', '/api/cartographies/999999/document', ['document' => $b])->getStatusCode());
+        self::assertSame(403, $this->request('PUT', '/api/cartographies/' . $id . '/document', ['document' => $b])->getStatusCode(), 'CSRF');
+        self::assertSame(401, $this->anonymous('PUT', '/api/cartographies/' . $id . '/document', ['document' => $b])->getStatusCode());
+        self::$pdo->exec('UPDATE users SET adult_attested_at = NULL');
+        self::assertSame(403, $this->call('PUT', '/api/cartographies/' . $id . '/document', ['document' => self::sharedDoc()])->getStatusCode());
+        self::assertEquals($b, self::json($this->open($share['token']))['document'], 'rien n’a changé');
+
+        // Une autre personne ne remplace pas la version de Maya.
+        self::$pdo->exec('UPDATE users SET adult_attested_at = NOW()');
+        $this->csrf = (string) self::json($this->register('noe@example.org', self::PASSWORD, 'Noé'))['csrfToken'];
+        $this->attest(true);
+        self::assertSame(404, $this->call('PUT', '/api/cartographies/' . $id . '/document', ['document' => self::sharedDoc()])->getStatusCode());
+        self::assertEquals($b, self::json($this->open($share['token']))['document']);
+    }
+
+    /**
      * Contrat avec le client : la fixture partagée — EXACTEMENT la sortie de
      * buildSharedVersion (web/src/carto/core/share.test.js le vérifie) — est
      * acceptée telle quelle par la liste blanche.

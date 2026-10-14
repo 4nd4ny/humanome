@@ -13,6 +13,13 @@
 // puis la gestion : liens (expiration, mot de passe facultatif, révocation),
 // journal des accès, export JSON, retrait immédiat. Vocabulaire : on RETIRE
 // d'une version partagée, on ne « supprime » jamais rien de la cartographie.
+//
+// Nouvelle version (décision du 2026-10-14) : par défaut, elle se publie À LA
+// PLACE de la plus récente — même lien, les destinataires voient la nouvelle
+// version ; « une version distincte » reste possible. « Publier une nouvelle
+// version à la place » reprend la composition d'une version (gardée dans ce
+// navigateur à chaque publication ; à défaut, son titre, ses dates et ses
+// compétences).
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { ApiError } from '../../api/client.js'
@@ -40,6 +47,44 @@ import { LINK_STATUS_LABELS, linkStatus } from './shareApi.js'
 /** Hébergement et durées affichés (§12.1) — à garder alignés sur docs/rgpd-registre.md. */
 export const HOSTING_TEXT = 'Hébergement : OVHcloud, dans l’Union européenne.'
 const DEFAULT_TITLE = 'Ma cartographie de compétences'
+
+/**
+ * Composition d'une version publiée, gardée dans CE navigateur (jamais sur le
+ * serveur) pour la reprendre et publier une nouvelle version à sa place.
+ */
+const DRAFT_PREFIX = 'humanome-carto-share-draft:'
+function saveDraft(key, draft) {
+  try {
+    localStorage.setItem(DRAFT_PREFIX + key, JSON.stringify(draft))
+  } catch {
+    /* stockage indisponible : la reprise partira du document publié */
+  }
+}
+function loadDraft(key) {
+  try {
+    const raw = localStorage.getItem(DRAFT_PREFIX + key)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+function dropDraft(key) {
+  try {
+    localStorage.removeItem(DRAFT_PREFIX + key)
+  } catch {
+    /* rien à faire */
+  }
+}
+
+/** Réglages repris d'un document publié (sans ses extraits, qui sont des textes relus). */
+function settingsFromDocument(doc) {
+  return {
+    title: doc?.title,
+    precision: doc?.datePrecision,
+    codes: (doc?.state?.competencies ?? []).map((c) => c.code),
+    fromDocument: true,
+  }
+}
 const SNIPPET = 260
 
 function apiMessage(err) {
@@ -204,7 +249,7 @@ function ExtractPicker({ code, refl, state, data, chosen, onToggle, textOf }) {
   )
 }
 
-function Composer({ refl, state, data, t, api, onPublished }) {
+function Composer({ refl, state, data, t, api, onPublished, versions = [], target = 'new', onTarget, seed = null, headingRef }) {
   const uid = useId()
   const [step, setStepState] = useState('choose')
   const [moved, setMoved] = useState(false)
@@ -227,6 +272,20 @@ function Composer({ refl, state, data, t, api, onPublished }) {
   const [openCode, setOpenCode] = useState(null)
   const [status, setStatus] = useState(null)
   const [busy, setBusy] = useState(false)
+
+  // Reprise d'une version publiée : ses choix remplacent la composition en cours.
+  useEffect(() => {
+    if (!seed?.settings) return
+    const x = seed.settings
+    if (typeof x.title === 'string') setTitle(x.title)
+    if (x.precision) setPrecision(x.precision)
+    if (Array.isArray(x.codes)) setCodes(new Set(x.codes))
+    setChosen(new Map((x.chosen ?? []).map((c) => [c.key, c])))
+    setEdits(new Map(x.edits ?? []))
+    setDictionary(Array.isArray(x.dictionary) ? x.dictionary : [])
+    if (x.patterns) setPatterns({ ...DEFAULT_SHARE_PATTERNS, ...x.patterns })
+    setStep('choose')
+  }, [seed])
 
   const { getDetail } = data
   const textOf = useCallback(
@@ -290,12 +349,30 @@ function Composer({ refl, state, data, t, api, onPublished }) {
     setReviewed(false)
   }
 
+  const replacing = target !== 'new' ? versions.find((v) => v.id === target) ?? null : null
+
   async function publish() {
     if (!built) return
     setBusy(true)
     setStatus({ kind: 'busy', text: 'Publication…' })
     try {
-      const { id } = await api.publish({ ...built, publishedAt: new Date().toISOString() })
+      const doc = { ...built, publishedAt: new Date().toISOString() }
+      let id
+      if (replacing) {
+        await api.replaceVersion(replacing.id, doc)
+        id = replacing.id
+      } else {
+        id = (await api.publish(doc)).id
+      }
+      saveDraft(`${data.dataset?.datasetId ?? ''}:${id}`, {
+        title,
+        precision,
+        codes: [...codes],
+        chosen: [...chosen.values()],
+        edits: [...edits.entries()],
+        dictionary,
+        patterns,
+      })
       setStatus(null)
       setStep('choose')
       setChosen(new Map())
@@ -303,7 +380,7 @@ function Composer({ refl, state, data, t, api, onPublished }) {
       setReviewed(false)
       setConsent(false)
       setAdultNow(false)
-      onPublished(id, built.title)
+      onPublished(id, built.title, Boolean(replacing))
     } catch (err) {
       setStatus({ kind: 'error', text: apiMessage(err) })
     } finally {
@@ -319,7 +396,7 @@ function Composer({ refl, state, data, t, api, onPublished }) {
 
   return (
     <section className="carto-share-composer" aria-labelledby={`${uid}-title`}>
-      <h3 id={`${uid}-title`} className="carto-share-h">
+      <h3 id={`${uid}-title`} className="carto-share-h" ref={headingRef} tabIndex={-1}>
         Nouvelle version partagée
       </h3>
       <ol className="carto-share-steps" aria-label="Étapes">
@@ -512,12 +589,27 @@ function Composer({ refl, state, data, t, api, onPublished }) {
               publication.
             </label>
           </aside>
+          {versions.length > 0 ? (
+            <fieldset className="carto-share-field">
+              <legend>Publier</legend>
+              {versions.map((v) => (
+                <label key={v.id} className="carto-small">
+                  <input type="radio" name={`${uid}-target`} checked={target === v.id} onChange={() => onTarget?.(v.id)} /> à la place de « {v.titre} » (publiée le{' '}
+                  {formatShort(String(v.createdAt).slice(0, 10))}) : même lien, vos destinataires verront cette nouvelle version et plus l’ancienne
+                </label>
+              ))}
+              <label className="carto-small">
+                <input type="radio" name={`${uid}-target`} checked={target === 'new'} onChange={() => onTarget?.('new')} /> comme une version distincte, avec ses
+                propres liens
+              </label>
+            </fieldset>
+          ) : null}
           <div className="carto-share-actions">
             <button type="button" className="carto-btn carto-btn--quiet" onClick={() => setStep('review')}>
               Retour
             </button>
             <button type="button" className="carto-btn" disabled={!consent || !adultNow || busy} onClick={publish}>
-              Publier la version partagée
+              {replacing ? `Publier à la place de « ${replacing.titre} »` : 'Publier la version partagée'}
             </button>
           </div>
           <Status value={status} />
@@ -663,7 +755,7 @@ function LinkRow({ link, api, onRevoked }) {
   )
 }
 
-function VersionItem({ version, api, autoOpen, onRemoved }) {
+function VersionItem({ version, api, autoOpen, onRemoved, onReplace }) {
   const [open, setOpen] = useState(autoOpen)
   const [links, setLinks] = useState(null)
   const [created, setCreated] = useState(null)
@@ -714,7 +806,11 @@ function VersionItem({ version, api, autoOpen, onRemoved }) {
         <div>
           <h4>{version.titre}</h4>
           <p className="carto-small carto-muted">
-            Publiée le {formatShort(String(version.createdAt).slice(0, 10))}. {active > 0 ? `Lien partagé : ${active} lien${active > 1 ? 's' : ''} actif${active > 1 ? 's' : ''}.` : 'Privée : aucun lien actif.'}
+            Publiée le {formatShort(String(version.createdAt).slice(0, 10))}
+            {version.updatedAt && String(version.updatedAt).slice(0, 16) !== String(version.createdAt).slice(0, 16)
+              ? `, remplacée le ${formatShort(String(version.updatedAt).slice(0, 10))}`
+              : ''}
+            . {active > 0 ? `Lien partagé : ${active} lien${active > 1 ? 's' : ''} actif${active > 1 ? 's' : ''}.` : 'Privée : aucun lien actif.'}
           </p>
         </div>
         <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" aria-expanded={open} onClick={() => setOpen(!open)}>
@@ -744,6 +840,9 @@ function VersionItem({ version, api, autoOpen, onRemoved }) {
             }}
           />
           <div className="carto-share-actions">
+            <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" onClick={() => onReplace?.(version)}>
+              Publier une nouvelle version à la place
+            </button>
             <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" aria-expanded={Boolean(preview)} onClick={togglePreview}>
               {preview ? 'Fermer l’aperçu' : 'Aperçu'}
             </button>
@@ -776,19 +875,8 @@ function VersionItem({ version, api, autoOpen, onRemoved }) {
   )
 }
 
-function Versions({ api, refresh, justPublished, onChanged }) {
+function Versions({ api, state, justPublished, onChanged, onReplace }) {
   const uid = useId()
-  const [state, setState] = useState({ status: 'loading', list: [] })
-  useEffect(() => {
-    let alive = true
-    api
-      .listVersions()
-      .then((list) => alive && setState({ status: 'ready', list }))
-      .catch((err) => alive && setState({ status: 'error', list: [], error: apiMessage(err) }))
-    return () => {
-      alive = false
-    }
-  }, [api, refresh])
   return (
     <section className="carto-share-versions" aria-labelledby={`${uid}-t`}>
       <h3 id={`${uid}-t`} className="carto-share-h">
@@ -799,7 +887,7 @@ function Versions({ api, refresh, justPublished, onChanged }) {
       {state.status === 'ready' && state.list.length === 0 ? <p className="carto-small carto-muted">Aucune version partagée sur le serveur.</p> : null}
       <ul className="carto-share-version-list">
         {state.list.map((v) => (
-          <VersionItem key={v.id} version={v} api={api} autoOpen={v.id === justPublished} onRemoved={() => onChanged()} />
+          <VersionItem key={v.id} version={v} api={api} autoOpen={v.id === justPublished} onRemoved={() => onChanged(v.id)} onReplace={onReplace} />
         ))}
       </ul>
     </section>
@@ -820,6 +908,13 @@ export function SharePanel({ refl, state, data, t, api, config }) {
   const [refresh, setRefresh] = useState(0)
   const [justPublished, setJustPublished] = useState(null)
   const [notice, setNotice] = useState(null)
+  const [versions, setVersions] = useState({ status: 'loading', list: [] })
+  const [chosenTarget, setChosenTarget] = useState(null)
+  const [seed, setSeed] = useState(null)
+  const composerHeading = useRef(null)
+  const datasetId = data.dataset?.datasetId ?? ''
+  // Par défaut, une nouvelle version remplace la plus récente (même lien).
+  const target = chosenTarget !== null && (chosenTarget === 'new' || versions.list.some((v) => v.id === chosenTarget)) ? chosenTarget : versions.list[0]?.id ?? 'new'
 
   useEffect(() => {
     let alive = true
@@ -838,6 +933,39 @@ export function SharePanel({ refl, state, data, t, api, config }) {
     }
   }, [api])
 
+  const adultReady = adult.status === 'ready' && (adult.adult || !attestationRequired(config, adult))
+  useEffect(() => {
+    if (!adultReady) return undefined
+    let alive = true
+    api
+      .listVersions()
+      .then((list) => alive && setVersions({ status: 'ready', list }))
+      .catch((err) => alive && setVersions({ status: 'error', list: [], error: apiMessage(err) }))
+    return () => {
+      alive = false
+    }
+  }, [api, refresh, adultReady])
+
+  async function replaceFrom(version) {
+    let settings = loadDraft(`${datasetId}:${version.id}`)
+    if (!settings) {
+      try {
+        settings = settingsFromDocument((await api.getVersion(version.id)).document)
+      } catch {
+        settings = null
+      }
+    }
+    setChosenTarget(version.id)
+    setSeed({ id: `${version.id}-${Date.now()}`, settings })
+    setNotice({
+      kind: 'ok',
+      text: settings?.fromDocument
+        ? `Composition de « ${version.titre} » reprise (titre, dates, compétences ; les extraits sont à choisir de nouveau) : modifiez-la, puis publiez à sa place.`
+        : `Composition de « ${version.titre} » reprise : modifiez-la, puis publiez à sa place.`,
+    })
+    requestAnimationFrame(() => composerHeading.current?.focus())
+  }
+
   async function attest(on) {
     setBusy(true)
     setGateError(null)
@@ -846,6 +974,7 @@ export function SharePanel({ refl, state, data, t, api, config }) {
       const a = await api.setAdult(on)
       setAdult({ status: 'ready', ...a })
       if (!on) {
+        for (const v of versions.list) dropDraft(`${datasetId}:${v.id}`)
         const n = Number(a?.deletedVersions ?? 0)
         setNotice({
           kind: 'ok',
@@ -894,17 +1023,29 @@ export function SharePanel({ refl, state, data, t, api, config }) {
           data={data}
           t={t}
           api={api}
-          onPublished={(id, title) => {
+          versions={versions.list}
+          target={target}
+          onTarget={setChosenTarget}
+          seed={seed}
+          headingRef={composerHeading}
+          onPublished={(id, title, replaced) => {
             setJustPublished(id)
             setRefresh((n) => n + 1)
-            setNotice({ kind: 'ok', text: `« ${title} » est publiée. Créez maintenant un lien pour la montrer.` })
+            setNotice({
+              kind: 'ok',
+              text: replaced
+                ? `« ${title} » remplace la version précédente : ses liens montrent désormais cette version.`
+                : `« ${title} » est publiée. Créez maintenant un lien pour la montrer.`,
+            })
           }}
         />
         <Versions
           api={api}
-          refresh={refresh}
+          state={versions}
           justPublished={justPublished}
-          onChanged={() => {
+          onReplace={replaceFrom}
+          onChanged={(removedId) => {
+            dropDraft(`${datasetId}:${removedId}`)
             setRefresh((n) => n + 1)
             setNotice({ kind: 'ok', text: 'Version retirée du serveur, avec ses liens.' })
           }}

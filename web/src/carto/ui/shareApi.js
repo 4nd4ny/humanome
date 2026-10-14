@@ -2,10 +2,11 @@
 // l'interface qui parle à l'API ; il n'est utilisé que lorsque le partage est
 // activé (serverEnabled) ET que la personne l'a demandé. Contrat :
 //   GET    api/auth/me/adult                    -> {adult, attestedAt, required}
-//   PUT    api/auth/me/adult {adult}            -> idem (false : révoque les liens)
+//   PUT    api/auth/me/adult {adult}            -> idem (false : efface les versions et leurs liens)
 //   GET    api/cartographies                    -> métadonnées (on garde type « partage »)
 //   POST   api/cartographies {type: 'partage', titre, visibility: 'privee', document} -> {id}
 //   GET    api/cartographies/{id}               -> {…, document}
+//   PUT    api/cartographies/{id}/document {document} -> métadonnées (nouvelle version À LA PLACE : même lien)
 //   DELETE api/cartographies/{id}               -> 204 (version et liens effacés)
 //   POST   api/cartographies/{id}/share {expiresInDays, password?} -> {shareId, token, url}
 //   GET    api/cartographies/{id}/shares        -> [{shareId, createdAt, expiresAt, revokedAt}]
@@ -29,6 +30,7 @@ export function createShareApi(seams = {}) {
     },
     publish: (document) =>
       apiFetch('cartographies', opts({ method: 'POST', body: { type: 'partage', titre: document.title, visibility: 'privee', document } })),
+    replaceVersion: (cartoId, document) => apiFetch(`cartographies/${id(cartoId)}/document`, opts({ method: 'PUT', body: { document } })),
     getVersion: (cartoId) => apiFetch(`cartographies/${id(cartoId)}`, opts()),
     deleteVersion: (cartoId) => apiFetch(`cartographies/${id(cartoId)}`, opts({ method: 'DELETE' })),
     createLink: (cartoId, { expiresInDays, password }) =>

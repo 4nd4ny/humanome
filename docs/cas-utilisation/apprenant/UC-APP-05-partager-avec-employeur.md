@@ -312,7 +312,10 @@ un type de cartographie dédié, `partage`, **réservé aux adultes** :
 - le mot de passe d'un tel lien est **facultatif** : sans mot de passe, l'URL
   renvoyée se termine par `/ouvert` et `GET /api/share/open` (jeton dans
   l'en-tête `X-Share-Token`) sert la version ; une version publiée est figée
-  (titre compris) et hors du module de relecture du cartographe ;
+  (titre compris) et hors du module de relecture du cartographe ; une
+  nouvelle version se publie, par défaut, **à la place** de la plus récente
+  (`PUT /api/cartographies/{id}/document`) : même lien, ancien document
+  effacé ;
 - l'auteur lit le journal des accès d'un lien
   (`GET /api/shares/{shareId}/consultations` : dates seulement).
 

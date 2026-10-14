@@ -51,6 +51,12 @@ function fakeApi({ adult = false, required = true } = {}) {
       versions.push({ id, type: 'partage', titre: document.title, visibility: 'privee', createdAt: '2026-10-14T10:00:00', updatedAt: '2026-10-14T10:00:00', hasDocument: true, document })
       return { id }
     }),
+    replaceVersion: vi.fn(async (id, document) => {
+      const v = versions.find((x) => x.id === id)
+      Object.assign(v, { titre: document.title, document, updatedAt: '2026-10-15T09:00:00' })
+      const { document: _d, ...meta } = v
+      return meta
+    }),
     getVersion: vi.fn(async (id) => ({ ...versions.find((v) => v.id === id) })),
     deleteVersion: vi.fn(async (id) => {
       versions.splice(versions.findIndex((v) => v.id === id), 1)
@@ -285,6 +291,61 @@ describe('P6 — le titre se relit comme les extraits', () => {
 })
 
 describe('P6 — gérer les versions publiées', () => {
+  it('une nouvelle version se publie, par défaut, À LA PLACE de la plus récente : même lien, choix d’une version distincte possible', async () => {
+    const { api, versions, links } = fakeApi({ adult: true })
+    window.location.hash = '#/cartographie/partage'
+    render(<Harness store={await louStore()} api={api} />)
+    await screen.findByRole('heading', { name: 'Nouvelle version partagée' })
+    const publishOnce = async ({ distinct = false } = {}) => {
+      fireEvent.click(screen.getByRole('button', { name: 'Suivant : relire' }))
+      fireEvent.click(await screen.findByRole('checkbox', { name: /J’ai relu le titre et les extraits/ }))
+      fireEvent.click(screen.getByRole('button', { name: 'Suivant : aperçu' }))
+      await screen.findByLabelText('Aperçu verrouillé de la version partagée')
+      fireEvent.click(screen.getByRole('checkbox', { name: /Je demande l’enregistrement/ }))
+      fireEvent.click(screen.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus au moment de cette publication/ }))
+      if (distinct) fireEvent.click(screen.getByRole('radio', { name: /comme une version distincte/ }))
+    }
+    // Première publication : rien à remplacer.
+    await publishOnce()
+    expect(screen.queryByRole('radio', { name: /à la place de/ })).toBeNull()
+    fireEvent.click(screen.getByRole('button', { name: 'Publier la version partagée' }))
+    await waitFor(() => expect(api.publish).toHaveBeenCalledTimes(1))
+    await api.createLink(10, {})
+
+    // Deuxième : on masque une compétence ; par défaut, elle remplace la première.
+    fireEvent.change(screen.getByRole('textbox', { name: 'Titre vu par le destinataire' }), { target: { value: 'Version allégée' } })
+    fireEvent.click(screen.getByRole('checkbox', { name: 'Garder 3.02 Itération dans la version partagée' }))
+    await publishOnce()
+    const radio = screen.getByRole('radio', { name: /à la place de « Ma cartographie de compétences »/ })
+    expect(radio.checked).toBe(true)
+    fireEvent.click(screen.getByRole('button', { name: 'Publier à la place de « Ma cartographie de compétences »' }))
+    await waitFor(() => expect(api.replaceVersion).toHaveBeenCalledTimes(1))
+    expect(api.replaceVersion.mock.calls[0][0]).toBe(10)
+    expect(api.replaceVersion.mock.calls[0][1].state.competencies.map((c) => c.code)).not.toContain('3.02')
+    expect(api.publish).toHaveBeenCalledTimes(1)
+    expect(await screen.findByText(/« Version allégée » remplace la version précédente : ses liens montrent désormais cette version\./)).toBeTruthy()
+    expect(versions).toHaveLength(1)
+    expect(links).toHaveLength(1) // le lien existant montre la nouvelle version
+    expect(await screen.findByText(/remplacée le .*15 oct\. 2026/)).toBeTruthy()
+
+    // « Publier une nouvelle version à la place » reprend sa composition (gardée dans ce navigateur).
+    fireEvent.change(screen.getByRole('textbox', { name: 'Titre vu par le destinataire' }), { target: { value: 'Brouillon en cours' } })
+    const item = screen.getByRole('heading', { name: 'Version allégée' }).closest('li')
+    // La version qu'on vient de publier est déjà dépliée.
+    const toggle = within(item).queryByRole('button', { name: 'Liens et accès' })
+    if (toggle) fireEvent.click(toggle)
+    fireEvent.click(await within(item).findByRole('button', { name: 'Publier une nouvelle version à la place' }))
+    await waitFor(() => expect(screen.getByRole('textbox', { name: 'Titre vu par le destinataire' }).value).toBe('Version allégée'))
+    expect(screen.getByRole('checkbox', { name: 'Garder 3.02 Itération dans la version partagée' }).checked).toBe(false)
+    expect(await screen.findByText(/Composition de « Version allégée » reprise : modifiez-la, puis publiez à sa place\./)).toBeTruthy()
+
+    // Une version distincte reste possible.
+    await publishOnce({ distinct: true })
+    fireEvent.click(screen.getByRole('button', { name: 'Publier la version partagée' }))
+    await waitFor(() => expect(api.publish).toHaveBeenCalledTimes(2))
+    expect(versions).toHaveLength(2)
+  })
+
   it('lien sans mot de passe (copié une seule fois), journal des accès, révocation, retrait', async () => {
     const { api, versions } = fakeApi({ adult: true })
     await api.publish({ kind: 'carto-partage', title: 'Version de juin' })

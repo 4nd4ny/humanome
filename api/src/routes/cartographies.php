@@ -15,6 +15,7 @@ declare(strict_types=1);
  * mutating routes ride the global CSRF middleware.
  */
 
+use Humanome\Auth\Audit;
 use Humanome\Auth\Users;
 use Humanome\Cartographies\CartographyRepository;
 use Humanome\Db;
@@ -260,6 +261,70 @@ return function (App $app): void {
             return $json($response, ['error' => 'Cartographie introuvable'], 404);
         }
         unset($carto['document']); // PATCH answers metadata, not the payload
+
+        return $json($response, $carto);
+    }))->add($apprenant);
+
+    // ------------------------------------------------------------------
+    // PUT /api/cartographies/{id}/document {document} — une nouvelle version
+    // partagée publiée À LA PLACE d'une autre (décision du 2026-10-14) : même
+    // contrôle que la publication (attestation sous verrou, liste blanche),
+    // les liens restent et montrent désormais ce document ; l'ancien est
+    // effacé. Réservé aux versions partagées (type « partage »).
+    // ------------------------------------------------------------------
+    $app->put('/cartographies/{id:[0-9]+}/document', $wrap(function (Request $request, Response $response, array $args) use ($json, $repo, $maxDocumentBytes): Response {
+        $data = (array) ($request->getParsedBody() ?? []);
+        $userId = (int) $request->getAttribute('userId');
+        $id = (int) $args['id'];
+
+        $type = $repo()->typeOwnedBy($id, $userId);
+        if ($type === null) {
+            return $json($response, ['error' => 'Cartographie introuvable'], 404);
+        }
+        if ($type !== 'partage') {
+            return $json($response, ['error' => 'Validation échouée', 'fields' => ['type' => 'Seule une version partagée se publie à la place d’une autre']], 422);
+        }
+        if (Users::adultAttestedAt(Db::get(), $userId) === null) {
+            return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+        }
+        $document = $data['document'] ?? null;
+        $errors = [];
+        if (!\is_array($document) || $document === [] || array_is_list($document)) {
+            $errors['document'] = 'Document requis (objet JSON de cartographie)';
+        } elseif (\strlen(json_encode($document, JSON_UNESCAPED_UNICODE) ?: '') > $maxDocumentBytes) {
+            $errors['document'] = 'Document trop volumineux (8 Mo maximum)';
+        } else {
+            $errors += SharedVersion::validate($document);
+        }
+        if ($errors !== []) {
+            return $json($response, ['error' => 'Validation échouée', 'fields' => $errors], 422);
+        }
+        $titre = trim((string) $document['title']);
+
+        $pdo = Db::get();
+        $pdo->beginTransaction();
+        try {
+            if (Users::lockAdultAttestedAt($pdo, $userId) === null) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Le partage est réservé aux personnes majeures (attestation requise)', 'code' => 'adult_required'], 403);
+            }
+            if (!$repo()->replaceSharedDocument($id, $userId, $titre, $document)) {
+                $pdo->rollBack();
+
+                return $json($response, ['error' => 'Cartographie introuvable'], 404);
+            }
+            Audit::record($pdo, $userId, 'shared_version_replaced', ['cartographyId' => $id]);
+            $pdo->commit();
+        } catch (\Throwable $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
+
+        $carto = $repo()->findForUser($id, $userId);
+        unset($carto['document']);
 
         return $json($response, $carto);
     }))->add($apprenant);

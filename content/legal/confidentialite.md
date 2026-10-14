@@ -58,7 +58,7 @@ lien de partage, ou en supprimant votre compte.
 
 - **Compte et données rattachées** : conservés jusqu'à ce que vous supprimiez votre compte. La suppression est un **effacement réel**, pas une simple désactivation.
 - **Liens de partage** : un lien de partage est valable **90 jours par défaut** (durée réglable de 1 à 365 jours au moment du partage), et peut être révoqué à tout moment. Une fois expiré ou révoqué, il est **purgé** par une tâche d'entretien au plus tard 30 jours après.
-- **Versions partagées** : conservées jusqu'à ce que vous les retiriez (effacement immédiat) ou supprimiez votre compte. Retirer votre attestation de majorité les efface aussitôt du serveur, avec leurs liens. Les pages partagées ne sont pas indexées par les moteurs de recherche.
+- **Versions partagées** : conservées jusqu'à ce que vous les retiriez (effacement immédiat), que vous publiiez une nouvelle version à leur place (l'ancienne est effacée, le lien reste) ou que vous supprimiez votre compte. Retirer votre attestation de majorité les efface aussitôt du serveur, avec leurs liens. Les pages partagées ne sont pas indexées par les moteurs de recherche.
 - **Sessions** : un cookie de session strictement nécessaire, expirant après une période d'inactivité ; l'enregistrement serveur de la session disparaît avec votre compte.
 - **Compteurs anti-abus** : fenêtres courtes (à l'heure ou à la journée), à identifiants hachés, sans lien avec votre profil.
 

@@ -769,9 +769,23 @@ nulle part (le retrait d'une version du serveur s'appelle « Retirer cette
 version du serveur »). **Instantané figé** : aucune route ne modifie le
 document d'une version, ni son titre (le titre servi est celui du document ;
 un `PATCH` du titre est refusé) ; une version partagée est hors du module de
-relecture des cartographes (annotations, révisions, garantie : 404) ; une
-nouvelle version est une nouvelle publication, les anciennes restent jusqu'à
-leur retrait (question 15).
+relecture des cartographes (annotations, révisions, garantie : 404).
+
+**Nouvelle version (décision du 2026-10-14, question 15)** : elle se publie,
+par défaut, **à la place** de la version la plus récente — même lien, les
+destinataires voient la nouvelle version, l'ancien document est effacé du
+serveur (`PUT /api/cartographies/{id}/document` : mêmes gardes que la
+publication — attestation relue sous verrou, liste blanche, propriétaire —,
+audit `shared_version_replaced`, ids seulement ; le journal des accès du lien
+continue). À l'étape d'aperçu, un choix « à la place de « … » » (coché sur la
+plus récente) ou « comme une version distincte, avec ses propres liens » ; le
+bouton le dit (« Publier à la place de « … » »). Chaque version porte
+« Publier une nouvelle version à la place », qui reprend sa composition :
+gardée **dans ce navigateur** à chaque publication (titre, dates,
+compétences, extraits choisis, retouches, noms remplacés, masques ;
+`localStorage`, jamais sur le serveur, effacée avec la version) ou, à défaut,
+reconstituée depuis le document publié (titre, dates, compétences ; les
+extraits sont à choisir de nouveau). La liste indique « remplacée le … ».
 
 Les textes sont coupés par caractères entiers (un émoji n'est jamais coupé
 en deux, ce qui rendait la requête illisible pour le serveur) ; un refus du
@@ -1200,7 +1214,7 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
     des données privées ; seul ce qui est désigné « à partager » va sur le
     serveur.
 15. Nouvelle version partagée (D-33). → **Décidé** : elle remplace une version
-    existante, sous le même lien. Suite : à venir.
+    existante, sous le même lien. Suite : fait (D-33).
 16. Hébergement affiché (D-33). → **Validé** pour le prototype (OVHcloud,
     UE) ; la version finale migrera probablement chez Infomaniak (Suisse).
 17. Deux entrées « partager ». → **Décidé** : retirer l'ancien partage
