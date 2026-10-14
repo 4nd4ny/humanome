@@ -95,7 +95,7 @@ test('clé personnelle sous la CSP de production : la relance part vers le fourn
 
   await page.goto('/#/cartographie')
   await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
-  await page.locator('.carto-col-center .carto-sun').waitFor()
+  await page.locator('[data-tile="sun"] .carto-sun').waitFor()
 
   await test.step('La relance avec clé personnelle passe la CSP de production', async () => {
     await page.getByRole('link', { name: 'Dialogue', exact: true }).click()

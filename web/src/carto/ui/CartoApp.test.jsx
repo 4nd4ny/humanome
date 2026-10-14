@@ -16,6 +16,7 @@ import { ringGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
 import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { showCartoTiles } from '../test/tiles.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 
@@ -38,7 +39,7 @@ function Harness({ store }) {
   return <CartoApp route={route} deps={{ store, loadReferential: async () => ({ doc: miniReferential() }) }} />
 }
 
-const sunSectors = () => [...document.querySelectorAll('.carto-col-center .carto-sun [role="button"][aria-label^="1."], .carto-col-center .carto-sun [role="button"][aria-label^="2."], .carto-col-center .carto-sun [role="button"][aria-label^="3."]')]
+const sunSectors = () => [...document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="1."], [data-tile="sun"] .carto-sun [role="button"][aria-label^="2."], [data-tile="sun"] .carto-sun [role="button"][aria-label^="3."]')]
 const sectorCodes = () => sunSectors().map((el) => el.getAttribute('aria-label').slice(0, 4))
 const cell = (date) => document.getElementById(`carto-hm-${date}`)
 
@@ -46,6 +47,8 @@ beforeEach(() => {
   window.location.hash = '#/cartographie'
   try {
     localStorage.clear()
+    // Ces tests manipulent la liste, la heatmap… : toutes les tuiles affichées (D-53).
+    showCartoTiles()
   } catch {
     /* rien */
   }

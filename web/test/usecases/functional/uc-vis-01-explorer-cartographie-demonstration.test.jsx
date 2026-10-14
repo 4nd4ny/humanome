@@ -48,7 +48,7 @@ function goTo(hash) {
   })
 }
 
-const cartoSectors = () => document.querySelectorAll('.carto-col-center .carto-sun [role="button"]')
+const cartoSectors = () => document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"]')
 
 beforeEach(() => {
   resetApiClient()
@@ -220,7 +220,7 @@ describe('UC-VIS-01 — fichiers ouverts depuis l’accueil (interface de cartog
     openApp('#/')
     loadFromHome(JSON.stringify({ kind: 'autre' }), 'autre.json')
     await waitFor(() => expect(window.location.hash).toBe('#/cartographie'))
-    fireEvent.click(await screen.findByRole('button', { name: 'Voir le rapport du dernier import' }))
+    // Après un import, le rapport s'ouvre de lui-même, en bandeau au-dessus des tuiles (journal carto D-53).
     expect(await screen.findByText(/autre\.json : format JSON non reconnu — ignoré/)).toBeDefined()
     expect(network.mock.calls.every(([, init]) => !init?.body)).toBe(true)
   })

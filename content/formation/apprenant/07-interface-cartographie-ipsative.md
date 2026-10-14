@@ -63,12 +63,22 @@ pas être surlignés.
 - **Pas de secteur** : aucune trace dans les journées retenues. L'absence
   d'une trace ne dit pas l'absence de la compétence.
 
+Au départ, la page ne montre que le **soleil** et, dessous, le **détail**.
+Le menu **« Panneaux »**, en haut à droite, affiche les autres : vos
+journées (avec la période et le nombre de journées cochées), la liste des
+compétences, la heatmap et la tête de lecture, la légende, le tableau
+équivalent, l'import, les étiquettes, les ensembles nommés, vos jeux de
+données, les réglages de l'encodage. Chaque panneau se déplace, se
+redimensionne et se masque ; votre disposition reste dans ce navigateur, et
+**« Réinitialiser l'affichage »** revient à la vue de départ.
+
 Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
-**panneau de détail** s'ouvre. Appuyez sur **w** : « Pourquoi cette surface ? »
+**détail** le décrit. Appuyez sur **w** : « Pourquoi cette surface ? »
 détaille ses traces, leurs points, la confiance de chaque verdict et les
-formules. Sous le soleil, la **tête de lecture** rejoue la construction de
-votre cartographie journée après journée, et la **heatmap** montre l'année
-scolaire, une case par jour ; un double-clic sur un jour l'ouvre seul.
+formules. Dans le panneau « Heatmap et lecture », la **tête de lecture**
+rejoue la construction de votre cartographie journée après journée, et la
+**heatmap** montre l'année scolaire, une case par jour ; un double-clic sur un
+jour l'ouvre seul.
 
 **Ouvrir un pôle sur 360°.** Un double-clic sur un pôle de l'anneau intérieur
 l'ouvre : à la place du soleil complet, ses seules compétences font tout le

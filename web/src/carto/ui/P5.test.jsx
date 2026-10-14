@@ -344,7 +344,12 @@ describe('P5 — copie autonome ouverte (lecture seule)', () => {
     expect(within(nav).queryByText('Export')).toBeNull()
     expect(screen.queryByRole('link', { name: 'Exporter' })).toBeNull()
     expect(screen.queryByRole('region', { name: 'Importer des fichiers' })).toBeNull()
-    expect(document.querySelectorAll('.carto-col-center .carto-sun [role="button"]').length).toBeGreaterThan(0)
+    expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"]').length).toBeGreaterThan(0)
+    // Ni « Importer » ni « Jeux de données » parmi les panneaux d'une copie (D-53).
+    const panels = within(document.querySelector('.carto-panels-menu')).getAllByRole('checkbox').map((c) => c.closest('label').textContent.trim())
+    expect(panels).not.toContain('Importer')
+    expect(panels).not.toContain('Jeux de données')
+    expect(panels).toEqual(expect.arrayContaining(['Soleil', 'Détail', 'Journées', 'Compétences', 'Heatmap et lecture', 'Légende']))
   })
 
   it('sans archive lisible : un message, pas d’écran vide', () => {

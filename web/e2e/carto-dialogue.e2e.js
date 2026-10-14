@@ -31,7 +31,7 @@ test('P7 : le dialogue n’envoie rien ; une relance ne part qu’avec un accord
   page.on('pageerror', (e) => errors.push(e.message))
   await page.goto('/#/cartographie')
   await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
-  await page.locator('.carto-col-center .carto-sun').waitFor()
+  await page.locator('[data-tile="sun"] .carto-sun').waitFor()
 
   // À partir d'ici, toute requête est enregistrée (y compris vers le site lui-même).
   const requests = []

@@ -28,6 +28,8 @@ export const TILE_SIZES = [
   { id: '3x3', w: 3, h: 3 },
   { id: 'pleine-largeur', w: Infinity, h: 1 },
   { id: 'pleine-largeur-x2', w: Infinity, h: 2 },
+  { id: 'pleine-largeur-x3', w: Infinity, h: 3 },
+  { id: 'pleine-largeur-x4', w: Infinity, h: 4 },
 ]
 
 /** Largeur cible d'une colonne (px) → nombre de colonnes de la grille. */
@@ -55,9 +57,11 @@ export function moveTile(order, id, beforeId) {
  * @param {Array<{id: string, label: string, node: import('react').ReactNode}>} props.tiles
  * @param {{order: string[], sizes: Record<string, {w: number, h: number}>}} props.layout
  * @param {(layout: object) => void} props.onLayoutChange
- * @param {Record<string, {w: number, h: number}>} props.defaultSizes
+ * @param {Record<string, {w: number, h: number}> | ((columns: number) => Record<string, {w: number, h: number}>)} props.defaultSizes
+ *   tailles par défaut, ou fonction du nombre de colonnes (une tuile peut être plus basse sur un téléphone)
+ * @param {(id: string) => void} [props.onHide] bouton « Masquer » dans la barre de chaque tuile (cartographie, journal D-53)
  */
-export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
+export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onHide = null }) {
   const ref = useRef(null)
   const [columns, setColumns] = useState(3)
   const dragId = useRef(null)
@@ -91,9 +95,10 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
   const ordered = useMemo(() => orderedTiles(tiles, layout), [tiles, layout])
   const fullOrder = ordered.map((t) => t.id)
 
+  const defaults = typeof defaultSizes === 'function' ? defaultSizes(columns) : defaultSizes
   const sizeOf = (id) => {
     if (resizing?.id === id) return resizing
-    return layout?.sizes?.[id] ?? defaultSizes[id] ?? { w: 1, h: 1 }
+    return layout?.sizes?.[id] ?? defaults[id] ?? { w: 1, h: 1 }
   }
 
   /** Métriques d'une cellule de grille (pour quantiser le geste). */
@@ -224,11 +229,16 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {} }) {
                   ) : null}
                   {TILE_SIZES.map((p) => (
                     <option key={p.id} value={p.id}>
-                      {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id === 'pleine-largeur-x2' ? '↔ pleine largeur ×2' : p.id.replace('x', '×')}
+                      {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id.startsWith('pleine-largeur-x') ? `↔ pleine largeur ×${p.h}` : p.id.replace('x', '×')}
                     </option>
                   ))}
                 </select>
               </label>
+              {onHide ? (
+                <button type="button" className="v3-tile-hide" onClick={() => onHide(tile.id)} aria-label={`Masquer le panneau ${tile.label}`} title="Masquer ce panneau">
+                  ✕
+                </button>
+              ) : null}
             </div>
             <div className="v3-tile-content">{tile.node}</div>
             <span

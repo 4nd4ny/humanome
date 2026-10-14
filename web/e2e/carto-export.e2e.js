@@ -57,7 +57,7 @@ async function openOffline(browser, path) {
 
 /** Sélectionne une compétence du soleil et ouvre sa première trace dans le portfolio. */
 async function openFirstTrace(page, code) {
-  const sector = page.locator(`.carto-col-center .carto-sun [role="button"][aria-label^="${code} "]`)
+  const sector = page.locator(`[data-tile="sun"] .carto-sun [role="button"][aria-label^="${code} "]`)
   await expect(sector).toHaveCount(1)
   await sector.focus()
   await page.keyboard.press('Enter')
@@ -74,7 +74,7 @@ test('P5 : copie autonome en file:// et démo anonymisée, surlignages compris',
   await test.step('import des fichiers de Lou dans le navigateur', async () => {
     await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
     await expect(page.getByRole('heading', { name: 'Cartographie', level: 1 })).toBeVisible()
-    await expect(page.locator('.carto-col-center .carto-sun [role="button"][aria-label^="2.01 "]')).toHaveCount(1)
+    await expect(page.locator('[data-tile="sun"] .carto-sun [role="button"][aria-label^="2.01 "]')).toHaveCount(1)
   })
 
   let copyPath

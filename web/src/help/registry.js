@@ -30,9 +30,10 @@ const BASE = {
       'dans votre navigateur.',
     points: [
       'Importez vos analyses (journées, merge, archive) et votre portfolio, ou explorez la démonstration.',
+      'Au départ, seuls le soleil et le détail sont affichés : « Panneaux » (en haut à droite) ajoute les journées, les compétences, la heatmap, la légende… Chaque panneau se déplace, se redimensionne et se masque ; « Réinitialiser l’affichage » revient au départ.',
       '« Pourquoi cette surface ? » (touche w sur un secteur) montre les traces, les points et la confiance.',
       'Un double-clic sur un pôle (anneau intérieur du soleil) l’ouvre sur 360° : ses seules compétences, chacune selon sa part des points du pôle. Un clic au centre (ou Échap) ramène à tous les pôles.',
-      'Un clic sur une journée de la heatmap déplace la date t ; un double-clic ouvre la journée seule.',
+      'Un clic sur une journée de la heatmap (panneau « Heatmap et lecture ») déplace la date t ; un double-clic ouvre la journée seule.',
       'Confirmez, nuancez ou contestez chaque verdict du jury : c’est votre droit de réponse.',
       'Comparaison, tableau de bord, dialogue, export et partage : les autres espaces, en haut de la cartographie.',
     ],

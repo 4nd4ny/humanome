@@ -32,10 +32,11 @@ export function SunLegend() {
  *   refl: object, dataset: object, state: object, selection: object | null, t: string | null,
  *   onSelect: (t: object | null) => void, onOpenDay: (d: string, code?: string) => void, onWhy: () => void,
  *   zoom?: number | null, onZoom?: (num: number | null) => void, // pôle ouvert sur 360° (journal D-45)
+ *   legend?: boolean, // légende de l'encodage sous le résumé (dans la cartographie, elle a sa tuile : D-53)
  *   children?: React.ReactNode,
  * }} props children : sections supplémentaires (traces, jury… en P2)
  */
-export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, zoom = null, onZoom, children }) {
+export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, zoom = null, onZoom, legend = true, children }) {
   if (selection?.type === 'competency') {
     const meta = refl.compByCode.get(selection.code)
     const c = state.competencies.get(selection.code)
@@ -216,10 +217,14 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
         </p>
       ) : null}
       {children}
-      <SunLegend />
-      <p className="carto-small carto-muted">
-        Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}
-      </p>
+      {legend ? (
+        <>
+          <SunLegend />
+          <p className="carto-small carto-muted">
+            Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}
+          </p>
+        </>
+      ) : null}
     </article>
   )
 }

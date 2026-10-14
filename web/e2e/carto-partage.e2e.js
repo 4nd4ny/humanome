@@ -128,7 +128,7 @@ test('P6 : un mineur n’a jamais accès au partage ; un adulte publie, partage,
     )
     expect(login).toBe(200)
     await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
-    await page.locator('.carto-col-center .carto-sun').waitFor()
+    await page.locator('[data-tile="sun"] .carto-sun').waitFor()
   })
 
   await test.step('Sans attestation : l’espace ne propose que l’attestation, et le serveur refuse tout', async () => {
@@ -264,7 +264,7 @@ test('Version garantie : la personne demande, son cartographe publie dans son co
   await test.step('Lou, adulte, crée un code de demande dans son espace Partage', async () => {
     await signUp(page, { email: learnerEmail, displayName: 'Lou E2E' })
     await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
-    await page.locator('.carto-col-center .carto-sun').waitFor()
+    await page.locator('[data-tile="sun"] .carto-sun').waitFor()
     await page.getByRole('link', { name: 'Partage', exact: true }).click()
     await page.getByRole('checkbox', { name: /J’atteste avoir 18 ans ou plus/ }).check()
     await page.getByRole('button', { name: 'Confirmer et continuer' }).click()
@@ -279,7 +279,7 @@ test('Version garantie : la personne demande, son cartographe publie dans son co
   await test.step('Carl, cartographe, ouvre la cartographie de Lou qu’il a relue avec elle, puis la demande', async () => {
     await signUp(carl, { email: cartographeEmail, displayName: 'Carl E2E', roles: ['cartographe'] })
     await carl.locator('input[type="file"][accept]').setInputFiles(louFiles())
-    await carl.locator('.carto-col-center .carto-sun').waitFor()
+    await carl.locator('[data-tile="sun"] .carto-sun').waitFor()
     await carl.getByRole('link', { name: 'Partage', exact: true }).click()
     await carl.getByLabel(/Code de demande/).fill(code.toLowerCase())
     await carl.getByRole('button', { name: 'Ouvrir la demande' }).click()
