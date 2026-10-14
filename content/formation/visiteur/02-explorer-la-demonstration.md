@@ -125,8 +125,9 @@ agissent sur l'ensemble ; Maj+clic coche une plage.
 
 En haut de la cartographie :
 
-- **Comparaison** met deux ensembles de journées côte à côte (d'emblée,
-  janvier face à mars), en huit vues, sans jamais classer ;
+- **Comparaison** met deux ensembles de journées côte à côte (d'emblée, la
+  première moitié des journées face à la seconde), en huit vues, sans jamais
+  classer ;
 - **Tableau de bord** réunit des cartes (profil, rythme, constance, moments
   remarquables…) qui se masquent quand leurs données manquent ;
 - **Dialogue** pose des questions tirées des traces, pour relire son parcours ;
