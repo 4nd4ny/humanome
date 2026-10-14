@@ -50,9 +50,9 @@ afterEach(() => {
 })
 
 describe('UC-VIS-01 — routes de la démonstration', () => {
-  it('UC-VIS-01-U01 — #/cartographie, #/merge et #/jour/<iso>?focus=<code> sont des routes publiques ; dayHash les reconstruit', () => {
+  it('UC-VIS-01-U01 — #/cartographie et #/jour/<iso>?focus=<code> sont des routes publiques, #/merge y renvoie ; dayHash les reconstruit', () => {
     expect(parseHash('#/cartographie')).toEqual({ name: 'cartographie' })
-    expect(parseHash('#/merge')).toEqual({ name: 'merge' })
+    expect(parseHash('#/merge')).toEqual({ name: 'redirect', to: '#/cartographie' })
     expect(parseHash('#/jour/2026-01-06')).toEqual({ name: 'day', date: '2026-01-06', focus: null })
     expect(parseHash('#/jour/2026-01-06?focus=2.01')).toEqual({ name: 'day', date: '2026-01-06', focus: '2.01' })
     expect(parseHash('#/jour/2026-01-06?focus=')).toEqual({ name: 'day', date: '2026-01-06', focus: null })

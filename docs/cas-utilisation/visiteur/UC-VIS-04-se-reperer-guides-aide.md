@@ -54,8 +54,8 @@ statique, sans API.
    (`GET /api/auth/me`) ; sans session, la réponse `401` donne `roles = []`.
 2. L'accueil présente le site (61 compétences en 7 pôles, prompts versionnés,
    garantie humaine), trois actions (« Explorer la cartographie de
-   démonstration » → `#/merge`, « Essayer avec votre propre texte » →
-   `#/essayer`, « Charger ma cartographie (JSON) », UC-VIS-01) et le **plan du
+   démonstration » → `#/cartographie`, « Essayer avec votre propre texte » →
+   `#/essayer`, « Ouvrir mes fichiers de cartographie », UC-VIS-01) et le **plan du
    site** « Explorer le site » : tuiles des familles « Découvrir » et « Compte ».
 3. Le bouton « Menu de navigation » (ou le survol du bouton, ou le bord gauche
    de l'écran) ouvre le tiroir : famille « Découvrir » (Accueil, Cartographie

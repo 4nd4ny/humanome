@@ -203,8 +203,8 @@ describe('UC-APP-03 — scénarios alternatifs', () => {
     expect(await within(viewer).findByRole('group', { name: 'Cartographie de la journée du 05/01/2026' })).toBeDefined()
     expect(within(viewer).getByText('Journée du 05/01/2026')).toBeDefined()
     // [comportement ACTUEL, anomalie A-02] la vue du jour garde son lien vers
-    // la vue merge GLOBALE (#/merge), qui sort de l'espace (démonstration).
-    expect(within(viewer).getByRole('link', { name: '← Retour à la cartographie' }).getAttribute('href')).toBe('#/merge')
+    // l'interface de cartographie (#/cartographie, depuis le retrait des pages V3), qui sort de l'espace.
+    expect(within(viewer).getByRole('link', { name: '← Retour à la cartographie' }).getAttribute('href')).toBe('#/cartographie')
   })
 
   it('UC-APP-03-F05 — A3 : analyse Twin9 : libellé dédié, projetée sur la vue chronologique', async () => {

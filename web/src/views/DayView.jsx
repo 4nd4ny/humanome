@@ -362,7 +362,7 @@ export default function DayView({
   return (
     <div className="day-view">
       <nav className="day-nav" aria-label="Navigation entre les journées">
-        <a className="button" href="#/merge">
+        <a className="button" href="#/cartographie">
           ← Retour à la cartographie
         </a>
         <span className="day-badge" data-testid="day-badge">

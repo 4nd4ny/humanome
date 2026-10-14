@@ -11,10 +11,10 @@ import Help from './Help.jsx'
 
 afterEach(cleanup)
 
-/** Panneau ouvert sur la rubrique merge, session anonyme (entrée de base). */
+/** Panneau ouvert sur la rubrique cartographie, session anonyme (entrée de base). */
 function renderHelp(overrides = {}) {
   const props = {
-    route: 'merge',
+    route: 'cartographie',
     session: { roles: [] },
     open: true,
     onToggle: vi.fn(),
@@ -45,10 +45,10 @@ describe('Help — panneau « ? » d’aide contextuelle', () => {
 
   it('le dialogue est modal et étiqueté par le titre de l’entrée de la rubrique', () => {
     renderHelp()
-    const dialog = screen.getByRole('dialog', { name: 'La cartographie évolutive' })
+    const dialog = screen.getByRole('dialog', { name: 'Votre cartographie' })
     expect(dialog.getAttribute('aria-modal')).toBe('true')
     expect(dialog.getAttribute('aria-labelledby')).toBe('help-title')
-    expect(screen.getByRole('heading', { name: 'La cartographie évolutive' }).id).toBe(
+    expect(screen.getByRole('heading', { name: 'Votre cartographie' }).id).toBe(
       'help-title',
     )
   })

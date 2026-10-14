@@ -21,11 +21,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import App from '../../../src/App.jsx'
+import MergeView from '../../../src/views/MergeView.jsx'
 import { resetApiClient } from '../../../src/api/client.js'
-import { clearDayCache } from '../../../src/data/load.js'
+import { clearDayCache, getReferentiel } from '../../../src/data/load.js'
 import { clearReferentielCache } from '../../../src/data/referentiel.js'
 import mergeFixture from '../../../../schemas/fixtures/cartographie-merge-3-jours.json'
-import { FIXTURE_DAYS, browserFile, demoNetwork } from '../support/vis.js'
+import { FIXTURE_DAYS, demoNetwork } from '../support/vis.js'
 
 /** Application de visiteur, bibliothèque sunburst de production (aucune injection). */
 function openApp(hash) {
@@ -40,18 +41,17 @@ function goTo(hash) {
   })
 }
 
-/** Charge un document depuis l'accueil (« Charger ma cartographie (JSON) »). */
-function loadFromHome(doc, name) {
-  fireEvent.change(screen.getByLabelText('Charger ma cartographie (JSON)'), {
-    target: { files: [browserFile(JSON.stringify(doc), name)] },
-  })
-}
-
-/** Ouvre la vue chronologique sur un merge chargé localement ; renvoie le SVG du soleil. */
+/**
+ * Vue chronologique (MergeView) sur un merge ; renvoie le SVG du soleil.
+ * Depuis le retrait des pages V3 (2026-10-14), elle n'a plus d'adresse
+ * propre (#/merge) : un fichier ouvert depuis l'accueil va dans l'interface
+ * de cartographie. Elle reste le rendu des cartographies du site (« Mes
+ * cartographies », relecture du cartographe, Twin6, Twin9, établissement) :
+ * on la monte donc directement, avec le référentiel embarqué et la
+ * bibliothèque sunburst de production.
+ */
 async function openMerge(doc = mergeFixture) {
-  openApp('#/')
-  loadFromHome(doc, 'ma-cartographie.json')
-  await waitFor(() => expect(window.location.hash).toBe('#/merge'))
+  render(<MergeView mergeDoc={doc} referentiel={getReferentiel()} />)
   return screen.findByRole('group', { name: 'Cartographie cumulée des compétences' })
 }
 
@@ -240,12 +240,10 @@ describe('UC-VIS-01 — vue chronologique d’un merge chargé localement, vraie
     expect(document.querySelector('.details-meta').textContent).toBe('Niveau 4 — Expertise · 1 points')
 
     // Un merge qui déclare une pondération temporelle l'affiche en « -X %/an ».
-    goTo('#/')
+    cleanup()
     const weighted = structuredClone(mergeFixture)
     weighted.profilMeta.ponderation_temporelle = { decote_annuelle: 0.15 }
-    loadFromHome(weighted, 'pondere.json')
-    await waitFor(() => expect(window.location.hash).toBe('#/merge'))
-    await screen.findByRole('group', { name: 'Cartographie cumulée des compétences' })
+    await openMerge(weighted)
     await waitFor(() => expect(profileLines()).toHaveLength(5))
     expect(profileLines().at(-1)).toEqual(['Pondération temporelle', '-15 %/an'])
   })

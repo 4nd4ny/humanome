@@ -3,8 +3,7 @@
 //
 //   #/                      home
 //   #/cartographie[/…]      ultimate cartography interface (5 spaces, day view)
-//   #/cartographie-v3       previous V3 interface (kept)
-//   #/merge                 chronological (merge) view
+//   #/cartographie-v3, #/merge  retired V3 pages (2026-10-14): redirect to #/cartographie
 //   #/jour/<iso>            day view, <iso> = AAAA-MM-JJ
 //   #/jour/<iso>?focus=<c>  idem with a competence code highlighted
 //   #/referentiel           public referentiel (7 pôles -> 61 compétences)
@@ -37,7 +36,7 @@ export function isValidIsoDate(value) {
  * @param {string} hash e.g. '#/jour/2026-03-15?focus=1.01' (leading '#' optional)
  * @returns {{name: 'home'}
  *   | {name: 'cartographie'}
- *   | {name: 'merge'}
+ *   | {name: 'redirect', to: string}
  *   | {name: 'day', date: string, focus: string | null}
  *   | {name: 'referentiel', code: string | null}
  *   | {name: 'essayer'}
@@ -68,9 +67,9 @@ export function parseHash(hash) {
       return { name: 'cartographie', sub: 'jour', date, focus: focus === null || focus === '' ? null : focus }
     }
   }
-  // Interface V3 de cartographie ipsative (précédente, conservée).
-  if (path === '/cartographie-v3') return { name: 'cartographie-v3' }
-  if (path === '/merge') return { name: 'merge' }
+  // Anciennes pages de l'interface V3, retirées le 2026-10-14 (décision de
+  // Christian) : leurs adresses renvoient vers l'interface ultime.
+  if (path === '/cartographie-v3' || path === '/merge') return { name: 'redirect', to: '#/cartographie' }
   if (path === '/essayer') return { name: 'essayer' }
   if (path === '/portfolio') return { name: 'portfolio' }
   if (path === '/compte') return { name: 'account', section: null }

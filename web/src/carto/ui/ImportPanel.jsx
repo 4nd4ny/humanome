@@ -18,7 +18,7 @@ export async function readFiles(fileList) {
 }
 
 /** Parcourt récursivement un dossier déposé (API webkitGetAsEntry). */
-async function filesFromDataTransfer(dt) {
+export async function filesFromDataTransfer(dt) {
   const items = [...(dt.items ?? [])]
   const entries = items.map((i) => (typeof i.webkitGetAsEntry === 'function' ? i.webkitGetAsEntry() : null)).filter(Boolean)
   if (entries.length === 0) return readFiles(dt.files ?? [])

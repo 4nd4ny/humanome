@@ -109,9 +109,22 @@ const go = (hash) => {
  *   deps.llm : relances facultatives du dialogue (P7) par un modèle de langage — absent,
  *   le dialogue reste entièrement scripté et local (copie autonome).
  */
-export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site', session = null }) {
+export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'site', session = null, incoming = null, onIncomingHandled }) {
   const viewer = mode === 'viewer'
   const data = useCartoData(deps)
+
+  // Fichiers ouverts depuis l'accueil du site : importés UNE fois, dans un
+  // nouveau jeu, dès que le magasin local est prêt ; le rapport d'import
+  // s'affiche comme pour un dépôt ici.
+  const handledIncoming = useRef(new Set())
+  useEffect(() => {
+    if (viewer || !incoming || handledIncoming.current.has(incoming.id) || data.status === 'loading' || data.busy) return
+    handledIncoming.current.add(incoming.id)
+    data
+      .importInto(incoming.files, { newDataset: true })
+      .catch((e) => data.setError?.(e.message ?? String(e)))
+      .finally(() => onIncomingHandled?.(incoming.id))
+  }, [viewer, incoming, data, onIncomingHandled])
   const shareConfig = useMemo(() => normalizeShareConfig(deps.share), [deps.share])
   const canShare = !viewer && shareConfig.serverEnabled && (session?.roles ?? []).includes('apprenant')
   const shareApi = useMemo(() => deps.shareApi ?? createShareApi(deps.fetchFn ? { fetchFn: deps.fetchFn } : {}), [deps.shareApi, deps.fetchFn])

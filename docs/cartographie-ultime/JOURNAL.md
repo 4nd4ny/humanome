@@ -73,6 +73,9 @@ Depuis P1, `#/cartographie` porte l'interface ultime et l'entrée du menu
 `#/cartographie-v3` (et sur `#/merge`) ; les fiches UC-VIS-01 et UC-APP-12 le
 mentionnent en tête, et leurs tests ouvrent désormais `#/cartographie-v3`.
 
+**Le 2026-10-14**, Christian retire l'interface V3 : `#/cartographie-v3` et
+`#/merge` renvoient vers `#/cartographie` (D-38).
+
 ### D-3 — Conteneur : le master V3 étendu, réorganisé par journée
 
 Conformément au §4, le conteneur garde l'enveloppe du master V3
@@ -913,6 +916,39 @@ relevé 15 points ; 13 sont corrigés, 2 relèvent d'une décision.
 Lectures de la spécification signalées et retenues : attestation redemandée
 à chaque publication (D-31) ; compétences cochées par défaut (question 23).
 Chaque correction a son test, qui échoue si on la défait (§3).
+
+### D-38 — Retrait des pages V3 **[décidé]**
+
+Christian (2026-10-14), en comparant `#/merge` et `#/cartographie` en local :
+« Quel avantage à conserver la vieille [cartographie] sur le site ? » — aucun ;
+décision : retirer les pages V3 et renvoyer vers `#/cartographie`.
+
+- **Adresses** : `#/merge` et `#/cartographie-v3` donnent la route
+  `redirect` ; l'application remplace l'entrée d'historique par
+  `#/cartographie` (le bouton « Précédent » ne ramène pas sur l'ancienne
+  adresse) et affiche aussitôt l'interface ultime.
+- **Accueil** : « Explorer la cartographie de démonstration » mène à
+  `#/cartographie` ; « Ouvrir mes fichiers de cartographie » (plusieurs
+  fichiers, ou des dossiers par dépôt) lit les fichiers dans le navigateur et
+  les remet à l'interface (`incoming`), qui les importe **une fois**, dans un
+  nouveau jeu ; son rapport d'import dit ce qui n'est pas reconnu (il n'y a
+  plus de validation de schéma sur l'accueil : l'import de l'interface
+  reconnaît davantage de formats).
+- **Vue journée historique** (`#/jour/<date>`) conservée pour les journées de
+  la démonstration ; son « Retour à la cartographie » mène à `#/cartographie`.
+- **Supprimés** : `V3View.jsx`, les panneaux, outils et partage de la V3, leurs
+  tests, les tests fonctionnels d'UC-APP-12 (fiche marquée « retiré »), l'e2e
+  `timeline-demo`. **Conservés** : `web/src/v3/core/` (conversion des masters
+  V3, D-25 ; lecture ZIP ; identifiants) et la grille de tuiles du tableau de
+  bord, avec leurs tests unitaires.
+- Les **composants de dessin historiques** (`DayView`, `MergeView`) restent le
+  rendu des cartographies produites sur le site : essai visiteur, « Mes
+  cartographies », relecture du cartographe, établissement, Twin6, Twin9 (et
+  l'ancien partage, que la question 17 retire). Les remplacer par l'interface
+  ultime, écran par écran, est un chantier proposé à Christian.
+- Aide contextuelle (`help/registry.js`) et guides de formation (visiteur 01 et
+  02, apprenant 01 et 05) réécrits pour la nouvelle interface ; fiches
+  UC-VIS-01, UC-VIS-04, UC-APP-03, UC-APP-12, UC-ETA-04, ADR-009 mises à jour.
 
 ---
 

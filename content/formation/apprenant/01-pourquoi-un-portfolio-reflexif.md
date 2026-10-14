@@ -50,9 +50,10 @@ Cette carte sert trois usages, dans cet ordre d'importance.
   n'est jamais partagé automatiquement (voir le chapitre 6).
 
 Vous pouvez voir à quoi ressemble une cartographie complète sans compte : la
-**démonstration sur données réelles** est accessible depuis l'accueil, à la
-route `#/merge`. Vous y retrouverez le sunburst, le panneau de détails, et une
-*timeline* qui rejoue la construction de la carte feuille après feuille.
+**démonstration sur données réelles** est accessible depuis l'accueil, dans la
+cartographie (`#/cartographie`). Vous y retrouverez le soleil, le panneau de
+détail, la heatmap de vos journées et une tête de lecture qui rejoue la
+construction de la carte journée après journée.
 
 ## 2. Ce que le moteur lit réellement
 
@@ -139,8 +140,8 @@ Deux vues rendent ce temps visible.
 - **La vue Journée** (`#/jour/<date>`, ou « Voir » sur une cartographie de
   type *Journée*) : le détail d'une feuille, avec les verdicts, l'examen du
   pédagogue et les traces retenues.
-- **La vue Merge** (`#/merge`, ou « Voir » sur une cartographie de type
-  *Parcours*) : la carte cumulée, avec une *timeline* qui rejoue la
+- **La vue Merge** (« Voir » sur une cartographie de type *Parcours*) : la
+  carte cumulée, avec une *timeline* qui rejoue la
   construction feuille après feuille, une heatmap de vos journées et une
   synthèse par pôle.
 

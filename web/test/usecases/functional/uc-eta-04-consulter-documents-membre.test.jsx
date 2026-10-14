@@ -198,7 +198,7 @@ describe('UC-ETA-04 — l’établissement lit les cartographies d’un membre',
     // V3 de démonstration, pas vers la fusion du membre.
     fireEvent.click(memberViewButtons()[2])
     await waitFor(() => expect(document.querySelector('.day-view')).toBeTruthy())
-    expect(screen.getByRole('link', { name: '← Retour à la cartographie' }).getAttribute('href')).toBe('#/merge')
+    expect(screen.getByRole('link', { name: '← Retour à la cartographie' }).getAttribute('href')).toBe('#/cartographie')
     fireEvent.click(memberViewButtons()[0])
     await waitFor(() => expect(document.querySelector('.merge-view')).toBeTruthy())
 

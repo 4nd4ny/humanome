@@ -121,7 +121,7 @@ describe('App', () => {
   })
 
   it('« Se déconnecter » ferme la session (dégradation gracieuse) et revient à l’accueil', async () => {
-    window.location.hash = '#/merge'
+    window.location.hash = '#/referentiel'
     const fetchMeFn = vi
       .fn()
       .mockResolvedValueOnce({ user: { id: 1, roles: ['apprenant'] } }) // montage
@@ -145,20 +145,20 @@ describe('App', () => {
   it('le bouton « ? » ouvre l’aide contextuelle de la rubrique (item 4)', async () => {
     window.location.hash = '#/'
     renderApp()
-    setHash('#/merge')
+    setHash('#/cartographie')
 
     fireEvent.click(screen.getByRole('button', { name: 'Aide sur cette rubrique' }))
     const dialog = await screen.findByRole('dialog')
-    expect(dialog.textContent).toContain('La cartographie évolutive')
+    expect(dialog.textContent).toContain('Votre cartographie')
+    expect(dialog.textContent).not.toContain('V3')
     // Fermeture par Échap.
     fireEvent.keyDown(document, { key: 'Escape' })
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
   })
 
-  it('routes #/cartographie (interface ultime), #/cartographie-v3 et #/merge (démo) -> interface V3', () => {
-    // D14 : l'interface V3 avait REMPLACÉ la vue merge pour la démonstration ;
-    // l'interface ultime (docs/cartographie-ultime, D-2) prend #/cartographie,
-    // la V3 reste servie sur #/cartographie-v3 et #/merge.
+  it('#/cartographie : interface ultime ; les anciennes pages V3 (#/cartographie-v3, #/merge) y renvoient', async () => {
+    // Pages V3 retirées le 2026-10-14 (journal carto, D-2) : leurs adresses
+    // remplacent l'entrée d'historique par #/cartographie.
     window.location.hash = '#/'
     renderApp()
 
@@ -166,13 +166,28 @@ describe('App', () => {
     expect(document.querySelector('.carto-app')).not.toBeNull()
     expect(document.querySelector('.v3-root')).toBeNull()
 
-    setHash('#/cartographie-v3')
-    expect(document.querySelector('.v3-root')).not.toBeNull()
-    expect(screen.queryByText('Feuilles de portfolio')).toBeNull() // ancienne vue absente
+    for (const old of ['#/cartographie-v3', '#/merge']) {
+      setHash('#/')
+      setHash(old)
+      await waitFor(() => expect(window.location.hash).toBe('#/cartographie'))
+      expect(document.querySelector('.carto-app')).not.toBeNull()
+      expect(document.querySelector('.v3-root')).toBeNull()
+    }
+  })
 
-    setHash('#/merge')
-    expect(document.querySelector('.v3-root')).not.toBeNull()
-    expect(screen.queryByText(/Touchez un secteur du diagramme/)).toBeNull()
+  it('l’accueil ouvre les fichiers déposés dans l’interface de cartographie (nouveau jeu, rapport d’import)', async () => {
+    window.location.hash = '#/'
+    renderApp()
+    const day = {
+      kind: 'cartographie-jour',
+      date: '2025-12-22',
+      poles: [],
+    }
+    const bytes = new TextEncoder().encode(JSON.stringify(day))
+    const file = { name: '2025-12-22.json', arrayBuffer: async () => bytes.buffer }
+    fireEvent.change(screen.getByLabelText('Ouvrir mes fichiers de cartographie'), { target: { files: [file] } })
+    await waitFor(() => expect(window.location.hash).toBe('#/cartographie'))
+    await waitFor(() => expect(document.querySelector('.carto-app')).not.toBeNull())
   })
 
   it('route #/referentiel -> arbre public (repli embarqué sans réseau)', async () => {

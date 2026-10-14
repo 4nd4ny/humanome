@@ -40,7 +40,8 @@ describe('parseHash', () => {
   })
 
   it('route vers la vue merge', () => {
-    expect(parseHash('#/merge')).toEqual({ name: 'merge' })
+    expect(parseHash('#/merge')).toEqual({ name: 'redirect', to: '#/cartographie' })
+    expect(parseHash('#/cartographie-v3')).toEqual({ name: 'redirect', to: '#/cartographie' })
   })
 
   it('route vers la vue journée pour une date valide', () => {
@@ -194,9 +195,9 @@ describe('subscribe / currentRoute', () => {
     const listener = vi.fn()
     const unsubscribe = subscribe(listener)
 
-    window.location.hash = '#/merge'
+    window.location.hash = '#/referentiel'
     window.dispatchEvent(new HashChangeEvent('hashchange'))
-    expect(listener).toHaveBeenLastCalledWith({ name: 'merge' })
+    expect(listener).toHaveBeenLastCalledWith({ name: 'referentiel', code: null })
 
     window.location.hash = '#/jour/2026-01-04?focus=1.01'
     window.dispatchEvent(new HashChangeEvent('hashchange'))

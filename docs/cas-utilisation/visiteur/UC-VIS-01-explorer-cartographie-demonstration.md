@@ -1,5 +1,22 @@
 # UC-VIS-01 — Explorer la cartographie de démonstration
 
+> **Mise à jour du 2026-10-14 : pages V3 retirées** (décision de Christian ;
+> journal de la cartographie, D-2 et D-38). La démonstration s'explore dans
+> l'interface de cartographie : « Explorer la cartographie de démonstration »
+> mène à `#/cartographie`, où « Explorer la démonstration » charge les journées
+> publiques (`data/demo/jours/`) dans un jeu local. `#/merge` et
+> `#/cartographie-v3` y renvoient (l'entrée d'historique est remplacée). Les
+> fichiers ouverts depuis l'accueil (« Ouvrir mes fichiers de cartographie »
+> ou dépôt) sont remis tels quels à la cartographie, qui les reconnaît et les
+> importe dans un nouveau jeu ; un fichier non reconnu apparaît dans son
+> rapport d'import (il n'y a plus de validation de schéma sur l'accueil). La
+> vue journée historique (`#/jour/<iso>`) reste, son « Retour à la
+> cartographie » mène à `#/cartographie`. Tests : F01, F05, F14, F15, F16 et
+> F20 réécrits pour ce parcours ; F02–F04, F06–F08, F18, F19 (interface V3)
+> retirés avec elle ; F22–F24 montent la vue merge directement (elle reste le
+> rendu des cartographies du site). Le reste de la fiche décrit l'état
+> antérieur.
+
 > **Mise à jour du 2026-10-13 (interface ultime de cartographie).** L'interface V3
 > décrite dans cette fiche est désormais servie sur `#/cartographie-v3` (et
 > toujours sur `#/merge` sans document chargé) ; `#/cartographie` porte
