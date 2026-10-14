@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-49, état des tests, les 33 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-50, état des tests, les 33 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -109,6 +109,10 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     redéployé, vérifié en ligne : 98,5 % des passages retrouvés tels quels (97,4 % avant).
     Suites : front **2 294 verts**, moteur **1 072** + 17 sautés, e2e P5, P7, soleil, guides
     verts. Ouvert : tableaux (question 32), traits d'un journal importé tel quel (question 33).
+  - **Comparaison par défaut** (D-50, demande de Christian) : l'espace Comparaison s'ouvre sur
+    janvier face à mars (l'année la plus récente où les deux mois ont des journées analysées ;
+    sinon, comme avant, « depuis la dernière évaluation ») ; préréglage « Janvier et mars » ;
+    changer de vue ne fige plus A et B. Déployé (front) et vérifié en ligne.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

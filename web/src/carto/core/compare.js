@@ -75,18 +75,28 @@ function quarterStart(date) {
 }
 
 /**
- * Préréglages (V3 `resolveBaselinePreset`, ramené à deux ensembles) : les trois
- * premiers comparent l'état cumulé à une date repère et l'état cumulé à la date
- * de référence (B contient A : c'est signalé) ; le dernier compare deux années
- * scolaires disjointes. Seules les journées cochées comptent.
+ * Préréglages (V3 `resolveBaselinePreset`, ramené à deux ensembles) :
+ * « janvier et mars » compare deux mois disjoints de la même année — la plus
+ * récente où janvier et mars ont chacun une journée analysée (comparaison par
+ * défaut, journal carto D-50 ; la date de référence n'y joue pas) ; les trois
+ * suivants comparent l'état cumulé à une date repère et l'état cumulé à la
+ * date de référence (B contient A : c'est signalé) ; le dernier compare deux
+ * années scolaires disjointes. Seules les journées cochées comptent.
  * @param {object} dataset
- * @param {'last-evaluation' | 'quarter-start' | 'school-year-start' | 'previous-school-year'} preset
+ * @param {'january-march' | 'last-evaluation' | 'quarter-start' | 'school-year-start' | 'previous-school-year'} preset
  * @param {{refDate?: string | null}} [opts] date de référence (t), sinon la dernière journée cochée analysée
  * @returns {{a: {name: string, def: object}, b: {name: string, def: object}} | {unavailable: string}}
  */
 export function comparePreset(dataset, preset, { refDate = null } = {}) {
   const analysed = dataset.days.filter((d) => d.active && contributingVariant(d)).map((d) => d.date)
   if (analysed.length === 0) return { unavailable: 'Aucune journée cochée avec une analyse : rien à comparer.' }
+  if (preset === 'january-march') {
+    const has = (year, month) => analysed.some((d) => d.startsWith(`${year}-${month}-`))
+    const year = [...new Set(analysed.map((d) => d.slice(0, 4)))].sort().reverse().find((y) => has(y, '01') && has(y, '03'))
+    if (!year) return { unavailable: 'Aucune année avec des journées analysées en janvier et en mars : ce préréglage est indisponible.' }
+    const month = (m, label) => ({ name: `${label} ${year}`, def: { kind: 'period', from: `${year}-${m}-01`, to: `${year}-${m}-31`, onlyActive: true } })
+    return { a: month('01', 'Janvier'), b: month('03', 'Mars') }
+  }
   const ref = refDate ?? analysed.at(-1)
   const until = (to, name) => ({ name, def: { kind: 'period', from: null, to, onlyActive: true } })
   const cumulative = (baseline, what) => {

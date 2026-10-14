@@ -25,11 +25,15 @@ const MINUS = '−'
 const signed = (x, fmt) => (typeof x === 'number' && Number.isFinite(x) ? `${x > 0 ? '+' : x < 0 ? MINUS : '±'}${fmt(Math.abs(x))}` : '—')
 
 export const PRESETS = [
+  ['january-march', 'Janvier et mars'],
   ['last-evaluation', 'Depuis la dernière évaluation'],
   ['quarter-start', 'Depuis le début du trimestre'],
   ['school-year-start', 'Depuis le début de l’année scolaire'],
   ['previous-school-year', 'Année scolaire précédente'],
 ]
+
+/** Comparaison affichée tant que la personne n'en a choisi aucune : le premier préréglage disponible. */
+const DEFAULT_PRESETS = ['january-march', 'last-evaluation']
 
 const VIEWS = [
   ['suns', 'Deux soleils'],
@@ -422,13 +426,24 @@ export function ComparePanel({ dataset, refl, params, geometry, t, update, onOpe
   const tags = useMemo(() => allTags(dataset), [dataset])
   const [notice, setNotice] = useState(null)
   const saved = dataset.preferences?.compare ?? null
+  // Par défaut (tant que rien n'est choisi) : janvier et mars, sinon depuis la
+  // dernière évaluation, sinon la sélection courante des deux côtés (D-50).
   const fallback = useMemo(() => {
-    const p = comparePreset(dataset, 'last-evaluation', { refDate: t })
-    return p.unavailable ? { a: { name: 'A', def: { kind: 'selection' } }, b: { name: 'B', def: { kind: 'selection' } } } : p
+    for (const key of DEFAULT_PRESETS) {
+      const p = comparePreset(dataset, key, { refDate: t })
+      if (!p.unavailable) return p
+    }
+    return { a: { name: 'A', def: { kind: 'selection' } }, b: { name: 'B', def: { kind: 'selection' } } }
   }, [dataset, t])
   const sides = saved?.a && saved?.b ? saved : fallback
   const view = saved?.view ?? 'suns'
-  const save = (patch) => update((ds) => setPreferences(ds, { compare: { a: sides.a, b: sides.b, view, ...(ds.preferences?.compare ?? {}), ...patch } }))
+  // A et B ne sont gardés qu'une fois choisis (un côté, un préréglage) : changer
+  // de vue ne fige pas la comparaison par défaut.
+  const save = (patch) =>
+    update((ds) => {
+      const chosen = 'a' in patch || 'b' in patch ? { a: sides.a, b: sides.b } : {}
+      return setPreferences(ds, { compare: { ...(ds.preferences?.compare ?? {}), view, ...chosen, ...patch } })
+    })
 
   const cmp = useMemo(() => compareSets(dataset, refl, sides.a, sides.b, { params }), [dataset, refl, sides.a, sides.b, params])
   const nameA = cmp.a.name

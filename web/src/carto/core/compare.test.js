@@ -125,6 +125,28 @@ group('préréglages', () => {
     d.days.find((x) => x.date === '2025-10-03').active = false
     expect(comparePreset(d, 'last-evaluation').b.def.to).toBe('2025-10-02')
   })
+  it('janvier et mars (D-50) : deux mois disjoints de l’année la plus récente où chacun a une journée analysée et cochée', () => {
+    const d = indexDataset([
+      { date: '2025-01-10', verdicts: [{ code: '1.01' }] },
+      { date: '2025-03-12', verdicts: [{ code: '2.01' }] },
+      { date: '2026-01-05', verdicts: [{ code: '1.01' }] },
+      { date: '2026-02-02', verdicts: [{ code: '2.01' }] },
+      { date: '2026-03-20', verdicts: [{ code: '3.01' }] },
+      { date: '2027-01-04', verdicts: [{ code: '1.01' }] },
+    ])
+    const p = comparePreset(d, 'january-march')
+    expect(p.a).toEqual({ name: 'Janvier 2026', def: { kind: 'period', from: '2026-01-01', to: '2026-01-31', onlyActive: true } })
+    expect(p.b).toEqual({ name: 'Mars 2026', def: { kind: 'period', from: '2026-03-01', to: '2026-03-31', onlyActive: true } })
+    expect(resolveSide(d, p.a).dates).toEqual(['2026-01-05'])
+    expect(resolveSide(d, p.b).dates).toEqual(['2026-03-20'])
+    // La date de référence (t) n'y joue pas.
+    expect(comparePreset(d, 'january-march', { refDate: '2025-06-01' })).toEqual(p)
+    // Mars 2026 décoché : l'année d'avant.
+    d.days.find((x) => x.date === '2026-03-20').active = false
+    expect(comparePreset(d, 'january-march').b.name).toBe('Mars 2025')
+    // Sans janvier ni mars analysés : indisponible, dit comme tel.
+    expect(comparePreset(ds(), 'january-march')).toMatchObject({ unavailable: expect.stringMatching(/janvier et en mars/) })
+  })
 })
 
 group('récit « ce qui a changé »', () => {
