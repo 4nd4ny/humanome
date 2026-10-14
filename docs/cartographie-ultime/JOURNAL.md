@@ -45,6 +45,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Pôle ouvert sur 360° | double-clic sur un pôle : ses compétences font tout le tour ; clic au centre : retour à tous les pôles ; aussi dans la version partagée (D-45) | ✅ | ✅ 28 tests (cœur, passage animé, interface, liste) + 1 e2e Chromium + revue visuelle + relecture indépendante | ✅ voir §3 | `1377f2b` |
 | Déploiement | humanome.xyz : release API `v1.1.0-106-gc6a0231`, migrations 022 et 023, front ; vérifié en ligne ; branche fusionnée dans `main` (D-46) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-46 |
 | Q30 — thème au chargement | le script anti-FOUC autorisé par son hash dans la CSP de production ; garde de synchronisation ; déployé (D-47) | ✅ | ✅ 1 test (garde du hash) + vérification Chromium avant et après, sur le bundle puis en ligne | ✅ | voir §5 |
+| Démo avec portfolio | le journal de la démonstration sur le site seulement (archive de l'interface), passages surlignés ; guide du visiteur (D-48) | ✅ | ✅ 2 392 traces vérifiées par le chemin du lecteur + vérification en ligne | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1562,6 +1563,52 @@ correction. Déploie ensuite le correctif sur le site. »
   VM du Mac ; même vérification ensuite sur le site en ligne.
 - Docs : `docs/securite-checklist.md` (CSP), `STATUS.md`.
 
+### D-48 — La démonstration du site avec son portfolio **[décidé]**
+
+Christian (2026-10-14, 16 h 48) : « Importe également le portfolio markdown
+correspondant à la cartographie de démonstration, pour qu'on puisse ouvrir les
+passages surlignés. Mais ne les inclus pas dans le GitHub. Uploade les sur le
+site uniquement. »
+
+- **Le portfolio** : les extraits des 59 journées publiques de la démonstration
+  viennent du journal « 300 » d'AuroraCore (51 feuilles, sur le Mac de
+  Christian, jamais versionnées). Recomposé dans l'ordre de son index, il
+  compte 67 journées datées (titres « ### J.MM.AAAA », dont deux « 1er ») :
+  les 59 de la démonstration et 8 jours écrits sans analyse (1er février, 3 au
+  9 février).
+- **Découpage** : importé tel quel, il aurait laissé l'essentiel de son texte
+  « sans date » — le découpage du site (`engine/src/portfolio/segment.js`)
+  coupe aussi aux séparateurs (`---`) et ne lit pas « 1er.01.2026 ».
+  **[choix d'implémentation]** Le journal est découpé à ses seuls titres
+  datés, puis passe par l'export de l'interface (`buildPortfolioMarkdown`),
+  dont le Markdown se redécoupe exactement en ces journées : séparateurs
+  internes neutralisés (« - - - »), « ## AAAA-MM-JJ » ajouté devant les deux
+  journées « 1er ». Le texte n'est pas retouché autrement.
+- **Sur le site, et seulement là** : `data/demo/carto/archive.json`, l'archive
+  de l'interface portfolio compris, marquée « démonstration » (67 journées,
+  18,4 Mo, 3,3 Mo compressés à l'envoi), construite avec le code même de
+  l'interface (import, magasin, archive) sur la VM du Mac et déposée par FTP,
+  hors du manifeste du front : un déploiement ne l'efface pas. « Explorer la
+  démonstration » l'ouvre (D-28) ; sans elle, ce sont les 59 journées
+  publiques, sans portfolio. Ni le journal ni l'archive ne sont dans le dépôt ;
+  les copies de travail ont été effacées.
+- **Vérifié** : sur les 2 392 traces, par le chemin même du lecteur (Markdown
+  rendu, texte affiché), 2 329 passages retrouvés tels quels (97,4 %), 55 en
+  partie, 2 dans la feuille d'un autre jour, 1 approché, 5 introuvables. En
+  ligne (Chromium) : démonstration ouverte en 4 s, heatmap au volume écrit,
+  passage surligné dans le lecteur.
+- **Constaté** (rendu, antérieur) : ce texte vient d'un export de Google Docs ;
+  ses 2 246 échappements Markdown (`\!`, `\*`, `\-`…) s'affichent tels quels, et
+  les 120 séparateurs neutralisés comme des puces : le petit moteur Markdown du
+  site (`web/src/lib/md.js`) ne connaît ni les échappements ni les traits
+  horizontaux. Question 31.
+- **À refaire** si la démonstration change : dans l'interface, importer les
+  journées et le portfolio, puis exporter l'archive portfolio compris et la
+  déposer à la même adresse ; pour ce journal, découper d'abord aux titres
+  datés, comme ci-dessus.
+- Docs : guide du visiteur (chapitre 2 : portfolio consultable, heatmap au
+  volume écrit).
+
 ---
 
 ## 3. État des tests
@@ -1965,6 +2012,15 @@ Question posée après le déploiement du 2026-10-14 (D-46) :
     Déploie ensuite le correctif sur le site. » Suite : fait et déployé
     (D-47).
 
+Question ouverte après la démonstration avec portfolio (D-48) :
+
+31. Le portfolio de la démonstration, exporté de Google Docs, affiche ses
+    échappements Markdown (`\!`, `\*`… : 2 246) et ses séparateurs neutralisés
+    comme des puces (120) : le moteur Markdown du site ne connaît ni les
+    échappements ni les traits horizontaux. Les lui apprendre (règles du
+    CommonMark), en vérifiant que le surlignage reste au même endroit ? Cela
+    vaut pour tout portfolio venu de Google Docs.
+
 ---
 
 ## 5. Chronologie
@@ -2063,3 +2119,7 @@ Question posée après le déploiement du 2026-10-14 (D-46) :
 - **2026-10-14** — Question 30 (D-47) : le script anti-FOUC est autorisé par
   son hash dans la CSP de production — le thème choisi par un visiteur est de
   nouveau réappliqué au chargement ; déployé et vérifié en ligne.
+- **2026-10-14** — Démonstration avec son portfolio (D-48) : le journal
+  correspondant, découpé à ses titres datés, déposé sur le site seulement
+  (archive de l'interface) ; 97,4 % des passages retrouvés tels quels ; guide
+  du visiteur mis à jour.

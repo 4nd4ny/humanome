@@ -67,6 +67,11 @@ sous l'onglet **Détails** sur écran étroit) montre ses chiffres, ses traces
 journée par journée, les verdicts et la réflexion du jury. Échap désélectionne.
 Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 
+Le portfolio de la démonstration est consultable : sous chaque trace,
+**« Ouvrir dans le portfolio »** ouvre le texte de la journée et surligne le
+passage que le jury a retenu — en jaune s'il est retrouvé tel quel, en orange
+si un seul bout l'est. Les flèches mènent à la journée précédente ou suivante.
+
 Pour regarder un pôle de près, **double-cliquez** sur son arc dans l'anneau
 intérieur (au clavier : « o ») : il s'ouvre sur tout le cercle, à la place du
 soleil complet. Ses compétences se partagent alors les 360°, chacune selon sa
@@ -99,10 +104,10 @@ la navigation pas à pas reste disponible.
 
 Sous la tête de lecture, la **heatmap** montre l'année scolaire (août à
 juillet ; flèches pour changer d'année, ou une période libre). Une case par
-jour, les semaines en colonnes. La démonstration n'a pas de portfolio : la
-couleur d'un jour est la somme des points de ses traces, en cinq niveaux
-propres à cette personne. Un jour sans analyse reste une case vide, jamais un
-niveau bas.
+jour, les semaines en colonnes. La couleur d'un jour dit combien la personne
+y a écrit dans son portfolio, en cinq niveaux propres à elle. Quelques jours
+écrits n'ont pas été analysés : ils sont colorés, sans secteur au soleil. Un
+jour sans texte reste une case vide, jamais un niveau bas.
 
 - Un **clic** sur un jour place la date t sur ce jour.
 - Un **double-clic** ouvre **la journée seule** : son propre soleil et ses
