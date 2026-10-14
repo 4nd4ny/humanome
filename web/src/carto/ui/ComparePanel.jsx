@@ -293,8 +293,8 @@ function CompareTable({ refl, cmp, nameA, nameB }) {
     <div className="carto-table-scroll">
       <table className="carto-cmp-table">
         <caption className="carto-small">
-          A = {nameA} · B = {nameB} · Δ = B − A (Δ relatif entre parenthèses seulement quand A dépasse 2 % de part ou 0,1 d’intensité). Moyenne [min–max] σ :
-          intensité du jour, sur les journées observées seulement.
+          A = {nameA} · B = {nameB} · Δ = B − A (Δ relatif entre parenthèses seulement quand A dépasse 2 % de part ou 0,1 point). Moyenne [min–max] σ :
+          points du jour, sur les journées observées seulement.
         </caption>
         <thead>
           <tr>
@@ -302,8 +302,8 @@ function CompareTable({ refl, cmp, nameA, nameB }) {
             <th scope="col">Part A</th>
             <th scope="col">Part B</th>
             <th scope="col">Δ part</th>
-            <th scope="col">Intensité A</th>
-            <th scope="col">Intensité B</th>
+            <th scope="col">Points A</th>
+            <th scope="col">Points B</th>
             <th scope="col">Δ</th>
             <th scope="col">Confiance A</th>
             <th scope="col">Confiance B</th>
@@ -347,8 +347,8 @@ export function ComparePrecautions() {
     <aside className="carto-note carto-cmp-precautions" aria-label="Précautions de lecture">
       <h3>Précautions de lecture</h3>
       <ul>
-        <li>Les parts sont à somme nulle : si une compétence gagne une part, les autres en perdent. Le tableau donne aussi l’intensité absolue.</li>
-        <li>L’intensité absolue (cumul saturant) dépend du nombre de traces.</li>
+        <li>Les parts sont à somme nulle : si une compétence gagne une part, les autres en perdent. Le tableau donne aussi les points absolus.</li>
+        <li>Les points absolus dépendent du nombre de traces : un ensemble plus long en accumule davantage.</li>
         <li>Les moyennes se font sur les journées observées seulement ; les silences en sont exclus et comptés à part (n).</li>
         <li>Aucun écart à une norme : il n’y a pas de seuil « faible », « modéré » ou « élevé ».</li>
       </ul>
@@ -381,7 +381,7 @@ function TopDaysView({ dataset, refl, cmp, params, nameA, nameB, onOpenDay }) {
                 {formatShort(d.date)}
               </button>{' '}
               <span className="carto-muted carto-small">
-                intensité du jour {nf2(d.score)} · {d.codes.join(', ')}
+                points du jour {nf2(d.score)} · {d.codes.join(', ')}
               </span>
             </li>
           ))}
@@ -433,8 +433,8 @@ export function ComparePanel({ dataset, refl, params, geometry, t, update, onOpe
   const cmp = useMemo(() => compareSets(dataset, refl, sides.a, sides.b, { params }), [dataset, refl, sides.a, sides.b, params])
   const nameA = cmp.a.name
   const nameB = cmp.b.name
-  const layoutA = useMemo(() => layoutSun(cmp.a.state, refl, geometry, { minThickness: params.minThicknessPx }), [cmp, refl, geometry, params])
-  const layoutB = useMemo(() => layoutSun(cmp.b.state, refl, geometry, { minThickness: params.minThicknessPx }), [cmp, refl, geometry, params])
+  const layoutA = useMemo(() => layoutSun(cmp.a.state, refl, geometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }), [cmp, refl, geometry, params])
+  const layoutB = useMemo(() => layoutSun(cmp.b.state, refl, geometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }), [cmp, refl, geometry, params])
   const story = useMemo(() => changeNarrative(cmp, { nameOf: (c) => refl.compByCode.get(c)?.name ?? c }), [cmp, refl])
   const noteKey = { a: canonicalJson(sides.a.def), b: canonicalJson(sides.b.def) }
   const note = dataset.comparisons.find((c) => c.key === `${noteKey.a}|${noteKey.b}`)?.note ?? ''

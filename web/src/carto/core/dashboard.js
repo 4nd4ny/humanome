@@ -6,7 +6,7 @@
 
 import { daysBetween } from './dates.js'
 import { hasAnalysis, hasPortfolio } from './model.js'
-import { saturatingIntensity } from './formulas.js'
+import { tracePoints } from './formulas.js'
 import { STYLE_METRICS, lexicalDistance, lexicalProfile, styleMetrics } from './stylometry.js'
 import { COGNITIVE_FUNCTIONS } from './importers/metrics.js'
 
@@ -70,7 +70,7 @@ export function phasesData(dataset) {
 
 /**
  * Constance : pour chaque compétence observée, ses journées, l'intervalle
- * entre deux observations, et la trajectoire de son intensité cumulée et de la
+ * entre deux observations, et la trajectoire de ses points cumulés et de la
  * confiance du verdict de chaque jour.
  */
 export function constancyData(state, ref) {
@@ -88,7 +88,7 @@ export function constancyData(state, ref) {
     const all = []
     const series = dates.map((date) => {
       all.push(...byDate.get(date).weights)
-      return { date, intensity: saturatingIntensity(all), confidence: byDate.get(date).confidence }
+      return { date, intensity: tracePoints(all), confidence: byDate.get(date).confidence }
     })
     const gaps = dates.slice(1).map((d, i) => daysBetween(dates[i], d))
     rows.push({
@@ -118,8 +118,9 @@ export function sensitivityLabel(s) {
 }
 
 /**
- * Moments remarquables : traces dont le poids (rôle × confiance du verdict)
- * atteint le seuil de la sensibilité, avec un extrait.
+ * Moments remarquables : traces dont la force du signal (rôle × confiance du
+ * verdict, `traceSignal` — distincte des points de l'angle) atteint le seuil
+ * de la sensibilité, avec un extrait.
  * @param {Array<{id: string, date: string, code: string, role: string, confidence: number | null, weight: number, extract: string}>} items
  * @param {number} sensitivity 0..100
  */

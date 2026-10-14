@@ -69,11 +69,11 @@ describe('heatmap (§5.7)', () => {
   ])
   const period = { from: '2025-12-01', to: '2025-12-31' }
 
-  it('sans portfolio : repli sur la somme des poids, quantiles ipsatifs', () => {
+  it('sans portfolio : repli sur la somme des points des traces, quantiles ipsatifs', () => {
     expect(heatmapValueMode(ds)).toBe('weights')
     const h = buildHeatmap(ds, { ref, period })
-    expect(h.cells.get('2025-12-22').value).toBeCloseTo(0.8 + 0.4)
-    expect(h.cells.get('2025-12-24').value).toBeCloseTo(1.6)
+    expect(h.cells.get('2025-12-22').value).toBeCloseTo(1 + 0.5) // une preuve, un indice
+    expect(h.cells.get('2025-12-24').value).toBeCloseTo(2) // deux preuves
     expect(h.cells.get('2025-12-24').level).toBeGreaterThan(h.cells.get('2025-12-22').level)
     expect(h.cells.has('2025-12-25')).toBe(false) // silence : aucune case documentée
   })

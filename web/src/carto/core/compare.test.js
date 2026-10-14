@@ -46,19 +46,19 @@ group('compareSets', () => {
     expect(cmp.warnings.map((w) => w.code)).toContain('overlap')
   })
 
-  it('tableau : intensité absolue, confiance, journées, moyenne / min / max / σ sur les journées observées, Δ = B − A', () => {
+  it('tableau : points absolus, confiance, journées, moyenne / min / max / σ sur les journées observées, Δ = B − A', () => {
     const cmp = compareSets(ds(), ref, SEPT, OCT)
     const r = cmp.rows.find((x) => x.code === '2.01')
     expect(r.a).toMatchObject({ days: 1, n: 1, confidence: 0.6 })
     expect(r.b).toMatchObject({ days: 1, n: 1, confidence: 0.9 })
-    expect(r.a.intensity).toBeCloseTo(0.3) // indice : 0,5 × 0,6
-    expect(r.b.intensity).toBeCloseTo(0.9)
-    expect(r.delta.intensity).toBeCloseTo(0.6)
+    expect(r.a.intensity).toBeCloseTo(0.5) // un indice : α = 0,5 point (la confiance fait la hauteur)
+    expect(r.b.intensity).toBeCloseTo(1) // une preuve : 1 point
+    expect(r.delta.intensity).toBeCloseTo(0.5)
     expect(r.delta.confidence).toBeCloseTo(0.3)
     const s301 = cmp.rows.find((x) => x.code === '3.01').b
     expect(s301.n).toBe(3)
-    expect(s301.min).toBeCloseTo(0.25)
-    expect(s301.max).toBeCloseTo(1 - (1 - 0.6) * (1 - 0.3))
+    expect(s301.min).toBeCloseTo(0.5) // le 2 octobre : un indice
+    expect(s301.max).toBeCloseTo(1 + 0.5) // le 3 octobre : une preuve et un indice, leurs points s’ajoutent
     expect(s301.sd).toBeGreaterThan(0)
     // Seulement dans A : Δ absolu, jamais de Δ relatif sans base.
     const only = cmp.rows.find((x) => x.code === '3.01')

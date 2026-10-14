@@ -4,13 +4,13 @@
 // étiquettes, deux sélections, deux ensembles nommés, ou deux analyses du même
 // portfolio. Rien ici ne dit lequel est « meilleur » : pas de rang de
 // compétences, pas de couleur de verdict, pas de mot de valence ; seulement
-// des parts ipsatives (à somme nulle), des intensités absolues, des
+// des parts ipsatives (à somme nulle), des points absolus, des
 // confiances, des nombres de journées et des écarts B − A.
 
 import { computeState } from './state.js'
 import { contributingVariant } from './model.js'
 import { resolveDefinition, resolveSetDates, describeDefinition, overlap } from './sets.js'
-import { TRACE_PROVIDING_STATUSES, resolveParams, saturatingIntensity, traceWeight } from './formulas.js'
+import { TRACE_PROVIDING_STATUSES, resolveParams, tracePoints, traceWeight } from './formulas.js'
 import { addDays, formatLong, formatShort, schoolYearOf } from './dates.js'
 
 export const COMPARE_KINDS = ['selection', 'set', 'period', 'tags', 'run']
@@ -116,7 +116,7 @@ export function comparePreset(dataset, preset, { refDate = null } = {}) {
 }
 
 /**
- * Intensité de chaque compétence, journée par journée (traces de ce seul jour).
+ * Points de chaque compétence, journée par journée (traces de ce seul jour).
  * @returns {Map<string, Array<{date: string, intensity: number}>>}
  */
 export function dayIntensities(dataset, ref, dates, variantOf = contributingVariant, params) {
@@ -129,7 +129,7 @@ export function dayIntensities(dataset, ref, dates, variantOf = contributingVari
     if (!variant) continue
     for (const v of variant.verdicts) {
       if (v.courtCircuit || !TRACE_PROVIDING_STATUSES.has(v.status) || !v.traces?.length || !ref.compByCode.has(v.code)) continue
-      const intensity = saturatingIntensity(v.traces.map((t) => traceWeight(t.role, v.confidence, p, 0)))
+      const intensity = tracePoints(v.traces.map((t) => traceWeight(t.role, p, 0)))
       if (!out.has(v.code)) out.set(v.code, [])
       out.get(v.code).push({ date: day.date, intensity })
     }
@@ -224,7 +224,7 @@ export function compareSets(dataset, ref, sideA, sideB, { params } = {}) {
   if (stateA.dates.length > 0 && stateB.dates.length > 0 && stateA.dates.length !== stateB.dates.length) {
     warnings.push({
       code: 'sizes',
-      text: `A et B n’ont pas la même taille : ${stateA.dates.length} journée${stateA.dates.length > 1 ? 's' : ''} analysée${stateA.dates.length > 1 ? 's' : ''} dans A, ${stateB.dates.length} dans B. Les parts restent relatives à chaque ensemble ; l’intensité absolue et les nombres de journées dépendent de sa taille.`,
+      text: `A et B n’ont pas la même taille : ${stateA.dates.length} journée${stateA.dates.length > 1 ? 's' : ''} analysée${stateA.dates.length > 1 ? 's' : ''} dans A, ${stateB.dates.length} dans B. Les parts restent relatives à chaque ensemble ; les points et les nombres de journées dépendent de sa taille.`,
     })
   }
   if (ov.count > 0) warnings.push({ code: 'overlap', text: `A et B se recouvrent : ${ov.count} journée${ov.count > 1 ? 's' : ''} en commun.` })
@@ -245,7 +245,7 @@ export function compareSets(dataset, ref, sideA, sideB, { params } = {}) {
 }
 
 /**
- * Les 5 journées d'un côté où un pôle pèse le plus (somme des intensités du
+ * Les 5 journées d'un côté où un pôle pèse le plus (somme des points du
  * jour de ses compétences) : des repères pour choisir quelles journées
  * relire, jamais une note de la personne.
  * @returns {Array<{date: string, score: number, codes: string[]}>}

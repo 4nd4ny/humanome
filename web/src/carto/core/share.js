@@ -14,7 +14,7 @@
 // à son tour par liste blanche de champs (api/src/Share/SharedVersion.php) :
 // les deux listes doivent rester identiques.
 
-import { anglesFromIntensities, poleConfidence } from './formulas.js'
+import { anglesFromPoints, poleConfidence } from './formulas.js'
 import { levelOf, levelThresholds } from './heatmap.js'
 import { formatLong, monthKey, monthName } from './dates.js'
 import { stripMarkdownMarks } from './highlight.js'
@@ -158,7 +158,7 @@ export function buildSharedVersion({ state, ref, title, codes, precision = 'mont
   const wanted = new Set(codes)
   const retained = ref.competencies.map((c) => state.competencies.get(c.code)).filter((s) => s && wanted.has(s.code) && s.intensity > 0)
   if (retained.length === 0) throw new Error('Gardez au moins une compétence dans la version partagée.')
-  const thetas = anglesFromIntensities(new Map(retained.map((s) => [s.code, s.intensity])))
+  const thetas = anglesFromPoints(new Map(retained.map((s) => [s.code, s.intensity])))
   const competencies = retained.map((s) => ({
     code: s.code,
     pole: s.pole,

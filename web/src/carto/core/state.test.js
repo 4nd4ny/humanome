@@ -81,9 +81,9 @@ describe('état(S, t) (§5.1)', () => {
     expect([...s.competencies.keys()]).toEqual(['3.01'])
   })
 
-  it('intensité cumulée sur les journées : 1 − (1 − 0,8)(1 − 0,2)', () => {
+  it('points cumulés sur les journées : une preuve (1) + un indice (0,5), rien ne plafonne', () => {
     const c = computeState(ds, { ref }).competencies.get('1.01')
-    expect(c.intensity).toBeCloseTo(1 - 0.2 * 0.8)
+    expect(c.intensity).toBeCloseTo(1 + 0.5)
     expect(c.days).toEqual(['2025-12-22', '2025-12-23'])
     expect(c.proofs).toBe(1)
     expect(c.hints).toBe(1)
@@ -91,6 +91,59 @@ describe('état(S, t) (§5.1)', () => {
 
   it('C(c) = moyenne des confiances des verdicts qui fournissent des traces', () => {
     expect(computeState(ds, { ref }).competencies.get('1.01').confidence).toBeCloseTo(0.6)
+  })
+
+  it('la confiance du jury n’entre pas dans l’angle : mêmes traces, confiances différentes → même angle, hauteurs différentes', () => {
+    const s = computeState(
+      indexDataset([
+        { date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.95, roles: ['preuve', 'indice'] }, { code: '2.01', confidence: 0.2, roles: ['preuve', 'indice'] }] },
+      ]),
+      { ref },
+    )
+    expect(s.competencies.get('1.01').theta).toBeCloseTo(180)
+    expect(s.competencies.get('2.01').theta).toBeCloseTo(180)
+    expect(s.competencies.get('1.01').confidence).toBeCloseTo(0.95)
+    expect(s.competencies.get('2.01').confidence).toBeCloseTo(0.2)
+  })
+
+  it('plus de traces, plus d’angle : trois preuves contre une → 270° et 90°', () => {
+    const s = computeState(
+      indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.3, roles: ['preuve', 'preuve', 'preuve'] }, { code: '2.01', confidence: 0.9, roles: ['preuve'] }] }]),
+      { ref },
+    )
+    expect(s.competencies.get('1.01').theta).toBeCloseTo(270)
+    expect(s.competencies.get('2.01').theta).toBeCloseTo(90)
+  })
+
+  it('une confiance inconnue n’efface pas les traces : l’angle compte, la hauteur l’ignore', () => {
+    const s = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: null, roles: ['preuve'] }, { code: '2.01', confidence: 0.6, roles: ['preuve'] }] }]), { ref })
+    expect(s.competencies.get('1.01').theta).toBeCloseTo(180)
+    expect(s.competencies.get('1.01').confidence).toBeNull()
+    const layout = layoutSun(s, ref, geometry, { minThickness: 2 })
+    const sector = layout.competencies.find((c) => c.code === '1.01')
+    expect(sector.floored).toBe(true) // visible malgré tout, épaisseur minimale signalée
+    expect(sector.rOut - sector.rIn).toBeCloseTo(2)
+  })
+
+  it('un secteur trop étroit pour être vu reçoit la largeur minimale, prise sur les autres ; θ reste exact', () => {
+    const s = computeState(
+      indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: Array(400).fill('preuve') }, { code: '2.01', confidence: 0.8, roles: ['indice'] }] }]),
+      { ref },
+    )
+    const exact = s.competencies.get('2.01').theta
+    expect(exact).toBeCloseTo((360 * 0.5) / 400.5)
+    const layout = layoutSun(s, ref, geometry, { minArc: 4 })
+    const narrow = layout.competencies.find((c) => c.code === '2.01')
+    const wide = layout.competencies.find((c) => c.code === '1.01')
+    expect(narrow.widened).toBe(true)
+    expect(wide.widened).toBe(false)
+    expect((narrow.a1 - narrow.a0) * geometry.competencies.rOut).toBeCloseTo(4)
+    expect(narrow.theta).toBeCloseTo(exact)
+    expect(layout.competencies.at(-1).a1 - layout.competencies[0].a0).toBeCloseTo(2 * Math.PI)
+    // Sans largeur minimale : la part exacte.
+    const plain = layoutSun(s, ref, geometry).competencies.find((c) => c.code === '2.01')
+    expect(plain.widened).toBe(false)
+    expect(plain.a1 - plain.a0).toBeCloseTo((exact * Math.PI) / 180)
   })
 
   it('l’ordre angulaire est celui du référentiel, jamais celui des tailles', () => {
@@ -164,9 +217,9 @@ describe('journée seule et explication', () => {
     const s = computeState(ds, { ref })
     const e = explainSurface(s, { type: 'competency', code: '1.01' })
     expect(e.traces).toHaveLength(1)
-    expect(e.traces[0]).toMatchObject({ date: '2025-12-22', role: 'preuve', weight: 0.8 })
+    expect(e.traces[0]).toMatchObject({ date: '2025-12-22', role: 'preuve', weight: 1, confidence: 0.8 })
     expect(e.days).toEqual(['2025-12-22'])
-    expect(e.formulas.intensity).toMatch(/1 − Π/)
+    expect(e.formulas.intensity).toMatch(/points = Σ w/)
     const p = explainSurface(s, { type: 'pole', num: 2 })
     expect(p.members).toEqual([{ code: '2.01', theta: expect.any(Number), confidence: 0.5, days: 1 }])
   })

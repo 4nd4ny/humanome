@@ -134,7 +134,7 @@ export function SharedView({ doc, garantie = null, preview = false }) {
   const read = useMemo(() => {
     try {
       const shared = sharedState(doc)
-      return { ...shared, layout: layoutSun(shared.state, shared.ref, GEOMETRY, { minThickness: DEFAULT_PARAMS.minThicknessPx }) }
+      return { ...shared, layout: layoutSun(shared.state, shared.ref, GEOMETRY, { minThickness: DEFAULT_PARAMS.minThicknessPx, minArc: DEFAULT_PARAMS.minArcPx }) }
     } catch {
       return null
     }
@@ -219,7 +219,7 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
           <details className="carto-shared-howto">
             <summary>Comment lire ce soleil</summary>
             <ul className="carto-small">
-              <li>Chaque secteur extérieur est une compétence observée dans le portfolio réflexif de la personne. Son angle est sa part dans l’ensemble partagé.</li>
+              <li>Chaque secteur extérieur est une compétence observée dans le portfolio réflexif de la personne. Son angle est sa part des traces relevées dans l’ensemble partagé : plus une compétence a de traces, plus son secteur est large.</li>
               <li>Sa hauteur est la confiance cumulée des analyses (de 0 à 1) ; l’anneau intérieur regroupe les compétences par pôle.</li>
               <li>Un secteur hachuré signale une présence encore à confirmer.</li>
               <li>Ce document montre ce que la personne a choisi de partager : il ne classe pas, ne compare à personne et ne dit rien de ce qui n’a pas été partagé.</li>

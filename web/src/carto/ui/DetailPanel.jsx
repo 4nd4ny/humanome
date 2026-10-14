@@ -12,11 +12,11 @@ export function SunLegend() {
   return (
     <dl className="carto-legend">
       <dt>Angle</dt>
-      <dd>part de l’intensité de la compétence dans le total : la qualité des traces, pas leur nombre.</dd>
+      <dd>part des points de la compétence dans le total : un point par preuve, α (½ par défaut) par indice. Plus il y a de traces, plus le secteur est large. La confiance du jury n’y entre pas.</dd>
       <dt>Hauteur</dt>
       <dd>confiance cumulée des verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
       <dt>Surface</dt>
-      <dd>confiance × intensité. Un pôle a la surface de ses compétences.</dd>
+      <dd>confiance × points. Un pôle a la surface de ses compétences.</dd>
       <dt>Hachures</dt>
       <dd>compétence en renvoi au cartographe (le jury n’a pas tranché).</dd>
       <dt>Absence de secteur</dt>
@@ -183,7 +183,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
           <dd>{state.competencies.size}</dd>
         </div>
         <div>
-          <dt>Intensité totale</dt>
+          <dt>Points (total)</dt>
           <dd>{fmt(state.totalIntensity)}</dd>
         </div>
       </dl>

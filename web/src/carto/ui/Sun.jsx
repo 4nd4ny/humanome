@@ -1,8 +1,8 @@
 // Interface ultime — le soleil (spec §5.4–§5.6, §6.1).
 //
 // Deux anneaux FIXES : pôles à l'intérieur, compétences à l'extérieur. Angle =
-// part d'intensité ; hauteur = confiance cumulée (r_ext² = r_int² + k·C) ; la
-// surface est donc proportionnelle à confiance × intensité. Ordre angulaire du
+// part des points (Σ des poids des traces) ; hauteur = confiance cumulée
+// (r_ext² = r_int² + k·C) ; la surface est donc proportionnelle à confiance × points. Ordre angulaire du
 // référentiel, départ à −90°. Cercles guides pointillés = échelle de confiance
 // (0,25 · 0,5 · 0,75 · 1), pas des niveaux. Secteurs de renvoi hachurés sans
 // changer leur surface. Disque central = retour à la racine / désélection.

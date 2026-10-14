@@ -49,9 +49,9 @@ export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }
                 </dd>
               </div>
               <div>
-                <dt>Intensité</dt>
+                <dt>Points</dt>
                 <dd>
-                  {fmt(e.intensity, 3)} sur {fmt(e.totalIntensity, 3)}
+                  {fmt(e.intensity)} sur {fmt(e.totalIntensity)}
                 </dd>
               </div>
               <div>
@@ -62,6 +62,11 @@ export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }
             {sector?.floored ? (
               <p className="carto-note">
                 Épaisseur minimale d’affichage appliquée : sa confiance est si faible que le secteur serait invisible. Sa surface dessinée dépasse ici le strict proportionnel.
+              </p>
+            ) : null}
+            {sector?.widened ? (
+              <p className="carto-note">
+                Largeur minimale d’affichage appliquée : ses points sont si peu nombreux que le secteur serait invisible. Son angle dessiné dépasse ici le strict proportionnel (l’angle exact est indiqué ci-dessus).
               </p>
             ) : null}
             <h3>Formules</h3>
@@ -81,7 +86,7 @@ export function WhyDialog({ refl, state, selection, layout, onClose, onOpenDay }
                       <th scope="col">Journée</th>
                       <th scope="col">Rôle</th>
                       <th scope="col">Confiance du verdict</th>
-                      <th scope="col">Poids w</th>
+                      <th scope="col">Points</th>
                     </tr>
                   </thead>
                   <tbody>

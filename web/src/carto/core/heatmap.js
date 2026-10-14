@@ -31,7 +31,7 @@ export function dayWeightSum(day, params) {
   let sum = 0
   for (const verdict of v.verdicts) {
     if (verdict.courtCircuit || !TRACE_PROVIDING_STATUSES.has(verdict.status)) continue
-    for (const t of verdict.traces ?? []) sum += traceWeight(t.role, verdict.confidence, p)
+    for (const t of verdict.traces ?? []) sum += traceWeight(t.role, p)
   }
   return sum
 }

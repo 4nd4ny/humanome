@@ -90,7 +90,7 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
   const day = dataset.days.find((d) => d.date === date)
   const variant = day ? contributingVariant(day) : null
   const state = useMemo(() => computeDayState(dataset, date, { ref: refl, params }), [dataset, date, refl, params])
-  const layout = useMemo(() => layoutSun(state, refl, geometry, { minThickness: params?.minThicknessPx ?? 2 }), [state, refl, geometry, params])
+  const layout = useMemo(() => layoutSun(state, refl, geometry, { minThickness: params?.minThicknessPx ?? 2, minArc: params?.minArcPx ?? 2 }), [state, refl, geometry, params])
   const nav = activeDates.includes(date) ? activeDates : [...activeDates, date].sort()
   const i = nav.indexOf(date)
   const prev = i > 0 ? nav[i - 1] : null

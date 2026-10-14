@@ -40,7 +40,8 @@ Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
 Chaque décision est numérotée (D-n) pour pouvoir y renvoyer depuis le code et
 les commits. Les écarts à la spécification sont signalés **[écart]** et les
-choix à faire valider **[à valider]**.
+choix à faire valider **[à valider]** ; une fois tranchés par Christian
+(réponses du 2026-10-14, §4), ils portent **[validé]** ou **[décidé]**.
 
 ### D-1 — Emplacement : un module autonome dans le front existant
 
@@ -56,7 +57,7 @@ la V3 (`web/src/v3/core/zip.js`, `ids.js`), segmentation du portfolio
 (`web/src/lib/narrative.js`), jetons de thème clair/sombre (`global.css`).
 Les autres vues du site ne sont pas modifiées (hors périmètre, §15 décision 12).
 
-### D-2 — Routes préfixées par `#/cartographie` **[écart]**
+### D-2 — Routes préfixées par `#/cartographie` **[écart, validé]**
 
 La spécification (§13) liste `#/cartographie`, `#/jour/<date>`,
 `#/comparaison`, `#/tableau-de-bord`, `#/gestionnaire`. Or `#/jour/<date>` est
@@ -103,7 +104,7 @@ Les jours sont des chaînes `AAAA-MM-JJ`, comparées comme chaînes. Les seuls
 calculs calendaires (jour de la semaine, ajout de jours) passent par
 `Date.UTC`, jamais par `new Date("AAAA-MM-JJ")` local (défaut de 2025, §3).
 
-### D-6 — Lecture des formules du §5 (choix d'interprétation) **[à valider]**
+### D-6 — Lecture des formules du §5 (choix d'interprétation) **[validé]**
 
 - **Verdicts qui comptent** : seuls « établie » (toutes variantes) et « renvoi
   au cartographe » fournissent des traces (§5.2). Une « non établie » et un
@@ -116,7 +117,11 @@ calculs calendaires (jour de la semaine, ajout de jours) passent par
 - **Statut affiché** : une compétence établie au moins une fois dans
   l'ensemble est « établie » (règle optimiste du merge v2) ; sinon, si elle
   n'a que des renvois, son secteur est hachuré.
-- **Confiance absente** : poids nul (on n'invente jamais une confiance).
+- **Confiance absente** : on n'invente jamais une confiance. Depuis D-8
+  (2026-10-14), les points d'une trace ne dépendent plus de la confiance : la
+  trace compte pour l'angle, la hauteur ignore cette confiance (moyenne des
+  seules confiances connues), et un secteur sans confiance connue reçoit
+  l'épaisseur minimale, signalée.
 - **Hors référentiel** : une compétence inconnue du référentiel n'a ni angle
   ni secteur ; elle est conservée et listée à part (point ouvert 8).
 - **Anneaux de même capacité** : pour que « l'aire d'un secteur vaut θ·k·C/2
@@ -138,9 +143,11 @@ le débat et les pièces du Greffier sont rangés une fois au niveau du run et
 référencés. Les feuilles du jour du journal (`<journal>/feuilles/AAAA-MM-JJ.md`)
 sont importées comme portfolio : c'est ce qui rend le surlignage possible.
 
-### D-8 — Constat sur le corpus réel : le cumul saturant aplatit les angles **[à discuter]**
+### D-8 — L'angle compte les points ; la confiance du jury ne fait que la hauteur **[décidé]**
 
-Mesuré sur les 59 journées publiques (`assets-existants/merge-prototype`) :
+**Constat** (P0), mesuré sur les 59 journées publiques
+(`assets-existants/merge-prototype`) avec la formule du §5.3, I = 1 − Π(1 − w)
+et w = base(rôle) × confiance :
 
 | État à la date t | compétences | I > 0,99 | angle min / médian / max |
 |---|---|---|---|
@@ -149,15 +156,46 @@ Mesuré sur les 59 journées publiques (`assets-existants/merge-prototype`) :
 | 2026-01-31 | 54 | 39 | 1,5° / 7,2° / 7,2° |
 | 2026-03-29 (complet) | 56 | 52 | 2,1° / 6,6° / 6,6° |
 
-En moyenne, un verdict qui compte porte 2,07 traces et les poids vont jusqu'à
-0,99 : après un mois, la plupart des compétences atteignent I ≈ 1 et
-reçoivent le **même** angle. C'est la conséquence mathématique de la formule
-décidée (« une trace très claire pèse plus que dix traces vagues ») ; sur une
-longue période, l'angle ne distingue plus que les compétences rares, et la
-lecture repose sur la hauteur (confiance). L'implémentation suit la
-spécification à la lettre ; pistes à discuter : abaisser la borne des poids,
-intensité calculée par journée puis cumulée, ou échelle de saturation
-réglable.
+Après un mois, la plupart des compétences atteignaient I ≈ 1 et recevaient
+le **même** angle : l'angle ne disait plus rien de la quantité de traces.
+
+**Décision de Christian (2026-10-14)** : « L'angle doit être représentatif de
+l'intensité d'une trace, c'est-à-dire le nombre de points : plus il y a de
+traces pour une compétence, plus elle prend de place. La hauteur du secteur
+représente la confiance moyenne du jury » ; et, précisé le même jour : la
+confiance du jury ne doit pas intervenir dans la formule de l'angle. D'où, à
+la place du §5.2 (pour l'angle) et du §5.3 :
+
+```
+points d'une trace     w = 1 (preuve) ou α (indice, 0,5 par défaut)
+intensité = points     P(c) = Σ w   sur les traces retenues de c dans S ∩ [début, t]
+angle                  θ(c) = 360° × P(c) / Σ P(c')
+hauteur (inchangée)    C(c) = moyenne des confiances des verdicts de c
+```
+
+C'est la logique du prototype d'AuroraCore (`generate_carto_data.py` : des
+secteurs proportionnels aux points), sans la confiance. Plus aucune borne (le
+plafond de 0,99 ne servait que le produit). Même corpus, mêmes dates :
+
+| État à la date t | compétences | points | angle min / médian / max |
+|---|---|---|---|
+| 2025-12-22 (1 journée) | 24 | 18 | 10,0° / 10,0° / 40,0° |
+| 2025-12-31 | 39 | 72,5 | 2,5° / 9,9° / 24,8° |
+| 2026-01-31 | 54 | 788 | 0,2° / 5,5° / 21,5° |
+| 2026-03-29 (complet) | 56 | 1 603,5 | 0,2° / 4,8° / 17,1° |
+
+- **Largeur minimale d'affichage** : une compétence qui n'a que deux indices
+  sur 1 600 points vaut 0,2° (moins d'un pixel). Comme l'épaisseur minimale
+  du §5.6, un secteur ne disparaît jamais : il reçoit 2 px au bord extérieur,
+  pris sur les autres au prorata (`widenNarrowSectors`), et « Pourquoi cette
+  surface ? » le signale en donnant l'angle exact. Sur le corpus complet,
+  3 secteurs sur 56 sont ainsi élargis.
+- Les **moments remarquables** du tableau de bord (D-24) gardent leur propre
+  mesure, la force du signal d'une trace (rôle × confiance, `traceSignal`) :
+  elle trie des passages à relire, elle n'entre jamais dans l'angle.
+- La heatmap sans portfolio (D-11), la comparaison (points absolus, points du
+  jour) et la version partagée suivent la même règle ; les textes de lecture
+  (légende, rapport imprimable, « Comment lire ce soleil ») le disent.
 
 ### D-9 — Import : reconnaissance du contenu, doublons, variantes
 
@@ -214,7 +252,7 @@ réglable.
 - Couleur d'un jour = volume du portfolio de ce jour (caractères), en cinq
   niveaux ipsatifs (quantiles 20 / 40 / 60 / 80 % des jours écrits de la
   personne). Si **aucun** portfolio n'est importé, la heatmap bascule sur la
-  somme des poids des traces du jour et la légende le dit. Un jour sans texte
+  somme des points des traces du jour (D-8) et la légende le dit. Un jour sans texte
   reste une case vide, jamais un niveau bas.
 - « Explorer la démonstration » importe les 59 documents-jour publics du site
   (`web/public/data/demo/jours/`) dans un jeu local « Démonstration ». Ils
@@ -287,7 +325,9 @@ l'importer.
   dans le jeu de données local, jamais envoyé, sans effet sur les calculs ; un
   second clic retire la réponse ; un état inconnu s'affiche « pas encore
   donnée » (jamais « Contestée », défaut de V3). La note privée n'est pas
-  imprimée **[à valider]**.
+  imprimée **[validé]** : c'est l'apprenant qui l'écrit ; elle reste visible
+  pour lui à l'écran, hors du rapport imprimable (fait pour être remis à
+  d'autres) et de toute version partagée.
 
 ### D-16 — Panneau d'un pôle et du profil
 
@@ -295,7 +335,8 @@ l'importer.
   avec leur extrait ouvrable, pistes), passages saillants repliables ; rapport
   de pôle du run pour AuroraCore. Les « territoires non visités » et les
   « émergences » du rapport ne sont **pas** affichés : ils décrivent ce qui
-  manque, ce que le miroir s'interdit (§1.2) **[à valider]**.
+  manque, ce que le miroir s'interdit (§1.2) **[validé]** : « on valorise
+  l'existant ».
 - Profil (aucune sélection) : portrait kairos de la **dernière journée**
   affichée, présenté comme tel (« kairos de cette journée seule »).
 - Synthèses évolutives : affichées seulement si leur ensemble source est
@@ -399,7 +440,8 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
 
 ### D-24 — Moments remarquables et fonctions cognitives
 
-- Moments : traces dont le poids (rôle × confiance) atteint un seuil réglé par
+- Moments : traces dont la force du signal (rôle × confiance, distincte des
+  points de l'angle depuis D-8) atteint un seuil réglé par
   la sensibilité 0–100 (pas de 5) : 0 → 0,9, 50 → 0,6 (défaut), 100 → 0,3 ;
   « signaux forts seulement » sous 35, « signaux faibles inclus » au-dessus de
   65. Chaque moment : date, compétence, barre de confiance (vert > 0,6, orange
@@ -541,9 +583,9 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
 - La table de correspondance n'est **jamais** dans l'export.
 - Démo du site : « Explorer la démonstration » ouvre
   `data/demo/carto/archive.json` s'il existe, sinon les 59 journées
-  publiques. **[à valider]** Ce fichier, même anonymisé, vient d'un vrai
-  portfolio : il n'est jamais versionné (`.gitignore`) ; il se dépose par FTP
-  ou se place dans `web/public/data/demo/carto/` avant la construction.
+  publiques. **[décidé]** Ce fichier, même anonymisé, vient d'un vrai
+  portfolio : il n'est jamais versionné (`.gitignore`) ; il se dépose **par
+  FTP sur le site**, avec un déploiement autorisé par Christian (question 11).
 - Limite connue : sur un journal de 50 journées, l'aperçu calcule une dizaine
   de secondes (rendu de chaque journée, deux fois) pendant lesquelles la page
   ne répond pas ; un message l'annonce.
@@ -579,7 +621,7 @@ Référentiel intact. La première passe avait cassé 15 à 26 surlignages sur
 4. Ancres alignées sur des mots entiers du texte affiché — D-28.
 
 
-### D-30 — Ce qui part sur le serveur : une version partagée, jamais le master **[à valider]**
+### D-30 — Ce qui part sur le serveur : une version partagée, jamais le master **[validé]**
 
 « Conserver ses données sur nos serveurs » (§12) est lu au plus juste : ce
 qui est copié sur le serveur, c'est une **version partagée** composée par
@@ -617,7 +659,7 @@ sauvegarde serveur de tout le travail n'est pas faite (question 14).
   `buildSharedVersion` dans
   `schemas/fixtures/partage/carto-partage-exemple.json`) : le test du client
   exige l'égalité exacte, le test PHP l'accepte et la publie.
-- **[écart]** §12.2 propose « PHP 8 + SQLite (ou fichiers JSON) ». Le site a
+- **[écart, validé]** §12.2 propose « PHP 8 + SQLite (ou fichiers JSON) ». Le site a
   déjà une API PHP déployée par FTP, avec comptes, liens de partage hachés,
   quotas, audit et migrations par point d'entrée : la version partagée en
   est un nouveau type de cartographie (`cartographies.type = 'partage'`,
@@ -651,7 +693,7 @@ sauvegarde serveur de tout le travail n'est pas faite (question 14).
   création de compte n'est pas obligatoire » : toute l'interface s'utilise
   sans compte (tout reste local) ; seul le partage en demande un, puisque
   l'attestation est portée par un compte et que l'API authentifie
-  l'apprenant (§12.2) **[à valider]** (question 24).
+  l'apprenant (§12.2) **[validé]** (question 24).
 - Le partage historique du site (`#/espace`, cartographies du moteur, mot de
   passe obligatoire) n'est **pas** soumis à l'attestation : le changer
   toucherait un parcours existant (UC-APP-05) ; décision laissée à Christian
@@ -702,7 +744,7 @@ Espace `ui/SharePanel.jsx`, en trois étapes puis la gestion :
    le nom du jeu de données, qui peut contenir celui de la personne),
    précision des dates, arbre pôles → compétences à cases à trois états
    (toutes les compétences observées partent cochées, les extraits partent
-   décochés **[à valider]**, question 23), extraits proposés par compétence
+   décochés **[validé]**, question 23), extraits proposés par compétence
    (traces de l'ensemble coché, chargées à la demande). La version part de
    l'état affiché (journées cochées, date t).
 2. **Relire** (§12.2, contenus tiers) : masques des courriels, liens,
@@ -737,7 +779,9 @@ expiration et mot de passe facultatif, révocation en deux temps, état
 actif / expiré / révoqué), journal des accès, aperçu, export JSON complet
 d'une version (document, liens, journal), retrait immédiat, retrait de
 l'attestation. Hébergement affiché : « OVHcloud, dans l'Union européenne »
-**[à valider]** (question 16).
+**[validé pour le prototype]** (question 16 : la version finale migrera
+probablement chez Infomaniak, en Suisse ; le texte changera alors, avec la
+politique de confidentialité).
 
 ### D-34 — La vue du destinataire
 
@@ -777,7 +821,7 @@ d'analyse : « fonction candidate 3 et 4 ») :
   factuelle du récit « ce qui a changé », §9.4).
 - **Questions ouvertes, sans valence** (ni progrès, ni faible, ni conseil,
   ni comparaison à quiconque) — un test le vérifie. Vouvoiement, comme le
-  reste de l'interface (le prototype tutoyait) **[à valider]**.
+  reste de l'interface (le prototype tutoyait) **[validé]**.
 - **Honnêteté du dispositif** : le script ne lit pas les réponses pour
   choisir la suite ; l'ouverture le dit (« c'est un questionnement, pas une
   conversation »). On peut répondre, passer une question, s'arrêter,
@@ -807,7 +851,8 @@ demander, après une réponse, une question de relance :
   dans le navigateur, ou saisie pour la page seulement) ; appel **direct du
   navigateur** par le moteur (`createProvider`, transport `direct`) — jamais
   par les serveurs de humanome (le « service humanome » des runs n'est pas
-  proposé ici **[à valider]**) ;
+  proposé ici **[validé]** : Christian ne paie pas les relances ; seule la
+  démo des visiteurs, plafonnée par jour, passe par sa clé) ;
 - **accord explicite** : case décochée par défaut, impossible à cocher tant
   que le fournisseur n'est pas utilisable, retirée dès qu'on change de
   fournisseur, de version ou de clé, jamais enregistrée ; puis un bouton par
@@ -1076,83 +1121,62 @@ contre l'API locale, P7) verts.
 
 ---
 
-## 4. Questions ouvertes pour Christian
+## 4. Questions à Christian et ses réponses
 
-1. (§15, point ouvert 1) Valeur de α (poids d'un indice) : 0,5 retenu par défaut, réglable.
-2. Les données personnelles (portfolios, journaux 300 / 200 / GEN1 du dossier
-   AuroraCore) ne sont **jamais** versionnées : le dépôt est public. Les tests
-   utilisent des données synthétiques ou le corpus déjà public
-   (`assets-existants/merge-prototype`).
-3. Saturation des angles sur une longue période (D-8) : garder la formule telle
-   quelle, ou une des pistes proposées ?
-4. Lecture des formules (D-6) : moyenne des confiances des seuls verdicts qui
-   fournissent des traces, statut optimiste, hors référentiel sans secteur.
-5. Miroir et rapports de pôle (D-16) : « territoires non visités » et
-   « émergences » masqués — à confirmer.
-6. Note privée du droit de réponse non imprimée (D-15) — à confirmer.
-7. Routes préfixées par `#/cartographie` (D-2) plutôt que `#/jour/<date>`
-   (déjà pris par la vue historique du site).
-8. Démonstration sans portfolio (D-11) : le surlignage y est indisponible
-   jusqu'à la démo anonymisée de P5.
-9. Surlignage « approché » des extraits reformulés par l'analyse (validation
-   P2) : à ajouter, signalé comme tel, ou s'en tenir au message actuel ?
-10. Archive de cartographie (D-25) : l'embarquer dans l'archive de compte du
-    site (`archive-export`, UC-APP-06) ? Écrire un schéma JSON du master v4
-    dans `schemas/` ?
-11. Démo anonymisée du site (D-28) : où la déposer — par FTP dans la release
-    courante (perdue à la release suivante) ou dans `web/public/data/demo/carto/`
-    avant chaque construction (jamais versionnée) ?
-12. Rapport imprimable (D-27) : pour AuroraCore, les six voix et le président
-    sont imprimés, pas les délibérations complètes ni le débat ni les pièces
-    du Greffier (tout le journal) — à confirmer.
-13. Correction hors module (D-27) : la règle d'impression de la facture Twin9
-    masquait toute autre impression du site ; elle est désormais limitée à la
-    page qui affiche une facture — à confirmer.
-14. Copie serveur (D-30) : seule la version partagée est copiée sur le
-    serveur. Faut-il aussi offrir aux adultes une sauvegarde serveur de toute
-    leur cartographie (portfolio compris), pour la retrouver sur un autre
-    appareil ?
-15. Nouvelle version (D-33) : une nouvelle publication crée une version
-    distincte, avec ses propres liens. Préférez-vous qu'elle remplace une
-    version existante sous le même lien (le destinataire voit alors la mise à
-    jour) ?
-16. Hébergement affiché (D-33) : « OVHcloud, dans l'Union européenne » — à
-    confirmer (centre de données de l'offre mutualisée).
-17. Deux entrées « partager » coexistent pour un apprenant connecté : celle
-    du site (« Partager ma cartographie », `#/espace`, cartographies du
-    moteur, mot de passe obligatoire) et l'espace Partage de l'interface
-    ultime. Faut-il les réunir ? **Surtout** : la première n'exige pas
-    l'attestation de majorité, alors que §12 dit « pour les mineurs, ni copie
-    serveur ni partage ». La soumettre aussi à l'attestation (et effacer ses
-    copies au retrait) change un parcours existant (UC-APP-05) : laissée
-    telle quelle en attendant votre décision ; un test PHP fige ce
-    comportement pour qu'il ne change pas par mégarde (D-37, point 5).
-18. §12.2 (D-30, **[écart]**) : la version partagée vit dans l'API PHP/MySQL
-    existante du site plutôt que dans un stockage SQLite ou JSON séparé.
-19. Dialogue (D-35) : vouvoiement (comme le reste de l'interface) ou
-    tutoiement (comme le prototype) ?
-20. Carnet (D-35) : le prototype annonçait que le texte consigné « fera
-    partie du portfolio à la prochaine évaluation ». Ici, le carnet reste à
-    part (copiable en Markdown) : faut-il prévoir un chemin vers le
-    portfolio analysé ?
-21. Relances (D-36) : faut-il aussi proposer le « service humanome » (proxy
-    du site, sans clé personnelle), au prix d'un passage des réponses par le
-    serveur ?
-22. Politique de sécurité du site (D-36, D-37 point 6) : `connect-src 'self'`
-    (`web/public/.htaccess`) bloque les relances du dialogue sur le site
-    déployé, comme les runs « clé personnelle » existants. Ouvrir
-    `connect-src` à `https://api.anthropic.com https://api.openai.com
-    https://generativelanguage.googleapis.com https://api.x.ai
-    https://openrouter.ai http://localhost:11434`, ou retirer l'option (et le
-    mode « clé personnelle ») ? Non modifié ici : c'est une décision de
-    sécurité.
-23. Compétences cochées par défaut (D-33) : toutes les compétences observées
-    partent cochées (on retire ce qu'on ne veut pas montrer), les extraits
-    partent décochés (on ajoute ce qu'on veut montrer). Préférez-vous des
-    compétences décochées au départ ?
-24. Attestation (D-31) : posée une fois sur le compte **et** redemandée par
-    une case à chaque publication ; un compte est exigé pour partager, pas
-    pour utiliser l'interface. Lecture de §12.1 à confirmer.
+Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
+
+1. (§15, point ouvert 1) α, le poids d'un indice : 0,5 par défaut, réglable.
+   → **Validé.** Précisé le même jour : la confiance du jury n'entre pas dans
+   l'angle ; une preuve vaut 1 point, un indice α (D-8).
+2. Données personnelles jamais versionnées (dépôt public) ; tests sur des
+   données synthétiques ou le corpus public. → **Validé.**
+3. Saturation des angles (D-8). → **Décidé** : l'angle représente le nombre
+   de points, la hauteur la confiance moyenne du jury. Suite : fait (D-8).
+4. Lecture des formules (D-6). → **Validé.**
+5. « Territoires non visités » et « émergences » masqués (D-16). → **Validé** :
+   on ne parle pas des compétences sans trace.
+6. Note privée du droit de réponse non imprimée (D-15). → Expliquée (c'est
+   l'apprenant qui l'écrit) ; **validé** : non imprimée, pour ne pas aller
+   chez un employeur.
+7. Routes sous `#/cartographie` (D-2). → **Validé.**
+8. Démonstration sans portfolio (D-11). → **Validé.**
+9. Surlignage approché des extraits reformulés (validation de P2). →
+   **Décidé** : à ajouter, signalé comme tel. Suite : à venir.
+10. Archive (D-25). → **Décidé** : « Exporter toutes mes données » du site
+    sauvegarde aussi la cartographie de l'interface ; schéma JSON du master
+    v4 dans `schemas/`. Suite : à venir.
+11. Démo anonymisée du site (D-28). → **Décidé** : par FTP sur le site, jamais
+    dans GitHub, lors d'un déploiement autorisé par Christian (identifiants
+    FTP sur son Mac, non lus ici).
+12. Rapport imprimable d'AuroraCore sans les délibérations complètes (D-27).
+    → **Validé** (elles restent lisibles à l'écran).
+13. Règle d'impression de la facture Twin9 limitée à sa page (D-27). →
+    **Validé.**
+14. Sauvegarde serveur de toute la cartographie (D-30). → **Non** : ce sont
+    des données privées ; seul ce qui est désigné « à partager » va sur le
+    serveur.
+15. Nouvelle version partagée (D-33). → **Décidé** : elle remplace une version
+    existante, sous le même lien. Suite : à venir.
+16. Hébergement affiché (D-33). → **Validé** pour le prototype (OVHcloud,
+    UE) ; la version finale migrera probablement chez Infomaniak (Suisse).
+17. Deux entrées « partager ». → **Décidé** : retirer l'ancien partage
+    (`#/espace`). Suite : à venir.
+18. Version partagée dans l'API PHP/MySQL (D-30, écart au §12.2). →
+    **Validé.**
+19. Vouvoiement du dialogue (D-35). → **Validé.**
+20. Chemin du carnet vers le portfolio (D-35). → **Décidé** : oui (le carnet,
+    espace de métacognition, sert au lecteur du portfolio et à l'évaluation
+    suivante). Suite : à venir.
+21. « Service humanome » pour les relances (D-36). → **Décidé** : non ; seule
+    la démo des visiteurs passe par la clé de Christian, plafonnée par jour
+    (par défaut 5 $ et 2 millions de tokens, réglables dans
+    `#/admin/reglages`).
+22. Politique de sécurité (D-36, D-37). → **Décidé** : les runs avec clé
+    personnelle doivent fonctionner sur le site déployé ; `connect-src`
+    s'ouvre aux fournisseurs. Suite : à venir.
+23. Compétences cochées par défaut (D-33). → **Validé.**
+24. Attestation sur le compte et à chaque publication ; compte exigé pour
+    partager seulement (D-31). → **Validé.**
 
 ---
 

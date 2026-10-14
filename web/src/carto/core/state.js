@@ -14,18 +14,25 @@
 //   présence et n'entre donc pas dans la hauteur) ;
 // - une compétence hors référentiel n'a ni angle ni secteur (elle n'a pas de
 //   pôle) : elle est listée à part (point ouvert 8).
+// - l'intensité d'une compétence est son nombre de points, Σ w avec w = 1 par
+//   preuve et α par indice (D-8, décisions du 2026-10-14) ; l'angle en est la
+//   part. La confiance du jury ne fait que la hauteur.
 
 import { contributingVariant } from './model.js'
 import {
   TRACE_PROVIDING_STATUSES,
-  anglesFromIntensities,
+  anglesFromPoints,
   meanConfidence,
+  widenNarrowSectors,
   poleConfidence,
   resolveParams,
-  saturatingIntensity,
+  tracePoints,
   traceWeight,
 } from './formulas.js'
 import { daysBetween } from './dates.js'
+
+/** Nombre écrit à la française (virgule décimale), pour les formules affichées. */
+const frNumber = (n) => String(n).replace('.', ',')
 
 /**
  * @param {object} dataset index du jeu de données
@@ -67,6 +74,8 @@ export function computeState(dataset, { ref, dates = null, until = null, params,
         continue
       }
       if (!v.traces || v.traces.length === 0) continue
+      // Confiance inconnue : les traces comptent pour l'angle (points), la
+      // hauteur l'ignore (moyenne des seules confiances connues).
       if (v.confidence === null || v.confidence === undefined) excluded.withoutConfidence++
       if (!ref.compByCode.has(v.code)) {
         outOfReferential.add(v.code)
@@ -85,7 +94,7 @@ export function computeState(dataset, { ref, dates = null, until = null, params,
           variantId: variant.id,
           role: t.role,
           confidence: v.confidence,
-          weight: traceWeight(t.role, v.confidence, p, ageDays),
+          weight: traceWeight(t.role, p, ageDays),
         })
       }
       entry.verdicts.push({
@@ -102,8 +111,8 @@ export function computeState(dataset, { ref, dates = null, until = null, params,
   }
 
   const intensities = new Map()
-  for (const [code, e] of comps) intensities.set(code, saturatingIntensity(e.traces.map((t) => t.weight)))
-  const thetas = anglesFromIntensities(intensities)
+  for (const [code, e] of comps) intensities.set(code, tracePoints(e.traces.map((t) => t.weight)))
+  const thetas = anglesFromPoints(intensities)
 
   const competencies = new Map()
   let totalIntensity = 0
@@ -171,15 +180,34 @@ export function computeDayState(dataset, date, { ref, params } = {}) {
  * @param {ReturnType<import('./referential.js').normalizeReferential>} ref
  * @param {{k: number, poles: {rIn: number, rOut: number}, competencies: {rIn: number, rOut: number}}} geometry
  *   géométrie (ringGeometry) exprimée en pixels
- * @param {{minThickness?: number}} [opts]
+ * @param {{minThickness?: number, minArc?: number}} [opts] minThickness : épaisseur
+ *   minimale (px) ; minArc : largeur minimale au bord extérieur (px) — un
+ *   secteur élargi est marqué `widened`, son θ reste exact
  * @returns {{
  *   poles: Array<{num: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, confidence: number, theta: number}>,
- *   competencies: Array<{code: string, pole: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, confidence: number, theta: number, status: string}>,
+ *   competencies: Array<{code: string, pole: number, a0: number, a1: number, rIn: number, rOut: number, rOutExact: number, floored: boolean, widened: boolean, confidence: number, theta: number, status: string}>,
  * }}
  */
-export function layoutSun(state, ref, geometry, { minThickness = 0 } = {}) {
+export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 } = {}) {
   const START = -Math.PI / 2
   const rad = (deg) => (deg * Math.PI) / 180
+  // Ordre du dessin : celui du référentiel ; largeurs dessinées (un secteur
+  // trop étroit pour être vu reçoit la largeur minimale, prise sur les autres).
+  const drawnOrder = []
+  for (const pole of ref.poles) {
+    if (!state.poles.get(pole.num)) continue
+    for (const code of ref.codesByPole.get(pole.num)) {
+      const c = state.competencies.get(code)
+      if (c && c.theta > 0) drawnOrder.push(code)
+    }
+  }
+  const outer = geometry.competencies.rOut
+  const drawn = widenNarrowSectors(
+    drawnOrder.map((code) => rad(state.competencies.get(code).theta)),
+    minArc > 0 && outer > 0 ? minArc / outer : 0,
+  )
+  const drawnByCode = new Map(drawnOrder.map((code, i) => [code, { angle: drawn.angles[i], widened: drawn.widened[i] }]))
+
   const comps = []
   const poles = []
   let cursor = START
@@ -190,11 +218,14 @@ export function layoutSun(state, ref, geometry, { minThickness = 0 } = {}) {
     for (const code of ref.codesByPole.get(pole.num)) {
       const c = state.competencies.get(code)
       if (!c || !(c.theta > 0)) continue
+      const d = drawnByCode.get(code)
       const a0 = cursor
-      const a1 = cursor + rad(c.theta)
+      const a1 = cursor + d.angle
       cursor = a1
       const exact = Math.sqrt(geometry.competencies.rIn ** 2 + geometry.k * (c.confidence ?? 0))
-      const floored = c.confidence > 0 && exact - geometry.competencies.rIn < minThickness
+      // Un secteur qui a des points ne disparaît jamais, même d'une confiance
+      // nulle ou inconnue : il reçoit l'épaisseur minimale, signalée.
+      const floored = exact - geometry.competencies.rIn < minThickness
       comps.push({
         code,
         pole: pole.num,
@@ -204,13 +235,14 @@ export function layoutSun(state, ref, geometry, { minThickness = 0 } = {}) {
         rOut: floored ? geometry.competencies.rIn + minThickness : exact,
         rOutExact: exact,
         floored,
+        widened: d.widened,
         confidence: c.confidence ?? 0,
         theta: c.theta,
         status: c.status,
       })
     }
     const exact = Math.sqrt(geometry.poles.rIn ** 2 + geometry.k * (pState.confidence ?? 0))
-    const floored = pState.confidence > 0 && exact - geometry.poles.rIn < minThickness
+    const floored = exact - geometry.poles.rIn < minThickness
     poles.push({
       num: pole.num,
       a0: poleStart,
@@ -251,9 +283,9 @@ export function explainSurface(state, target) {
       verdicts: c.verdicts,
       days: c.days,
       formulas: {
-        weight: `w = base(rôle) × confiance du verdict, borné à [0 ; ${p.maxWeight}] — base(preuve) = ${p.proofBase}, base(indice) = α = ${p.alpha}`,
-        intensity: 'I = 1 − Π(1 − w)',
-        angle: 'θ = 360° × I / Σ I',
+        weight: `points d’une trace : preuve = ${frNumber(p.proofBase)}, indice = α = ${frNumber(p.alpha)} (la confiance du jury n’entre pas dans l’angle)`,
+        intensity: 'points = Σ w (chaque trace compte)',
+        angle: 'θ = 360° × points / Σ points',
         confidence: 'C = moyenne des confiances des verdicts qui fournissent des traces',
         area: 'surface = θ · k · C / 2 (anneaux fixes : r_ext² = r_int² + k·C)',
       },

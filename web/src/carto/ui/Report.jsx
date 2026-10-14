@@ -47,7 +47,7 @@ export function ReadingPrecautions() {
         </li>
         <li>L’absence d’une trace ne signifie pas l’absence de la compétence : une compétence sans secteur n’a simplement pas été observée dans ces journées.</li>
         <li>
-          L’angle d’un secteur est la part de l’intensité des traces (leur qualité, pas leur nombre) ; sa hauteur est la confiance cumulée des verdicts, qui n’est ni un
+          L’angle d’un secteur est la part des points de la compétence (un point par preuve, moins pour un indice : plus il y a de traces, plus il est large) ; sa hauteur est la confiance cumulée des verdicts, qui n’est ni un
           niveau de maîtrise ni une force.
         </li>
         <li>
@@ -336,7 +336,7 @@ function Comparison({ dataset, refl, params, geometry, options }) {
   const saved = dataset.preferences?.compare ?? null
   const cmp = useMemo(() => (saved?.a && saved?.b ? compareSets(dataset, refl, saved.a, saved.b, { params }) : null), [dataset, refl, saved, params])
   const layouts = useMemo(
-    () => (cmp ? [layoutSun(cmp.a.state, refl, geometry, { minThickness: params.minThicknessPx }), layoutSun(cmp.b.state, refl, geometry, { minThickness: params.minThicknessPx })] : null),
+    () => (cmp ? [layoutSun(cmp.a.state, refl, geometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }), layoutSun(cmp.b.state, refl, geometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx })] : null),
     [cmp, refl, geometry, params],
   )
   const story = useMemo(() => (cmp ? changeNarrative(cmp, { nameOf: (c) => refl.compByCode.get(c)?.name ?? c }) : []), [cmp, refl])

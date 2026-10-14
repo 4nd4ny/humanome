@@ -53,12 +53,25 @@ describe.skipIf(!available)('corpus réel (59 journées Aurora v3)', () => {
       expect(c.confidence).toBeGreaterThanOrEqual(0)
       expect(c.confidence).toBeLessThanOrEqual(1)
       expect(c.intensity).toBeGreaterThan(0)
-      // Cumul saturant : en double précision, 1 − Π(1 − w) atteint 1 après
-      // quelques dizaines de bonnes traces (constat reporté au journal, D-8).
-      expect(c.intensity).toBeLessThanOrEqual(1)
+      // Points : un par preuve, α par indice — la confiance n'y entre pas (D-8).
+      expect(c.intensity).toBeCloseTo(c.proofs + 0.5 * c.hints, 6)
     }
     const layout = layoutSun(state, ref, ringGeometry({ outerRadius: 200, centerRadius: 24, gap: 4 }), { minThickness: 2 })
     expect(layout.competencies.at(-1).a1).toBeCloseTo(-Math.PI / 2 + 2 * Math.PI, 6)
+  })
+
+  it('D-8 : sur toute la période, l’angle distingue encore les compétences (plus de traces, plus d’angle)', () => {
+    const state = computeState(result.dataset, { ref })
+    const th = [...state.competencies.values()].map((c) => c.theta).sort((a, b) => a - b)
+    const median = th[Math.floor((th.length - 1) / 2)]
+    // Le cumul saturant donnait ici max = médiane = 6,6° : 52 compétences sur 56 au plafond.
+    expect(th.at(-1)).toBeGreaterThan(3 * median)
+    for (const c of state.competencies.values()) expect(c.theta / 360).toBeCloseTo(c.intensity / state.totalIntensity, 9)
+    // Les secteurs trop étroits pour être vus sont élargis au dessin, et signalés.
+    const layout = layoutSun(state, ref, ringGeometry({ outerRadius: 200, centerRadius: 24, gap: 4 }), { minThickness: 2, minArc: 2 })
+    const widened = layout.competencies.filter((c) => c.widened)
+    expect(widened.length).toBeGreaterThan(0)
+    expect(widened.every((c) => c.theta < 1)).toBe(true)
   })
 
   it('l’état à une date intermédiaire ne retient que les journées antérieures', () => {

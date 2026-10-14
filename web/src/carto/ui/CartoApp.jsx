@@ -138,7 +138,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const activeDates = useMemo(() => (dataset ? dataset.days.filter((d) => d.active).map((d) => d.date) : []), [dataset])
 
   const state = useMemo(() => (dataset && refl ? computeState(dataset, { ref: refl, until: ui.t, params }) : null), [dataset, refl, ui.t, params])
-  const layout = useMemo(() => (state ? layoutSun(state, refl, GEOMETRY, { minThickness: params.minThicknessPx }) : null), [state, refl, params])
+  const layout = useMemo(() => (state ? layoutSun(state, refl, GEOMETRY, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null), [state, refl, params])
 
   const allDates = useMemo(() => (dataset ? dataset.days.map((d) => d.date) : []), [dataset])
   const span = useMemo(() => dateRange(allDates), [allDates])

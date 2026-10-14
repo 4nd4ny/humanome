@@ -26,6 +26,7 @@ import {
 } from '../core/dashboard.js'
 import { STYLE_LEXICONS } from '../core/stylometry.js'
 import { radarScale } from '../core/compare.js'
+import { traceSignal } from '../core/formulas.js'
 import { hasPortfolio } from '../core/model.js'
 import { addMarker, deleteMarker, setPreferences } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
@@ -241,7 +242,7 @@ function PhasesCard({ data, update, onOpenDay }) {
 function ConstancyCard({ data, refl }) {
   return (
     <div className="carto-card-body">
-      <p className="carto-small carto-muted">Pour chaque compétence observée : ses journées, l’écart entre deux observations, et l’intensité cumulée (trait) avec la confiance de chaque jour (points).</p>
+      <p className="carto-small carto-muted">Pour chaque compétence observée : ses journées, l’écart entre deux observations, et les points cumulés (trait), avec la confiance du verdict de chaque jour (pastilles).</p>
       <table className="carto-mini-table">
         <thead>
           <tr>
@@ -268,7 +269,7 @@ function ConstancyCard({ data, refl }) {
                     from={data.from}
                     to={data.to}
                     color={refl.poleByNum.get(r.pole)?.color}
-                    label={`${r.code} ${name} : intensité cumulée de ${nf2(r.series[0].intensity)} (${formatShort(r.first)}) à ${nf2(r.series.at(-1).intensity)} (${formatShort(r.last)})`}
+                    label={`${r.code} ${name} : points cumulés de ${nf2(r.series[0].intensity)} (${formatShort(r.first)}) à ${nf2(r.series.at(-1).intensity)} (${formatShort(r.last)})`}
                   />
                 </td>
               </tr>
@@ -597,7 +598,8 @@ export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, upda
     for (const c of state.competencies.values()) {
       for (const t of c.traces) {
         const td = getDetail(t.date)?.variants?.[t.variantId]?.verdicts?.[c.code]?.traces?.[t.id]
-        out.push({ id: t.id, date: t.date, variantId: t.variantId, code: c.code, role: t.role, confidence: t.confidence, weight: t.weight, extract: td?.extract ?? '' })
+        // Force du signal (rôle × confiance), propre aux moments : l'angle, lui, ne compte que les points.
+        out.push({ id: t.id, date: t.date, variantId: t.variantId, code: c.code, role: t.role, confidence: t.confidence, weight: traceSignal(t.role, t.confidence, state.params), extract: td?.extract ?? '' })
       }
     }
     return out

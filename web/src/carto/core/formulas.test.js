@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   DEFAULT_PARAMS,
   annularSectorArea,
-  anglesFromIntensities,
+  anglesFromPoints,
   decayFactor,
   displayedOuterRadius,
   encodedArea,
@@ -12,29 +12,26 @@ import {
   poleConfidence,
   resolveParams,
   ringGeometry,
-  saturatingIntensity,
+  tracePoints,
+  widenNarrowSectors,
   toRadians,
   traceWeight,
 } from './formulas.js'
 
-describe('poids d’une trace (§5.2)', () => {
-  it('preuve : base 1 × confiance du verdict', () => {
-    expect(traceWeight('preuve', 0.8)).toBeCloseTo(0.8)
+describe('points d’une trace (décision du 2026-10-14) : la confiance du jury n’y entre pas', () => {
+  it('preuve : 1 point', () => {
+    expect(traceWeight('preuve')).toBe(1)
   })
-  it('indice : base α = 0,5 par défaut', () => {
+  it('indice : α = 0,5 par défaut', () => {
     expect(DEFAULT_PARAMS.alpha).toBe(0.5)
-    expect(traceWeight('indice', 0.8)).toBeCloseTo(0.4)
+    expect(traceWeight('indice')).toBe(0.5)
   })
   it('α est réglable', () => {
-    expect(traceWeight('indice', 0.8, resolveParams({ alpha: 0.25 }))).toBeCloseTo(0.2)
+    expect(traceWeight('indice', resolveParams({ alpha: 0.25 }))).toBe(0.25)
   })
-  it('borné à 0,99 : une trace ne sature jamais seule le cumul', () => {
-    expect(traceWeight('preuve', 1)).toBe(0.99)
-  })
-  it('confiance absente ou illisible : poids nul (jamais inventé)', () => {
-    expect(traceWeight('preuve', null)).toBe(0)
-    expect(traceWeight('preuve', undefined)).toBe(0)
-    expect(traceWeight('preuve', Number.NaN)).toBe(0)
+  it('aucune borne : une preuve vaut un point entier', () => {
+    expect(DEFAULT_PARAMS).not.toHaveProperty('maxWeight')
+    expect(traceWeight('preuve', DEFAULT_PARAMS, 0)).toBe(1)
   })
   it('rejette un α hors de [0 ; 1[', () => {
     expect(() => resolveParams({ alpha: 1 })).toThrow(/α/)
@@ -47,43 +44,67 @@ describe('poids d’une trace (§5.2)', () => {
   })
 })
 
-describe('intensité (§5.3) : cumul saturant 1 − Π(1 − w)', () => {
-  it('aucune trace : 0', () => {
-    expect(saturatingIntensity([])).toBe(0)
+describe('intensité = points (décision du 2026-10-14, D-8) : P = Σ w', () => {
+  it('aucune trace : 0 point', () => {
+    expect(tracePoints([])).toBe(0)
   })
-  it('deux traces de 0,5 : 0,75', () => {
-    expect(saturatingIntensity([0.5, 0.5])).toBeCloseTo(0.75)
+  it('deux traces de 0,5 : 1 point', () => {
+    expect(tracePoints([0.5, 0.5])).toBeCloseTo(1)
   })
-  it('une trace très claire pèse plus que dix traces vagues', () => {
-    expect(saturatingIntensity([0.95])).toBeGreaterThan(saturatingIntensity(Array(10).fill(0.05)))
+  it('plus il y a de traces, plus il y a de points : chaque trace compte autant que la précédente', () => {
+    const g1 = tracePoints([0.4]) - tracePoints([])
+    const g2 = tracePoints([0.4, 0.4]) - tracePoints([0.4])
+    const g3 = tracePoints([0.4, 0.4, 0.4]) - tracePoints([0.4, 0.4])
+    expect(g1).toBeCloseTo(0.4)
+    expect(g2).toBeCloseTo(g1)
+    expect(g3).toBeCloseTo(g1)
   })
-  it('les traces suivantes comptent de moins en moins', () => {
-    const g1 = saturatingIntensity([0.4]) - saturatingIntensity([])
-    const g2 = saturatingIntensity([0.4, 0.4]) - saturatingIntensity([0.4])
-    const g3 = saturatingIntensity([0.4, 0.4, 0.4]) - saturatingIntensity([0.4, 0.4])
-    expect(g1).toBeGreaterThan(g2)
-    expect(g2).toBeGreaterThan(g3)
+  it('rien ne plafonne : cent preuves valent cent points (le cumul saturant les ramenait à 1)', () => {
+    expect(tracePoints(Array(100).fill(traceWeight('preuve')))).toBe(100)
+  })
+  it('une preuve vaut deux indices (α = 0,5)', () => {
+    expect(tracePoints([traceWeight('preuve')])).toBe(tracePoints([traceWeight('indice'), traceWeight('indice')]))
+  })
+})
+
+describe('largeur minimale d’affichage', () => {
+  it('élargit le seul secteur trop étroit, prend la différence aux autres au prorata, somme inchangée', () => {
+    const { angles, widened } = widenNarrowSectors([0.001, 2, 4], 0.1)
+    expect(widened).toEqual([true, false, false])
+    expect(angles[0]).toBeCloseTo(0.1)
+    expect(angles[1] / angles[2]).toBeCloseTo(0.5)
+    expect(angles.reduce((s, a) => s + a, 0)).toBeCloseTo(6.001)
+  })
+  it('un secteur que l’élargissement des autres rend trop étroit est élargi à son tour', () => {
+    const { angles, widened } = widenNarrowSectors([0.01, 0.01, 0.105, 1], 0.1)
+    expect(widened).toEqual([true, true, true, false])
+    expect(angles.slice(0, 3).every((a) => Math.abs(a - 0.1) < 1e-9)).toBe(true)
+    expect(angles.reduce((s, a) => s + a, 0)).toBeCloseTo(1.125)
+  })
+  it('sans minimum, ou si tous ne peuvent pas l’avoir : les angles exacts', () => {
+    expect(widenNarrowSectors([0.001, 1], 0).angles).toEqual([0.001, 1])
+    expect(widenNarrowSectors([0.1, 0.1], 0.2).widened).toEqual([false, false])
   })
 })
 
 describe('angles (§5.4) : parts d’un tout', () => {
   it('une seule compétence occupe 360°', () => {
-    expect(anglesFromIntensities(new Map([['1.01', 0.3]])).get('1.01')).toBeCloseTo(360)
+    expect(anglesFromPoints(new Map([['1.01', 0.3]])).get('1.01')).toBeCloseTo(360)
   })
-  it('l’ajout d’une deuxième compétence d’intensité égale la fait passer à 180°', () => {
-    const a = anglesFromIntensities(new Map([['1.01', 0.3], ['2.01', 0.3]]))
+  it('l’ajout d’une deuxième compétence d’autant de points la fait passer à 180°', () => {
+    const a = anglesFromPoints(new Map([['1.01', 0.3], ['2.01', 0.3]]))
     expect(a.get('1.01')).toBeCloseTo(180)
     expect(a.get('2.01')).toBeCloseTo(180)
   })
-  it('proportionnel aux intensités, somme = 360°', () => {
-    const a = anglesFromIntensities(new Map([['a', 0.5], ['b', 0.25], ['c', 0.25], ['d', 0]]))
+  it('proportionnel aux points, somme = 360°', () => {
+    const a = anglesFromPoints(new Map([['a', 0.5], ['b', 0.25], ['c', 0.25], ['d', 0]]))
     expect(a.get('a')).toBeCloseTo(180)
     expect(a.get('b')).toBeCloseTo(90)
     expect(a.has('d')).toBe(false)
     expect([...a.values()].reduce((s, x) => s + x, 0)).toBeCloseTo(360)
   })
-  it('aucune intensité : aucun angle', () => {
-    expect(anglesFromIntensities(new Map([['a', 0]])).size).toBe(0)
+  it('aucun point : aucun angle', () => {
+    expect(anglesFromPoints(new Map([['a', 0]])).size).toBe(0)
   })
 })
 
