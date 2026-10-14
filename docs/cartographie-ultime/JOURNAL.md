@@ -39,7 +39,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Formation | chapitres de la V3 réécrits pour la nouvelle interface ; « confiance moyenne du jury » à l'écran (D-38, D-8) | ✅ | ✅ suites des guides et de l'aide | ✅ | `5ff7201` |
 | Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
 | Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
-| Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés | ✅ voir §3 | voir §5 |
+| Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés ; surlignage approché revalidé sur les journaux réels (D-39) | ✅ suite du site 2 255 verts | `b651f38` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1105,9 +1105,17 @@ chaîne que l'interface) :
 
 | Journal | non retrouvés avant | approchés (fenêtre) | approchés (phrases) | non retrouvés après | mots de l'extrait couverts | phrases encadrées par trace | part de la feuille encadrée |
 |---|---|---|---|---|---|---|---|
-| 200 | 65 | 1 | 4 | 61 | 75, 78, 89, 100 % | 1, 2, 3, 3 | 2 à 5 % |
-| 300 | 21 | 1 | 6 | 15 | 75 à 92 % | 2, 2, 3, 3, 3, 3 | 1 à 6 % |
+| 200 | 65 | 1 | 4 | 61 | 75, 78, 84, 100 % | 1, 2, 3, 3 | 2 à 4 % |
+| 300 | 21 | 1 | 6 | 15 | 75 à 82 % | 2, 2, 2, 3, 3, 3 | moins de 1 à 6 % |
 | GEN1 | 0 | 0 | 0 | 0 | — | — | — |
+
+Chiffres de la version finale (`b651f38`, phrases coupées aussi aux limites
+de bloc, D-41). La première version par phrases (`693f079`) donnait les
+mêmes nombres de traces approchées et non retrouvées, avec 75 à 100 % (200)
+et 75 à 92 % (300) des mots de l'extrait couverts et 1 à 6 % de la feuille
+encadrée : une phrase arrêtée à la fin d'un paragraphe ou d'un élément de
+liste encadre moins large, et réunit parfois un peu moins de mots, toujours
+au-dessus du seuil.
 
 Pour les traces qui restent non retrouvées, même sans limite du nombre de
 phrases, les mots pleins de l'extrait n'atteignent jamais 75 % : moins de la
@@ -1528,7 +1536,14 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
 16. Hébergement affiché (D-33). → **Validé** pour le prototype (OVHcloud,
     UE) ; la version finale migrera probablement chez Infomaniak (Suisse).
 17. Deux entrées « partager ». → **Décidé** : retirer l'ancien partage
-    (`#/espace`). Suite : à venir.
+    (`#/espace`). Suite : **précision demandée avant de le faire**. L'ancien
+    partage est aujourd'hui le seul chemin par lequel un employeur voit la
+    **garantie** d'un cartographe (UC-EMP-01) ; la version partagée de
+    l'interface ne la porte pas (elle est hors du module de relecture, D-33).
+    Le retirer, c'est donc aussi retirer la garantie de ce que voit
+    l'employeur. Deux voies : (1) retirer quand même ; (2) le garder, réservé
+    aux adultes (même attestation que D-31), jusqu'à ce que la version
+    partagée puisse porter la garantie.
 18. Version partagée dans l'API PHP/MySQL (D-30, écart au §12.2). →
     **Validé.**
 19. Vouvoiement du dialogue (D-35). → **Validé.**

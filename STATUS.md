@@ -15,10 +15,10 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`, NON déployée — aucun déploiement avant validation).**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-37, état des tests et 24 questions
-    ouvertes : `docs/cartographie-ultime/JOURNAL.md`.
+    dépôt). Journal d'avancement, décisions D-1 → D-41, état des tests, les 24 questions et
+    les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
-    l'ancienne vue V3 passe en `#/cartographie-v3` (D-2, **[écart]**). P0 noyau (master v4,
+    l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
     importeurs Aurora v3 / AuroraCore / Merge v2, formules §5, IndexedDB) ; P1 soleil,
     heatmap, gestionnaire, date t ; P2 lecteur de portfolio surligné, détail, jury ; P3
     comparaison de soi à soi ; P4 tableau de bord ; P5 archive JSON, copie autonome HTML
@@ -32,17 +32,26 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     appelle `migrate`) ; routes `partage.php` (attestation), `GET /api/share/open` (jeton en
     en-tête), `GET /api/shares/{id}/consultations`. Registre RGPD (3 bis, 3 ter), politique de
     confidentialité, matrice d'autorisations, UC-APP-05 et UC-EMP-01 mis à jour.
-  - Données réelles (journaux 300 / 200 / GEN1) : importeurs, lecteur et anonymisation validés
-    sur le Mac, compteurs seulement ; rien de personnel n'est versionné.
-  - **Vérification** : front **2 231 verts** sur 2 232 (dont 285 de la cartographie ; l'échec,
-    `UC-ADM-05-F01`, sans lien avec la cartographie, est instable sous charge et passe seul 3
-    fois sur 3 ; `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ;
-    moteur 1 069 verts + 17 sautés (inchangé) ; API **1 481 verts** (14 132 assertions, 23 min 20 s) ; e2e Chromium P5, P6
-    (contre l'API docker locale) et P7 verts.
-  - **Reste (décision utilisateur)** : valider la branche ; questions 1 → 24 du journal,
-    notamment 17 (le partage historique `#/espace` n'exige pas l'attestation de majorité) et
-    22 (la CSP `connect-src 'self'` bloque les relances LLM du dialogue comme les runs « clé
-    personnelle »).
+  - Données réelles (journaux 300 / 200 / GEN1) : importeurs, lecteur, anonymisation, surlignage
+    approché, export du portfolio et archive de compte validés sur le Mac, compteurs
+    seulement ; rien de personnel n'est versionné.
+  - **Réponses de Christian (2026-10-14) appliquées** : l'angle compte les points, la hauteur
+    est la confiance moyenne du jury (D-8) ; `connect-src` ouvert aux seuls fournisseurs, pour
+    les runs et relances avec clé personnelle (D-36) ; pages V3 retirées (D-38) ; une nouvelle
+    version partagée remplace l'ancienne sous le même lien (D-33) ; surlignage approché des
+    extraits reformulés (D-39) ; un dialogue du carnet se verse au portfolio, exporté en
+    Markdown (D-40) ; « Exporter toutes mes données » emporte les jeux de l'interface
+    (archive 1.1.0), schéma JSON du master v4 (D-25) ; chapitres de formation V3 réécrits.
+    Puis relecture indépendante de ces décisions : 9 corrections (D-41, `b651f38`).
+  - **Vérification** (2026-10-14, `b651f38`) : front **2 255 verts** (231 fichiers ;
+    `twin6-prompt-package.test.js` toujours non chargeable, anomalie connue) ; moteur
+    **1 071 verts** + 17 sautés ; API **1 484 verts** (14 162 assertions, 23 min 36 s) ; e2e
+    Chromium de la cartographie verts : P5 (copie autonome, démo anonymisée), P6 (contre l'API
+    docker locale), P7 (dialogue), clé personnelle sous la CSP de production.
+  - **Reste (décision utilisateur)** : valider la branche, puis autoriser un déploiement
+    (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11) ; question 17
+    (retrait de l'ancien partage `#/espace`) : précision demandée avant de le faire, car la
+    garantie du cartographe, que seul l'ancien partage montre à l'employeur, disparaîtrait.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
