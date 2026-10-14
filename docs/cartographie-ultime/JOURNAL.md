@@ -38,6 +38,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q9 — surlignage approché | extraits reformulés encadrés en pointillés, dits « approchés » (D-39) | ✅ | ✅ 10 tests + validation sur les journaux réels | ✅ 304 verts (carto) | `b82ebd5`, `693f079` |
 | Formation | chapitres de la V3 réécrits pour la nouvelle interface ; « confiance moyenne du jury » à l'écran (D-38, D-8) | ✅ | ✅ suites des guides et de l'aide | ✅ | `5ff7201` |
 | Q20 — carnet → portfolio | un dialogue se verse au portfolio : export Markdown, copie autonome (D-40) | ✅ | ✅ 12 tests (un autre renforcé) + 1 e2e + validation sur les journaux réels | ✅ 316 verts (carto) + e2e | `f52b0ed`, `1ed2786` |
+| Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -527,6 +528,15 @@ contient de mot de valence (progrès, amélioration, recul, meilleur…).
   référentiel 7.1.0 publié faisait échouer l'export « en un clic ». Recompilés ;
   UC-SYS-04-F06 vérifie désormais leur fraîcheur (recompilés = versionnés,
   octet pour octet).
+- **Validation sur les journaux réels** (sur le Mac, compteurs seulement) :
+  l'archive de chaque journal, délibérations AuroraCore comprises, est
+  conforme au schéma, et l'archive de compte qui l'embarque aussi.
+
+| Journal | journées | délibérations de run | taille de l'archive | conforme | archive de compte 1.1.0 | validation |
+|---|---|---|---|---|---|---|
+| 200 | 47 | 66 | 4,4 Mo | oui (0 erreur) | conforme | 26 ms |
+| 300 | 51 | 64 | 3,8 Mo | oui (0 erreur) | conforme | 21 ms |
+| GEN1 | 160 | 68 | 4,8 Mo | oui (0 erreur) | conforme | 25 ms |
 
 ### D-26 — Copie autonome : un modèle construit à part, les données insérées à l'export
 
@@ -1487,4 +1497,6 @@ Réponses reçues le 2026-10-14. « Suite » dit ce qui en découle ici.
   validé sur les journaux réels (D-39) ; un dialogue du carnet se verse au
   portfolio, exporté en Markdown (D-40). Chapitres de formation consacrés à la
   V3 réécrits pour la nouvelle interface (D-38) ; à l'écran, « confiance
-  moyenne du jury » (D-8).
+  moyenne du jury » (D-8). « Exporter toutes mes données » emporte les jeux de
+  l'interface (archive de compte 1.1.0) et le master v4 a son schéma JSON,
+  conforme sur les journaux réels (D-25).
