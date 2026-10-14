@@ -15,6 +15,16 @@ import { test, expect } from '@playwright/test'
 
 const PANEL = '.app-nav-panel'
 
+/**
+ * Sur un écran à survol, le tiroir rétracté laisse dépasser une languette de
+ * 10 px au bord gauche (repère visuel, `189f20e`) ; sans survol (tactile), il
+ * est entièrement hors écran.
+ */
+const SLIVER = 10
+
+/** Bord gauche du panneau, une fois sa transition terminée. */
+const panelLeft = async (page) => (await page.locator(PANEL).boundingBox()).x
+
 /** Bord droit du panneau en px : <= ~0 = complètement hors écran (rétracté). */
 async function panelRightEdge(page) {
   const box = await page.locator(PANEL).boundingBox()
@@ -27,20 +37,20 @@ test.describe('desktop (survol)', () => {
   }) => {
     await page.goto('/#/')
 
-    // Au repos : tiroir complètement hors écran à gauche (translateX(-100%)).
-    expect(await panelRightEdge(page)).toBeLessThanOrEqual(1)
+    // Au repos : tiroir hors écran à gauche, seule sa languette dépasse.
+    expect(await panelRightEdge(page)).toBeLessThanOrEqual(SLIVER + 1)
 
     await page.getByRole('button', { name: 'Menu de navigation' }).hover()
     await expect.poll(() => panelRightEdge(page)).toBeGreaterThan(300)
-    // Ouvert, le tiroir affleure le bord GAUCHE de l'écran.
-    expect((await page.locator(PANEL).boundingBox()).x).toBe(0)
+    // Ouvert, le tiroir affleure le bord GAUCHE de l'écran (fin de la transition).
+    await expect.poll(() => panelLeft(page)).toBe(0)
     await expect(
       page.locator(PANEL).getByRole('link', { name: 'Référentiel', exact: true }),
     ).toBeVisible()
 
     // Sortie du survol : rétraction après le délai de grâce (0,32 s + 0,2 s).
     await page.mouse.move(640, 500)
-    await expect.poll(() => panelRightEdge(page)).toBeLessThanOrEqual(1)
+    await expect.poll(() => panelRightEdge(page)).toBeLessThanOrEqual(SLIVER + 1)
   })
 
   test('épinglé : contenu docké à 1280 px, superposé à 920 px ; l’épinglage survit au rechargement', async ({
@@ -108,7 +118,7 @@ test.describe('mobile (tap)', () => {
 
     await page.getByRole('button', { name: 'Menu de navigation' }).tap()
     await expect.poll(() => panelRightEdge(page)).toBeGreaterThan(300)
-    expect((await page.locator(PANEL).boundingBox()).x).toBe(0)
+    await expect.poll(() => panelLeft(page)).toBe(0)
 
     // Tap hors du panneau (le tiroir fait 320 px de large) -> fermeture.
     await page.touchscreen.tap(370, 500)

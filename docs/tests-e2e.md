@@ -160,7 +160,9 @@ Un prompt-package contient du **code JS arbitraire** exécuté chez les
 utilisateurs : l'atelier et sa sandbox sont une pièce de sécurité (cahier §3.4,
 `docs/securite-prompts.md`).
 
-1. Compte + rôle `promptologue` (`grant-role`).
+1. Compte (activé dans la base de développement, comme les autres parcours :
+   le code D5 part par `mail()`, absent en dev) + rôle `promptologue`
+   (`grant-role`).
 2. **Nouveau brouillon** depuis la dernière version publiée du paquet par
    défaut, modification du **texte d'un gabarit**, validation au schéma
    (client), enregistrement (`PUT drafts/{id}`).

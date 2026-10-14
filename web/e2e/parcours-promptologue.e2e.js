@@ -25,6 +25,16 @@
 // publier ici ne change rien pour eux.
 
 import { test, expect } from '@playwright/test'
+import { execFileSync } from 'node:child_process'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const root = dirname(dirname(dirname(fileURLToPath(import.meta.url))))
+
+/** Requête SQL sur la base de DÉVELOPPEMENT du conteneur docker (jamais ailleurs). */
+function devSql(query) {
+  return execFileSync('docker', ['compose', 'exec', '-T', 'mysql', 'mysql', '-uhumanome', '-phumanome_dev', 'humanome', '-N', '-e', query], { cwd: root, stdio: 'pipe' }).toString().trim()
+}
 
 const MIGRATE_TOKEN = 'dev_migrate_token' // docker-compose.yml (dev uniquement)
 const PASSWORD = 'mot-de-passe-e2e-4'
@@ -109,10 +119,19 @@ test('parcours promptologue : brouillon, diff, publication, banc A/B, isolation 
     await page.goto('/#/compte')
     await page.getByRole('button', { name: 'Inscription' }).click()
     await page.getByLabel('Nom affiché').fill('Promptologue E2E')
-    await page.getByLabel('Email').fill(email)
+    await page.getByLabel('Email', { exact: true }).fill(email)
+    await page.getByLabel('Confirmez l’email').fill(email)
     await page.getByLabel('Mot de passe').fill(PASSWORD)
     await page.getByRole('button', { name: 'Créer mon compte' }).click()
-    await expect(page.getByText('Compte créé, bienvenue !')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Activer votre compte' })).toBeVisible()
+    // Le code d'activation (D5) part par mail(), absent en dev : le compte
+    // jetable est activé directement dans la base de DÉVELOPPEMENT.
+    devSql(`UPDATE users SET email_verified_at = NOW() WHERE email = '${email}'`)
+    await page.getByRole('button', { name: 'Retour à la connexion' }).click()
+    await page.getByLabel('Email', { exact: true }).fill(email)
+    await page.getByLabel('Mot de passe').fill(PASSWORD)
+    await page.getByRole('button', { name: 'Se connecter' }).click()
+    await expect(page.getByText(email, { exact: true })).toBeVisible()
 
     const granted = await grantRole(page, { email, role: 'promptologue' })
     expect(granted.status).toBe(200)

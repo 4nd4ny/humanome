@@ -41,7 +41,7 @@ déclenche rien (la CI `publiable.yml` ne tourne que sur `main` et sur les PR).
 | Q10 — archive de compte | « Exporter toutes mes données » emporte les jeux de l'interface (1.1.0) ; schéma JSON du master v4 ; validateurs recompilés (D-25) | ✅ | ✅ 11 tests + 5 renforcés (front, moteur, API) + validation sur les journaux réels | ✅ suite du site 2 240 verts, moteur, API | `e0c4e56` |
 | Relecture indépendante | les décisions du 2026-10-14 relues par un agent distinct : 9 défauts, tous corrigés (D-41) | ✅ | ✅ 15 tests (cœur, interface, cas d'utilisation), d'autres renforcés ; surlignage approché revalidé sur les journaux réels (D-39) | ✅ suite du site 2 255 verts | `b651f38` |
 | Q17 — version garantie | un cartographe publie la version de l'apprenant, à sa demande, avec sa garantie (D-42) | ✅ | ✅ 8 tests API, 8 d'interface, 1 e2e (deux comptes, API locale) | ✅ voir §3 | `f55b036` |
-| Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | voir §5 |
+| Q17 — ancien partage retiré | plus de lien vers une cartographie du site (422) ; « Partager depuis l'interface », « Liens déjà créés » ; la relecture du cartographe ouvre sa révision dans l'interface (D-43) | ✅ | ✅ 13 tests ajoutés, d'autres réécrits ; 21 retirés avec la création (18 du site, 3 de l'API) ; parcours e2e apprenant et cartographe réécrits (et remis en état : activation D5) | ✅ voir §3 | `9e7685c` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 

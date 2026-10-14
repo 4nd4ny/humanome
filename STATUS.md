@@ -62,9 +62,10 @@ attente de validation par Christian (entrée du 2026-10-14 ci-dessous).
     (suite complète) ; e2e Chromium verts : parcours apprenant et cartographe (réécrits pour le
     partage par l'interface, et remis en état : ils s'arrêtaient à l'inscription depuis
     l'activation par code D5), P6 et version garantie contre l'API docker, P5, P7, CSP, guides,
-    sandbox. Échecs **antérieurs** et sans rapport : `navigation-burger.e2e.js` (2 tests, le
-    tiroir laisse dépasser 10 px depuis `189f20e`, juillet) ; `parcours-promptologue.e2e.js`
-    (inscription d'avant D5, non rejoué).
+    sandbox. Deux e2e en échec depuis juillet, sans rapport, remis en état dans un commit à part :
+    `navigation-burger.e2e.js` (le tiroir rétracté laisse dépasser 10 px depuis `189f20e` ;
+    position lue après la transition) et `parcours-promptologue.e2e.js` (inscription d'avant
+    D5) — **toute la suite e2e est verte** (11 fichiers).
   - **Reste (décision utilisateur)** : valider la branche, puis autoriser un déploiement
     (la démo anonymisée part alors par FTP, jamais dans GitHub — question 11 ; la migration 023
     part avec la release API) ; questions 25 à 27 du journal (anciens liens de comptes sans
