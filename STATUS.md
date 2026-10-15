@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-63, état des tests, les 37 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-65, état des tests, les 38 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -152,6 +152,14 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     plus justes que la proposition, à confirmer). Relu par un agent distinct (aucun bloquant).
     Suites : front **2 382 verts**, moteur **1 073**, e2e Chromium de la cartographie verts.
     Déployé (front) et vérifié en ligne, au bureau et au téléphone.
+  - **Demande du 2026-10-15, 13 h 28** (D-64, D-65) : la tuile « Réglages » (ex-« Réglages de
+    l'encodage ») propose cinq palettes des pôles (Contrastée par défaut, Vive, Pastel, Terre,
+    Profonde), validées pour les daltoniens par le script de la skill dataviz, gardées dans le
+    navigateur ; le rapport imprimé et la version partagée gardent la palette par défaut. La
+    hauteur des secteurs part d'une confiance réglable (0 à 0,5, 0,25 par défaut) : les écarts
+    de hauteur de la démonstration 1,6 fois plus visibles ; α garde son rôle dans les points.
+    Relu par un agent distinct (aucun bloquant, six défauts traités). Suites : front **2 401
+    verts**, e2e Chromium de la cartographie verts. Question 38 (la palette par défaut) posée.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

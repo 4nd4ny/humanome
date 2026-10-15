@@ -64,6 +64,8 @@ autorisation, puis fusionné dans `main` (D-46).
 | Résumé du profil | ni « Points (total) » ni phrase sur le court-circuit (D-62) | ✅ | ✅ voir §3 | ✅ | `88d72af` |
 | Couleurs en clair | marches claires des pôles, validées pour les daltoniens ; bordures et marques des pôles aux deux thèmes (D-63) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `88d72af` |
 | Déploiement | D-61 à D-63 : front déployé en deux passes (la seconde pour les titres au téléphone, `af81072`), vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-63 |
+| Palettes | « Réglages » (ex-« Réglages de l'encodage ») : cinq palettes des pôles, validées pour les daltoniens ; préférence du navigateur ; rapport et version partagée sur la palette par défaut (D-64) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
+| Départ de la hauteur | la hauteur part d'une confiance réglable de 0 à 0,5, 0,25 par défaut ; épaisseur minimale de 1 à 6 px (D-65) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2328,6 +2330,136 @@ paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
 - seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
 - copies de travail effacées : paquets, dossiers de déploiement, fichier d'accès.
 
+### D-64 — Des palettes au choix, dans « Réglages » **[décidé]**
+
+Christian (2026-10-15, 13 h 28) : « Les couleurs sont un peu moches.
+Peut-être qu'on pourrait proposer deux palettes : l'actuelle et une pastel ?
+Un paramètre qui pourrait se choisir dans "Reglages de l'encodage" que l'on
+pourra renommer "Réglages". Idéalement proposer plusieurs palettes (pas que
+deux). »
+
+- **« Réglages »** : la tuile « Réglages de l'encodage » change de nom. Elle
+  garde ses curseurs — α, départ de la hauteur (D-65), anneau des pôles,
+  épaisseur minimale — et propose la **palette des pôles** : un bouton par
+  palette, avec les couleurs des pôles du référentiel dans le thème affiché,
+  puis son nom. Dans une tuile assez large, les curseurs et la palette sont
+  côte à côte (la tuile s'ouvre sur deux colonnes ; sur une seule, l'un sous
+  l'autre, trois rangées). « Valeurs par défaut » ramène tout, la palette
+  comprise.
+- **Cinq palettes**, toutes dans les familles de teintes du référentiel
+  (TÊTE bleu, CŒUR vert, MAIN rose, ÂME violet, RACINES or, CITÉ bleu-vert,
+  FLAMBEAU orangé) : la palette change le ton, jamais ce qu'une couleur
+  désigne.
+
+  | Palette | Thème | TÊTE | CŒUR | MAIN | ÂME | RACINES | CITÉ | FLAMBEAU |
+  |---|---|---|---|---|---|---|---|---|
+  | Contrastée (par défaut) | clair | `#2563eb` | `#047857` | `#ec4899` | `#8b5cf6` | `#c88007` | `#0891b2` | `#c2410c` |
+  | | sombre | `#2563eb` | `#03835a` | `#ed499a` | `#8b5cf6` | `#c88007` | `#0b96af` | `#db6410` |
+  | Vive | clair | `#2084f7` | `#1cd08a` | `#df2781` | `#8b5afe` | `#d7a214` | `#0ca1c4` | `#f5694a` |
+  | | sombre | `#0780fb` | `#0eb073` | `#db117d` | `#9180f4` | `#b68f12` | `#1294bb` | `#dd6652` |
+  | Pastel | les deux | `#9dbafe` | `#8ee5bf` | `#ea86ae` | `#f1c8fe` | `#efc167` | `#6fd3f2` | `#fe9e85` |
+  | Terre | clair | `#5c8ece` | `#377b4c` | `#cb7c97` | `#85579b` | `#b58f25` | `#02859d` | `#b55f42` |
+  | | sombre | `#5594e5` | `#2a7d4e` | `#c87a92` | `#8c5caf` | `#a6810e` | `#048aa2` | `#ae5038` |
+  | Profonde | clair | `#0454bd` | `#136536` | `#bd377e` | `#692b9c` | `#9d6a17` | `#007a99` | `#8b2b08` |
+  | | sombre | `#2b7ee6` | `#288d4c` | `#ef4e99` | `#8e53d6` | `#a56e0b` | `#249dbe` | `#d4765b` |
+
+  Contrastée, ce sont les couleurs d'avant (D-63 en clair, D-60 en sombre).
+  Vive est proche des couleurs du référentiel, en plus éclatant. Pastel est
+  la même dans les deux thèmes. Terre est faite de tons rompus, Profonde de
+  tons denses.
+- **Validées** par le script `validate_palette` de la skill dataviz, sur les
+  voisins du soleil, bouclage FLAMBEAU → TÊTE compris (pire ΔE pour les
+  daltoniens, pire ΔE en vision normale, contraste le plus bas sur la
+  surface) :
+
+  | Palette | Clair | Sombre |
+  |---|---|---|
+  | Contrastée | 10,4 · 22,6 · 3,2:1 | 11,0 · 22,7 · 3,3:1 |
+  | Vive | 15,0 · 24,7 · **2,0:1** | 8,1 · 23,6 · 3,5:1 |
+  | Pastel | 11,4 · 16,7 · **1,5:1** | 11,4 · 16,7 · 6,8:1 |
+  | Terre | 11,8 · 16,6 · 3,0:1 | 10,5 · 15,1 · 3,2:1 |
+  | Profonde | 10,9 · 18,6 · 4,7:1 | 11,8 · 20,6 · 3,5:1 |
+
+  Toutes séparent leurs voisins pour les daltoniens (8 au moins) et en vision
+  normale (15 au moins). Contrastée, Terre et Profonde atteignent aussi 3:1
+  sur la surface dans les deux thèmes, avec la luminance et la saturation de
+  la skill. Vive et Pastel, plus claires, restent sous 3:1 en clair : les
+  noms des pôles sur l'anneau et le tableau équivalent compensent (le
+  « relief » de la skill). Pastel sort, par nature, de la bande de luminance,
+  et son violet (ÂME) est un peu moins saturé que le plancher (0,085 contre
+  0,10). Le test `colors.test.js` refait ces mesures.
+- **[choix d'implémentation]** La palette est une préférence de ce
+  navigateur, comme la disposition des tuiles (D-61) : jamais dans le jeu de
+  données, elle suit la personne d'un jeu à l'autre. Le rapport imprimé et la
+  version partagée (son aperçu dans l'espace Partage compris) gardent la
+  palette Contrastée : des documents lus par d'autres, comme l'anneau des
+  pôles standard (D-58).
+- **Ce qui suit la palette** : le soleil, l'anneau des pôles, la heatmap, la
+  comparaison, le tableau de bord, la liste, le détail, le lecteur, la
+  journée seule et le partage. Trois garde-fous, pour qu'aucune palette ne
+  perde la lecture :
+  - la case la plus forte d'une rampe de heatmap atteint 3:1 sur la surface
+    (la marche Pastel y est assombrie, dans sa teinte) ;
+  - le titre du détail, coloré par son pôle, garde 4,5:1 (`--pole-text` ;
+    inchangé avec Contrastée, mêlé davantage à l'encre avec Pastel) ;
+  - les hachures d'un renvoi au cartographe sont tracées à l'encre sur une
+    couleur trop claire pour des traits blancs (Pastel, Vive ; aussi l'anneau
+    d'un pôle tout en renvoi, avec Contrastée).
+- **Une couleur inconnue** (un autre référentiel, une couleur retouchée par
+  les épistémiarques) : avec Contrastée, comme avant (assombrie jusqu'à 3:1,
+  ramenée dans la bande sombre) ; avec les autres, la marche de la couleur du
+  référentiel de teinte la plus proche, décalée comme la couleur s'en écarte
+  — deux clartés d'une même teinte restent distinctes (relecture).
+- **[écart]** Pas de palette « Référentiel » (les couleurs d'origine, un
+  temps envisagée) : presque identique à Vive, et CŒUR et MAIN s'y confondent
+  pour les daltoniens (ΔE 4,9). Contrastée reste la palette par défaut :
+  « l'actuelle » de la demande, et la plus lisible. Changer de défaut est
+  une question (38).
+
+### D-65 — La hauteur part d'une confiance réglable, 0,25 par défaut **[décidé]**
+
+Christian (2026-10-15, 13 h 28) : « Le carto-sun a un petit défaut de
+logique. Puisqu'une compétences à au minimum la valeur de l'indice alpha,
+dans la représentation graphique des moyennes de ces valeurs, nous devrions
+supprimer la quantité alpha pour que l'affichage montre davantage les
+différences entre les compétences du référentiel. »
+
+- **Analyse, soumise à Christian** : α fait les points, donc l'angle ;
+  retrancher α à chaque compétence ne déplace presque pas les angles (chacune
+  perd la même quantité). Ce qui écrase les différences, ce sont les
+  hauteurs : les confiances moyennes du jury vont de 0,35 à 0,68 (la moitié
+  centrale de 0,53 à 0,60), dessinées à partir de 0. Christian a choisi
+  « Hauteurs : départ réglable » : un nouveau réglage dans « Réglages », la
+  hauteur part d'une confiance de 0 à 0,5, 0,25 par défaut (le premier
+  cercle pointillé). α garde son rôle dans les points.
+- **Formule** : h = (C − c₀) / (1 − c₀), bornée à [0 ; 1], avec c₀ le
+  départ ; r_ext² = r_int² + k·h ; surface = θ·k·h/2. Avec c₀ = 0, on
+  retrouve h = C. Le pied d'un secteur vaut c₀, le bord extérieur 1 ; les
+  cercles pointillés marquent les confiances au-dessus du départ (0,5, 0,75
+  et 1 par défaut).
+- **Effet sur la démonstration** : de la confiance la plus basse (0,35) à la
+  plus haute (0,68), les hauteurs vont de 27 à 85 px au lieu de 59 à 96 px.
+  L'écart passe de 37 à 58 px (× 1,6) et la plus haute est 3,1 fois plus
+  haute que la plus basse, contre 1,6.
+- **Une confiance au départ ou en dessous** garde un secteur, à l'épaisseur
+  minimale, et « Pourquoi cette surface ? » le dit (« sa confiance (0,20) ne
+  dépasse pas le départ de la hauteur (0,25) »). L'épaisseur minimale va
+  désormais de 1 à 6 px : à 0, ces secteurs auraient disparu (un secteur qui
+  a des points ne disparaît jamais, §5.6). Une épaisseur de 0 déjà réglée
+  devient 1 px (relecture).
+- **Ce qui le dit** : la légende (« de 0,25 au pied du secteur à 1 au bord
+  extérieur (à 0,25 ou moins, le secteur garde une épaisseur minimale) » ;
+  « Surface : points × hauteur ») ; « Pourquoi cette surface ? » (la
+  confiance, la hauteur, la formule de h) ; « Comment lire ce soleil » dans
+  la version partagée ; l'aide et les guides (apprenant, cartographe,
+  employeur, visiteur).
+- **[choix d'implémentation]** Le départ est un réglage du jeu, comme α et
+  l'anneau (`preferences.params.heightOrigin`, 0,25 par défaut, ramené dans
+  ses bornes et au centième). Le rapport imprimé garde le départ par défaut ;
+  la version partagée aussi, et ses lecteurs le voient dès ce déploiement
+  (comme l'anneau en D-58) : les données d'une version figée ne changent
+  pas, sa lecture suit l'encodage du site.
+
 ---
 
 ## 3. État des tests
@@ -2745,6 +2877,32 @@ des couleurs. Laissés et dits en D-61 : au survol d'une tuile étroite, les
 commandes couvrent la fin d'un long titre ; un ordinateur à écran tactile
 suit la souris.
 
+### Palettes et départ de la hauteur (D-64, D-65)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `ui/colors.test.js` | cinq palettes, Contrastée par défaut, sept couleurs par thème ; voisins du soleil séparés pour les daltoniens (ΔE ≥ 8, simulation de Machado) et en vision normale (ΔE ≥ 15), dans les deux thèmes ; 3:1 pour Contrastée, Terre et Profonde (Vive et Pastel en sombre) ; couleur inconnue : deux clartés d'une teinte distinctes, une couleur retouchée sur sa marche, un gris gris ; rampe de heatmap à 3:1 dans toute palette ; titre du pôle à 4,5:1, Contrastée inchangée ; `poleTone`, `poleVars`, `poleFill` selon la palette | 12 → 19 |
+| `core/formulas.test.js` | départ de la hauteur : 0,25 par défaut, bornes, centième, géométrie sans réglage à 0 ; h = (C − c₀)/(1 − c₀) ; aire = θ·k·h/2 ; écart de la démonstration (rapport 1,9 → 4,3 entre 0,35 et 0,68) ; sous le départ, épaisseur minimale signalée ; épaisseur minimale de 1 à 6 ; cercles guides au-dessus du départ | +7 |
+| `ui/Tiles.test.jsx` | « Réglages » : α, départ de la hauteur, anneau, épaisseur minimale (1 à 6) ; le départ à 0 rend son cercle au soleil ; « Valeurs par défaut » ramène les quatre ; la légende dit le départ ; **palette** : cinq choix, Contrastée cochée, les pôles du référentiel dans chacune, Pastel recolore le soleil, gardée dans le navigateur (jamais dans le jeu), retrouvée au retour ; « Valeurs par défaut » la ramène sans toucher au jeu, le focus revient au premier réglage | réécrit, +1 |
+| `ui/CartoApp.test.jsx` | « Pourquoi cette surface ? » : confiance et hauteur, formule de h, raison de l'épaisseur minimale (sous le départ, ou à peine au-dessus) ; sans départ, une confiance nulle ne parle pas de départ | +1, renforcé |
+| `ui/palette.test.jsx` | préférence lue (inconnue, absente, stockage bloqué : la palette par défaut) et gardée (la palette par défaut efface la clé) ; la version partagée, rendue sous Pastel, reste en Contrastée et dit d'où part la hauteur | 3 (nouveau) |
+| `e2e/carto-soleil.e2e.js` | « Réglages » : Pastel recolore le soleil, gardée au rechargement, « Valeurs par défaut » la ramène ; au téléphone, un titre long (« Ensembles nommés ») passe au-dessus des commandes, entier | +1 étape, adapté |
+| fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (préférences : `heightOrigin`) | — |
+
+Suites complètes : site **2 401 verts** (239 fichiers) ; moteur inchangé ;
+e2e Chromium : soleil (souris et tactile), copie autonome, dialogue, partage
+(deux scénarios, contre l'API locale), verts. Relecture indépendante (un
+agent distinct) : aucun défaut bloquant ; six à corriger, traités — une
+couleur inconnue perdait sa clarté dans les palettes autres que Contrastée ;
+à une épaisseur minimale de 0, les secteurs sous le départ disparaissaient ;
+deux formulations de « Pourquoi cette surface ? » ; la légende et la version
+partagée taisaient l'épaisseur minimale sous le départ ; des hachures
+invisibles sur Pastel ; « Valeurs par défaut » écrivait le jeu pour la
+seule palette — et des points mineurs (départ au centième, tests de la
+version partagée et du stockage). Laissés : la marque d'un pôle et les puces
+de liste dans la couleur brute (décoratives), les codes du rapport imprimé
+entre 3,2 et 4,2:1 (antérieur, palette par défaut).
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2921,7 +3079,14 @@ Questions posées après D-55 :
     sur les pôles voisins : entre toutes les paires, RACINES et FLAMBEAU s'y
     confondaient pour un deutéranope (ΔE 1,6). D'où deux valeurs plus justes,
     **à confirmer** : RACINES `#c88007` (sa teinte gardée) et FLAMBEAU
-    `#c2410c` (ΔE 10,4 entre eux).
+    `#c2410c` (ΔE 10,4 entre eux). Suite (13 h 28) : « Les couleurs sont un
+    peu moches » — ces couleurs deviennent la palette Contrastée, par défaut,
+    parmi cinq (D-64).
+38. **Proposition** : la palette par défaut reste Contrastée, « l'actuelle »
+    (3:1 sur la surface, daltoniens compris). Terre et Profonde passent aussi
+    toutes les vérifications, 3:1 compris ; Vive et Pastel, plus claires, non
+    (relief : noms des pôles, tableau équivalent). Garder Contrastée par
+    défaut, ou en choisir une autre ? *(en attente)*
 
 ---
 
@@ -3072,3 +3237,13 @@ Questions posées après D-55 :
   proposées (RACINES et FLAMBEAU, à confirmer). Relu par un agent distinct
   (aucun bloquant ; les deux défauts à corriger et sept points mineurs
   traités). Déployé (front) et vérifié en ligne, au bureau et au téléphone.
+- **2026-10-15** — Demande de Christian de 13 h 28 (D-64, D-65) : la tuile
+  « Réglages » (ex-« Réglages de l'encodage ») propose cinq palettes des
+  pôles — Contrastée par défaut, Vive, Pastel, Terre, Profonde —, toutes
+  validées pour les daltoniens, gardées dans le navigateur ; le rapport et la
+  version partagée restent sur la palette par défaut. Pour le « défaut de
+  logique » d'α, analyse puis choix de Christian : la hauteur part d'une
+  confiance réglable (0,25 par défaut), les écarts de hauteur de la
+  démonstration 1,6 fois plus visibles ; α garde son rôle dans les points.
+  Relu par un agent distinct (aucun bloquant ; six défauts et des points
+  mineurs traités). Question 38 posée (la palette par défaut).
