@@ -174,14 +174,15 @@ export function computeDayState(dataset, date, { ref, params } = {}) {
 }
 
 /**
- * Rayon dessiné d'une compétence : sa confiance fait sa hauteur (épaisseur
- * minimale comprise), jamais au-delà du bord ; anneau masqué (réglage de
- * l'anneau des pôles au maximum), rien.
+ * Rayon dessiné d'une compétence : sa confiance fait sa hauteur, comptée à
+ * partir du départ de la géométrie (D-65 ; épaisseur minimale comprise),
+ * jamais au-delà du bord ; anneau masqué (réglage de l'anneau des pôles au
+ * maximum), rien.
  */
 function leafRadius(geometry, confidence, minThickness) {
   const ring = geometry.competencies
   if (!ringShown(ring)) return { rOut: ring.rIn, rOutExact: ring.rIn, floored: false }
-  const d = displayedOuterRadius(ring.rIn, geometry.k, confidence, minThickness)
+  const d = displayedOuterRadius(ring.rIn, geometry.k, confidence, minThickness, geometry.origin ?? 0)
   return d.rOut > ring.rOut ? { ...d, rOut: ring.rOut } : d
 }
 
@@ -357,8 +358,10 @@ export function layoutPole(state, ref, geometry, poleNum, { minThickness = 0, mi
  *
  * @param {ReturnType<typeof computeState>} state
  * @param {{type: 'competency', code: string} | {type: 'pole', num: number}} target
+ * @param {{origin?: number}} [opts] origin : départ de la hauteur du soleil dessiné (D-65),
+ *   celui des réglages par défaut
  */
-export function explainSurface(state, target) {
+export function explainSurface(state, target, { origin = state.params.heightOrigin ?? 0 } = {}) {
   const p = state.params
   if (target.type === 'competency') {
     const c = state.competencies.get(target.code)
@@ -378,7 +381,13 @@ export function explainSurface(state, target) {
         intensity: 'points = Σ w (chaque trace compte)',
         angle: 'θ = 360° × points / Σ points',
         confidence: 'C = moyenne des confiances des verdicts qui fournissent des traces',
-        area: 'surface = θ · k · C / 2 (anneaux fixes : r_ext² = r_int² + k·C)',
+        // La hauteur part du départ réglable c₀ (D-65) ; avec c₀ = 0, h = C.
+        ...(origin > 0
+          ? {
+              height: `hauteur h = (C − ${frNumber(origin)}) / (1 − ${frNumber(origin)}) : le pied du secteur vaut une confiance de ${frNumber(origin)}, le bord extérieur 1`,
+              area: 'surface = θ · k · h / 2 (anneaux fixes : r_ext² = r_int² + k·h)',
+            }
+          : { area: 'surface = θ · k · C / 2 (anneaux fixes : r_ext² = r_int² + k·C)' }),
       },
     }
   }

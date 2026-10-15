@@ -13,6 +13,7 @@ import { createDataset } from '../core/model.js'
 import { parseHash, subscribe } from '../../router.js'
 import { LOU_PORTFOLIO, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 import { TILES_KEY } from './tiles.js'
+import { PALETTE_KEY } from './palette.js'
 import { browserFile } from '../../../test/usecases/support/vis.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
@@ -123,40 +124,91 @@ describe('menu « Panneaux »', () => {
     expect(await screen.findByText(/Aucun panneau affiché/)).toBeTruthy()
   })
 
-  it('les réglages de l’encodage (α, anneau des pôles, épaisseur minimale) et la légende, avec les distinctions renforcées, sont des tuiles', async () => {
+  it('les réglages (α, départ de la hauteur, anneau des pôles, épaisseur minimale) et la légende, avec les distinctions renforcées, sont des tuiles', async () => {
     const store = await louStore()
     render(<Harness store={store} />)
     await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
-    fireEvent.click(panel('Réglages de l’encodage'))
+    // « Réglages de l’encodage » s'appelle désormais « Réglages » : la palette y est aussi (D-64).
+    fireEvent.click(panel('Réglages'))
     await waitFor(() => expect(tile('settings')).toBeTruthy())
     const sliders = within(tile('settings')).getAllByRole('slider')
-    // Dans l'ordre demandé (D-58) : α, puis l'anneau des pôles, puis l'épaisseur minimale.
+    // Dans l'ordre : α (l'angle), le départ de la hauteur (D-65), l'anneau des pôles (D-58), l'épaisseur minimale.
     expect(sliders.map((el) => el.closest('label').textContent.split(':')[0].trim())).toEqual([
       'Poids d’un indice α',
+      'Départ de la hauteur',
       'Épaisseur de l’anneau des pôles',
       'Épaisseur minimale d’un secteur',
     ])
     expect(within(tile('settings')).queryByRole('button', { name: 'Valeurs par défaut' })).toBeNull()
     fireEvent.change(sliders[0], { target: { value: '0.75' } })
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params.alpha).toBe(0.75))
-    // L'anneau des pôles : 30 par défaut ; à 0, il disparaît du soleil (plus d'arc de pôle à atteindre).
-    expect(sliders[1].value).toBe('30')
+    // Le départ de la hauteur : 0,25 par défaut, le premier cercle guide devenu la base ; à 0, il redevient un cercle.
+    const guides = () => document.querySelectorAll('[data-tile="sun"] .carto-sun-guide').length
+    expect(sliders[1].value).toBe('0.25')
+    expect(within(tile('settings')).getByText('confiance 0,25')).toBeTruthy()
+    expect(guides()).toBe(4) // 0,5 · 0,75 · 1, et la base
     fireEvent.change(sliders[1], { target: { value: '0' } })
+    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params.heightOrigin).toBe(0))
+    await waitFor(() => expect(guides()).toBe(5))
+    // L'anneau des pôles : 30 par défaut ; à 0, il disparaît du soleil (plus d'arc de pôle à atteindre).
+    expect(sliders[2].value).toBe('30')
+    fireEvent.change(sliders[2], { target: { value: '0' } })
     await waitFor(() => expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle "]')).toHaveLength(0))
     expect(within(tile('settings')).getByText('0 px (masqué)')).toBeTruthy()
     // À 155, l'écart avalerait les compétences : l'anneau va jusqu'au bord, et le réglage le dit.
-    fireEvent.change(sliders[1], { target: { value: '155' } })
+    fireEvent.change(sliders[2], { target: { value: '155' } })
     await waitFor(() => expect(within(tile('settings')).getByText('155 px (compétences masquées)')).toBeTruthy())
     expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="1."]')).toHaveLength(0)
-    // Un réglage écarté du défaut : « Valeurs par défaut » ramène les trois.
+    // L'épaisseur minimale va de 1 à 6 px : un secteur qui a des points ne disparaît jamais (D-65).
+    expect([sliders[3].min, sliders[3].max]).toEqual(['1', '6'])
+    // Un réglage écarté du défaut : « Valeurs par défaut » les ramène tous.
     fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
-    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params).toMatchObject({ alpha: 0.5, poleRingPx: 30, minThicknessPx: 2 }))
+    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params).toMatchObject({ alpha: 0.5, heightOrigin: 0.25, poleRingPx: 30, minThicknessPx: 2 }))
     await waitFor(() => expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle "]').length).toBeGreaterThan(0))
     fireEvent.click(panel('Légende'))
     await waitFor(() => expect(tile('legend')).toBeTruthy())
     expect(within(tile('legend')).getByText('Hachures')).toBeTruthy()
+    // La légende dit d'où part la hauteur.
+    expect(
+      within(tile('legend')).getByText(/de 0,25 au pied du secteur à 1 au bord extérieur \(à 0,25 ou moins, le secteur garde une épaisseur minimale\)\. Les cercles pointillés marquent 0,5, 0,75 et 1\./),
+    ).toBeTruthy()
     fireEvent.click(within(tile('legend')).getByRole('checkbox', { name: /distinctions renforcées/ }))
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.reinforced).toBe(true))
+  })
+
+  it('la palette des pôles (D-64) : cinq au choix, gardée dans ce navigateur, jamais dans le jeu de données ; « Valeurs par défaut » la ramène', async () => {
+    const store = await louStore()
+    const { unmount } = render(<Harness store={store} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    fireEvent.click(panel('Réglages'))
+    await waitFor(() => expect(tile('settings')).toBeTruthy())
+    const group = within(tile('settings')).getByRole('group', { name: 'Palette des pôles' })
+    expect(within(group).getAllByRole('radio').map((el) => el.closest('label').textContent.trim())).toEqual(['Contrastée (par défaut)', 'Vive', 'Pastel', 'Terre', 'Profonde'])
+    expect(within(group).getByRole('radio', { name: 'Contrastée (par défaut)' }).checked).toBe(true)
+    // Chaque choix montre les pôles du référentiel dans cette palette (ici, trois pôles).
+    expect(group.querySelectorAll('label:nth-of-type(3) .carto-palette-swatches > span')).toHaveLength(3)
+    const fillOf = (code) => document.querySelector(`[data-tile="sun"] [aria-label^="${code} "]`).style.getPropertyValue('--c')
+    expect(fillOf('2.01')).toBe('#047857') // CŒUR, Contrastée
+    fireEvent.click(within(group).getByRole('radio', { name: 'Pastel' }))
+    await waitFor(() => expect(fillOf('2.01')).toBe('#8ee5bf'))
+    expect(document.querySelector('[data-tile="sun"] [aria-label^="2.01 "]').style.getPropertyValue('--c-dark')).toBe('#8ee5bf')
+    expect(localStorage.getItem(PALETTE_KEY)).toBe('pastel')
+    expect((await store.loadDataset('ds-lou')).preferences.palette).toBeUndefined()
+    // Une préférence de ce navigateur : retrouvée au retour.
+    unmount()
+    render(<Harness store={store} />)
+    await waitFor(() => expect(tile('settings')).toBeTruthy())
+    await waitFor(() => expect(fillOf('2.01')).toBe('#8ee5bf'))
+    expect(within(tile('settings')).getByRole('radio', { name: 'Pastel' }).checked).toBe(true)
+    // La palette seule écarte du défaut : « Valeurs par défaut » la ramène, efface la clé, et ne touche pas
+    // au jeu de données ; le focus revient au premier réglage.
+    const before = (await store.loadDataset('ds-lou')).updatedAt
+    fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
+    await waitFor(() => expect(fillOf('2.01')).toBe('#047857'))
+    expect(localStorage.getItem(PALETTE_KEY)).toBeNull()
+    expect(within(tile('settings')).queryByRole('button', { name: 'Valeurs par défaut' })).toBeNull()
+    expect(document.activeElement).toBe(within(tile('settings')).getAllByRole('slider')[0])
+    expect((await store.loadDataset('ds-lou')).updatedAt).toBe(before)
   })
 })
 

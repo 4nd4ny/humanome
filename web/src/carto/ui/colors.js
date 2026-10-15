@@ -10,6 +10,8 @@
 // Les couleurs du référentiel sont des données (les épistémiarques les
 // choisissent) : l'affichage les traduit, en sombre (D-60) comme en clair
 // (D-63), en marches validées pour les daltoniens et lisibles sur la surface.
+// La traduction suit une PALETTE, au choix dans « Réglages » (D-64) :
+// Contrastée par défaut, Vive, Pastel, Terre ou Profonde.
 
 /** @param {string} hex « #rrggbb » @returns {[number, number, number]} */
 export function hexToRgb(hex) {
@@ -102,81 +104,184 @@ export function oklchToHex({ L, C, H }) {
 /** Surface des visualisations par thème : le blanc, ou la carte du thème sombre (--card). */
 export const VIZ_SURFACE = Object.freeze({ light: '#ffffff', dark: '#141d31' })
 const NEUTRAL = Object.freeze({ light: '#475569', dark: '#94a3b8' })
+/** Encre du texte courant par thème (--ink). */
+const INK = Object.freeze({ light: '#1e293b', dark: '#e7edf6' })
 const isDark = (theme) => theme === 'dark'
+const modeOf = (theme) => (isDark(theme) ? 'dark' : 'light')
 
 /** Bande de luminance OKLCH d'une couleur de donnée sur la surface sombre (skill dataviz). */
 export const DARK_BAND = Object.freeze({ min: 0.52, max: 0.66 })
 
-/**
- * Marches sombres SÉLECTIONNÉES des sept couleurs du référentiel RESPIRE v7 :
- * même teinte, luminance dans la bande sombre, au moins 3:1 sur la surface
- * sombre. CŒUR descend et MAIN reste haut : l'écart de luminance les sépare
- * pour les daltoniens (ΔE 11 entre voisins, contre 4,9 avec les couleurs du
- * référentiel) — validé par le script validate_palette de la skill dataviz
- * (journal D-60).
- */
-const DARK_STEPS = new Map([
-  ['#2563eb', '#2563eb'], // TÊTE
-  ['#10b981', '#03835a'], // CŒUR
-  ['#ec4899', '#ed499a'], // MAIN
-  ['#8b5cf6', '#8b5cf6'], // ÂME
-  ['#f59e0b', '#c88007'], // RACINES
-  ['#06b6d4', '#0b96af'], // CITÉ
-  ['#f97316', '#db6410'], // FLAMBEAU
-])
+// ---- Palettes (journal D-64) --------------------------------------------------
 
 /**
- * Marches claires SÉLECTIONNÉES (journal D-63) : CŒUR, RACINES, CITÉ et
- * FLAMBEAU plus sombres, mêmes teintes. CŒUR et MAIN, voisins dans le soleil,
- * se séparent pour les daltoniens (ΔE 10,4 entre voisins, contre 4,9 avec les
- * couleurs du référentiel) et les sept atteignent 3:1 sur le blanc. RACINES
- * garde sa teinte (c'est aussi sa marche sombre) et FLAMBEAU descend plus
- * bas : assombris au même niveau, ces deux-là se confondraient pour un
- * deutéranope (ΔE 1,6) ; ainsi, ΔE 10,4 (6,2 avec le référentiel). Validé par
- * le script validate_palette de la skill dataviz.
+ * Les sept couleurs du référentiel RESPIRE v7, dans l'ordre des pôles (TÊTE,
+ * CŒUR, MAIN, ÂME, RACINES, CITÉ, FLAMBEAU) : la clé des palettes.
  */
-const LIGHT_STEPS = new Map([
-  ['#2563eb', '#2563eb'], // TÊTE
-  ['#10b981', '#047857'], // CŒUR
-  ['#ec4899', '#ec4899'], // MAIN
-  ['#8b5cf6', '#8b5cf6'], // ÂME
-  ['#f59e0b', '#c88007'], // RACINES
-  ['#06b6d4', '#0891b2'], // CITÉ
-  ['#f97316', '#c2410c'], // FLAMBEAU
-])
+export const RESPIRE_COLORS = Object.freeze(['#2563eb', '#10b981', '#ec4899', '#8b5cf6', '#f59e0b', '#06b6d4', '#f97316'])
 
-/** Couleurs inconnues déjà traduites, par thème. */
+/**
+ * Palettes des pôles, au choix dans « Réglages » (journal D-64). Chacune donne
+ * aux sept couleurs du référentiel une marche en clair et une en sombre, dans
+ * leurs familles de teintes (bleu, vert, rose, violet, or, bleu-vert, orangé) :
+ * la palette change le ton, jamais l'identité d'un pôle.
+ *
+ * Toutes passent le script validate_palette de la skill dataviz sur les
+ * voisins du soleil, bouclage FLAMBEAU → TÊTE compris : distincts pour les
+ * daltoniens (ΔE ≥ 8) et en vision normale (ΔE ≥ 15). Contrastée, Terre et
+ * Profonde atteignent aussi 3:1 sur la surface, dans les deux thèmes ; Vive
+ * et Pastel, plus claires, ne l'atteignent pas en clair et s'appuient sur les
+ * noms des pôles et le tableau équivalent. Pastel sort, par nature, de la
+ * bande de luminance.
+ *
+ * - Contrastée (par défaut) : les marches claires D-63 et sombres D-60.
+ *   CŒUR et MAIN se séparent par la luminance (ΔE 10,4 en clair, 11 en
+ *   sombre, contre 4,9 avec les couleurs du référentiel) ; RACINES garde sa
+ *   teinte et FLAMBEAU descend plus bas, sans quoi un deutéranope les
+ *   confondrait (ΔE 1,6).
+ * - Vive : proche des couleurs du référentiel, en plus éclatant (ΔE 15 en
+ *   clair, 8,1 en sombre).
+ * - Pastel : la même en clair et en sombre (ΔE 11,4).
+ * - Terre : des tons rompus (ΔE 11,8 en clair, 10,5 en sombre).
+ * - Profonde : des tons denses, 4,7:1 au moins sur le blanc (ΔE 10,9 ; 11,8
+ *   en sombre).
+ */
+export const PALETTES = Object.freeze(
+  [
+    {
+      id: 'contrastee',
+      name: 'Contrastée',
+      light: ['#2563eb', '#047857', '#ec4899', '#8b5cf6', '#c88007', '#0891b2', '#c2410c'],
+      dark: ['#2563eb', '#03835a', '#ed499a', '#8b5cf6', '#c88007', '#0b96af', '#db6410'],
+    },
+    {
+      id: 'vive',
+      name: 'Vive',
+      light: ['#2084f7', '#1cd08a', '#df2781', '#8b5afe', '#d7a214', '#0ca1c4', '#f5694a'],
+      dark: ['#0780fb', '#0eb073', '#db117d', '#9180f4', '#b68f12', '#1294bb', '#dd6652'],
+    },
+    {
+      id: 'pastel',
+      name: 'Pastel',
+      light: ['#9dbafe', '#8ee5bf', '#ea86ae', '#f1c8fe', '#efc167', '#6fd3f2', '#fe9e85'],
+      dark: ['#9dbafe', '#8ee5bf', '#ea86ae', '#f1c8fe', '#efc167', '#6fd3f2', '#fe9e85'],
+    },
+    {
+      id: 'terre',
+      name: 'Terre',
+      light: ['#5c8ece', '#377b4c', '#cb7c97', '#85579b', '#b58f25', '#02859d', '#b55f42'],
+      dark: ['#5594e5', '#2a7d4e', '#c87a92', '#8c5caf', '#a6810e', '#048aa2', '#ae5038'],
+    },
+    {
+      id: 'profonde',
+      name: 'Profonde',
+      light: ['#0454bd', '#136536', '#bd377e', '#692b9c', '#9d6a17', '#007a99', '#8b2b08'],
+      dark: ['#2b7ee6', '#288d4c', '#ef4e99', '#8e53d6', '#a56e0b', '#249dbe', '#d4765b'],
+    },
+  ].map((p) => Object.freeze({ ...p, light: Object.freeze(p.light), dark: Object.freeze(p.dark) })),
+)
+
+/** Palette par défaut : la plus lisible (3:1 sur la surface, daltoniens compris). */
+export const DEFAULT_PALETTE = 'contrastee'
+
+const PALETTE_BY_ID = new Map(PALETTES.map((p) => [p.id, p]))
+const RESPIRE_INDEX = new Map(RESPIRE_COLORS.map((c, i) => [c, i]))
+
+/** Identifiant de palette connu ? */
+export function isPalette(id) {
+  return typeof id === 'string' && PALETTE_BY_ID.has(id)
+}
+
+/** La palette d'un identifiant ; la palette par défaut pour un identifiant inconnu. */
+export function paletteOf(id) {
+  return PALETTE_BY_ID.get(id) ?? PALETTE_BY_ID.get(DEFAULT_PALETTE)
+}
+
+const RESPIRE_OKLCH = RESPIRE_COLORS.map(hexToOklch)
+const PALETTE_OKLCH = new Map(PALETTES.map((p) => [p.id, { light: p.light.map(hexToOklch), dark: p.dark.map(hexToOklch) }]))
+const mean = (list) => list.reduce((sum, v) => sum + v, 0) / list.length
+const clampL = (L) => Math.min(0.95, Math.max(0.2, L))
+/** Écart signé entre deux teintes (radians, dans ]−π ; π]). */
+const hueShift = (to, from) => Math.atan2(Math.sin(to - from), Math.cos(to - from))
+
+/**
+ * Une couleur inconnue (un autre référentiel, une couleur retouchée) dans une
+ * palette autre que Contrastée : la marche de la couleur du référentiel de
+ * teinte la plus proche, décalée comme la couleur s'en écarte — même écart de
+ * luminance, saturation dans le même rapport, même écart de teinte. Deux
+ * couleurs de même teinte et de clartés différentes restent distinctes ; une
+ * couleur presque grise reste grise (sa teinte ne veut rien dire), décalée de
+ * l'écart moyen de luminance de la palette.
+ */
+function relativeStep(key, mode, palette) {
+  const o = hexToOklch(key)
+  const steps = PALETTE_OKLCH.get(palette.id)[mode]
+  if (o.C < 0.03) {
+    const shift = mean(steps.map((x) => x.L)) - mean(RESPIRE_OKLCH.map((x) => x.L))
+    return oklchToHex({ L: clampL(o.L + shift), C: o.C, H: o.H })
+  }
+  let i = 0
+  for (let j = 1; j < RESPIRE_OKLCH.length; j++) {
+    if (Math.abs(hueShift(o.H, RESPIRE_OKLCH[j].H)) < Math.abs(hueShift(o.H, RESPIRE_OKLCH[i].H))) i = j
+  }
+  const [r, step] = [RESPIRE_OKLCH[i], steps[i]]
+  return oklchToHex({ L: clampL(step.L + (o.L - r.L)), C: Math.min(0.37, (step.C * o.C) / r.C), H: o.H + hueShift(step.H, r.H) })
+}
+
+/** Couleurs inconnues déjà traduites, par palette et par thème. */
 const themeMemo = new Map()
+const memoized = (key, compute) => {
+  if (!themeMemo.has(key)) {
+    if (themeMemo.size >= 512) themeMemo.clear()
+    themeMemo.set(key, compute())
+  }
+  return themeMemo.get(key)
+}
 
 /**
- * Couleur d'un pôle (et de ses compétences) dans un thème : sa marche
- * sélectionnée ; pour une couleur inconnue (un autre référentiel), la même
- * teinte, assombrie en clair jusqu'à 3:1 sur le blanc, ramenée en sombre
- * dans la bande sombre.
+ * Couleur d'un pôle (et de ses compétences) dans un thème et une palette : sa
+ * marche dans la palette ; pour une couleur inconnue (un autre référentiel),
+ * sa traduction — dans la palette Contrastée, la même teinte assombrie en
+ * clair jusqu'à 3:1 sur le blanc, ramenée en sombre dans la bande sombre ; dans
+ * les autres, décalée comme la marche de la couleur du référentiel la plus
+ * proche (`relativeStep`).
+ * @param {string} hex couleur du référentiel
+ * @param {'light'|'dark'} [theme]
+ * @param {string} [palette] identifiant de palette (D-64)
  */
-export function themeColor(hex, theme = 'light') {
+export function themeColor(hex, theme = 'light', palette = DEFAULT_PALETTE) {
   if (!hex) return hex
   const key = String(hex).toLowerCase()
-  const mode = isDark(theme) ? 'dark' : 'light'
-  const steps = mode === 'dark' ? DARK_STEPS : LIGHT_STEPS
-  if (steps.has(key)) return steps.get(key)
+  const mode = modeOf(theme)
+  const p = paletteOf(palette)
+  const i = RESPIRE_INDEX.get(key)
+  if (i !== undefined) return p[mode][i]
   // Une couleur inconnue se calcule une fois (la heatmap en demande une par case).
-  const memo = `${mode}|${key}`
-  if (!themeMemo.has(memo)) {
-    if (themeMemo.size >= 256) themeMemo.clear()
-    themeMemo.set(memo, mode === 'dark' ? darkStep(key) : lightStep(key))
-  }
-  return themeMemo.get(memo)
+  return memoized(`${p.id}|${mode}|${key}`, () => {
+    if (p.id === DEFAULT_PALETTE) return mode === 'dark' ? darkStep(key) : lightStep(key)
+    return relativeStep(key, mode, p)
+  })
 }
 
 /** En clair : la même teinte, assombrie jusqu'à 3:1 sur le blanc (telle quelle si elle y est déjà). */
 function lightStep(key) {
-  if (contrast(key, VIZ_SURFACE.light) >= 3) return key
-  const o = hexToOklch(key)
+  return withContrast(key, 'light', 3)
+}
+
+/**
+ * La même teinte, assez contrastée sur la surface du thème : assombrie en
+ * clair, éclaircie en sombre, jusqu'au rapport voulu (telle quelle si elle
+ * l'atteint déjà).
+ */
+function withContrast(hex, mode, min) {
+  const surface = VIZ_SURFACE[mode]
+  if (contrast(hex, surface) >= min) return hex
+  const o = hexToOklch(hex)
+  const lighter = mode === 'dark'
   let L = o.L
-  let out = key
-  while (contrast(out, VIZ_SURFACE.light) < 3 && L > 0.2) {
-    L -= 0.01
+  let out = hex
+  while (contrast(out, surface) < min && (lighter ? L < 0.98 : L > 0.2)) {
+    L += lighter ? 0.01 : -0.01
     out = oklchToHex({ ...o, L })
   }
   return out
@@ -203,26 +308,54 @@ export const HEAT_STEPS = Object.freeze([0.25, 0.45, 0.65, 0.82, 1])
  * renforcé (journal D-59 : la case à cocher a disparu) : un mélange de la
  * surface du thème vers la teinte, le niveau le plus fort étant la teinte
  * pleine — en clair du blanc vers la couleur, en sombre de la surface sombre
- * vers la couleur (D-60).
+ * vers la couleur (D-60). Une rampe dit une quantité : sa case la plus forte
+ * atteint au moins 3:1 sur la surface, quelle que soit la palette (D-64 : la
+ * marche Pastel, trop claire, y est assombrie dans sa teinte).
  * @param {number} level 1..5
  * @param {string | null} tint couleur de la famille, ou null (neutre)
  * @param {'light'|'dark'} [theme]
+ * @param {string} [palette] identifiant de palette (D-64)
  */
-export function heatColor(level, tint, theme = 'light') {
-  const mode = isDark(theme) ? 'dark' : 'light'
-  const base = tint ? themeColor(tint, mode) : NEUTRAL[mode]
+export function heatColor(level, tint, theme = 'light', palette = DEFAULT_PALETTE) {
+  const mode = modeOf(theme)
+  const base = tint ? heatBase(themeColor(tint, mode, palette), mode) : NEUTRAL[mode]
   const t = HEAT_STEPS[Math.min(5, Math.max(1, level)) - 1]
   return mix(VIZ_SURFACE[mode], base, t)
+}
+
+/** Teinte pleine d'une rampe de heatmap : la couleur du pôle, à 3:1 au moins sur la surface. */
+function heatBase(color, mode) {
+  return memoized(`heat|${mode}|${color}`, () => withContrast(color, mode, 3))
 }
 
 /**
  * Teinte d'un pôle pour l'anneau intérieur : un peu fondue dans la surface
  * (plus claire en clair, plus sombre en sombre) pour que l'anneau, élément
  * d'interface, reste en retrait des compétences (D-58, D-60).
+ * @param {string} color couleur du référentiel
+ * @param {'light'|'dark'} [theme]
+ * @param {string} [palette] identifiant de palette (D-64)
  */
-export function poleFill(color, theme = 'light') {
-  const mode = isDark(theme) ? 'dark' : 'light'
-  return mix(VIZ_SURFACE[mode], themeColor(color, mode), 0.78)
+export function poleFill(color, theme = 'light', palette = DEFAULT_PALETTE) {
+  const mode = modeOf(theme)
+  return mix(VIZ_SURFACE[mode], themeColor(color, mode, palette), 0.78)
+}
+
+/**
+ * Encre d'un TEXTE coloré par son pôle (titre du détail) : la couleur mêlée à
+ * l'encre du thème (62 % de couleur), davantage s'il le faut pour atteindre
+ * 4,5:1 sur la surface — une palette claire (Pastel) reste lisible (D-64).
+ */
+export function poleText(color, theme = 'light', palette = DEFAULT_PALETTE) {
+  const mode = modeOf(theme)
+  const c = themeColor(color, mode, palette)
+  return memoized(`text|${mode}|${c}`, () => {
+    for (let t = 0.38; t < 1; t += 0.04) {
+      const out = mix(c, INK[mode], t)
+      if (contrast(out, VIZ_SURFACE[mode]) >= 4.5) return out
+    }
+    return INK[mode]
+  })
 }
 
 /**
@@ -240,16 +373,30 @@ export function themedSwatch(light, dark) {
   return { '--c': light, '--c-dark': dark, '--c-ink': inkOn(light), '--c-ink-dark': inkOn(dark) }
 }
 
-/** Couleur d'un pôle pour un dessin SVG (classe `carto-c-fill`), dans ses deux marches. */
-export function poleTone(color) {
-  return color ? themed(themeColor(color), themeColor(color, 'dark')) : undefined
+/**
+ * Couleur d'un pôle pour un dessin SVG (classe `carto-c-fill`), dans ses deux marches.
+ * @param {string} color couleur du référentiel
+ * @param {string} [palette] identifiant de palette (D-64)
+ */
+export function poleTone(color, palette = DEFAULT_PALETTE) {
+  return color ? themed(themeColor(color, 'light', palette), themeColor(color, 'dark', palette)) : undefined
 }
 
 /**
  * Couleur d'un pôle sur un élément HTML (bordure, puce, marque) : avec la
  * classe `carto-pole`, la feuille de style en fait `--pole-color`, claire ou
- * sombre selon le thème (D-63).
+ * sombre selon le thème (D-63) ; et `--pole-text`, son encre lisible pour un
+ * texte (D-64).
+ * @param {string} color couleur du référentiel
+ * @param {string} [palette] identifiant de palette (D-64)
  */
-export function poleVars(color) {
-  return color ? { '--pole-light': themeColor(color), '--pole-dark': themeColor(color, 'dark') } : undefined
+export function poleVars(color, palette = DEFAULT_PALETTE) {
+  return color
+    ? {
+        '--pole-light': themeColor(color, 'light', palette),
+        '--pole-dark': themeColor(color, 'dark', palette),
+        '--pole-text-light': poleText(color, 'light', palette),
+        '--pole-text-dark': poleText(color, 'dark', palette),
+      }
+    : undefined
 }

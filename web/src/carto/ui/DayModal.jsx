@@ -10,6 +10,7 @@ import { formatLong, formatShort, weekdayName } from '../core/dates.js'
 import { Sun } from './Sun.jsx'
 import { provenanceLabel } from './Manager.jsx'
 import { poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
 
@@ -87,6 +88,7 @@ const STATUS_GROUPS = [
  */
 export function DayModal({ date, dataset, refl, params, geometry, activeDates, focusCode = null, reinforced = false, onClose, onNavigate, renderVerdict, trapActive = true, children }) {
   const ref = useRef(null)
+  const palette = usePalette()
   useFocusTrap(ref, trapActive, onClose)
   const day = dataset.days.find((d) => d.date === date)
   const variant = day ? contributingVariant(day) : null
@@ -180,7 +182,7 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                         </>
                       )
                       return (
-                        <li key={v.code} className={`carto-pole${v.code === focusCode ? ' is-focus' : ''}`} style={poleVars(refl.poleByNum.get(meta?.pole)?.color ?? '#78716c')}>
+                        <li key={v.code} className={`carto-pole${v.code === focusCode ? ' is-focus' : ''}`} style={poleVars(refl.poleByNum.get(meta?.pole)?.color ?? '#78716c', palette)}>
                           {renderVerdict && variant ? (
                             <details className="carto-day-verdict" open={v.code === focusCode || undefined}>
                               <summary>{line}</summary>

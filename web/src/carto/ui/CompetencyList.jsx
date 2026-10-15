@@ -7,6 +7,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formatShort } from '../core/dates.js'
 import { poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 
 const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
@@ -43,6 +44,7 @@ export function revealInList(el, root) {
  * }} props
  */
 export function CompetencyList({ refl, state, selection, dayFilter = null, onSelect, onOpenDay, onClearDayFilter }) {
+  const palette = usePalette()
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(() => new Set())
   const itemRefs = useRef(new Map())
@@ -138,7 +140,7 @@ export function CompetencyList({ refl, state, selection, dayFilter = null, onSel
                     type="button"
                     ref={(el) => itemRefs.current.set(pKey, el)}
                     className={`carto-list-label carto-list-pole carto-pole${isSel({ type: 'pole', num: pole.num }) ? ' is-selected' : ''}`}
-                    style={poleVars(pole.color)}
+                    style={poleVars(pole.color, palette)}
                     onClick={() => onSelect(isSel({ type: 'pole', num: pole.num }) ? null : { type: 'pole', num: pole.num })}
                   >
                     <span className="carto-pole-mark" aria-hidden="true">{pole.symbol}</span>

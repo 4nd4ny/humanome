@@ -58,12 +58,16 @@ le premier titre daté sépare des passages sans date.
 - **L'angle** d'un secteur compte les **points** de la compétence : un point
   par preuve relevée dans votre portfolio, un demi-point par indice. Plus une
   compétence a de traces, plus son secteur est large.
-- **La hauteur** est la **confiance moyenne du jury** dans ses verdicts, de 0
-  à 1 ; les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n'est ni un
-  niveau de maîtrise ni une note.
+- **La hauteur** est la **confiance moyenne du jury** dans ses verdicts : le
+  pied du secteur vaut 0,25, le bord extérieur 1 ; les cercles pointillés
+  marquent 0,5, 0,75 et 1. Ce n'est ni un niveau de maîtrise ni une note. Les
+  confiances du jury se tiennent d'ordinaire entre 0,3 et 0,7 : compter la
+  hauteur à partir de 0,25 rend leurs écarts visibles. Ce départ se règle dans
+  « Réglages » (de 0 à 0,5) ; une confiance qui ne le dépasse pas garde un
+  secteur, à l'épaisseur minimale.
 - **L'anneau intérieur** range les compétences par pôle : chaque pôle
   l'occupe sur toute sa hauteur, il ne mesure rien. Son épaisseur se règle
-  dans « Réglages de l'encodage » (de 0, sans anneau, à toute la place).
+  dans « Réglages » (de 0, sans anneau, à toute la place).
 - **Des hachures** signalent une compétence en renvoi au cartographe : le jury
   n'a pas tranché.
 - **Pas de secteur** : aucune trace dans les journées retenues. L'absence
@@ -74,11 +78,17 @@ Le menu **« Panneaux »**, en haut à droite, affiche les autres : vos
 journées (avec la période et le nombre de journées cochées), la liste des
 compétences, la heatmap et la tête de lecture, la légende, le tableau
 équivalent, l'import, les étiquettes, les ensembles nommés, vos jeux de
-données, les réglages de l'encodage. Chaque panneau se déplace, se
+données, les réglages. Chaque panneau se déplace, se
 redimensionne et se masque : ses commandes paraissent quand la souris le
 survole (sur un écran tactile, elles restent affichées). Votre disposition
 reste dans ce navigateur, et **« Réinitialiser l'affichage »** revient à la
 vue de départ.
+
+Le panneau **« Réglages »** choisit aussi la **palette** des pôles :
+Contrastée (par défaut, la plus lisible, y compris pour les daltoniens),
+Vive, Pastel, Terre ou Profonde. Elle change les couleurs, jamais ce
+qu'elles désignent ; elle reste dans ce navigateur, et le rapport imprimé
+comme les versions partagées gardent la palette par défaut.
 
 Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
 **détail** le décrit. Appuyez sur **w** : « Pourquoi cette surface ? »

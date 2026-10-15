@@ -77,10 +77,13 @@ le verdict (statut, confiance, motif, prescription), l'examen adversarial du
 Pédagogue et les pièces du Greffier — pour une analyse AuroraCore, les six
 éclairages, le président de séance et la délibération complète. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
-les formules. Le panneau **« Réglages de l'encodage »** (menu « Panneaux »
-de la cartographie) règle le poids d'un indice, l'épaisseur de l'anneau des
-pôles — un élément d'interface : il range les compétences, il ne mesure rien
-— et l'épaisseur minimale d'un secteur.
+les formules. Le panneau **« Réglages »** (menu « Panneaux » de la
+cartographie) règle le poids d'un indice, le départ de la hauteur (0,25 par
+défaut : le pied d'un secteur vaut cette confiance, ce qui rend visibles les
+écarts entre des confiances qui se tiennent d'ordinaire entre 0,3 et 0,7),
+l'épaisseur de l'anneau des pôles — un élément d'interface : il range les
+compétences, il ne mesure rien — et l'épaisseur minimale d'un secteur ; il
+choisit aussi la palette des couleurs des pôles, gardée dans ce navigateur.
 
 Pour examiner un pôle seul, double-cliquez sur son arc dans l'anneau intérieur
 (au clavier : « o ») : ses compétences occupent tout le cercle, chacune selon

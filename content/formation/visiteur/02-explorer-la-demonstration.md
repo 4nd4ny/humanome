@@ -40,7 +40,8 @@ Au départ, la page ne montre que deux panneaux, en pleine largeur : le
 **soleil** et, dessous, le **détail**. Les autres attendent dans le menu
 **« Panneaux »**, en haut à droite : Journées, Compétences, Heatmap et
 lecture, Légende, Tableau équivalent, Importer, Étiquettes, Ensembles nommés,
-Jeux de données, Réglages de l'encodage. Cochez-en un : il s'ajoute à la suite.
+Jeux de données, Réglages (dont la palette des couleurs). Cochez-en un : il
+s'ajoute à la suite.
 Chaque panneau se déplace (poignée ⠿, ou flèches ◀ ▶), se redimensionne (coin
 ◢, ou menu de taille) et se masque (✕) : à la souris, ces commandes paraissent
 quand elle survole le panneau ; sur un écran tactile, elles restent affichées.
@@ -66,9 +67,9 @@ Deux dimensions portent le sens :
   parts d'un tout : si une compétence gagne de la place, les autres en
   perdent.
 - **La hauteur** (jusqu'où le secteur s'étire vers l'extérieur) est la
-  **confiance moyenne du jury** dans ses verdicts, de 0 à 1 ; les cercles
-  pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n'est ni un niveau de maîtrise ni
-  une force.
+  **confiance moyenne du jury** dans ses verdicts : le pied du secteur vaut
+  0,25, le bord extérieur 1 ; les cercles pointillés marquent 0,5, 0,75 et 1.
+  Ce n'est ni un niveau de maîtrise ni une force.
 
 Un secteur **hachuré** signale une compétence **en renvoi au cartographe** :
 l'analyse a vu un signal mais laisse un humain trancher. Une compétence sans

@@ -12,7 +12,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
 import { computeState, layoutSun } from '../core/state.js'
-import { ringGeometry } from '../core/formulas.js'
+import { ringGeometry, sunGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
 import { buildArchive } from '../core/archive.js'
@@ -519,8 +519,8 @@ describe('soleil (composant)', () => {
 describe('« Pourquoi cette surface ? » (composant)', () => {
   const ref = normalizeReferential(miniReferential())
   const geometry = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5 })
-  const why = (state, layout, selection) =>
-    render(<WhyDialog refl={ref} state={state} selection={selection} layout={layout} onClose={() => {}} onOpenDay={() => {}} />)
+  const why = (state, layout, selection, g = geometry) =>
+    render(<WhyDialog refl={ref} state={state} selection={selection} layout={layout} origin={g.origin} onClose={() => {}} onOpenDay={() => {}} />)
 
   it('l’épaisseur minimale dit sa raison : confiance trop faible, ou confiance inconnue', () => {
     const state = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: null }, { code: '2.01', confidence: 0.001 }] }]), { ref })
@@ -531,6 +531,35 @@ describe('« Pourquoi cette surface ? » (composant)', () => {
     cleanup()
     why(state, layout, { type: 'competency', code: '2.01' })
     expect(screen.getByText(/sa confiance est si faible/)).toBeTruthy()
+    // Sans départ de la hauteur, une confiance nulle ne parle pas de départ.
+    cleanup()
+    const zero = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0 }] }]), { ref })
+    why(zero, layoutSun(zero, ref, geometry, { minThickness: 2 }), { type: 'competency', code: '1.01' })
+    expect(screen.getByText(/sa confiance est si faible/)).toBeTruthy()
+    expect(screen.queryByText(/départ de la hauteur/)).toBeNull()
+  })
+
+  it('la hauteur part du départ réglable (D-65) : dite, calculée, et une confiance qui ne le dépasse pas reçoit l’épaisseur minimale', () => {
+    const state = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.2 }, { code: '2.01', confidence: 0.7 }] }]), { ref })
+    const g = sunGeometry(state.params) // départ par défaut : 0,25
+    expect(g.origin).toBe(0.25)
+    const layout = layoutSun(state, ref, g, { minThickness: 2 })
+    why(state, layout, { type: 'competency', code: '1.01' }, g)
+    expect(screen.getByText(/sa confiance \(0,20\) ne dépasse pas le départ de la hauteur \(0,25\)/)).toBeTruthy()
+    cleanup()
+    why(state, layout, { type: 'competency', code: '2.01' }, g)
+    // Confiance 0,7 : hauteur (0,7 − 0,25) / 0,75 = 0,6.
+    const stats = [...document.querySelectorAll('.carto-stats > div')].map((d) => d.textContent)
+    expect(stats).toContain('Confiance0,70')
+    expect(stats).toContain('Hauteur0,60')
+    expect(screen.getByText(/hauteur h = \(C − 0,25\) \/ \(1 − 0,25\)/)).toBeTruthy()
+    expect(screen.getByText(/surface = θ · k · h \/ 2/)).toBeTruthy()
+    expect(screen.queryByText(/Épaisseur minimale/)).toBeNull()
+    // Une confiance qui dépasse à peine le départ : invisible, et dite comme telle.
+    cleanup()
+    const near = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.252 }, { code: '2.01', confidence: 0.7 }] }]), { ref })
+    why(near, layoutSun(near, ref, g, { minThickness: 2 }), { type: 'competency', code: '1.01' }, g)
+    expect(screen.getByText(/sa confiance \(0,252\) dépasse à peine le départ de la hauteur \(0,25\)/)).toBeTruthy()
   })
 
   it('le pôle d’une compétence élargie le signale ; un pôle sans compétence élargie, non', () => {

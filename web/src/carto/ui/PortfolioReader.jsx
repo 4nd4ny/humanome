@@ -23,6 +23,7 @@ import { splitExtract } from '../core/highlight.js'
 import { findPassage } from '../core/passages.js'
 import { approximateInPortfolio, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
 import { poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 
 const ROLE_LABELS = { preuve: 'preuve', indice: 'indice' }
 
@@ -125,6 +126,7 @@ function quoteCaption(result, { portfolioCount, primaryHasText, primary, demo })
  * }} props
  */
 export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetails, reducedMotion = false, onClose, onIndex }) {
+  const palette = usePalette()
   const panelRef = useRef(null)
   const headingRef = useRef(null)
   const textRef = useRef(null)
@@ -284,7 +286,7 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
         {live}
       </p>
 
-      <div className="carto-reader-trace carto-pole" style={meta ? poleVars(refl.poleByNum.get(meta.pole)?.color) : undefined}>
+      <div className="carto-reader-trace carto-pole" style={meta ? poleVars(refl.poleByNum.get(meta.pole)?.color, palette) : undefined}>
         {target.kind === 'trace' ? (
           <p className="carto-reader-what">
             <span className="carto-code">{target.code}</span> {meta?.name ?? '(hors référentiel)'}

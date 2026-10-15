@@ -44,9 +44,10 @@ export function ExportPanel({ dataset, refl, state, params, t, data, fetchFn, on
   const [demoOpen, setDemoOpen] = useState(false)
 
   const observed = useMemo(() => refl.competencies.filter((c) => state.competencies.has(c.code)), [refl, state])
-  // Le rapport imprimé garde l'anneau des pôles standard : un document pour
-  // d'autres, comme la version partagée, pas le réglage d'exploration (D-58).
-  const reportGeometry = useMemo(() => sunGeometry({ ...params, poleRingPx: DEFAULT_PARAMS.poleRingPx }), [params])
+  // Le rapport imprimé garde l'anneau des pôles standard et le départ de la
+  // hauteur par défaut : un document pour d'autres, comme la version partagée,
+  // pas les réglages d'exploration (D-58, D-65) ; sa palette aussi (D-64).
+  const reportGeometry = useMemo(() => sunGeometry({ ...params, poleRingPx: DEFAULT_PARAMS.poleRingPx, heightOrigin: DEFAULT_PARAMS.heightOrigin }), [params])
   const reportLayout = useMemo(
     () => layoutSun(state, refl, reportGeometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }),
     [state, refl, reportGeometry, params],

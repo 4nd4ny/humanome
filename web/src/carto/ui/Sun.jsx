@@ -2,13 +2,14 @@
 //
 // Deux anneaux FIXES : pôles à l'intérieur, compétences à l'extérieur. Angle =
 // part des points (Σ des poids des traces) ; hauteur d'une compétence =
-// confiance moyenne du jury (r_ext² = r_int² + k·C) ; sa surface est donc
-// proportionnelle à confiance × points. L'anneau des pôles est un élément
+// confiance moyenne du jury, comptée à partir d'un départ réglable (D-65 :
+// r_ext² = r_int² + k·h, h = (C − c₀)/(1 − c₀)) ; sa surface est donc
+// proportionnelle à hauteur × points (confiance × points quand c₀ = 0). L'anneau des pôles est un élément
 // d'interface (journal D-58) : chaque pôle en occupe toute la hauteur, son nom
 // écrit le long de l'arc quand il y tient ; son épaisseur est un réglage (0 :
 // pas d'anneau). Ordre angulaire du référentiel, départ à −90°. Cercles guides
-// pointillés = échelle de confiance des compétences (0,25 · 0,5 · 0,75 · 1),
-// pas des niveaux. Secteurs de renvoi hachurés sans changer leur surface.
+// pointillés = échelle de confiance des compétences (0,25 · 0,5 · 0,75 · 1
+// au-dessus du départ, qui est le bord intérieur), pas des niveaux. Secteurs de renvoi hachurés sans changer leur surface.
 // Disque central = retour à la racine / désélection.
 //
 // Pôle ouvert sur 360° (journal D-45) : un double-clic sur un arc de pôle (ou
@@ -19,9 +20,10 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { labelInk, poleFill, poleTone, themeColor, themed } from './colors.js'
+import { VIZ_SURFACE, contrast, labelInk, poleFill, poleTone, themeColor, themed } from './colors.js'
+import { usePalette } from './palette.js'
 import { poleShortName } from '../core/referential.js'
-import { ringShown } from '../core/formulas.js'
+import { confidenceGuides, ringShown } from '../core/formulas.js'
 import { formatShort } from '../core/dates.js'
 import { easeInOutCubic, interpolateSunLayout, poleLabelAngle } from './sunTransition.js'
 
@@ -159,6 +161,7 @@ const PATTERN_SHAPES = {
  */
 export function Sun({ refl, state, layout, geometry, selection = null, hover = null, highlightCodes = null, reinforced = false, label, caption, compact = false, onSelect = () => {}, onHover = () => {}, zoom = null, onZoom, reducedMotion = false }) {
   const uid = useId().replace(/:/g, '')
+  const palette = usePalette()
   const R = geometry.competencies.rOut
   const pad = 6
   const box = R + pad
@@ -172,12 +175,9 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
     onSelect({ type: 'pole', num })
   }
 
-  // Échelle de confiance des compétences seulement : l'anneau des pôles ne mesure rien (D-58).
-  const guides = useMemo(() => {
-    if (!ringShown(geometry.competencies)) return []
-    const ring = geometry.competencies
-    return [...[0.25, 0.5, 0.75, 1].map((c) => ({ r: Math.sqrt(ring.rIn ** 2 + geometry.k * c), base: false })), { r: ring.rIn, base: true }]
-  }, [geometry])
+  // Échelle de confiance des compétences seulement : l'anneau des pôles ne mesure
+  // rien (D-58) ; la base est le départ de la hauteur (D-65).
+  const guides = useMemo(() => confidenceGuides(geometry), [geometry])
   // Un anneau d'épaisseur nulle (réglage de l'anneau des pôles) n'a rien à dessiner, ni à atteindre au clavier.
   const poleSectors = ringShown(geometry.poles) ? display.poles : []
   const leafSectors = ringShown(geometry.competencies) ? display.competencies : []
@@ -259,6 +259,10 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           onFocus: () => onHover(target),
           onBlur: () => onHover(null),
         }
+  // Hachures d'un renvoi, visibles dans toute palette (D-64) : traits du fond sur
+  // une couleur assez foncée (3:1 sur le blanc), traits d'encre sur une couleur
+  // claire (Pastel, Vive) — en sombre, les deux traits sont foncés.
+  const hatch = (lightFill) => `url(#${uid}-${contrast(lightFill, VIZ_SURFACE.light) >= 3 ? 'hatch' : 'hatch-ink'})`
   // Fondu d'un secteur qui apparaît ou disparaît, multiplié en CSS par
   // l'atténuation d'un secteur hors sélection (sans éclat à la fin du passage).
   const fade = (s) => (s.opacity != null && s.opacity < 1 ? { '--carto-fade': s.opacity } : undefined)
@@ -285,6 +289,10 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           <pattern id={`${uid}-hatch`} patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
             <rect width="5" height="5" fill="transparent" />
             <line x1="0" y1="0" x2="0" y2="5" className="carto-sun-hatch" />
+          </pattern>
+          <pattern id={`${uid}-hatch-ink`} patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
+            <rect width="5" height="5" fill="transparent" />
+            <line x1="0" y1="0" x2="0" y2="5" className="carto-sun-hatch carto-sun-hatch--ink" />
           </pattern>
           {reinforced
             ? refl.poles.map((p) => (
@@ -314,17 +322,17 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
               <path
                 d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
                 className="carto-c-fill"
-                style={themed(poleFill(p.color), poleFill(p.color, 'dark'))}
+                style={themed(poleFill(p.color, 'light', palette), poleFill(p.color, 'dark', palette))}
                 fillRule="evenodd"
                 {...sectorProps(target, name, s.transient)}
               />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
+              {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={hatch(poleFill(p.color, 'light', palette))} fillRule="evenodd" pointerEvents="none" /> : null}
               {/* Pas de nom pendant l'ouverture : il glisserait d'un bord à l'autre de l'arc. */}
               {!compact && !moving && poleLabelFits(short, s) ? (
                 <>
                   <path id={labelId} d={labelArc((s.rIn + s.rOut) / 2, labelAngle, s.a1 - s.a0)} fill="none" stroke="none" pointerEvents="none" />
-                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(labelInk(poleFill(p.color)), labelInk(poleFill(p.color, 'dark')))}>
+                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(labelInk(poleFill(p.color, 'light', palette)), labelInk(poleFill(p.color, 'dark', palette)))}>
                     <textPath href={`#${labelId}`} startOffset="50%">
                       {short}
                     </textPath>
@@ -355,18 +363,18 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
               <path
                 d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
                 className="carto-c-fill"
-                style={poleTone(p.color)}
+                style={poleTone(p.color, palette)}
                 fillRule="evenodd"
                 {...sectorProps(target, name, s.transient)}
               />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.pole})`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
+              {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={hatch(themeColor(p.color, 'light', palette))} fillRule="evenodd" pointerEvents="none" /> : null}
               {showCode ? (
                 <text
                   className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}
                   x={rCode * Math.cos(aMid)}
                   y={rCode * Math.sin(aMid)}
-                  style={thick ? themed(labelInk(themeColor(p.color)), labelInk(themeColor(p.color, 'dark'))) : undefined}
+                  style={thick ? themed(labelInk(themeColor(p.color, 'light', palette)), labelInk(themeColor(p.color, 'dark', palette))) : undefined}
                   aria-hidden="true"
                 >
                   {s.code}

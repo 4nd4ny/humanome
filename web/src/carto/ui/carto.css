@@ -42,9 +42,11 @@
   color: var(--c-ink);
 }
 /* Couleur d'un pôle sur un élément HTML (bordure, puce, marque ; D-63) : sa
-   marche claire (--pole-light) ou sombre (--pole-dark) devient --pole-color. */
+   marche claire (--pole-light) ou sombre (--pole-dark) devient --pole-color ;
+   son encre de texte, lisible dans toutes les palettes (D-64), --pole-text. */
 .carto-pole {
   --pole-color: var(--pole-light);
+  --pole-text: var(--pole-text-light, var(--ink));
 }
 /* Un dessin SVG en currentColor (courbe de constance) prend la couleur du pôle. */
 .carto-pole-ink {
@@ -77,6 +79,7 @@
   }
   :root:not([data-theme='light']) .carto-app .carto-pole {
     --pole-color: var(--pole-dark, var(--pole-light));
+    --pole-text: var(--pole-text-dark, var(--ink));
   }
 }
 @media screen {
@@ -105,6 +108,7 @@
   }
   :root[data-theme='dark'] .carto-app .carto-pole {
     --pole-color: var(--pole-dark, var(--pole-light));
+    --pole-text: var(--pole-text-dark, var(--ink));
   }
 }
 .carto-app *:focus-visible {
@@ -623,6 +627,12 @@ kbd {
   stroke: var(--viz-surface);
   stroke-width: 1.6;
   opacity: 0.85;
+}
+/* Sur une couleur claire (palettes Pastel, Vive ; D-64), des traits d'encre :
+   des traits blancs s'y perdraient. Foncés aussi en sombre, comme le fond. */
+.carto-sun-hatch--ink {
+  stroke: #0f172a;
+  opacity: 0.6;
 }
 .carto-sun-motif {
   stroke: var(--viz-motif);
@@ -1365,8 +1375,9 @@ kbd {
   margin: 0.1rem 0 0.35rem;
   font-size: 1.15rem;
   line-height: 1.3;
-  /* Titre coloré par son pôle, mêlé à l'encre pour rester lisible dans les deux thèmes. */
-  color: color-mix(in srgb, var(--pole-color, var(--ink)) 62%, var(--ink));
+  /* Titre coloré par son pôle, mêlé à l'encre pour rester lisible dans les deux
+     thèmes et toutes les palettes (4,5:1 au moins, D-64). */
+  color: var(--pole-text, var(--ink));
 }
 .carto-detail-head h2 .carto-code {
   color: inherit;
@@ -1438,6 +1449,58 @@ kbd {
   font-size: 0.85rem;
   gap: 0.2rem;
   margin: 0.4rem 0;
+}
+/* Réglages (D-64) : les curseurs de l'encodage, puis la palette ; côte à côte
+   dans une tuile assez large. */
+.carto-tile--settings {
+  container-type: inline-size;
+}
+@container (min-width: 34rem) {
+  .carto-settings {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 1.75rem;
+    align-items: start;
+  }
+  .carto-settings > .carto-link-btn {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+  .carto-settings > .carto-palettes {
+    margin-top: 0.4rem;
+  }
+}
+/* Palette des pôles (D-64) : un choix par ligne, les couleurs des pôles dans le
+   thème affiché, puis son nom. */
+.carto-palettes {
+  border: 0;
+  margin: 0.6rem 0 0.4rem;
+  padding: 0;
+  min-width: 0;
+  font-size: 0.85rem;
+}
+.carto-palettes legend {
+  padding: 0;
+  margin-bottom: 0.25rem;
+}
+.carto-palette {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 0.45rem;
+  padding: 0.15rem 0;
+  cursor: pointer;
+}
+.carto-palette-swatches {
+  display: inline-flex;
+  gap: 2px;
+}
+.carto-palette-swatches > span {
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 3px;
+  /* Un liseré : une pastille claire reste visible sur la carte. */
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.12);
 }
 
 /* ---- Modales -------------------------------------------------------------------------------------- */

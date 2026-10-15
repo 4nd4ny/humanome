@@ -122,7 +122,7 @@ export const CARTO_TILES = [
   ['tags', 'Étiquettes'],
   ['sets', 'Ensembles nommés'],
   ['datasets', 'Jeux de données'],
-  ['settings', 'Réglages de l’encodage'],
+  ['settings', 'Réglages'],
 ]
 
 /** Tuiles affichées au départ. */
@@ -161,7 +161,8 @@ export function defaultTileSizes(columns, viewportHeight = typeof window !== 'un
     tags: { w: 1, h: 2 },
     sets: { w: 1, h: 2 },
     datasets: { w: 1, h: 1 },
-    settings: { w: 1, h: 2 },
+    // Les curseurs et la palette côte à côte ; sur une seule colonne, l'un sous l'autre (D-64).
+    settings: columns >= 2 ? { w: 2, h: 2 } : { w: 1, h: 3 },
   }
 }
 

@@ -74,12 +74,12 @@ export const DEFAULT_PREFERENCES = Object.freeze({
   reinforced: false, // distinctions renforcées (motifs)
   reducedMotion: 'system', // 'system' | 'reduce' | 'no-preference'
   speed: 1,
-  params: { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
+  params: { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, heightOrigin: DEFAULT_PARAMS.heightOrigin, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
   compare: null, // dernière comparaison A/B : {a: {name, def}, b: {name, def}, view}
   momentsSensitivity: 50, // curseur des moments remarquables (0–100, pas de 5)
   // Les cartes affichées du tableau de bord et leur disposition ne sont plus ici :
   // une préférence de présentation, gardée dans le navigateur comme celle de la
-  // cartographie (journal D-61).
+  // cartographie (journal D-61) ; la palette des pôles non plus (D-64).
 })
 
 /**
