@@ -1963,6 +1963,13 @@ trait dans sa journée. »
   gestionnaire ; un dialogue versé qu'il contient n'est pas doublé.
 - Docs : cas d'utilisation UC-APP-01 (règle RG5 bis), guide de l'apprenant
   (chapitre 7).
+- **Déployé** (front seul, depuis la VM du Mac, D-54 et D-55 ensemble) et
+  **vérifié en ligne** (Chromium) : la démonstration s'ouvre, une trace est
+  surlignée en jaune ; le 7 janvier, 19 tableaux et 2 listes numérotées, plus
+  aucune barre verticale ni carré « VT » ; le 28 décembre, l'encadré centré ;
+  le 10 février, le code de l'encadré garde son retrait ; le 13 mars,
+  2 tableaux. Aucune erreur dans la page. Copies de travail effacées (archive,
+  scripts, paquets).
 
 ---
 
