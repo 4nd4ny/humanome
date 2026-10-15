@@ -19,7 +19,7 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { labelInk, poleFill, themeColor, themed } from './colors.js'
+import { labelInk, poleFill, poleTone, themeColor, themed } from './colors.js'
 import { poleShortName } from '../core/referential.js'
 import { ringShown } from '../core/formulas.js'
 import { formatShort } from '../core/dates.js'
@@ -355,7 +355,7 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
               <path
                 d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
                 className="carto-c-fill"
-                style={themed(p.color, themeColor(p.color, 'dark'))}
+                style={poleTone(p.color)}
                 fillRule="evenodd"
                 {...sectorProps(target, name, s.transient)}
               />
@@ -366,7 +366,7 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
                   className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}
                   x={rCode * Math.cos(aMid)}
                   y={rCode * Math.sin(aMid)}
-                  style={thick ? themed(labelInk(p.color), labelInk(themeColor(p.color, 'dark'))) : undefined}
+                  style={thick ? themed(labelInk(themeColor(p.color)), labelInk(themeColor(p.color, 'dark'))) : undefined}
                   aria-hidden="true"
                 >
                   {s.code}

@@ -17,7 +17,7 @@ import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
 import { Sun, sectorPath } from './Sun.jsx'
 import { HeatmapBand } from './Heatmap.jsx'
-import { themeColor, themed } from './colors.js'
+import { poleTone, poleVars } from './colors.js'
 import { SOURCE_LABELS } from './Manager.jsx'
 
 const nf1 = (x) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : '—')
@@ -152,9 +152,6 @@ function SideEditor({ letter, side, onChange, dataset, runs, tags, summary }) {
   )
 }
 
-/** Couleur d'un pôle pour les deux thèmes (D-60). */
-const tone = (color) => (color ? themed(color, themeColor(color, 'dark')) : undefined)
-
 /** Vue 2 : un soleil, A en plein, B en contour pointillé. */
 function SunOverlay({ refl, layoutA, layoutB, geometry, nameA, nameB }) {
   const R = geometry.competencies.rOut + 6
@@ -171,10 +168,10 @@ function SunOverlay({ refl, layoutA, layoutB, geometry, nameA, nameB }) {
           <circle key={r} r={r} className="carto-sun-guide" />
         ))}
         {polesA.map((s) => (
-          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={tone(refl.poleByNum.get(s.num)?.color)} fillOpacity={0.35} fillRule="evenodd" />
+          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.num)?.color)} fillOpacity={0.35} fillRule="evenodd" />
         ))}
         {compsA.map((s) => (
-          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={tone(refl.poleByNum.get(s.pole)?.color)} fillOpacity={0.8} fillRule="evenodd" />
+          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.pole)?.color)} fillOpacity={0.8} fillRule="evenodd" />
         ))}
         {polesB.map((s) => (
           <path key={`pb${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-cmp-outline" fillRule="evenodd" />
@@ -347,7 +344,7 @@ function CodeList({ refl, codes, empty }) {
   return (
     <ul className="carto-cmp-codes">
       {codes.map((c) => (
-        <li key={c} style={{ '--pole-color': refl.poleByNum.get(refl.compByCode.get(c)?.pole)?.color }}>
+        <li key={c} className="carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(c)?.pole)?.color)}>
           <span className="carto-code">{c}</span> {refl.compByCode.get(c)?.name}
         </li>
       ))}

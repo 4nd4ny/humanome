@@ -2,12 +2,15 @@
 //
 // Des cartes pour GÉRER ses cartographies : repérer les journées à ouvrir,
 // les silences, les ruptures, les journées à arbitrer. Chaque carte n'apparaît
-// que si ses données existent (critère P4 : elle se masque seule) et peut être
-// masquée à la main ; grille de tuiles de V3 (glisser-déposer, tailles,
+// que si ses données existent (critère P4 : elle se masque seule). Comme la
+// Cartographie (D-61) : au départ, le profil et le rythme ; « Panneaux » ajoute
+// les autres, « Réinitialiser l'affichage » revient au départ ; disposition
+// gardée dans ce navigateur. Grille de tuiles de V3 (glisser-déposer, tailles,
 // colonnes automatiques). Couleur = fonction (jamais = personne), échelles
 // séparées, valeur manquante ≠ 0, graphiques SVG maison.
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import '../../v3/v3.css'
 import { TileGrid } from '../../v3/ui/tile-grid.jsx'
 import {
@@ -32,23 +35,14 @@ import { addMarker, deleteMarker, setPreferences } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
 import { ConfidenceBar, RadarChart, Sparkline, TimeChart, shortDate } from './charts.jsx'
+import { poleTone, poleVars } from './colors.js'
 import { TwoStepButton } from './Manager.jsx'
+import { PanelTools } from './Panels.jsx'
+import { DASHBOARD_TILE_SET, dashboardTileSizes } from './tiles.js'
 
 const nf0 = (v) => (typeof v === 'number' && Number.isFinite(v) ? Math.round(v).toLocaleString('fr-FR') : '—')
 const nf2 = (v) => (typeof v === 'number' && Number.isFinite(v) ? v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—')
 const pct = (v) => (typeof v === 'number' && Number.isFinite(v) ? `${(v * 100).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} %` : '—')
-
-const DEFAULT_SIZES = {
-  profile: { w: 2, h: 2 },
-  rhythm: { w: 99, h: 1 },
-  phases: { w: 99, h: 2 },
-  constancy: { w: 2, h: 2 },
-  moments: { w: 2, h: 2 },
-  style: { w: 99, h: 2 },
-  cognitive: { w: 2, h: 2 },
-  lexical: { w: 99, h: 1 },
-  anomalies: { w: 1, h: 2 },
-}
 
 const LLM = 'Niveau de preuve : exploratoire — analyse automatique, un seul codeur (modèle de langage).'
 const LOCAL = 'Calcul local et déterministe, dans ce navigateur.'
@@ -57,15 +51,11 @@ const STYLE_COLOR = [15, 118, 110] // une seule teinte : la fonction « style »
 const VOLUME_COLOR = '#475569'
 const LEXICAL_COLOR = '#0f766e'
 
-function Card({ id, label, source, onHide, children }) {
+/** Une carte : sa source (niveau de preuve) puis son contenu ; la croix de sa tuile la masque. */
+function Card({ id, label, source, children }) {
   return (
     <section className="carto-card" aria-label={label} data-card={id}>
-      <div className="carto-card-tools">
-        <span className="carto-small carto-muted">{source}</span>
-        <button type="button" className="carto-link-btn" onClick={() => onHide(id)} aria-label={`Masquer la carte ${label}`}>
-          Masquer
-        </button>
-      </div>
+      <p className="carto-card-source carto-small carto-muted">{source}</p>
       {children}
     </section>
   )
@@ -77,29 +67,32 @@ function ProfileCard({ data, refl }) {
   const max = radarScale(data.poles.map((p) => p.share))
   const barMax = radarScale(data.comps.map((c) => c.share))
   const n = data.comps.length
+  // Une carte large range le radar et le reste côte à côte ; étroite, l'un sous l'autre (D-61).
   return (
-    <div className="carto-card-body">
+    <div className="carto-card-body carto-profile">
       <RadarChart
         label="Radar des sept pôles : part de chaque pôle dans votre soleil"
         axes={refl.poles.map((p) => ({ key: String(p.num), label: `${p.symbol} ${poleShortName(p)}` }))}
         series={[{ key: 'profil', label: 'profil', className: 'carto-radar-a', values: Object.fromEntries(data.poles.map((p) => [String(p.num), p.share])) }]}
         max={max}
       />
-      <p className="carto-small">
-        Concentration : les cinq plus grandes parts font <strong>{pct(data.concentration)}</strong> du soleil.
-      </p>
-      <svg className="carto-hist" viewBox={`0 0 ${Math.max(60, n * 8)} 60`} preserveAspectRatio="none" role="img" aria-label={`Parts des ${n} compétences observées, dans l’ordre du référentiel`}>
-        {data.comps.map((c, i) => (
-          <rect key={c.code} x={i * 8 + 1} y={58 - (c.share / barMax) * 56} width={6} height={Math.max(0.5, (c.share / barMax) * 56)} fill={refl.poleByNum.get(c.pole)?.color}>
-            <title>{`${c.code} ${refl.compByCode.get(c.code)?.name} : ${pct(c.share)}`}</title>
-          </rect>
-        ))}
-      </svg>
-      <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" aria-expanded={table} onClick={() => setTable(!table)}>
-        {table ? 'Masquer le tableau' : 'Afficher le tableau'}
-      </button>
+      <div className="carto-profile-side">
+        <p className="carto-small">
+          Concentration : les cinq plus grandes parts font <strong>{pct(data.concentration)}</strong> du soleil.
+        </p>
+        <svg className="carto-hist" viewBox={`0 0 ${Math.max(60, n * 8)} 60`} preserveAspectRatio="none" role="img" aria-label={`Parts des ${n} compétences observées, dans l’ordre du référentiel`}>
+          {data.comps.map((c, i) => (
+            <rect key={c.code} x={i * 8 + 1} y={58 - (c.share / barMax) * 56} width={6} height={Math.max(0.5, (c.share / barMax) * 56)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(c.pole)?.color)}>
+              <title>{`${c.code} ${refl.compByCode.get(c.code)?.name} : ${pct(c.share)}`}</title>
+            </rect>
+          ))}
+        </svg>
+        <button type="button" className="carto-btn carto-btn--quiet carto-btn--small" aria-expanded={table} onClick={() => setTable(!table)}>
+          {table ? 'Masquer le tableau' : 'Afficher le tableau'}
+        </button>
+      </div>
       {table ? (
-        <table className="carto-mini-table">
+        <table className="carto-mini-table carto-profile-table">
           <thead>
             <tr>
               <th scope="col">Compétence</th>
@@ -265,7 +258,7 @@ function ConstancyCard({ data, refl }) {
                 </th>
                 <td className="carto-num">{r.days}</td>
                 <td className="carto-num">{r.interval ? `${nf0(r.interval.mean)} j (${r.interval.min}–${r.interval.max})` : '—'}</td>
-                <td>
+                <td className="carto-pole carto-pole-ink" style={poleVars(refl.poleByNum.get(r.pole)?.color)}>
                   <Sparkline
                     points={r.series.map((s) => ({ date: s.date, value: s.intensity }))}
                     max={Math.max(1, ...r.series.map((s) => s.intensity))}
@@ -273,7 +266,6 @@ function ConstancyCard({ data, refl }) {
                     dotsMax={1}
                     from={data.from}
                     to={data.to}
-                    color={refl.poleByNum.get(r.pole)?.color}
                     label={`${r.code} ${name} : points cumulés de ${nf2(r.series[0].intensity)} (${formatShort(r.first)}) à ${nf2(r.series.at(-1).intensity)} (${formatShort(r.last)})`}
                   />
                 </td>
@@ -317,7 +309,7 @@ function MomentsCard({ candidates, loading, sensitivity, onSensitivity, refl, da
         {moments.slice(0, limit).map((m) => {
           const fi = firstImpression(m.date)
           return (
-            <li key={m.id} className="carto-moment" style={{ '--pole-color': refl.poleByNum.get(refl.compByCode.get(m.code)?.pole)?.color }}>
+            <li key={m.id} className="carto-moment carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(m.code)?.pole)?.color)}>
               <p className="carto-moment-head">
                 <button type="button" className="carto-link-btn" onClick={() => onOpenDay(m.date, m.code)}>
                   {formatShort(m.date)}
@@ -565,13 +557,22 @@ function AnomaliesCard({ data, onOpenDay }) {
 /**
  * @param {{dataset: object, refl: object, state: object, params: object,
  *   getDetail: Function, ensureDetails: Function, update: Function,
- *   onOpenDay: (d: string, code?: string) => void, onOpenTrace: (code: string, list: object[], index: number) => void}} props
+ *   onOpenDay: (d: string, code?: string) => void, onOpenTrace: (code: string, list: object[], index: number) => void,
+ *   toolsSlot?: Element | null}} props
+ *   toolsSlot : place de « Panneaux » et « Réinitialiser l'affichage » dans l'en-tête de la
+ *   cartographie (null tant qu'elle n'est pas montée) ; absente, ils restent dans l'en-tête du tableau.
  */
-export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, update, onOpenDay, onOpenTrace }) {
+export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, update, onOpenDay, onOpenTrace, toolsSlot }) {
   const prefs = dataset.preferences ?? {}
-  const hidden = useMemo(() => new Set(prefs.dashboardHidden ?? []), [prefs.dashboardHidden])
   const sensitivity = typeof prefs.momentsSensitivity === 'number' ? prefs.momentsSensitivity : 50
   const setPrefs = (patch) => update((ds) => setPreferences(ds, patch))
+  // Disposition (D-61) : une préférence de présentation gardée dans ce navigateur,
+  // comme celle de la Cartographie ; au départ, le profil et le rythme.
+  const [layout, setLayout] = useState(() => DASHBOARD_TILE_SET.read())
+  useEffect(() => DASHBOARD_TILE_SET.write(layout), [layout])
+  // « Réinitialiser l'affichage » remonte aussi les cartes (tableau déplié, fonctions masquées…).
+  const [resetKey, setResetKey] = useState(0)
+  const panelsRef = useRef(null)
 
   // Textes du portfolio et extraits : chargés pour les cartes qui en ont besoin.
   const portfolioDates = useMemo(() => dataset.days.filter(hasPortfolio).map((d) => d.date), [dataset])
@@ -656,22 +657,36 @@ export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, upda
           : lexical
             ? { node: <LexicalCard data={lexical} onOpenDay={onOpenDay} />, source: LOCAL }
             : { reason: 'pas assez de journées écrites assez longues pour mesurer un écart' },
-    anomalies: anomalies ? { node: <AnomaliesCard data={anomalies} onOpenDay={onOpenDay} />, source: 'Index des journées importées.' } : { reason: 'rien à signaler' },
+    // Rien à signaler n'est pas un manque de données : le menu le dit tel quel.
+    anomalies: anomalies ? { node: <AnomaliesCard data={anomalies} onOpenDay={onOpenDay} />, source: 'Index des journées importées.' } : { reason: 'rien à signaler', note: 'Rien à signaler.' },
   }
 
-  const hide = (id) => setPrefs({ dashboardHidden: [...hidden, id] })
-  const show = (id) => setPrefs({ dashboardHidden: [...hidden].filter((x) => x !== id) })
-  const tiles = DASHBOARD_CARDS.filter((c) => cards[c.id].node && !hidden.has(c.id)).map((c) => ({
+  // Masquer une carte : le focus va au menu « Panneaux » (la croix disparaît avec sa tuile).
+  const hide = (id) => {
+    setLayout((l) => DASHBOARD_TILE_SET.setShown(l, id, false))
+    requestAnimationFrame(() => panelsRef.current?.focus())
+  }
+  const toggle = (id, on) => setLayout((l) => DASHBOARD_TILE_SET.setShown(l, id, on))
+  const reset = () => {
+    setLayout(DASHBOARD_TILE_SET.defaultLayout())
+    setResetKey((k) => k + 1)
+  }
+  // Le menu liste toutes les cartes ; celles sans données y disent ce qui leur manque.
+  const menu = DASHBOARD_CARDS.map((c) => [c.id, c.label, cards[c.id].node ? null : (cards[c.id].note ?? `Sans données : ${cards[c.id].reason}.`)])
+  const withData = DASHBOARD_CARDS.filter((c) => cards[c.id].node).length
+  const displayed = DASHBOARD_CARDS.filter((c) => cards[c.id].node && layout.shown.includes(c.id))
+  // Le profil et le rythme côte à côte quand ils sont là tous deux ; seul, l'un d'eux prend la largeur.
+  const pair = displayed.some((c) => c.id === 'profile') && displayed.some((c) => c.id === 'rhythm')
+  const tiles = displayed.map((c) => ({
     id: c.id,
     label: c.label,
     node: (
-      <Card id={c.id} label={c.label} source={cards[c.id].source} onHide={hide}>
+      <Card id={c.id} label={c.label} source={cards[c.id].source}>
         {cards[c.id].node}
       </Card>
     ),
   }))
-  const userHidden = DASHBOARD_CARDS.filter((c) => cards[c.id].node && hidden.has(c.id))
-  const missing = DASHBOARD_CARDS.filter((c) => !cards[c.id].node)
+  const tools = <PanelTools tiles={menu} shown={layout.shown} onToggle={toggle} onReset={reset} summaryRef={panelsRef} />
 
   return (
     <section className="carto-dashboard" aria-labelledby="carto-dashboard-title">
@@ -681,36 +696,23 @@ export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, upda
           Des repères pour gérer vos cartographies : journées à ouvrir, silences, ruptures, journées à arbitrer. Tout est calculé dans ce navigateur, sur vos seules
           journées.
         </p>
+        {toolsSlot === undefined ? <div className="carto-dashboard-tools">{tools}</div> : null}
       </header>
+      {toolsSlot ? createPortal(tools, toolsSlot) : null}
       {tiles.length > 0 ? (
-        <TileGrid tiles={tiles} layout={prefs.dashboardLayout ?? null} onLayoutChange={(layout) => setPrefs({ dashboardLayout: layout })} defaultSizes={DEFAULT_SIZES} />
+        <TileGrid
+          key={resetKey}
+          tiles={tiles}
+          layout={layout}
+          onLayoutChange={(change) => setLayout((l) => DASHBOARD_TILE_SET.arrange(l, change))}
+          defaultSizes={(columns) => dashboardTileSizes(columns, { pair })}
+          onHide={hide}
+        />
       ) : (
-        <p className="carto-muted">Aucune carte n’a de données à montrer pour l’instant.</p>
+        <p className="carto-muted">
+          {withData === 0 ? 'Aucun panneau n’a de données à montrer pour l’instant.' : 'Aucun panneau affiché : choisissez-en dans « Panneaux », en haut de la page.'}
+        </p>
       )}
-      {userHidden.length > 0 ? (
-        <div className="carto-dashboard-hidden" role="group" aria-label="Cartes masquées">
-          <span className="carto-small">Cartes masquées :</span>
-          {userHidden.map((c) => (
-            <button key={c.id} type="button" className="carto-btn carto-btn--quiet carto-btn--small" onClick={() => show(c.id)}>
-              Afficher « {c.label} »
-            </button>
-          ))}
-        </div>
-      ) : null}
-      {missing.length > 0 ? (
-        <details className="carto-dashboard-missing">
-          <summary>
-            {missing.length} carte{missing.length > 1 ? 's' : ''} sans données
-          </summary>
-          <ul className="carto-small">
-            {missing.map((c) => (
-              <li key={c.id}>
-                {c.label} : {cards[c.id].reason}.
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
     </section>
   )
 }

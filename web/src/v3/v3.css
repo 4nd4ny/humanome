@@ -167,6 +167,7 @@
 }
 .v3-tile-handle:active { cursor: grabbing; }
 .v3-tile-label { flex: 1; font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.v3-tile-tools { display: flex; align-items: center; gap: 0.35rem; flex: none; }
 .v3-tile-bar button { min-width: 40px; min-height: 40px; background: none; border: none; cursor: pointer; color: var(--v3-text); border-radius: 4px; }
 .v3-tile-bar button:hover { background: var(--v3-surface); }
 .v3-tile-size select { min-height: 40px; }

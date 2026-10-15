@@ -13,7 +13,7 @@ import { formatLong, monthName, todayIso } from '../core/dates.js'
 import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
 import { Sun } from './Sun.jsx'
 import { usePrefersReducedMotion } from './Player.jsx'
-import { heatColor, themed, themedSwatch } from './colors.js'
+import { heatColor, poleVars, themed, themedSwatch } from './colors.js'
 import './carto.css'
 
 // Une version partagée garde les réglages par défaut (anneau des pôles de 30, D-58).
@@ -263,7 +263,7 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
           {refl.poles
             .filter((p) => state.poles.has(p.num))
             .map((p) => (
-              <section key={p.num} className="carto-shared-pole" style={{ '--pole-color': p.color }} aria-label={`Pôle ${p.name}`}>
+              <section key={p.num} className="carto-shared-pole carto-pole" style={poleVars(p.color)} aria-label={`Pôle ${p.name}`}>
                 <Sub className="carto-shared-pole-name">
                   <span aria-hidden="true">{p.symbol}</span> {p.name}
                 </Sub>

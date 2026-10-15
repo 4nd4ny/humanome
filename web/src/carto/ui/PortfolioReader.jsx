@@ -22,6 +22,7 @@ import { hasPortfolio } from '../core/model.js'
 import { splitExtract } from '../core/highlight.js'
 import { findPassage } from '../core/passages.js'
 import { approximateInPortfolio, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
+import { poleVars } from './colors.js'
 
 const ROLE_LABELS = { preuve: 'preuve', indice: 'indice' }
 
@@ -283,7 +284,7 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
         {live}
       </p>
 
-      <div className="carto-reader-trace" style={meta ? { '--pole-color': refl.poleByNum.get(meta.pole)?.color } : undefined}>
+      <div className="carto-reader-trace carto-pole" style={meta ? poleVars(refl.poleByNum.get(meta.pole)?.color) : undefined}>
         {target.kind === 'trace' ? (
           <p className="carto-reader-what">
             <span className="carto-code">{target.code}</span> {meta?.name ?? '(hors référentiel)'}

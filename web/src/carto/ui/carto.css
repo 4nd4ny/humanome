@@ -41,6 +41,15 @@
   background: var(--c);
   color: var(--c-ink);
 }
+/* Couleur d'un pôle sur un élément HTML (bordure, puce, marque ; D-63) : sa
+   marche claire (--pole-light) ou sombre (--pole-dark) devient --pole-color. */
+.carto-pole {
+  --pole-color: var(--pole-light);
+}
+/* Un dessin SVG en currentColor (courbe de constance) prend la couleur du pôle. */
+.carto-pole-ink {
+  color: var(--pole-color);
+}
 /* À l'écran seulement : imprimée, la cartographie reste claire (c'est du papier). */
 @media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .carto-app {
@@ -66,6 +75,9 @@
     background: var(--c-dark, var(--c));
     color: var(--c-ink-dark, var(--c-ink));
   }
+  :root:not([data-theme='light']) .carto-app .carto-pole {
+    --pole-color: var(--pole-dark, var(--pole-light));
+  }
 }
 @media screen {
   :root[data-theme='dark'] .carto-app {
@@ -90,6 +102,9 @@
   :root[data-theme='dark'] .carto-app .carto-c-bg {
     background: var(--c-dark, var(--c));
     color: var(--c-ink-dark, var(--c-ink));
+  }
+  :root[data-theme='dark'] .carto-app .carto-pole {
+    --pole-color: var(--pole-dark, var(--pole-light));
   }
 }
 .carto-app *:focus-visible {
@@ -381,6 +396,26 @@ kbd {
   gap: 0.45rem;
   cursor: pointer;
 }
+.carto-panels-list > li > label {
+  white-space: nowrap;
+}
+/* Une carte sans données reste dans la liste, en retrait, avec sa raison (D-61). */
+.carto-panels-list li.is-empty label {
+  cursor: default;
+  color: var(--ink-faint);
+}
+.carto-panels-why {
+  display: block;
+  max-width: 17rem;
+  margin: 0 0 0.2rem 1.55rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--ink-faint);
+}
+/* Place où le Tableau de bord rend ses commandes : ses enfants se rangent avec les autres. */
+.carto-context-slot {
+  display: contents;
+}
 .carto-spaces {
   display: flex;
   flex-wrap: wrap;
@@ -461,6 +496,46 @@ kbd {
 .carto-tiles .v3-tile-size select,
 .carto-dashboard .v3-tile-size select {
   max-width: 7.5rem;
+}
+/* Commandes des tuiles (journal D-61) : avec une souris, seul le titre reste,
+   sur toute la largeur de la barre ; poignée, flèches, taille, croix et coin
+   paraissent au survol de la tuile, ou quand le clavier y entre. Les flèches,
+   la taille et la croix se posent alors sur la fin de la barre : rien ne bouge.
+   Sur un écran tactile, où le survol n'existe pas, elles restent affichées. */
+@media (hover: hover) and (pointer: fine) {
+  .carto-app .v3-tile-bar {
+    position: relative;
+  }
+  .carto-app .v3-tile-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 0.5rem 0 1.5rem;
+    background: linear-gradient(to right, transparent, var(--v3-surface-2) 1.25rem);
+  }
+  .carto-app .v3-tile-handle,
+  .carto-app .v3-tile-tools,
+  .carto-app .v3-tile-resize {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .carto-app .v3-tile:hover :is(.v3-tile-handle, .v3-tile-tools, .v3-tile-resize),
+  .carto-app .v3-tile-resizing :is(.v3-tile-handle, .v3-tile-tools, .v3-tile-resize) {
+    opacity: 1;
+  }
+  /* Au clavier (focus visible), ou pendant le choix d'une taille ; un clic de
+     souris sur une commande ne les retient pas quand le pointeur s'en va. */
+  @supports selector(:has(*)) {
+    .carto-app .v3-tile:has(:focus-visible, select:focus) :is(.v3-tile-handle, .v3-tile-tools, .v3-tile-resize) {
+      opacity: 1;
+    }
+  }
+  @supports not selector(:has(*)) {
+    .carto-app .v3-tile-bar:focus-within :is(.v3-tile-handle, .v3-tile-tools) {
+      opacity: 1;
+    }
+  }
 }
 .carto-manager-period {
   margin: 0 0 0.45rem;
@@ -2240,12 +2315,17 @@ kbd {
   flex-direction: column;
   min-height: 100%;
 }
-.carto-card-tools {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.5rem;
+.carto-card-source {
+  margin: 0;
   padding: 0.3rem 0.6rem 0;
+}
+/* Commandes rendues dans l'en-tête du tableau quand il est seul (hors de la cartographie). */
+.carto-dashboard-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .carto-card-body {
   padding: 0.35rem 0.6rem 0.75rem;
@@ -2253,16 +2333,6 @@ kbd {
 .carto-card-body h4 {
   font-size: 0.86rem;
   margin: 0.6rem 0 0.25rem;
-}
-.carto-dashboard-hidden {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  align-items: center;
-  margin-top: 0.75rem;
-}
-.carto-dashboard-missing {
-  margin-top: 0.75rem;
 }
 .carto-chart {
   margin: 0.3rem 0;
@@ -2380,6 +2450,45 @@ kbd {
   width: 100%;
   height: 70px;
   margin: 0.3rem 0;
+}
+/* Carte Profil du tableau de bord (D-61) : elle tient dans ses deux rangées.
+   Étroite, le radar puis le reste ; large, côte à côte. */
+.carto-dashboard .v3-tile-content {
+  container-type: inline-size;
+}
+.carto-card-body.carto-profile {
+  padding-top: 0.25rem;
+  padding-bottom: 0.4rem;
+}
+.carto-profile .carto-radar {
+  width: min(100%, 330px);
+}
+.carto-profile .carto-radar-label,
+.carto-profile .carto-radar-tick {
+  font-size: 11.5px;
+}
+.carto-profile-side p {
+  margin: 0.3rem 0 0.15rem;
+}
+.carto-profile .carto-hist {
+  height: 48px;
+}
+@container (min-width: 540px) {
+  .carto-profile {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    column-gap: 1rem;
+    align-items: center;
+  }
+  .carto-profile .carto-radar {
+    width: min(100%, 420px);
+  }
+  .carto-profile .carto-hist {
+    height: 70px;
+  }
+  .carto-profile-table {
+    grid-column: 1 / -1;
+  }
 }
 .carto-mini-table {
   border-collapse: collapse;
@@ -2521,7 +2630,8 @@ kbd {
 }
 @media print {
   .carto-dashboard .v3-tile-bar,
-  .carto-card-tools button,
+  .carto-dashboard .v3-tile-resize,
+  .carto-dashboard-tools,
   .carto-marker-form {
     display: none !important;
   }
@@ -2603,9 +2713,21 @@ kbd {
     right: auto;
     max-width: calc(100vw - 2rem);
   }
-  /* Sur une colonne, le titre de la tuile garde sa place. */
-  .carto-tiles .v3-tile-size select {
-    max-width: 5.5rem;
+  /* Sur une colonne, le titre de la tuile garde sa place : menu de taille
+     étroit, et sur un très petit écran les commandes passent à la ligne
+     plutôt que de réduire le titre à rien (D-61). */
+  .carto-tiles .v3-tile-size select,
+  .carto-dashboard .v3-tile-size select {
+    max-width: 4.5rem;
+  }
+  .carto-app .v3-tile-bar {
+    flex-wrap: wrap;
+  }
+  .carto-app .v3-tile-label {
+    min-width: 6.5rem;
+  }
+  .carto-app .v3-tile-tools {
+    margin-left: auto;
   }
 }
 

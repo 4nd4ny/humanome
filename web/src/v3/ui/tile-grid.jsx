@@ -228,28 +228,32 @@ export function TileGrid({ tiles, layout, onLayoutChange, defaultSizes = {}, onH
                 ⠿
               </span>
               <strong className="v3-tile-label">{tile.label}</strong>
-              <button type="button" data-move="-1" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
-              <button type="button" data-move="1" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
-              <label className="v3-tile-size">
-                <span className="v3-visually-hidden">Taille de {tile.label}</span>
-                <select value={sizeId ?? 'libre'} onChange={(e) => setSize(tile.id, e.target.value)}>
-                  {sizeId === null ? (
-                    <option value="libre" disabled>
-                      {w}×{h}
-                    </option>
-                  ) : null}
-                  {TILE_SIZES.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id.startsWith('pleine-largeur-x') ? `↔ pleine largeur ×${p.h}` : p.id.replace('x', '×')}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              {onHide ? (
-                <button type="button" className="v3-tile-hide" onClick={() => onHide(tile.id)} aria-label={`Masquer le panneau ${tile.label}`} title="Masquer ce panneau">
-                  ✕
-                </button>
-              ) : null}
+              {/* Commandes groupées : avec une souris, elles se posent sur la fin de la barre
+                  au survol, sans prendre la place du titre (journal carto D-61). */}
+              <span className="v3-tile-tools">
+                <button type="button" data-move="-1" onClick={() => shift(tile.id, -1)} aria-label={`Avancer ${tile.label}`}>◀</button>
+                <button type="button" data-move="1" onClick={() => shift(tile.id, +1)} aria-label={`Reculer ${tile.label}`}>▶</button>
+                <label className="v3-tile-size">
+                  <span className="v3-visually-hidden">Taille de {tile.label}</span>
+                  <select value={sizeId ?? 'libre'} onChange={(e) => setSize(tile.id, e.target.value)}>
+                    {sizeId === null ? (
+                      <option value="libre" disabled>
+                        {w}×{h}
+                      </option>
+                    ) : null}
+                    {TILE_SIZES.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.id === 'pleine-largeur' ? '↔ pleine largeur' : p.id.startsWith('pleine-largeur-x') ? `↔ pleine largeur ×${p.h}` : p.id.replace('x', '×')}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {onHide ? (
+                  <button type="button" className="v3-tile-hide" onClick={() => onHide(tile.id)} aria-label={`Masquer le panneau ${tile.label}`} title="Masquer ce panneau">
+                    ✕
+                  </button>
+                ) : null}
+              </span>
             </div>
             <div className="v3-tile-content">{tile.node}</div>
             <span

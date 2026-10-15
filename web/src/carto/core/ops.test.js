@@ -130,6 +130,10 @@ describe('normalisations et forme du conteneur', () => {
     expect(up.preferences.calendarMode).toBe('all')
     expect(up.preferences.params.poleRingPx).toBe(30)
     expect('highContrast' in up.preferences).toBe(false)
+    // La disposition du tableau de bord est gardée dans le navigateur (D-61) : plus dans le jeu.
+    const old = upgradeDataset({ ...structuredClone(ds), preferences: { ...ds.preferences, dashboardHidden: ['profile'], dashboardLayout: { order: [], sizes: {} } } })
+    expect('dashboardHidden' in old.preferences || 'dashboardLayout' in old.preferences).toBe(false)
+    expect('dashboardHidden' in up.preferences || 'dashboardLayout' in up.preferences).toBe(false)
     expect(upgradeDataset(up)).toEqual(up)
     expect(datasetErrors({ kind: 'x' })).toContain('kind ≠ competency-map-master')
   })

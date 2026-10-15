@@ -77,6 +77,32 @@ describe('vue de départ (D-53)', () => {
   })
 })
 
+describe('résumé du profil (D-62)', () => {
+  it('la période, les journées retenues et les compétences observées ; ni total des points ni court-circuit', async () => {
+    render(<Harness store={await louStore()} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    const summary = within(tile('detail')).getByRole('article', { name: 'Résumé du profil' })
+    expect([...summary.querySelectorAll('.carto-stats dt')].map((dt) => dt.textContent)).toEqual(['Période', 'Journées retenues', 'Compétences observées'])
+    // Le jeu de Lou a une compétence non instruite (court-circuit) : le résumé n'en dit rien.
+    expect(summary.textContent).not.toMatch(/Points|court-circuit|instruite/)
+  })
+})
+
+describe('couleurs des pôles en clair (D-63)', () => {
+  it('le soleil dessine CŒUR un cran plus sombre ; sa marche sombre voyage avec, pour le thème sombre', async () => {
+    render(<Harness store={await louStore()} />)
+    await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
+    const sector = document.querySelector('[data-tile="sun"] .carto-sun [role="button"][aria-label^="2.01"]')
+    expect(sector.style.getPropertyValue('--c')).toBe('#047857')
+    expect(sector.style.getPropertyValue('--c-dark')).toBe('#03835a')
+    // Le détail d'une compétence porte la couleur de son pôle, dans ses deux marches.
+    fireEvent.click(sector)
+    const detail = await within(tile('detail')).findByRole('article', { name: /^Détail : 2\.01/ })
+    expect(detail.classList.contains('carto-pole')).toBe(true)
+    expect([detail.style.getPropertyValue('--pole-light'), detail.style.getPropertyValue('--pole-dark')]).toEqual(['#047857', '#03835a'])
+  })
+})
+
 describe('menu « Panneaux »', () => {
   it('affiche et masque les tuiles ; la tuile affichée se place à la suite ; la croix la masque', async () => {
     render(<Harness store={await louStore()} />)

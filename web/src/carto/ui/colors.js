@@ -6,6 +6,10 @@
 // site. Chaque couleur calculée existe en clair et en sombre ; l'élément porte
 // les deux en propriétés CSS (`themed`), la feuille de style choisit — pas de
 // rendu à refaire quand le thème change, et l'impression reste claire.
+//
+// Les couleurs du référentiel sont des données (les épistémiarques les
+// choisissent) : l'affichage les traduit, en sombre (D-60) comme en clair
+// (D-63), en marches validées pour les daltoniens et lisibles sur la surface.
 
 /** @param {string} hex « #rrggbb » @returns {[number, number, number]} */
 export function hexToRgb(hex) {
@@ -107,8 +111,9 @@ export const DARK_BAND = Object.freeze({ min: 0.52, max: 0.66 })
  * Marches sombres SÉLECTIONNÉES des sept couleurs du référentiel RESPIRE v7 :
  * même teinte, luminance dans la bande sombre, au moins 3:1 sur la surface
  * sombre. CŒUR descend et MAIN reste haut : l'écart de luminance les sépare
- * pour les daltoniens (ΔE 11 entre voisins, contre 4,9 en clair) — validé par
- * le script validate_palette de la skill dataviz (journal D-60).
+ * pour les daltoniens (ΔE 11 entre voisins, contre 4,9 avec les couleurs du
+ * référentiel) — validé par le script validate_palette de la skill dataviz
+ * (journal D-60).
  */
 const DARK_STEPS = new Map([
   ['#2563eb', '#2563eb'], // TÊTE
@@ -121,14 +126,64 @@ const DARK_STEPS = new Map([
 ])
 
 /**
- * Couleur d'un pôle (et de ses compétences) dans un thème : celle du
- * référentiel en clair ; en sombre, sa marche sélectionnée, ou, pour une
- * couleur inconnue, la même teinte ramenée dans la bande sombre.
+ * Marches claires SÉLECTIONNÉES (journal D-63) : CŒUR, RACINES, CITÉ et
+ * FLAMBEAU plus sombres, mêmes teintes. CŒUR et MAIN, voisins dans le soleil,
+ * se séparent pour les daltoniens (ΔE 10,4 entre voisins, contre 4,9 avec les
+ * couleurs du référentiel) et les sept atteignent 3:1 sur le blanc. RACINES
+ * garde sa teinte (c'est aussi sa marche sombre) et FLAMBEAU descend plus
+ * bas : assombris au même niveau, ces deux-là se confondraient pour un
+ * deutéranope (ΔE 1,6) ; ainsi, ΔE 10,4 (6,2 avec le référentiel). Validé par
+ * le script validate_palette de la skill dataviz.
+ */
+const LIGHT_STEPS = new Map([
+  ['#2563eb', '#2563eb'], // TÊTE
+  ['#10b981', '#047857'], // CŒUR
+  ['#ec4899', '#ec4899'], // MAIN
+  ['#8b5cf6', '#8b5cf6'], // ÂME
+  ['#f59e0b', '#c88007'], // RACINES
+  ['#06b6d4', '#0891b2'], // CITÉ
+  ['#f97316', '#c2410c'], // FLAMBEAU
+])
+
+/** Couleurs inconnues déjà traduites, par thème. */
+const themeMemo = new Map()
+
+/**
+ * Couleur d'un pôle (et de ses compétences) dans un thème : sa marche
+ * sélectionnée ; pour une couleur inconnue (un autre référentiel), la même
+ * teinte, assombrie en clair jusqu'à 3:1 sur le blanc, ramenée en sombre
+ * dans la bande sombre.
  */
 export function themeColor(hex, theme = 'light') {
-  if (!isDark(theme)) return hex
-  const key = String(hex ?? '').toLowerCase()
-  if (DARK_STEPS.has(key)) return DARK_STEPS.get(key)
+  if (!hex) return hex
+  const key = String(hex).toLowerCase()
+  const mode = isDark(theme) ? 'dark' : 'light'
+  const steps = mode === 'dark' ? DARK_STEPS : LIGHT_STEPS
+  if (steps.has(key)) return steps.get(key)
+  // Une couleur inconnue se calcule une fois (la heatmap en demande une par case).
+  const memo = `${mode}|${key}`
+  if (!themeMemo.has(memo)) {
+    if (themeMemo.size >= 256) themeMemo.clear()
+    themeMemo.set(memo, mode === 'dark' ? darkStep(key) : lightStep(key))
+  }
+  return themeMemo.get(memo)
+}
+
+/** En clair : la même teinte, assombrie jusqu'à 3:1 sur le blanc (telle quelle si elle y est déjà). */
+function lightStep(key) {
+  if (contrast(key, VIZ_SURFACE.light) >= 3) return key
+  const o = hexToOklch(key)
+  let L = o.L
+  let out = key
+  while (contrast(out, VIZ_SURFACE.light) < 3 && L > 0.2) {
+    L -= 0.01
+    out = oklchToHex({ ...o, L })
+  }
+  return out
+}
+
+/** En sombre : la même teinte, ramenée dans la bande sombre, au moins 3:1 sur la surface sombre. */
+function darkStep(key) {
   const o = hexToOklch(key)
   let L = Math.min(DARK_BAND.max, Math.max(DARK_BAND.min, o.L))
   let out = L === o.L ? key : oklchToHex({ ...o, L })
@@ -183,4 +238,18 @@ export function themed(light, dark) {
 /** Fond et encre d'une case HTML (pastille de légende), pour les deux thèmes. */
 export function themedSwatch(light, dark) {
   return { '--c': light, '--c-dark': dark, '--c-ink': inkOn(light), '--c-ink-dark': inkOn(dark) }
+}
+
+/** Couleur d'un pôle pour un dessin SVG (classe `carto-c-fill`), dans ses deux marches. */
+export function poleTone(color) {
+  return color ? themed(themeColor(color), themeColor(color, 'dark')) : undefined
+}
+
+/**
+ * Couleur d'un pôle sur un élément HTML (bordure, puce, marque) : avec la
+ * classe `carto-pole`, la feuille de style en fait `--pole-color`, claire ou
+ * sombre selon le thème (D-63).
+ */
+export function poleVars(color) {
+  return color ? { '--pole-light': themeColor(color), '--pole-dark': themeColor(color, 'dark') } : undefined
 }
