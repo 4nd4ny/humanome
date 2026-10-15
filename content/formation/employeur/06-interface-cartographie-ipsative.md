@@ -53,8 +53,8 @@ chapitre 1 décrit ce qu'il montre.
   tout le cercle : ses seules compétences, chacune selon sa part des traces du
   pôle ; un clic au centre ramène à tous les pôles.
 - **La heatmap**, si les dates ne sont pas masquées : une case par jour, ou
-  une par mois. Plus elle est foncée, plus les compétences partagées y sont
-  observées, en niveaux relatifs à cette personne.
+  une par mois. Plus sa couleur est intense, plus les compétences partagées y
+  sont observées, en niveaux relatifs à cette personne.
 - **Les compétences, pôle par pôle** : pour chacune, sa part du soleil, sa
   confiance, ses journées (preuves, indices), sa description dans le
   référentiel, et les **extraits** que la personne a choisis, marqués

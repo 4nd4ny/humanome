@@ -8,6 +8,7 @@
 import { useMemo, useState } from 'react'
 import { analysisRuns, changeNarrative, compareSets, comparePreset, radarScale, resolveSide, topDays } from '../core/compare.js'
 import { layoutSun } from '../core/state.js'
+import { ringShown } from '../core/formulas.js'
 import { buildHeatmap } from '../core/heatmap.js'
 import { allTags } from '../core/sets.js'
 import { canonicalJson } from '../core/model.js'
@@ -16,6 +17,7 @@ import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
 import { Sun, sectorPath } from './Sun.jsx'
 import { HeatmapBand } from './Heatmap.jsx'
+import { themeColor, themed } from './colors.js'
 import { SOURCE_LABELS } from './Manager.jsx'
 
 const nf1 = (x) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : '—')
@@ -150,26 +152,34 @@ function SideEditor({ letter, side, onChange, dataset, runs, tags, summary }) {
   )
 }
 
+/** Couleur d'un pôle pour les deux thèmes (D-60). */
+const tone = (color) => (color ? themed(color, themeColor(color, 'dark')) : undefined)
+
 /** Vue 2 : un soleil, A en plein, B en contour pointillé. */
 function SunOverlay({ refl, layoutA, layoutB, geometry, nameA, nameB }) {
   const R = geometry.competencies.rOut + 6
-  const guides = [0.25, 0.5, 0.75, 1].map((c) => Math.sqrt(geometry.competencies.rIn ** 2 + geometry.k * c))
+  // Un anneau masqué par le réglage de l'anneau des pôles (D-58) n'a rien à dessiner.
+  const leaves = ringShown(geometry.competencies)
+  const rings = ringShown(geometry.poles)
+  const guides = leaves ? [0.25, 0.5, 0.75, 1].map((c) => Math.sqrt(geometry.competencies.rIn ** 2 + geometry.k * c)) : []
+  const [polesA, polesB] = rings ? [layoutA.poles, layoutB.poles] : [[], []]
+  const [compsA, compsB] = leaves ? [layoutA.competencies, layoutB.competencies] : [[], []]
   return (
     <figure className="carto-cmp-overlay">
       <svg viewBox={`${-R} ${-R} ${2 * R} ${2 * R}`} role="img" aria-label={`Superposition sur un même soleil : ${nameA} en secteurs pleins, ${nameB} en contours pointillés. Les valeurs sont dans le tableau.`}>
         {guides.map((r) => (
           <circle key={r} r={r} className="carto-sun-guide" />
         ))}
-        {layoutA.poles.map((s) => (
-          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={refl.poleByNum.get(s.num)?.color} fillOpacity={0.35} fillRule="evenodd" />
+        {polesA.map((s) => (
+          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={tone(refl.poleByNum.get(s.num)?.color)} fillOpacity={0.35} fillRule="evenodd" />
         ))}
-        {layoutA.competencies.map((s) => (
-          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={refl.poleByNum.get(s.pole)?.color} fillOpacity={0.8} fillRule="evenodd" />
+        {compsA.map((s) => (
+          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={tone(refl.poleByNum.get(s.pole)?.color)} fillOpacity={0.8} fillRule="evenodd" />
         ))}
-        {layoutB.poles.map((s) => (
+        {polesB.map((s) => (
           <path key={`pb${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-cmp-outline" fillRule="evenodd" />
         ))}
-        {layoutB.competencies.map((s) => (
+        {compsB.map((s) => (
           <path key={`cb${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-cmp-outline" fillRule="evenodd" />
         ))}
       </svg>

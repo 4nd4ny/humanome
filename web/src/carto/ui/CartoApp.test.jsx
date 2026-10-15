@@ -15,6 +15,8 @@ import { computeState, layoutSun } from '../core/state.js'
 import { ringGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
+import { buildArchive } from '../core/archive.js'
+import { DEMO_ARCHIVE } from './useCartoData.js'
 import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 import { showCartoTiles } from '../test/tiles.js'
 
@@ -90,6 +92,202 @@ describe('démonstration', () => {
     // le jeu ouvert) : ce sont ses données, elles partiront avec l'archive.
     await store.commit(await importFiles([{ path: 'lou.md', text: LOU_PORTFOLIO }], demo, { now: NOW }))
     expect(isPristineDemo(await store.loadDataset(summary.datasetId))).toBe(false)
+  })
+})
+
+describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
+  const V1 = 'Wed, 14 Oct 2026 16:25:46 GMT'
+  const V2 = 'Thu, 15 Oct 2026 09:00:00 GMT'
+
+  /** Démonstration chargée avant le dépôt du portfolio de démonstration : sans portfolio. */
+  async function staleDemoStore({ mutate } = {}) {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const ds = { ...createDataset({ datasetId: 'ds-demo-old', title: 'Démonstration', referential: miniReferential(), now: NOW }), origin: 'demo' }
+    const files = []
+    for (const [date, poles] of Object.entries(louDays())) {
+      for (const p of poles) files.push({ path: `${date}/carto_P${p.poleNum}.json`, text: JSON.stringify(p) })
+    }
+    const res = await importFiles(files, ds, { now: NOW })
+    if (mutate) res.dataset = mutate(res.dataset)
+    await store.commit(res)
+    return store
+  }
+
+  /** L'archive de démonstration déposée sur le site, portfolio compris. */
+  async function siteArchive() {
+    const store = await louStore()
+    return JSON.stringify(buildArchive(await store.exportAll('ds-lou'), { now: NOW }))
+  }
+
+  /**
+   * Le site : l'archive (HEAD ou GET) avec sa date de dépôt ; chaque requête est
+   * notée. `fail` : réseau coupé (toutes) ; `failGet` : seul le téléchargement
+   * échoue ; `onGet` : appelé pendant le téléchargement (un autre onglet agit).
+   */
+  function siteFetch({ text = null, version = V1, calls = [], fail = false, failGet = false, onGet = null }) {
+    return async (url, init = {}) => {
+      const method = init.method ?? 'GET'
+      calls.push(`${method} ${url}`)
+      if (fail || (failGet && method === 'GET' && url === DEMO_ARCHIVE)) throw new TypeError('Failed to fetch')
+      if (url !== DEMO_ARCHIVE || text === null) return { ok: false, status: 404, headers: { get: () => null }, text: async () => '' }
+      if (method === 'GET' && onGet) await onGet()
+      const headers = { get: (k) => ({ 'content-type': 'application/json', 'last-modified': version })[k.toLowerCase()] ?? null }
+      return { ok: true, status: 200, headers, text: async () => (method === 'HEAD' ? '' : text) }
+    }
+  }
+
+  function SiteHarness({ store, fetchFn }) {
+    const [route, setRoute] = useState(() => parseHash(window.location.hash))
+    useEffect(() => subscribe(setRoute), [])
+    return <CartoApp route={route} deps={{ store, fetchFn, loadReferential: async () => ({ doc: miniReferential() }) }} />
+  }
+
+  const sources = () => JSON.parse(localStorage.getItem('humanome-carto-demo-source') ?? '{}')
+  const ids = async (store) => (await store.listDatasets()).map((d) => d.datasetId)
+
+  it('chargée avant le dépôt du portfolio : affichée tout de suite, puis remplacée en arrière-plan par la démo du site, portfolio compris', async () => {
+    const store = await staleDemoStore()
+    expect(isPristineDemo(await store.loadDataset('ds-demo-old'))).toBe(true)
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls })} />)
+    // La démonstration en place s'affiche sans attendre le réseau…
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    // … puis la nouvelle version (l'archive porte son propre titre, ici « Lou ») la remplace.
+    await screen.findByRole('heading', { name: 'Lou' })
+    await waitFor(async () => expect(await ids(store)).not.toContain('ds-demo-old'))
+    const [freshId] = await ids(store)
+    const fresh = await store.loadDataset(freshId)
+    expect(fresh.origin).toBe('demo')
+    expect(fresh.portfolio).not.toBeNull()
+    expect(sources()).toEqual({ [freshId]: { version: V1, baseline: expect.objectContaining({ importLog: 1, sets: 0 }) } })
+    expect(localStorage.getItem('humanome-carto-current')).toBe(freshId)
+    expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    // Aucun rapport d'import ne s'ouvre pour une mise à jour silencieuse.
+    expect(screen.queryByText(/Rapport d.import/)).toBeNull()
+  })
+
+  it('même version que le site : rien n’est téléchargé ; nouvelle version : elle remplace l’ancienne', async () => {
+    const store = await staleDemoStore()
+    localStorage.setItem('humanome-carto-demo-source', JSON.stringify({ 'ds-demo-old': { version: V1 } }))
+    const text = await siteArchive()
+    const calls = []
+    const { unmount } = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    await waitFor(() => expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    await new Promise((r) => setTimeout(r, 30))
+    expect(await ids(store)).toEqual(['ds-demo-old'])
+    unmount()
+    const later = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text, version: V2, calls: later })} />)
+    await waitFor(async () => expect(await ids(store)).not.toContain('ds-demo-old'))
+    expect(later).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    expect(Object.values(sources()).map((s) => s.version)).toEqual([V2])
+  })
+
+  it('une démonstration enrichie par la personne n’est jamais remplacée (ni même vérifiée)', async () => {
+    const store = await staleDemoStore({ mutate: (ds) => ({ ...ds, markers: [{ id: 'm1', date: '2025-12-23', label: 'Mon repère' }] }) })
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    await new Promise((r) => setTimeout(r, 30))
+    expect(calls).toEqual([])
+    expect(await ids(store)).toEqual(['ds-demo-old'])
+  })
+
+  it('enrichie PENDANT le téléchargement (un autre onglet) : gardée, la copie neuve s’en va', async () => {
+    const store = await staleDemoStore()
+    const onGet = async () => {
+      const ds = await store.loadDataset('ds-demo-old')
+      await store.saveDataset({ ...ds, markers: [{ id: 'm1', date: '2025-12-23', label: 'Repère posé ailleurs' }] })
+    }
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls, onGet })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    await waitFor(() => expect(calls).toContain(`GET ${DEMO_ARCHIVE}`))
+    await waitFor(async () => expect(await ids(store)).toEqual(['ds-demo-old']))
+    await new Promise((r) => setTimeout(r, 50))
+    expect(await ids(store)).toEqual(['ds-demo-old'])
+    expect((await store.loadDataset('ds-demo-old')).markers).toHaveLength(1)
+    expect(screen.getByRole('heading', { name: 'Démonstration' })).toBeTruthy()
+  })
+
+  it('site injoignable ou démo absente : la démonstration en place s’ouvre telle quelle', async () => {
+    for (const fetchFn of [siteFetch({ fail: true }), siteFetch({ text: null })]) {
+      const store = await staleDemoStore()
+      const { unmount } = render(<SiteHarness store={store} fetchFn={fetchFn} />)
+      await screen.findByRole('heading', { name: 'Démonstration' })
+      await new Promise((r) => setTimeout(r, 30))
+      expect(await ids(store)).toEqual(['ds-demo-old'])
+      unmount()
+    }
+  })
+
+  it('téléchargement en échec : retenté seulement un jour plus tard, jamais à chaque visite', async () => {
+    const store = await staleDemoStore()
+    const text = await siteArchive()
+    const first = []
+    const a = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls: first, failGet: true })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    await waitFor(() => expect(first).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`]))
+    a.unmount()
+    const second = []
+    const b = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls: second })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    await waitFor(() => expect(second).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    await new Promise((r) => setTimeout(r, 30))
+    expect(second).toEqual([`HEAD ${DEMO_ARCHIVE}`])
+    b.unmount()
+    // Un jour plus tard, la même version est retentée.
+    const tried = JSON.parse(localStorage.getItem('humanome-carto-demo-tried'))
+    localStorage.setItem('humanome-carto-demo-tried', JSON.stringify({ ...tried, at: tried.at - 25 * 3600 * 1000 }))
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text })} />)
+    await waitFor(async () => expect(await ids(store)).not.toContain('ds-demo-old'))
+    expect(localStorage.getItem('humanome-carto-demo-tried')).toBeNull()
+  })
+
+  it('« Explorer la démonstration » retient la version chargée : à la visite suivante, une simple vérification', async () => {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const text = await siteArchive()
+    const { unmount } = render(<SiteHarness store={store} fetchFn={siteFetch({ text })} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Lou' })
+    const [summary] = await store.listDatasets()
+    expect((await store.loadDataset(summary.datasetId)).portfolio).not.toBeNull()
+    expect(sources()[summary.datasetId].version).toBe(V1)
+    unmount()
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
+    await screen.findByRole('heading', { name: 'Lou' })
+    await waitFor(() => expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    expect(await ids(store)).toEqual([summary.datasetId])
+  })
+
+  it('archive déposée mais impossible à télécharger : les journées publiques, et le visiteur le sait', async () => {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const days = louDays()
+    const base = siteFetch({ text: await siteArchive(), failGet: true })
+    const fetchFn = async (url, init) => {
+      if (url === 'data/demo/jours/index.json') return { ok: true, status: 200, json: async () => Object.keys(days).map((date) => ({ date })) }
+      const m = /^data\/demo\/jours\/(\d{4}-\d{2}-\d{2})\.json$/.exec(url)
+      if (m) return { ok: true, status: 200, text: async () => JSON.stringify({ date: m[1], poles: days[m[1]], kairos: kairosDoc(m[1]) }) }
+      return base(url, init)
+    }
+    render(<SiteHarness store={store} fetchFn={fetchFn} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    expect((await screen.findByRole('alert')).textContent).toMatch(/Le portfolio de la démonstration n’a pas pu être téléchargé/)
+  })
+})
+
+describe('un jeu supprimé dans un autre onglet n’est jamais recréé', () => {
+  it('l’enregistrement différé le dit au lieu de recréer le jeu sans ses journées', async () => {
+    const store = await louStore()
+    render(<Harness store={store} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    await store.deleteDataset('ds-lou') // un autre onglet
+    fireEvent.click(within(screen.getByRole('radiogroup', { name: 'Calendrier' })).getByRole('radio', { name: 'Année scolaire' }))
+    expect((await screen.findByRole('alert')).textContent).toMatch(/n’existe plus dans ce navigateur/)
+    expect(await store.loadDataset('ds-lou')).toBeNull()
   })
 })
 
@@ -213,18 +411,64 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
   it('heatmap au clavier : un seul arrêt de tabulation, flèches ±1 / ±7, Entrée fixe t, Maj+Entrée ouvre le jour', async () => {
     render(<Harness store={await louStore()} />)
     await screen.findByRole('heading', { name: 'Cartographie' })
-    const grid = screen.getByRole('grid', { name: /Heatmap Année scolaire 2025–2026/ })
+    // « Tout voir » par défaut (D-59) : du 22 au 24 décembre, la grille s'arrête au dernier jour.
+    const grid = screen.getByRole('grid', { name: /^Heatmap 2025–2026/ })
     act(() => grid.focus())
     await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-22'))
     fireEvent.keyDown(grid, { key: 'ArrowDown' })
     await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-23'))
-    fireEvent.keyDown(grid, { key: 'ArrowRight' })
-    await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-30'))
-    fireEvent.keyDown(grid, { key: 'ArrowLeft' })
+    fireEvent.keyDown(grid, { key: 'ArrowRight' }) // une semaine plus loin : hors de la période, on reste
+    expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-23')
+    fireEvent.keyDown(grid, { key: 'End' })
+    await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-24'))
+    fireEvent.keyDown(grid, { key: 'ArrowUp' })
     fireEvent.keyDown(grid, { key: 'Enter' })
     await waitFor(() => expect(sectorCodes()).toEqual(['1.01', '2.01', '3.01', '3.02']))
     fireEvent.keyDown(grid, { key: 'Enter', shiftKey: true })
     await screen.findByRole('dialog', { name: /23 décembre 2025/ })
+  })
+
+  it('heatmap : « Tout voir » par défaut, puis année scolaire et période libre ; plus de case de contraste (D-59)', async () => {
+    const store = await louStore()
+    render(<Harness store={store} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    const calendar = screen.getByRole('radiogroup', { name: 'Calendrier' })
+    expect(within(calendar).getAllByRole('radio').map((r) => [r.textContent, r.getAttribute('aria-checked')])).toEqual([
+      ['Tout voir', 'true'],
+      ['Année scolaire', 'false'],
+      ['Période libre', 'false'],
+    ])
+    expect(screen.queryByRole('checkbox', { name: /contraste/ })).toBeNull()
+    // Du premier au dernier jour : une semaine, trois cases documentées.
+    expect(document.querySelectorAll('[data-tile="timeline"] svg.carto-hm .carto-hm-cell')).toHaveLength(3)
+    // La légende ne dit que ce que la période contient : pas de silence (trois jours de suite, tous écrits), rien de décoché.
+    const legend = () => screen.getByLabelText('Légende de la heatmap').textContent
+    expect(legend()).not.toMatch(/silence|décochée|sans portfolio/)
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Année scolaire' }))
+    await screen.findByRole('grid', { name: /^Heatmap Année scolaire 2025–2026/ })
+    // Choisir l'année scolaire la fixe : c'est un choix, gardé tel quel.
+    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences).toMatchObject({ calendarMode: 'school', schoolYearStart: 2025 }))
+    expect(document.querySelectorAll('[data-tile="timeline"] svg.carto-hm .carto-hm-cell').length).toBeGreaterThan(300)
+    expect(legend()).toMatch(/silence/) // l'année entière : des jours sans rien
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Période libre' }))
+    await waitFor(() => expect(screen.getByLabelText('du')).toBeTruthy())
+    // Le pinceau ne survit pas à un changement de calendrier.
+    fireEvent.click(screen.getByRole('button', { name: 'Choisir au pinceau' }))
+    expect(screen.getByRole('button', { name: /Pinceau actif/ }).getAttribute('aria-pressed')).toBe('true')
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Tout voir' }))
+    await screen.findByRole('grid', { name: /^Heatmap 2025–2026/ })
+    expect(screen.queryByLabelText('du')).toBeNull()
+    expect(document.querySelector('[data-tile="timeline"] svg.carto-hm--brush')).toBeNull()
+  })
+
+  it('heatmap : une année scolaire jamais choisie (ancien défaut) s’affiche en « Tout voir »', async () => {
+    const store = await louStore()
+    const ds = await store.loadDataset('ds-lou')
+    await store.saveDataset({ ...ds, preferences: { ...ds.preferences, calendarMode: 'school', schoolYearStart: null, highContrast: true } })
+    render(<Harness store={store} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    expect(within(screen.getByRole('radiogroup', { name: 'Calendrier' })).getByRole('radio', { name: 'Tout voir' }).getAttribute('aria-checked')).toBe('true')
+    await screen.findByRole('grid', { name: /^Heatmap 2025–2026/ })
   })
 
   it('« Pourquoi cette surface ? » (touche w) liste les traces, leurs poids et les formules', async () => {

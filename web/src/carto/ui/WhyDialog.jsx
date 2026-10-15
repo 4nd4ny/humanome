@@ -34,7 +34,8 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
       <div ref={ref} className="carto-modal carto-modal--narrow" role="dialog" aria-modal="true" aria-labelledby="carto-why-title">
         <header className="carto-modal-head">
           <div>
-            <p className="carto-detail-kicker">Pourquoi cette surface ?</p>
+            {/* Un pôle n'a plus de surface à lui (D-58) : sa part du soleil seulement. */}
+            <p className="carto-detail-kicker">{selection.type === 'pole' ? 'Pourquoi cette part ?' : 'Pourquoi cette surface ?'}</p>
             <h2 id="carto-why-title">{title}</h2>
           </div>
           <button type="button" className="carto-btn" onClick={onClose}>
@@ -59,7 +60,8 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
                 </dd>
               </div>
               <div>
-                <dt>Confiance (hauteur)</dt>
+                {/* Un pôle n'a pas de hauteur à lui : son arc occupe tout l'anneau intérieur (D-58). */}
+                <dt>{e.type === 'pole' ? 'Confiance moyenne' : 'Confiance (hauteur)'}</dt>
                 <dd>{fmt(e.confidence)}</dd>
               </div>
               {opened ? (

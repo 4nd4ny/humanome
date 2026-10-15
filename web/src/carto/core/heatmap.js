@@ -176,7 +176,9 @@ export function calendarGrid({ from, to }) {
     weeks.push({ monday, days })
     monday = addDays(monday, 7)
   }
-  return { weeks, months }
+  // Un mois entamé à moins de deux semaines du suivant n'a pas la place de son
+  // nom (période commencée en fin de mois, « Tout voir », D-59) : on le tait.
+  return { weeks, months: months.filter((m, i) => i === months.length - 1 || months[i + 1].week - m.week >= 2) }
 }
 
 /**

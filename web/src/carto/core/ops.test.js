@@ -127,7 +127,9 @@ describe('normalisations et forme du conteneur', () => {
     delete legacy.preferences
     const up = upgradeDataset(legacy)
     expect(up.sets).toEqual([])
-    expect(up.preferences.calendarMode).toBe('school')
+    expect(up.preferences.calendarMode).toBe('all')
+    expect(up.preferences.params.poleRingPx).toBe(30)
+    expect('highContrast' in up.preferences).toBe(false)
     expect(upgradeDataset(up)).toEqual(up)
     expect(datasetErrors({ kind: 'x' })).toContain('kind ≠ competency-map-master')
   })

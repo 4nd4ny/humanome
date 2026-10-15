@@ -49,6 +49,7 @@ const detail = () => document.querySelector('[data-tile="detail"]')
 const reader = () => screen.queryByRole('region', { name: /^(lundi|mardi|mercredi|jeudi|vendredi|samedi|dimanche) / })
 const marks = (root) => [...root.querySelectorAll('.carto-reader-text mark.carto-hl')]
 const markedText = (root) => marks(root).map((m) => m.textContent).join('')
+const caption = (root) => root.querySelector('.carto-reader-quote figcaption')?.textContent ?? null
 
 async function openTraceButtons() {
   const section = await within(detail()).findByRole('region', { name: 'Traces de la compétence' })
@@ -80,17 +81,29 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     // Extrait « La maquette a cédé [...] en changeant les appuis. » : début ET fin.
     expect(markedText(r)).toBe('La maquette a cédé : nous avons recommencé en changeant les appuis')
     expect(marks(r).every((m) => m.classList.contains('carto-hl--complete'))).toBe(true)
-    expect(within(r).getByRole('status').textContent).toMatch(/début et fin, surligné en jaune/)
+    // Lu par les lecteurs d'écran : la trace et la journée d'abord, pour qu'un pas d'une trace à l'autre s'entende.
+    expect(within(r).getByRole('status').textContent).toBe('Trace 1 sur 3, mardi 23 décembre 2025 : Passage surligné.')
     expect(within(r).getByText(/trace 1 sur 3/)).toBeTruthy()
+    // Retrouvé, l'extrait se lit surligné : il n'est pas cité une seconde fois (D-56).
+    expect(within(r).queryByText(/Extrait cité par le jury/)).toBeNull()
+    expect(r.querySelector('.carto-reader-quote')).toBeNull()
+    // Rien que la journée, ses deux triangles et la fermeture : plus de navigation par jour.
+    expect(within(r).getAllByRole('button').map((b) => b.getAttribute('aria-label') ?? b.textContent)).toEqual(['Trace précédente', 'Trace suivante', 'Fermer le lecteur'])
+    expect(within(r).getByRole('button', { name: 'Trace précédente' }).getAttribute('aria-disabled')).toBe('true')
     // Aucun <mark> n'englobe un paragraphe.
     expect(r.querySelector('mark p, mark div')).toBeNull()
 
-    fireEvent.click(within(r).getByRole('button', { name: 'Trace suivante →' }))
+    fireEvent.click(within(r).getByRole('button', { name: 'Trace suivante' }))
     const r2 = await screen.findByRole('region', { name: 'mercredi 24 décembre 2025' })
     await waitFor(() => expect(markedText(r2)).toMatch(/^Troisième essai de la maquette.*dans un tableau$/))
     expect(within(r2).getByText(/trace 2 sur 3/)).toBeTruthy()
 
-    fireEvent.click(within(r2).getByRole('button', { name: 'Retour à la compétence' }))
+    // ← revient à la trace précédente, comme le triangle de gauche.
+    fireEvent.keyDown(r2.querySelector('#carto-reader-title'), { key: 'ArrowLeft' })
+    const r3 = await screen.findByRole('region', { name: 'mardi 23 décembre 2025' })
+    expect(within(r3).getByText(/trace 1 sur 3/)).toBeTruthy()
+
+    fireEvent.click(within(r3).getByRole('button', { name: 'Fermer le lecteur' }))
     await waitFor(() => expect(reader()).toBeNull())
     expect(within(detail()).getByRole('heading', { name: /3\.02 Itération/ })).toBeTruthy()
   })
@@ -117,10 +130,11 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     fireEvent.click(sector('2.01 '))
     fireEvent.click((await openTraceButtons())[0])
     const r = await screen.findByRole('region', { name: 'mercredi 24 décembre 2025' })
-    await waitFor(() => expect(within(r).getByRole('status').textContent).toMatch(/retrouvé tel quel dans la feuille du 24 décembre 2025, alors que la trace est datée du 23 décembre 2025/))
+    await waitFor(() => expect(within(r).getByRole('status').textContent).toBe('mercredi 24 décembre 2025 : Passage surligné dans cette feuille ; la trace est datée du 23 décembre 2025.'))
     expect(markedText(r)).toMatch(/^J’ai écouté Sam/)
-    fireEvent.click(within(r).getByRole('button', { name: /Lire la journée de la trace/ }))
-    await screen.findByRole('region', { name: 'mardi 23 décembre 2025' })
+    // Le titre dit la journée lue ; la ligne de la trace, la date que lui donne l'analyse.
+    expect(r.querySelector('.carto-reader-sub').textContent).toBe('preuve, datée du 23 décembre 2025')
+    expect(r.querySelector('.carto-reader-quote')).toBeNull()
   })
 
   it('passage introuvable : le volet le dit et cite l’extrait du jury', async () => {
@@ -129,8 +143,9 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     fireEvent.click(sector('2.01 '))
     fireEvent.click((await openTraceButtons())[0])
     const r = await screen.findByRole('region', { name: 'mardi 23 décembre 2025' })
-    await waitFor(() => expect(within(r).getByRole('status').textContent).toMatch(/Passage non retrouvé dans le portfolio importé/))
-    expect(within(r).getByText('Extrait cité par le jury')).toBeTruthy()
+    await waitFor(() => expect(caption(r)).toBe('Extrait cité par le jury, introuvable tel quel dans le portfolio.'))
+    expect(r.querySelector('.carto-reader-quote blockquote').textContent).toMatch(/^J’ai écouté Sam/)
+    expect(within(r).getByRole('status').textContent).toBe('mardi 23 décembre 2025 : Extrait cité par le jury, introuvable tel quel dans le portfolio.')
     expect(marks(r)).toHaveLength(0)
   })
 
@@ -143,19 +158,22 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     fireEvent.click(sector('2.01 '))
     fireEvent.click((await openTraceButtons())[0])
     const r = await screen.findByRole('region', { name: 'mardi 23 décembre 2025' })
-    await waitFor(() => expect(within(r).getByRole('status').textContent).toMatch(/^Passage approché : l’extrait du jury ne figure pas mot pour mot dans le portfolio/))
-    expect(within(r).getByRole('status').textContent).toMatch(/La phrase la plus proche, qui en contient 75 % des mots, est encadrée en pointillés : à vérifier/)
+    await waitFor(() => expect(caption(r)).toBe('Extrait cité par le jury, reformulé par l’analyse : la phrase encadrée en pointillés en est la plus proche, à vérifier.'))
+    expect(within(r).getByRole('status').textContent).not.toMatch(/retrouvé|surligné/)
     expect(marks(r).every((m) => m.classList.contains('carto-hl--approx'))).toBe(true)
     expect(markedText(r)).toBe('expliquer son idée jusqu’au bout sans être interrompu, puis j’ai reformulé ce que j’en avais compris')
-    expect(within(r).getByText('Extrait cité par le jury')).toBeTruthy()
+    expect(r.querySelector('.carto-reader-quote blockquote').textContent).toMatch(/^J’ai écouté Sam/)
   })
 
-  it('sans portfolio importé : le volet invite à l’importer', async () => {
+  it('sans portfolio importé : l’extrait du jury est cité, et le volet dit comment le lire surligné', async () => {
     await mount(await storeWith(louFiles({ portfolio: null })))
     fireEvent.click(sector('1.01 '))
     fireEvent.click((await openTraceButtons())[0])
     const r = await screen.findByRole('region', { name: 'lundi 22 décembre 2025' })
-    await waitFor(() => expect(within(r).getByRole('status').textContent).toMatch(/Aucun portfolio importé/))
+    await waitFor(() => expect(caption(r)).toBe('Extrait cité par le jury. Importez le portfolio (.md) pour le lire surligné dans son texte.'))
+    expect(r.querySelector('.carto-reader-quote blockquote').textContent.length).toBeGreaterThan(0)
+    // La légende des couleurs n'a rien à expliquer ici.
+    expect(r.querySelector('.carto-reader-note mark')).toBeNull()
   })
 
   it('deux occurrences : navigation de l’une à l’autre', async () => {
@@ -166,7 +184,10 @@ describe('P2 — lecteur de portfolio surligné (critère d’acceptation)', () 
     const r = await screen.findByRole('region', { name: 'mercredi 24 décembre 2025' })
     await waitFor(() => expect(within(r).getByText('Occurrence 1 sur 2')).toBeTruthy())
     expect(r.querySelector('.carto-reader-text mark.carto-hl--current').getAttribute('data-occurrence')).toBe('0')
-    fireEvent.click(within(r).getByRole('button', { name: 'Suivante →' }))
+    // Les flèches, depuis les occurrences, ne changent pas de trace.
+    fireEvent.keyDown(within(r).getByRole('button', { name: 'Occurrence suivante' }), { key: 'ArrowRight' })
+    expect(within(r).getByText('Occurrence 1 sur 2')).toBeTruthy()
+    fireEvent.click(within(r).getByRole('button', { name: 'Occurrence suivante' }))
     expect(within(r).getByText('Occurrence 2 sur 2')).toBeTruthy()
     expect(r.querySelector('.carto-reader-text mark.carto-hl--current').getAttribute('data-occurrence')).toBe('1')
   })

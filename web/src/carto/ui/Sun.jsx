@@ -1,11 +1,15 @@
 // Interface ultime — le soleil (spec §5.4–§5.6, §6.1).
 //
 // Deux anneaux FIXES : pôles à l'intérieur, compétences à l'extérieur. Angle =
-// part des points (Σ des poids des traces) ; hauteur = confiance moyenne du jury
-// (r_ext² = r_int² + k·C) ; la surface est donc proportionnelle à confiance × points. Ordre angulaire du
-// référentiel, départ à −90°. Cercles guides pointillés = échelle de confiance
-// (0,25 · 0,5 · 0,75 · 1), pas des niveaux. Secteurs de renvoi hachurés sans
-// changer leur surface. Disque central = retour à la racine / désélection.
+// part des points (Σ des poids des traces) ; hauteur d'une compétence =
+// confiance moyenne du jury (r_ext² = r_int² + k·C) ; sa surface est donc
+// proportionnelle à confiance × points. L'anneau des pôles est un élément
+// d'interface (journal D-58) : chaque pôle en occupe toute la hauteur, son nom
+// écrit le long de l'arc quand il y tient ; son épaisseur est un réglage (0 :
+// pas d'anneau). Ordre angulaire du référentiel, départ à −90°. Cercles guides
+// pointillés = échelle de confiance des compétences (0,25 · 0,5 · 0,75 · 1),
+// pas des niveaux. Secteurs de renvoi hachurés sans changer leur surface.
+// Disque central = retour à la racine / désélection.
 //
 // Pôle ouvert sur 360° (journal D-45) : un double-clic sur un arc de pôle (ou
 // « o », Maj+Entrée) l'ouvre — ses seules compétences occupent tout le cercle,
@@ -15,8 +19,9 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { inkOn, poleFill } from './colors.js'
+import { labelInk, poleFill, themeColor, themed } from './colors.js'
 import { poleShortName } from '../core/referential.js'
+import { ringShown } from '../core/formulas.js'
 import { formatShort } from '../core/dates.js'
 import { easeInOutCubic, interpolateSunLayout, poleLabelAngle } from './sunTransition.js'
 
@@ -25,6 +30,9 @@ export const ZOOM_MS = 480
 
 /** Longueur d'arc minimale (unités du dessin) pour écrire le code d'une compétence. */
 const CODE_LABEL_PX = 22
+
+/** Corps du nom d'un pôle (unités du dessin) ; il s'écrit le long de son arc. */
+const POLE_LABEL_SIZE = 8.5
 
 /**
  * Ce que le soleil montre quand le pôle ouvert change : les trames qui mènent
@@ -103,6 +111,28 @@ export function sectorPath(r0, r1, a0, a1) {
   return `M ${pt(r0, a0)} A ${r0} ${r0} 0 ${large} 1 ${pt(r0, a1)} L ${pt(r1, a1)} A ${r1} ${r1} 0 ${large} 0 ${pt(r1, a0)} Z`
 }
 
+/**
+ * Arc qui porte le nom d'un pôle : au rayon r, centré sur l'angle `mid`, long
+ * de `span` radians (moins d'un demi-tour). Il se lit de gauche à droite, donc
+ * se parcourt à rebours dans la moitié basse du soleil.
+ */
+export function labelArc(r, mid, span) {
+  const half = Math.min(span, Math.PI * 0.95) / 2
+  return Math.sin(mid) > 1e-6
+    ? `M ${pt(r, mid + half)} A ${r} ${r} 0 0 0 ${pt(r, mid - half)}`
+    : `M ${pt(r, mid - half)} A ${r} ${r} 0 0 1 ${pt(r, mid + half)}`
+}
+
+/**
+ * Le nom d'un pôle tient-il sur son arc ? Longueur estimée du mot (la police
+ * du site est presque à chasse fixe), marge comprise, et anneau assez épais.
+ */
+export function poleLabelFits(name, s) {
+  const r = (s.rIn + s.rOut) / 2
+  const room = Math.min(s.a1 - s.a0, Math.PI * 0.95) * r
+  return s.rOut - s.rIn >= POLE_LABEL_SIZE + 3 && room >= name.length * POLE_LABEL_SIZE * 0.62 + 6
+}
+
 const PATTERN_SHAPES = {
   solid: null,
   diagonal: <path d="M0 6 L6 0" />,
@@ -142,14 +172,15 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
     onSelect({ type: 'pole', num })
   }
 
+  // Échelle de confiance des compétences seulement : l'anneau des pôles ne mesure rien (D-58).
   const guides = useMemo(() => {
-    const out = []
-    for (const ring of [geometry.poles, geometry.competencies]) {
-      for (const c of [0.25, 0.5, 0.75, 1]) out.push(Math.sqrt(ring.rIn ** 2 + geometry.k * c))
-      out.push(ring.rIn)
-    }
-    return out
+    if (!ringShown(geometry.competencies)) return []
+    const ring = geometry.competencies
+    return [...[0.25, 0.5, 0.75, 1].map((c) => ({ r: Math.sqrt(ring.rIn ** 2 + geometry.k * c), base: false })), { r: ring.rIn, base: true }]
   }, [geometry])
+  // Un anneau d'épaisseur nulle (réglage de l'anneau des pôles) n'a rien à dessiner, ni à atteindre au clavier.
+  const poleSectors = ringShown(geometry.poles) ? display.poles : []
+  const leafSectors = ringShown(geometry.competencies) ? display.competencies : []
 
   const isSelected = (t) =>
     selection && ((selection.type === 'competency' && t.type === 'competency' && selection.code === t.code) || (selection.type === 'pole' && t.type === 'pole' && selection.num === t.num))
@@ -264,11 +295,11 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
             : null}
         </defs>
 
-        {guides.map((r, i) => (
-          <circle key={i} r={r} className={`carto-sun-guide${i % 5 === 4 ? ' carto-sun-guide--base' : ''}`} />
+        {guides.map((g) => (
+          <circle key={g.r} r={g.r} className={`carto-sun-guide${g.base ? ' carto-sun-guide--base' : ''}`} />
         ))}
 
-        {display.poles.map((s) => {
+        {poleSectors.map((s) => {
           const p = refl.poleByNum.get(s.num)
           const target = { type: 'pole', num: s.num }
           const how = zoomable ? (zoomed ? ` ; double-clic ou o : ${back.phrase}` : ' ; double-clic ou o : ouvrir ce pôle sur 360°') : ''
@@ -276,26 +307,35 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           // Un anneau entier (pôle ouvert) porte son nom en haut ; pendant
           // l'ouverture, le nom y glisse depuis le milieu de l'arc.
           const labelAngle = poleLabelAngle(s)
+          const short = poleShortName(p)
+          const labelId = `${uid}-pl${s.num}`
           return (
             <g key={`p${s.num}`} className={`carto-sun-sector${related(target) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}`} style={fade(s)}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={poleFill(p.color)} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
+              <path
+                d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
+                className="carto-c-fill"
+                style={themed(poleFill(p.color), poleFill(p.color, 'dark'))}
+                fillRule="evenodd"
+                {...sectorProps(target, name, s.transient)}
+              />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {!compact && s.a1 - s.a0 > 0.42 ? (
-                <text
-                  className="carto-sun-pole-label"
-                  x={((s.rIn + s.rOut) / 2) * Math.cos(labelAngle)}
-                  y={((s.rIn + s.rOut) / 2) * Math.sin(labelAngle)}
-                  aria-hidden="true"
-                >
-                  {poleShortName(p)}
-                </text>
+              {/* Pas de nom pendant l'ouverture : il glisserait d'un bord à l'autre de l'arc. */}
+              {!compact && !moving && poleLabelFits(short, s) ? (
+                <>
+                  <path id={labelId} d={labelArc((s.rIn + s.rOut) / 2, labelAngle, s.a1 - s.a0)} fill="none" stroke="none" pointerEvents="none" />
+                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(labelInk(poleFill(p.color)), labelInk(poleFill(p.color, 'dark')))}>
+                    <textPath href={`#${labelId}`} startOffset="50%">
+                      {short}
+                    </textPath>
+                  </text>
+                </>
               ) : null}
             </g>
           )
         })}
 
-        {display.competencies.map((s) => {
+        {leafSectors.map((s) => {
           const p = refl.poleByNum.get(s.pole)
           const c = refl.compByCode.get(s.code)
           const target = { type: 'competency', code: s.code }
@@ -312,11 +352,23 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           const aMid = (s.a0 + s.a1) / 2
           return (
             <g key={s.code} className={`carto-sun-sector${related({ ...target, pole: s.pole }) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}${lit ? ' is-lit' : ''}`} style={fade(s)}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={p.color} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
+              <path
+                d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
+                className="carto-c-fill"
+                style={themed(p.color, themeColor(p.color, 'dark'))}
+                fillRule="evenodd"
+                {...sectorProps(target, name, s.transient)}
+              />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.pole})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
               {showCode ? (
-                <text className="carto-sun-code-label" x={rCode * Math.cos(aMid)} y={rCode * Math.sin(aMid)} style={thick ? { fill: inkOn(p.color) } : undefined} aria-hidden="true">
+                <text
+                  className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}
+                  x={rCode * Math.cos(aMid)}
+                  y={rCode * Math.sin(aMid)}
+                  style={thick ? themed(labelInk(p.color), labelInk(themeColor(p.color, 'dark'))) : undefined}
+                  aria-hidden="true"
+                >
                   {s.code}
                 </text>
               ) : null}

@@ -1,12 +1,20 @@
-// Interface ultime — panneau de la heatmap : choix du calendrier (année
-// scolaire août–juillet ou période libre, éventuellement au pinceau), bandes
-// empilées, légende, statut de la case active et bouton « Ouvrir ce jour »
-// (indispensable au tactile, où le double-clic n'existe pas).
+// Interface ultime — panneau de la heatmap : choix du calendrier (« Tout voir »
+// du premier au dernier jour, par défaut ; année scolaire août–juillet ;
+// période libre, éventuellement au pinceau), bandes empilées, légende, statut
+// de la case active et bouton « Ouvrir ce jour » (indispensable au tactile, où
+// le double-clic n'existe pas). Contraste renforcé toujours appliqué (D-59).
 
 import { useState } from 'react'
 import { HeatmapBand, HeatmapLegend, cellLabel } from './Heatmap.jsx'
 import { periodBands } from '../core/heatmap.js'
+import { calendarModeOf } from '../core/model.js'
 import { formatShort, isIsoDate, schoolYearStarting } from '../core/dates.js'
+
+const MODES = [
+  ['all', 'Tout voir'],
+  ['school', 'Année scolaire'],
+  ['free', 'Période libre'],
+]
 
 /**
  * @param {{
@@ -18,22 +26,31 @@ import { formatShort, isIsoDate, schoolYearStarting } from '../core/dates.js'
  */
 export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, observed, inspected = null, markers = [], onPrefs, onFocusDate, onSetT, onOpenDay }) {
   const [brush, setBrush] = useState(false)
-  const mode = prefs.calendarMode === 'free' ? 'free' : 'school'
-  const bands = mode === 'school' ? [schoolYearStarting(schoolYear)].map((sy) => ({ from: sy.start, to: sy.end, label: `Année scolaire ${sy.label}` })) : periodBands(period, 'free')
+  const mode = calendarModeOf(prefs)
+  // « Tout voir » se range par années scolaires, coupées au premier et au dernier jour.
+  const bands =
+    mode === 'school'
+      ? [schoolYearStarting(schoolYear)].map((sy) => ({ from: sy.start, to: sy.end, label: `Année scolaire ${sy.label}` }))
+      : periodBands(period, mode === 'all' ? 'school' : 'free')
+  // Choisir l'année scolaire fixe l'année affichée : c'est ce qui la distingue de l'ancien défaut.
+  const choose = (m) => {
+    // Le pinceau n'existe qu'en période libre : il ne survit pas à un changement de calendrier.
+    setBrush(false)
+    onPrefs(m === 'school' ? { calendarMode: 'school', schoolYearStart: schoolYear } : { calendarMode: m })
+  }
   const status = focusDate ? cellLabel(focusDate, model.cells.get(focusDate) ?? null, { mode: model.mode, t, observed: observed?.has(focusDate) ?? false }) : 'Choisissez un jour : clic pour fixer la date t, double-clic pour l’ouvrir.'
 
   return (
     <section className="carto-heatmap" aria-label="Heatmap des journées">
       <div className="carto-heatmap-controls">
         <div role="radiogroup" aria-label="Calendrier" className="carto-seg">
-          <button type="button" role="radio" aria-checked={mode === 'school'} onClick={() => onPrefs({ calendarMode: 'school' })}>
-            Année scolaire
-          </button>
-          <button type="button" role="radio" aria-checked={mode === 'free'} onClick={() => onPrefs({ calendarMode: 'free' })}>
-            Période libre
-          </button>
+          {MODES.map(([m, label]) => (
+            <button key={m} type="button" role="radio" aria-checked={mode === m} onClick={() => choose(m)}>
+              {label}
+            </button>
+          ))}
         </div>
-        {mode === 'school' ? (
+        {mode === 'all' ? null : mode === 'school' ? (
           <div className="carto-year-nav">
             <button type="button" className="carto-btn carto-btn--quiet" aria-label="Année scolaire précédente" onClick={() => onPrefs({ schoolYearStart: schoolYear - 1 })}>
               ←
@@ -57,9 +74,6 @@ export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, o
             </button>
           </div>
         )}
-        <label className="carto-small">
-          <input type="checkbox" checked={Boolean(prefs.highContrast)} onChange={(e) => onPrefs({ highContrast: e.target.checked })} /> contraste renforcé
-        </label>
       </div>
       {bands.map((band) => (
         <HeatmapBand
@@ -70,7 +84,6 @@ export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, o
           focusDate={focusDate}
           observed={observed}
           inspected={inspected}
-          highContrast={prefs.highContrast}
           markers={markers}
           brush={brush}
           onBrush={(range) => {
@@ -90,7 +103,7 @@ export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, o
           Ouvrir ce jour{focusDate ?? t ? ` (${formatShort(focusDate ?? t)})` : ''}
         </button>
       </div>
-      <HeatmapLegend model={model} highContrast={prefs.highContrast} />
+      <HeatmapLegend model={model} period={mode === 'school' ? { from: bands[0].from, to: bands[0].to } : period} />
     </section>
   )
 }

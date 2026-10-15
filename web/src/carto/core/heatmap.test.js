@@ -48,6 +48,14 @@ describe('calendrier (§5.8)', () => {
     expect(weeks.length).toBe(53)
     expect(months.map((m) => m.label)).toEqual(['août', 'sept.', 'oct.', 'nov.', 'déc.', 'janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.'])
   })
+  it('un mois entamé une semaine avant le suivant ne garde pas son nom (il chevaucherait celui du suivant)', () => {
+    const { months } = calendarGrid({ from: '2025-12-22', to: '2026-03-29' })
+    expect(months.map((m) => [m.label, m.week])).toEqual([
+      ['janv.', 1],
+      ['févr.', 5],
+      ['mars', 9],
+    ])
+  })
   it('bandes empilées : par année scolaire ou civile', () => {
     expect(periodBands({ from: '2025-06-01', to: '2026-09-30' }, 'school').map((b) => b.label)).toEqual(['2024–2025', '2025–2026', '2026–2027'])
     expect(periodBands({ from: '2025-06-01', to: '2026-09-30' }, 'free').map((b) => b.label)).toEqual(['2025', '2026'])

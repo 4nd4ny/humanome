@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   DEFAULT_PARAMS,
+  POLE_RING_MAX,
   annularSectorArea,
   anglesFromPoints,
   decayFactor,
@@ -12,6 +13,8 @@ import {
   poleConfidence,
   resolveParams,
   ringGeometry,
+  ringShown,
+  sunGeometry,
   tracePoints,
   widenNarrowSectors,
   toRadians,
@@ -121,25 +124,47 @@ describe('confiance moyenne du jury (« cumulée » au §5.5)', () => {
 describe('anneaux fixes et surface (§5.6)', () => {
   const g = ringGeometry({ outerRadius: 200, centerRadius: 24, gap: 4 })
 
-  it('les deux anneaux ont la même capacité k', () => {
-    expect(g.poles.rOut ** 2 - g.poles.rIn ** 2).toBeCloseTo(g.k, 6)
-    expect(g.competencies.rOut ** 2 - g.competencies.rIn ** 2).toBeCloseTo(g.k, 6)
-    expect(g.competencies.rIn - g.poles.rOut).toBeCloseTo(4)
-    expect(g.competencies.rOut).toBe(200)
+  it('anneau des pôles : par défaut de l’épaisseur du centre ; les compétences prennent le reste après l’écart (D-58)', () => {
+    expect(g.poles).toEqual({ rIn: 24, rOut: 48 })
+    expect(g.competencies).toEqual({ rIn: 52, rOut: 200 })
+    expect(g.k).toBeCloseTo(200 ** 2 - 52 ** 2, 6)
   })
-  it('C = 1 atteint le bord de l’anneau, C = 0 reste au rayon intérieur', () => {
+  it('C = 1 atteint le bord de l’anneau des compétences, C = 0 reste au rayon intérieur', () => {
     expect(outerRadiusFor(g.competencies.rIn, g.k, 1)).toBeCloseTo(g.competencies.rOut)
-    expect(outerRadiusFor(g.poles.rIn, g.k, 1)).toBeCloseTo(g.poles.rOut)
-    expect(outerRadiusFor(g.poles.rIn, g.k, 0)).toBeCloseTo(g.poles.rIn)
+    expect(outerRadiusFor(g.competencies.rIn, g.k, 0)).toBeCloseTo(g.competencies.rIn)
   })
-  it('aire = θ·k·C/2 quel que soit l’anneau', () => {
+  it('aire d’une compétence = θ·k·C/2', () => {
     for (const [deg, c] of [[360, 1], [180, 0.5], [37.5, 0.83], [1, 0.05]]) {
       const theta = toRadians(deg)
-      for (const ring of [g.poles, g.competencies]) {
-        const area = annularSectorArea(theta, ring.rIn, outerRadiusFor(ring.rIn, g.k, c))
-        expect(area).toBeCloseTo(encodedArea(theta, g.k, c), 6)
-      }
+      const area = annularSectorArea(theta, g.competencies.rIn, outerRadiusFor(g.competencies.rIn, g.k, c))
+      expect(area).toBeCloseTo(encodedArea(theta, g.k, c), 6)
     }
+  })
+  it('épaisseur réglable de l’anneau des pôles : 0 le masque (sans écart), le maximum masque les compétences', () => {
+    const none = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 0, gap: 5 })
+    expect(ringShown(none.poles)).toBe(false)
+    expect(none.competencies).toEqual({ rIn: 30, rOut: 190 })
+    const all = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 160, gap: 5 })
+    expect(all.poles).toEqual({ rIn: 30, rOut: 190 })
+    expect(ringShown(all.competencies)).toBe(false)
+    expect(all.k).toBe(0)
+    // L'écart avalerait les compétences : l'anneau des pôles va jusqu'au bord, sans bande vide.
+    const almost = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 155, gap: 5 })
+    expect(almost.poles.rOut).toBe(190)
+    expect(ringShown(almost.competencies)).toBe(false)
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 150, gap: 5 }).competencies).toEqual({ rIn: 185, rOut: 190 })
+    // Hors bornes : ramenée dans les bornes.
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 500 }).poles.rOut).toBe(190)
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: -8 }).poles.rOut).toBe(30)
+  })
+  it('le soleil de l’interface : 190 de rayon, centre de 30, anneau des pôles de 30 → feuilles de 65 à 190', () => {
+    const sun = sunGeometry(DEFAULT_PARAMS)
+    expect([sun.center, sun.poles.rIn, sun.poles.rOut, sun.competencies.rIn, sun.competencies.rOut]).toEqual([30, 30, 60, 65, 190])
+    expect(POLE_RING_MAX).toBe(160)
+    expect(sunGeometry(resolveParams({ poleRingPx: 160 })).poles.rOut).toBe(190)
+    // Un réglage d'affichage illisible revient au défaut au lieu de bloquer l'affichage.
+    expect(resolveParams({ poleRingPx: Number.NaN }).poleRingPx).toBe(30)
+    expect(resolveParams({ poleRingPx: 999 }).poleRingPx).toBe(160)
   })
   it('épaisseur minimale d’affichage : signalée, jamais silencieuse', () => {
     const tiny = displayedOuterRadius(g.competencies.rIn, g.k, 0.0005, 2)

@@ -68,19 +68,31 @@ export const VARIANT_CHOICES = ['auto', 'learner', 'pending', 'examine']
 
 /** Préférences par défaut (§4.1 « preferences », §5.8). */
 export const DEFAULT_PREFERENCES = Object.freeze({
-  calendarMode: 'school', // 'school' (août–juillet) | 'free'
+  calendarMode: 'all', // 'all' (du premier au dernier jour, D-59) | 'school' (août–juillet) | 'free'
   schoolYearStart: null, // année de début affichée (null = celle de la dernière journée)
   freeRange: null, // {from, to}
   reinforced: false, // distinctions renforcées (motifs)
-  highContrast: false, // écran de contraste renforcé de la heatmap
   reducedMotion: 'system', // 'system' | 'reduce' | 'no-preference'
   speed: 1,
-  params: { alpha: DEFAULT_PARAMS.alpha, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
+  params: { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
   dashboardHidden: [], // cartes masquées du tableau de bord
   compare: null, // dernière comparaison A/B : {a: {name, def}, b: {name, def}, view}
   dashboardLayout: null, // grille de tuiles du tableau de bord : {order, sizes}
   momentsSensitivity: 50, // curseur des moments remarquables (0–100, pas de 5)
 })
+
+/**
+ * Calendrier de la heatmap (journal D-59) : « Tout voir », du premier au
+ * dernier jour du jeu, par défaut ; « Année scolaire » ; « Période libre ».
+ * Une année scolaire sans année choisie est l'ancien défaut, jamais un choix
+ * (choisir « Année scolaire » fixe l'année affichée) : elle vaut « Tout voir ».
+ * @returns {'all'|'school'|'free'}
+ */
+export function calendarModeOf(prefs) {
+  if (prefs?.calendarMode === 'free') return 'free'
+  if (prefs?.calendarMode === 'school' && prefs?.schoolYearStart != null) return 'school'
+  return 'all'
+}
 
 // ---------------------------------------------------------------------------
 // Normalisations
@@ -253,6 +265,44 @@ export function hasPortfolio(day) {
   return Boolean(day?.portfolio && day.portfolio.chars > 0)
 }
 
+/**
+ * Ce qu'un jeu contient des données de la personne, compté : imports,
+ * dialogues du carnet, réponses au jury, ensembles, repères, comparaisons,
+ * passages sans date.
+ */
+export function demoBaseline(ds) {
+  return {
+    importLog: ds?.importLog?.length ?? 0,
+    reflections: ds?.reflections?.length ?? 0,
+    reviews: Object.keys(ds?.reviews ?? {}).length,
+    sets: ds?.sets?.length ?? 0,
+    markers: ds?.markers?.length ?? 0,
+    comparisons: ds?.comparisons?.length ?? 0,
+    undated: ds?.portfolio?.undated?.length ?? 0,
+  }
+}
+
+/**
+ * La démonstration publique telle que chargée, intacte : elle se recharge
+ * depuis le site (et se met à jour d'elle-même, journal D-57). Dès que la
+ * personne y met quelque chose à elle (un import, une réponse au jury, un
+ * dialogue du carnet, un ensemble, un repère, une note), ce sont ses données :
+ * elles partent avec l'archive et ne sont jamais remplacées.
+ *
+ * Sans `baseline`, rien de tout cela (un seul import, celui de la
+ * démonstration) ; avec, exactement ce que la démonstration apportait
+ * d'elle-même à son chargement (une archive déposée peut contenir des
+ * ensembles ou des repères).
+ * @param {object} ds
+ * @param {ReturnType<typeof demoBaseline> | null} [baseline]
+ */
+export function isPristineDemo(ds, baseline = null) {
+  if (ds?.origin !== 'demo') return false
+  const now = demoBaseline(ds)
+  if (baseline) return Object.keys(now).every((k) => now[k] === (baseline[k] ?? 0))
+  return now.importLog <= 1 && Object.entries(now).every(([k, v]) => k === 'importLog' || v === 0)
+}
+
 /** Clé d'une observation (droit de réponse) : jour + variante + compétence. */
 export function observationKey(date, variantId, code) {
   return `${date}|${variantId}|${code}`
@@ -360,6 +410,8 @@ export function upgradeDataset(doc) {
   ds.portfolio ??= null
   ds.preferences = { ...structuredClone(DEFAULT_PREFERENCES), ...(ds.preferences ?? {}) }
   ds.preferences.params = { ...DEFAULT_PREFERENCES.params, ...(ds.preferences.params ?? {}) }
+  // Le contraste renforcé de la heatmap est désormais toujours appliqué (D-59).
+  delete ds.preferences.highContrast
   for (const d of ds.days) {
     d.tags ??= []
     d.active ??= true

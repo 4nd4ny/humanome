@@ -11,8 +11,8 @@ import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'r
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
-import { resolveParams, ringGeometry } from '../core/formulas.js'
-import { contributingVariant, todoCount } from '../core/model.js'
+import { DEFAULT_PARAMS, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
+import { calendarModeOf, contributingVariant, todoCount } from '../core/model.js'
 import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
 import { Sun, SunTable } from './Sun.jsx'
@@ -51,8 +51,6 @@ export const SPACES = [
   ['export', 'Export', '#/cartographie/export'],
   ['partage', 'Partage', '#/cartographie/partage'],
 ]
-
-const GEOMETRY = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5 })
 
 const initialUi = {
   t: null,
@@ -177,6 +175,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
 
   const prefs = dataset?.preferences
   const params = useMemo(() => resolveParams(prefs?.params ?? {}), [prefs?.params])
+  // L'épaisseur de l'anneau des pôles est un réglage (D-58).
+  const geometry = useMemo(() => sunGeometry(params), [params])
   const reducedMotion = usePrefersReducedMotion(prefs?.reducedMotion ?? 'system')
 
   const frames = useMemo(
@@ -186,20 +186,24 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const activeDates = useMemo(() => (dataset ? dataset.days.filter((d) => d.active).map((d) => d.date) : []), [dataset])
 
   const state = useMemo(() => (dataset && refl ? computeState(dataset, { ref: refl, until: ui.t, params }) : null), [dataset, refl, ui.t, params])
-  const layout = useMemo(() => (state ? layoutSun(state, refl, GEOMETRY, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null), [state, refl, params])
+  const layout = useMemo(() => (state ? layoutSun(state, refl, geometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null), [state, refl, params, geometry])
   // Pôle ouvert sur 360° (D-45) : le soleil de ce seul pôle, à la place du soleil principal.
   const zoomLayout = useMemo(
-    () => (state && ui.zoom != null ? layoutPole(state, refl, GEOMETRY, ui.zoom, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null),
-    [state, refl, params, ui.zoom],
+    () => (state && ui.zoom != null ? layoutPole(state, refl, geometry, ui.zoom, { minThickness: params.minThicknessPx, minArc: params.minArcPx }) : null),
+    [state, refl, params, geometry, ui.zoom],
   )
 
   const allDates = useMemo(() => (dataset ? dataset.days.map((d) => d.date) : []), [dataset])
   const span = useMemo(() => dateRange(allDates), [allDates])
   const schoolYear = prefs?.schoolYearStart ?? Number(schoolYearOf(span?.to ?? new Date().toISOString().slice(0, 10)).start.slice(0, 4))
+  const calendarMode = calendarModeOf(prefs)
   const period = useMemo(() => {
-    if (prefs?.calendarMode === 'free') return prefs.freeRange ?? span ?? { from: `${schoolYear}-08-01`, to: `${schoolYear + 1}-07-31` }
-    return { from: `${schoolYear}-08-01`, to: `${schoolYear + 1}-07-31` }
-  }, [prefs?.calendarMode, prefs?.freeRange, span, schoolYear])
+    const school = { from: `${schoolYear}-08-01`, to: `${schoolYear + 1}-07-31` }
+    if (calendarMode === 'free') return prefs.freeRange ?? span ?? school
+    // « Tout voir » (défaut, D-59) : du premier au dernier jour du jeu.
+    if (calendarMode === 'all') return span ?? school
+    return school
+  }, [calendarMode, prefs?.freeRange, span, schoolYear])
 
   const heat = useMemo(() => (dataset && refl ? buildHeatmap(dataset, { ref: refl, period, params }) : null), [dataset, refl, period, params])
 
@@ -321,7 +325,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   if (data.status === 'loading') {
     return (
       <div className="carto-app carto-app--center" aria-busy="true">
-        <p role="status">Ouverture de vos cartographies…</p>
+        <p role="status">{data.busy ?? 'Ouverture de vos cartographies…'}</p>
       </div>
     )
   }
@@ -330,7 +334,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     return <Onboarding data={data} />
   }
 
-  const ctx = { data, dataset, refl, ui, dispatch, state, layout, params, geometry: GEOMETRY, frames, activeDates, heat, period, openDay, setT, select }
+  const ctx = { data, dataset, refl, ui, dispatch, state, layout, params, geometry, frames, activeDates, heat, period, openDay, setT, select }
 
   const resetDisplay = () => {
     setTiles(defaultTilesLayout())
@@ -347,7 +351,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           refl={refl}
           state={state}
           layout={zoomLayout ?? layout}
-          geometry={GEOMETRY}
+          geometry={geometry}
           selection={ui.selection}
           hover={ui.hover}
           reinforced={Boolean(prefs.reinforced)}
@@ -442,7 +446,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     ),
     legend: (
       <>
-        <SunLegend />
+        <SunLegend poleRing={ringShown(geometry.poles)} />
         <p className="carto-small carto-muted">Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}</p>
         <label className="carto-small carto-sun-options">
           <input type="checkbox" checked={Boolean(prefs.reinforced)} onChange={(e) => onPrefs({ reinforced: e.target.checked })} /> distinctions renforcées (motifs par pôle)
@@ -472,7 +476,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         <DatasetSection bare dataset={dataset} datasets={data.datasets} onOpenDataset={data.openDataset} onDeleteDataset={data.deleteDataset} />
       </>
     ),
-    settings: <EncodingSettings bare params={params} onPrefs={onPrefs} prefs={prefs} />,
+    settings: <EncodingSettings bare params={params} geometry={geometry} onPrefs={onPrefs} prefs={prefs} />,
   }
   const available = CARTO_TILES.filter(([id]) => tileNodes[id] != null)
   const shownTiles = available
@@ -571,7 +575,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           onOpenDay={openDay}
         />
       ) : space === 'comparaison' && !slots.comparaison ? (
-        <ComparePanel dataset={dataset} refl={refl} params={params} geometry={GEOMETRY} t={ui.t} update={data.update} onOpenDay={openDay} />
+        <ComparePanel dataset={dataset} refl={refl} params={params} geometry={geometry} t={ui.t} update={data.update} onOpenDay={openDay} />
       ) : space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? (
         <Dashboard
           dataset={dataset}
@@ -592,8 +596,6 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
             dataset={dataset}
             refl={refl}
             state={state}
-            layout={layout}
-            geometry={GEOMETRY}
             params={params}
             t={ui.t}
             data={data}
@@ -643,7 +645,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           dataset={dataset}
           refl={refl}
           params={params}
-          geometry={GEOMETRY}
+          geometry={geometry}
           activeDates={frames}
           focusCode={route.focus ?? null}
           reinforced={Boolean(prefs.reinforced)}
@@ -692,12 +694,6 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           reducedMotion={reducedMotion}
           onClose={closeReader}
           onIndex={(index) => dispatch({ type: 'readerIndex', index })}
-          onBackToCompetency={(code) => {
-            dispatch({ type: 'closeReader' })
-            if (modalDate) closeDay()
-            select({ type: 'competency', code })
-            showTile('detail')
-          }}
         />
       ) : null}
     </div>
@@ -834,35 +830,40 @@ function PanelsMenu({ tiles, shown, onToggle, summaryRef = null }) {
   )
 }
 
-/** Réglages de l'encodage (α, épaisseur minimale) : une tuile, masquée au départ (D-52). */
-function EncodingSettings({ params, onPrefs, prefs, bare = false }) {
+/**
+ * Réglages de l'encodage (α, anneau des pôles, épaisseur minimale) : une
+ * tuile, masquée au départ (D-52). « Valeurs par défaut » ne paraît que si un
+ * réglage s'en écarte.
+ */
+function EncodingSettings({ params, geometry, onPrefs, prefs, bare = false }) {
   const Box = bare ? 'div' : 'details'
+  const set = (patch) => onPrefs({ params: { ...prefs.params, ...patch } })
+  const defaults = { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx }
+  const changed = Object.entries(defaults).some(([key, value]) => params[key] !== value)
+  const ring = params.poleRingPx
   return (
     <Box className="carto-section" open={bare ? undefined : true}>
       {bare ? null : <summary>Réglages de l’encodage</summary>}
       <label className="carto-setting">
         Poids d’un indice α : <strong>{params.alpha.toLocaleString('fr-FR')}</strong>
-        <input
-          type="range"
-          min={0.1}
-          max={0.9}
-          step={0.05}
-          value={params.alpha}
-          onChange={(e) => onPrefs({ params: { ...prefs.params, alpha: Number(e.target.value) } })}
-        />
+        <input type="range" min={0.1} max={0.9} step={0.05} value={params.alpha} onChange={(e) => set({ alpha: Number(e.target.value) })} />
+      </label>
+      <label className="carto-setting">
+        Épaisseur de l’anneau des pôles :{' '}
+        <strong>
+          {ring} px{!ringShown(geometry.poles) ? ' (masqué)' : !ringShown(geometry.competencies) ? ' (compétences masquées)' : ''}
+        </strong>
+        <input type="range" min={0} max={POLE_RING_MAX} step={5} value={ring} onChange={(e) => set({ poleRingPx: Number(e.target.value) })} />
       </label>
       <label className="carto-setting">
         Épaisseur minimale d’un secteur : <strong>{params.minThicknessPx} px</strong>
-        <input
-          type="range"
-          min={0}
-          max={6}
-          step={1}
-          value={params.minThicknessPx}
-          onChange={(e) => onPrefs({ params: { ...prefs.params, minThicknessPx: Number(e.target.value) } })}
-        />
+        <input type="range" min={0} max={6} step={1} value={params.minThicknessPx} onChange={(e) => set({ minThicknessPx: Number(e.target.value) })} />
       </label>
-      <p className="carto-small carto-muted">Points ouverts 1 et 2 de la spécification : valeurs proposées 0,5 et 2 px.</p>
+      {changed ? (
+        <button type="button" className="carto-link-btn" onClick={() => set(defaults)}>
+          Valeurs par défaut
+        </button>
+      ) : null}
     </Box>
   )
 }

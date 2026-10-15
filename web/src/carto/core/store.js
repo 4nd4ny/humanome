@@ -162,6 +162,20 @@ export function createCartoStore({ adapter } = {}) {
       await a.transaction(['datasets'], 'readwrite', (t) => t.put('datasets', { key: dataset.datasetId, dataset }))
     },
 
+    /**
+     * Enregistre l'index d'un jeu SEULEMENT s'il existe encore : un autre
+     * onglet a pu le supprimer (ou remplacer la démonstration, D-57) ; un
+     * enregistrement différé ne doit pas le recréer sans ses journées.
+     * @returns {Promise<boolean>} faux si le jeu n'existe plus
+     */
+    async saveExistingDataset(dataset) {
+      return a.transaction(['datasets'], 'readwrite', async (t) => {
+        if (!(await t.get('datasets', dataset.datasetId))) return false
+        await t.put('datasets', { key: dataset.datasetId, dataset })
+        return true
+      })
+    },
+
     async loadDayDetail(datasetId, date) {
       const rec = await a.transaction(['details'], 'readonly', (t) => t.get('details', detailKey(datasetId, date)))
       return rec?.detail ?? null

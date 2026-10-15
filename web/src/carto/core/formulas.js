@@ -17,8 +17,11 @@
 //                          moyenne du jury », les mots de Christian)
 //   confiance d'un pôle    C(p) = Σ θ(c)·C(c) / Σ θ(c)
 //   rayon (anneaux fixes)  r_ext² = r_int² + k·C   (k : C = 1 atteint le bord)
-//   aire d'un secteur      A = θ·k·C / 2  (θ en radians) — identique dans les
-//                          deux anneaux, donc A(pôle) = Σ A(compétences).
+//   aire d'un secteur      A = θ·k·C / 2  (θ en radians)
+//
+// Depuis le journal D-58 (Christian, 2026-10-15), l'anneau des pôles est un
+// élément d'interface et plus une mesure : chaque pôle en occupe toute la
+// hauteur, réglable ; seules les compétences portent la confiance.
 
 /** Paramètres par défaut (§5, §15 points ouverts 1 et 2). */
 export const DEFAULT_PARAMS = Object.freeze({
@@ -26,6 +29,12 @@ export const DEFAULT_PARAMS = Object.freeze({
   alpha: 0.5,
   /** base(preuve). */
   proofBase: 1,
+  /**
+   * Épaisseur de l'anneau des pôles, en unités du dessin (soleil de rayon 190,
+   * centre de 30) : celle du centre par défaut ; 0 = pas d'anneau des pôles,
+   * 160 = plus de place pour les compétences (journal D-58).
+   */
+  poleRingPx: 30,
   /** Épaisseur minimale d'affichage d'un secteur, en pixels (§5.6, point ouvert 2). */
   minThicknessPx: 2,
   /**
@@ -38,6 +47,11 @@ export const DEFAULT_PARAMS = Object.freeze({
   temporalDecay: 0,
 })
 
+/** Le soleil de l'interface : rayon extérieur, disque central, écart entre les anneaux (unités du dessin). */
+export const SUN = Object.freeze({ outerRadius: 190, centerRadius: 30, gap: 5 })
+/** Épaisseur maximale de l'anneau des pôles : toute la place hors du centre. */
+export const POLE_RING_MAX = SUN.outerRadius - SUN.centerRadius
+
 /** Statuts normalisés qui FOURNISSENT des traces (§5.2) : établie et renvoi. */
 export const TRACE_PROVIDING_STATUSES = new Set(['established', 'needs_review'])
 
@@ -47,6 +61,8 @@ export function resolveParams(partial = {}) {
   if (!(p.alpha >= 0 && p.alpha < 1)) throw new Error(`α doit être dans [0 ; 1[ (reçu ${p.alpha})`)
   if (!(p.proofBase > 0 && p.proofBase <= 1)) throw new Error(`base(preuve) doit être dans ]0 ; 1]`)
   if (!(p.temporalDecay >= 0)) throw new Error('temporalDecay doit être ≥ 0')
+  // Un réglage d'affichage : ramené dans ses bornes plutôt que refusé.
+  p.poleRingPx = Number.isFinite(p.poleRingPx) ? Math.min(POLE_RING_MAX, Math.max(0, p.poleRingPx)) : DEFAULT_PARAMS.poleRingPx
   return p
 }
 
@@ -180,30 +196,48 @@ export function poleConfidence(items) {
 
 /**
  * Géométrie des deux anneaux fixes (§5.6) : centre, anneau des pôles
- * (intérieur), anneau des compétences (extérieur). Les deux anneaux ont la
- * même « capacité » k = R_ext² − R_int², condition pour que l'aire d'un
- * secteur vaille θ·k·C/2 dans les deux anneaux (et donc que l'aire d'un pôle
- * égale la somme des aires de ses compétences).
+ * (intérieur), anneau des compétences (extérieur).
  *
- * @param {{outerRadius: number, centerRadius: number, gap?: number}} opts
+ * L'anneau des pôles est un élément d'interface (journal D-58) : son
+ * épaisseur est un réglage (`poleRing`, par défaut le rayon du centre) et
+ * chaque pôle l'occupe en entier. L'anneau des compétences prend le reste,
+ * après l'écart `gap` (seulement entre deux anneaux présents) ; sa capacité
+ * k = R² − r_int² fait toucher le bord à une confiance de 1. Un anneau
+ * d'épaisseur nulle n'est pas dessiné : `poleRing` = 0, pas d'anneau des
+ * pôles ; `poleRing` = R − centre, plus de compétences. (Avant D-58, les deux
+ * anneaux avaient la même capacité, pour que l'aire d'un pôle égale la somme
+ * des aires de ses compétences.)
+ *
+ * @param {{outerRadius: number, centerRadius: number, poleRing?: number, gap?: number}} opts
  * @returns {{k: number, center: number,
  *   poles: {rIn: number, rOut: number}, competencies: {rIn: number, rOut: number}}}
  */
-export function ringGeometry({ outerRadius, centerRadius, gap = 0 }) {
+export function ringGeometry({ outerRadius, centerRadius, poleRing = centerRadius, gap = 0 }) {
   const R = outerRadius
   const r0 = centerRadius
-  if (!(R > 0) || !(r0 >= 0) || !(gap >= 0) || r0 + gap >= R) {
-    throw new Error('Géométrie impossible : il faut 0 ≤ centre, centre + écart < rayon extérieur')
+  if (!(R > 0) || !(r0 >= 0) || !(gap >= 0) || r0 >= R) {
+    throw new Error('Géométrie impossible : il faut 0 ≤ centre < rayon extérieur et un écart positif')
   }
-  // r1² − r0² = R² − (r1 + g)²  ⇒  2r1² + 2g·r1 + g² − r0² − R² = 0
-  const r1 = (-gap + Math.sqrt(2 * R * R + 2 * r0 * r0 - gap * gap)) / 2
-  const r2 = r1 + gap
+  let r1 = r0 + Math.min(R - r0, Math.max(0, Number(poleRing) || 0))
+  // Plus de place pour les compétences après l'écart : l'anneau va jusqu'au bord.
+  if (r1 > r0 && R - r1 <= gap) r1 = R
+  const r2 = r1 > r0 ? Math.min(R, r1 + gap) : r0
   return {
-    k: r1 * r1 - r0 * r0,
+    k: R * R - r2 * r2,
     center: r0,
     poles: { rIn: r0, rOut: r1 },
     competencies: { rIn: r2, rOut: R },
   }
+}
+
+/** Géométrie du soleil de l'interface, anneau des pôles selon les réglages (D-58). */
+export function sunGeometry(params = DEFAULT_PARAMS) {
+  return ringGeometry({ ...SUN, poleRing: params?.poleRingPx ?? DEFAULT_PARAMS.poleRingPx })
+}
+
+/** Un anneau a-t-il une épaisseur (sinon il n'est pas dessiné) ? */
+export function ringShown(ring) {
+  return Boolean(ring) && ring.rOut - ring.rIn > 1e-9
 }
 
 /** Rayon extérieur d'un secteur : r_ext = √(r_int² + k·C). */

@@ -53,6 +53,12 @@ autorisation, puis fusionné dans `main` (D-46).
 | Cartographie en tuiles | douze tuiles masquables, déplaçables, redimensionnables ; au départ, le soleil et le détail ; disposition gardée dans le navigateur (D-53) | ✅ | ✅ 25 tests (disposition, interface, copie autonome) + e2e Chromium + relecture indépendante | ✅ | voir §5 |
 | Q32 — tableaux et rendu | Markdown rendu par marked : tableaux, encadrés, listes numérotées et imbriquées, styles « comme à l'impression » ; surlignage identique sur les 2 392 traces (D-54) | ✅ | ✅ voir §3 + 2 392 traces revérifiées + relecture indépendante | ✅ | voir §5 |
 | Q33 — traits à l'import | après un titre daté, un trait ne coupe plus : il reste dans sa journée ; export du portfolio adapté (D-55) | ✅ | ✅ voir §3 + journal de la démonstration redécoupé en ses 67 journées | ✅ | voir §5 |
+| Lecteur épuré | en tête fixe, la journée entre ◁ ▷ (trace précédente / suivante) et la fermeture ; l'extrait du jury cité seulement s'il n'est pas retrouvé tel quel ; plus de navigation par jour ni de ligne d'état (D-56) | ✅ | ✅ voir §3 | ✅ | `6b9ee6b`, `b3fabf3` |
+| Démo sur Chrome Android | une démonstration intacte se met à jour d'elle-même, en arrière-plan, quand le site en dépose une nouvelle (D-57) | ✅ | ✅ voir §3 | ✅ | `c7efc6f`, `b3fabf3` |
+| Anneau des pôles | élément d'interface : chaque pôle l'occupe en entier ; épaisseur réglable, 30 par défaut (de 0 à 160) ; les feuilles passent de 51,5 à 125 de hauteur (D-58) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `abc134a`, `b3fabf3` |
+| Heatmap | « Tout voir » (du premier au dernier jour) par défaut, « Année scolaire », « Période libre » ; contraste renforcé toujours (D-59) | ✅ | ✅ voir §3 | ✅ | `abc134a`, `b3fabf3` |
+| Thème sombre | le soleil et la heatmap suivent le thème ; marches sombres des sept couleurs choisies et validées (D-60) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `842711e`, `b3fabf3` |
+| Déploiement | D-56 à D-60 : front déployé, vérifié en ligne au bureau et au téléphone (démonstration ancienne mise à jour en 1,9 s) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-60 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1971,6 +1977,222 @@ trait dans sa journée. »
   2 tableaux. Aucune erreur dans la page. Copies de travail effacées (archive,
   scripts, paquets).
 
+### D-56 — Le lecteur de portfolio, épuré **[décidé]**
+
+Christian (2026-10-15, 8 h 11), point 1 : « Dans le lecteur de portfolio,
+remonter les boutons "Trace précédente", "Trace suivante" et les laisser en
+sticky autour du titre du jour […]. On peut les remplacer par deux triangles
+blanc […]. Le bouton "Retour à la compétence" est redondant avec le bouton
+"Fermer le lecteur" : à supprimer. […] A ce niveau, le lecteur ne cherche pas à
+lire le portfolio, mais à voir les traces qui on permis l'évaluation. Nous
+pouvons supprimer les boutons "Jour précédent", "Jour suivant" […].
+L'Extrait cité par le jury ne doit être affiché que si l'extrait n'est pas
+trouvé dans le texte surligné : sinon c'est redondant. […] N'afficher
+carto-reader-legend uniquement lorsque c'est nécessaire. » Point 3 : « Avoir
+uniquement ce dont l'utilisateur a besoin de voir, au moment où il en a
+besoin. […] adopter la posture d'un ergonome, spécialiste en psychologie
+cognitive, pour ne pas surcharger l'affichage d'informations non
+indispensables. »
+
+- **En tête, fixe au défilement** : la journée affichée, entre deux triangles
+  « blancs » (contour seul, comme ◁ et ▷, dessinés en SVG pour être les
+  mêmes partout) — trace précédente, trace suivante, aussi ← et → — puis la
+  fermeture. Les triangles ne bougent pas d'une trace à l'autre (le titre
+  prend la place qui reste) ; arrivés au bout, ils s'éteignent sans perdre le
+  focus du clavier. **[choix d'implémentation]** La fermeture est une croix
+  (« Fermer le lecteur » pour les lecteurs d'écran, Échap au clavier), celle
+  des tuiles : avec le libellé, la date et ses triangles ne tenaient pas sur
+  une ligne de téléphone.
+- **Dessous, ce qui défile** : la compétence, puis « trace 2 sur 34, indice »
+  — et « datée du … » seulement quand la journée lue n'est pas celle de la
+  trace (le décalage de date de l'analyse, qui avait son lien « Lire la
+  journée de la trace ») ; l'extrait du jury **seulement s'il n'est pas
+  retrouvé tel quel** (un bout seul, approché, introuvable, pas de texte ce
+  jour-là, pas de portfolio), sa légende disant pourquoi en une phrase et ce
+  que veulent dire l'orange ou les pointillés ; puis le texte de la journée.
+  Retrouvé, l'extrait se lit surligné : il n'est plus cité deux fois.
+- **Retirés** : le surtitre « Lecteur de portfolio », « Retour à la
+  compétence », jour précédent / suivant et « Revenir au passage », la ligne
+  d'état visible, la légende des couleurs à chaque trace (elle ne paraît que
+  pour un bout orange à côté d'un passage retrouvé, seul cas que rien
+  d'autre n'explique).
+- **Lecteurs d'écran** : une zone d'état invisible dit la trace, la journée
+  et le résultat (« Trace 2 sur 34, samedi 3 janvier 2026 : passage
+  surligné. »).
+- Le surlignage ne s'affiche qu'une fois la recherche terminée — plus
+  d'aller-retour d'une journée à l'autre ; pendant la recherche dans les
+  autres journées, une ligne discrète le dit.
+- **La même posture ailleurs**, dans ce qui a été touché : les réglages de
+  l'encodage (« Valeurs par défaut » seulement quand un réglage s'en écarte,
+  plus de note sur les points ouverts de la spécification), la légende de la
+  heatmap (seulement ce que la période contient), le calendrier (rien à régler
+  en « Tout voir »), le nom des pôles (écrit seulement s'il tient). D'autres
+  allégements sont proposés plutôt que faits : questions 35 et 36.
+
+### D-57 — Une démonstration intacte se met à jour d'elle-même **[décidé]**
+
+Christian (2026-10-15, 8 h 11), point 2 : « sur smartphone : l'interface
+indique ne pas trouver le fichier markdown alors que sur ordinateur je peux
+voir qu'il s'affiche bien. » Puis : « tout fonctionne bien avec Mozilla sous
+Android, ce n'est que Chrome sous Android qui a ce problème et qui affiche le
+message d'erreur "Aucun portfolio importé […]". »
+
+- **Cause** (reproduite en émulation Pixel 7 sur le site en ligne) : un
+  navigateur qui avait ouvert la démonstration avant le dépôt de son archive
+  avec portfolio (D-48) garde sa première copie, sans portfolio, dans sa base
+  locale ; Firefox, qui n'en avait pas, charge l'archive.
+- **Correction** : la démonstration en place s'affiche aussitôt ; en
+  arrière-plan, une requête HEAD (4 s au plus) lit la version déposée (son
+  en-tête Last-Modified) ; différente de celle d'où vient la copie, l'archive
+  est téléchargée (2 min au plus, arrêtée si la page se ferme) et importée
+  dans un nouveau jeu, qui remplace l'ancien — à l'écran aussi s'il y était —
+  **seulement si l'ancien est toujours intact**, relu juste avant (en mémoire
+  ici, puis dans la base : un autre onglet a pu y toucher) ; sinon c'est la
+  copie neuve qui s'en va.
+- **Garde-fous** (relecture indépendante) : une version qui n'a pas pu être
+  chargée n'est retentée qu'un jour plus tard, jamais à chaque visite ; une
+  copie à jour déjà dans la base est reprise plutôt que retéléchargée ;
+  « intacte » se mesure à ce que l'archive apportait d'elle-même (une archive
+  déposée peut contenir des ensembles ou des repères) ; un enregistrement
+  différé ne recrée jamais un jeu supprimé ou remplacé dans un autre onglet
+  (il le dit), et n'écrit que ce qui a changé ici.
+- « Explorer la démonstration », quand l'archive est déposée mais que son
+  téléchargement échoue : les journées publiques, et un message dit pourquoi
+  les passages ne se surlignent pas. Dans le lecteur, une démonstration sans
+  son portfolio dit de recharger la page (elle n'a pas de fichier à importer).
+- **[choix d'implémentation]** La version est l'en-tête Last-Modified (OVH le
+  donne) ; sans lui, rien ne change. Le premier lancement après ce
+  déploiement retélécharge une fois la démonstration de chaque navigateur qui
+  l'avait déjà (sa copie n'a pas de version) : environ 18 Mo, compressés à
+  l'envoi.
+
+### D-58 — L'anneau des pôles, élément d'interface réglable **[décidé]**
+
+Christian (2026-10-15, 8 h 11), point 4 : « La taille du rayon de l'anneau
+intérieur des sept domaines de compétence de la cartographie, va devenir
+paramétrable. Le paramètre sera inclus dans le panneau "Régalges de
+l'encodage", entre "Poids de l'ince alpha" et "Épaisseur minimale d'un
+secteur". Par défaut, utilise 20% du rayon total, de manière a pouvoir
+visualiser d'avantage les variations au niveau des feuilles représentant les
+compétences. » Point 5 : « Supprime le calcul de la hauteur de cet anneau
+intérieur et utilise pour chacun des sept domaines de compétence, 100% de
+l'espace disponible. Ils deviennent un élément d'interface et plus un élément
+de mesure. » Précisé (question 34) : « un rayon égal à celui du centre du
+soleil : donc 30+30px = 60px. En paramètre, l'utilisateur doit pouvoir changer
+le rayon pour aller de 0px (donc 30+0px : on n'affiche plus l'anneau central)
+à 160px (donc 30+160px : on n'affiche plus les feuilles de compétences). »
+
+- **Géométrie** (`ringGeometry`, `sunGeometry`) : soleil de 190, centre de
+  30 ; anneau des pôles de 30 à 30 + t ; écart de 5 seulement entre deux
+  anneaux présents ; compétences jusqu'au bord, de capacité k = 190² − r²
+  (une confiance de 1 touche le bord). Par défaut t = 30 : les feuilles vont
+  de 65 à 190, soit **125 de hauteur au lieu de 51,5** (2,4 fois plus pour
+  lire la confiance). À 0, plus d'anneau : les compétences partent du
+  centre ; au-delà de 150, l'écart avalerait les feuilles : l'anneau va
+  jusqu'au bord, et le réglage dit « (compétences masquées) ».
+- **Pôles pleins** : chaque arc occupe toute la hauteur de l'anneau ; plus de
+  cercles de confiance sur lui. La confiance d'un pôle reste dite (survol,
+  détail, « Pourquoi cette part ? », qui remplace « Pourquoi cette surface ? »
+  pour un pôle) ; la légende dit de l'anneau intérieur qu'il « range, il ne
+  mesure rien ». Conséquence : « l'aire d'un pôle égale la somme de celles de
+  ses compétences » ne vaut plus (D-6), l'aire d'un pôle n'étant plus dessinée.
+- **Noms des pôles** écrits le long de leur arc, à l'endroit en bas comme en
+  haut, seulement s'ils y tiennent, au contraste du texte courant (4,5:1) ;
+  aucun nom pendant l'ouverture d'un pôle sur 360° (il glisserait d'un bord à
+  l'autre).
+- **Réglage** « Épaisseur de l'anneau des pôles », de 0 à 160 par pas de 5,
+  entre α et l'épaisseur minimale ; « Valeurs par défaut » ramène les trois.
+  Il appartient au jeu de données (ses préférences). **[choix
+  d'implémentation]** Le rapport imprimable et la version partagée gardent
+  l'anneau standard (30) : ce sont des documents pour d'autres, pas
+  l'exploration de la personne.
+
+### D-59 — Heatmap : tout voir par défaut, contraste renforcé toujours **[décidé]**
+
+Christian (2026-10-15, 8 h 11), point 6 : « L'intervalle d'affichage par
+défaut de la Heatmap devrait être du premier jour au dernier. Pas l'année
+scolaire. Du coup prévoir trois boutons au lieu de deux dans la
+carto-heatmap-control : tout voir, année scolaire, période libre. La case à
+cocher de constraste renforcé peut être supprimée : on applique le constrate
+renforcé systématiquement. »
+
+- **Trois boutons** : « Tout voir » (défaut : du premier au dernier jour du
+  jeu, cochés ou non, rangés par années scolaires — de décembre à mars, une
+  seule bande), « Année scolaire » (avec ses flèches), « Période libre » (dates
+  et pinceau). Rien à régler en « Tout voir ».
+- **Préférences** : l'ancien défaut (année scolaire sans année choisie)
+  s'affiche en « Tout voir » ; choisir « Année scolaire » retient l'année
+  affichée — c'est ce qui distingue un choix de l'ancien défaut, sans
+  migration des jeux.
+- **Contraste renforcé toujours** (les cinq niveaux à 25, 45, 65, 82 et 100 %
+  de la teinte) ; la case et sa préférence disparaissent.
+- En chemin : un mois entamé moins de deux semaines avant le suivant ne
+  superpose plus son nom au sien (« déc. » sur « janv. ») ; le dernier mois a
+  la place du sien ; la légende ne dit que ce que la période contient ; le
+  pinceau s'arrête avec un changement de calendrier.
+
+### D-60 — Le soleil et la heatmap suivent le thème sombre **[décidé]**
+
+Christian (2026-10-15, 8 h 11), point 7 : « Lorsqu'on bascule en mode
+sombre, le carto-sun et la heatmap restent en thème clair. C'est un bug. »
+
+- **Cause** : la surface des visualisations (`--viz-surface`) était claire
+  dans les deux thèmes, par choix ancien du site (« le sunburst […] est conçu
+  sur fond clair »), et chaque couleur calculée se mélangeait vers le blanc.
+- **Correction** : dans l'interface (`.carto-app`), les jetons des
+  visualisations passent au sombre avec le site — réglage du système ou choix
+  explicite — à l'écran seulement : imprimée, la cartographie reste claire,
+  comme le rapport. Chaque couleur calculée existe dans les deux thèmes et
+  voyage en propriétés CSS (`--c`, `--c-dark`) : changer de thème ne
+  redessine rien.
+- **Marches sombres choisies, pas inversées** (skill dataviz) : même teinte,
+  luminance OKLCH dans la bande sombre (0,52 à 0,66), au moins 3:1 sur la
+  surface sombre (#141d31, celle des cartes). Validées par le script
+  `validate_palette` : tout passe, y compris la séparation pour les
+  daltoniens entre voisins (pire ΔE 11, entre CŒUR et MAIN, que la seule
+  luminance sépare). Une couleur inconnue du référentiel est ramenée dans la
+  même bande.
+
+  | Pôle | Clair (référentiel) | Sombre |
+  |---|---|---|
+  | TÊTE | `#2563eb` | `#2563eb` |
+  | CŒUR | `#10b981` | `#03835a` |
+  | MAIN | `#ec4899` | `#ed499a` |
+  | ÂME | `#8b5cf6` | `#8b5cf6` |
+  | RACINES | `#f59e0b` | `#c88007` |
+  | CITÉ | `#06b6d4` | `#0b96af` |
+  | FLAMBEAU | `#f97316` | `#db6410` |
+
+- La rampe de la heatmap part de la surface du thème (du blanc vers la
+  teinte en clair, de la surface sombre vers la teinte en sombre) ; l'anneau
+  des pôles se fond un peu dans la surface, plus clair en clair, plus sombre
+  en sombre. Les légendes disent « plus la couleur est intense », plus
+  « foncée ».
+- En chemin : le passage **approché** du lecteur gardait une encre noire sans
+  fond — invisible en sombre ; il prend l'encre du texte.
+- Constat sur le référentiel (question 37) : en clair, ses couleurs ne
+  passent pas ces vérifications — CŒUR et MAIN confondus en deutéranopie
+  (ΔE 4,9), quatre couleurs sous 3:1 sur le blanc.
+
+**Déploiement de D-56 à D-60** (front seul, depuis la VM du Mac, les copies
+de production du référentiel gardées) : trois fichiers envoyés, l'ancien
+paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ;
+  - l'anneau des pôles va de 30 à 60, avec les noms TETE, COEUR, MAIN, AME et FLAMBEAU écrits sur l'arc ;
+  - la démonstration est chargée avec sa version ;
+  - le lecteur n'a que ses trois boutons, surligne la trace 1 sur 34 sans citer l'extrait, puis la trace suivante ;
+  - le calendrier est sur « Tout voir », sans case de contraste ;
+  - les trois réglages sont dans l'ordre demandé ;
+  - en thème sombre, la surface est #141d31 ;
+- **au téléphone** (émulation Pixel 7), le cas de Chrome Android :
+  - avec une démonstration ouverte avant le dépôt de son portfolio, le lecteur cite l'extrait et dit de recharger la page ;
+  - au rechargement, le soleil s'affiche en 0,6 s, la démonstration est mise à jour en arrière-plan en 1,9 s, et la trace est surlignée ;
+- aucune erreur dans les pages ;
+- copies de travail effacées : paquet, dossier de déploiement, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -2335,6 +2557,33 @@ passent par l'API locale (Docker).
 | moteur : UC-APP-01-U21 | séparateur : journée non datée avant le premier titre daté, trait dans sa journée après (RG5 bis) | réécrit |
 | démonstration (scripts temporaires, non versionnés, sur la VM du Mac) | les 2 392 traces par le chemin du lecteur, avant et après, une à une ; tableaux, encadrés, listes et marques visibles dans le texte affiché des 67 journées ; le journal reconstitué découpé par l'ancien et le nouveau découpage | voir D-54, D-55 |
 
+### Lecteur, démonstration, anneau, heatmap, thème sombre (D-56 à D-60)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `ui/P2.test.jsx` | lecteur : rien que la journée, ses deux triangles et la fermeture ; triangle éteint au bout ; ← revient à la trace précédente ; l'extrait n'est pas cité quand le passage est retrouvé, il l'est (avec sa raison) introuvable, approché, sans portfolio ; décalage de date dit sur la ligne de la trace ; lecteurs d'écran : trace, journée, résultat ; les flèches gardent leur rôle sur les occurrences | 16, réécrits |
+| `ui/CartoApp.test.jsx` | démonstration : affichée tout de suite puis remplacée en arrière-plan (portfolio compris, version retenue, pas de rapport d'import) ; même version : rien de téléchargé ; nouvelle version : remplacée ; enrichie : jamais vérifiée ; **enrichie pendant le téléchargement par un autre onglet : gardée**, la copie neuve s'en va ; site injoignable ou démo absente : rien ne change ; échec : retenté un jour plus tard seulement ; « Explorer » retient la version ; archive impossible à télécharger : journées publiques et message. Un jeu supprimé dans un autre onglet n'est pas recréé. Heatmap : trois boutons, « Tout voir » par défaut, plus de case de contraste, légende de ce que la période contient, l'année choisie retenue, pinceau arrêté ; l'ancien défaut s'affiche en « Tout voir » ; clavier borné au dernier jour | +12, 1 réécrit |
+| `ui/Tiles.test.jsx` | réglages dans l'ordre demandé (α, anneau, épaisseur minimale) ; anneau à 0 : plus d'arc de pôle ; à 155 : « (compétences masquées) » ; « Valeurs par défaut » seulement si un réglage s'en écarte, et ramène les trois | réécrit |
+| `ui/P5.test.jsx` | le soleil du rapport imprimable garde l'anneau standard, même réglé à 0 | +1 |
+| `ui/colors.test.js` (nouveau) | marches sombres : même teinte, bande de luminance, 3:1 sur la surface sombre ; CŒUR et MAIN séparés par la luminance ; couleur inconnue ramenée dans la bande ; OKLCH aller-retour ; rampe de la heatmap ancrée sur la surface du thème ; anneau des pôles fondu ; noms et codes à 4,5:1 dans les deux thèmes | 8 |
+| `core/formulas.test.js` | anneau des pôles de l'épaisseur du centre par défaut ; réglable (0 : masqué, sans écart ; maximum : plus de compétences ; hors bornes ramené) ; au-delà de 150, jusqu'au bord ; soleil de l'interface 30 / 60 / 65 / 190 ; réglage illisible ramené au défaut | 3 réécrits, +2 |
+| `core/state.test.js` | aire des compétences = θ·k·C/2 ; un pôle occupe toute la hauteur de son anneau, quelle que soit sa confiance ; anneau réglable (0, maximum, sans débord) ; pôle ouvert sur 360° : même anneau | 1 réécrit, +1 |
+| `core/heatmap.test.js` | un mois entamé une semaine avant le suivant tait son nom | +1 |
+| `core/store.test.js` | `saveExistingDataset` : enregistre un jeu présent, jamais un jeu supprimé (mémoire et IndexedDB) | +2 |
+| `core/ops.test.js`, `lib/archive.test.js` | préférences par défaut (« Tout voir », anneau de 30, plus de contraste) ; démonstration intacte mesurée à ce que l'archive apportait | 1 réécrit, +1 |
+| `e2e/carto-soleil.e2e.js` | sondes aux nouveaux rayons (pôles à 45, compétences à 66) ; arcs de pôles cliqués en un point de leur surface ; **thème sombre** : surface et couleurs choisies, le choix explicite « clair » l'emporte | +1 étape |
+| fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (préférences : `poleRingPx`, plus de `highContrast`) | — |
+
+Suites complètes : site **2 366 verts** (238 fichiers) — une exécution sous
+charge a vu échouer une fois `UC-APP-07-F08` (sans lien, vert seul et à
+l'exécution suivante) ; moteur **1 073 verts** ; e2e Chromium : soleil,
+copie autonome, partage (deux scénarios), dialogue, verts contre l'API locale.
+Relecture indépendante (un agent distinct, 24 points, aucun bloquant) : 21
+traités, voir §5 ; laissés : le titre d'une démonstration renommée (l'archive
+impose le sien), le repli faute d'en-tête Last-Modified (OVH le donne), la
+bande d'une semaine d'une période qui déborde le 1er août (c'est bien une autre
+année scolaire).
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2472,6 +2721,31 @@ Questions posées après D-49 :
     en `<hr>` ; l'export du portfolio place ses passages sans date en tête ;
     déployé (D-55).
 
+Questions posées après D-55 :
+
+34. Anneau des pôles à « 20 % du rayon total » (2026-10-15, 8 h 11, point 4) :
+    s'il s'arrête à 20 % du rayon (38) avec le disque central de 30, il ne
+    fait plus que 8 : trop mince pour le nom des pôles et pour cliquer. Bord à
+    20 % avec un centre réduit, ou épaisseur de 20 % ? → **Décidé**
+    (2026-10-15) : « Nous allons mettre un rayon égal à celui du centre du
+    soleil : donc 30+30px = 60px. En paramètre, l'utilisateur doit pouvoir
+    changer le rayon pour aller de 0px […] à 160px […]. » Suite : fait (D-58).
+35. **Proposition** (posture d'ergonome, D-56) : les commandes de chaque tuile
+    (◀ ▶, taille, ✕) sont toujours affichées, quatre par tuile ; elles
+    pourraient n'apparaître qu'au survol ou au focus de la tuile (toujours sur
+    un écran tactile, où le survol n'existe pas).
+36. **Proposition** : le résumé du profil (tuile Détail, sans sélection) dit
+    les « Points (total) » et « 1 613 compétences n'ont pas été instruites
+    (court-circuit) » — des mots de l'analyse, pas de la personne. Garder la
+    période, les journées retenues, les compétences observées et le portrait ?
+37. **Proposition** sur les couleurs du référentiel, en clair : CŒUR
+    (`#10b981`) et MAIN (`#ec4899`), voisins dans le soleil, se confondent en
+    deutéranopie (ΔE 4,9, sous le plancher de 6) ; RACINES, CITÉ, FLAMBEAU et
+    CŒUR sont sous 3:1 sur le blanc. Avec CŒUR `#047857`, RACINES `#d97706`,
+    CITÉ `#0891b2` et FLAMBEAU `#ea580c` (mêmes teintes, un cran plus
+    sombres), toutes les vérifications passent. C'est le référentiel, donc
+    une décision des épistémiarques ; en sombre, c'est déjà réglé (D-60).
+
 ---
 
 ## 5. Chronologie
@@ -2597,3 +2871,16 @@ Questions posées après D-49 :
   datée (journal de la démonstration redécoupé en ses 67 journées), l'export
   du portfolio place ses passages sans date en tête. Relu par un agent
   distinct (13 points traités) ; déployé et vérifié en ligne.
+- **2026-10-15** — Demande de Christian de 8 h 11 (D-56 à D-60) : lecteur de
+  portfolio épuré (la journée entre ◁ ▷, l'extrait du jury cité seulement
+  s'il n'est pas retrouvé) ; démonstration intacte mise à jour d'elle-même,
+  en arrière-plan (cause du défaut de Chrome Android : une copie antérieure au
+  dépôt du portfolio) ; anneau des pôles réglable (30 par défaut, de 0 à 160),
+  pôles pleins, feuilles 2,4 fois plus hautes ; heatmap « Tout voir » par
+  défaut, contraste renforcé toujours ; soleil et heatmap au thème sombre,
+  marches sombres validées. Question 34 posée et tranchée ; propositions 35
+  à 37. Relu par un agent distinct (24 points, 21 traités : mise à jour de
+  la démonstration en arrière-plan, relue avant de remplacer, retentée un
+  jour plus tard ; passage approché lisible en sombre ; rapport à l'anneau
+  standard ; légende de la heatmap ; contraste des noms…). Déployé (front) et
+  vérifié en ligne, au bureau et au téléphone.

@@ -97,16 +97,35 @@ describe('menu « Panneaux »', () => {
     expect(await screen.findByText(/Aucun panneau affiché/)).toBeTruthy()
   })
 
-  it('les réglages de l’encodage (α, épaisseur minimale) et la légende, avec les distinctions renforcées, sont des tuiles', async () => {
+  it('les réglages de l’encodage (α, anneau des pôles, épaisseur minimale) et la légende, avec les distinctions renforcées, sont des tuiles', async () => {
     const store = await louStore()
     render(<Harness store={store} />)
     await waitFor(() => expect(tileIds()).toEqual(['sun', 'detail']))
     fireEvent.click(panel('Réglages de l’encodage'))
     await waitFor(() => expect(tile('settings')).toBeTruthy())
     const sliders = within(tile('settings')).getAllByRole('slider')
-    expect(sliders).toHaveLength(2)
+    // Dans l'ordre demandé (D-58) : α, puis l'anneau des pôles, puis l'épaisseur minimale.
+    expect(sliders.map((el) => el.closest('label').textContent.split(':')[0].trim())).toEqual([
+      'Poids d’un indice α',
+      'Épaisseur de l’anneau des pôles',
+      'Épaisseur minimale d’un secteur',
+    ])
+    expect(within(tile('settings')).queryByRole('button', { name: 'Valeurs par défaut' })).toBeNull()
     fireEvent.change(sliders[0], { target: { value: '0.75' } })
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params.alpha).toBe(0.75))
+    // L'anneau des pôles : 30 par défaut ; à 0, il disparaît du soleil (plus d'arc de pôle à atteindre).
+    expect(sliders[1].value).toBe('30')
+    fireEvent.change(sliders[1], { target: { value: '0' } })
+    await waitFor(() => expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle "]')).toHaveLength(0))
+    expect(within(tile('settings')).getByText('0 px (masqué)')).toBeTruthy()
+    // À 155, l'écart avalerait les compétences : l'anneau va jusqu'au bord, et le réglage le dit.
+    fireEvent.change(sliders[1], { target: { value: '155' } })
+    await waitFor(() => expect(within(tile('settings')).getByText('155 px (compétences masquées)')).toBeTruthy())
+    expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="1."]')).toHaveLength(0)
+    // Un réglage écarté du défaut : « Valeurs par défaut » ramène les trois.
+    fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
+    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params).toMatchObject({ alpha: 0.5, poleRingPx: 30, minThicknessPx: 2 }))
+    await waitFor(() => expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle "]').length).toBeGreaterThan(0))
     fireEvent.click(panel('Légende'))
     await waitFor(() => expect(tile('legend')).toBeTruthy())
     expect(within(tile('legend')).getByText('Hachures')).toBeTruthy()

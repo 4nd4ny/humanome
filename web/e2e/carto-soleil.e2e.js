@@ -21,6 +21,11 @@ const louFiles = () => [
 ]
 
 const SUN = '[data-tile="sun"] .carto-sun'
+// Rayons de sondage (unités du dessin) : l'anneau des pôles va de 30 à 60, les
+// compétences partent de 65 (D-58) ; juste au-delà, toute compétence dessinée
+// est atteinte, quelle que soit sa confiance (épaisseur minimale de 2).
+const R_POLES = 45
+const R_LEAVES = 66
 
 /** Codes des compétences dessinées (et atteignables) dans le soleil. */
 const sectorCodes = (page) =>
@@ -61,7 +66,7 @@ async function sectorPoint(page, labelStart) {
   const pt = await sector.evaluate((el) => {
     const svg = el.ownerSVGElement
     const m = svg.getScreenCTM()
-    for (let r = 40; r < 195; r += 4) {
+    for (let r = 32; r < 195; r += 4) {
       for (let d = 0; d < 360; d += 3) {
         const a = (d * Math.PI) / 180
         const p = svg.createSVGPoint()
@@ -94,7 +99,7 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
 
   await test.step('soleil principal : les quatre compétences de Lou se partagent le tour', async () => {
     expect(await sectorCodes(page)).toEqual(['1.01', '2.01', '3.01', '3.02'])
-    const ring = await coverage(page, 140, '')
+    const ring = await coverage(page, R_LEAVES, '')
     expect(ring.vide).toBeUndefined()
     await page.locator(SUN).screenshot({ path: test.info().outputPath('1-soleil-principal.png') })
   })
@@ -104,7 +109,8 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await pole.scrollIntoViewIfNeeded()
     const scrollY = await page.evaluate(() => window.scrollY)
     const before = await page.locator(`${SUN} svg`).boundingBox()
-    await pole.click()
+    // Un point de l'arc lui-même : l'anneau des pôles est mince (D-58), le centre de sa boîte tombe ailleurs.
+    await clickSector(page, 'Pôle MAIN')
     await expect(page.getByRole('article', { name: 'Détail : pôle MAIN' })).toBeVisible()
     expect(await page.evaluate(() => window.scrollY)).toBe(scrollY)
     expect(await page.locator(`${SUN} svg`).boundingBox()).toEqual(before)
@@ -113,7 +119,8 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
   })
 
   await test.step('double-clic sur l’arc de MAIN : il s’ouvre sur 360°', async () => {
-    await page.locator(`${SUN} path[role="button"][aria-label^="Pôle MAIN"]`).dblclick()
+    const arc = await sectorPoint(page, 'Pôle MAIN')
+    await page.mouse.dblclick(arc.x, arc.y)
     await expect.poll(() => sectorCodes(page)).toEqual(['3.01', '3.02'])
     await expect(fading).toHaveCount(0)
     await expect(center).toHaveAttribute('aria-label', 'Centre : revenir aux 3 pôles')
@@ -122,11 +129,11 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await expect(page.locator(`${SUN} .carto-sun-caption`)).toContainText('clic au centre : revenir aux 3 pôles')
 
     // L'anneau du pôle fait le tour entier ; ses compétences aussi, 20 % / 80 % des points du pôle.
-    const ring = await coverage(page, 80, 'Pôle')
+    const ring = await coverage(page, R_POLES, 'Pôle')
     expect(Object.keys(ring)).toHaveLength(1)
     expect(Object.keys(ring)[0]).toMatch(/^Pôle MAIN .* ouvert sur 360°$/)
     expect(Object.values(ring)).toEqual([360])
-    const comps = await coverage(page, 140, '3.')
+    const comps = await coverage(page, R_LEAVES, '3.')
     expect(comps.vide).toBeUndefined()
     expect(Math.abs(comps['3.01'] - 72)).toBeLessThanOrEqual(2)
     expect(Math.abs(comps['3.02'] - 288)).toBeLessThanOrEqual(2)
@@ -140,7 +147,7 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await expect(fading).toHaveCount(0)
     await expect(center).toHaveAttribute('aria-label', 'Centre : tout désélectionner')
     await expect(page.getByRole('article', { name: 'Détail : pôle MAIN — Créer' })).toBeVisible()
-    expect((await coverage(page, 140, '')).vide).toBeUndefined()
+    expect((await coverage(page, R_LEAVES, '')).vide).toBeUndefined()
   })
 
   await test.step('au clavier : « o » sur l’arc de COEUR l’ouvre, Échap désélectionne puis referme', async () => {
@@ -148,7 +155,7 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await page.keyboard.press('o')
     await expect.poll(() => sectorCodes(page)).toEqual(['2.01'])
     await expect(fading).toHaveCount(0)
-    expect(await coverage(page, 140, '2.')).toEqual({ '2.01': 360 })
+    expect(await coverage(page, R_LEAVES, '2.')).toEqual({ '2.01': 360 })
     // Un appui d'Échap fait une seule chose : il désélectionne, le pôle reste
     // ouvert (on attend plus qu'un passage pour en être sûr)…
     await page.keyboard.press('Escape')
@@ -198,6 +205,29 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
       return r.top >= box.top - 1 && r.bottom <= box.bottom + 1
     })
     expect(inView).toBe(true)
+  })
+
+  await test.step('thème sombre : le soleil le suit, couleurs sombres choisies (D-60) ; retour au clair', async () => {
+    const colors = () =>
+      page.locator(SUN).evaluate((fig) => ({
+        surface: getComputedStyle(fig).backgroundColor,
+        leaf: getComputedStyle(fig.querySelector('path[role="button"][aria-label^="2.01 "]')).fill,
+        pole: getComputedStyle(fig.querySelector('path[role="button"][aria-label^="Pôle COEUR"]')).fill,
+      }))
+    const light = await colors()
+    expect(light.surface).toBe('rgb(255, 255, 255)')
+    expect(light.leaf).toBe('rgb(16, 185, 129)') // #10b981, la couleur du référentiel
+    await page.emulateMedia({ colorScheme: 'dark' })
+    await expect.poll(async () => (await colors()).surface).toBe('rgb(20, 29, 49)')
+    const dark = await colors()
+    expect(dark.leaf).toBe('rgb(3, 131, 90)') // #03835a, sa marche sombre
+    expect(dark.pole).not.toBe(light.pole)
+    await page.locator(SUN).screenshot({ path: test.info().outputPath('3-soleil-sombre.png') })
+    // Le choix explicite « clair » l'emporte sur un système sombre.
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'))
+    await expect.poll(async () => (await colors()).surface).toBe('rgb(255, 255, 255)')
+    await page.evaluate(() => document.documentElement.removeAttribute('data-theme'))
+    await page.emulateMedia({ colorScheme: 'light' })
   })
 
   await test.step('la disposition est gardée au rechargement ; « Réinitialiser l’affichage » revient au départ', async () => {
