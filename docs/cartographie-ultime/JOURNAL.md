@@ -58,6 +58,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Anneau des pôles | élément d'interface : chaque pôle l'occupe en entier ; épaisseur réglable, 30 par défaut (de 0 à 160) ; les feuilles passent de 51,5 à 125 de hauteur (D-58) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `abc134a`, `b3fabf3` |
 | Heatmap | « Tout voir » (du premier au dernier jour) par défaut, « Année scolaire », « Période libre » ; contraste renforcé toujours (D-59) | ✅ | ✅ voir §3 | ✅ | `abc134a`, `b3fabf3` |
 | Thème sombre | le soleil et la heatmap suivent le thème ; marches sombres des sept couleurs choisies et validées (D-60) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `842711e`, `b3fabf3` |
+| Déploiement | D-56 à D-60 : front déployé, vérifié en ligne au bureau et au téléphone (démonstration ancienne mise à jour en 1,9 s) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-60 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2173,6 +2174,25 @@ sombre, le carto-sun et la heatmap restent en thème clair. C'est un bug. »
   passent pas ces vérifications — CŒUR et MAIN confondus en deutéranopie
   (ΔE 4,9), quatre couleurs sous 3:1 sur le blanc.
 
+**Déploiement de D-56 à D-60** (front seul, depuis la VM du Mac, les copies
+de production du référentiel gardées) : trois fichiers envoyés, l'ancien
+paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ;
+  - l'anneau des pôles va de 30 à 60, avec les noms TETE, COEUR, MAIN, AME et FLAMBEAU écrits sur l'arc ;
+  - la démonstration est chargée avec sa version ;
+  - le lecteur n'a que ses trois boutons, surligne la trace 1 sur 34 sans citer l'extrait, puis la trace suivante ;
+  - le calendrier est sur « Tout voir », sans case de contraste ;
+  - les trois réglages sont dans l'ordre demandé ;
+  - en thème sombre, la surface est #141d31 ;
+- **au téléphone** (émulation Pixel 7), le cas de Chrome Android :
+  - avec une démonstration ouverte avant le dépôt de son portfolio, le lecteur cite l'extrait et dit de recharger la page ;
+  - au rechargement, le soleil s'affiche en 0,6 s, la démonstration est mise à jour en arrière-plan en 1,9 s, et la trace est surlignée ;
+- aucune erreur dans les pages ;
+- copies de travail effacées : paquet, dossier de déploiement, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -2862,4 +2882,5 @@ Questions posées après D-55 :
   à 37. Relu par un agent distinct (24 points, 21 traités : mise à jour de
   la démonstration en arrière-plan, relue avant de remplacer, retentée un
   jour plus tard ; passage approché lisible en sombre ; rapport à l'anneau
-  standard ; légende de la heatmap ; contraste des noms…).
+  standard ; légende de la heatmap ; contraste des noms…). Déployé (front) et
+  vérifié en ligne, au bureau et au téléphone.

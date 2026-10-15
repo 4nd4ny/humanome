@@ -141,7 +141,8 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     heatmap « Tout voir » par défaut, contraste renforcé toujours ; soleil et heatmap au thème
     sombre (marches sombres validées par le script de la skill dataviz). Relu par un agent
     distinct (24 points, 21 traités). Suites : front **2 366 verts**, moteur **1 073**, e2e
-    Chromium de la cartographie verts.
+    Chromium de la cartographie verts. Déployé (front) et vérifié en ligne, au bureau et au
+    téléphone (une démonstration ancienne se met à jour en 1,9 s).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
