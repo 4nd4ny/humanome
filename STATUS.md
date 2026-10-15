@@ -160,6 +160,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     de hauteur de la démonstration 1,6 fois plus visibles ; α garde son rôle dans les points.
     Relu par un agent distinct (aucun bloquant, six défauts traités). Suites : front **2 401
     verts**, e2e Chromium de la cartographie verts. Question 38 (la palette par défaut) posée.
+    Déployé (front) et vérifié en ligne, au bureau et au téléphone.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

@@ -66,6 +66,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Déploiement | D-61 à D-63 : front déployé en deux passes (la seconde pour les titres au téléphone, `af81072`), vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-63 |
 | Palettes | « Réglages » (ex-« Réglages de l'encodage ») : cinq palettes des pôles, validées pour les daltoniens ; préférence du navigateur ; rapport et version partagée sur la palette par défaut (D-64) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 | Départ de la hauteur | la hauteur part d'une confiance réglable de 0 à 0,5, 0,25 par défaut ; épaisseur minimale de 1 à 6 px (D-65) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
+| Déploiement | D-64 et D-65 : front déployé, vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-65 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2460,6 +2461,23 @@ différences entre les compétences du référentiel. »
   (comme l'anneau en D-58) : les données d'une version figée ne changent
   pas, sa lecture suit l'encodage du site.
 
+**Déploiement de D-64 et D-65** (front seul, depuis la VM du Mac, les copies
+de production du référentiel gardées) : trois fichiers envoyés, l'ancien
+paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ;
+  - CŒUR en `#047857` par défaut, quatre cercles guides (0,5, 0,75, 1 et la base à 0,25) ;
+  - « Réglages » : α, départ de la hauteur (confiance 0,25), anneau, épaisseur minimale, puis les cinq palettes, Contrastée cochée ;
+  - la légende dit le départ et l'épaisseur minimale en dessous ; « Surface : points × hauteur » ;
+  - Pastel recolore le soleil (CŒUR `#8ee5bf`), en clair comme en sombre, et reste au rechargement ;
+  - « Pourquoi cette surface ? » d'une compétence : confiance 0,47, hauteur 0,29, formule de h ;
+  - « Valeurs par défaut » ramène Contrastée et efface la préférence ;
+- **au téléphone** (Pixel 7) : la tuile « Réglages » sur une colonne, trois rangées, tout visible ;
+- seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
+- copies de travail effacées : paquets, dossiers de déploiement, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -3246,4 +3264,5 @@ Questions posées après D-55 :
   confiance réglable (0,25 par défaut), les écarts de hauteur de la
   démonstration 1,6 fois plus visibles ; α garde son rôle dans les points.
   Relu par un agent distinct (aucun bloquant ; six défauts et des points
-  mineurs traités). Question 38 posée (la palette par défaut).
+  mineurs traités). Question 38 posée (la palette par défaut). Déployé
+  (front) et vérifié en ligne, au bureau et au téléphone.
