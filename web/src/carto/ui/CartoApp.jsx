@@ -22,7 +22,8 @@ import { DetailPanel, SunLegend } from './DetailPanel.jsx'
 import { DayModal } from './DayModal.jsx'
 import { WhyDialog } from './WhyDialog.jsx'
 import { Player, usePrefersReducedMotion } from './Player.jsx'
-import { DatasetSection, DatasetTitle, DayAlerts, DayCounts, DayList, ImportSection, LastImportReport, Manager, SetsSection, TagsSection, TwoStepButton } from './Manager.jsx'
+import { DatasetSection, DatasetTitle, DayAlerts, DayCounts, DayList, ImportSection, LastImportReport, Manager, SetsSection, TagsSection } from './Manager.jsx'
+import { PanelTools } from './Panels.jsx'
 import { ImportPanel, ImportReport } from './ImportPanel.jsx'
 import { PortfolioReader } from './PortfolioReader.jsx'
 import { DayVerdictDetail, ObservationDays, TraceList, verdictDetailOf } from './Observations.jsx'
@@ -162,6 +163,9 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   }, [])
   // « Réinitialiser l'affichage » remonte aussi les tuiles (recherche, regroupements, focus…).
   const [resetKey, setResetKey] = useState(0)
+  // Place des commandes du Tableau de bord dans l'en-tête (D-61) : le tableau
+  // de bord, qui sait quelles cartes ont des données, y rend les siennes.
+  const [toolsSlot, setToolsSlot] = useState(null)
   const rootRef = useRef(null)
   usePrintExpand(rootRef)
   const space = route.sub === 'jour' || !route.sub ? 'cartographie' : route.sub
@@ -497,14 +501,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         dataset={dataset}
         t={ui.t}
         onResetT={resetT}
-        tools={
-          space === 'cartographie' ? (
-            <>
-              <PanelsMenu tiles={available} shown={tiles.shown} onToggle={showTile} summaryRef={panelsRef} />
-              <TwoStepButton label="Réinitialiser l’affichage" confirmLabel="Revenir à la vue de départ" onConfirm={resetDisplay} />
-            </>
-          ) : null
-        }
+        tools={space === 'cartographie' ? <PanelTools tiles={available} shown={tiles.shown} onToggle={showTile} onReset={resetDisplay} summaryRef={panelsRef} /> : null}
+        slotRef={space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? setToolsSlot : null}
       />
       <nav className="carto-spaces" aria-label="Espaces de la cartographie">
         {SPACES.filter(([id]) => !(viewer && id === 'export') && (id !== 'partage' || canShare)).map(([id, label, hash]) => (
@@ -587,6 +585,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           update={data.update}
           onOpenDay={openDay}
           onOpenTrace={openTrace}
+          toolsSlot={toolsSlot}
         />
       ) : space === 'export' && !slots.export ? (
         viewer ? (
@@ -759,11 +758,13 @@ function SelectionDetails({ dataset, state, selection, t, data, selectionDates, 
 
 /**
  * En-tête : titre et jeu de données ; la date t quand elle est fixée ; dans
- * l'espace Cartographie, le menu « Panneaux » et « Réinitialiser l'affichage »
- * (D-52). La période et le compteur de journées cochées sont dans la tuile
- * Journées ; comparer et exporter sont dans les espaces.
+ * les espaces en tuiles (Cartographie, Tableau de bord), le menu « Panneaux »
+ * et « Réinitialiser l'affichage » (D-52, D-61). La période et le compteur de
+ * journées cochées sont dans la tuile Journées ; comparer et exporter sont
+ * dans les espaces. slotRef : une place où l'espace affiché rend ses propres
+ * commandes (le Tableau de bord), seulement quand il en a.
  */
-function ContextBar({ dataset, t, onResetT, tools = null }) {
+function ContextBar({ dataset, t, onResetT, tools = null, slotRef = null }) {
   return (
     <header className="carto-context" aria-label="Contexte">
       <div className="carto-context-title">
@@ -783,50 +784,13 @@ function ContextBar({ dataset, t, onResetT, tools = null }) {
           </div>
         </dl>
       ) : null}
-      {tools ? <div className="carto-context-tools">{tools}</div> : null}
+      {tools || slotRef ? (
+        <div className="carto-context-tools">
+          {tools}
+          {slotRef ? <div ref={slotRef} className="carto-context-slot" /> : null}
+        </div>
+      ) : null}
     </header>
-  )
-}
-
-/** Menu « Panneaux » : une case par tuile de la cartographie (D-53). */
-function PanelsMenu({ tiles, shown, onToggle, summaryRef = null }) {
-  const ref = useRef(null)
-  // Se referme au clic ailleurs, et sur Échap (le focus revient au bouton).
-  useEffect(() => {
-    const onDown = (e) => {
-      if (ref.current?.open && !ref.current.contains(e.target)) ref.current.open = false
-    }
-    document.addEventListener('pointerdown', onDown)
-    return () => document.removeEventListener('pointerdown', onDown)
-  }, [])
-  const count = tiles.filter(([id]) => shown.includes(id)).length
-  return (
-    <details
-      ref={ref}
-      className="carto-panels-menu"
-      onKeyDown={(e) => {
-        if (e.key !== 'Escape' || !ref.current?.open) return
-        e.preventDefault()
-        ref.current.open = false
-        ref.current.querySelector('summary')?.focus()
-      }}
-    >
-      <summary ref={summaryRef}>
-        Panneaux{' '}
-        <span className="carto-count">
-          {count}/{tiles.length}
-        </span>
-      </summary>
-      <ul className="carto-panels-list" aria-label="Panneaux affichés">
-        {tiles.map(([id, label]) => (
-          <li key={id}>
-            <label>
-              <input type="checkbox" checked={shown.includes(id)} onChange={(e) => onToggle(id, e.target.checked)} /> {label}
-            </label>
-          </li>
-        ))}
-      </ul>
-    </details>
   )
 }
 

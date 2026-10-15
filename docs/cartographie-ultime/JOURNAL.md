@@ -59,6 +59,11 @@ autorisation, puis fusionné dans `main` (D-46).
 | Heatmap | « Tout voir » (du premier au dernier jour) par défaut, « Année scolaire », « Période libre » ; contraste renforcé toujours (D-59) | ✅ | ✅ voir §3 | ✅ | `abc134a`, `b3fabf3` |
 | Thème sombre | le soleil et la heatmap suivent le thème ; marches sombres des sept couleurs choisies et validées (D-60) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `842711e`, `b3fabf3` |
 | Déploiement | D-56 à D-60 : front déployé, vérifié en ligne au bureau et au téléphone (démonstration ancienne mise à jour en 1,9 s) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-60 |
+| Commandes des tuiles | à la souris, au survol ou au clavier seulement, posées sur la fin de la barre ; toujours affichées sur un écran tactile ; Cartographie et Tableau de bord (D-61) | ✅ | ✅ voir §3 + e2e Chromium (souris, clavier, tactile à 360 px) | ✅ | `88d72af` |
+| Tableau de bord en panneaux | « Panneaux » et « Réinitialiser l'affichage » dans l'en-tête ; au départ, le profil et le rythme ; cartes sans données dites dans le menu ; disposition gardée dans le navigateur (D-61) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `88d72af` |
+| Résumé du profil | ni « Points (total) » ni phrase sur le court-circuit (D-62) | ✅ | ✅ voir §3 | ✅ | `88d72af` |
+| Couleurs en clair | marches claires des pôles, validées pour les daltoniens ; bordures et marques des pôles aux deux thèmes (D-63) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `88d72af` |
+| Déploiement | D-61 à D-63 : front déployé en deux passes (la seconde pour les titres au téléphone, `af81072`), vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-63 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2193,6 +2198,136 @@ paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
 - aucune erreur dans les pages ;
 - copies de travail effacées : paquet, dossier de déploiement, fichier d'accès.
 
+### D-61 — Commandes des tuiles au survol ; le tableau de bord en panneaux **[décidé]**
+
+Christian (2026-10-15, 11 h 19), réponse à la question 35 : « Ok pour
+n'afficher les commandes des tuiles qu'au survol ou au focus de la tuile, sauf
+sur écran tactile. Applique la même logique à l'onglet tableau de bord. Prévois
+également pour tableau de bord un bouton "Réinitialiser l'affichage" et un
+sélecteur de panneau comme pour l'onglet Cartographie avec uniquement "Profil,
+Rythme" sélectionnées dans la vue par défaut, les autres non sélectionnées. »
+
+- **Commandes au survol**, dans la Cartographie et le Tableau de bord : avec
+  une souris (`hover: hover` et `pointer: fine`), la barre d'une tuile ne
+  montre que son titre. La poignée, les flèches, la taille, la croix et le coin
+  de redimensionnement paraissent au survol de la tuile, quand le clavier y
+  entre (`:focus-visible`) ou pendant le choix d'une taille. Un clic de souris
+  sur une commande ne les retient pas : le pointeur parti, elles s'effacent.
+  Dans un champ de saisie de la tuile (la recherche des compétences), elles
+  restent, puisqu'on y écrit.
+- **Sur un écran tactile**, rien ne change : elles restent affichées, à leur
+  place. Sur un téléphone, le titre reste entier (sans cela : « Prof » et
+  « Ryth » au tableau de bord, à 360 px) : menu de taille étroit, commandes
+  serrées ; un titre court partage sa ligne avec elles, un long les fait
+  passer à la ligne. Un ordinateur à écran tactile dont le pointeur principal
+  est une souris ou un pavé suit la souris : un toucher sur la tuile en fait
+  paraître les commandes.
+- **[choix d'implémentation]** Les flèches, la taille et la croix se posent
+  alors sur la fin de la barre, sur un fondu de sa couleur : rien ne bouge au
+  survol, et sans survol le titre a toute la barre, hors la place de la
+  poignée — une tuile étroite (« Compétences ») n'est plus coupée par des
+  commandes invisibles. Au survol d'une tuile étroite, elles couvrent la fin
+  d'un long titre. Elles restent dans l'ordre du clavier et pour les lecteurs
+  d'écran.
+- **Le tableau de bord en panneaux, comme la Cartographie** : « Panneaux » et
+  « Réinitialiser l'affichage » (en deux temps), à la même place, dans
+  l'en-tête. Au départ, le profil et le rythme, côte à côte sur un écran
+  large (seul affiché, l'un d'eux prend toute la largeur) ; une case par
+  carte ; la croix d'une tuile la masque (le focus va à « Panneaux »). Plus de bouton « Masquer » dans les cartes, ni de « Cartes
+  masquées » sous la grille. « Réinitialiser » revient au profil et au rythme
+  et remet les cartes à zéro (tableau replié, fonctions cognitives toutes
+  affichées) ; la sensibilité des moments, une préférence du jeu, reste.
+- **Cartes sans données** : elles restent dans « Panneaux », sans case
+  active, avec ce qui leur manque (« Sans données : aucun portfolio
+  importé. » ; pour les anomalies, « Rien à signaler. ») ; la liste « N cartes
+  sans données » sous la grille disparaît. À l'écran, les cartes sont des
+  panneaux, comme dans la Cartographie (« Masquer le panneau Profil »).
+  Une carte de départ sans données (le rythme sans portfolio) paraît d'elle-même
+  quand ses données arrivent.
+- **[écart]** La disposition du tableau de bord quitte le jeu de données
+  (`dashboardHidden`, `dashboardLayout`) pour le navigateur
+  (`humanome-carto-dashboard-tiles`), comme celle de la Cartographie (D-53 ;
+  spec §14.4 : une préférence de présentation) : elle vaut pour tous les jeux.
+  Les deux anciennes préférences sont retirées à la lecture d'un jeu (master
+  v4 : préférences en structure ouverte, schéma inchangé) ; une disposition
+  déjà réglée repart de la vue de départ.
+- **En chemin** : la carte Profil tient dans ses deux rangées. Large, le radar
+  et le reste côte à côte ; étroite, l'un sous l'autre, plus serrés. Elle
+  débordait de 50 à 70 px et cachait « Afficher le tableau ».
+
+### D-62 — Le résumé du profil, allégé **[décidé]**
+
+Christian (2026-10-15, 11 h 19), question 36 : « Ok pour retirer du résumé du
+profil "Points (total)" et la phrase sur le "court-circuit". »
+
+- La tuile Détail, sans sélection, dit la période, les journées retenues et
+  les compétences observées, puis le portrait (kairos). La mention « Hors
+  référentiel », qui ne paraît que si une analyse cite un code inconnu, reste.
+- Le calcul ne change pas : « Pourquoi cette surface ? » dit toujours les
+  points, et la journée seule les compétences non instruites ce jour-là.
+
+### D-63 — Couleurs des pôles en clair, plus sombres pour les daltoniens **[décidé]**
+
+Christian (2026-10-15, 11 h 19), question 37 : « Ok pour des couleurs un cran
+plus sombre pour les daltoniens. »
+
+- **Traduites à l'affichage, comme en sombre** (D-60) : le référentiel garde
+  ses couleurs (une décision des épistémiarques ; sa version et son empreinte
+  ne changent pas), l'interface en montre des marches claires choisies. Le
+  soleil, la heatmap, l'anneau des pôles, la comparaison, le tableau de bord,
+  la liste, le détail, le lecteur, la journée seule, le partage et le rapport
+  imprimable prennent les mêmes. Une couleur inconnue (un autre référentiel)
+  est assombrie, même teinte, jusqu'à 3:1 sur le blanc.
+- **Deux valeurs diffèrent de la proposition [écart, à confirmer]** :
+  RACINES `#c88007` au lieu de `#d97706`, FLAMBEAU `#c2410c` au lieu de
+  `#ea580c`. Assombris au même
+  niveau, ces deux pôles, non voisins dans le soleil, se seraient confondus
+  pour un deutéranope (ΔE 1,6, contre 6,2 avec les couleurs du référentiel).
+  RACINES garde ainsi sa teinte (c'est aussi sa marche sombre) et FLAMBEAU
+  descend d'un cran de plus : ΔE 10,4 entre eux.
+
+  | Pôle | Référentiel | Clair (affiché) | Sombre (D-60) |
+  |---|---|---|---|
+  | TÊTE | `#2563eb` | `#2563eb` | `#2563eb` |
+  | CŒUR | `#10b981` | `#047857` | `#03835a` |
+  | MAIN | `#ec4899` | `#ec4899` | `#ed499a` |
+  | ÂME | `#8b5cf6` | `#8b5cf6` | `#8b5cf6` |
+  | RACINES | `#f59e0b` | `#c88007` | `#c88007` |
+  | CITÉ | `#06b6d4` | `#0891b2` | `#0b96af` |
+  | FLAMBEAU | `#f97316` | `#c2410c` | `#db6410` |
+
+- **Validé** par le script `validate_palette` de la skill dataviz, sur le
+  blanc. Entre voisins (dans l'ordre du soleil) : séparation pour les
+  daltoniens, pire ΔE 10,4 (CŒUR et MAIN : 4,9 avec le référentiel) ; vision
+  normale, pire 22,6 ; les sept à 3:1 au moins. Entre toutes les paires,
+  seules TÊTE et ÂME, inchangées et jamais voisines, restent proches pour un
+  protanope (ΔE 2,3, comme avant).
+- Les bordures et marques d'un pôle (détail, liste, journée, lecteur,
+  comparaison, partage) prennent aussi, en sombre, la marche sombre (classe
+  `carto-pole`) : elles gardaient la couleur du référentiel dans les deux
+  thèmes.
+- **Hors du périmètre** : les pages Référentiel, « Essayer » et la journée du
+  site (`#/jour/…`) gardent les couleurs du référentiel. Si les épistémiarques adoptent ces marches dans une
+  prochaine version, l'interface les montrera telles quelles (elles passent
+  déjà les vérifications).
+
+**Déploiement de D-61 à D-63** (front seul, depuis la VM du Mac, les copies
+de production du référentiel gardées). Deux passes : la seconde après une
+correction pour les téléphones, où la barre de chaque tuile passait à la
+ligne même pour un titre court. Trois fichiers envoyés chaque fois, l'ancien
+paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ;
+  - les commandes du soleil sont effacées sans survol, affichées au survol ;
+  - le résumé du profil dit la période, les journées retenues et les compétences observées ;
+  - le soleil a les sept couleurs claires attendues ;
+  - le tableau de bord montre le profil et le rythme côte à côte, sans débordement, avec « Panneaux 2/8 » (« Fonctions cognitives » sans données, et sa raison) et « Réinitialiser l'affichage » ;
+- **au téléphone** (Pixel 7, et écran tactile de 360 px) : commandes affichées, titres entiers, « Soleil » sur la ligne de ses commandes ;
+- seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
+- copies de travail effacées : paquets, dossiers de déploiement, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -2584,6 +2719,32 @@ impose le sien), le repli faute d'en-tête Last-Modified (OVH le donne), la
 bande d'une semaine d'une période qui déborde le 1er août (c'est bien une autre
 année scolaire).
 
+### Tuiles, tableau de bord, résumé du profil, couleurs (D-61 à D-63)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `ui/P4.test.jsx` | **vue de départ** : le profil et le rythme seulement, « Panneaux » et « Réinitialiser l'affichage » dans l'en-tête, plus de « Masquer » dans les cartes ni de listes sous la grille, la source de chaque carte dite ; sans portfolio, le profil seul sur toute la largeur, la case du rythme dit ce qui lui manque, puis le rythme paraît avec le portfolio ; commandes dans l'en-tête des seuls espaces en tuiles, chacun avec ses panneaux ; cartes sans données dites dans « Panneaux » (« Rien à signaler. » pour les anomalies) ; la croix masque et donne le focus à « Panneaux », la case réaffiche à la suite ; Échap referme le menu ; disposition gardée au rechargement, rien dans le jeu ; « Réinitialiser » en deux temps, cartes remises à zéro ; le trait de constance dans la couleur de son pôle | 8 → 14, réécrits |
+| `ui/tiles.test.js` | tableau de bord : neuf cartes, profil et rythme au départ, sa propre clé (pas de mélange avec la cartographie), tailles côte à côte ou pleine largeur seul | 7 → 11 |
+| `ui/Tiles.test.jsx` | résumé du profil : période, journées retenues, compétences observées, ni points ni court-circuit ; le soleil dessine CŒUR en `#047857` (marche sombre jointe), le détail porte les deux marches | +2 |
+| `ui/colors.test.js` | marches claires (CŒUR, RACINES, CITÉ, FLAMBEAU plus sombres ; TÊTE, MAIN, ÂME telles quelles ; casse ignorée) : même teinte, jamais plus claires, 3:1 sur le blanc ; couleur inconnue assombrie jusqu'à 3:1 ; CŒUR et MAIN séparés par la luminance dans les deux thèmes ; RACINES et FLAMBEAU aussi ; heatmap d'un seul pôle ; `poleTone`, `poleVars` | 8 → 12 |
+| `core/ops.test.js` | `dashboardHidden` et `dashboardLayout` retirés à la lecture d'un jeu | renforcé |
+| `e2e/carto-soleil.e2e.js` | à la souris : commandes effacées, paraissent au survol, pas retenues par un clic, au clavier oui (dans la barre et dans la tuile) ; titre d'une tuile étroite entier ; tableau de bord : profil et rythme côte à côte, commandes au survol, « Panneaux », réinitialisation ; **tactile à 360 px** : commandes affichées, à leur place, titres entiers (un titre court sur la ligne des commandes, un long au-dessus) ; couleur claire de CŒUR | +2 étapes, +1 scénario |
+| fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (préférences : plus de `dashboardHidden` ni de `dashboardLayout`) | — |
+
+Suites complètes : site **2 382 verts** (238 fichiers) ; moteur **1 073
+verts** ; e2e Chromium : soleil (souris et tactile), copie autonome, dialogue,
+partage (deux scénarios, contre l'API locale), verts. Relecture indépendante
+(un agent distinct) : aucun défaut bloquant, deux à corriger — sur un
+téléphone de 360 px, les titres du tableau de bord réduits à rien (« Prof »,
+« Ryth ») ; le profil seul gardait un tiers de la largeur — et des points
+mineurs, traités : un clic de souris retenait les commandes, l'anomalie
+« sans données » (rien à signaler), une couleur inconnue recalculée à chaque
+case, la place des commandes rendue dans tous les espaces, deux tests
+manquants (le rythme qui paraît, Échap), la journée du site hors du périmètre
+des couleurs. Laissés et dits en D-61 : au survol d'une tuile étroite, les
+commandes couvrent la fin d'un long titre ; un ordinateur à écran tactile
+suit la souris.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2733,11 +2894,20 @@ Questions posées après D-55 :
 35. **Proposition** (posture d'ergonome, D-56) : les commandes de chaque tuile
     (◀ ▶, taille, ✕) sont toujours affichées, quatre par tuile ; elles
     pourraient n'apparaître qu'au survol ou au focus de la tuile (toujours sur
-    un écran tactile, où le survol n'existe pas).
+    un écran tactile, où le survol n'existe pas). → **Décidé** (2026-10-15,
+    11 h 19) : « Ok pour n'afficher les commandes des tuiles qu'au survol ou
+    au focus de la tuile, sauf sur écran tactile. Applique la même logique à
+    l'onglet tableau de bord. Prévois également pour tableau de bord un
+    bouton "Réinitialiser l'affichage" et un sélecteur de panneau comme pour
+    l'onglet Cartographie avec uniquement "Profil, Rythme" sélectionnées dans
+    la vue par défaut, les autres non sélectionnées. » Suite : fait (D-61).
 36. **Proposition** : le résumé du profil (tuile Détail, sans sélection) dit
     les « Points (total) » et « 1 613 compétences n'ont pas été instruites
     (court-circuit) » — des mots de l'analyse, pas de la personne. Garder la
     période, les journées retenues, les compétences observées et le portrait ?
+    → **Décidé** (2026-10-15, 11 h 19) : « Ok pour retirer du résumé du
+    profil "Points (total)" et la phrase sur le "court-circuit". » Suite :
+    fait (D-62).
 37. **Proposition** sur les couleurs du référentiel, en clair : CŒUR
     (`#10b981`) et MAIN (`#ec4899`), voisins dans le soleil, se confondent en
     deutéranopie (ΔE 4,9, sous le plancher de 6) ; RACINES, CITÉ, FLAMBEAU et
@@ -2745,6 +2915,13 @@ Questions posées après D-55 :
     CITÉ `#0891b2` et FLAMBEAU `#ea580c` (mêmes teintes, un cran plus
     sombres), toutes les vérifications passent. C'est le référentiel, donc
     une décision des épistémiarques ; en sombre, c'est déjà réglé (D-60).
+    → **Décidé** (2026-10-15, 11 h 19) : « Ok pour des couleurs un cran plus
+    sombre pour les daltoniens. » Suite : fait à l'affichage (D-63), le
+    référentiel inchangé. Les vérifications de la proposition ne portaient que
+    sur les pôles voisins : entre toutes les paires, RACINES et FLAMBEAU s'y
+    confondaient pour un deutéranope (ΔE 1,6). D'où deux valeurs plus justes,
+    **à confirmer** : RACINES `#c88007` (sa teinte gardée) et FLAMBEAU
+    `#c2410c` (ΔE 10,4 entre eux).
 
 ---
 
@@ -2884,3 +3061,14 @@ Questions posées après D-55 :
   jour plus tard ; passage approché lisible en sombre ; rapport à l'anneau
   standard ; légende de la heatmap ; contraste des noms…). Déployé (front) et
   vérifié en ligne, au bureau et au téléphone.
+- **2026-10-15** — Réponses de Christian aux propositions 35 à 37 (11 h 19,
+  D-61 à D-63) : à la souris, les commandes des tuiles ne paraissent qu'au
+  survol ou au clavier, posées sur la fin de la barre (toujours affichées sur
+  un écran tactile) ; le tableau de bord en panneaux, comme la cartographie
+  (« Panneaux », « Réinitialiser l'affichage », au départ le profil et le
+  rythme, disposition gardée dans le navigateur) ; résumé du profil sans
+  total des points ni court-circuit ; couleurs des pôles plus sombres en
+  clair, traduites à l'affichage, avec deux valeurs plus justes que celles
+  proposées (RACINES et FLAMBEAU, à confirmer). Relu par un agent distinct
+  (aucun bloquant ; les deux défauts à corriger et sept points mineurs
+  traités). Déployé (front) et vérifié en ligne, au bureau et au téléphone.

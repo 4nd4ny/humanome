@@ -4,6 +4,7 @@
 import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
 import { returnToPoles } from './Sun.jsx'
+import { poleVars } from './colors.js'
 
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
@@ -52,7 +53,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
     const pole = refl.poleByNum.get(meta?.pole)
     if (!meta) return <p className="carto-muted">Compétence inconnue du référentiel.</p>
     return (
-      <article className="carto-detail" aria-label={`Détail : ${meta.code} ${meta.name}`} style={{ '--pole-color': pole?.color }}>
+      <article className="carto-detail carto-pole" aria-label={`Détail : ${meta.code} ${meta.name}`} style={poleVars(pole?.color)}>
         <header className="carto-detail-head">
           <p className="carto-detail-kicker">
             <span aria-hidden="true">{pole?.symbol}</span> {pole?.name}
@@ -116,7 +117,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
     const pole = refl.poleByNum.get(selection.num)
     const p = state.poles.get(selection.num)
     return (
-      <article className="carto-detail" aria-label={`Détail : pôle ${pole?.name}`} style={{ '--pole-color': pole?.color }}>
+      <article className="carto-detail carto-pole" aria-label={`Détail : pôle ${pole?.name}`} style={poleVars(pole?.color)}>
         <header className="carto-detail-head">
           <p className="carto-detail-kicker">Pôle</p>
           <h2>
@@ -209,20 +210,12 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
           <dt>Compétences observées</dt>
           <dd>{state.competencies.size}</dd>
         </div>
-        <div>
-          <dt>Points (total)</dt>
-          <dd>{fmt(state.totalIntensity)}</dd>
-        </div>
       </dl>
+      {/* Ni total des points ni compétences non instruites (court-circuit) : des mots de
+          l'analyse, pas de la personne (journal D-62). */}
       {state.outOfReferential.length > 0 ? (
         <p className="carto-note">
           Hors référentiel ({refl.label}) : {state.outOfReferential.join(', ')} — conservées, sans secteur.
-        </p>
-      ) : null}
-      {state.excluded.courtCircuit > 0 ? (
-        <p className="carto-small carto-muted">
-          Au fil des journées retenues, {state.excluded.courtCircuit.toLocaleString('fr-FR')} compétence{state.excluded.courtCircuit > 1 ? 's' : ''} n’
-          {state.excluded.courtCircuit > 1 ? 'ont' : 'a'} pas été instruite{state.excluded.courtCircuit > 1 ? 's' : ''} (court-circuit) : ce n’est jamais compté comme une absence.
         </p>
       ) : null}
       {children}

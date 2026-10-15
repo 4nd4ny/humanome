@@ -42,9 +42,10 @@ Au départ, la page ne montre que deux panneaux, en pleine largeur : le
 lecture, Légende, Tableau équivalent, Importer, Étiquettes, Ensembles nommés,
 Jeux de données, Réglages de l'encodage. Cochez-en un : il s'ajoute à la suite.
 Chaque panneau se déplace (poignée ⠿, ou flèches ◀ ▶), se redimensionne (coin
-◢, ou menu de taille) et se masque (✕). Votre disposition reste dans ce
-navigateur ; **« Réinitialiser l'affichage »** revient à la vue de départ,
-sans sélection.
+◢, ou menu de taille) et se masque (✕) : à la souris, ces commandes paraissent
+quand elle survole le panneau ; sur un écran tactile, elles restent affichées.
+Votre disposition reste dans ce navigateur ; **« Réinitialiser l'affichage »**
+revient à la vue de départ, sans sélection.
 
 ## Lire le soleil
 
@@ -147,8 +148,9 @@ En haut de la cartographie :
 - **Comparaison** met deux ensembles de journées côte à côte (d'emblée, la
   première moitié des journées face à la seconde), en huit vues, sans jamais
   classer ;
-- **Tableau de bord** réunit des cartes (profil, rythme, constance, moments
-  remarquables…) qui se masquent quand leurs données manquent ;
+- **Tableau de bord** réunit des panneaux : au départ le profil et le
+  rythme ; « Panneaux » ajoute les autres (constance, moments remarquables…)
+  et dit ce qui manque à ceux qui n'ont pas de données ;
 - **Dialogue** pose des questions tirées des traces, pour relire son parcours ;
 - **Export** télécharge l'archive complète (JSON, réimportable), une copie
   autonome (une page HTML lisible hors ligne) ou un rapport imprimable.

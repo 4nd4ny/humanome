@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-60, état des tests, les 37 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-63, état des tests, les 37 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -143,6 +143,15 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     distinct (24 points, 21 traités). Suites : front **2 366 verts**, moteur **1 073**, e2e
     Chromium de la cartographie verts. Déployé (front) et vérifié en ligne, au bureau et au
     téléphone (une démonstration ancienne se met à jour en 1,9 s).
+  - **Propositions 35 à 37 acceptées** (D-61 à D-63) : à la souris, les commandes des tuiles
+    ne paraissent qu'au survol ou au clavier (toujours affichées sur un écran tactile) ; le
+    tableau de bord en panneaux comme la cartographie (« Panneaux », « Réinitialiser
+    l'affichage », au départ le profil et le rythme, disposition gardée dans le navigateur) ;
+    résumé du profil sans total des points ni court-circuit ; couleurs des pôles plus sombres
+    en clair, traduites à l'affichage (référentiel inchangé ; RACINES et FLAMBEAU à des valeurs
+    plus justes que la proposition, à confirmer). Relu par un agent distinct (aucun bloquant).
+    Suites : front **2 382 verts**, moteur **1 073**, e2e Chromium de la cartographie verts.
+    Déployé (front) et vérifié en ligne, au bureau et au téléphone.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

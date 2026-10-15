@@ -75,10 +75,11 @@ export const DEFAULT_PREFERENCES = Object.freeze({
   reducedMotion: 'system', // 'system' | 'reduce' | 'no-preference'
   speed: 1,
   params: { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
-  dashboardHidden: [], // cartes masquées du tableau de bord
   compare: null, // dernière comparaison A/B : {a: {name, def}, b: {name, def}, view}
-  dashboardLayout: null, // grille de tuiles du tableau de bord : {order, sizes}
   momentsSensitivity: 50, // curseur des moments remarquables (0–100, pas de 5)
+  // Les cartes affichées du tableau de bord et leur disposition ne sont plus ici :
+  // une préférence de présentation, gardée dans le navigateur comme celle de la
+  // cartographie (journal D-61).
 })
 
 /**
@@ -412,6 +413,9 @@ export function upgradeDataset(doc) {
   ds.preferences.params = { ...DEFAULT_PREFERENCES.params, ...(ds.preferences.params ?? {}) }
   // Le contraste renforcé de la heatmap est désormais toujours appliqué (D-59).
   delete ds.preferences.highContrast
+  // La disposition du tableau de bord est gardée dans le navigateur (D-61).
+  delete ds.preferences.dashboardHidden
+  delete ds.preferences.dashboardLayout
   for (const d of ds.days) {
     d.tags ??= []
     d.active ??= true

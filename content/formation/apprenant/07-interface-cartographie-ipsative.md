@@ -75,8 +75,10 @@ journées (avec la période et le nombre de journées cochées), la liste des
 compétences, la heatmap et la tête de lecture, la légende, le tableau
 équivalent, l'import, les étiquettes, les ensembles nommés, vos jeux de
 données, les réglages de l'encodage. Chaque panneau se déplace, se
-redimensionne et se masque ; votre disposition reste dans ce navigateur, et
-**« Réinitialiser l'affichage »** revient à la vue de départ.
+redimensionne et se masque : ses commandes paraissent quand la souris le
+survole (sur un écran tactile, elles restent affichées). Votre disposition
+reste dans ce navigateur, et **« Réinitialiser l'affichage »** revient à la
+vue de départ.
 
 Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
 **détail** le décrit. Appuyez sur **w** : « Pourquoi cette surface ? »
@@ -141,8 +143,11 @@ passages de votre portfolio sans date, auxquels vous pouvez en donner une.
   le début du trimestre ou de l'année scolaire, année scolaire précédente). Un
   avertissement s'affiche quand les deux côtés n'ont pas la même taille. Rien
   n'y est classé.
-- **Tableau de bord** : profil, rythme, constance, moments remarquables… Une
-  carte dont les données manquent se masque.
+- **Tableau de bord** : au départ, votre profil et votre rythme d'écriture.
+  Comme dans la cartographie, **« Panneaux »** ajoute les autres (phases et
+  repères, constance, moments remarquables…) et dit ce qui manque à un
+  panneau sans données ; **« Réinitialiser l'affichage »** revient au profil
+  et au rythme.
 - **Dialogue** : des questions tirées de vos traces, pour relire votre
   parcours. Vos réponses vont dans un carnet qui reste dans ce navigateur.
   Un dialogue du carnet peut être **versé à votre portfolio** (« Verser à mon

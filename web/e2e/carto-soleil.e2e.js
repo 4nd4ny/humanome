@@ -84,6 +84,9 @@ async function sectorPoint(page, labelStart) {
   return pt
 }
 
+/** Pointeur hors des tuiles, sur le titre de la cartographie (le bord gauche ouvrirait le menu du site). */
+const away = (page) => page.locator('.carto-context h1').hover()
+
 /** Clique le secteur lui-même. */
 async function clickSector(page, labelStart) {
   const pt = await sectorPoint(page, labelStart)
@@ -216,7 +219,7 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
       }))
     const light = await colors()
     expect(light.surface).toBe('rgb(255, 255, 255)')
-    expect(light.leaf).toBe('rgb(16, 185, 129)') // #10b981, la couleur du référentiel
+    expect(light.leaf).toBe('rgb(4, 120, 87)') // #047857, la marche claire de #10b981 (D-63)
     await page.emulateMedia({ colorScheme: 'dark' })
     await expect.poll(async () => (await colors()).surface).toBe('rgb(20, 29, 49)')
     const dark = await colors()
@@ -237,5 +240,115 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await page.getByRole('button', { name: 'Réinitialiser l’affichage' }).click()
     await page.getByRole('button', { name: 'Revenir à la vue de départ' }).click()
     await expect(page.locator('.carto-tiles [data-tile]')).toHaveCount(2)
+  })
+
+  await test.step('à la souris, les commandes d’une tuile paraissent à son survol ou au clavier ; le titre garde toute la barre (D-61)', async () => {
+    const sunTile = page.locator('.v3-tile[data-tile-id="sun"]')
+    const tools = sunTile.locator('.v3-tile-tools')
+    const opacity = (loc) => loc.evaluate((el) => getComputedStyle(el).opacity)
+    await away(page)
+    await expect.poll(() => opacity(tools)).toBe('0')
+    await expect.poll(() => opacity(sunTile.locator('.v3-tile-handle'))).toBe('0')
+    await expect.poll(() => opacity(sunTile.locator('.v3-tile-resize'))).toBe('0')
+    expect(await opacity(sunTile.locator('.v3-tile-label'))).toBe('1')
+    await page.screenshot({ path: test.info().outputPath('4-tuiles-sans-survol.png') })
+    const box = await sunTile.boundingBox()
+    await page.mouse.move(box.x + box.width / 2, box.y + 12)
+    await expect.poll(() => opacity(tools)).toBe('1')
+    await page.screenshot({ path: test.info().outputPath('5-tuiles-survol.png') })
+    // Un clic de souris sur une commande ne les retient pas : le pointeur parti, elles s'effacent.
+    await sunTile.getByRole('button', { name: 'Reculer Soleil' }).click()
+    await expect(page.locator('.carto-tiles .v3-tile').first()).toHaveAttribute('data-tile-id', 'detail')
+    await away(page)
+    await expect.poll(() => opacity(tools)).toBe('0')
+    await sunTile.getByRole('button', { name: 'Avancer Soleil' }).click()
+    await expect(page.locator('.carto-tiles .v3-tile').first()).toHaveAttribute('data-tile-id', 'sun')
+    await away(page)
+    await expect.poll(() => opacity(tools)).toBe('0')
+    // Au clavier : arrivé sur une commande, elles paraissent toutes ; dans la tuile, elles restent.
+    await page.locator('.carto-panels-menu > summary').focus()
+    const inSun = (part) => sunTile.evaluate((t, part) => (part === 'bar' ? t.querySelector('.v3-tile-tools') : t.querySelector('.v3-tile-content')).contains(document.activeElement), part)
+    for (let i = 0; i < 25 && !(await inSun('bar')); i++) await page.keyboard.press('Tab')
+    expect(await inSun('bar')).toBe(true)
+    await expect.poll(() => opacity(tools)).toBe('1')
+    for (let i = 0; i < 8 && !(await inSun('content')); i++) await page.keyboard.press('Tab')
+    expect(await inSun('content')).toBe(true)
+    await expect.poll(() => opacity(tools)).toBe('1')
+    // Le focus parti ailleurs, elles s'effacent.
+    await page.locator('.carto-context h1').click()
+    await expect.poll(() => opacity(tools)).toBe('0')
+    // Une tuile étroite : sans survol, son titre n'est plus coupé par des commandes invisibles.
+    await page.locator('.carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Compétences' }).check()
+    await page.keyboard.press('Escape')
+    await away(page)
+    const label = page.locator('.v3-tile[data-tile-id="competencies"] .v3-tile-label')
+    await expect(label).toHaveText('Compétences')
+    expect(await label.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true)
+    await page.locator('.carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Compétences' }).uncheck()
+    await page.keyboard.press('Escape')
+  })
+
+  await test.step('tableau de bord : au départ, le profil et le rythme ; « Panneaux » et « Réinitialiser » dans l’en-tête (D-61)', async () => {
+    await page.goto('/#/cartographie/tableau-de-bord')
+    const cards = page.locator('.carto-dashboard section.carto-card')
+    await expect(cards).toHaveCount(2)
+    await expect(cards.nth(0)).toHaveAttribute('aria-label', 'Profil')
+    await expect(cards.nth(1)).toHaveAttribute('aria-label', 'Rythme')
+    // Côte à côte : même rangée.
+    const [a, b] = [await cards.nth(0).boundingBox(), await cards.nth(1).boundingBox()]
+    expect(Math.abs(a.y - b.y)).toBeLessThan(2)
+    await away(page)
+    const dashTools = page.locator('.v3-tile[data-tile-id="profile"] .v3-tile-tools')
+    await expect.poll(() => dashTools.evaluate((el) => getComputedStyle(el).opacity)).toBe('0')
+    await page.locator('.carto-dashboard').screenshot({ path: test.info().outputPath('6-tableau-de-bord.png') })
+    await page.locator('.carto-context .carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Constance' }).check()
+    await expect(cards).toHaveCount(3)
+    await page.screenshot({ path: test.info().outputPath('7-tableau-panneaux.png') })
+    await page.keyboard.press('Escape')
+    await page.getByRole('button', { name: 'Réinitialiser l’affichage' }).click()
+    await page.getByRole('button', { name: 'Revenir à la vue de départ' }).click()
+    await expect(cards).toHaveCount(2)
+  })
+})
+
+test.describe('écran tactile', () => {
+  test.use({ hasTouch: true, isMobile: true, viewport: { width: 360, height: 780 } })
+
+  /** Titres des tuiles affichées, et s'ils sont coupés. */
+  const titles = (page) =>
+    page.locator('.v3-tile-label').evaluateAll((els) => els.map((el) => ({ text: el.textContent, cut: el.scrollWidth > el.clientWidth })))
+
+  test('les commandes des tuiles restent affichées : le survol n’existe pas ; sur un petit écran, les titres restent lisibles (D-61)', async ({ page }) => {
+    await page.goto('/#/cartographie')
+    await page.locator('input[type="file"][accept]').setInputFiles(louFiles())
+    await expect(page.locator(`${SUN} [role="button"][aria-label^="2.01 "]`)).toHaveCount(1)
+    const tools = page.locator('.v3-tile[data-tile-id="sun"] .v3-tile-tools')
+    expect(await tools.evaluate((el) => getComputedStyle(el).opacity)).toBe('1')
+    expect(await tools.evaluate((el) => getComputedStyle(el).position)).toBe('static') // dans la barre, à sa place
+    expect(await titles(page)).toEqual([
+      { text: 'Soleil', cut: false },
+      { text: 'Détail', cut: false },
+    ])
+    // Un titre court partage sa ligne avec les commandes ; un long les fait passer à la ligne, entier.
+    const sameLine = (id) =>
+      page.locator(`.v3-tile[data-tile-id="${id}"] .v3-tile-bar`).evaluate((bar) => Math.abs(bar.querySelector('.v3-tile-label').getBoundingClientRect().top - bar.querySelector('.v3-tile-tools').getBoundingClientRect().top) < 12)
+    expect(await sameLine('sun')).toBe(true)
+    await page.locator('.carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Réglages de l’encodage' }).check()
+    await page.locator('.carto-panels-menu > summary').click()
+    await expect(page.locator('.v3-tile[data-tile-id="settings"]')).toBeVisible()
+    expect(await sameLine('settings')).toBe(false)
+    expect((await titles(page)).find((t) => t.text === 'Réglages de l’encodage')).toEqual({ text: 'Réglages de l’encodage', cut: false })
+    await page.goto('/#/cartographie/tableau-de-bord')
+    await expect(page.locator('.carto-dashboard section.carto-card')).toHaveCount(2)
+    expect(await page.locator('.v3-tile[data-tile-id="rhythm"] .v3-tile-tools').evaluate((el) => getComputedStyle(el).opacity)).toBe('1')
+    expect(await titles(page)).toEqual([
+      { text: 'Profil', cut: false },
+      { text: 'Rythme', cut: false },
+    ])
+    await page.screenshot({ path: test.info().outputPath('8-tableau-tactile.png'), fullPage: true })
   })
 })

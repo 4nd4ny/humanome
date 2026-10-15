@@ -6,6 +6,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formatShort } from '../core/dates.js'
+import { poleVars } from './colors.js'
 
 const fold = (s) => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
@@ -136,8 +137,8 @@ export function CompetencyList({ refl, state, selection, dayFilter = null, onSel
                   <button
                     type="button"
                     ref={(el) => itemRefs.current.set(pKey, el)}
-                    className={`carto-list-label carto-list-pole${isSel({ type: 'pole', num: pole.num }) ? ' is-selected' : ''}`}
-                    style={{ '--pole-color': pole.color }}
+                    className={`carto-list-label carto-list-pole carto-pole${isSel({ type: 'pole', num: pole.num }) ? ' is-selected' : ''}`}
+                    style={poleVars(pole.color)}
                     onClick={() => onSelect(isSel({ type: 'pole', num: pole.num }) ? null : { type: 'pole', num: pole.num })}
                   >
                     <span className="carto-pole-mark" aria-hidden="true">{pole.symbol}</span>

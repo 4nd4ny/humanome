@@ -26,6 +26,7 @@ import { JUROR_ORDER, PedagogueReview, VerdictFacts } from './Jury.jsx'
 import { verdictDetailOf } from './Observations.jsx'
 import { ComparePrecautions } from './ComparePanel.jsx'
 import { useFocusTrap } from './DayModal.jsx'
+import { themeColor } from './colors.js'
 
 const nf = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
 const pct = (x) => `${nf(x * 100, 1)} %`
@@ -102,7 +103,7 @@ function Cover({ dataset, refl, state, layout, geometry, t, summary, pseudonym, 
         <ul className="carto-print-poles" aria-label="Pôles du soleil">
           {summary.poles.map((p) => (
             <li key={p.num}>
-              <span className="carto-print-swatch" style={{ background: p.color }} aria-hidden="true" />
+              <span className="carto-print-swatch" style={{ background: themeColor(p.color) }} aria-hidden="true" />
               {p.symbol} {p.name} <span className="carto-print-faint">{pct(p.share)}</span>
             </li>
           ))}
@@ -143,7 +144,7 @@ function Profile({ refl, summary }) {
           {summary.poles.map((p) => (
             <tr key={p.num}>
               <th scope="row">
-                <span className="carto-print-swatch" style={{ background: p.color }} aria-hidden="true" /> {p.symbol} {p.name}
+                <span className="carto-print-swatch" style={{ background: themeColor(p.color) }} aria-hidden="true" /> {p.symbol} {p.name}
               </th>
               <td className="carto-num">{pct(p.share)}</td>
               <td className="carto-num">{nf(p.confidence)}</td>
@@ -166,7 +167,7 @@ function Profile({ refl, summary }) {
         </thead>
         <tbody>
           {summary.competencies.map((c) => (
-            <tr key={c.code} style={{ '--pole-color': refl.poleByNum.get(c.pole)?.color }}>
+            <tr key={c.code} style={{ '--pole-color': themeColor(refl.poleByNum.get(c.pole)?.color) }}>
               <th scope="row">
                 <span className="carto-code">{c.code}</span> {c.name}
                 {c.status === 'needs_review' ? <span className="carto-print-faint"> · renvoi au cartographe</span> : null}
@@ -276,7 +277,7 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
   const traces = reportTraces(dataset, state, code, { scope: options.scope })
   const runRefs = [...new Set(observations.map((o) => verdictDetailOf(getDetail, o.date, o.variantId, code)?.runRef).filter(Boolean))]
   return (
-    <article className="carto-print-comp" style={{ '--pole-color': pole?.color }} aria-labelledby={`carto-print-c-${code}`}>
+    <article className="carto-print-comp" style={{ '--pole-color': themeColor(pole?.color) }} aria-labelledby={`carto-print-c-${code}`}>
       <h3 id={`carto-print-c-${code}`}>
         <span className="carto-code">{code}</span> {meta.name}
       </h3>
