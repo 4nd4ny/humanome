@@ -2215,11 +2215,12 @@ Rythme" sélectionnées dans la vue par défaut, les autres non sélectionnées.
   Dans un champ de saisie de la tuile (la recherche des compétences), elles
   restent, puisqu'on y écrit.
 - **Sur un écran tactile**, rien ne change : elles restent affichées, à leur
-  place. Sur un très petit écran (360 px), le menu de taille se fait étroit et
-  les commandes passent à la ligne plutôt que de réduire le titre à rien
-  (sans cela : « Prof » et « Ryth » au tableau de bord). Un ordinateur à écran tactile dont
-  le pointeur principal est une souris ou un pavé suit la souris : un toucher
-  sur la tuile en fait paraître les commandes.
+  place. Sur un téléphone, le titre reste entier (sans cela : « Prof » et
+  « Ryth » au tableau de bord, à 360 px) : menu de taille étroit, commandes
+  serrées ; un titre court partage sa ligne avec elles, un long les fait
+  passer à la ligne. Un ordinateur à écran tactile dont le pointeur principal
+  est une souris ou un pavé suit la souris : un toucher sur la tuile en fait
+  paraître les commandes.
 - **[choix d'implémentation]** Les flèches, la taille et la croix se posent
   alors sur la fin de la barre, sur un fondu de sa couleur : rien ne bouge au
   survol, et sans survol le titre a toute la barre, hors la place de la
@@ -2709,7 +2710,7 @@ année scolaire).
 | `ui/Tiles.test.jsx` | résumé du profil : période, journées retenues, compétences observées, ni points ni court-circuit ; le soleil dessine CŒUR en `#047857` (marche sombre jointe), le détail porte les deux marches | +2 |
 | `ui/colors.test.js` | marches claires (CŒUR, RACINES, CITÉ, FLAMBEAU plus sombres ; TÊTE, MAIN, ÂME telles quelles ; casse ignorée) : même teinte, jamais plus claires, 3:1 sur le blanc ; couleur inconnue assombrie jusqu'à 3:1 ; CŒUR et MAIN séparés par la luminance dans les deux thèmes ; RACINES et FLAMBEAU aussi ; heatmap d'un seul pôle ; `poleTone`, `poleVars` | 8 → 12 |
 | `core/ops.test.js` | `dashboardHidden` et `dashboardLayout` retirés à la lecture d'un jeu | renforcé |
-| `e2e/carto-soleil.e2e.js` | à la souris : commandes effacées, paraissent au survol, pas retenues par un clic, au clavier oui (dans la barre et dans la tuile) ; titre d'une tuile étroite entier ; tableau de bord : profil et rythme côte à côte, commandes au survol, « Panneaux », réinitialisation ; **tactile à 360 px** : commandes affichées, à leur place, titres entiers ; couleur claire de CŒUR | +2 étapes, +1 scénario |
+| `e2e/carto-soleil.e2e.js` | à la souris : commandes effacées, paraissent au survol, pas retenues par un clic, au clavier oui (dans la barre et dans la tuile) ; titre d'une tuile étroite entier ; tableau de bord : profil et rythme côte à côte, commandes au survol, « Panneaux », réinitialisation ; **tactile à 360 px** : commandes affichées, à leur place, titres entiers (un titre court sur la ligne des commandes, un long au-dessus) ; couleur claire de CŒUR | +2 étapes, +1 scénario |
 | fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (préférences : plus de `dashboardHidden` ni de `dashboardLayout`) | — |
 
 Suites complètes : site **2 382 verts** (238 fichiers) ; moteur **1 073

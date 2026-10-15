@@ -2713,21 +2713,23 @@ kbd {
     right: auto;
     max-width: calc(100vw - 2rem);
   }
-  /* Sur une colonne, le titre de la tuile garde sa place : menu de taille
-     étroit, et sur un très petit écran les commandes passent à la ligne
-     plutôt que de réduire le titre à rien (D-61). */
+  /* Sur une colonne, le titre de la tuile reste entier : menu de taille
+     étroit, commandes serrées, et si le titre ne tient pas à côté d'elles,
+     elles passent à la ligne plutôt que de le couper (D-61). */
   .carto-tiles .v3-tile-size select,
   .carto-dashboard .v3-tile-size select {
-    max-width: 4.5rem;
+    max-width: 4rem;
   }
   .carto-app .v3-tile-bar {
     flex-wrap: wrap;
   }
   .carto-app .v3-tile-label {
-    min-width: 6.5rem;
+    flex: 1 1 auto;
+    min-width: fit-content;
   }
   .carto-app .v3-tile-tools {
     margin-left: auto;
+    gap: 0.2rem;
   }
 }
 

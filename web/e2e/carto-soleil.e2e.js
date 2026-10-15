@@ -332,6 +332,16 @@ test.describe('écran tactile', () => {
       { text: 'Soleil', cut: false },
       { text: 'Détail', cut: false },
     ])
+    // Un titre court partage sa ligne avec les commandes ; un long les fait passer à la ligne, entier.
+    const sameLine = (id) =>
+      page.locator(`.v3-tile[data-tile-id="${id}"] .v3-tile-bar`).evaluate((bar) => Math.abs(bar.querySelector('.v3-tile-label').getBoundingClientRect().top - bar.querySelector('.v3-tile-tools').getBoundingClientRect().top) < 12)
+    expect(await sameLine('sun')).toBe(true)
+    await page.locator('.carto-panels-menu > summary').click()
+    await page.getByRole('checkbox', { name: 'Réglages de l’encodage' }).check()
+    await page.locator('.carto-panels-menu > summary').click()
+    await expect(page.locator('.v3-tile[data-tile-id="settings"]')).toBeVisible()
+    expect(await sameLine('settings')).toBe(false)
+    expect((await titles(page)).find((t) => t.text === 'Réglages de l’encodage')).toEqual({ text: 'Réglages de l’encodage', cut: false })
     await page.goto('/#/cartographie/tableau-de-bord')
     await expect(page.locator('.carto-dashboard section.carto-card')).toHaveCount(2)
     expect(await page.locator('.v3-tile[data-tile-id="rhythm"] .v3-tile-tools').evaluate((el) => getComputedStyle(el).opacity)).toBe('1')
