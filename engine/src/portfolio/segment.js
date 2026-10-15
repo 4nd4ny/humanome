@@ -23,9 +23,12 @@
 //   at line start and the remainder after the date must be empty or a short
 //   title introduced by separator punctuation (so « 22/12/2025, nous sommes
 //   partis tôt… » is prose, not a header).
-// - SEPARATOR lines (---, ===, ***, ___ — 3+ chars alone on their line) also
-//   split; the resulting segment is undated. A separator glued under a date
-//   header (setext style) is decoration, not a new boundary.
+// - SEPARATOR lines (---, ===, ***, ___ — 3+ chars alone on their line) split
+//   only where no day is open yet, i.e. before the first header (journal carto
+//   D-55): the resulting segment is undated, so a text without any date header
+//   still splits at each separator. Once a header has opened a day, a
+//   separator is a rule INSIDE that day — Google Docs exports its horizontal
+//   lines that way, often several per day — never the start of an undated part.
 // - Text before the first boundary: attached to the first segment when it is
 //   only document headings/blank lines (a document title), otherwise kept as
 //   an undated preamble segment.
@@ -213,18 +216,19 @@ export function segmentText (text, { today } = {}) {
   }
   if (text.trim() === '') return []
 
-  // 1. Boundary detection, line by line.
+  // 1. Boundary detection, line by line. A separator splits only before the
+  //    first header; after it — the setext underline of that header included —
+  //    it stays a rule in its day (D-55).
   const boundaries = []
+  let dayOpen = false
   for (const line of iterateLines(text)) {
     if (SEPARATOR_RE.test(line.content)) {
+      if (dayOpen) continue
       const previous = boundaries[boundaries.length - 1]
       if (previous && previous.lineIndex === line.index - 1) {
-        if (previous.type === 'header') continue // setext underline decoration
-        if (previous.type === 'separator') {
-          previous.nextStart = line.nextStart // run of separator lines
-          previous.lineIndex = line.index
-          continue
-        }
+        previous.nextStart = line.nextStart // run of separator lines
+        previous.lineIndex = line.index
+        continue
       }
       boundaries.push({
         type: 'separator',
@@ -243,6 +247,7 @@ export function segmentText (text, { today } = {}) {
         date: header.date,
         titre: header.titre
       })
+      dayOpen = true
     }
   }
 

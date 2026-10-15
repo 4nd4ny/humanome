@@ -130,6 +130,26 @@ describe('segmentText — séparateurs et repli', () => {
     }
   })
 
+  it('après une entête datée, un trait ne coupe plus : il reste dans sa journée (journal carto D-55)', () => {
+    // Un journal exporté de Google Docs : des traits dans les journées, et entre elles.
+    const text =
+      '# Journal\n\n### 22.12.2025\n\nMatin.\n\n---\n\nAprès-midi.\n\n***\n\nSoir.\n\n---\n\n' +
+      '### 23.12.2025\n\nLendemain.\n\n---\n\nFin du journal.\n'
+    const segments = segmentText(text, TODAY)
+    expect(segments.map((s) => s.date)).toEqual(['2025-12-22', '2025-12-23'])
+    expect(segments[0].texte).toContain('Matin.\n\n---\n\nAprès-midi.\n\n***\n\nSoir.\n\n---\n\n')
+    expect(segments[1].texte.endsWith('Lendemain.\n\n---\n\nFin du journal.\n')).toBe(true)
+    // Couverture contiguë, sans perte : le texte entier, journée après journée.
+    expect(segments[0].debut).toBe(0)
+    expect(segments[0].fin).toBe(segments[1].debut)
+    expect(segments[1].fin).toBe(text.length)
+    for (const segment of segments) expect(segment.texte).toBe(text.slice(segment.debut, segment.fin))
+    // Avant la première entête datée, le trait coupe encore : passages sans date.
+    const avant = segmentText('Introduction.\n\n---\n\nAvertissement.\n\n## 2025-12-22\nJournée.\n---\nSuite.', TODAY)
+    expect(avant.map((s) => s.date)).toEqual([null, null, '2025-12-22'])
+    expect(avant[2].texte).toBe('## 2025-12-22\nJournée.\n---\nSuite.')
+  })
+
   it('un souligné « === » collé sous une entête datée est décoratif, pas une coupe', () => {
     const text = '22 décembre 2025\n================\nJournée soulignée.'
     const segments = segmentText(text, TODAY)
