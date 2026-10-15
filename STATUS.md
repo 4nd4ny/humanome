@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-55, état des tests, les 33 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-60, état des tests, les 37 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -133,6 +133,15 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     portfolio place ses passages sans date en tête. Relu par un agent distinct (13 points
     traités). Suites : front **2 339 verts**, moteur **1 073** + 17 sautés, e2e Chromium
     **16 sur 16**. Déployé (front) et vérifié en ligne.
+  - **Demande du 2026-10-15** (D-56 à D-60) : lecteur de portfolio épuré (la journée entre ◁ ▷,
+    l'extrait du jury cité seulement s'il n'est pas retrouvé tel quel, plus de navigation par
+    jour ni de ligne d'état) ; une démonstration intacte se met à jour d'elle-même, en
+    arrière-plan (défaut de Chrome Android : une copie antérieure au dépôt du portfolio) ;
+    anneau des pôles élément d'interface, épaisseur réglable (30 par défaut, de 0 à 160) ;
+    heatmap « Tout voir » par défaut, contraste renforcé toujours ; soleil et heatmap au thème
+    sombre (marches sombres validées par le script de la skill dataviz). Relu par un agent
+    distinct (24 points, 21 traités). Suites : front **2 366 verts**, moteur **1 073**, e2e
+    Chromium de la cartographie verts.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

@@ -61,6 +61,9 @@ le premier titre daté sépare des passages sans date.
 - **La hauteur** est la **confiance moyenne du jury** dans ses verdicts, de 0
   à 1 ; les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n'est ni un
   niveau de maîtrise ni une note.
+- **L'anneau intérieur** range les compétences par pôle : chaque pôle
+  l'occupe sur toute sa hauteur, il ne mesure rien. Son épaisseur se règle
+  dans « Réglages de l'encodage » (de 0, sans anneau, à toute la place).
 - **Des hachures** signalent une compétence en renvoi au cartographe : le jury
   n'a pas tranché.
 - **Pas de secteur** : aucune trace dans les journées retenues. L'absence
@@ -80,8 +83,9 @@ Choisissez un secteur (d'un clic, ou par Tabulation puis Entrée) : le
 détaille ses traces, leurs points, la confiance de chaque verdict et les
 formules. Dans le panneau « Heatmap et lecture », la **tête de lecture**
 rejoue la construction de votre cartographie journée après journée, et la
-**heatmap** montre l'année scolaire, une case par jour ; un double-clic sur un
-jour l'ouvre seul.
+**heatmap** montre toutes vos journées, du premier au dernier jour, une case
+par jour (« Année scolaire » et « Période libre » restreignent l'affichage) ;
+un double-clic sur un jour l'ouvre seul.
 
 **Ouvrir un pôle sur 360°.** Un double-clic sur un pôle de l'anneau intérieur
 l'ouvre : à la place du soleil complet, ses seules compétences font tout le
@@ -95,9 +99,11 @@ vous déplacez la date t ; choisir une compétence d'un autre pôle le referme.
 ## Relire une trace, et y répondre
 
 Dans le panneau de détail, chaque trace a son bouton **« Ouvrir dans le
-portfolio »** : le lecteur s'ouvre sur la journée et marque le passage. Le
-texte y est mis en forme comme dans votre document : titres, listes,
-tableaux, encadrés (une case de tableau seule devient un encadré).
+portfolio »** : le lecteur s'ouvre sur la journée et marque le passage. Les
+deux triangles, de part et d'autre de la date, passent d'une trace de la
+compétence à la suivante (← et → au clavier) ; ils restent en haut quand le
+texte défile. Le texte y est mis en forme comme dans votre document : titres,
+listes, tableaux, encadrés (une case de tableau seule devient un encadré).
 
 - **Surligné en jaune** : le passage est retrouvé tel quel.
 - **Surligné en orange** : un seul bout est retrouvé (l'extrait a pu être
@@ -105,8 +111,10 @@ tableaux, encadrés (une case de tableau seule devient un encadré).
 - **Encadré en pointillés** : passage **approché**. L'analyse a reformulé
   l'extrait ; les phrases d'où viennent ses mots sont encadrées. À vous de
   vérifier que c'est bien ce que vous vouliez dire.
-- **Non retrouvé** : le lecteur le dit et cite l'extrait tel que le jury l'a
-  écrit.
+- **Non retrouvé** : le lecteur cite l'extrait tel que le jury l'a écrit,
+  au-dessus du texte de la journée — comme pour un passage approché ou dont
+  un seul bout est retrouvé. Retrouvé en entier, il se lit surligné, sans
+  être cité une seconde fois.
 
 Sous les traces, chaque journée montre le verdict du jury (statut, confiance,
 motif, prescription) et ses réflexions. Vous pouvez y répondre :

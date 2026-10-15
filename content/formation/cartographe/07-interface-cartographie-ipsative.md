@@ -78,8 +78,9 @@ Pédagogue et les pièces du Greffier — pour une analyse AuroraCore, les six
 éclairages, le président de séance et la délibération complète. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
 les formules. Le panneau **« Réglages de l'encodage »** (menu « Panneaux »
-de la cartographie) règle le poids d'un indice et l'épaisseur minimale d'un
-secteur.
+de la cartographie) règle le poids d'un indice, l'épaisseur de l'anneau des
+pôles — un élément d'interface : il range les compétences, il ne mesure rien
+— et l'épaisseur minimale d'un secteur.
 
 Pour examiner un pôle seul, double-cliquez sur son arc dans l'anneau intérieur
 (au clavier : « o ») : ses compétences occupent tout le cercle, chacune selon
@@ -91,14 +92,21 @@ Pour vérifier contre la source, **« Ouvrir dans le portfolio »** :
 
 - **surligné en jaune** : retrouvé tel quel, du début à la fin ;
 - **surligné en orange** : un seul bout retrouvé ;
-- **« retrouvé tel quel dans la feuille du … »** : la trace est datée d'un
-  autre jour que son passage, un décalage de date dans l'analyse ;
-- **encadré en pointillés, « Passage approché »** : l'analyse a reformulé
+- **« datée du … »** sous la compétence, alors que le titre du lecteur
+  donne un autre jour : le passage est retrouvé tel quel dans la feuille de
+  ce jour-là, la trace étant datée d'un autre — un décalage de date dans
+  l'analyse ;
+- **encadré en pointillés** (« reformulé par l'analyse […] à vérifier ») : l'analyse a reformulé
   l'extrait, et les phrases d'où viennent au moins trois quarts de ses mots
   sont encadrées. Une reformulation peut glisser vers ce que le texte ne dit
   pas : c'est précisément à vous de le vérifier ;
-- **non retrouvé** : le lecteur le dit et cite l'extrait du jury. C'est un
-  point à instruire (chapitre 3, « Vérifier contre la source »).
+- **non retrouvé** : le lecteur cite l'extrait du jury, faute de pouvoir le
+  surligner. C'est un point à instruire (chapitre 3, « Vérifier contre la
+  source »).
+
+Les deux triangles autour de la date passent d'une trace de la compétence à
+l'autre (← et → au clavier) ; l'extrait du jury n'est cité que s'il n'est pas
+retrouvé tel quel.
 
 ## Comparer deux analyses d'un même portfolio
 

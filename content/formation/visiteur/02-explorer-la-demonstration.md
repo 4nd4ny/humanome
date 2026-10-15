@@ -52,7 +52,8 @@ Le soleil se lit du centre vers l'extérieur.
 
 - **Le centre** indique le nombre de journées prises en compte.
 - **L'anneau intérieur** porte les **7 pôles**, chacun de sa couleur (TETE,
-  COEUR, MAIN, AME, RACINES, CITE, FLAMBEAU).
+  COEUR, MAIN, AME, RACINES, CITE, FLAMBEAU) : il range les compétences, il
+  ne mesure rien.
 - **L'anneau extérieur** porte les **compétences**, dans l'ordre du référentiel
   et dans la couleur de leur pôle.
 
@@ -83,8 +84,9 @@ Le portfolio de la démonstration est consultable : sous chaque trace,
 **« Ouvrir dans le portfolio »** ouvre le texte de la journée et surligne le
 passage que le jury a retenu — en jaune s'il est retrouvé tel quel, en orange
 si un seul bout l'est. Le texte garde la mise en forme du journal : titres,
-listes, tableaux et encadrés. Les flèches mènent à la journée précédente ou
-suivante.
+listes, tableaux et encadrés. Les deux triangles autour de la date passent
+d'une trace à la suivante ; si le passage n'est pas retrouvé tel quel,
+l'extrait du jury est cité au-dessus du texte.
 
 Pour regarder un pôle de près, **double-cliquez** sur son arc dans l'anneau
 intérieur (au clavier : « o ») : il s'ouvre sur tout le cercle, à la place du
@@ -117,9 +119,10 @@ la navigation pas à pas reste disponible.
 
 ## Parcourir la heatmap
 
-Dans le même panneau, sous la tête de lecture, la **heatmap** montre l'année scolaire (août à
-juillet ; flèches pour changer d'année, ou une période libre). Une case par
-jour, les semaines en colonnes. La couleur d'un jour dit combien la personne
+Dans le même panneau, sous la tête de lecture, la **heatmap** montre toutes
+les journées, du premier au dernier jour (« Tout voir ») ; « Année scolaire »
+(août à juillet, flèches pour changer d'année) et « Période libre »
+restreignent l'affichage. Une case par jour, les semaines en colonnes. La couleur d'un jour dit combien la personne
 y a écrit dans son portfolio, en cinq niveaux propres à elle. Quelques jours
 écrits n'ont pas été analysés : ils sont colorés, sans secteur au soleil. Un
 jour sans texte reste une case vide, jamais un niveau bas.
