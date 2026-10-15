@@ -44,18 +44,20 @@ export function inkOn(bg) {
 const NEUTRAL = '#475569'
 const PAPER = '#ffffff'
 
+/** Part de la teinte à chaque niveau (1..5) : l'écart le plus lisible entre deux niveaux. */
+export const HEAT_STEPS = Object.freeze([0.25, 0.45, 0.65, 0.82, 1])
+
 /**
- * Couleur d'une case de heatmap (niveaux 1..5). La surface de visualisation
- * reste claire dans les deux thèmes (jeton --viz-surface), d'où un mélange
- * vers le blanc.
+ * Couleur d'une case de heatmap (niveaux 1..5), toujours en contraste
+ * renforcé (journal D-59 : la case à cocher a disparu). La surface de
+ * visualisation reste claire dans les deux thèmes (jeton --viz-surface), d'où
+ * un mélange vers le blanc.
  * @param {number} level 1..5
  * @param {string | null} tint couleur de la famille, ou null (neutre)
- * @param {{highContrast?: boolean}} [opts]
  */
-export function heatColor(level, tint, { highContrast = false } = {}) {
+export function heatColor(level, tint) {
   const base = tint ?? NEUTRAL
-  const steps = highContrast ? [0.25, 0.45, 0.65, 0.82, 1] : [0.16, 0.32, 0.5, 0.7, 0.92]
-  const t = steps[Math.min(5, Math.max(1, level)) - 1]
+  const t = HEAT_STEPS[Math.min(5, Math.max(1, level)) - 1]
   return mix(PAPER, base, t)
 }
 

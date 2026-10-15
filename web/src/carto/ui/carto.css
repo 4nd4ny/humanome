@@ -476,10 +476,12 @@ kbd {
   fill: rgba(15, 23, 42, 0.55);
   stroke-width: 0.8;
 }
+/* Nom d'un pôle, écrit le long de son arc (D-58). */
 .carto-sun-pole-label {
-  font-size: 9px;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-anchor: middle;
-  dominant-baseline: middle;
   fill: #1e293b;
   pointer-events: none;
 }

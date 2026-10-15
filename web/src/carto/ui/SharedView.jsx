@@ -7,7 +7,7 @@
 
 import { useId, useMemo, useState } from 'react'
 import { layoutPole, layoutSun } from '../core/state.js'
-import { DEFAULT_PARAMS, ringGeometry } from '../core/formulas.js'
+import { DEFAULT_PARAMS, sunGeometry } from '../core/formulas.js'
 import { calendarGrid } from '../core/heatmap.js'
 import { formatLong, monthName, todayIso } from '../core/dates.js'
 import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
@@ -16,7 +16,8 @@ import { usePrefersReducedMotion } from './Player.jsx'
 import { heatColor, inkOn } from './colors.js'
 import './carto.css'
 
-const GEOMETRY = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5 })
+// Une version partagée garde les réglages par défaut (anneau des pôles de 30, D-58).
+const GEOMETRY = sunGeometry(DEFAULT_PARAMS)
 const pct = new Intl.NumberFormat('fr-FR', { style: 'percent', maximumFractionDigits: 1 })
 const num = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`

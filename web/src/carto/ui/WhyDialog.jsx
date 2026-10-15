@@ -59,7 +59,8 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
                 </dd>
               </div>
               <div>
-                <dt>Confiance (hauteur)</dt>
+                {/* Un pôle n'a pas de hauteur à lui : son arc occupe tout l'anneau intérieur (D-58). */}
+                <dt>{e.type === 'pole' ? 'Confiance moyenne' : 'Confiance (hauteur)'}</dt>
                 <dd>{fmt(e.confidence)}</dd>
               </div>
               {opened ? (

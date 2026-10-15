@@ -18,7 +18,9 @@ export function SunLegend() {
       <dt>Hauteur</dt>
       <dd>confiance moyenne du jury dans ses verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
       <dt>Surface</dt>
-      <dd>confiance × points. Un pôle a la surface de ses compétences.</dd>
+      <dd>confiance × points.</dd>
+      <dt>Anneau intérieur</dt>
+      <dd>les pôles, chacun sur la largeur de ses compétences : il les range, il ne mesure rien.</dd>
       <dt>Hachures</dt>
       <dd>compétence en renvoi au cartographe (le jury n’a pas tranché).</dd>
       <dt>Absence de secteur</dt>

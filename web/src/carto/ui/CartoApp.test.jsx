@@ -332,18 +332,56 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
   it('heatmap au clavier : un seul arrêt de tabulation, flèches ±1 / ±7, Entrée fixe t, Maj+Entrée ouvre le jour', async () => {
     render(<Harness store={await louStore()} />)
     await screen.findByRole('heading', { name: 'Cartographie' })
-    const grid = screen.getByRole('grid', { name: /Heatmap Année scolaire 2025–2026/ })
+    // « Tout voir » par défaut (D-59) : du 22 au 24 décembre, la grille s'arrête au dernier jour.
+    const grid = screen.getByRole('grid', { name: /^Heatmap 2025–2026/ })
     act(() => grid.focus())
     await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-22'))
     fireEvent.keyDown(grid, { key: 'ArrowDown' })
     await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-23'))
-    fireEvent.keyDown(grid, { key: 'ArrowRight' })
-    await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-30'))
-    fireEvent.keyDown(grid, { key: 'ArrowLeft' })
+    fireEvent.keyDown(grid, { key: 'ArrowRight' }) // une semaine plus loin : hors de la période, on reste
+    expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-23')
+    fireEvent.keyDown(grid, { key: 'End' })
+    await waitFor(() => expect(grid.getAttribute('aria-activedescendant')).toBe('carto-hm-2025-12-24'))
+    fireEvent.keyDown(grid, { key: 'ArrowUp' })
     fireEvent.keyDown(grid, { key: 'Enter' })
     await waitFor(() => expect(sectorCodes()).toEqual(['1.01', '2.01', '3.01', '3.02']))
     fireEvent.keyDown(grid, { key: 'Enter', shiftKey: true })
     await screen.findByRole('dialog', { name: /23 décembre 2025/ })
+  })
+
+  it('heatmap : « Tout voir » par défaut, puis année scolaire et période libre ; plus de case de contraste (D-59)', async () => {
+    const store = await louStore()
+    render(<Harness store={store} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    const calendar = screen.getByRole('radiogroup', { name: 'Calendrier' })
+    expect(within(calendar).getAllByRole('radio').map((r) => [r.textContent, r.getAttribute('aria-checked')])).toEqual([
+      ['Tout voir', 'true'],
+      ['Année scolaire', 'false'],
+      ['Période libre', 'false'],
+    ])
+    expect(screen.queryByRole('checkbox', { name: /contraste/ })).toBeNull()
+    // Du premier au dernier jour : une semaine, trois cases documentées.
+    expect(document.querySelectorAll('[data-tile="timeline"] svg.carto-hm .carto-hm-cell')).toHaveLength(3)
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Année scolaire' }))
+    await screen.findByRole('grid', { name: /^Heatmap Année scolaire 2025–2026/ })
+    // Choisir l'année scolaire la fixe : c'est un choix, gardé tel quel.
+    await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences).toMatchObject({ calendarMode: 'school', schoolYearStart: 2025 }))
+    expect(document.querySelectorAll('[data-tile="timeline"] svg.carto-hm .carto-hm-cell').length).toBeGreaterThan(300)
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Période libre' }))
+    await waitFor(() => expect(screen.getByLabelText('du')).toBeTruthy())
+    fireEvent.click(within(calendar).getByRole('radio', { name: 'Tout voir' }))
+    await screen.findByRole('grid', { name: /^Heatmap 2025–2026/ })
+    expect(screen.queryByLabelText('du')).toBeNull()
+  })
+
+  it('heatmap : une année scolaire jamais choisie (ancien défaut) s’affiche en « Tout voir »', async () => {
+    const store = await louStore()
+    const ds = await store.loadDataset('ds-lou')
+    await store.saveDataset({ ...ds, preferences: { ...ds.preferences, calendarMode: 'school', schoolYearStart: null, highContrast: true } })
+    render(<Harness store={store} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    expect(within(screen.getByRole('radiogroup', { name: 'Calendrier' })).getByRole('radio', { name: 'Tout voir' }).getAttribute('aria-checked')).toBe('true')
+    await screen.findByRole('grid', { name: /^Heatmap 2025–2026/ })
   })
 
   it('« Pourquoi cette surface ? » (touche w) liste les traces, leurs poids et les formules', async () => {

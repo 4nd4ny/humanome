@@ -24,6 +24,7 @@ import {
   anglesFromPoints,
   displayedOuterRadius,
   meanConfidence,
+  ringShown,
   widenNarrowSectors,
   poleConfidence,
   resolveParams,
@@ -173,6 +174,26 @@ export function computeDayState(dataset, date, { ref, params } = {}) {
 }
 
 /**
+ * Rayon dessiné d'une compétence : sa confiance fait sa hauteur (épaisseur
+ * minimale comprise), jamais au-delà du bord ; anneau masqué (réglage de
+ * l'anneau des pôles au maximum), rien.
+ */
+function leafRadius(geometry, confidence, minThickness) {
+  const ring = geometry.competencies
+  if (!ringShown(ring)) return { rOut: ring.rIn, rOutExact: ring.rIn, floored: false }
+  const d = displayedOuterRadius(ring.rIn, geometry.k, confidence, minThickness)
+  return d.rOut > ring.rOut ? { ...d, rOut: ring.rOut } : d
+}
+
+/**
+ * Un pôle occupe toute la hauteur de son anneau : un élément d'interface,
+ * pas une mesure (journal D-58).
+ */
+function poleRadius(geometry) {
+  return { rIn: geometry.poles.rIn, rOut: geometry.poles.rOut, rOutExact: geometry.poles.rOut, floored: false }
+}
+
+/**
  * Disposition du soleil (§5.4, §5.6, §6.1) : secteurs dans l'ORDRE DU
  * RÉFÉRENTIEL (jamais par taille), départ à −90°, sens horaire. Les angles
  * sont en radians dans le repère SVG (y vers le bas).
@@ -225,7 +246,7 @@ export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 }
       cursor = a1
       // Un secteur qui a des points ne disparaît jamais, même d'une confiance
       // nulle ou inconnue : il reçoit l'épaisseur minimale, signalée.
-      const { rOut, rOutExact, floored } = displayedOuterRadius(geometry.competencies.rIn, geometry.k, c.confidence, minThickness)
+      const { rOut, rOutExact, floored } = leafRadius(geometry, c.confidence, minThickness)
       comps.push({
         code,
         pole: pole.num,
@@ -241,15 +262,11 @@ export function layoutSun(state, ref, geometry, { minThickness = 0, minArc = 0 }
         status: c.status,
       })
     }
-    const ring = displayedOuterRadius(geometry.poles.rIn, geometry.k, pState.confidence, minThickness)
     poles.push({
       num: pole.num,
       a0: poleStart,
       a1: cursor,
-      rIn: geometry.poles.rIn,
-      rOut: ring.rOut,
-      rOutExact: ring.rOutExact,
-      floored: ring.floored,
+      ...poleRadius(geometry),
       // Au moins une de ses compétences est dessinée à la largeur minimale.
       widened: ref.codesByPole.get(pole.num).some((code) => drawnByCode.get(code)?.widened),
       confidence: pState.confidence ?? 0,
@@ -298,7 +315,7 @@ export function layoutPole(state, ref, geometry, poleNum, { minThickness = 0, mi
     const a0 = cursor
     const a1 = cursor + drawn.angles[i]
     cursor = a1
-    const { rOut, rOutExact, floored } = displayedOuterRadius(geometry.competencies.rIn, geometry.k, c.confidence, minThickness)
+    const { rOut, rOutExact, floored } = leafRadius(geometry, c.confidence, minThickness)
     comps.push({
       code,
       pole: poleNum,
@@ -315,7 +332,6 @@ export function layoutPole(state, ref, geometry, poleNum, { minThickness = 0, mi
       status: c.status,
     })
   })
-  const ring = displayedOuterRadius(geometry.poles.rIn, geometry.k, pState.confidence, minThickness)
   return {
     zoom: poleNum,
     poles: [
@@ -323,10 +339,7 @@ export function layoutPole(state, ref, geometry, poleNum, { minThickness = 0, mi
         num: poleNum,
         a0: START,
         a1: START + 2 * Math.PI,
-        rIn: geometry.poles.rIn,
-        rOut: ring.rOut,
-        rOutExact: ring.rOutExact,
-        floored: ring.floored,
+        ...poleRadius(geometry),
         widened: drawn.widened.some(Boolean),
         confidence: pState.confidence ?? 0,
         theta: pState.theta,
@@ -384,8 +397,7 @@ export function explainSurface(state, target) {
     }),
     formulas: {
       angle: 'θ(pôle) = Σ θ(compétences du pôle)',
-      confidence: 'C(pôle) = Σ θ(c)·C(c) / Σ θ(c)',
-      area: 'surface(pôle) = Σ surfaces de ses compétences',
+      confidence: 'C(pôle) = Σ θ(c)·C(c) / Σ θ(c) (dite, pas dessinée : l’arc du pôle occupe tout son anneau)',
     },
   }
 }

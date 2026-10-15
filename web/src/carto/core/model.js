@@ -68,19 +68,31 @@ export const VARIANT_CHOICES = ['auto', 'learner', 'pending', 'examine']
 
 /** Préférences par défaut (§4.1 « preferences », §5.8). */
 export const DEFAULT_PREFERENCES = Object.freeze({
-  calendarMode: 'school', // 'school' (août–juillet) | 'free'
+  calendarMode: 'all', // 'all' (du premier au dernier jour, D-59) | 'school' (août–juillet) | 'free'
   schoolYearStart: null, // année de début affichée (null = celle de la dernière journée)
   freeRange: null, // {from, to}
   reinforced: false, // distinctions renforcées (motifs)
-  highContrast: false, // écran de contraste renforcé de la heatmap
   reducedMotion: 'system', // 'system' | 'reduce' | 'no-preference'
   speed: 1,
-  params: { alpha: DEFAULT_PARAMS.alpha, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
+  params: { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx },
   dashboardHidden: [], // cartes masquées du tableau de bord
   compare: null, // dernière comparaison A/B : {a: {name, def}, b: {name, def}, view}
   dashboardLayout: null, // grille de tuiles du tableau de bord : {order, sizes}
   momentsSensitivity: 50, // curseur des moments remarquables (0–100, pas de 5)
 })
+
+/**
+ * Calendrier de la heatmap (journal D-59) : « Tout voir », du premier au
+ * dernier jour du jeu, par défaut ; « Année scolaire » ; « Période libre ».
+ * Une année scolaire sans année choisie est l'ancien défaut, jamais un choix
+ * (choisir « Année scolaire » fixe l'année affichée) : elle vaut « Tout voir ».
+ * @returns {'all'|'school'|'free'}
+ */
+export function calendarModeOf(prefs) {
+  if (prefs?.calendarMode === 'free') return 'free'
+  if (prefs?.calendarMode === 'school' && prefs?.schoolYearStart != null) return 'school'
+  return 'all'
+}
 
 // ---------------------------------------------------------------------------
 // Normalisations
@@ -380,6 +392,8 @@ export function upgradeDataset(doc) {
   ds.portfolio ??= null
   ds.preferences = { ...structuredClone(DEFAULT_PREFERENCES), ...(ds.preferences ?? {}) }
   ds.preferences.params = { ...DEFAULT_PREFERENCES.params, ...(ds.preferences.params ?? {}) }
+  // Le contraste renforcé de la heatmap est désormais toujours appliqué (D-59).
+  delete ds.preferences.highContrast
   for (const d of ds.days) {
     d.tags ??= []
     d.active ??= true

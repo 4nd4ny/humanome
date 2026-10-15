@@ -31,7 +31,7 @@ describe('critères d’acceptation P0', () => {
     expect(after.competencies.get('2.01').theta).toBeCloseTo(180)
   })
 
-  it('aire de chaque secteur dessiné = θ·k·C/2, et aire d’un pôle = Σ aires de ses compétences', () => {
+  it('aire de chaque compétence dessinée = θ·k·C/2 ; un pôle occupe toute la hauteur de son anneau (D-58)', () => {
     const ds = indexDataset([
       { date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: ['preuve', 'indice'] }, { code: '1.02', confidence: 0.55, roles: ['indice'] }] },
       { date: '2025-12-23', verdicts: [{ code: '2.01', confidence: 0.9, roles: ['preuve'] }, { code: '1.01', confidence: 0.6, roles: ['indice'] }] },
@@ -39,17 +39,37 @@ describe('critères d’acceptation P0', () => {
     ])
     const s = computeState(ds, { ref })
     const layout = layoutSun(s, ref, geometry, { minThickness: 0 })
-    for (const sector of [...layout.competencies, ...layout.poles]) {
+    for (const sector of layout.competencies) {
       const area = annularSectorArea(sector.a1 - sector.a0, sector.rIn, sector.rOut)
       expect(area).toBeCloseTo(encodedArea(toRadians(sector.theta), geometry.k, sector.confidence), 6)
     }
     for (const pole of layout.poles) {
-      const poleArea = annularSectorArea(pole.a1 - pole.a0, pole.rIn, pole.rOut)
-      const sum = layout.competencies
-        .filter((c) => c.pole === pole.num)
-        .reduce((acc, c) => acc + annularSectorArea(c.a1 - c.a0, c.rIn, c.rOut), 0)
-      expect(poleArea).toBeCloseTo(sum, 6)
+      // Un élément d'interface, pas une mesure : quelle que soit sa confiance.
+      expect([pole.rIn, pole.rOut, pole.floored]).toEqual([geometry.poles.rIn, geometry.poles.rOut, false])
+      // Il couvre exactement ses compétences, dans l'ordre du référentiel.
+      const own = layout.competencies.filter((c) => c.pole === pole.num)
+      expect(pole.a0).toBeCloseTo(own[0].a0)
+      expect(pole.a1).toBeCloseTo(own.at(-1).a1)
     }
+    expect(new Set(layout.poles.map((p) => p.confidence)).size).toBeGreaterThan(1)
+  })
+
+  it('anneau des pôles réglable : masqué à 0, les compétences prennent sa place ; au maximum, plus de compétences', () => {
+    const ds = indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 1, roles: ['preuve'] }, { code: '2.01', confidence: 0.5, roles: ['preuve'] }] }])
+    const s = computeState(ds, { ref })
+    const none = ringGeometry({ outerRadius: 200, centerRadius: 24, poleRing: 0, gap: 4 })
+    const flat = layoutSun(s, ref, none, { minThickness: 2 })
+    expect(flat.poles.every((p) => p.rOut === p.rIn)).toBe(true)
+    expect(flat.competencies.every((c) => c.rIn === 24)).toBe(true) // pas d'écart sans anneau des pôles
+    expect(flat.competencies.find((c) => c.code === '1.01').rOut).toBeCloseTo(200)
+    const full = ringGeometry({ outerRadius: 200, centerRadius: 24, poleRing: 176, gap: 4 })
+    const rings = layoutSun(s, ref, full, { minThickness: 2 })
+    expect(rings.poles.map((p) => [p.rIn, p.rOut])).toEqual([
+      [24, 200],
+      [24, 200],
+    ])
+    // Plus de place pour les feuilles : ni épaisseur minimale, ni débord au-delà du bord.
+    expect(rings.competencies.every((c) => c.rIn === 200 && c.rOut === 200 && !c.floored)).toBe(true)
   })
 })
 
@@ -253,7 +273,7 @@ describe('pôle ouvert sur 360° (layoutPole, journal D-45)', () => {
     expect(a.theta).toBeCloseTo(s.competencies.get('1.01').theta)
   })
 
-  it('la hauteur ne change pas : mêmes rayons que dans le soleil principal ; l’anneau intérieur est le pôle entier', () => {
+  it('la hauteur ne change pas : mêmes rayons que dans le soleil principal ; l’anneau intérieur est le pôle entier, sur toute sa hauteur', () => {
     const z = layoutPole(s, ref, geometry, 1)
     for (const c of z.competencies) {
       const same = full.competencies.find((x) => x.code === c.code)
@@ -265,6 +285,7 @@ describe('pôle ouvert sur 360° (layoutPole, journal D-45)', () => {
     expect(ring.num).toBe(1)
     expect(ring.a1 - ring.a0).toBeCloseTo(2 * Math.PI)
     expect(ring.rOut).toBeCloseTo(full.poles.find((p) => p.num === 1).rOut)
+    expect(ring.rOut).toBe(geometry.poles.rOut)
   })
 
   it('une compétence du pôle trop étroite reçoit la largeur minimale, signalée ; la somme reste un tour', () => {
