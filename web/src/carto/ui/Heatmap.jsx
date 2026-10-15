@@ -9,7 +9,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { calendarGrid, moveFocus } from '../core/heatmap.js'
-import { formatLong, weekdayName } from '../core/dates.js'
+import { daysBetween, formatLong, weekdayName } from '../core/dates.js'
 import { heatColor, themed } from './colors.js'
 
 /** Remplissage d'une case pour les deux thèmes (D-60). */
@@ -54,7 +54,8 @@ export function HeatmapBand({ band, model, t, focusDate, observed = null, inspec
   const svgRef = useRef(null)
   const [drag, setDrag] = useState(null)
   const idOf = (d) => `carto-hm-${d}`
-  const width = LEFT + weeks.length * STEP
+  // Le nom du dernier mois a sa place, même commencé la dernière semaine.
+  const width = LEFT + Math.max(weeks.length, (months.at(-1)?.week ?? 0) + 2) * STEP
   const height = TOP + 7 * STEP
   const active = focusDate && focusDate >= band.from && focusDate <= band.to ? focusDate : null
   const firstDocumented = useMemo(() => [...model.cells.keys()].find((d) => d >= band.from && d <= band.to) ?? band.from, [model, band])
@@ -203,35 +204,49 @@ export function HeatmapBand({ band, model, t, focusDate, observed = null, inspec
   )
 }
 
-/** Légende de la heatmap (§5.7 : niveaux ipsatifs, silence, contraste). */
-export function HeatmapLegend({ model }) {
+/**
+ * Légende de la heatmap (§5.7 : niveaux ipsatifs, silence) : seulement ce que
+ * la période affichée contient (D-59) — les niveaux présents, le silence s'il
+ * y a des jours sans rien, les analyses sans portfolio, les journées décochées.
+ * @param {{model: object, period?: {from: string, to: string} | null}} props
+ */
+export function HeatmapLegend({ model, period = null }) {
   const unit = model.mode === 'volume' ? 'caractères du portfolio' : 'poids des traces (aucun portfolio importé)'
   const th = model.thresholds
   const bounds = [`≤ ${nf.format(th[0])}`, `≤ ${nf.format(th[1])}`, `≤ ${nf.format(th[2])}`, `≤ ${nf.format(th[3])}`, `> ${nf.format(th[3])}`]
+  const cells = [...model.cells.values()]
+  const levels = [1, 2, 3, 4, 5].filter((l) => cells.some((c) => c.level === l))
+  const silent = period ? daysBetween(period.from, period.to) + 1 > model.cells.size : true
+  const noPortfolio = cells.some((c) => c.analysisWithoutPortfolio)
+  const unchecked = cells.some((c) => !c.active)
   return (
     <div className="carto-hm-legend" aria-label="Légende de la heatmap">
       <span className="carto-hm-legend-unit">Couleur : {unit}, en niveaux relatifs à vos propres journées</span>
       <ul>
-        <li>
-          <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-silent" fill="transparent" /></svg>
-          silence
-        </li>
-        {[1, 2, 3, 4, 5].map((l, i) => (
+        {silent ? (
+          <li>
+            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-silent" fill="transparent" /></svg>
+            silence
+          </li>
+        ) : null}
+        {levels.map((l) => (
           <li key={l}>
             <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-c-fill" style={cellFill(l, null)} /></svg>
-            {bounds[i]}
+            {bounds[l - 1]}
           </li>
         ))}
-        {model.mode === 'volume' ? (
+        {noPortfolio ? (
           <li>
             <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-no-portfolio carto-c-fill" style={cellFill(1, null)} /></svg>
             analyse sans portfolio
           </li>
         ) : null}
-        <li>
-          <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-inactive carto-c-fill" style={cellFill(3, null)} /></svg>
-          décochée
-        </li>
+        {unchecked ? (
+          <li>
+            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-inactive carto-c-fill" style={cellFill(3, null)} /></svg>
+            décochée
+          </li>
+        ) : null}
       </ul>
     </div>
   )

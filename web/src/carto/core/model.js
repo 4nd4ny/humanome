@@ -266,23 +266,41 @@ export function hasPortfolio(day) {
 }
 
 /**
+ * Ce qu'un jeu contient des données de la personne, compté : imports,
+ * dialogues du carnet, réponses au jury, ensembles, repères, comparaisons,
+ * passages sans date.
+ */
+export function demoBaseline(ds) {
+  return {
+    importLog: ds?.importLog?.length ?? 0,
+    reflections: ds?.reflections?.length ?? 0,
+    reviews: Object.keys(ds?.reviews ?? {}).length,
+    sets: ds?.sets?.length ?? 0,
+    markers: ds?.markers?.length ?? 0,
+    comparisons: ds?.comparisons?.length ?? 0,
+    undated: ds?.portfolio?.undated?.length ?? 0,
+  }
+}
+
+/**
  * La démonstration publique telle que chargée, intacte : elle se recharge
  * depuis le site (et se met à jour d'elle-même, journal D-57). Dès que la
  * personne y met quelque chose à elle (un import, une réponse au jury, un
  * dialogue du carnet, un ensemble, un repère, une note), ce sont ses données :
  * elles partent avec l'archive et ne sont jamais remplacées.
+ *
+ * Sans `baseline`, rien de tout cela (un seul import, celui de la
+ * démonstration) ; avec, exactement ce que la démonstration apportait
+ * d'elle-même à son chargement (une archive déposée peut contenir des
+ * ensembles ou des repères).
+ * @param {object} ds
+ * @param {ReturnType<typeof demoBaseline> | null} [baseline]
  */
-export function isPristineDemo(ds) {
+export function isPristineDemo(ds, baseline = null) {
   if (ds?.origin !== 'demo') return false
-  return (
-    (ds.importLog?.length ?? 0) <= 1 &&
-    (ds.reflections?.length ?? 0) === 0 &&
-    Object.keys(ds.reviews ?? {}).length === 0 &&
-    (ds.sets?.length ?? 0) === 0 &&
-    (ds.markers?.length ?? 0) === 0 &&
-    (ds.comparisons?.length ?? 0) === 0 &&
-    (ds.portfolio?.undated?.length ?? 0) === 0
-  )
+  const now = demoBaseline(ds)
+  if (baseline) return Object.keys(now).every((k) => now[k] === (baseline[k] ?? 0))
+  return now.importLog <= 1 && Object.entries(now).every(([k, v]) => k === 'importLog' || v === 0)
 }
 
 /** Clé d'une observation (droit de réponse) : jour + variante + compétence. */

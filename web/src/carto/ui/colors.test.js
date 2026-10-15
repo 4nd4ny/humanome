@@ -2,7 +2,7 @@
 // sombres sélectionnées pour le référentiel RESPIRE v7, rampe de la heatmap
 // ancrée sur la surface du thème, encres lisibles.
 import { describe, expect, it } from 'vitest'
-import { DARK_BAND, HEAT_STEPS, VIZ_SURFACE, contrast, heatColor, hexToOklch, inkOn, luminance, oklchToHex, poleFill, themeColor, themed, themedSwatch } from './colors.js'
+import { DARK_BAND, HEAT_STEPS, VIZ_SURFACE, contrast, heatColor, hexToOklch, inkOn, labelInk, luminance, oklchToHex, poleFill, themeColor, themed, themedSwatch } from './colors.js'
 
 const RESPIRE = ['#2563eb', '#10b981', '#ec4899', '#8b5cf6', '#f59e0b', '#06b6d4', '#f97316']
 
@@ -54,8 +54,8 @@ describe('heatmap et anneau des pôles dans les deux thèmes', () => {
     for (const c of RESPIRE) {
       expect(luminance(poleFill(c))).toBeGreaterThan(luminance(c))
       expect(luminance(poleFill(c, 'dark'))).toBeLessThan(luminance(themeColor(c, 'dark')))
-      // Le nom du pôle reste lisible sur sa teinte, dans les deux thèmes.
-      for (const fill of [poleFill(c), poleFill(c, 'dark')]) expect(contrast(inkOn(fill), fill)).toBeGreaterThanOrEqual(3)
+      // Le nom du pôle et le code d'une compétence se lisent comme du texte courant (4,5:1), dans les deux thèmes.
+      for (const fill of [poleFill(c), poleFill(c, 'dark'), c, themeColor(c, 'dark')]) expect(contrast(labelInk(fill), fill)).toBeGreaterThanOrEqual(4.5)
     }
   })
   it('les deux valeurs voyagent en propriétés CSS', () => {

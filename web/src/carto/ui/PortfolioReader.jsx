@@ -95,7 +95,7 @@ function resolveTarget(target, getDetail) {
  * Pourquoi l'extrait du jury est cité (il n'est pas retrouvé tel quel dans le
  * texte affiché), ou null : retrouvé, il se lit surligné.
  */
-function quoteCaption(result, { portfolioCount, primaryHasText }) {
+function quoteCaption(result, { portfolioCount, primaryHasText, primary, demo }) {
   if (!result || result.status === 'found' || result.status === 'relocated') return null
   if (result.status === 'partial') return 'Extrait cité par le jury ; seul le bout surligné en orange est retrouvé tel quel.'
   if (result.status === 'approximate') {
@@ -103,8 +103,13 @@ function quoteCaption(result, { portfolioCount, primaryHasText }) {
       ? 'Extrait cité par le jury, reformulé par l’analyse : les phrases encadrées en pointillés en sont les plus proches, à vérifier.'
       : 'Extrait cité par le jury, reformulé par l’analyse : la phrase encadrée en pointillés en est la plus proche, à vérifier.'
   }
-  if (portfolioCount === 0) return 'Extrait cité par le jury. Importez le portfolio (.md) pour le lire surligné dans son texte.'
-  if (!primaryHasText) return 'Extrait cité par le jury ; le portfolio importé n’a pas de texte pour ce jour.'
+  if (portfolioCount === 0) {
+    // La démonstration n'a pas de fichier à importer : son portfolio vient du site (D-57).
+    return demo
+      ? 'Extrait cité par le jury. Le portfolio de cette démonstration n’est pas encore chargé : rechargez la page pour le télécharger.'
+      : 'Extrait cité par le jury. Importez le portfolio (.md) pour le lire surligné dans son texte.'
+  }
+  if (!primaryHasText) return `Extrait cité par le jury ; le portfolio importé n’a pas de texte pour le ${formatLong(primary)}.`
   return 'Extrait cité par le jury, introuvable tel quel dans le portfolio.'
 }
 
@@ -208,25 +213,37 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
     if (i >= 0 && i < n) onIndex?.(i)
   }
 
-  const caption = settled && want.extract ? quoteCaption(result, { portfolioCount: portfolioDates.length, primaryHasText: Boolean(getDetail(want.primary)?.portfolio) }) : null
+  const caption =
+    settled && want.extract
+      ? quoteCaption(result, {
+          portfolioCount: portfolioDates.length,
+          primaryHasText: Boolean(getDetail(want.primary)?.portfolio),
+          primary: want.primary,
+          demo: dataset.origin === 'demo',
+        })
+      : null
   const note = settled && !want.extract ? (want.synthetic ? 'Trace reconstituée depuis des compteurs : pas d’extrait à surligner.' : 'Extrait inconnu : rien à surligner.') : null
   // Un bout seul (orange) à côté du passage retrouvé : la seule marque que rien d'autre n'explique.
   const legend = settled && result?.status !== 'partial' && ranges.some((r) => !r.complete && !r.approximate)
   // Passage lu dans la feuille d'un autre jour que celui de la trace (décalage de date de l'analyse).
   const elsewhere = settled && shownDate !== want.primary
+  const isTrace = target.kind === 'trace'
   const details = []
   if (n > 1) details.push(`trace ${k + 1} sur ${n}`)
   if (want.role) details.push(ROLE_LABELS[want.role] ?? want.role)
-  if (elsewhere) details.push(`datée du ${formatLong(want.primary)}`)
+  if (elsewhere) details.push(`${isTrace ? 'datée' : 'daté'} du ${formatLong(want.primary)}`)
   const detailLine = details.join(', ')
 
-  // Pour les lecteurs d'écran seulement : ce que la mise en page montre d'elle-même.
-  let live = ''
-  if (!settled) live = searching ? 'Recherche du passage dans les autres journées…' : 'Chargement du portfolio…'
-  else if (note) live = note
-  else if (result?.status === 'found') live = 'Passage surligné.'
-  else if (result?.status === 'relocated') live = `Passage surligné dans la feuille du ${formatLong(result.date)} ; la trace est datée du ${formatLong(want.primary)}.`
-  else live = caption ?? ''
+  // Pour les lecteurs d'écran seulement : ce que la mise en page montre
+  // d'elle-même — la trace et la journée d'abord, pour qu'un pas d'une trace à
+  // l'autre s'entende même quand le résultat ne change pas.
+  let outcome = ''
+  if (!settled) outcome = searching ? 'Recherche du passage dans les autres journées…' : 'Chargement du portfolio…'
+  else if (note) outcome = note
+  else if (result?.status === 'found') outcome = 'Passage surligné.'
+  else if (result?.status === 'relocated') outcome = `Passage surligné dans cette feuille ; ${isTrace ? 'la trace est datée' : 'le passage est daté'} du ${formatLong(want.primary)}.`
+  else outcome = caption ?? ''
+  const live = `${n > 1 ? `Trace ${k + 1} sur ${n}, ` : ''}${weekdayName(shownDate)} ${formatLong(shownDate)} : ${outcome}`
   const occurrenceWord = result?.status === 'approximate' ? 'Phrase' : 'Occurrence'
 
   return (
@@ -241,9 +258,11 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
           onClose()
           return
         }
-        // ← et → passent d'une trace à l'autre, comme les triangles.
+        // ← et → passent d'une trace à l'autre, comme les triangles — sauf
+        // depuis les occurrences ou le texte, qui gardent leurs flèches.
         if (!stepper || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+        if (e.target?.closest?.('.carto-reader-occ, .carto-reader-text')) return
         e.preventDefault()
         e.stopPropagation()
         step(e.key === 'ArrowLeft' ? k - 1 : k + 1)
@@ -271,7 +290,10 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
             {detailLine ? <span className="carto-reader-sub">{detailLine}</span> : null}
           </p>
         ) : (
-          <p className="carto-reader-what">{target.label ?? 'Passage saillant'}</p>
+          <p className="carto-reader-what">
+            {target.label ?? 'Passage saillant'}
+            {detailLine ? <span className="carto-reader-sub">{detailLine}</span> : null}
+          </p>
         )}
         {caption ? (
           <figure className="carto-reader-quote">

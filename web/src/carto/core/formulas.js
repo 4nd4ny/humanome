@@ -218,7 +218,9 @@ export function ringGeometry({ outerRadius, centerRadius, poleRing = centerRadiu
   if (!(R > 0) || !(r0 >= 0) || !(gap >= 0) || r0 >= R) {
     throw new Error('Géométrie impossible : il faut 0 ≤ centre < rayon extérieur et un écart positif')
   }
-  const r1 = r0 + Math.min(R - r0, Math.max(0, Number(poleRing) || 0))
+  let r1 = r0 + Math.min(R - r0, Math.max(0, Number(poleRing) || 0))
+  // Plus de place pour les compétences après l'écart : l'anneau va jusqu'au bord.
+  if (r1 > r0 && R - r1 <= gap) r1 = R
   const r2 = r1 > r0 ? Math.min(R, r1 + gap) : r0
   return {
     k: R * R - r2 * r2,

@@ -239,6 +239,16 @@ describe('P5 — rapport imprimable', () => {
     expect(document.activeElement).toBe(opener)
   })
 
+  it('le soleil du rapport garde l’anneau des pôles standard, quel que soit le réglage d’exploration (D-58)', async () => {
+    const store = await louStore({ mutate: (ds) => setPreferences(ds, { params: { ...ds.preferences.params, poleRingPx: 0 } }) })
+    const page = await openExport(store)
+    fireEvent.click(within(page).getByRole('button', { name: 'Aperçu avant impression' }))
+    const dialog = await screen.findByRole('dialog', { name: 'Aperçu du rapport imprimable' })
+    const sun = within(dialog).getByRole('group', { name: /^Soleil : 4 compétences observées/ })
+    expect(sun.querySelectorAll('path[aria-label^="Pôle "]').length).toBe(3)
+    fireEvent.click(within(dialog).getByRole('button', { name: 'Fermer l’aperçu' }))
+  })
+
   it('page de comparaison quand une comparaison est définie ; Échap ferme l’aperçu', async () => {
     const store = await louStore({
       mutate: (ds) =>

@@ -9,8 +9,11 @@ const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
 const pct = (theta) => `${fmt((theta / 360) * 100, 1)} %`
 
-/** Légende de l'encodage du soleil (§5, §6.1). */
-export function SunLegend() {
+/**
+ * Légende de l'encodage du soleil (§5, §6.1).
+ * @param {{poleRing?: boolean}} props poleRing : l'anneau des pôles est dessiné (D-58)
+ */
+export function SunLegend({ poleRing = true } = {}) {
   return (
     <dl className="carto-legend">
       <dt>Angle</dt>
@@ -19,8 +22,12 @@ export function SunLegend() {
       <dd>confiance moyenne du jury dans ses verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
       <dt>Surface</dt>
       <dd>confiance × points.</dd>
-      <dt>Anneau intérieur</dt>
-      <dd>les pôles, chacun sur la largeur de ses compétences : il les range, il ne mesure rien.</dd>
+      {poleRing ? (
+        <>
+          <dt>Anneau intérieur</dt>
+          <dd>les pôles, chacun sur la largeur de ses compétences : il les range, il ne mesure rien.</dd>
+        </>
+      ) : null}
       <dt>Hachures</dt>
       <dd>compétence en renvoi au cartographe (le jury n’a pas tranché).</dd>
       <dt>Absence de secteur</dt>
@@ -138,7 +145,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
             </dl>
             <p className="carto-detail-actions">
               <button type="button" className="carto-btn carto-btn--quiet" onClick={onWhy}>
-                Pourquoi cette surface ? <kbd>w</kbd>
+                Pourquoi cette part ? <kbd>w</kbd>
               </button>
               {onZoom ? (
                 // Ouvrir le pôle sur 360° dans le soleil (D-45) — comme un double-clic sur son arc.

@@ -15,6 +15,8 @@ import { downloadBlob } from '../../lib/download-json.js'
 import { loadViewerTemplate } from './viewerTemplate.js'
 import { formatBytes } from './format.js'
 import { DEFAULT_REPORT_OPTIONS, ReportPreview } from './Report.jsx'
+import { DEFAULT_PARAMS, sunGeometry } from '../core/formulas.js'
+import { layoutSun } from '../core/state.js'
 import { DemoTool } from './DemoTool.jsx'
 
 function Status({ value }) {
@@ -27,10 +29,11 @@ function Status({ value }) {
 }
 
 /**
- * @param {{dataset: object, refl: object, state: object, layout: object, geometry: object, params: object,
+ * @param {{dataset: object, refl: object, state: object, params: object,
  *   t: string | null, data: object, fetchFn?: typeof fetch, onOpenDataset?: () => void}} props
+ *   Le soleil du rapport se dessine ici, avec l'anneau des pôles standard.
  */
-export function ExportPanel({ dataset, refl, state, layout, geometry, params, t, data, fetchFn, onOpenDataset }) {
+export function ExportPanel({ dataset, refl, state, params, t, data, fetchFn, onOpenDataset }) {
   const uid = useId()
   const [jsonPortfolio, setJsonPortfolio] = useState(true)
   const [htmlPortfolio, setHtmlPortfolio] = useState(false)
@@ -41,6 +44,13 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
   const [demoOpen, setDemoOpen] = useState(false)
 
   const observed = useMemo(() => refl.competencies.filter((c) => state.competencies.has(c.code)), [refl, state])
+  // Le rapport imprimé garde l'anneau des pôles standard : un document pour
+  // d'autres, comme la version partagée, pas le réglage d'exploration (D-58).
+  const reportGeometry = useMemo(() => sunGeometry({ ...params, poleRingPx: DEFAULT_PARAMS.poleRingPx }), [params])
+  const reportLayout = useMemo(
+    () => layoutSun(state, refl, reportGeometry, { minThickness: params.minThicknessPx, minArc: params.minArcPx }),
+    [state, refl, reportGeometry, params],
+  )
   const chosenKey = options.codes.filter((c) => state.competencies.has(c)).join(',')
   const chosen = useMemo(() => (chosenKey ? chosenKey.split(',') : []), [chosenKey])
   const hasComparison = Boolean(dataset.preferences?.compare?.a && dataset.preferences?.compare?.b)
@@ -275,8 +285,8 @@ export function ExportPanel({ dataset, refl, state, layout, geometry, params, t,
           dataset={dataset}
           refl={refl}
           state={state}
-          layout={layout}
-          geometry={geometry}
+          layout={reportLayout}
+          geometry={reportGeometry}
           params={params}
           t={t}
           options={reportOptions}

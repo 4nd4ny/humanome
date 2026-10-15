@@ -19,7 +19,7 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { inkOn, poleFill, themeColor, themed } from './colors.js'
+import { labelInk, poleFill, themeColor, themed } from './colors.js'
 import { poleShortName } from '../core/referential.js'
 import { ringShown } from '../core/formulas.js'
 import { formatShort } from '../core/dates.js'
@@ -320,10 +320,11 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
               />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {!compact && poleLabelFits(short, s) ? (
+              {/* Pas de nom pendant l'ouverture : il glisserait d'un bord à l'autre de l'arc. */}
+              {!compact && !moving && poleLabelFits(short, s) ? (
                 <>
                   <path id={labelId} d={labelArc((s.rIn + s.rOut) / 2, labelAngle, s.a1 - s.a0)} fill="none" stroke="none" pointerEvents="none" />
-                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(inkOn(poleFill(p.color)), inkOn(poleFill(p.color, 'dark')))}>
+                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(labelInk(poleFill(p.color)), labelInk(poleFill(p.color, 'dark')))}>
                     <textPath href={`#${labelId}`} startOffset="50%">
                       {short}
                     </textPath>
@@ -365,7 +366,7 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
                   className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}
                   x={rCode * Math.cos(aMid)}
                   y={rCode * Math.sin(aMid)}
-                  style={thick ? themed(inkOn(p.color), inkOn(themeColor(p.color, 'dark'))) : undefined}
+                  style={thick ? themed(labelInk(p.color), labelInk(themeColor(p.color, 'dark'))) : undefined}
                   aria-hidden="true"
                 >
                   {s.code}

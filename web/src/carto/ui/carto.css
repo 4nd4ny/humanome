@@ -41,7 +41,8 @@
   background: var(--c);
   color: var(--c-ink);
 }
-@media (prefers-color-scheme: dark) {
+/* À l'écran seulement : imprimée, la cartographie reste claire (c'est du papier). */
+@media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .carto-app {
     --viz-surface: #141d31;
     --viz-ink: #e7edf6;
@@ -66,28 +67,30 @@
     color: var(--c-ink-dark, var(--c-ink));
   }
 }
-:root[data-theme='dark'] .carto-app {
-  --viz-surface: #141d31;
-  --viz-ink: #e7edf6;
-  --viz-ink-soft: #adb9cd;
-  --viz-guide: #52607a;
-  --viz-center: #1c2740;
-  --viz-center-line: #2b3b58;
-  --viz-center-ink: #adb9cd;
-  --viz-motif: rgba(231, 237, 246, 0.6);
-  --hm-axis: #7f8da7;
-  --hm-silent: #3a4a68;
-  --hm-strong: #e7edf6;
-  --hm-no-analysis: #64748b;
-  --hm-no-portfolio: #94a3b8;
-  --hm-marker: #f472b6;
-}
-:root[data-theme='dark'] .carto-app .carto-c-fill {
-  fill: var(--c-dark, var(--c));
-}
-:root[data-theme='dark'] .carto-app .carto-c-bg {
-  background: var(--c-dark, var(--c));
-  color: var(--c-ink-dark, var(--c-ink));
+@media screen {
+  :root[data-theme='dark'] .carto-app {
+    --viz-surface: #141d31;
+    --viz-ink: #e7edf6;
+    --viz-ink-soft: #adb9cd;
+    --viz-guide: #52607a;
+    --viz-center: #1c2740;
+    --viz-center-line: #2b3b58;
+    --viz-center-ink: #adb9cd;
+    --viz-motif: rgba(231, 237, 246, 0.6);
+    --hm-axis: #7f8da7;
+    --hm-silent: #3a4a68;
+    --hm-strong: #e7edf6;
+    --hm-no-analysis: #64748b;
+    --hm-no-portfolio: #94a3b8;
+    --hm-marker: #f472b6;
+  }
+  :root[data-theme='dark'] .carto-app .carto-c-fill {
+    fill: var(--c-dark, var(--c));
+  }
+  :root[data-theme='dark'] .carto-app .carto-c-bg {
+    background: var(--c-dark, var(--c));
+    color: var(--c-ink-dark, var(--c-ink));
+  }
 }
 .carto-app *:focus-visible {
   outline: 2px solid var(--accent);
@@ -1917,10 +1920,20 @@ kbd {
 }
 .carto-hl--approx {
   /* Passage APPROCHÉ (extrait reformulé) : pas de fond plein, un cadre
-     pointillé — jamais confondu avec un passage retrouvé. */
+     pointillé — jamais confondu avec un passage retrouvé. Sans fond, il
+     garde l'encre du texte (lisible en sombre, D-60). */
   background: transparent;
-  outline: 2px dashed #7c3aed;
+  color: inherit;
+  outline: 2px dashed var(--carto-hl-approx, #7c3aed);
   outline-offset: 1px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .carto-app {
+    --carto-hl-approx: #a78bfa;
+  }
+}
+:root[data-theme='dark'] .carto-app {
+  --carto-hl-approx: #a78bfa;
 }
 .carto-hl--current {
   box-shadow: 0 0 0 2px #b45309;

@@ -11,7 +11,7 @@ import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'r
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
-import { DEFAULT_PARAMS, POLE_RING_MAX, resolveParams, sunGeometry } from '../core/formulas.js'
+import { DEFAULT_PARAMS, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
 import { calendarModeOf, contributingVariant, todoCount } from '../core/model.js'
 import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
@@ -446,7 +446,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     ),
     legend: (
       <>
-        <SunLegend />
+        <SunLegend poleRing={ringShown(geometry.poles)} />
         <p className="carto-small carto-muted">Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}</p>
         <label className="carto-small carto-sun-options">
           <input type="checkbox" checked={Boolean(prefs.reinforced)} onChange={(e) => onPrefs({ reinforced: e.target.checked })} /> distinctions renforcées (motifs par pôle)
@@ -476,7 +476,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         <DatasetSection bare dataset={dataset} datasets={data.datasets} onOpenDataset={data.openDataset} onDeleteDataset={data.deleteDataset} />
       </>
     ),
-    settings: <EncodingSettings bare params={params} onPrefs={onPrefs} prefs={prefs} />,
+    settings: <EncodingSettings bare params={params} geometry={geometry} onPrefs={onPrefs} prefs={prefs} />,
   }
   const available = CARTO_TILES.filter(([id]) => tileNodes[id] != null)
   const shownTiles = available
@@ -596,8 +596,6 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
             dataset={dataset}
             refl={refl}
             state={state}
-            layout={layout}
-            geometry={geometry}
             params={params}
             t={ui.t}
             data={data}
@@ -837,7 +835,7 @@ function PanelsMenu({ tiles, shown, onToggle, summaryRef = null }) {
  * tuile, masquée au départ (D-52). « Valeurs par défaut » ne paraît que si un
  * réglage s'en écarte.
  */
-function EncodingSettings({ params, onPrefs, prefs, bare = false }) {
+function EncodingSettings({ params, geometry, onPrefs, prefs, bare = false }) {
   const Box = bare ? 'div' : 'details'
   const set = (patch) => onPrefs({ params: { ...prefs.params, ...patch } })
   const defaults = { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx }
@@ -853,7 +851,7 @@ function EncodingSettings({ params, onPrefs, prefs, bare = false }) {
       <label className="carto-setting">
         Épaisseur de l’anneau des pôles :{' '}
         <strong>
-          {ring} px{ring === 0 ? ' (masqué)' : ring >= POLE_RING_MAX ? ' (compétences masquées)' : ''}
+          {ring} px{!ringShown(geometry.poles) ? ' (masqué)' : !ringShown(geometry.competencies) ? ' (compétences masquées)' : ''}
         </strong>
         <input type="range" min={0} max={POLE_RING_MAX} step={5} value={ring} onChange={(e) => set({ poleRingPx: Number(e.target.value) })} />
       </label>

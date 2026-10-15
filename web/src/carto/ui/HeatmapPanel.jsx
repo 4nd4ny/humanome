@@ -33,7 +33,11 @@ export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, o
       ? [schoolYearStarting(schoolYear)].map((sy) => ({ from: sy.start, to: sy.end, label: `Année scolaire ${sy.label}` }))
       : periodBands(period, mode === 'all' ? 'school' : 'free')
   // Choisir l'année scolaire fixe l'année affichée : c'est ce qui la distingue de l'ancien défaut.
-  const choose = (m) => onPrefs(m === 'school' ? { calendarMode: 'school', schoolYearStart: schoolYear } : { calendarMode: m })
+  const choose = (m) => {
+    // Le pinceau n'existe qu'en période libre : il ne survit pas à un changement de calendrier.
+    setBrush(false)
+    onPrefs(m === 'school' ? { calendarMode: 'school', schoolYearStart: schoolYear } : { calendarMode: m })
+  }
   const status = focusDate ? cellLabel(focusDate, model.cells.get(focusDate) ?? null, { mode: model.mode, t, observed: observed?.has(focusDate) ?? false }) : 'Choisissez un jour : clic pour fixer la date t, double-clic pour l’ouvrir.'
 
   return (
@@ -99,7 +103,7 @@ export function HeatmapPanel({ model, prefs, period, schoolYear, t, focusDate, o
           Ouvrir ce jour{focusDate ?? t ? ` (${formatShort(focusDate ?? t)})` : ''}
         </button>
       </div>
-      <HeatmapLegend model={model} />
+      <HeatmapLegend model={model} period={mode === 'school' ? { from: bands[0].from, to: bands[0].to } : period} />
     </section>
   )
 }

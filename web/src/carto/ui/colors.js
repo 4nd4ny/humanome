@@ -46,6 +46,18 @@ export function inkOn(bg) {
   return contrast(bg, '#ffffff') >= contrast(bg, '#1e293b') ? '#ffffff' : '#1e293b'
 }
 
+/**
+ * Encre d'un petit texte posé sur une couleur (nom d'un pôle, code d'une
+ * compétence) : au moins 4,5:1, le seuil du texte courant. L'encre du site ou
+ * le blanc si l'un suffit ; sinon le noir ou le blanc, dont l'un atteint
+ * toujours 4,58:1.
+ */
+export function labelInk(bg) {
+  const ink = inkOn(bg)
+  if (contrast(bg, ink) >= 4.5) return ink
+  return contrast(bg, '#000000') >= contrast(bg, '#ffffff') ? '#000000' : '#ffffff'
+}
+
 // ---- OKLCH (luminance perçue) -------------------------------------------------
 
 const toLinear = (v) => {

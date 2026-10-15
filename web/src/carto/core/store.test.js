@@ -48,6 +48,17 @@ for (const [name, make] of [
       expect((await store.loadDayDetail('ds-lou', '2025-12-22')).portfolio).not.toBeNull()
     })
 
+    it('un jeu supprimé ailleurs n’est jamais recréé par un enregistrement de son index (D-57)', async () => {
+      const store = createCartoStore({ adapter: make() })
+      await store.commit(await louImport())
+      const ds = await store.loadDataset('ds-lou')
+      expect(await store.saveExistingDataset({ ...ds, title: 'Lou 2' })).toBe(true)
+      expect((await store.loadDataset('ds-lou')).title).toBe('Lou 2')
+      await store.deleteDataset('ds-lou')
+      expect(await store.saveExistingDataset(ds)).toBe(false)
+      expect(await store.loadDataset('ds-lou')).toBeNull()
+    })
+
     it('suppression complète et export intégral', async () => {
       const store = createCartoStore({ adapter: make() })
       await store.commit(await louImport('ds-a'))

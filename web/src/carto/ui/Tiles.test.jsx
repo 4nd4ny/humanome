@@ -118,6 +118,10 @@ describe('menu « Panneaux »', () => {
     fireEvent.change(sliders[1], { target: { value: '0' } })
     await waitFor(() => expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle "]')).toHaveLength(0))
     expect(within(tile('settings')).getByText('0 px (masqué)')).toBeTruthy()
+    // À 155, l'écart avalerait les compétences : l'anneau va jusqu'au bord, et le réglage le dit.
+    fireEvent.change(sliders[1], { target: { value: '155' } })
+    await waitFor(() => expect(within(tile('settings')).getByText('155 px (compétences masquées)')).toBeTruthy())
+    expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="1."]')).toHaveLength(0)
     // Un réglage écarté du défaut : « Valeurs par défaut » ramène les trois.
     fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params).toMatchObject({ alpha: 0.5, poleRingPx: 30, minThicknessPx: 2 }))

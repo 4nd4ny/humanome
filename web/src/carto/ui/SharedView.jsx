@@ -98,7 +98,7 @@ function SharedCalendar({ from, to, cells, label }) {
   const STEP = 13
   const LEFT = 4
   const TOP = 14
-  const width = LEFT + weeks.length * STEP
+  const width = LEFT + Math.max(weeks.length, (months.at(-1)?.week ?? 0) + 2) * STEP
   const height = TOP + 7 * STEP
   return (
     <figure className="carto-shared-heat">

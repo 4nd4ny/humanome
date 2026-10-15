@@ -6,6 +6,7 @@ import mergeFixture from '../../../schemas/fixtures/cartographie-merge-3-jours.j
 import referentielFixture from '../../../schemas/fixtures/referentiel-respire-v7.json'
 import promptPackageFixture from '../../../schemas/fixtures/prompt-package-exemple.json'
 import { exportArchive, importArchive, isPristineDemo, UNKNOWN_ID, UNKNOWN_VERSION } from './archive.js'
+import { demoBaseline } from '../carto/core/model.js'
 import { createCartoStore, createMemoryAdapter } from './carto-store.js'
 import { createPortfolioStore, createMemoryAdapter as createPortfolioMemoryAdapter } from './portfolio-store.js'
 import masterFixture from '../../../schemas/fixtures/carto/competency-map-master-exemple.json'
@@ -389,6 +390,16 @@ describe('archive 1.1.0 : les jeux de l’interface de cartographie', () => {
     expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-demo'])
     expect(counts).toMatchObject({ portfolios: 1, jeux: 1, jeuxExclus: ['Lou'] })
     expect(validateDocument('archive-export', archive).valid).toBe(true)
+  })
+
+  it('démonstration intacte : sans base, rien de la personne ; avec la base de son chargement, ce que l’archive apportait est permis (D-57)', () => {
+    const demo = { origin: 'demo', importLog: [{}], reflections: [], reviews: {}, sets: [{ id: 's1' }], markers: [], comparisons: [], portfolio: { undated: [] } }
+    expect(isPristineDemo(demo)).toBe(false) // un ensemble, sans savoir qu'il venait de l'archive
+    const baseline = demoBaseline(demo)
+    expect(isPristineDemo(demo, baseline)).toBe(true)
+    expect(isPristineDemo({ ...demo, markers: [{ id: 'm1' }] }, baseline)).toBe(false)
+    expect(isPristineDemo({ ...demo, importLog: [{}, {}] }, baseline)).toBe(false)
+    expect(isPristineDemo({ ...demo, origin: null }, baseline)).toBe(false)
   })
 
   it('une archive 1.0.0 (sans jeux) reste valide et s’importe', async () => {

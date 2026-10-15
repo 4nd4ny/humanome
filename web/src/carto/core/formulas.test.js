@@ -148,6 +148,11 @@ describe('anneaux fixes et surface (§5.6)', () => {
     expect(all.poles).toEqual({ rIn: 30, rOut: 190 })
     expect(ringShown(all.competencies)).toBe(false)
     expect(all.k).toBe(0)
+    // L'écart avalerait les compétences : l'anneau des pôles va jusqu'au bord, sans bande vide.
+    const almost = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 155, gap: 5 })
+    expect(almost.poles.rOut).toBe(190)
+    expect(ringShown(almost.competencies)).toBe(false)
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 150, gap: 5 }).competencies).toEqual({ rIn: 185, rOut: 190 })
     // Hors bornes : ramenée dans les bornes.
     expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 500 }).poles.rOut).toBe(190)
     expect(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: -8 }).poles.rOut).toBe(30)
