@@ -1,8 +1,10 @@
 /* Interface ultime de cartographie — feuille de style.
    S'appuie sur les jetons de thème du site (global.css : --ink, --paper,
-   --card, --line, --accent…) ; la surface de visualisation reste claire dans
-   les deux thèmes (--viz-surface), comme le reste du site. Le soleil est
-   l'élément central ; tout le reste est discret. */
+   --card, --line, --accent…). Le soleil et la heatmap suivent le thème
+   (journal D-60) : leurs jetons --viz-* passent au sombre avec le site, et
+   chaque couleur calculée existe dans les deux thèmes (`carto-c-fill`,
+   `carto-c-bg`). L'aperçu imprimable reste clair : c'est du papier. Le soleil
+   est l'élément central ; tout le reste est discret. */
 
 .carto-app {
   --carto-gap: 1rem;
@@ -14,6 +16,78 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 0.75rem 1rem 3rem;
+}
+
+/* ---- Visualisations : jetons des deux thèmes (D-60) ------------------------------- */
+.carto-app,
+.carto-print-sheet {
+  --viz-guide: #94a3b8;
+  --viz-center: #f1f5f9;
+  --viz-center-line: #cbd5e1;
+  --viz-center-ink: #475569;
+  --viz-motif: rgba(15, 23, 42, 0.55);
+  --hm-axis: #64748b;
+  --hm-silent: #cbd5e1;
+  --hm-strong: #0f172a;
+  --hm-no-analysis: #94a3b8;
+  --hm-no-portfolio: #475569;
+  --hm-marker: #be185d;
+}
+/* Couleurs calculées : chaque élément porte sa valeur claire (--c) et sombre (--c-dark). */
+.carto-c-fill {
+  fill: var(--c);
+}
+.carto-c-bg {
+  background: var(--c);
+  color: var(--c-ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .carto-app {
+    --viz-surface: #141d31;
+    --viz-ink: #e7edf6;
+    --viz-ink-soft: #adb9cd;
+    --viz-guide: #52607a;
+    --viz-center: #1c2740;
+    --viz-center-line: #2b3b58;
+    --viz-center-ink: #adb9cd;
+    --viz-motif: rgba(231, 237, 246, 0.6);
+    --hm-axis: #7f8da7;
+    --hm-silent: #3a4a68;
+    --hm-strong: #e7edf6;
+    --hm-no-analysis: #64748b;
+    --hm-no-portfolio: #94a3b8;
+    --hm-marker: #f472b6;
+  }
+  :root:not([data-theme='light']) .carto-app .carto-c-fill {
+    fill: var(--c-dark, var(--c));
+  }
+  :root:not([data-theme='light']) .carto-app .carto-c-bg {
+    background: var(--c-dark, var(--c));
+    color: var(--c-ink-dark, var(--c-ink));
+  }
+}
+:root[data-theme='dark'] .carto-app {
+  --viz-surface: #141d31;
+  --viz-ink: #e7edf6;
+  --viz-ink-soft: #adb9cd;
+  --viz-guide: #52607a;
+  --viz-center: #1c2740;
+  --viz-center-line: #2b3b58;
+  --viz-center-ink: #adb9cd;
+  --viz-motif: rgba(231, 237, 246, 0.6);
+  --hm-axis: #7f8da7;
+  --hm-silent: #3a4a68;
+  --hm-strong: #e7edf6;
+  --hm-no-analysis: #64748b;
+  --hm-no-portfolio: #94a3b8;
+  --hm-marker: #f472b6;
+}
+:root[data-theme='dark'] .carto-app .carto-c-fill {
+  fill: var(--c-dark, var(--c));
+}
+:root[data-theme='dark'] .carto-app .carto-c-bg {
+  background: var(--c-dark, var(--c));
+  color: var(--c-ink-dark, var(--c-ink));
 }
 .carto-app *:focus-visible {
   outline: 2px solid var(--accent);
@@ -421,7 +495,7 @@ kbd {
 }
 .carto-sun-guide {
   fill: none;
-  stroke: #94a3b8;
+  stroke: var(--viz-guide);
   stroke-width: 0.6;
   stroke-dasharray: 2 3;
   opacity: 0.7;
@@ -467,13 +541,14 @@ kbd {
   stroke-width: 2;
 }
 .carto-sun-hatch {
-  stroke: #ffffff;
+  /* Les hachures coupent le secteur à la couleur du fond, dans les deux thèmes. */
+  stroke: var(--viz-surface);
   stroke-width: 1.6;
   opacity: 0.85;
 }
 .carto-sun-motif {
-  stroke: rgba(15, 23, 42, 0.55);
-  fill: rgba(15, 23, 42, 0.55);
+  stroke: var(--viz-motif);
+  fill: var(--viz-motif);
   stroke-width: 0.8;
 }
 /* Nom d'un pôle, écrit le long de son arc (D-58). */
@@ -482,18 +557,17 @@ kbd {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-anchor: middle;
-  fill: #1e293b;
   pointer-events: none;
 }
 .carto-sun-center circle {
-  fill: #f1f5f9;
-  stroke: #cbd5e1;
+  fill: var(--viz-center);
+  stroke: var(--viz-center-line);
   cursor: pointer;
 }
 .carto-sun-center-text {
   font-size: 11px;
   text-anchor: middle;
-  fill: #475569;
+  fill: var(--viz-center-ink);
   pointer-events: none;
 }
 /* Pôle ouvert sur 360° (D-45) : le centre ramène à tous les pôles. */
@@ -504,23 +578,25 @@ kbd {
   font-size: 8.5px;
 }
 .carto-sun--zoomed .carto-sun-center circle {
-  fill: #ffffff;
-  stroke: #94a3b8;
+  fill: var(--viz-surface);
+  stroke: var(--viz-guide);
 }
 .carto-sun--zoomed .carto-sun-center:focus-visible circle {
   stroke: var(--accent);
   stroke-width: 2;
 }
-/* Code d'une compétence du pôle ouvert. Au-dessus d'un secteur mince : encre du
-   fond (clair dans les deux thèmes) ; dans un secteur épais, le soleil donne
-   une encre contrastée sur sa couleur (style en ligne, qui l'emporte ici). */
+/* Code d'une compétence du pôle ouvert (D-45). */
 .carto-sun-code-label {
   font-size: 8.5px;
   font-weight: 600;
   text-anchor: middle;
   dominant-baseline: middle;
-  fill: var(--viz-ink);
   pointer-events: none;
+}
+/* Au-dessus d'un secteur mince : l'encre du fond ; dans un secteur épais,
+   l'encre contrastée sur sa couleur, propre à chaque thème (carto-c-fill). */
+.carto-sun-code-label:not(.carto-c-fill) {
+  fill: var(--viz-ink);
 }
 .carto-detail-actions {
   display: flex;
@@ -692,7 +768,7 @@ kbd {
 .carto-hm-month,
 .carto-hm-weekday {
   font-size: 9px;
-  fill: #64748b;
+  fill: var(--hm-axis);
 }
 .carto-hm-void {
   fill: none;
@@ -702,7 +778,7 @@ kbd {
 }
 .carto-hm-cell.is-silent {
   fill: transparent;
-  stroke: #cbd5e1;
+  stroke: var(--hm-silent);
   stroke-width: 0.8;
   stroke-dasharray: 1.5 1.5;
 }
@@ -716,11 +792,11 @@ kbd {
   opacity: 0.2;
 }
 .carto-hm-cell.is-no-analysis {
-  stroke: #94a3b8;
+  stroke: var(--hm-no-analysis);
   stroke-width: 0.8;
 }
 .carto-hm-cell.is-no-portfolio {
-  stroke: #475569;
+  stroke: var(--hm-no-portfolio);
   stroke-width: 1;
   stroke-dasharray: 2 1;
 }
@@ -728,7 +804,7 @@ kbd {
   opacity: 0.18;
 }
 .carto-hm-cell.is-observed {
-  stroke: #0f172a;
+  stroke: var(--hm-strong);
   stroke-width: 1.4;
 }
 .carto-hm-cell.is-observed.is-inactive {
@@ -740,7 +816,7 @@ kbd {
   opacity: 1;
 }
 .carto-hm-cell.is-inspected {
-  stroke: #0f172a;
+  stroke: var(--hm-strong);
   stroke-width: 1.8;
   stroke-dasharray: 2 1.5;
 }
@@ -756,7 +832,7 @@ kbd {
   cursor: crosshair;
 }
 .carto-hm-marker line {
-  stroke: #be185d;
+  stroke: var(--hm-marker);
   stroke-width: 1;
   stroke-dasharray: 3 2;
 }

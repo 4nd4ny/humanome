@@ -19,7 +19,7 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { inkOn, poleFill } from './colors.js'
+import { inkOn, poleFill, themeColor, themed } from './colors.js'
 import { poleShortName } from '../core/referential.js'
 import { ringShown } from '../core/formulas.js'
 import { formatShort } from '../core/dates.js'
@@ -311,13 +311,19 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           const labelId = `${uid}-pl${s.num}`
           return (
             <g key={`p${s.num}`} className={`carto-sun-sector${related(target) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}`} style={fade(s)}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={poleFill(p.color)} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
+              <path
+                d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
+                className="carto-c-fill"
+                style={themed(poleFill(p.color), poleFill(p.color, 'dark'))}
+                fillRule="evenodd"
+                {...sectorProps(target, name, s.transient)}
+              />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
               {!compact && poleLabelFits(short, s) ? (
                 <>
                   <path id={labelId} d={labelArc((s.rIn + s.rOut) / 2, labelAngle, s.a1 - s.a0)} fill="none" stroke="none" pointerEvents="none" />
-                  <text className="carto-sun-pole-label" dy="0.35em" aria-hidden="true" style={{ fill: inkOn(poleFill(p.color)) }}>
+                  <text className="carto-sun-pole-label carto-c-fill" dy="0.35em" aria-hidden="true" style={themed(inkOn(poleFill(p.color)), inkOn(poleFill(p.color, 'dark')))}>
                     <textPath href={`#${labelId}`} startOffset="50%">
                       {short}
                     </textPath>
@@ -345,11 +351,23 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           const aMid = (s.a0 + s.a1) / 2
           return (
             <g key={s.code} className={`carto-sun-sector${related({ ...target, pole: s.pole }) ? '' : ' is-dimmed'}${isSelected(target) ? ' is-selected' : ''}${lit ? ' is-lit' : ''}`} style={fade(s)}>
-              <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={p.color} fillRule="evenodd" {...sectorProps(target, name, s.transient)} />
+              <path
+                d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)}
+                className="carto-c-fill"
+                style={themed(p.color, themeColor(p.color, 'dark'))}
+                fillRule="evenodd"
+                {...sectorProps(target, name, s.transient)}
+              />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.pole})`} fillRule="evenodd" pointerEvents="none" /> : null}
               {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
               {showCode ? (
-                <text className="carto-sun-code-label" x={rCode * Math.cos(aMid)} y={rCode * Math.sin(aMid)} style={thick ? { fill: inkOn(p.color) } : undefined} aria-hidden="true">
+                <text
+                  className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}
+                  x={rCode * Math.cos(aMid)}
+                  y={rCode * Math.sin(aMid)}
+                  style={thick ? themed(inkOn(p.color), inkOn(themeColor(p.color, 'dark'))) : undefined}
+                  aria-hidden="true"
+                >
                   {s.code}
                 </text>
               ) : null}

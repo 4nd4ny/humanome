@@ -10,7 +10,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { calendarGrid, moveFocus } from '../core/heatmap.js'
 import { formatLong, weekdayName } from '../core/dates.js'
-import { heatColor } from './colors.js'
+import { heatColor, themed } from './colors.js'
+
+/** Remplissage d'une case pour les deux thèmes (D-60). */
+const cellFill = (level, tint) => themed(heatColor(level, tint), heatColor(level, tint, 'dark'))
 
 const CELL = 12
 const GAP = 2
@@ -157,6 +160,7 @@ export function HeatmapBand({ band, model, t, focusDate, observed = null, inspec
                 if (inspected === date) classes.push('is-inspected')
                 if (active === date) classes.push('is-focus')
                 if (range && date >= range[0] && date <= range[1]) classes.push('is-brushed')
+                if (cell) classes.push('carto-c-fill')
                 return (
                   <rect
                     key={wi}
@@ -170,7 +174,7 @@ export function HeatmapBand({ band, model, t, focusDate, observed = null, inspec
                     height={CELL}
                     rx={2}
                     className={classes.join(' ')}
-                    fill={cell ? heatColor(cell.level, cell.tint) : 'transparent'}
+                    style={cell ? cellFill(cell.level, cell.tint) : undefined}
                     onClick={() => {
                       onFocusDate(date)
                       if (!brush) onSetT(date)
@@ -214,18 +218,18 @@ export function HeatmapLegend({ model }) {
         </li>
         {[1, 2, 3, 4, 5].map((l, i) => (
           <li key={l}>
-            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" fill={heatColor(l, null)} /></svg>
+            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-c-fill" style={cellFill(l, null)} /></svg>
             {bounds[i]}
           </li>
         ))}
         {model.mode === 'volume' ? (
           <li>
-            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-no-portfolio" fill={heatColor(1, null)} /></svg>
+            <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-no-portfolio carto-c-fill" style={cellFill(1, null)} /></svg>
             analyse sans portfolio
           </li>
         ) : null}
         <li>
-          <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-inactive" fill={heatColor(3, null)} /></svg>
+          <svg width="12" height="12" aria-hidden="true"><rect width="12" height="12" rx="2" className="carto-hm-cell is-inactive carto-c-fill" style={cellFill(3, null)} /></svg>
           décochée
         </li>
       </ul>

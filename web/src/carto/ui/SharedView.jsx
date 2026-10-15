@@ -13,7 +13,7 @@ import { formatLong, monthName, todayIso } from '../core/dates.js'
 import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
 import { Sun } from './Sun.jsx'
 import { usePrefersReducedMotion } from './Player.jsx'
-import { heatColor, inkOn } from './colors.js'
+import { heatColor, themed, themedSwatch } from './colors.js'
 import './carto.css'
 
 // Une version partagée garde les réglages par défaut (anneau des pôles de 30, D-58).
@@ -71,7 +71,7 @@ function SharedHeatmap({ heatmap, period }) {
             const c = cells.get(key)
             const year = i === 0 || key.endsWith('-01') ? key.slice(0, 4) : null
             return (
-              <li key={key} title={label(key)} className={c ? '' : 'is-silent'} style={c ? { background: heatColor(c.level, null), color: inkOn(heatColor(c.level, null)) } : undefined}>
+              <li key={key} title={label(key)} className={c ? 'carto-c-bg' : 'is-silent'} style={c ? themedSwatch(heatColor(c.level, null), heatColor(c.level, null, 'dark')) : undefined}>
                 <span aria-hidden="true">
                   {monthName(key, { short: true })}
                   {year ? <small>{year}</small> : null}
@@ -81,7 +81,7 @@ function SharedHeatmap({ heatmap, period }) {
             )
           })}
         </ol>
-        <figcaption className="carto-small carto-muted">Plus la case est foncée, plus les compétences partagées sont observées ce mois-là (niveaux relatifs à cette personne).</figcaption>
+        <figcaption className="carto-small carto-muted">Plus la couleur de la case est intense, plus les compétences partagées sont observées ce mois-là (niveaux relatifs à cette personne).</figcaption>
       </figure>
     )
   }
@@ -114,7 +114,7 @@ function SharedCalendar({ from, to, cells, label }) {
               if (!date) return null
               const c = cells.get(date)
               return (
-                <rect key={date} x={LEFT + wi * STEP} y={TOP + row * STEP} width={CELL} height={CELL} rx={2} className={c ? 'carto-hm-cell' : 'carto-hm-cell is-silent'} fill={c ? heatColor(c.level, null) : 'transparent'}>
+                <rect key={date} x={LEFT + wi * STEP} y={TOP + row * STEP} width={CELL} height={CELL} rx={2} className={c ? 'carto-hm-cell carto-c-fill' : 'carto-hm-cell is-silent'} style={c ? themed(heatColor(c.level, null), heatColor(c.level, null, 'dark')) : undefined}>
                   <title>{label(date)}</title>
                 </rect>
               )
@@ -122,7 +122,7 @@ function SharedCalendar({ from, to, cells, label }) {
           )}
         </svg>
       </div>
-      <figcaption className="carto-small carto-muted">Une case par jour ; plus elle est foncée, plus les compétences partagées y sont observées (niveaux relatifs à cette personne).</figcaption>
+      <figcaption className="carto-small carto-muted">Une case par jour ; plus sa couleur est intense, plus les compétences partagées y sont observées (niveaux relatifs à cette personne).</figcaption>
     </figure>
   )
 }
