@@ -531,6 +531,12 @@ describe('« Pourquoi cette surface ? » (composant)', () => {
     cleanup()
     why(state, layout, { type: 'competency', code: '2.01' })
     expect(screen.getByText(/sa confiance est si faible/)).toBeTruthy()
+    // Sans départ de la hauteur, une confiance nulle ne parle pas de départ.
+    cleanup()
+    const zero = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0 }] }]), { ref })
+    why(zero, layoutSun(zero, ref, geometry, { minThickness: 2 }), { type: 'competency', code: '1.01' })
+    expect(screen.getByText(/sa confiance est si faible/)).toBeTruthy()
+    expect(screen.queryByText(/départ de la hauteur/)).toBeNull()
   })
 
   it('la hauteur part du départ réglable (D-65) : dite, calculée, et une confiance qui ne le dépasse pas reçoit l’épaisseur minimale', () => {
@@ -549,6 +555,11 @@ describe('« Pourquoi cette surface ? » (composant)', () => {
     expect(screen.getByText(/hauteur h = \(C − 0,25\) \/ \(1 − 0,25\)/)).toBeTruthy()
     expect(screen.getByText(/surface = θ · k · h \/ 2/)).toBeTruthy()
     expect(screen.queryByText(/Épaisseur minimale/)).toBeNull()
+    // Une confiance qui dépasse à peine le départ : invisible, et dite comme telle.
+    cleanup()
+    const near = computeState(indexDataset([{ date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.252 }, { code: '2.01', confidence: 0.7 }] }]), { ref })
+    why(near, layoutSun(near, ref, g, { minThickness: 2 }), { type: 'competency', code: '1.01' }, g)
+    expect(screen.getByText(/sa confiance \(0,252\) dépasse à peine le départ de la hauteur \(0,25\)/)).toBeTruthy()
   })
 
   it('le pôle d’une compétence élargie le signale ; un pôle sans compétence élargie, non', () => {

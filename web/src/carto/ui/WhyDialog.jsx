@@ -93,9 +93,11 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
                 Épaisseur minimale d’affichage appliquée :{' '}
                 {typeof e.confidence !== 'number'
                   ? 'la confiance du jury n’est pas connue, le secteur n’aurait pas de hauteur.'
-                  : e.confidence <= origin
+                  : origin > 0 && e.confidence <= origin
                     ? `sa confiance (${fmt(e.confidence)}) ne dépasse pas le départ de la hauteur (${fmt(origin)}), le secteur n’aurait pas de hauteur.`
-                    : 'sa confiance est si faible que le secteur serait invisible.'}{' '}
+                    : origin > 0
+                      ? `sa confiance (${fmt(e.confidence, 3)}) dépasse à peine le départ de la hauteur (${fmt(origin)}), le secteur serait invisible.`
+                      : 'sa confiance est si faible que le secteur serait invisible.'}{' '}
                 Sa surface dessinée dépasse ici le strict proportionnel.
               </p>
             ) : null}

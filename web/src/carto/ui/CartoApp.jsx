@@ -11,7 +11,7 @@ import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState } 
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
-import { DEFAULT_PARAMS, HEIGHT_ORIGIN_MAX, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
+import { DEFAULT_PARAMS, HEIGHT_ORIGIN_MAX, MIN_THICKNESS_RANGE, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
 import { calendarModeOf, contributingVariant, todoCount } from '../core/model.js'
 import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
@@ -812,10 +812,12 @@ function ContextBar({ dataset, t, onResetT, tools = null, slotRef = null }) {
  */
 function Settings({ params, geometry, onPrefs, prefs, poles, palette, onPalette, bare = false }) {
   const uid = useId()
+  const firstRef = useRef(null)
   const Box = bare ? 'div' : 'details'
   const set = (patch) => onPrefs({ params: { ...prefs.params, ...patch } })
   const defaults = { alpha: DEFAULT_PARAMS.alpha, heightOrigin: DEFAULT_PARAMS.heightOrigin, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx }
-  const changed = palette !== DEFAULT_PALETTE || Object.entries(defaults).some(([key, value]) => params[key] !== value)
+  const paramsChanged = Object.entries(defaults).some(([key, value]) => params[key] !== value)
+  const changed = paramsChanged || palette !== DEFAULT_PALETTE
   const ring = params.poleRingPx
   return (
     <Box className="carto-section carto-settings" open={bare ? undefined : true}>
@@ -823,7 +825,7 @@ function Settings({ params, geometry, onPrefs, prefs, poles, palette, onPalette,
       <div className="carto-settings-encoding">
         <label className="carto-setting">
           Poids d’un indice α : <strong>{params.alpha.toLocaleString('fr-FR')}</strong>
-          <input type="range" min={0.1} max={0.9} step={0.05} value={params.alpha} onChange={(e) => set({ alpha: Number(e.target.value) })} />
+          <input ref={firstRef} type="range" min={0.1} max={0.9} step={0.05} value={params.alpha} onChange={(e) => set({ alpha: Number(e.target.value) })} />
         </label>
         <label className="carto-setting">
           Départ de la hauteur : <strong>confiance {params.heightOrigin.toLocaleString('fr-FR')}</strong>
@@ -838,7 +840,14 @@ function Settings({ params, geometry, onPrefs, prefs, poles, palette, onPalette,
         </label>
         <label className="carto-setting">
           Épaisseur minimale d’un secteur : <strong>{params.minThicknessPx} px</strong>
-          <input type="range" min={0} max={6} step={1} value={params.minThicknessPx} onChange={(e) => set({ minThicknessPx: Number(e.target.value) })} />
+          <input
+            type="range"
+            min={MIN_THICKNESS_RANGE.min}
+            max={MIN_THICKNESS_RANGE.max}
+            step={1}
+            value={params.minThicknessPx}
+            onChange={(e) => set({ minThicknessPx: Number(e.target.value) })}
+          />
         </label>
       </div>
       <fieldset className="carto-palettes">
@@ -864,8 +873,11 @@ function Settings({ params, geometry, onPrefs, prefs, poles, palette, onPalette,
           type="button"
           className="carto-link-btn"
           onClick={() => {
-            set(defaults)
+            // La palette vit dans ce navigateur : le jeu de données ne change que si un réglage s'écarte.
+            if (paramsChanged) set(defaults)
             onPalette(DEFAULT_PALETTE)
+            // Le lien disparaît : le focus revient au premier réglage.
+            firstRef.current?.focus()
           }}
         >
           Valeurs par défaut

@@ -197,12 +197,36 @@ export function paletteOf(id) {
   return PALETTE_BY_ID.get(id) ?? PALETTE_BY_ID.get(DEFAULT_PALETTE)
 }
 
-/** Luminance et saturation moyennes d'une palette dans un thème : le ton d'une couleur inconnue. */
-const toneOf = (palette, mode) => {
-  const o = palette[mode].map(hexToOklch)
-  return { L: o.reduce((s, x) => s + x.L, 0) / o.length, C: o.reduce((s, x) => s + x.C, 0) / o.length }
+const RESPIRE_OKLCH = RESPIRE_COLORS.map(hexToOklch)
+const PALETTE_OKLCH = new Map(PALETTES.map((p) => [p.id, { light: p.light.map(hexToOklch), dark: p.dark.map(hexToOklch) }]))
+const mean = (list) => list.reduce((sum, v) => sum + v, 0) / list.length
+const clampL = (L) => Math.min(0.95, Math.max(0.2, L))
+/** Écart signé entre deux teintes (radians, dans ]−π ; π]). */
+const hueShift = (to, from) => Math.atan2(Math.sin(to - from), Math.cos(to - from))
+
+/**
+ * Une couleur inconnue (un autre référentiel, une couleur retouchée) dans une
+ * palette autre que Contrastée : la marche de la couleur du référentiel de
+ * teinte la plus proche, décalée comme la couleur s'en écarte — même écart de
+ * luminance, saturation dans le même rapport, même écart de teinte. Deux
+ * couleurs de même teinte et de clartés différentes restent distinctes ; une
+ * couleur presque grise reste grise (sa teinte ne veut rien dire), décalée de
+ * l'écart moyen de luminance de la palette.
+ */
+function relativeStep(key, mode, palette) {
+  const o = hexToOklch(key)
+  const steps = PALETTE_OKLCH.get(palette.id)[mode]
+  if (o.C < 0.03) {
+    const shift = mean(steps.map((x) => x.L)) - mean(RESPIRE_OKLCH.map((x) => x.L))
+    return oklchToHex({ L: clampL(o.L + shift), C: o.C, H: o.H })
+  }
+  let i = 0
+  for (let j = 1; j < RESPIRE_OKLCH.length; j++) {
+    if (Math.abs(hueShift(o.H, RESPIRE_OKLCH[j].H)) < Math.abs(hueShift(o.H, RESPIRE_OKLCH[i].H))) i = j
+  }
+  const [r, step] = [RESPIRE_OKLCH[i], steps[i]]
+  return oklchToHex({ L: clampL(step.L + (o.L - r.L)), C: Math.min(0.37, (step.C * o.C) / r.C), H: o.H + hueShift(step.H, r.H) })
 }
-const TONES = new Map(PALETTES.map((p) => [p.id, { light: toneOf(p, 'light'), dark: toneOf(p, 'dark') }]))
 
 /** Couleurs inconnues déjà traduites, par palette et par thème. */
 const themeMemo = new Map()
@@ -216,10 +240,11 @@ const memoized = (key, compute) => {
 
 /**
  * Couleur d'un pôle (et de ses compétences) dans un thème et une palette : sa
- * marche dans la palette ; pour une couleur inconnue (un autre référentiel), la
- * même teinte, traduite au ton de la palette — dans la palette Contrastée,
- * assombrie en clair jusqu'à 3:1 sur le blanc, ramenée en sombre dans la bande
- * sombre ; dans les autres, à leur luminance et leur saturation moyennes.
+ * marche dans la palette ; pour une couleur inconnue (un autre référentiel),
+ * sa traduction — dans la palette Contrastée, la même teinte assombrie en
+ * clair jusqu'à 3:1 sur le blanc, ramenée en sombre dans la bande sombre ; dans
+ * les autres, décalée comme la marche de la couleur du référentiel la plus
+ * proche (`relativeStep`).
  * @param {string} hex couleur du référentiel
  * @param {'light'|'dark'} [theme]
  * @param {string} [palette] identifiant de palette (D-64)
@@ -234,10 +259,7 @@ export function themeColor(hex, theme = 'light', palette = DEFAULT_PALETTE) {
   // Une couleur inconnue se calcule une fois (la heatmap en demande une par case).
   return memoized(`${p.id}|${mode}|${key}`, () => {
     if (p.id === DEFAULT_PALETTE) return mode === 'dark' ? darkStep(key) : lightStep(key)
-    const o = hexToOklch(key)
-    const tone = TONES.get(p.id)[mode]
-    // Une couleur presque grise le reste : sa teinte ne veut rien dire.
-    return oklchToHex({ L: tone.L, C: o.C < 0.03 ? o.C : tone.C, H: o.H })
+    return relativeStep(key, mode, p)
   })
 }
 

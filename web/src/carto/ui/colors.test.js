@@ -192,13 +192,23 @@ describe('palettes des pôles (D-64)', () => {
     }
   })
 
-  it('une couleur inconnue prend le ton de la palette, dans sa teinte ; un gris reste gris', () => {
-    const pastel = paletteOf('pastel').light.map(hexToOklch)
-    const meanL = pastel.reduce((sum, o) => sum + o.L, 0) / pastel.length
-    const out = themeColor('#7c3aed', 'light', 'pastel')
-    expect(Math.abs(hexToOklch(out).L - meanL)).toBeLessThan(0.02)
-    expect(hueGap(out, '#7c3aed')).toBeLessThan(0.1)
-    expect(hexToOklch(themeColor('#808080', 'dark', 'vive')).C).toBeLessThan(0.03)
+  it('une couleur inconnue suit la marche de la couleur du référentiel la plus proche : deux clartés d’une même teinte restent distinctes ; un gris reste gris', () => {
+    const pairs = [
+      ['#14532d', '#86efac'], // vert foncé, vert clair
+      ['#1e3a8a', '#60a5fa'], // bleu nuit, bleu clair
+      ['#7c2d12', '#fdba74'], // brun, orangé clair
+    ]
+    for (const p of PALETTES) {
+      for (const theme of ['light', 'dark']) {
+        for (const [a, b] of pairs) {
+          expect(deltaE(themeColor(a, theme, p.id), themeColor(b, theme, p.id)), `${p.id} ${theme} ${a}/${b}`).toBeGreaterThanOrEqual(8)
+        }
+        // Une couleur du référentiel à peine retouchée tombe sur sa marche.
+        expect(deltaE(themeColor('#2563ec', theme, p.id), p[theme][0]), `${p.id} ${theme}`).toBeLessThan(2)
+        // Un gris reste gris : sa teinte ne veut rien dire.
+        expect(hexToOklch(themeColor('#808080', theme, p.id)).C).toBeLessThan(0.03)
+      }
+    }
   })
 
   it('une rampe de heatmap atteint 3:1 au niveau le plus fort, quelle que soit la palette (Pastel assombrie dans sa teinte)', () => {

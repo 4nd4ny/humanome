@@ -256,8 +256,9 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
             <ul className="carto-small">
               <li>Chaque secteur extérieur est une compétence observée dans le portfolio réflexif de la personne. Son angle est sa part des traces relevées dans l’ensemble partagé : plus une compétence a de traces, plus son secteur est large.</li>
               <li>
-                Sa hauteur est la confiance moyenne du jury dans ses verdicts, de {GEOMETRY.origin.toLocaleString('fr-FR')} au pied du secteur à 1 au bord extérieur : ce
-                n’est ni un niveau de maîtrise ni une note. L’anneau intérieur regroupe les compétences par pôle.
+                Sa hauteur est la confiance moyenne du jury dans ses verdicts, de {GEOMETRY.origin.toLocaleString('fr-FR')} au pied du secteur à 1 au bord extérieur (à{' '}
+                {GEOMETRY.origin.toLocaleString('fr-FR')} ou moins, le secteur garde une épaisseur minimale) : ce n’est ni un niveau de maîtrise ni une note. L’anneau
+                intérieur regroupe les compétences par pôle.
               </li>
               <li>Un double-clic sur un pôle de l’anneau intérieur l’ouvre sur tout le cercle : ses seules compétences, chacune selon sa part des traces du pôle. Un clic au centre ramène à tous les pôles.</li>
               <li>Un secteur hachuré signale une présence encore à confirmer.</li>

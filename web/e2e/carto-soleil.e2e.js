@@ -237,7 +237,7 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     const leaf = () => page.locator(`${SUN} path[role="button"][aria-label^="2.01 "]`).evaluate((el) => getComputedStyle(el).fill)
     const settingsTile = async (on) => {
       await page.locator('.carto-panels-menu > summary').click()
-      await page.getByRole('checkbox', { name: 'Réglages' }).setChecked(on)
+      await page.getByRole('checkbox', { name: 'Réglages', exact: true }).setChecked(on)
       await page.locator('.carto-panels-menu > summary').click()
     }
     await settingsTile(true)

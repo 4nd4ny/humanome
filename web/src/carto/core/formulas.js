@@ -49,7 +49,11 @@ export const DEFAULT_PARAMS = Object.freeze({
    * (journal D-65).
    */
   heightOrigin: 0.25,
-  /** Épaisseur minimale d'affichage d'un secteur, en pixels (§5.6, point ouvert 2). */
+  /**
+   * Épaisseur minimale d'affichage d'un secteur, en pixels (§5.6, point ouvert
+   * 2) : de 1 à 6 — un secteur qui a des points ne disparaît jamais, même sous
+   * le départ de la hauteur (D-65).
+   */
   minThicknessPx: 2,
   /**
    * Largeur minimale d'affichage d'un secteur, en pixels mesurés au bord
@@ -67,6 +71,8 @@ export const SUN = Object.freeze({ outerRadius: 190, centerRadius: 30, gap: 5 })
 export const POLE_RING_MAX = SUN.outerRadius - SUN.centerRadius
 /** Départ de la hauteur le plus haut (D-65) : au-delà, on ne lirait plus que la moitié de l'échelle. */
 export const HEIGHT_ORIGIN_MAX = 0.5
+/** Bornes de l'épaisseur minimale d'un secteur (px) : jamais 0, un secteur ne disparaît pas (D-65). */
+export const MIN_THICKNESS_RANGE = Object.freeze({ min: 1, max: 6 })
 /** Confiances marquées par les cercles guides de l'anneau des compétences. */
 export const GUIDE_LEVELS = Object.freeze([0.25, 0.5, 0.75, 1])
 
@@ -81,13 +87,16 @@ export function resolveParams(partial = {}) {
   if (!(p.temporalDecay >= 0)) throw new Error('temporalDecay doit être ≥ 0')
   // Des réglages d'affichage : ramenés dans leurs bornes plutôt que refusés.
   p.poleRingPx = Number.isFinite(p.poleRingPx) ? Math.min(POLE_RING_MAX, Math.max(0, p.poleRingPx)) : DEFAULT_PARAMS.poleRingPx
-  p.heightOrigin = clampOrigin(p.heightOrigin)
+  p.heightOrigin = Number.isFinite(p.heightOrigin) ? clampOrigin(p.heightOrigin) : DEFAULT_PARAMS.heightOrigin
+  p.minThicknessPx = Number.isFinite(p.minThicknessPx)
+    ? Math.min(MIN_THICKNESS_RANGE.max, Math.max(MIN_THICKNESS_RANGE.min, p.minThicknessPx))
+    : DEFAULT_PARAMS.minThicknessPx
   return p
 }
 
-/** Départ de la hauteur dans ses bornes [0 ; 0,5] ; la valeur par défaut s'il n'est pas un nombre. */
+/** Départ de la hauteur dans ses bornes [0 ; 0,5], au centième (0 s'il n'est pas un nombre). */
 function clampOrigin(origin) {
-  return Number.isFinite(origin) ? Math.min(HEIGHT_ORIGIN_MAX, Math.max(0, origin)) : DEFAULT_PARAMS.heightOrigin
+  return Number.isFinite(origin) ? Math.round(Math.min(HEIGHT_ORIGIN_MAX, Math.max(0, origin)) * 100) / 100 : 0
 }
 
 /** base(rôle) : preuve → base(preuve), tout autre rôle → α. */

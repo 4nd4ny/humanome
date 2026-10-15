@@ -197,6 +197,9 @@ describe('départ de la hauteur (D-65) : la hauteur part d’une confiance régl
     expect(resolveParams({ heightOrigin: 0.9 }).heightOrigin).toBe(0.5)
     expect(resolveParams({ heightOrigin: -1 }).heightOrigin).toBe(0)
     expect(resolveParams({ heightOrigin: Number.NaN }).heightOrigin).toBe(0.25)
+    expect(resolveParams({ heightOrigin: 0.15000000000000002 }).heightOrigin).toBe(0.15) // au centième
+    // La géométrie seule (sans réglages) part de 0, et d'un départ illisible aussi.
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30, origin: Number.NaN }).origin).toBe(0)
     expect(sunGeometry(DEFAULT_PARAMS).origin).toBe(0.25)
     expect(sunGeometry(resolveParams({ heightOrigin: 0.4 })).origin).toBe(0.4)
     // Sans départ (la géométrie seule, comme avant D-65) : 0.
@@ -221,6 +224,12 @@ describe('départ de la hauteur (D-65) : la hauteur part d’une confiance régl
       const theta = toRadians(deg)
       expect(annularSectorArea(theta, rIn, outerRadiusFor(rIn, g.k, c, 0.25))).toBeCloseTo(encodedArea(theta, g.k, c, 0.25), 6)
     }
+  })
+  it('l’épaisseur minimale va de 1 à 6 px : sous le départ, un secteur ne disparaît jamais', () => {
+    expect(resolveParams({ minThicknessPx: 0 }).minThicknessPx).toBe(1)
+    expect(resolveParams({ minThicknessPx: 9 }).minThicknessPx).toBe(6)
+    expect(resolveParams({ minThicknessPx: Number.NaN }).minThicknessPx).toBe(2)
+    expect(resolveParams({}).minThicknessPx).toBe(2)
   })
   it('une confiance qui ne dépasse pas le départ reçoit l’épaisseur minimale, signalée', () => {
     expect(displayedOuterRadius(rIn, g.k, 0.2, 2, 0.25)).toEqual({ rOut: rIn + 2, rOutExact: rIn, floored: true })

@@ -20,7 +20,7 @@
 // réduit.
 
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { labelInk, poleFill, poleTone, themeColor, themed } from './colors.js'
+import { VIZ_SURFACE, contrast, labelInk, poleFill, poleTone, themeColor, themed } from './colors.js'
 import { usePalette } from './palette.js'
 import { poleShortName } from '../core/referential.js'
 import { confidenceGuides, ringShown } from '../core/formulas.js'
@@ -259,6 +259,10 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           onFocus: () => onHover(target),
           onBlur: () => onHover(null),
         }
+  // Hachures d'un renvoi, visibles dans toute palette (D-64) : traits du fond sur
+  // une couleur assez foncée (3:1 sur le blanc), traits d'encre sur une couleur
+  // claire (Pastel, Vive) — en sombre, les deux traits sont foncés.
+  const hatch = (lightFill) => `url(#${uid}-${contrast(lightFill, VIZ_SURFACE.light) >= 3 ? 'hatch' : 'hatch-ink'})`
   // Fondu d'un secteur qui apparaît ou disparaît, multiplié en CSS par
   // l'atténuation d'un secteur hors sélection (sans éclat à la fin du passage).
   const fade = (s) => (s.opacity != null && s.opacity < 1 ? { '--carto-fade': s.opacity } : undefined)
@@ -285,6 +289,10 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
           <pattern id={`${uid}-hatch`} patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
             <rect width="5" height="5" fill="transparent" />
             <line x1="0" y1="0" x2="0" y2="5" className="carto-sun-hatch" />
+          </pattern>
+          <pattern id={`${uid}-hatch-ink`} patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
+            <rect width="5" height="5" fill="transparent" />
+            <line x1="0" y1="0" x2="0" y2="5" className="carto-sun-hatch carto-sun-hatch--ink" />
           </pattern>
           {reinforced
             ? refl.poles.map((p) => (
@@ -319,7 +327,7 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
                 {...sectorProps(target, name, s.transient)}
               />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.num})`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
+              {s.needsReviewOnly ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={hatch(poleFill(p.color, 'light', palette))} fillRule="evenodd" pointerEvents="none" /> : null}
               {/* Pas de nom pendant l'ouverture : il glisserait d'un bord à l'autre de l'arc. */}
               {!compact && !moving && poleLabelFits(short, s) ? (
                 <>
@@ -360,7 +368,7 @@ export function Sun({ refl, state, layout, geometry, selection = null, hover = n
                 {...sectorProps(target, name, s.transient)}
               />
               {reinforced ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-p${s.pole})`} fillRule="evenodd" pointerEvents="none" /> : null}
-              {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={`url(#${uid}-hatch)`} fillRule="evenodd" pointerEvents="none" /> : null}
+              {s.status === 'needs_review' ? <path d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} fill={hatch(themeColor(p.color, 'light', palette))} fillRule="evenodd" pointerEvents="none" /> : null}
               {showCode ? (
                 <text
                   className={thick ? 'carto-sun-code-label carto-c-fill' : 'carto-sun-code-label'}

@@ -31,7 +31,8 @@ export function SunLegend({ poleRing = true, origin = DEFAULT_PARAMS.heightOrigi
       <dd>part des points de la compétence dans le total : un point par preuve, α (½ par défaut) par indice. Plus il y a de traces, plus le secteur est large. La confiance du jury n’y entre pas.</dd>
       <dt>Hauteur</dt>
       <dd>
-        confiance moyenne du jury dans ses verdicts, de {from} au pied du secteur à 1 au bord extérieur. Les cercles pointillés marquent{' '}
+        confiance moyenne du jury dans ses verdicts, de {from} au pied du secteur à 1 au bord extérieur
+        {origin > 0 ? ` (à ${from} ou moins, le secteur garde une épaisseur minimale)` : ''}. Les cercles pointillés marquent{' '}
         {frList(GUIDE_LEVELS.filter((c) => c > origin + 1e-9))}. Ce n’est ni un niveau de maîtrise ni une force.
       </dd>
       <dt>Surface</dt>

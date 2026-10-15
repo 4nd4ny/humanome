@@ -159,6 +159,8 @@ describe('menu « Panneaux »', () => {
     fireEvent.change(sliders[2], { target: { value: '155' } })
     await waitFor(() => expect(within(tile('settings')).getByText('155 px (compétences masquées)')).toBeTruthy())
     expect(document.querySelectorAll('[data-tile="sun"] .carto-sun [role="button"][aria-label^="1."]')).toHaveLength(0)
+    // L'épaisseur minimale va de 1 à 6 px : un secteur qui a des points ne disparaît jamais (D-65).
+    expect([sliders[3].min, sliders[3].max]).toEqual(['1', '6'])
     // Un réglage écarté du défaut : « Valeurs par défaut » les ramène tous.
     fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.params).toMatchObject({ alpha: 0.5, heightOrigin: 0.25, poleRingPx: 30, minThicknessPx: 2 }))
@@ -167,7 +169,9 @@ describe('menu « Panneaux »', () => {
     await waitFor(() => expect(tile('legend')).toBeTruthy())
     expect(within(tile('legend')).getByText('Hachures')).toBeTruthy()
     // La légende dit d'où part la hauteur.
-    expect(within(tile('legend')).getByText(/de 0,25 au pied du secteur à 1 au bord extérieur\. Les cercles pointillés marquent 0,5, 0,75 et 1\./)).toBeTruthy()
+    expect(
+      within(tile('legend')).getByText(/de 0,25 au pied du secteur à 1 au bord extérieur \(à 0,25 ou moins, le secteur garde une épaisseur minimale\)\. Les cercles pointillés marquent 0,5, 0,75 et 1\./),
+    ).toBeTruthy()
     fireEvent.click(within(tile('legend')).getByRole('checkbox', { name: /distinctions renforcées/ }))
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.reinforced).toBe(true))
   })
@@ -196,11 +200,15 @@ describe('menu « Panneaux »', () => {
     await waitFor(() => expect(tile('settings')).toBeTruthy())
     await waitFor(() => expect(fillOf('2.01')).toBe('#8ee5bf'))
     expect(within(tile('settings')).getByRole('radio', { name: 'Pastel' }).checked).toBe(true)
-    // La palette seule écarte du défaut : « Valeurs par défaut » la ramène, et efface la clé.
+    // La palette seule écarte du défaut : « Valeurs par défaut » la ramène, efface la clé, et ne touche pas
+    // au jeu de données ; le focus revient au premier réglage.
+    const before = (await store.loadDataset('ds-lou')).updatedAt
     fireEvent.click(within(tile('settings')).getByRole('button', { name: 'Valeurs par défaut' }))
     await waitFor(() => expect(fillOf('2.01')).toBe('#047857'))
     expect(localStorage.getItem(PALETTE_KEY)).toBeNull()
     expect(within(tile('settings')).queryByRole('button', { name: 'Valeurs par défaut' })).toBeNull()
+    expect(document.activeElement).toBe(within(tile('settings')).getAllByRole('slider')[0])
+    expect((await store.loadDataset('ds-lou')).updatedAt).toBe(before)
   })
 })
 

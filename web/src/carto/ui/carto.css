@@ -628,6 +628,12 @@ kbd {
   stroke-width: 1.6;
   opacity: 0.85;
 }
+/* Sur une couleur claire (palettes Pastel, Vive ; D-64), des traits d'encre :
+   des traits blancs s'y perdraient. Foncés aussi en sombre, comme le fond. */
+.carto-sun-hatch--ink {
+  stroke: #0f172a;
+  opacity: 0.6;
+}
 .carto-sun-motif {
   stroke: var(--viz-motif);
   fill: var(--viz-motif);
