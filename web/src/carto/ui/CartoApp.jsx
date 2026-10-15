@@ -692,12 +692,6 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
           reducedMotion={reducedMotion}
           onClose={closeReader}
           onIndex={(index) => dispatch({ type: 'readerIndex', index })}
-          onBackToCompetency={(code) => {
-            dispatch({ type: 'closeReader' })
-            if (modalDate) closeDay()
-            select({ type: 'competency', code })
-            showTile('detail')
-          }}
         />
       ) : null}
     </div>

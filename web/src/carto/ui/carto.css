@@ -1640,16 +1640,22 @@ kbd {
   top: 0;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.85rem 1.1rem 0.6rem;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.45rem 0.6rem;
   background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
+/* La journée entre ses deux triangles : le titre prend la place qui reste,
+   les triangles ne bougent pas d'une trace à l'autre (D-56). */
 .carto-reader-head h2 {
+  flex: 1;
+  min-width: 0;
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
 }
 .carto-reader-head h2::first-letter {
   text-transform: uppercase;
@@ -1660,6 +1666,40 @@ kbd {
 .carto-reader-head h2:focus-visible {
   outline: 2px solid var(--accent);
 }
+.carto-reader-step,
+.carto-reader-close {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+/* Survol seulement là où il existe : au doigt, le cercle resterait affiché après le toucher. */
+@media (hover: hover) {
+  .carto-reader-step:hover:not([aria-disabled='true']),
+  .carto-reader-close:hover {
+    background: var(--surface-2);
+  }
+}
+.carto-reader-step[aria-disabled='true'] {
+  color: var(--ink-faint);
+  opacity: 0.45;
+  cursor: default;
+}
+/* Fermer reste à l'écart des triangles : pas de fermeture par mégarde. */
+.carto-reader-close {
+  margin-left: 0.5rem;
+}
+.carto-reader-step--small {
+  width: 2rem;
+  height: 2rem;
+}
 .carto-reader-trace {
   margin: 0.75rem 1.1rem 0;
   padding: 0.1rem 0 0.1rem 0.75rem;
@@ -1669,50 +1709,41 @@ kbd {
   margin: 0.2rem 0 0.4rem;
   font-size: 0.9rem;
 }
-.carto-reader-nav,
-.carto-reader-days {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0.35rem 0;
-  font-size: 0.85rem;
+.carto-reader-sub {
+  display: block;
+  color: var(--ink-faint);
 }
-.carto-reader-days {
-  margin: 0.6rem 1.1rem 0;
-  justify-content: space-between;
+.carto-reader-sub::first-letter {
+  text-transform: uppercase;
 }
 .carto-reader-quote {
   margin: 0.5rem 0;
 }
 .carto-reader-quote figcaption {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
   color: var(--ink-faint);
 }
 .carto-reader-quote blockquote {
-  margin: 0.2rem 0 0;
+  margin: 0.25rem 0 0;
   padding-left: 0.6rem;
   border-left: 2px solid var(--line);
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--ink-soft);
 }
-.carto-reader-status {
-  margin: 0.45rem 0;
-  font-size: 0.86rem;
-  line-height: 1.45;
-}
-.carto-reader-status--warn {
-  background: var(--warn-bg);
-  border-left: 3px solid var(--warn-border);
-  padding: 0.35rem 0.55rem;
-}
-.carto-reader-status--muted {
+.carto-reader-note {
+  margin: 0.4rem 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
   color: var(--ink-faint);
 }
-.carto-reader-legend {
-  margin: 0.5rem 1.1rem 0;
-  color: var(--ink-faint);
+.carto-reader-occ {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0.3rem 0;
+  font-size: 0.85rem;
 }
 .carto-reader-text {
   margin: 0.5rem 1.1rem 3rem;
