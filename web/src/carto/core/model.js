@@ -253,6 +253,26 @@ export function hasPortfolio(day) {
   return Boolean(day?.portfolio && day.portfolio.chars > 0)
 }
 
+/**
+ * La démonstration publique telle que chargée, intacte : elle se recharge
+ * depuis le site (et se met à jour d'elle-même, journal D-57). Dès que la
+ * personne y met quelque chose à elle (un import, une réponse au jury, un
+ * dialogue du carnet, un ensemble, un repère, une note), ce sont ses données :
+ * elles partent avec l'archive et ne sont jamais remplacées.
+ */
+export function isPristineDemo(ds) {
+  if (ds?.origin !== 'demo') return false
+  return (
+    (ds.importLog?.length ?? 0) <= 1 &&
+    (ds.reflections?.length ?? 0) === 0 &&
+    Object.keys(ds.reviews ?? {}).length === 0 &&
+    (ds.sets?.length ?? 0) === 0 &&
+    (ds.markers?.length ?? 0) === 0 &&
+    (ds.comparisons?.length ?? 0) === 0 &&
+    (ds.portfolio?.undated?.length ?? 0) === 0
+  )
+}
+
 /** Clé d'une observation (droit de réponse) : jour + variante + compétence. */
 export function observationKey(date, variantId, code) {
   return `${date}|${variantId}|${code}`

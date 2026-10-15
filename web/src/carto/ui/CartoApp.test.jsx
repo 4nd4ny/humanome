@@ -15,6 +15,8 @@ import { computeState, layoutSun } from '../core/state.js'
 import { ringGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
+import { buildArchive } from '../core/archive.js'
+import { DEMO_ARCHIVE } from './useCartoData.js'
 import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 import { showCartoTiles } from '../test/tiles.js'
 
@@ -90,6 +92,123 @@ describe('démonstration', () => {
     // le jeu ouvert) : ce sont ses données, elles partiront avec l'archive.
     await store.commit(await importFiles([{ path: 'lou.md', text: LOU_PORTFOLIO }], demo, { now: NOW }))
     expect(isPristineDemo(await store.loadDataset(summary.datasetId))).toBe(false)
+  })
+})
+
+describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
+  const V1 = 'Wed, 14 Oct 2026 16:25:46 GMT'
+  const V2 = 'Thu, 15 Oct 2026 09:00:00 GMT'
+
+  /** Démonstration chargée avant le dépôt du portfolio de démonstration : sans portfolio. */
+  async function staleDemoStore({ mutate } = {}) {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const ds = { ...createDataset({ datasetId: 'ds-demo-old', title: 'Démonstration', referential: miniReferential(), now: NOW }), origin: 'demo' }
+    const files = []
+    for (const [date, poles] of Object.entries(louDays())) {
+      for (const p of poles) files.push({ path: `${date}/carto_P${p.poleNum}.json`, text: JSON.stringify(p) })
+    }
+    const res = await importFiles(files, ds, { now: NOW })
+    if (mutate) res.dataset = mutate(res.dataset)
+    await store.commit(res)
+    return store
+  }
+
+  /** L'archive de démonstration déposée sur le site, portfolio compris. */
+  async function siteArchive() {
+    const store = await louStore()
+    return JSON.stringify(buildArchive(await store.exportAll('ds-lou'), { now: NOW }))
+  }
+
+  /** Le site : l'archive (HEAD ou GET) avec sa date de dépôt ; chaque requête est notée. */
+  function siteFetch({ text = null, version = V1, calls = [], fail = false }) {
+    return async (url, init = {}) => {
+      calls.push(`${init.method ?? 'GET'} ${url}`)
+      if (fail) throw new TypeError('Failed to fetch')
+      if (url !== DEMO_ARCHIVE || text === null) return { ok: false, status: 404, headers: { get: () => null }, text: async () => '' }
+      const headers = { get: (k) => ({ 'content-type': 'application/json', 'last-modified': version })[k.toLowerCase()] ?? null }
+      return { ok: true, status: 200, headers, text: async () => (init.method === 'HEAD' ? '' : text) }
+    }
+  }
+
+  function SiteHarness({ store, fetchFn }) {
+    const [route, setRoute] = useState(() => parseHash(window.location.hash))
+    useEffect(() => subscribe(setRoute), [])
+    return <CartoApp route={route} deps={{ store, fetchFn, loadReferential: async () => ({ doc: miniReferential() }) }} />
+  }
+
+  const sources = () => JSON.parse(localStorage.getItem('humanome-carto-demo-source') ?? '{}')
+
+  it('chargée avant le dépôt du portfolio : remplacée par la démo du site, portfolio compris', async () => {
+    const store = await staleDemoStore()
+    expect(isPristineDemo(await store.loadDataset('ds-demo-old'))).toBe(true)
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls })} />)
+    // L'archive déposée porte son propre titre (ici « Lou »).
+    await screen.findByRole('heading', { name: 'Lou' })
+    await waitFor(async () => expect((await store.listDatasets()).map((d) => d.datasetId)).not.toContain('ds-demo-old'))
+    const [summary] = await store.listDatasets()
+    const fresh = await store.loadDataset(summary.datasetId)
+    expect(fresh.origin).toBe('demo')
+    expect(fresh.portfolio).not.toBeNull()
+    expect(isPristineDemo(fresh)).toBe(true)
+    expect(sources()).toEqual({ [fresh.datasetId]: V1 })
+    expect(localStorage.getItem('humanome-carto-current')).toBe(fresh.datasetId)
+    expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    // Aucun rapport d'import ne s'ouvre pour une mise à jour silencieuse.
+    expect(screen.queryByText(/Rapport d.import/)).toBeNull()
+  })
+
+  it('même version que le site : rien n’est téléchargé ; nouvelle version : elle remplace l’ancienne', async () => {
+    const store = await staleDemoStore()
+    localStorage.setItem('humanome-carto-demo-source', JSON.stringify({ 'ds-demo-old': V1 }))
+    const text = await siteArchive()
+    const calls = []
+    const { unmount } = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`])
+    expect((await store.listDatasets()).map((d) => d.datasetId)).toEqual(['ds-demo-old'])
+    unmount()
+    const later = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text, version: V2, calls: later })} />)
+    await waitFor(async () => expect((await store.listDatasets()).map((d) => d.datasetId)).not.toContain('ds-demo-old'))
+    expect(later).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    expect(Object.values(sources())).toEqual([V2])
+  })
+
+  it('une démonstration enrichie par la personne n’est jamais remplacée (ni même vérifiée)', async () => {
+    const store = await staleDemoStore({ mutate: (ds) => ({ ...ds, markers: [{ id: 'm1', date: '2025-12-23', label: 'Mon repère' }] }) })
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls })} />)
+    await screen.findByRole('heading', { name: 'Démonstration' })
+    expect(calls).toEqual([])
+    expect((await store.listDatasets()).map((d) => d.datasetId)).toEqual(['ds-demo-old'])
+  })
+
+  it('site injoignable ou démo absente : la démonstration en place s’ouvre telle quelle', async () => {
+    for (const fetchFn of [siteFetch({ fail: true }), siteFetch({ text: null })]) {
+      const store = await staleDemoStore()
+      const { unmount } = render(<SiteHarness store={store} fetchFn={fetchFn} />)
+      await screen.findByRole('heading', { name: 'Démonstration' })
+      expect((await store.listDatasets()).map((d) => d.datasetId)).toEqual(['ds-demo-old'])
+      unmount()
+    }
+  })
+
+  it('« Explorer la démonstration » retient la version chargée : à la visite suivante, une simple vérification', async () => {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const text = await siteArchive()
+    const { unmount } = render(<SiteHarness store={store} fetchFn={siteFetch({ text })} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Lou' })
+    const [summary] = await store.listDatasets()
+    expect((await store.loadDataset(summary.datasetId)).portfolio).not.toBeNull()
+    expect(sources()).toEqual({ [summary.datasetId]: V1 })
+    unmount()
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
+    await screen.findByRole('heading', { name: 'Lou' })
+    expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`])
+    expect((await store.listDatasets()).map((d) => d.datasetId)).toEqual([summary.datasetId])
   })
 })
 

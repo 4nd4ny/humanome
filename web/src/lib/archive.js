@@ -29,7 +29,7 @@ import { createCartoStore } from './carto-store.js'
 import { createCartoStore as createInterfaceStore } from '../carto/core/store.js'
 import { buildArchive as buildMasterArchive } from '../carto/core/archive.js'
 import { importFiles as importIntoInterface } from '../carto/core/import.js'
-import { createDataset } from '../carto/core/model.js'
+import { createDataset, isPristineDemo } from '../carto/core/model.js'
 
 export const ARCHIVE_SCHEMA_VERSION = '1.1.0'
 
@@ -142,20 +142,10 @@ function toArchiveMassCartography(entry, exportedAt) {
  * The public demo as loaded, untouched: it reloads from the site. As soon as
  * the person puts something of their own in it (an import, an answer to the
  * jury, a notebook dialogue, a set, a marker, a note), it is their data and
- * leaves with the archive.
+ * leaves with the archive. Defined with the dataset model (the interface
+ * also uses it to refresh an untouched demo, journal D-57).
  */
-export function isPristineDemo(ds) {
-  if (ds?.origin !== 'demo') return false
-  return (
-    (ds.importLog?.length ?? 0) <= 1 &&
-    (ds.reflections?.length ?? 0) === 0 &&
-    Object.keys(ds.reviews ?? {}).length === 0 &&
-    (ds.sets?.length ?? 0) === 0 &&
-    (ds.markers?.length ?? 0) === 0 &&
-    (ds.comparisons?.length ?? 0) === 0 &&
-    (ds.portfolio?.undated?.length ?? 0) === 0
-  )
-}
+export { isPristineDemo }
 
 /**
  * Every dataset of the cartography interface as a complete master v4 archive

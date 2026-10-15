@@ -321,7 +321,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   if (data.status === 'loading') {
     return (
       <div className="carto-app carto-app--center" aria-busy="true">
-        <p role="status">Ouverture de vos cartographies…</p>
+        <p role="status">{data.busy ?? 'Ouverture de vos cartographies…'}</p>
       </div>
     )
   }

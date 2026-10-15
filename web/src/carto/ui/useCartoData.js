@@ -5,28 +5,72 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
-import { createDataset, upgradeDataset } from '../core/model.js'
+import { createDataset, isPristineDemo, upgradeDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
 import { looksLikeArchive } from '../core/archive.js'
 import { dropDatasetDrafts } from './shareDrafts.js'
 
 const CURRENT_KEY = 'humanome-carto-current'
+/** Version de la démo d'où vient chaque jeu de démonstration : {datasetId: Last-Modified}. */
+const DEMO_SOURCE_KEY = 'humanome-carto-demo-source'
+const DEMO_CHECK_TIMEOUT = 4000
 const SAVE_DELAY = 250
 /** Démo anonymisée déposée sur le serveur (facultative). */
 export const DEMO_ARCHIVE = 'data/demo/carto/archive.json'
 
-/** Texte de la démo anonymisée, ou null si elle n'est pas déposée (ou n'est pas une archive). */
+/**
+ * Démo anonymisée déposée sur le serveur : son texte et sa version (en-tête
+ * Last-Modified), ou null si elle n'est pas déposée (ou n'est pas une archive).
+ */
 async function fetchDemoArchive(fetchFn) {
   try {
-    const res = await fetchFn(DEMO_ARCHIVE)
+    // Revalidée auprès du serveur : une copie en cache peut dater d'avant le dernier dépôt.
+    const res = await fetchFn(DEMO_ARCHIVE, { cache: 'no-cache' })
     if (!res?.ok) return null
     const text = await res.text()
     // Un serveur de développement renvoie la page d'accueil pour un fichier absent.
     const doc = JSON.parse(text)
-    return looksLikeArchive(doc) ? text : null
+    return looksLikeArchive(doc) ? { text, version: res.headers?.get?.('last-modified') ?? null } : null
   } catch {
     return null
   }
+}
+
+/**
+ * Version de la démo déposée (Last-Modified d'une requête HEAD, sans la
+ * télécharger), ou null : absente, injoignable dans le délai, sans date, ou
+ * page d'accueil d'un serveur de développement.
+ */
+async function fetchDemoVersion(fetchFn) {
+  const ctrl = typeof AbortController === 'function' ? new AbortController() : null
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), DEMO_CHECK_TIMEOUT) : null
+  try {
+    const res = await fetchFn(DEMO_ARCHIVE, { method: 'HEAD', cache: 'no-store', signal: ctrl?.signal })
+    if (!res?.ok) return null
+    if (/html/i.test(res.headers?.get?.('content-type') ?? '')) return null
+    return res.headers?.get?.('last-modified') ?? null
+  } catch {
+    return null
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+function readDemoSources() {
+  try {
+    const all = JSON.parse(readPref(DEMO_SOURCE_KEY) ?? '{}')
+    return all && typeof all === 'object' && !Array.isArray(all) ? all : {}
+  } catch {
+    return {}
+  }
+}
+
+/** Retient (ou oublie, version nulle) la version de la démo d'un jeu. */
+function writeDemoSource(datasetId, version) {
+  const all = readDemoSources()
+  if (version) all[datasetId] = version
+  else delete all[datasetId]
+  writePref(DEMO_SOURCE_KEY, Object.keys(all).length > 0 ? JSON.stringify(all) : null)
 }
 
 function readPref(key) {
@@ -83,51 +127,25 @@ export function useCartoData(deps = {}) {
   const saveTimer = useRef(null)
   const latest = useRef(null)
 
-  // ---- Chargement initial ---------------------------------------------------
+  // ---- Ouverture d'un jeu -----------------------------------------------------
   const refreshList = useCallback(async () => {
     const list = await store.listDatasets()
     setDatasets(list)
     return list
   }, [store])
 
-  const openDataset = useCallback(
-    async (datasetId) => {
-      const ds = await store.loadDataset(datasetId)
-      if (!ds) return null
-      const up = upgradeDataset(ds)
-      latest.current = up
-      setDataset(up)
-      writePref(CURRENT_KEY, datasetId)
-      setStatus('ready')
-      return up
-    },
-    [store],
-  )
+  /** Affiche un jeu déjà lu de la base et le retient comme jeu courant. */
+  const showDataset = useCallback((ds) => {
+    if (!ds) return null
+    const up = upgradeDataset(ds)
+    latest.current = up
+    setDataset(up)
+    writePref(CURRENT_KEY, up.datasetId)
+    setStatus('ready')
+    return up
+  }, [])
 
-  useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      try {
-        const list = await refreshList()
-        if (cancelled) return
-        if (list.length === 0) {
-          setStatus('empty')
-          return
-        }
-        const wanted = readPref(CURRENT_KEY)
-        const id = list.some((d) => d.datasetId === wanted) ? wanted : list[0].datasetId
-        await openDataset(id)
-      } catch (err) {
-        if (!cancelled) {
-          setError(err.message)
-          setStatus('error')
-        }
-      }
-    })()
-    return () => {
-      cancelled = true
-    }
-  }, [refreshList, openDataset])
+  const openDataset = useCallback(async (datasetId) => showDataset(await store.loadDataset(datasetId)), [store, showDataset])
 
   // ---- Mises à jour de l'index (enregistrement différé) ----------------------
   const flush = useCallback(async () => {
@@ -194,50 +212,63 @@ export function useCartoData(deps = {}) {
 
   // ---- Import ------------------------------------------------------------------
   /**
+   * Importe des fichiers dans le jeu courant (ou dans un nouveau jeu), sans
+   * toucher au libellé d'attente (chaque appelant pose le sien).
+   * @returns {Promise<{report: object, dataset: object}>}
+   */
+  const runImport = useCallback(
+    async (files, { title, newDataset = false, origin = null, quiet = false } = {}) => {
+      await flush()
+      let base = newDataset || !latest.current ? null : latest.current
+      if (!base) {
+        const { doc } = await loadReferential()
+        base = createDataset({ title: title ?? 'Ma cartographie', referential: doc })
+        // La démonstration publique est marquée : elle n'entre pas dans
+        // l'archive de compte (elle se recharge depuis le site).
+        if (origin) base = { ...base, origin }
+      }
+      const res = await importFiles(files, base)
+      await store.commit(res)
+      // Les détails touchés sont relus depuis la base au prochain besoin.
+      const id = res.dataset.datasetId
+      setDetailCache((prev) => {
+        const next = new Map(prev)
+        for (const date of res.detailPatches.keys()) next.delete(`${id}|${date}`)
+        return next
+      })
+      setRunCache((prev) => {
+        const next = new Map(prev)
+        for (const rd of res.runDetails) next.delete(`${id}|${rd.key}`)
+        return next
+      })
+      latest.current = res.dataset
+      setDataset(res.dataset)
+      writePref(CURRENT_KEY, res.dataset.datasetId)
+      setStatus('ready')
+      await refreshList()
+      const report = { at: new Date().toISOString(), entries: res.report, counts: res.counts, referentialCandidate: res.referentialCandidate }
+      // Une mise à jour silencieuse (démonstration) n'ouvre pas de rapport d'import.
+      if (!quiet) setLastReport(report)
+      return { report, dataset: res.dataset }
+    },
+    [flush, loadReferential, refreshList, store],
+  )
+
+  /**
    * Importe des fichiers dans le jeu courant (ou dans un nouveau jeu).
    * @param {Array<{path: string, bytes?: Uint8Array, text?: string}>} files
-   * @param {{title?: string, newDataset?: boolean}} [opts]
+   * @param {{title?: string, newDataset?: boolean, origin?: string | null}} [opts]
    */
   const importInto = useCallback(
-    async (files, { title, newDataset = false, origin = null } = {}) => {
+    async (files, opts) => {
       setBusy('Import en cours…')
       try {
-        await flush()
-        let base = newDataset || !latest.current ? null : latest.current
-        if (!base) {
-          const { doc } = await loadReferential()
-          base = createDataset({ title: title ?? 'Ma cartographie', referential: doc })
-          // La démonstration publique est marquée : elle n'entre pas dans
-          // l'archive de compte (elle se recharge depuis le site).
-          if (origin) base = { ...base, origin }
-        }
-        const res = await importFiles(files, base)
-        await store.commit(res)
-        // Les détails touchés sont relus depuis la base au prochain besoin.
-        const id = res.dataset.datasetId
-        setDetailCache((prev) => {
-          const next = new Map(prev)
-          for (const date of res.detailPatches.keys()) next.delete(`${id}|${date}`)
-          return next
-        })
-        setRunCache((prev) => {
-          const next = new Map(prev)
-          for (const rd of res.runDetails) next.delete(`${id}|${rd.key}`)
-          return next
-        })
-        latest.current = res.dataset
-        setDataset(res.dataset)
-        writePref(CURRENT_KEY, res.dataset.datasetId)
-        setStatus('ready')
-        await refreshList()
-        const report = { at: new Date().toISOString(), entries: res.report, counts: res.counts, referentialCandidate: res.referentialCandidate }
-        setLastReport(report)
-        return report
+        return (await runImport(files, opts)).report
       } finally {
         setBusy(null)
       }
     },
-    [flush, loadReferential, refreshList, store],
+    [runImport],
   )
 
   /**
@@ -271,7 +302,11 @@ export function useCartoData(deps = {}) {
     setBusy('Chargement de la démonstration…')
     try {
       const archive = await fetchDemoArchive(fetchFn)
-      if (archive) return await importInto([{ path: DEMO_ARCHIVE, text: archive }], { title: 'Démonstration', newDataset: true, origin: 'demo' })
+      if (archive) {
+        const { report, dataset: demo } = await runImport([{ path: DEMO_ARCHIVE, text: archive.text }], { title: 'Démonstration', newDataset: true, origin: 'demo' })
+        writeDemoSource(demo.datasetId, archive.version)
+        return report
+      }
       const res = await fetchFn('data/demo/jours/index.json')
       if (!res.ok) throw new Error(`index de démonstration introuvable (HTTP ${res.status})`)
       const index = await res.json()
@@ -281,7 +316,7 @@ export function useCartoData(deps = {}) {
         const r = await fetchFn(`data/demo/jours/${date}.json`)
         if (r.ok) files.push({ path: `demonstration/${date}.json`, text: await r.text() })
       }
-      return await importInto(files, { title: 'Démonstration', newDataset: true, origin: 'demo' })
+      return (await runImport(files, { title: 'Démonstration', newDataset: true, origin: 'demo' })).report
     } catch (err) {
       setError(
         `La démonstration n'a pas pu être chargée (${err.message}). Sur une copie ouverte directement depuis le disque, importez vos fichiers à la place.`,
@@ -290,15 +325,96 @@ export function useCartoData(deps = {}) {
     } finally {
       setBusy(null)
     }
-  }, [fetchFn, importInto])
+  }, [fetchFn, runImport])
 
-  /** Supprime un jeu de données (après confirmation en deux temps dans l'UI). */
-  const deleteDataset = useCallback(
+  /** Efface un jeu de la base, avec ce qui s'y rattache dans ce navigateur. */
+  const purgeDataset = useCallback(
     async (id) => {
       await store.deleteDataset(id)
       // Les brouillons de ses versions partagées (extraits, noms remplacés) partent avec lui.
       dropDatasetDrafts(id)
+      writeDemoSource(id, null)
       setDetailCache((prev) => new Map([...prev].filter(([k]) => !k.startsWith(`${id}|`))))
+    },
+    [store],
+  )
+
+  /**
+   * Une démonstration intacte se met à jour d'elle-même quand le site en
+   * dépose une nouvelle version (journal D-57). Sans cela, un navigateur qui
+   * l'avait ouverte avant le dépôt du portfolio de démonstration la gardait
+   * sans portfolio : « Aucun portfolio importé » sur Chrome Android, alors que
+   * Firefox, qui ne l'avait jamais ouverte, la chargeait complète. Rien ne
+   * change si la démo du site est injoignable, absente ou de même version.
+   * @returns {Promise<boolean>} vrai si la nouvelle version est chargée et ouverte
+   */
+  const refreshDemo = async (stale, isCancelled) => {
+    const version = await fetchDemoVersion(fetchFn)
+    if (isCancelled() || !version || readDemoSources()[stale.datasetId] === version) return false
+    setBusy('Mise à jour de la démonstration…')
+    try {
+      const archive = await fetchDemoArchive(fetchFn)
+      if (isCancelled() || !archive) return false
+      const { dataset: fresh } = await runImport([{ path: DEMO_ARCHIVE, text: archive.text }], {
+        title: stale.title || 'Démonstration',
+        newDataset: true,
+        origin: 'demo',
+        quiet: true,
+      })
+      if ((fresh.days?.length ?? 0) === 0) {
+        // Archive déposée mais illisible : la démonstration en place reste.
+        await purgeDataset(fresh.datasetId)
+        return false
+      }
+      writeDemoSource(fresh.datasetId, archive.version ?? version)
+      await purgeDataset(stale.datasetId)
+      await refreshList()
+      return true
+    } catch (err) {
+      console.warn('Mise à jour de la démonstration impossible :', err)
+      return false
+    } finally {
+      setBusy(null)
+    }
+  }
+  // Lue par l'effet de chargement initial, qui ne dépend pas de ses coutures.
+  const refreshDemoRef = useRef(refreshDemo)
+  refreshDemoRef.current = refreshDemo
+
+  // ---- Chargement initial : le jeu courant, ou le premier ---------------------
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      try {
+        const list = await refreshList()
+        if (cancelled) return
+        if (list.length === 0) {
+          setStatus('empty')
+          return
+        }
+        const wanted = readPref(CURRENT_KEY)
+        const id = list.some((d) => d.datasetId === wanted) ? wanted : list[0].datasetId
+        const stored = await store.loadDataset(id)
+        if (cancelled) return
+        // Une démonstration intacte se met à jour avant de s'afficher (D-57).
+        if (isPristineDemo(stored) && (await refreshDemoRef.current(stored, () => cancelled))) return
+        if (!cancelled) showDataset(stored)
+      } catch (err) {
+        if (!cancelled) {
+          setError(err.message)
+          setStatus('error')
+        }
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [refreshList, showDataset, store])
+
+  /** Supprime un jeu de données (après confirmation en deux temps dans l'UI). */
+  const deleteDataset = useCallback(
+    async (id) => {
+      await purgeDataset(id)
       const list = await refreshList()
       if (dataset?.datasetId === id) {
         latest.current = null
@@ -310,7 +426,7 @@ export function useCartoData(deps = {}) {
         }
       }
     },
-    [dataset, openDataset, refreshList, store],
+    [dataset, openDataset, purgeDataset, refreshList],
   )
 
   const referentialDoc = dataset?.referential ?? null
