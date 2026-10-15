@@ -1,0 +1,76 @@
+/* Markdown rendu (web/src/lib/md.js, journal carto D-54) : ce que le rendu
+   porte lui-même, quel que soit l'endroit où il s'affiche (lecteur de
+   portfolio, chapitres de formation, réflexions du jury…). La typographie
+   du texte courant reste celle du conteneur. */
+
+/* Tableaux : filets fins, en-tête sur fond discret, comme à l'impression. Le
+   conteneur défile sur un écran étroit plutôt que d'élargir la page. */
+.md-table-wrap {
+  margin: 0.9rem 0 1.1rem;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92em;
+  line-height: 1.5;
+}
+.md-table th,
+.md-table td {
+  border: 1px solid var(--line);
+  padding: 0.4em 0.65em;
+  text-align: left;
+  vertical-align: top;
+  /* break-word, pas anywhere : un mot long élargit le tableau, qui défile,
+     au lieu d'être coupé n'importe où. */
+  overflow-wrap: break-word;
+}
+.md-table th {
+  background: var(--surface-2);
+  font-weight: 600;
+}
+.md-table p {
+  margin: 0;
+}
+
+/* Encadré : un tableau d'une seule case (Google Docs), donc un cadre fin
+   tout autour, comme dans le document. Les blancs du texte y sont gardés (du
+   code, une mise en page faite à la main). */
+.md-box {
+  margin: 0.9rem 0 1.1rem;
+  padding: 0.7em 0.95em;
+  border: 1px solid color-mix(in srgb, var(--ink-faint) 55%, transparent);
+  border-radius: 2px;
+  background: var(--surface-2);
+}
+/* div.md-box : plus précis que la marge des paragraphes d'un conteneur
+   (.carto-reader-text p, chargé après). */
+div.md-box > p {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Alignement des colonnes (le Markdown l'écrit « :--- », « :---: », « ---: »). */
+.md-align-left {
+  text-align: left;
+}
+.md-table .md-align-center,
+.md-box.md-align-center {
+  text-align: center;
+}
+.md-table .md-align-right,
+.md-box.md-align-right {
+  text-align: right;
+}
+
+@media print {
+  .md-table-wrap {
+    overflow: visible;
+  }
+  .md-table tr,
+  .md-box {
+    break-inside: avoid;
+  }
+}

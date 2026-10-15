@@ -3,14 +3,15 @@
 // Le Markdown du portfolio est rendu puis assaini (DOMPurify, ADR-007) ; le
 // texte AFFICHÉ est la concaténation de ses nœuds texte, avec un saut de
 // ligne virtuel entre deux blocs (sans quoi « fin du paragraphe.Début du
-// suivant » ne correspondrait pas à un extrait qui enjambe deux paragraphes).
+// suivant » ne correspondrait pas à un extrait qui enjambe deux paragraphes),
+// entre deux cases d'un tableau, et à chaque <br>.
 // Les plages trouvées par le moteur (core/highlight.js) sont enveloppées par
 // des <mark> posés SEGMENT PAR SEGMENT : un par nœud texte, jamais un élément
 // englobant des <p> ; les segments blancs sont ignorés. Tout passe par
 // l'API DOM (aucune chaîne HTML assemblée à la main) sur un <template> inerte,
 // puis la sortie repasse par DOMPurify.
 
-import { renderMarkdown } from '../../lib/md.js'
+import { mdToHtml } from '../../lib/md.js'
 import { renderNarrativeHtml } from '../../lib/narrative.js'
 import { locateApproximate, locateRendered } from '../core/highlight.js'
 
@@ -37,20 +38,27 @@ function blockOf(node, root) {
  */
 export function collectText(root) {
   const doc = root.ownerDocument ?? root
-  const walker = doc.createTreeWalker(root, 4 /* NodeFilter.SHOW_TEXT */)
+  const walker = doc.createTreeWalker(root, 1 | 4 /* NodeFilter.SHOW_ELEMENT | SHOW_TEXT */)
   const segments = []
-  const breaks = [] // positions des sauts de ligne virtuels entre deux blocs
+  const breaks = [] // positions des sauts de ligne virtuels (blocs, <br>)
   let text = ''
   let lastBlock = null
-  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const block = blockOf(node, root)
-    if (lastBlock !== null && block !== lastBlock && text !== '') {
-      if (text.endsWith('\n')) breaks.push(text.length - 1)
-      else {
-        breaks.push(text.length)
-        text += '\n'
-      }
+  const lineBreak = () => {
+    if (text.endsWith('\n')) breaks.push(text.length - 1)
+    else {
+      breaks.push(text.length)
+      text += '\n'
     }
+  }
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    if (node.nodeType === 1) {
+      // Un <br> n'a pas de texte : sans ce saut, « fin de ligne » et « ligne
+      // suivante » se colleraient.
+      if (node.nodeName === 'BR' && text !== '') lineBreak()
+      continue
+    }
+    const block = blockOf(node, root)
+    if (lastBlock !== null && block !== lastBlock && text !== '') lineBreak()
     lastBlock = block
     segments.push({ node, start: text.length, end: text.length + node.data.length })
     text += node.data
@@ -121,7 +129,9 @@ export function renderPortfolio(portfolio) {
   if (!portfolio || typeof portfolio.text !== 'string') return { html: '', text: '' }
   const hit = rendered.get(portfolio)
   if (hit) return hit
-  const html = renderMarkdown(portfolio.text)
+  // Pas de front-matter dans un portfolio : un texte qui commence par un trait
+  // (une journée scindée juste avant lui) s'affiche en entier.
+  const html = renderNarrativeHtml(mdToHtml(portfolio.text))
   const { text, breaks } = collectText(inertFragment(html))
   const out = { html, text, breaks }
   rendered.set(portfolio, out)

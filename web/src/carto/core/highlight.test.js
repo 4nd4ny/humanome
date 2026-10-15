@@ -1,6 +1,6 @@
 // Moteur de recherche des passages à surligner (spec §8.1).
 import { describe, expect, it } from 'vitest'
-import { collapseText, isLocatable, locateApproximate, locateExtract, normalizeNeedle, splitExtract } from './highlight.js'
+import { collapseText, isLocatable, locateApproximate, locateExtract, locateRendered, normalizeNeedle, splitExtract, stripTableMarks } from './highlight.js'
 
 describe('ancres début / fin (split_extract_for_highlight)', () => {
   it('marqueurs de troncature : premier et dernier segments', () => {
@@ -140,5 +140,23 @@ describe('surlignage approché (extrait reformulé, décision du 2026-10-14)', (
     const withEmoji = '🌱 Ce\u00a0matin, nous avons longuement discuté du projet de jardin avec la classe.'
     const near = locateApproximate(withEmoji, 'Nous avons discuté longtemps du projet de jardin avec toute la classe')
     expect(parts(withEmoji, near)).toEqual(['discuté du projet de jardin avec la classe'])
+  })
+})
+
+describe('extraits recopiés de tableaux (journal carto D-54)', () => {
+  it('stripTableMarks : barres et lignes de séparation retirées, barre échappée gardée', () => {
+    expect(stripTableMarks('| a | b | | c | d |').replace(/\s+/g, ' ').trim()).toBe('a b c d')
+    expect(stripTableMarks('| A | B |\n| :---- | ---: |\n| 1 | 2 |').replace(/\s+/g, ' ').trim()).toBe('A B 1 2')
+    expect(stripTableMarks('| A | B | | :---- | :---- | | 1 | 2 |').replace(/\s+/g, ' ').trim()).toBe('A B 1 2')
+    expect(stripTableMarks('x \\| y')).toBe('x \\| y')
+  })
+
+  it('locateRendered : une barre qui est du texte reste cherchée telle quelle, une barre de tableau est retirée en dernier', () => {
+    // Texte affiché d'un tableau rendu : les cases séparées par un saut virtuel.
+    const shown = 'Lundi\nJ’ai relu le plan\nIl manque une étape.\nMardi\nJ’ai testé'
+    expect(locateRendered(shown, { extract: '| Lundi | J’ai relu le plan | Il manque une étape. | | Mardi |' }).some((r) => r.complete)).toBe(true)
+    // « P(A | B) » dans un paragraphe, extrait avec du gras : le retrait des
+    // marques suffit, la barre reste.
+    expect(locateRendered('Noter que P(A | B) vaut presque 1, avant de conclure.', { extract: 'que **P(A | B)** vaut presque 1, avant de conclure' }).some((r) => r.complete)).toBe(true)
   })
 })

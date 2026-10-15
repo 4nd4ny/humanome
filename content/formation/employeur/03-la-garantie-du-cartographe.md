@@ -13,8 +13,8 @@ politesse. Elle atteste qu'un être humain — un **cartographe** — a relu, co
 et validé cette cartographie avant qu'elle ne vous soit ouverte. C'est le garde-fou central
 de tout l'édifice humanome : une cartographie de compétences ne peut pas, par principe,
 être *entièrement* produite par une machine. Ce chapitre explique qui est ce cartographe,
-ce que sa garantie atteste réellement — et, tout aussi important, ce qu'elle **n'**atteste
-**pas**.
+ce que sa garantie atteste réellement — et, tout aussi important, ce qu'elle **n'atteste
+pas**.
 
 > **Objectifs d'apprentissage**
 >

@@ -123,9 +123,13 @@ describe('UC-APP-01 — segmentation automatique en journées (étape 4)', () =>
   })
 
   it('UC-APP-01-U21 — séparateur, entêtes de même date, date sans année, date en milieu de phrase, préambule (étape 4, RG5)', () => {
-    // Séparateur « --- » seul sur sa ligne : coupe, la suite est NON datée.
-    const separe = '## 2026-01-05\nAtelier.\n---\nNotes sans date.\n'
-    expect(segmentText(separe, { today: TODAY }).map((s) => s.date)).toEqual(['2026-01-05', null])
+    // Séparateur « --- » seul sur sa ligne (journal carto D-55) : avant la
+    // première entête datée, il coupe et la suite est NON datée ; après, il
+    // reste un trait dans sa journée.
+    const separe = 'Notes sans date.\n---\nAutres notes.\n## 2026-01-05\nAtelier.\n---\nSuite de l’atelier.\n'
+    const parts = segmentText(separe, { today: TODAY })
+    expect(parts.map((s) => s.date)).toEqual([null, null, '2026-01-05'])
+    expect(parts[2].texte).toBe('## 2026-01-05\nAtelier.\n---\nSuite de l’atelier.\n')
 
     // Deux entêtes consécutives de même date : une seule journée.
     const doublon = '## 2026-01-05\nMatin.\n## 2026-01-05\nApres-midi.\n## 2026-01-06\nSuite.\n'

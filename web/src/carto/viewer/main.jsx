@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client'
 import { ViewerApp } from './ViewerApp.jsx'
 import { readEmbeddedArchive } from './embedded.js'
 import '../../styles/global.css'
+import '../../styles/markdown.css'
 import './viewer.css'
 
 const archive = readEmbeddedArchive(document)

@@ -122,10 +122,11 @@ describe('verser un dialogue au portfolio', () => {
     const back = importPortfolioText(out.text)
     expect(back.segments.map((s) => s.date)).toEqual(['2026-10-14'])
     expect(back.undated).toEqual([])
-    expect(out.text).toContain('— Le 5 janvier 2026\n- - -\n— ## 2026-01-06\nFin de ma réponse.')
+    // Le trait reste tel quel : après l'en-tête de la journée, il ne coupe plus (D-55).
+    expect(out.text).toContain('— Le 5 janvier 2026\n---\n— ## 2026-01-06\nFin de ma réponse.')
   })
 
-  it('feuilles séparées (une par journée) : séparateurs gardés comme traits espacés, date d’un autre jour neutralisée, en-tête jamais doublé', () => {
+  it('feuilles séparées (une par journée) : traits gardés tels quels (ils ne coupent plus une journée, D-55), date d’un autre jour neutralisée, en-tête jamais doublé', () => {
     const exported = {
       dataset: { reflections: [], portfolio: null },
       details: {
@@ -137,28 +138,42 @@ describe('verser un dialogue au portfolio', () => {
     const back = importPortfolioText(out.text)
     expect(back.segments.map((s) => s.date)).toEqual(['2026-01-05', '2026-01-06'])
     expect(back.undated).toEqual([])
-    expect(back.segments[0].text).toContain('Matin.\n\n- - -\n\nAprès-midi.\n\n* * *\n\n— 06/01/2026\n\nNote pour demain.')
+    expect(back.segments[0].text).toContain('Matin.\n\n---\n\nAprès-midi.\n\n***\n\n— 06/01/2026\n\nNote pour demain.\n\n---')
     expect(out.text.match(/## 2026-01-05/g)).toHaveLength(1) // pas d'en-tête en double
     expect(out.text.startsWith('## 2026-01-05\n\nMatin.')).toBe(true)
   })
 
-  it('une journée qui ne s’ouvre pas sur son en-tête le reçoit ; un passage sans date reste sans date, à la fin', () => {
+  it('une journée qui ne s’ouvre pas sur son en-tête le reçoit ; un passage sans date reste sans date, en tête du fichier (D-55)', () => {
     const exported = {
-      dataset: { reflections: [], portfolio: { undated: [{ title: null, text: 'Un passage jamais daté.' }] } },
+      dataset: {
+        reflections: [],
+        portfolio: { undated: [{ title: null, text: 'Un passage jamais daté.' }, { title: null, text: 'Un autre.\n\n---\n\n07/01/2026\n\nSa suite.' }] },
+      },
       details: {
         '2026-01-06': { portfolio: { text: '# Mon journal\n\n## 2026-01-06\n\nSecond jour.\n' } },
         '2026-01-05': { portfolio: { text: 'Rattaché à la main, sans en-tête.\n\n05/01/2026\n\nSuite du même jour.' } },
       },
     }
     const out = buildPortfolioMarkdown(exported)
-    expect(out).toMatchObject({ days: 2, dialogues: 0, undated: 1 })
+    expect(out).toMatchObject({ days: 2, dialogues: 0, undated: 2 })
+    // Avant la première journée, un trait coupe encore : chaque passage après un « *** »,
+    // ses propres traits espacés et ses dates neutralisées.
+    expect(out.text.startsWith('***\n\nUn passage jamais daté.\n\n***\n\nUn autre.\n\n- - -\n\n— 07/01/2026\n\nSa suite.\n\n## 2026-01-05')).toBe(true)
     const back = importPortfolioText(out.text)
     expect(back.segments.map((s) => s.date)).toEqual(['2026-01-05', '2026-01-06'])
     expect(back.segments[0].text).toContain('Rattaché à la main, sans en-tête.')
     expect(back.segments[0].text).toContain('Suite du même jour.')
     expect(back.segments[1].text).toContain('# Mon journal') // le titre du document reste avec sa journée
-    expect(back.undated).toHaveLength(1)
-    expect(back.undated[0].text).toContain('Un passage jamais daté.')
+    // Chaque passage reste seul et sans date ; son trait et sa date ne le coupent pas.
+    expect(back.undated).toHaveLength(2)
+    expect(back.undated[0].text.trim()).toBe('Un passage jamais daté.')
+    expect(back.undated[1].text.trim()).toBe('Un autre.\n\n- - -\n\n— 07/01/2026\n\nSa suite.')
+    // Réexporté, le fichier ne change plus.
+    const again = buildPortfolioMarkdown({
+      dataset: { reflections: [], portfolio: { undated: back.undated } },
+      details: Object.fromEntries(back.segments.map((seg) => [seg.date, { portfolio: { text: seg.text } }])),
+    })
+    expect(again.text).toBe(out.text)
   })
 
   it('portfolio exporté puis réimporté (avec l’évaluation suivante) : le dialogue, désormais dans le texte de sa journée, n’est pas doublé', async () => {
@@ -173,6 +188,15 @@ describe('verser un dialogue au portfolio', () => {
     expect(second.text.match(/### Dialogue d’accompagnement/g)).toHaveLength(2)
     expect(second.dialogues).toBe(2)
     expect(importPortfolioText(second.text).segments.map((s) => s.date)).toEqual(['2025-12-22', '2025-12-23', '2025-12-24', '2026-10-14'])
+  })
+
+  it('un portfolio exporté avant D-55 (traits espacés dans le dialogue), réimporté : le dialogue n’est pas doublé', () => {
+    const answer = 'Avant le trait.\n---\nAprès le trait.'
+    const reflection = { id: 'rf', at: HELD_TODAY, versedAt: NOW, entries: [{ ...silence, answer }] }
+    const legacyDay = `## 2026-10-14\n\n${versedDialogueMarkdown(reflection).trim().replace(/^---$/m, '- - -')}`
+    const out = buildPortfolioMarkdown({ dataset: { reflections: [reflection], portfolio: null }, details: { '2026-10-14': { portfolio: { text: legacyDay } } } })
+    expect(out.text.match(/### Dialogue d’accompagnement/g)).toHaveLength(1)
+    expect(out.text).toContain('Avant le trait.\n- - -\nAprès le trait.')
   })
 
   it('rien à exporter sans texte ni dialogue versé', async () => {
