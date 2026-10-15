@@ -151,6 +151,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     en clair, traduites à l'affichage (référentiel inchangé ; RACINES et FLAMBEAU à des valeurs
     plus justes que la proposition, à confirmer). Relu par un agent distinct (aucun bloquant).
     Suites : front **2 382 verts**, moteur **1 073**, e2e Chromium de la cartographie verts.
+    Déployé (front) et vérifié en ligne, au bureau et au téléphone.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

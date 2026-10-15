@@ -63,6 +63,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Tableau de bord en panneaux | « Panneaux » et « Réinitialiser l'affichage » dans l'en-tête ; au départ, le profil et le rythme ; cartes sans données dites dans le menu ; disposition gardée dans le navigateur (D-61) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `88d72af` |
 | Résumé du profil | ni « Points (total) » ni phrase sur le court-circuit (D-62) | ✅ | ✅ voir §3 | ✅ | `88d72af` |
 | Couleurs en clair | marches claires des pôles, validées pour les daltoniens ; bordures et marques des pôles aux deux thèmes (D-63) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `88d72af` |
+| Déploiement | D-61 à D-63 : front déployé en deux passes (la seconde pour les titres au téléphone, `af81072`), vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-63 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2310,6 +2311,23 @@ plus sombre pour les daltoniens. »
   prochaine version, l'interface les montrera telles quelles (elles passent
   déjà les vérifications).
 
+**Déploiement de D-61 à D-63** (front seul, depuis la VM du Mac, les copies
+de production du référentiel gardées). Deux passes : la seconde après une
+correction pour les téléphones, où la barre de chaque tuile passait à la
+ligne même pour un titre court. Trois fichiers envoyés chaque fois, l'ancien
+paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ;
+  - les commandes du soleil sont effacées sans survol, affichées au survol ;
+  - le résumé du profil dit la période, les journées retenues et les compétences observées ;
+  - le soleil a les sept couleurs claires attendues ;
+  - le tableau de bord montre le profil et le rythme côte à côte, sans débordement, avec « Panneaux 2/8 » (« Fonctions cognitives » sans données, et sa raison) et « Réinitialiser l'affichage » ;
+- **au téléphone** (Pixel 7, et écran tactile de 360 px) : commandes affichées, titres entiers, « Soleil » sur la ligne de ses commandes ;
+- seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
+- copies de travail effacées : paquets, dossiers de déploiement, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -3053,4 +3071,4 @@ Questions posées après D-55 :
   clair, traduites à l'affichage, avec deux valeurs plus justes que celles
   proposées (RACINES et FLAMBEAU, à confirmer). Relu par un agent distinct
   (aucun bloquant ; les deux défauts à corriger et sept points mineurs
-  traités).
+  traités). Déployé (front) et vérifié en ligne, au bureau et au téléphone.
