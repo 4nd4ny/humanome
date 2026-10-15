@@ -46,7 +46,8 @@ chapitre 1 décrit ce qu'il montre.
   **angle** est sa part des traces relevées dans l'ensemble partagé (un point
   par preuve, un demi-point par indice) : plus une compétence a de traces,
   plus son secteur est large. Sa **hauteur** est la **confiance moyenne du
-  jury** dans ses verdicts, de 0 à 1 — ni un niveau de maîtrise ni une note.
+  jury** dans ses verdicts, de 0,25 au pied du secteur à 1 au bord extérieur
+  — ni un niveau de maîtrise ni une note.
   L'anneau intérieur regroupe les compétences par pôle ; un secteur hachuré
   signale une présence « à confirmer ». Choisissez un secteur pour mettre la
   compétence en avant dans la liste. Un double-clic sur un pôle l'ouvre sur

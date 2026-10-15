@@ -52,6 +52,7 @@ import { SharedView } from './SharedView.jsx'
 import { LINK_STATUS_LABELS, linkStatus } from './shareApi.js'
 import { draftVersionIds, dropDatasetDrafts, dropDraft, loadDraft, saveDraft } from './shareDrafts.js'
 import { poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 
 /** Hébergement et durées affichés (§12.1) — à garder alignés sur docs/rgpd-registre.md. */
 export const HOSTING_TEXT = 'Hébergement : OVHcloud, dans l’Union européenne.'
@@ -141,6 +142,7 @@ function AdultGate({ busy, onAttest, error }) {
 // 1-3. Composer une version partagée
 
 function CompetencyTree({ refl, state, codes, setCodes, shares, chosenByCode, openCode, setOpenCode }) {
+  const palette = usePalette()
   const observed = refl.competencies.filter((c) => state.competencies.get(c.code)?.intensity > 0)
   const toggle = (list, on) =>
     setCodes((prev) => {
@@ -159,7 +161,7 @@ function CompetencyTree({ refl, state, codes, setCodes, shares, chosenByCode, op
         const kept = members.filter((c) => codes.has(c.code)).length
         const tri = kept === 0 ? 'none' : kept === members.length ? 'all' : 'mixed'
         return (
-          <li key={p.num} className="carto-pole" style={poleVars(p.color)}>
+          <li key={p.num} className="carto-pole" style={poleVars(p.color, palette)}>
             <label className="carto-share-pole">
               <TriStateCheckbox state={tri} label={`Pôle ${p.name} : garder toutes ses compétences dans la version partagée`} onChange={(on) => toggle(members.map((c) => c.code), on)} />
               <span aria-hidden="true">{p.symbol}</span> {p.name} <span className="carto-count">({kept}/{members.length})</span>

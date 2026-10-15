@@ -2,27 +2,40 @@
 // compétence, pôle, ou aucune (résumé du profil et légende de l'encodage).
 
 import { formatLong, formatShort } from '../core/dates.js'
+import { DEFAULT_PARAMS, GUIDE_LEVELS } from '../core/formulas.js'
 import { poleShortName } from '../core/referential.js'
 import { returnToPoles } from './Sun.jsx'
 import { poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
 const pct = (theta) => `${fmt((theta / 360) * 100, 1)} %`
 
+/** Nombres écrits à la française, en liste : « 0,5, 0,75 et 1 ». */
+const frList = (values) => {
+  const words = values.map((v) => v.toLocaleString('fr-FR'))
+  return words.length > 1 ? `${words.slice(0, -1).join(', ')} et ${words.at(-1)}` : (words[0] ?? '')
+}
+
 /**
  * Légende de l'encodage du soleil (§5, §6.1).
- * @param {{poleRing?: boolean}} props poleRing : l'anneau des pôles est dessiné (D-58)
+ * @param {{poleRing?: boolean, origin?: number}} props poleRing : l'anneau des pôles est dessiné (D-58) ;
+ *   origin : départ de la hauteur, la confiance du bord intérieur (D-65)
  */
-export function SunLegend({ poleRing = true } = {}) {
+export function SunLegend({ poleRing = true, origin = DEFAULT_PARAMS.heightOrigin } = {}) {
+  const from = origin.toLocaleString('fr-FR')
   return (
     <dl className="carto-legend">
       <dt>Angle</dt>
       <dd>part des points de la compétence dans le total : un point par preuve, α (½ par défaut) par indice. Plus il y a de traces, plus le secteur est large. La confiance du jury n’y entre pas.</dd>
       <dt>Hauteur</dt>
-      <dd>confiance moyenne du jury dans ses verdicts (0 à 1). Les cercles pointillés marquent 0,25, 0,5, 0,75 et 1. Ce n’est ni un niveau de maîtrise ni une force.</dd>
+      <dd>
+        confiance moyenne du jury dans ses verdicts, de {from} au pied du secteur à 1 au bord extérieur. Les cercles pointillés marquent{' '}
+        {frList(GUIDE_LEVELS.filter((c) => c > origin + 1e-9))}. Ce n’est ni un niveau de maîtrise ni une force.
+      </dd>
       <dt>Surface</dt>
-      <dd>confiance × points.</dd>
+      <dd>{origin > 0 ? `points × hauteur (la confiance comptée à partir de ${from}).` : 'confiance × points.'}</dd>
       {poleRing ? (
         <>
           <dt>Anneau intérieur</dt>
@@ -47,13 +60,14 @@ export function SunLegend({ poleRing = true } = {}) {
  * }} props children : sections supplémentaires (traces, jury… en P2)
  */
 export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, zoom = null, onZoom, legend = true, children }) {
+  const palette = usePalette()
   if (selection?.type === 'competency') {
     const meta = refl.compByCode.get(selection.code)
     const c = state.competencies.get(selection.code)
     const pole = refl.poleByNum.get(meta?.pole)
     if (!meta) return <p className="carto-muted">Compétence inconnue du référentiel.</p>
     return (
-      <article className="carto-detail carto-pole" aria-label={`Détail : ${meta.code} ${meta.name}`} style={poleVars(pole?.color)}>
+      <article className="carto-detail carto-pole" aria-label={`Détail : ${meta.code} ${meta.name}`} style={poleVars(pole?.color, palette)}>
         <header className="carto-detail-head">
           <p className="carto-detail-kicker">
             <span aria-hidden="true">{pole?.symbol}</span> {pole?.name}
@@ -117,7 +131,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
     const pole = refl.poleByNum.get(selection.num)
     const p = state.poles.get(selection.num)
     return (
-      <article className="carto-detail carto-pole" aria-label={`Détail : pôle ${pole?.name}`} style={poleVars(pole?.color)}>
+      <article className="carto-detail carto-pole" aria-label={`Détail : pôle ${pole?.name}`} style={poleVars(pole?.color, palette)}>
         <header className="carto-detail-head">
           <p className="carto-detail-kicker">Pôle</p>
           <h2>

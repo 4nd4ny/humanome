@@ -36,6 +36,7 @@ import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
 import { ConfidenceBar, RadarChart, Sparkline, TimeChart, shortDate } from './charts.jsx'
 import { poleTone, poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 import { TwoStepButton } from './Manager.jsx'
 import { PanelTools } from './Panels.jsx'
 import { DASHBOARD_TILE_SET, dashboardTileSizes } from './tiles.js'
@@ -63,6 +64,7 @@ function Card({ id, label, source, children }) {
 
 // ---- Profil ---------------------------------------------------------------------------------
 function ProfileCard({ data, refl }) {
+  const palette = usePalette()
   const [table, setTable] = useState(false)
   const max = radarScale(data.poles.map((p) => p.share))
   const barMax = radarScale(data.comps.map((c) => c.share))
@@ -82,7 +84,7 @@ function ProfileCard({ data, refl }) {
         </p>
         <svg className="carto-hist" viewBox={`0 0 ${Math.max(60, n * 8)} 60`} preserveAspectRatio="none" role="img" aria-label={`Parts des ${n} compétences observées, dans l’ordre du référentiel`}>
           {data.comps.map((c, i) => (
-            <rect key={c.code} x={i * 8 + 1} y={58 - (c.share / barMax) * 56} width={6} height={Math.max(0.5, (c.share / barMax) * 56)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(c.pole)?.color)}>
+            <rect key={c.code} x={i * 8 + 1} y={58 - (c.share / barMax) * 56} width={6} height={Math.max(0.5, (c.share / barMax) * 56)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(c.pole)?.color, palette)}>
               <title>{`${c.code} ${refl.compByCode.get(c.code)?.name} : ${pct(c.share)}`}</title>
             </rect>
           ))}
@@ -233,6 +235,7 @@ function PhasesCard({ data, update, onOpenDay }) {
 
 // ---- Constance --------------------------------------------------------------------------------
 function ConstancyCard({ data, refl }) {
+  const palette = usePalette()
   return (
     <div className="carto-card-body">
       <p className="carto-small carto-muted">
@@ -258,7 +261,7 @@ function ConstancyCard({ data, refl }) {
                 </th>
                 <td className="carto-num">{r.days}</td>
                 <td className="carto-num">{r.interval ? `${nf0(r.interval.mean)} j (${r.interval.min}–${r.interval.max})` : '—'}</td>
-                <td className="carto-pole carto-pole-ink" style={poleVars(refl.poleByNum.get(r.pole)?.color)}>
+                <td className="carto-pole carto-pole-ink" style={poleVars(refl.poleByNum.get(r.pole)?.color, palette)}>
                   <Sparkline
                     points={r.series.map((s) => ({ date: s.date, value: s.intensity }))}
                     max={Math.max(1, ...r.series.map((s) => s.intensity))}
@@ -280,6 +283,7 @@ function ConstancyCard({ data, refl }) {
 
 // ---- Moments remarquables -----------------------------------------------------------------------
 function MomentsCard({ candidates, loading, sensitivity, onSensitivity, refl, dataset, getDetail, firstImpressions, onOpenDay, onOpenTrace }) {
+  const palette = usePalette()
   const [limit, setLimit] = useState(15)
   const moments = useMemo(() => selectMoments(candidates, sensitivity), [candidates, sensitivity])
   const firstImpression = (date) => {
@@ -309,7 +313,7 @@ function MomentsCard({ candidates, loading, sensitivity, onSensitivity, refl, da
         {moments.slice(0, limit).map((m) => {
           const fi = firstImpression(m.date)
           return (
-            <li key={m.id} className="carto-moment carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(m.code)?.pole)?.color)}>
+            <li key={m.id} className="carto-moment carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(m.code)?.pole)?.color, palette)}>
               <p className="carto-moment-head">
                 <button type="button" className="carto-link-btn" onClick={() => onOpenDay(m.date, m.code)}>
                   {formatShort(m.date)}

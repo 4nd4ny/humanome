@@ -7,11 +7,11 @@
 // #/cartographie/export, #/cartographie/partage (phase 2 : adultes, compte
 // apprenant, module activé par configuration), #/cartographie/jour/<date>.
 
-import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState } from 'react'
 import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
-import { DEFAULT_PARAMS, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
+import { DEFAULT_PARAMS, HEIGHT_ORIGIN_MAX, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
 import { calendarModeOf, contributingVariant, todoCount } from '../core/model.js'
 import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
@@ -40,6 +40,8 @@ import { normalizeShareConfig } from '../core/share.js'
 import { poleShortName } from '../core/referential.js'
 import { TileGrid } from '../../v3/ui/tile-grid.jsx'
 import { CARTO_TILES, arrangeTiles, defaultTileSizes, defaultTilesLayout, readTilesLayout, setTileShown, writeTilesLayout } from './tiles.js'
+import { DEFAULT_PALETTE, PALETTES, poleTone } from './colors.js'
+import { PaletteContext, usePalettePreference } from './palette.js'
 import '../../v3/v3.css'
 import './carto.css'
 
@@ -139,6 +141,8 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
   const [tiles, setTiles] = useState(() => readTilesLayout())
   useEffect(() => writeTilesLayout(tiles), [tiles])
   const showTile = useCallback((id, on = true) => setTiles((l) => setTileShown(l, id, on)), [])
+  // Palette des pôles (D-64) : une préférence de ce navigateur, comme la disposition.
+  const [palette, setPalette] = usePalettePreference()
   // Rapport d'import : ouvert depuis le compteur d'anomalies (tuile Journées) ou après un import.
   const [showReport, setShowReport] = useState(false)
   // Après un import (sauf la démonstration), le rapport s'ouvre : dans la tuile
@@ -450,7 +454,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     ),
     legend: (
       <>
-        <SunLegend poleRing={ringShown(geometry.poles)} />
+        <SunLegend poleRing={ringShown(geometry.poles)} origin={geometry.origin} />
         <p className="carto-small carto-muted">Pôles : {refl.poles.map((p) => `${p.symbol} ${poleShortName(p)}`).join('  ')}</p>
         <label className="carto-small carto-sun-options">
           <input type="checkbox" checked={Boolean(prefs.reinforced)} onChange={(e) => onPrefs({ reinforced: e.target.checked })} /> distinctions renforcées (motifs par pôle)
@@ -480,7 +484,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         <DatasetSection bare dataset={dataset} datasets={data.datasets} onOpenDataset={data.openDataset} onDeleteDataset={data.deleteDataset} />
       </>
     ),
-    settings: <EncodingSettings bare params={params} geometry={geometry} onPrefs={onPrefs} prefs={prefs} />,
+    settings: <Settings bare params={params} geometry={geometry} onPrefs={onPrefs} prefs={prefs} poles={refl.poles} palette={palette} onPalette={setPalette} />,
   }
   const available = CARTO_TILES.filter(([id]) => tileNodes[id] != null)
   const shownTiles = available
@@ -496,206 +500,209 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     }))
 
   return (
-    <div ref={rootRef} className={`carto-app carto-space-${space}${ui.reader ? ' has-reader' : ''}`}>
-      <ContextBar
-        dataset={dataset}
-        t={ui.t}
-        onResetT={resetT}
-        tools={space === 'cartographie' ? <PanelTools tiles={available} shown={tiles.shown} onToggle={showTile} onReset={resetDisplay} summaryRef={panelsRef} /> : null}
-        slotRef={space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? setToolsSlot : null}
-      />
-      <nav className="carto-spaces" aria-label="Espaces de la cartographie">
-        {SPACES.filter(([id]) => !(viewer && id === 'export') && (id !== 'partage' || canShare)).map(([id, label, hash]) => (
-          <a key={id} href={hash} aria-current={space === id ? 'page' : undefined}>
-            {label}
-            {id === 'gestionnaire' && todoCount(dataset) > 0 ? <span className="carto-dot" aria-label={`${todoCount(dataset)} anomalies à traiter`} /> : null}
-          </a>
-        ))}
-      </nav>
-      {data.error ? (
-        <p role="alert" className="carto-error carto-banner">
-          {data.error}{' '}
-          <button type="button" className="carto-btn carto-btn--quiet" onClick={() => data.setError(null)}>
-            Fermer
-          </button>
-        </p>
-      ) : null}
-
-      {space === 'cartographie' ? (
-        <div className="carto-tiles" key={resetKey}>
-          {showReport && !viewer && !tiles.shown.includes('import') ? (
-            <div className="carto-report-banner">
-              <LastImportReport
-                dataset={dataset}
-                lastReport={data.lastReport}
-                update={data.update}
-                onCloseReport={() => data.setLastReport(null)}
-                showReport={showReport}
-                setShowReport={setShowReport}
-                withButton={false}
-              />
-            </div>
-          ) : null}
-          {shownTiles.length > 0 ? (
-            <TileGrid
-              tiles={shownTiles}
-              layout={tiles}
-              onLayoutChange={(change) => setTiles((l) => arrangeTiles(l, change))}
-              defaultSizes={defaultTileSizes}
-              onHide={hideTile}
-            />
-          ) : (
-            <p className="carto-muted carto-pad">Aucun panneau affiché : choisissez-en dans « Panneaux », en haut de la page.</p>
-          )}
-        </div>
-      ) : space === 'gestionnaire' ? (
-        <Manager
+    <PaletteContext.Provider value={palette}>
+      <div ref={rootRef} className={`carto-app carto-space-${space}${ui.reader ? ' has-reader' : ''}`}>
+        <ContextBar
           dataset={dataset}
-          refl={refl}
           t={ui.t}
-          readOnly={viewer}
-          layout="full"
-          showReport={showReport}
-          setShowReport={setShowReport}
-          update={data.update}
-          commitWithDetails={data.commitWithDetails}
-          importInto={data.importInto}
-          busy={data.busy}
-          lastReport={data.lastReport}
-          onCloseReport={() => data.setLastReport(null)}
-          datasets={data.datasets}
-          onOpenDataset={data.openDataset}
-          onDeleteDataset={data.deleteDataset}
-          onSetT={(d) => {
-            onHeatmapSetT(d)
-            go('#/cartographie')
-          }}
-          onOpenDay={openDay}
+          onResetT={resetT}
+          tools={space === 'cartographie' ? <PanelTools tiles={available} shown={tiles.shown} onToggle={showTile} onReset={resetDisplay} summaryRef={panelsRef} /> : null}
+          slotRef={space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? setToolsSlot : null}
         />
-      ) : space === 'comparaison' && !slots.comparaison ? (
-        <ComparePanel dataset={dataset} refl={refl} params={params} geometry={geometry} t={ui.t} update={data.update} onOpenDay={openDay} />
-      ) : space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? (
-        <Dashboard
-          dataset={dataset}
-          refl={refl}
-          state={state}
-          params={params}
-          getDetail={getDetail}
-          ensureDetails={ensureDetails}
-          update={data.update}
-          onOpenDay={openDay}
-          onOpenTrace={openTrace}
-          toolsSlot={toolsSlot}
-        />
-      ) : space === 'export' && !slots.export ? (
-        viewer ? (
-          <p className="carto-muted carto-pad">L’export n’est pas disponible dans une copie autonome.</p>
-        ) : (
-          <ExportPanel
+        <nav className="carto-spaces" aria-label="Espaces de la cartographie">
+          {SPACES.filter(([id]) => !(viewer && id === 'export') && (id !== 'partage' || canShare)).map(([id, label, hash]) => (
+            <a key={id} href={hash} aria-current={space === id ? 'page' : undefined}>
+              {label}
+              {id === 'gestionnaire' && todoCount(dataset) > 0 ? <span className="carto-dot" aria-label={`${todoCount(dataset)} anomalies à traiter`} /> : null}
+            </a>
+          ))}
+        </nav>
+        {data.error ? (
+          <p role="alert" className="carto-error carto-banner">
+            {data.error}{' '}
+            <button type="button" className="carto-btn carto-btn--quiet" onClick={() => data.setError(null)}>
+              Fermer
+            </button>
+          </p>
+        ) : null}
+
+        {space === 'cartographie' ? (
+          <div className="carto-tiles" key={resetKey}>
+            {showReport && !viewer && !tiles.shown.includes('import') ? (
+              <div className="carto-report-banner">
+                <LastImportReport
+                  dataset={dataset}
+                  lastReport={data.lastReport}
+                  update={data.update}
+                  onCloseReport={() => data.setLastReport(null)}
+                  showReport={showReport}
+                  setShowReport={setShowReport}
+                  withButton={false}
+                />
+              </div>
+            ) : null}
+            {shownTiles.length > 0 ? (
+              <TileGrid
+                tiles={shownTiles}
+                layout={tiles}
+                onLayoutChange={(change) => setTiles((l) => arrangeTiles(l, change))}
+                defaultSizes={defaultTileSizes}
+                onHide={hideTile}
+              />
+            ) : (
+              <p className="carto-muted carto-pad">Aucun panneau affiché : choisissez-en dans « Panneaux », en haut de la page.</p>
+            )}
+          </div>
+        ) : space === 'gestionnaire' ? (
+          <Manager
+            dataset={dataset}
+            refl={refl}
+            t={ui.t}
+            readOnly={viewer}
+            layout="full"
+            showReport={showReport}
+            setShowReport={setShowReport}
+            update={data.update}
+            commitWithDetails={data.commitWithDetails}
+            importInto={data.importInto}
+            busy={data.busy}
+            lastReport={data.lastReport}
+            onCloseReport={() => data.setLastReport(null)}
+            datasets={data.datasets}
+            onOpenDataset={data.openDataset}
+            onDeleteDataset={data.deleteDataset}
+            onSetT={(d) => {
+              onHeatmapSetT(d)
+              go('#/cartographie')
+            }}
+            onOpenDay={openDay}
+          />
+        ) : space === 'comparaison' && !slots.comparaison ? (
+          <ComparePanel dataset={dataset} refl={refl} params={params} geometry={geometry} t={ui.t} update={data.update} onOpenDay={openDay} />
+        ) : space === 'tableau-de-bord' && !slots['tableau-de-bord'] ? (
+          <Dashboard
             dataset={dataset}
             refl={refl}
             state={state}
             params={params}
-            t={ui.t}
-            data={data}
-            fetchFn={deps.fetchFn}
-            onOpenDataset={() => go('#/cartographie')}
+            getDetail={getDetail}
+            ensureDetails={ensureDetails}
+            update={data.update}
+            onOpenDay={openDay}
+            onOpenTrace={openTrace}
+            toolsSlot={toolsSlot}
           />
-        )
-      ) : space === 'dialogue' && !slots.dialogue ? (
-        <DialoguePanel
-          dataset={dataset}
-          refl={refl}
-          state={state}
-          data={data}
-          params={params}
-          readOnly={viewer}
-          llm={viewer ? null : deps.llm ?? null}
-          onOpenDay={openDay}
-          onOpenPassage={openPassage}
-        />
-      ) : space === 'partage' && !slots.partage ? (
-        canShare ? (
-          <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} roles={roles} />
-        ) : (
-          <p className="carto-muted carto-pad">
-            {viewer
-              ? 'Le partage n’est pas disponible dans une copie autonome.'
-              : !shareConfig.serverEnabled
-                ? 'Le partage par lien n’est pas activé sur ce site : votre cartographie reste dans ce navigateur.'
-                : 'Le partage par lien est réservé aux comptes apprenants connectés, et aux adultes ; un cartographe y publie la version garantie qu’une personne lui a demandée. Tout le reste fonctionne sans compte, dans ce navigateur.'}
-            {!viewer && shareConfig.serverEnabled ? (
-              <>
-                {' '}
-                <a href="#/compte">Se connecter</a>
-              </>
-            ) : null}
-          </p>
-        )
-      ) : slots[space] ? (
-        slots[space](ctx)
-      ) : (
-        <p className="carto-muted carto-pad">Cet espace arrive dans une prochaine étape.</p>
-      )}
-
-      {modalDate ? (
-        <DayModal
-          date={modalDate}
-          dataset={dataset}
-          refl={refl}
-          params={params}
-          geometry={geometry}
-          activeDates={frames}
-          focusCode={route.focus ?? null}
-          reinforced={Boolean(prefs.reinforced)}
-          onClose={closeDay}
-          onNavigate={(d) => openDay(d, route.focus ?? undefined)}
-          trapActive={!ui.reader}
-          renderVerdict={(v, variant) => (
-            <DayVerdictDetail
-              v={v}
-              variant={variant}
-              date={modalDate}
+        ) : space === 'export' && !slots.export ? (
+          viewer ? (
+            <p className="carto-muted carto-pad">L’export n’est pas disponible dans une copie autonome.</p>
+          ) : (
+            <ExportPanel
               dataset={dataset}
-              getDetail={getDetail}
-              getRunDetail={getRunDetail}
-              ensureRunDetail={ensureRunDetail}
-              update={data.update}
-              onOpenTrace={openTrace}
-              onOpenPassage={openPassage}
+              refl={refl}
+              state={state}
+              params={params}
+              t={ui.t}
+              data={data}
+              fetchFn={deps.fetchFn}
+              onOpenDataset={() => go('#/cartographie')}
             />
-          )}
-        >
-          {slots.day ? (dayCtx) => slots.day({ ...ctx, ...dayCtx }) : undefined}
-        </DayModal>
-      ) : null}
-      {ui.why && ui.selection ? (
-        <WhyDialog
-          refl={refl}
-          state={state}
-          selection={ui.selection}
-          layout={layout}
-          zoomLayout={zoomLayout}
-          onClose={() => dispatch({ type: 'why', open: false })}
-          onOpenDay={(d, code) => {
-            dispatch({ type: 'why', open: false })
-            openDay(d, code)
-          }}
-        />
-      ) : null}
-      {ui.reader ? (
-        <PortfolioReader
-          target={ui.reader}
-          dataset={dataset}
-          refl={refl}
-          getDetail={getDetail}
-          ensureDetails={ensureDetails}
-          reducedMotion={reducedMotion}
-          onClose={closeReader}
-          onIndex={(index) => dispatch({ type: 'readerIndex', index })}
-        />
-      ) : null}
-    </div>
+          )
+        ) : space === 'dialogue' && !slots.dialogue ? (
+          <DialoguePanel
+            dataset={dataset}
+            refl={refl}
+            state={state}
+            data={data}
+            params={params}
+            readOnly={viewer}
+            llm={viewer ? null : deps.llm ?? null}
+            onOpenDay={openDay}
+            onOpenPassage={openPassage}
+          />
+        ) : space === 'partage' && !slots.partage ? (
+          canShare ? (
+            <SharePanel refl={refl} state={state} data={data} t={ui.t} api={shareApi} config={shareConfig} roles={roles} />
+          ) : (
+            <p className="carto-muted carto-pad">
+              {viewer
+                ? 'Le partage n’est pas disponible dans une copie autonome.'
+                : !shareConfig.serverEnabled
+                  ? 'Le partage par lien n’est pas activé sur ce site : votre cartographie reste dans ce navigateur.'
+                  : 'Le partage par lien est réservé aux comptes apprenants connectés, et aux adultes ; un cartographe y publie la version garantie qu’une personne lui a demandée. Tout le reste fonctionne sans compte, dans ce navigateur.'}
+              {!viewer && shareConfig.serverEnabled ? (
+                <>
+                  {' '}
+                  <a href="#/compte">Se connecter</a>
+                </>
+              ) : null}
+            </p>
+          )
+        ) : slots[space] ? (
+          slots[space](ctx)
+        ) : (
+          <p className="carto-muted carto-pad">Cet espace arrive dans une prochaine étape.</p>
+        )}
+
+        {modalDate ? (
+          <DayModal
+            date={modalDate}
+            dataset={dataset}
+            refl={refl}
+            params={params}
+            geometry={geometry}
+            activeDates={frames}
+            focusCode={route.focus ?? null}
+            reinforced={Boolean(prefs.reinforced)}
+            onClose={closeDay}
+            onNavigate={(d) => openDay(d, route.focus ?? undefined)}
+            trapActive={!ui.reader}
+            renderVerdict={(v, variant) => (
+              <DayVerdictDetail
+                v={v}
+                variant={variant}
+                date={modalDate}
+                dataset={dataset}
+                getDetail={getDetail}
+                getRunDetail={getRunDetail}
+                ensureRunDetail={ensureRunDetail}
+                update={data.update}
+                onOpenTrace={openTrace}
+                onOpenPassage={openPassage}
+              />
+            )}
+          >
+            {slots.day ? (dayCtx) => slots.day({ ...ctx, ...dayCtx }) : undefined}
+          </DayModal>
+        ) : null}
+        {ui.why && ui.selection ? (
+          <WhyDialog
+            refl={refl}
+            state={state}
+            selection={ui.selection}
+            layout={layout}
+            zoomLayout={zoomLayout}
+            origin={geometry.origin}
+            onClose={() => dispatch({ type: 'why', open: false })}
+            onOpenDay={(d, code) => {
+              dispatch({ type: 'why', open: false })
+              openDay(d, code)
+            }}
+          />
+        ) : null}
+        {ui.reader ? (
+          <PortfolioReader
+            target={ui.reader}
+            dataset={dataset}
+            refl={refl}
+            getDetail={getDetail}
+            ensureDetails={ensureDetails}
+            reducedMotion={reducedMotion}
+            onClose={closeReader}
+            onIndex={(index) => dispatch({ type: 'readerIndex', index })}
+          />
+        ) : null}
+      </div>
+    </PaletteContext.Provider>
   )
 }
 
@@ -795,36 +802,72 @@ function ContextBar({ dataset, t, onResetT, tools = null, slotRef = null }) {
 }
 
 /**
- * Réglages de l'encodage (α, anneau des pôles, épaisseur minimale) : une
- * tuile, masquée au départ (D-52). « Valeurs par défaut » ne paraît que si un
- * réglage s'en écarte.
+ * Réglages : l'encodage (α, départ de la hauteur D-65, anneau des pôles D-58,
+ * épaisseur minimale) et la palette des pôles (D-64). Une tuile, masquée au
+ * départ (D-52). « Valeurs par défaut » ne paraît que si un réglage s'en
+ * écarte, et les y remet tous.
+ * @param {{params: object, geometry: object, onPrefs: (patch: object) => void, prefs: object,
+ *   poles: Array<{num: number, color: string}>, palette: string, onPalette: (id: string) => void, bare?: boolean}} props
+ *   poles : les pôles du référentiel, montrés dans chaque palette
  */
-function EncodingSettings({ params, geometry, onPrefs, prefs, bare = false }) {
+function Settings({ params, geometry, onPrefs, prefs, poles, palette, onPalette, bare = false }) {
+  const uid = useId()
   const Box = bare ? 'div' : 'details'
   const set = (patch) => onPrefs({ params: { ...prefs.params, ...patch } })
-  const defaults = { alpha: DEFAULT_PARAMS.alpha, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx }
-  const changed = Object.entries(defaults).some(([key, value]) => params[key] !== value)
+  const defaults = { alpha: DEFAULT_PARAMS.alpha, heightOrigin: DEFAULT_PARAMS.heightOrigin, poleRingPx: DEFAULT_PARAMS.poleRingPx, minThicknessPx: DEFAULT_PARAMS.minThicknessPx }
+  const changed = palette !== DEFAULT_PALETTE || Object.entries(defaults).some(([key, value]) => params[key] !== value)
   const ring = params.poleRingPx
   return (
-    <Box className="carto-section" open={bare ? undefined : true}>
-      {bare ? null : <summary>Réglages de l’encodage</summary>}
-      <label className="carto-setting">
-        Poids d’un indice α : <strong>{params.alpha.toLocaleString('fr-FR')}</strong>
-        <input type="range" min={0.1} max={0.9} step={0.05} value={params.alpha} onChange={(e) => set({ alpha: Number(e.target.value) })} />
-      </label>
-      <label className="carto-setting">
-        Épaisseur de l’anneau des pôles :{' '}
-        <strong>
-          {ring} px{!ringShown(geometry.poles) ? ' (masqué)' : !ringShown(geometry.competencies) ? ' (compétences masquées)' : ''}
-        </strong>
-        <input type="range" min={0} max={POLE_RING_MAX} step={5} value={ring} onChange={(e) => set({ poleRingPx: Number(e.target.value) })} />
-      </label>
-      <label className="carto-setting">
-        Épaisseur minimale d’un secteur : <strong>{params.minThicknessPx} px</strong>
-        <input type="range" min={0} max={6} step={1} value={params.minThicknessPx} onChange={(e) => set({ minThicknessPx: Number(e.target.value) })} />
-      </label>
+    <Box className="carto-section carto-settings" open={bare ? undefined : true}>
+      {bare ? null : <summary>Réglages</summary>}
+      <div className="carto-settings-encoding">
+        <label className="carto-setting">
+          Poids d’un indice α : <strong>{params.alpha.toLocaleString('fr-FR')}</strong>
+          <input type="range" min={0.1} max={0.9} step={0.05} value={params.alpha} onChange={(e) => set({ alpha: Number(e.target.value) })} />
+        </label>
+        <label className="carto-setting">
+          Départ de la hauteur : <strong>confiance {params.heightOrigin.toLocaleString('fr-FR')}</strong>
+          <input type="range" min={0} max={HEIGHT_ORIGIN_MAX} step={0.05} value={params.heightOrigin} onChange={(e) => set({ heightOrigin: Number(e.target.value) })} />
+        </label>
+        <label className="carto-setting">
+          Épaisseur de l’anneau des pôles :{' '}
+          <strong>
+            {ring} px{!ringShown(geometry.poles) ? ' (masqué)' : !ringShown(geometry.competencies) ? ' (compétences masquées)' : ''}
+          </strong>
+          <input type="range" min={0} max={POLE_RING_MAX} step={5} value={ring} onChange={(e) => set({ poleRingPx: Number(e.target.value) })} />
+        </label>
+        <label className="carto-setting">
+          Épaisseur minimale d’un secteur : <strong>{params.minThicknessPx} px</strong>
+          <input type="range" min={0} max={6} step={1} value={params.minThicknessPx} onChange={(e) => set({ minThicknessPx: Number(e.target.value) })} />
+        </label>
+      </div>
+      <fieldset className="carto-palettes">
+        <legend>Palette des pôles</legend>
+        {PALETTES.map((p) => (
+          <label key={p.id} className="carto-palette">
+            <input type="radio" name={`${uid}-palette`} value={p.id} checked={palette === p.id} onChange={() => onPalette(p.id)} />
+            {/* Les pôles du référentiel dans cette palette, au thème affiché ; puis son nom. */}
+            <span className="carto-palette-swatches" aria-hidden="true">
+              {poles.map((pole) => (
+                <span key={pole.num} className="carto-c-bg" style={poleTone(pole.color, p.id)} />
+              ))}
+            </span>
+            <span className="carto-palette-name">
+              {p.name}
+              {p.id === DEFAULT_PALETTE ? ' (par défaut)' : ''}
+            </span>
+          </label>
+        ))}
+      </fieldset>
       {changed ? (
-        <button type="button" className="carto-link-btn" onClick={() => set(defaults)}>
+        <button
+          type="button"
+          className="carto-link-btn"
+          onClick={() => {
+            set(defaults)
+            onPalette(DEFAULT_PALETTE)
+          }}
+        >
           Valeurs par défaut
         </button>
       ) : null}

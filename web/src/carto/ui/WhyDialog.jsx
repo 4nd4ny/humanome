@@ -6,6 +6,7 @@
 import { useRef } from 'react'
 import { explainSurface } from '../core/state.js'
 import { formatShort } from '../core/dates.js'
+import { heightOf } from '../core/formulas.js'
 import { useFocusTrap } from './DayModal.jsx'
 
 const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
@@ -13,12 +14,13 @@ const fmt = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLoc
 /**
  * @param {{refl: object, state: object, selection: object, layout: object,
  *   zoomLayout?: object | null, // pôle ouvert sur 360° (D-45) : la part dans ce pôle est dite aussi
+ *   origin?: number, // départ de la hauteur du soleil dessiné (D-65), celui des réglages par défaut
  *   onClose: () => void, onOpenDay: (d: string, code?: string) => void}} props
  */
-export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, onClose, onOpenDay }) {
+export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, origin = state.params?.heightOrigin ?? 0, onClose, onOpenDay }) {
   const ref = useRef(null)
   useFocusTrap(ref, true, onClose)
-  const e = explainSurface(state, selection)
+  const e = explainSurface(state, selection, { origin })
   // Le secteur DESSINÉ : celui du pôle ouvert s'il y figure, sinon celui du soleil principal.
   const drawn = (l) => (selection.type === 'competency' ? l?.competencies.find((s) => s.code === selection.code) : l?.poles.find((s) => s.num === selection.num))
   const opened = selection.type === 'competency' ? drawn(zoomLayout) : null
@@ -61,9 +63,16 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
               </div>
               <div>
                 {/* Un pôle n'a pas de hauteur à lui : son arc occupe tout l'anneau intérieur (D-58). */}
-                <dt>{e.type === 'pole' ? 'Confiance moyenne' : 'Confiance (hauteur)'}</dt>
+                <dt>{e.type === 'pole' ? 'Confiance moyenne' : origin > 0 ? 'Confiance' : 'Confiance (hauteur)'}</dt>
                 <dd>{fmt(e.confidence)}</dd>
               </div>
+              {e.type === 'competency' && origin > 0 ? (
+                // La hauteur part du départ réglable (D-65) : elle diffère alors de la confiance.
+                <div>
+                  <dt>Hauteur</dt>
+                  <dd>{typeof e.confidence === 'number' ? fmt(heightOf(e.confidence, origin)) : '—'}</dd>
+                </div>
+              ) : null}
               {opened ? (
                 <div>
                   <dt>Dans le pôle ouvert</dt>
@@ -82,8 +91,12 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
             {sector?.floored ? (
               <p className="carto-note">
                 Épaisseur minimale d’affichage appliquée :{' '}
-                {typeof e.confidence === 'number' ? 'sa confiance est si faible que le secteur serait invisible.' : 'la confiance du jury n’est pas connue, le secteur n’aurait pas de hauteur.'} Sa
-                surface dessinée dépasse ici le strict proportionnel.
+                {typeof e.confidence !== 'number'
+                  ? 'la confiance du jury n’est pas connue, le secteur n’aurait pas de hauteur.'
+                  : e.confidence <= origin
+                    ? `sa confiance (${fmt(e.confidence)}) ne dépasse pas le départ de la hauteur (${fmt(origin)}), le secteur n’aurait pas de hauteur.`
+                    : 'sa confiance est si faible que le secteur serait invisible.'}{' '}
+                Sa surface dessinée dépasse ici le strict proportionnel.
               </p>
             ) : null}
             {sector?.widened ? (

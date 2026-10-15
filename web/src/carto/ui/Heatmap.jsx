@@ -11,9 +11,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { calendarGrid, moveFocus } from '../core/heatmap.js'
 import { daysBetween, formatLong, weekdayName } from '../core/dates.js'
 import { heatColor, themed } from './colors.js'
+import { usePalette } from './palette.js'
 
-/** Remplissage d'une case pour les deux thèmes (D-60). */
-const cellFill = (level, tint) => themed(heatColor(level, tint), heatColor(level, tint, 'dark'))
+/** Remplissage d'une case pour les deux thèmes (D-60), dans la palette des pôles (D-64). */
+const cellFill = (level, tint, palette) => themed(heatColor(level, tint, 'light', palette), heatColor(level, tint, 'dark', palette))
 
 const CELL = 12
 const GAP = 2
@@ -51,6 +52,7 @@ export function cellLabel(date, cell, { mode, t, observed }) {
  */
 export function HeatmapBand({ band, model, t, focusDate, observed = null, inspected = null, markers = [], brush = false, onBrush, onFocusDate, onSetT, onOpenDay }) {
   const { weeks, months } = useMemo(() => calendarGrid(band), [band])
+  const palette = usePalette()
   const svgRef = useRef(null)
   const [drag, setDrag] = useState(null)
   const idOf = (d) => `carto-hm-${d}`
@@ -175,7 +177,7 @@ export function HeatmapBand({ band, model, t, focusDate, observed = null, inspec
                     height={CELL}
                     rx={2}
                     className={classes.join(' ')}
-                    style={cell ? cellFill(cell.level, cell.tint) : undefined}
+                    style={cell ? cellFill(cell.level, cell.tint, palette) : undefined}
                     onClick={() => {
                       onFocusDate(date)
                       if (!brush) onSetT(date)

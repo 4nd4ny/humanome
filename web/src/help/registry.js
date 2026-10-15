@@ -32,6 +32,7 @@ const BASE = {
       'Importez vos analyses (journées, merge, archive) et votre portfolio, ou explorez la démonstration.',
       'Au départ, seuls le soleil et le détail sont affichés : « Panneaux » (en haut à droite) ajoute les journées, les compétences, la heatmap, la légende… Chaque panneau se déplace, se redimensionne et se masque : ses commandes paraissent quand la souris le survole ; « Réinitialiser l’affichage » revient au départ.',
       '« Pourquoi cette surface ? » (touche w sur un secteur) montre les traces, les points et la confiance.',
+      '« Réglages » (dans « Panneaux ») : le poids d’un indice, le départ de la hauteur (0,25 par défaut), l’anneau des pôles, et la palette des couleurs (Contrastée, Vive, Pastel, Terre, Profonde).',
       'Un double-clic sur un pôle (anneau intérieur du soleil) l’ouvre sur 360° : ses seules compétences, chacune selon sa part des points du pôle. Un clic au centre (ou Échap) ramène à tous les pôles.',
       'Un clic sur une journée de la heatmap (panneau « Heatmap et lecture ») déplace la date t ; un double-clic ouvre la journée seule.',
       'Confirmez, nuancez ou contestez chaque verdict du jury : c’est votre droit de réponse.',

@@ -2,8 +2,11 @@
 import { describe, expect, it } from 'vitest'
 import {
   DEFAULT_PARAMS,
+  HEIGHT_ORIGIN_MAX,
   POLE_RING_MAX,
   annularSectorArea,
+  confidenceGuides,
+  heightOf,
   anglesFromPoints,
   decayFactor,
   displayedOuterRadius,
@@ -179,5 +182,59 @@ describe('anneaux fixes et surface (§5.6)', () => {
   })
   it('refuse une géométrie impossible', () => {
     expect(() => ringGeometry({ outerRadius: 10, centerRadius: 10 })).toThrow()
+  })
+})
+
+describe('départ de la hauteur (D-65) : la hauteur part d’une confiance réglable', () => {
+  const g = ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5, origin: 0.25 })
+  const { rIn, rOut } = g.competencies
+
+  it('0,25 par défaut, de 0 à 0,5 ; ramené dans ses bornes, jamais refusé', () => {
+    expect(DEFAULT_PARAMS.heightOrigin).toBe(0.25)
+    expect(HEIGHT_ORIGIN_MAX).toBe(0.5)
+    expect(resolveParams({}).heightOrigin).toBe(0.25)
+    expect(resolveParams({ heightOrigin: 0 }).heightOrigin).toBe(0)
+    expect(resolveParams({ heightOrigin: 0.9 }).heightOrigin).toBe(0.5)
+    expect(resolveParams({ heightOrigin: -1 }).heightOrigin).toBe(0)
+    expect(resolveParams({ heightOrigin: Number.NaN }).heightOrigin).toBe(0.25)
+    expect(sunGeometry(DEFAULT_PARAMS).origin).toBe(0.25)
+    expect(sunGeometry(resolveParams({ heightOrigin: 0.4 })).origin).toBe(0.4)
+    // Sans départ (la géométrie seule, comme avant D-65) : 0.
+    expect(ringGeometry({ outerRadius: 190, centerRadius: 30 }).origin).toBe(0)
+  })
+  it('h = (C − c₀) / (1 − c₀) : le départ au bord intérieur, 1 au bord extérieur, rien en dessous', () => {
+    expect(heightOf(0.7, 0.25)).toBeCloseTo(0.6, 10)
+    expect(heightOf(0.25, 0.25)).toBe(0)
+    expect(heightOf(0.1, 0.25)).toBe(0)
+    expect(heightOf(1, 0.5)).toBe(1)
+    expect(heightOf(0.58, 0)).toBe(0.58) // sans départ, h = C
+    expect(outerRadiusFor(rIn, g.k, 0.25, 0.25)).toBeCloseTo(rIn)
+    expect(outerRadiusFor(rIn, g.k, 1, 0.25)).toBeCloseTo(rOut)
+  })
+  it('les écarts de confiance du jury deviennent plus visibles : 0,35 et 0,68 passent d’un rapport de 1,9 à 4,3', () => {
+    const ratio = (o) => heightOf(0.68, o) / heightOf(0.35, o)
+    expect(ratio(0)).toBeCloseTo(1.94, 2)
+    expect(ratio(0.25)).toBeCloseTo(4.3, 1)
+  })
+  it('aire = θ·k·h/2 : l’aire reste proportionnelle à la hauteur dessinée', () => {
+    for (const [deg, c] of [[360, 1], [180, 0.5], [37.5, 0.83], [12, 0.3]]) {
+      const theta = toRadians(deg)
+      expect(annularSectorArea(theta, rIn, outerRadiusFor(rIn, g.k, c, 0.25))).toBeCloseTo(encodedArea(theta, g.k, c, 0.25), 6)
+    }
+  })
+  it('une confiance qui ne dépasse pas le départ reçoit l’épaisseur minimale, signalée', () => {
+    expect(displayedOuterRadius(rIn, g.k, 0.2, 2, 0.25)).toEqual({ rOut: rIn + 2, rOutExact: rIn, floored: true })
+    expect(displayedOuterRadius(rIn, g.k, 0.6, 2, 0.25).floored).toBe(false)
+  })
+  it('cercles guides : les confiances au-dessus du départ, et la base au bord intérieur', () => {
+    const levels = (o) => confidenceGuides(ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5, origin: o })).map((x) => [x.c, x.base])
+    expect(levels(0)).toEqual([[0.25, false], [0.5, false], [0.75, false], [1, false], [0, true]])
+    expect(levels(0.25)).toEqual([[0.5, false], [0.75, false], [1, false], [0.25, true]])
+    expect(levels(0.4)).toEqual([[0.5, false], [0.75, false], [1, false], [0.4, true]])
+    const guides = confidenceGuides(g)
+    expect(guides.at(-1).r).toBe(rIn)
+    expect(guides.find((x) => x.c === 1).r).toBeCloseTo(rOut)
+    // Anneau des compétences masqué : aucun cercle.
+    expect(confidenceGuides(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 160, gap: 5 }))).toEqual([])
   })
 })

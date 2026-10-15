@@ -26,7 +26,8 @@ import { JUROR_ORDER, PedagogueReview, VerdictFacts } from './Jury.jsx'
 import { verdictDetailOf } from './Observations.jsx'
 import { ComparePrecautions } from './ComparePanel.jsx'
 import { useFocusTrap } from './DayModal.jsx'
-import { themeColor } from './colors.js'
+import { DEFAULT_PALETTE, themeColor } from './colors.js'
+import { PaletteContext } from './palette.js'
 
 const nf = (n, d = 2) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—')
 const pct = (x) => `${nf(x * 100, 1)} %`
@@ -109,7 +110,7 @@ function Cover({ dataset, refl, state, layout, geometry, t, summary, pseudonym, 
           ))}
         </ul>
       ) : null}
-      <SunLegend />
+      <SunLegend origin={geometry.origin} />
       <footer className="carto-print-foot">
         Document produit le {formatLong(today)}, dans le navigateur de la personne, à partir de ses propres cartographies. Il reflète ses écrits tels que l’analyse les a
         lus.
@@ -425,13 +426,16 @@ export function ReportDocument({ dataset, refl, state, layout, geometry, params,
   useLayoutEffect(() => {
     for (const d of rootRef.current?.querySelectorAll('details:not([open])') ?? []) d.open = true
   })
+  // Un document pour d'autres : la palette par défaut, quelle que soit celle de l'écran (D-64).
   return (
-    <div ref={rootRef} className="carto-print-doc">
-      <Cover dataset={dataset} refl={refl} state={state} layout={layout} geometry={geometry} t={t} summary={summary} pseudonym={options.pseudonym ?? ''} today={today} />
-      <Profile refl={refl} summary={summary} />
-      {options.codes.length > 0 ? <Jury dataset={dataset} refl={refl} state={state} options={options} getDetail={getDetail} getRunDetail={getRunDetail} /> : null}
-      {options.comparison ? <Comparison dataset={dataset} refl={refl} params={params} geometry={geometry} options={options} /> : null}
-    </div>
+    <PaletteContext.Provider value={DEFAULT_PALETTE}>
+      <div ref={rootRef} className="carto-print-doc">
+        <Cover dataset={dataset} refl={refl} state={state} layout={layout} geometry={geometry} t={t} summary={summary} pseudonym={options.pseudonym ?? ''} today={today} />
+        <Profile refl={refl} summary={summary} />
+        {options.codes.length > 0 ? <Jury dataset={dataset} refl={refl} state={state} options={options} getDetail={getDetail} getRunDetail={getRunDetail} /> : null}
+        {options.comparison ? <Comparison dataset={dataset} refl={refl} params={params} geometry={geometry} options={options} /> : null}
+      </div>
+    </PaletteContext.Provider>
   )
 }
 

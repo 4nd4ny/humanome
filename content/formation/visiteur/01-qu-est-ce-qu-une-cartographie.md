@@ -98,7 +98,7 @@ Au centre, le nombre de journées ; le premier anneau, les 7 pôles ; l'anneau
 extérieur, les compétences. L'**angle** d'un secteur compte les points de la
 compétence (un par preuve, un demi par indice : plus elle a de traces, plus il
 est large) ; sa **hauteur**, la confiance moyenne du jury dans ses verdicts
-(de 0 à 1). Le chapitre `02-explorer-la-demonstration.md` vous apprend à le
+(de 0,25, au pied du secteur, à 1). Le chapitre `02-explorer-la-demonstration.md` vous apprend à le
 lire secteur par secteur.
 
 ## Ce qu'une cartographie n'est pas

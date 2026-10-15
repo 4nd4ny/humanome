@@ -13,10 +13,13 @@ import { formatLong, monthName, todayIso } from '../core/dates.js'
 import { PRECISION_LABELS, formatSharedDate, garantieScope, sharedState } from '../core/share.js'
 import { Sun } from './Sun.jsx'
 import { usePrefersReducedMotion } from './Player.jsx'
-import { heatColor, poleVars, themed, themedSwatch } from './colors.js'
+import { DEFAULT_PALETTE, heatColor, poleVars, themed, themedSwatch } from './colors.js'
+import { PaletteContext } from './palette.js'
 import './carto.css'
 
-// Une version partagée garde les réglages par défaut (anneau des pôles de 30, D-58).
+// Une version partagée garde les réglages par défaut : anneau des pôles de 30
+// (D-58), hauteur à partir de 0,25 (D-65), palette Contrastée (D-64) — y
+// compris dans l'aperçu que voit son auteur, quelle que soit sa palette.
 const GEOMETRY = sunGeometry(DEFAULT_PARAMS)
 const pct = new Intl.NumberFormat('fr-FR', { style: 'percent', maximumFractionDigits: 1 })
 const num = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
@@ -151,7 +154,11 @@ export function SharedView({ doc, garantie = null, preview = false }) {
       </p>
     )
   }
-  return <SharedDocument doc={doc} garantie={garantie} preview={preview} refl={read.ref} state={read.state} layout={read.layout} />
+  return (
+    <PaletteContext.Provider value={DEFAULT_PALETTE}>
+      <SharedDocument doc={doc} garantie={garantie} preview={preview} refl={read.ref} state={read.state} layout={read.layout} />
+    </PaletteContext.Provider>
+  )
 }
 
 function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
@@ -248,7 +255,10 @@ function SharedDocument({ doc, garantie, preview, refl, state, layout }) {
             <summary>Comment lire ce soleil</summary>
             <ul className="carto-small">
               <li>Chaque secteur extérieur est une compétence observée dans le portfolio réflexif de la personne. Son angle est sa part des traces relevées dans l’ensemble partagé : plus une compétence a de traces, plus son secteur est large.</li>
-              <li>Sa hauteur est la confiance moyenne du jury dans ses verdicts (de 0 à 1) : ce n’est ni un niveau de maîtrise ni une note. L’anneau intérieur regroupe les compétences par pôle.</li>
+              <li>
+                Sa hauteur est la confiance moyenne du jury dans ses verdicts, de {GEOMETRY.origin.toLocaleString('fr-FR')} au pied du secteur à 1 au bord extérieur : ce
+                n’est ni un niveau de maîtrise ni une note. L’anneau intérieur regroupe les compétences par pôle.
+              </li>
               <li>Un double-clic sur un pôle de l’anneau intérieur l’ouvre sur tout le cercle : ses seules compétences, chacune selon sa part des traces du pôle. Un clic au centre ramène à tous les pôles.</li>
               <li>Un secteur hachuré signale une présence encore à confirmer.</li>
               <li>Ce document montre ce que la personne a choisi de partager : il ne classe pas, ne compare à personne et ne dit rien de ce qui n’a pas été partagé.</li>

@@ -233,6 +233,26 @@ test('double-clic sur l’arc d’un pôle : ses compétences sur 360° ; clic a
     await page.emulateMedia({ colorScheme: 'light' })
   })
 
+  await test.step('Réglages : une autre palette recolore le soleil, gardée au rechargement ; « Valeurs par défaut » la ramène (D-64)', async () => {
+    const leaf = () => page.locator(`${SUN} path[role="button"][aria-label^="2.01 "]`).evaluate((el) => getComputedStyle(el).fill)
+    const settingsTile = async (on) => {
+      await page.locator('.carto-panels-menu > summary').click()
+      await page.getByRole('checkbox', { name: 'Réglages' }).setChecked(on)
+      await page.locator('.carto-panels-menu > summary').click()
+    }
+    await settingsTile(true)
+    const settings = page.locator('[data-tile="settings"]')
+    await settings.getByRole('radio', { name: 'Pastel' }).check()
+    await expect.poll(leaf).toBe('rgb(142, 229, 191)') // #8ee5bf, CŒUR en Pastel
+    await page.locator(SUN).screenshot({ path: test.info().outputPath('4-soleil-pastel.png') })
+    await page.reload()
+    await expect.poll(leaf).toBe('rgb(142, 229, 191)')
+    await expect(settings.getByRole('radio', { name: 'Pastel' })).toBeChecked()
+    await settings.getByRole('button', { name: 'Valeurs par défaut' }).click()
+    await expect.poll(leaf).toBe('rgb(4, 120, 87)')
+    await settingsTile(false)
+  })
+
   await test.step('la disposition est gardée au rechargement ; « Réinitialiser l’affichage » revient au départ', async () => {
     await page.reload()
     await expect(page.locator(`${SUN} [role="button"][aria-label^="2.01 "]`)).toHaveCount(1)
@@ -337,11 +357,11 @@ test.describe('écran tactile', () => {
       page.locator(`.v3-tile[data-tile-id="${id}"] .v3-tile-bar`).evaluate((bar) => Math.abs(bar.querySelector('.v3-tile-label').getBoundingClientRect().top - bar.querySelector('.v3-tile-tools').getBoundingClientRect().top) < 12)
     expect(await sameLine('sun')).toBe(true)
     await page.locator('.carto-panels-menu > summary').click()
-    await page.getByRole('checkbox', { name: 'Réglages de l’encodage' }).check()
+    await page.getByRole('checkbox', { name: 'Ensembles nommés' }).check()
     await page.locator('.carto-panels-menu > summary').click()
-    await expect(page.locator('.v3-tile[data-tile-id="settings"]')).toBeVisible()
-    expect(await sameLine('settings')).toBe(false)
-    expect((await titles(page)).find((t) => t.text === 'Réglages de l’encodage')).toEqual({ text: 'Réglages de l’encodage', cut: false })
+    await expect(page.locator('.v3-tile[data-tile-id="sets"]')).toBeVisible()
+    expect(await sameLine('sets')).toBe(false)
+    expect((await titles(page)).find((t) => t.text === 'Ensembles nommés')).toEqual({ text: 'Ensembles nommés', cut: false })
     await page.goto('/#/cartographie/tableau-de-bord')
     await expect(page.locator('.carto-dashboard section.carto-card')).toHaveCount(2)
     expect(await page.locator('.v3-tile[data-tile-id="rhythm"] .v3-tile-tools').evaluate((el) => getComputedStyle(el).opacity)).toBe('1')

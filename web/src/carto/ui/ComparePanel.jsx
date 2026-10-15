@@ -8,7 +8,7 @@
 import { useMemo, useState } from 'react'
 import { analysisRuns, changeNarrative, compareSets, comparePreset, radarScale, resolveSide, topDays } from '../core/compare.js'
 import { layoutSun } from '../core/state.js'
-import { ringShown } from '../core/formulas.js'
+import { confidenceGuides, ringShown } from '../core/formulas.js'
 import { buildHeatmap } from '../core/heatmap.js'
 import { allTags } from '../core/sets.js'
 import { canonicalJson } from '../core/model.js'
@@ -18,6 +18,7 @@ import { poleShortName } from '../core/referential.js'
 import { Sun, sectorPath } from './Sun.jsx'
 import { HeatmapBand } from './Heatmap.jsx'
 import { poleTone, poleVars } from './colors.js'
+import { usePalette } from './palette.js'
 import { SOURCE_LABELS } from './Manager.jsx'
 
 const nf1 = (x) => (typeof x === 'number' && Number.isFinite(x) ? x.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : '—')
@@ -154,11 +155,12 @@ function SideEditor({ letter, side, onChange, dataset, runs, tags, summary }) {
 
 /** Vue 2 : un soleil, A en plein, B en contour pointillé. */
 function SunOverlay({ refl, layoutA, layoutB, geometry, nameA, nameB }) {
+  const palette = usePalette()
   const R = geometry.competencies.rOut + 6
   // Un anneau masqué par le réglage de l'anneau des pôles (D-58) n'a rien à dessiner.
   const leaves = ringShown(geometry.competencies)
   const rings = ringShown(geometry.poles)
-  const guides = leaves ? [0.25, 0.5, 0.75, 1].map((c) => Math.sqrt(geometry.competencies.rIn ** 2 + geometry.k * c)) : []
+  const guides = confidenceGuides(geometry).filter((g) => !g.base).map((g) => g.r)
   const [polesA, polesB] = rings ? [layoutA.poles, layoutB.poles] : [[], []]
   const [compsA, compsB] = leaves ? [layoutA.competencies, layoutB.competencies] : [[], []]
   return (
@@ -168,10 +170,10 @@ function SunOverlay({ refl, layoutA, layoutB, geometry, nameA, nameB }) {
           <circle key={r} r={r} className="carto-sun-guide" />
         ))}
         {polesA.map((s) => (
-          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.num)?.color)} fillOpacity={0.35} fillRule="evenodd" />
+          <path key={`pa${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.num)?.color, palette)} fillOpacity={0.35} fillRule="evenodd" />
         ))}
         {compsA.map((s) => (
-          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.pole)?.color)} fillOpacity={0.8} fillRule="evenodd" />
+          <path key={`ca${s.code}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-c-fill" style={poleTone(refl.poleByNum.get(s.pole)?.color, palette)} fillOpacity={0.8} fillRule="evenodd" />
         ))}
         {polesB.map((s) => (
           <path key={`pb${s.num}`} d={sectorPath(s.rIn, s.rOut, s.a0, s.a1)} className="carto-cmp-outline" fillRule="evenodd" />
@@ -340,11 +342,12 @@ function CompareTable({ refl, cmp, nameA, nameB }) {
 }
 
 function CodeList({ refl, codes, empty }) {
+  const palette = usePalette()
   if (codes.length === 0) return <p className="carto-muted carto-small">{empty}</p>
   return (
     <ul className="carto-cmp-codes">
       {codes.map((c) => (
-        <li key={c} className="carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(c)?.pole)?.color)}>
+        <li key={c} className="carto-pole" style={poleVars(refl.poleByNum.get(refl.compByCode.get(c)?.pole)?.color, palette)}>
           <span className="carto-code">{c}</span> {refl.compByCode.get(c)?.name}
         </li>
       ))}
