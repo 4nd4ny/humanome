@@ -236,23 +236,43 @@ export function stripMarkdownMarks(s) {
 }
 
 /**
+ * Retire d'une ancre les barres d'un tableau Markdown (journal carto D-54) :
+ * un extrait recopié de lignes de tableau (« | case | case | | case… », lignes
+ * « | :--- | » comprises) est cherché dans un tableau RENDU, dont les cases ne
+ * sont séparées que par un blanc dans le texte affiché. Une barre échappée
+ * (« \| ») est du texte ; et comme une barre peut aussi en être sans échappement
+ * (« P(A | B) »), `locateRendered` n'essaie ce retrait qu'en dernier.
+ * @param {string} s
+ */
+export function stripTableMarks(s) {
+  if (typeof s !== 'string') return s
+  return s.replace(/\|?(?:[ \t]*:?-{3,}:?[ \t]*\|)+/gu, ' ').replace(/(?<!\\)\|/gu, ' ')
+}
+
+/**
  * Comme `locateExtract`, mais sur le texte AFFICHÉ d'un Markdown rendu : si
  * l'extrait n'est pas trouvé en entier tel quel, on réessaie sans ses marques
- * Markdown (le meilleur des deux résultats est gardé).
+ * Markdown, puis sans ses barres de tableau (le meilleur résultat est gardé :
+ * le premier complet, sinon le premier qui trouve quelque chose).
  */
 export function locateRendered(text, anchors, opts) {
   const direct = locateExtract(text, anchors, opts)
   if (direct.some((r) => r.complete)) return direct
   const a = anchors ?? {}
-  const stripped =
-    a.start !== undefined || a.end !== undefined
-      ? { start: stripMarkdownMarks(a.start ?? ''), end: a.end ? stripMarkdownMarks(a.end) : null }
-      : { extract: stripMarkdownMarks(a.extract ?? '') }
-  const same = stripped.extract !== undefined ? stripped.extract === a.extract : stripped.start === (a.start ?? '') && stripped.end === (a.end ?? null)
-  if (same) return direct
-  const retry = locateExtract(text, stripped, opts)
-  if (retry.some((r) => r.complete)) return retry
-  return direct.length > 0 ? direct : retry
+  const explicit = a.start !== undefined || a.end !== undefined
+  const variant = (strip) => (explicit ? { start: strip(a.start ?? ''), end: a.end ? strip(a.end) : null } : { extract: strip(a.extract ?? '') })
+  const key = (v) => JSON.stringify(explicit ? [v.start ?? '', v.end ?? null] : [v.extract])
+  const tried = new Set([key(a)])
+  let best = direct
+  for (const strip of [stripMarkdownMarks, (s) => stripMarkdownMarks(stripTableMarks(s))]) {
+    const v = variant(strip)
+    if (tried.has(key(v))) continue // même aiguille qu'avant : rien de nouveau à chercher
+    tried.add(key(v))
+    const retry = locateExtract(text, v, opts)
+    if (retry.some((r) => r.complete)) return retry
+    if (best.length === 0) best = retry
+  }
+  return best
 }
 
 // ---------------------------------------------------------------------------

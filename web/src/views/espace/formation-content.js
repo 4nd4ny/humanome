@@ -6,8 +6,8 @@
 // formation fonctionne donc aussi sur une copie statique/file:// (ADR-003).
 // import.meta.glob exige des motifs LITTÉRAUX : un glob par parcours.
 // index.md est exclu de la liste des chapitres : l'accueil de la formation est
-// reconstruit depuis les front-matter (le mini-parseur md.js ne rend pas les
-// tableaux Markdown de l'index, volontairement).
+// reconstruit depuis les front-matter (le tableau de chapitres de index.md
+// n'est pas affiché).
 //
 // Compatibilité : tous les points d'entrée gardent 'apprenant' par défaut —
 // les appels existants de l'espace apprenant sont inchangés.

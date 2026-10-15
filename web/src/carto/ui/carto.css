@@ -1723,6 +1723,73 @@ kbd {
 .carto-reader-text p {
   margin: 0 0 0.9rem;
 }
+/* Le portfolio rendu garde la hiérarchie de son document, comme à
+   l'impression (D-54) : titres gradués, listes en retrait, traits fins. */
+.carto-reader-text > :first-child {
+  margin-top: 0;
+}
+.carto-reader-text h1,
+.carto-reader-text h2,
+.carto-reader-text h3,
+.carto-reader-text h4,
+.carto-reader-text h5,
+.carto-reader-text h6 {
+  margin: 1.5em 0 0.45em;
+  line-height: 1.3;
+  font-size: 1em;
+}
+.carto-reader-text h1 {
+  font-size: 1.32em;
+}
+.carto-reader-text h2 {
+  font-size: 1.18em;
+}
+.carto-reader-text h3 {
+  font-size: 1.07em;
+}
+.carto-reader-text ul,
+.carto-reader-text ol {
+  margin: 0 0 0.9rem;
+  padding-left: 1.5em;
+}
+.carto-reader-text li {
+  margin: 0.15em 0;
+}
+.carto-reader-text li > p {
+  margin: 0 0 0.35em;
+}
+.carto-reader-text li > ul,
+.carto-reader-text li > ol {
+  margin: 0.15em 0 0.3em;
+}
+.carto-reader-text hr {
+  margin: 1.6em 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.carto-reader-text code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+.carto-reader-text pre {
+  margin: 0.9rem 0 1.1rem;
+  padding: 0.7em 0.9em;
+  /* Le lecteur est étroit : le code revient à la ligne plutôt que de défiler. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  background: var(--surface-2);
+}
+.carto-reader-text pre code {
+  padding: 0;
+  background: none;
+}
+.carto-reader-text a {
+  overflow-wrap: anywhere;
+}
 .carto-hl {
   color: #1c1917;
   border-radius: 2px;

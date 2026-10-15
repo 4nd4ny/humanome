@@ -3,7 +3,7 @@
 // jaune / orange ; toutes les occurrences ; Markdown assaini.
 import { describe, expect, it } from 'vitest'
 import { approximateInPortfolio, collectText, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
-import { locateRendered, splitExtract, stripMarkdownMarks } from '../core/highlight.js'
+import { locateExtract, locateRendered, splitExtract, stripMarkdownMarks } from '../core/highlight.js'
 
 const frag = (html) => {
   const t = document.createElement('template')
@@ -98,8 +98,10 @@ describe('highlightHtml', () => {
     expect(text).not.toContain('\u000b')
     expect(text).not.toContain('![')
     expect(text).toContain('séance :\n[image][image]')
-    expect(text).toContain('Titre de l’encadré\n\nPremière ligne\nLa deuxième ligne')
+    // L'encadré (tableau d'une seule case) : un saut virtuel à chaque <br>.
+    expect(text).toContain('Titre de l’encadré\nPremière ligne\nLa deuxième ligne')
     expect(html).toContain('<br>')
+    expect(html).toContain('class="md-box')
     // Extraits du jury recopiés du texte brut : images et sauts compris.
     for (const extract of [
       'Mes notes avant la séance :  \n![][image1]![][image2]\n\nMes notes après la séance :  \n![][image3]',
@@ -108,6 +110,48 @@ describe('highlightHtml', () => {
       const found = locateInPortfolio(portfolio, splitExtract(extract))
       expect(found.some((r) => r.complete)).toBe(true)
     }
+  })
+
+  it('tableaux et encadrés rendus (D-54) : un extrait recopié avec ses « | » est retrouvé en entier, case par case', () => {
+    const portfolio = {
+      text:
+        '### 7.1.2026\n\n| Étape | Ce que j’ai fait | Ce que j’en retiens |\n| :---- | :---- | :---- |\n' +
+        '| Lundi | J’ai relu le plan | Il manque une étape. |\n| Mardi | J’ai testé le montage | Les appuis tiennent. |\n\n' +
+        '| 💡 Une idée : noter P(A | B) avant de conclure. |\n| :---: |\n\nEnsuite, P(A | B) vaut presque 1.',
+    }
+    const { html, text } = renderPortfolio(portfolio)
+    expect(html).toContain('<table class="md-table">')
+    expect(html).toContain('class="md-box md-align-center"')
+    expect(text).not.toContain(':----')
+    // Des barres aux deux bouts : introuvable tel quel, retrouvé en entier et
+    // sans raccourcir l'extrait une fois les barres retirées.
+    for (const extract of ['| Lundi | J’ai relu le plan |', '| Lundi | J’ai relu le plan | Il manque une étape. | | Mardi | J’ai testé le montage |']) {
+      expect(locateExtract(text, splitExtract(extract))).toEqual([])
+      expect(locateInPortfolio(portfolio, splitExtract(extract)).some((r) => r.complete && r.exact)).toBe(true)
+    }
+    // Une barre qui est du texte (dans un encadré, dans un paragraphe) reste cherchée telle quelle.
+    for (const extract of ['Une idée : noter P(A | B) avant de conclure.', 'Ensuite, P(A | B) vaut presque 1.']) {
+      expect(locateExtract(text, splitExtract(extract)).some((r) => r.complete && r.exact)).toBe(true)
+    }
+    // Le surlignage se pose case par case, jamais autour d'une case entière.
+    const ranges = locateInPortfolio(portfolio, splitExtract('| Lundi | J’ai relu le plan | Il manque une étape. |'))
+    const marks = marksOf(highlightHtml(html, ranges).html)
+    // (La ponctuation finale d'un extrait n'est jamais surlignée.)
+    expect(marks.map((m) => m.textContent)).toEqual(['Lundi', 'J’ai relu le plan', 'Il manque une étape'])
+    for (const m of marks) expect(['TD', 'TH']).toContain(m.parentElement.tagName)
+  })
+
+  it('un <br> sépare deux lignes dans le texte affiché (sinon elles se colleraient)', () => {
+    expect(collectText(frag('<p>fin de ligne<br>ligne suivante</p>')).text).toBe('fin de ligne\nligne suivante')
+    const { breaks } = collectText(frag('<p>un<br>deux</p>'))
+    expect(breaks).toEqual([2])
+  })
+
+  it('une journée scindée juste avant un trait s’affiche en entier (pas de front-matter dans un portfolio)', () => {
+    const portfolio = { text: '---\n\nAprès-midi.\n\n---\n\nSoir.' }
+    const { text } = renderPortfolio(portfolio)
+    expect(text).toContain('Après-midi.')
+    expect(locateInPortfolio(portfolio, { extract: 'Après-midi.' }).some((r) => r.complete)).toBe(true)
   })
 
   it('le Markdown du portfolio est assaini : aucun script, aucune ressource distante', () => {
