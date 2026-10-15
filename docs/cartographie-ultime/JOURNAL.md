@@ -51,6 +51,8 @@ autorisation, puis fusionné dans `main` (D-46).
 | Comparaison : deux moitiés | première moitié des journées analysées face à la seconde, par défaut et par un préréglage ; remplace janvier et mars (D-51) | ✅ | ✅ 2 tests réécrits (cœur, interface) | ✅ | voir §5 |
 | En-tête allégé | « Réinitialiser l’affichage » ; ni « Comparer A / B », ni « Exporter », ni case « mode expert » (ses réglages deviennent une tuile) ; légende du soleil sur deux lignes, toujours (D-52) | ✅ | ✅ voir D-53 | ✅ | voir §5 |
 | Cartographie en tuiles | douze tuiles masquables, déplaçables, redimensionnables ; au départ, le soleil et le détail ; disposition gardée dans le navigateur (D-53) | ✅ | ✅ 25 tests (disposition, interface, copie autonome) + e2e Chromium + relecture indépendante | ✅ | voir §5 |
+| Q32 — tableaux et rendu | Markdown rendu par marked : tableaux, encadrés, listes numérotées et imbriquées, styles « comme à l'impression » ; surlignage identique sur les 2 392 traces (D-54) | ✅ | ✅ voir §3 + 2 392 traces revérifiées + relecture indépendante | ✅ | voir §5 |
+| Q33 — traits à l'import | après un titre daté, un trait ne coupe plus : il reste dans sa journée ; export du portfolio adapté (D-55) | ✅ | ✅ voir §3 + journal de la démonstration redécoupé en ses 67 journées | ✅ | voir §5 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -1828,6 +1830,140 @@ navigateur. »
 - Docs : guides du visiteur (chapitre 2), de l'apprenant et du cartographe
   (chapitre 7), aide de la cartographie.
 
+### D-54 — Le Markdown rendu comme à l'impression : tableaux, encadrés, listes (question 32) **[décidé]**
+
+Christian (2026-10-15, 0 h 59) : « Les tableaux qui ne sont pas rendus.
+Quelles sont les 13 journées de la démonstration et les 9 chapitres de
+formation concernés ? Ok pour les rendre en vrais tableaux. Idem pour faire un
+encadré autour des tableaux d'une seule case. Mais la question plus générale
+est de savoir si on affiche du Markdown brut comme si c'était du code, ou si
+on lui applique les styles correspondant au rendu imprimable. […] Pour moi,
+être capable de surligner les passages est plus important que le rendu. Mais
+s'il existe un librairie javascript + CSS capable de faire un rendu plus
+élégant tout en conservant le surlignage, alors je veux bien qu'elle soit
+utilisée. »
+
+- **Les tableaux** : dans la démonstration, 37 tableaux sur 13 journées —
+  27 vrais tableaux (2, 3 et 7 janvier, dont 19 ce jour-là ; 13 et 14 mars)
+  et 10 tableaux d'une seule case, que Google Docs écrit pour un encadré
+  (28 et 30 décembre ; 23 et 30 janvier ; 3 et 10 février ; 4 et 29 mars).
+  Dans la formation, 12 tableaux sur 9 chapitres : administrateur 2,
+  apprenant 1, cartographe 2, employeur 1 et 2, promptologue 1 à 4.
+- **Le Markdown n'était déjà pas montré comme du code** : titres, gras,
+  italique, listes à puces, citations, liens et traits étaient mis en forme.
+  Restaient à l'état brut les tableaux, les listes numérotées (des lignes de
+  texte), les listes imbriquées (aplaties) et les blocs de code ; et le petit
+  moteur maison lisait mal les gras sur plusieurs lignes ou imbriqués.
+- **Bibliothèque** : **marked** 18.0.14 (CommonMark et tableaux GFM),
+  13,5 Ko compressés, +2 % du site. markdown-it 15 rend la même chose pour
+  41 Ko ; il n'y a pas de bibliothèque qui surligne à notre place : le
+  surlignage reste le nôtre, il lit le texte affiché. La feuille de style est
+  la nôtre aussi (`web/src/styles/markdown.css`, et la typographie du lecteur
+  dans `carto.css`), aux couleurs du site, thèmes clair et sombre : tableaux
+  à filets fins et en-tête sur fond discret, encadré à cadre fin, titres
+  gradués, listes en retrait, code sur fond discret.
+- **Surlignage inchangé, mesuré** : sur la démonstration, par le chemin du
+  lecteur, l'issue de **chacune des 2 392 traces est la même avant et
+  après**, une à une (2 356 passages retrouvés tels quels, 28 en partie, 2
+  dans la feuille d'un autre jour, 1 approché, 5 introuvables). Dans un
+  tableau rendu, deux cases sont séparées par un blanc dans le texte
+  affiché ; un extrait recopié avec ses « | » est cherché sans elles en
+  dernier recours (une barre peut aussi être du texte : « P(A | B) ») ; le
+  surlignage se pose case par case.
+- **Ce qui change à l'écran, sur la démonstration** : 27 tableaux,
+  10 encadrés, 9 listes numérotées (38 éléments), les listes imbriquées ;
+  barres verticales visibles : de 586 à 20 (du texte) ; le code collé le
+  30 janvier s'affiche tel qu'écrit, astérisques compris (l'ancien moteur en
+  faisait du gras) ; quatre titres vides ne montrent plus « ### ».
+- **Réglages**, pour qu'un journal s'affiche comme son document et que rien
+  de ce qui y est écrit ne disparaisse (`web/src/lib/md.js`) :
+  - tableau : alignement des colonnes en classes (l'attribut `style` est
+    interdit par l'assainissement) ; une ligne qui a plus de cases que
+    l'en-tête garde le surplus dans sa dernière case (marked le jetterait :
+    Google Docs n'échappe pas les « | ») ; défilement horizontal sur un écran
+    étroit plutôt qu'un mot coupé ;
+  - **encadré** : un tableau d'une seule case et sans autre ligne ; ses blancs
+    sont gardés (le code de deux encadrés de la démonstration garde son
+    retrait), son alignement aussi (centré le 28 décembre) ;
+  - liste numérotée : le numéro écrit est celui affiché ;
+  - **[choix d'implémentation]** écarts assumés au CommonMark, pour des
+    journaux : un trait sous une ligne reste un trait (pas de titre
+    « souligné ») ; un retrait n'est pas du code ; un bloc ``` ou ~~~ n'en est
+    un que refermé ; le HTML écrit reste du texte ; seul `[texte](url)` fait
+    un lien ; « [nom]: valeur » reste du texte (seules les données d'image de
+    Google Docs sont cachées) ; barré : `~~texte~~` seulement ; échappements
+    aussi dans le code inline (D-49) ;
+  - **[choix d'implémentation]** un gras fermé après un blanc
+    (« **texte **suite » ; deux fois le 13 mars, avec une espace fine) ou
+    ouvert avant reste du gras : Google Docs l'écrit ainsi quand le blanc
+    voisin est en gras ; le blanc passe hors des astérisques, hors code. Pas
+    pour l'italique seul : essayé, il prenait la fermeture d'une citation en
+    italique (« *"…"*, puis … *mot* ») pour une ouverture ;
+  - images, U+000B, cases de tâches : comme en D-49 (« [image] », saut de
+    ligne, « [ ] » écrit).
+- **Formation** : 12 tableaux rendus ; 9 chapitres perdent leurs astérisques
+  parasites (gras sur plusieurs lignes, gras et italique croisés que l'ancien
+  moteur appariait mal) ; « &lt;id&gt; » affichait ses entités : il affiche
+  `<id>`. Un « **n'**atteste » (gras fermé sur une apostrophe devant une
+  lettre, que le CommonMark ne ferme pas) devient « **n'atteste pas** »
+  (employeur, chapitre 3).
+- **Relecture indépendante** (agent distinct) : 13 points ; corrigés — cases
+  en trop jetées, définitions « [nom]: valeur » qui cachaient une ligne,
+  bloc de code jamais refermé qui avalait la journée, barré d'un seul tilde,
+  numéros de liste récrits par le navigateur, gras à blanc d'un seul côté,
+  détection du code dans cette réparation, mot coupé dans un tableau sur
+  téléphone, journée scindée juste avant un trait dont le début disparaissait
+  (lu comme un front-matter), recherche répétée à l'identique, version de
+  marked non figée, titre d'un lien réécrit perdu, rendu lent sur des « ![ »
+  répétés ; un test qui ne prouvait pas qu'il passait par le retrait des
+  barres. **[choix d'implémentation]** Un fichier exporté avant D-55 (voir
+  ci-dessous) n'est pas reconnu comme tel.
+- **Rapidité** : un journal de 400 Ko se rend en 0,4 s. Un paragraphe
+  pathologique (100 Ko d'astérisques et d'accents graves alternés, sans ligne
+  vide) prend une vingtaine de secondes, dans marked même : aucun texte réel
+  n'en approche, et il ne ralentit que le navigateur qui l'affiche.
+- Code : `web/src/lib/md.js` (marked, réglages), `core/highlight.js`
+  (`stripTableMarks`, `locateRendered`), `ui/highlight-dom.js` (un `<br>`
+  sépare deux lignes dans le texte affiché ; un portfolio n'a pas de
+  front-matter), `web/src/styles/markdown.css`, `carto.css` (lecteur).
+- Docs : guides de l'apprenant (chapitre 7) et du visiteur (chapitre 2).
+
+### D-55 — Un trait reste dans sa journée (question 33) **[décidé]**
+
+Christian (2026-10-15, 0 h 59) : « Un journal de Google Docs importé **tel
+quel** dans l'interface se découpe encore à chacun de ses traits (`---`), qui
+ouvrent une partie sans date. Les remplacer par des balises <hr> de sorte que
+dans un texte qui a des titres datés, un trait ne coupe plus — il reste un
+trait dans sa journée. »
+
+- **[choix d'implémentation]** Le trait reste `---` dans le texte, qu'on ne
+  retouche pas, et s'affiche en `<hr>`, comme depuis D-49 : c'est le
+  découpage qui change. Écrire la balise `<hr>` dans le texte l'aurait
+  affichée en toutes lettres (le HTML écrit dans un texte reste du texte,
+  ADR-007).
+- **Règle** (`engine/src/portfolio/segment.js`, le même découpage partout :
+  import de l'interface, module Portfolio, export) : un séparateur (`---`,
+  `***`, `___`, `===`) ne coupe qu'avant le premier titre daté ; après, il
+  reste un trait dans sa journée. Un texte sans aucun titre daté coupe à
+  chaque trait, comme avant.
+- **Vérifié sur la démonstration** : le journal reconstitué (ses 67 journées
+  bout à bout, traits rétablis) se découpait en 187 parties, dont 120 sans
+  date portant 99,6 % du texte ; il se découpe désormais en ses **67
+  journées**, mêmes dates, mêmes textes. L'archive de la démonstration n'a
+  rien à refaire : ses traits, espacés depuis D-48 (« - - - »), s'affichent
+  pareil.
+- **Export du portfolio** (question 20) : les journées gardent leurs traits
+  tels quels (plus de « - - - ») ; **les passages sans date passent en tête
+  du fichier**, chacun après un trait `***` — avant le premier titre daté, un
+  trait coupe encore — leurs propres traits espacés et leurs dates seules
+  précédées d'un « — ». Réexporté, le fichier ne change plus.
+  **[choix d'implémentation]** Un fichier exporté avant ce déploiement
+  (format du 14 octobre, passages sans date à la fin) : réimporté, ces
+  passages se rattachent à la dernière journée, à re-scinder dans le
+  gestionnaire ; un dialogue versé qu'il contient n'est pas doublé.
+- Docs : cas d'utilisation UC-APP-01 (règle RG5 bis), guide de l'apprenant
+  (chapitre 7).
+
 ---
 
 ## 3. État des tests
@@ -2180,6 +2316,18 @@ Suites complètes après D-53 : site **2 315 verts** (237 fichiers) ; moteur
 inchangé ; e2e Chromium : les 16 scénarios (11 fichiers) verts, dont ceux qui
 passent par l'API locale (Docker).
 
+### Tableaux, rendu, traits (D-54, D-55)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `lib/md.test.js` | listes numérotées (premier numéro, numéros écrits gardés), imbriquées, cases de tâches écrites ; blocs ``` refermés, ~~barré~~ seulement ; tableaux (en-tête, lignes, alignement en classes, mise en forme dans les cases, surplus de cases gardé dans la dernière, barre échappée) ; encadré (alignement, barres intérieures, sauts U+000B) ; assainissement qui garde tableaux et encadrés ; écarts pour les journaux (trait sous une ligne, retrait, adresses et HTML en texte, « [nom]: valeur » en texte, données d'image cachées, bloc jamais refermé, « ```code``` » inline) ; U+000B dans un titre, du code, une image ; gras à blanc réparé (espace fine comprise), jamais l'italique seul, ni une citation en italique, ni le code ; titre d'un lien réécrit ; « ![ » répété rendu vite ; cas de D-49 réécrits pour la sortie de marked | 20 → 38 |
+| `ui/highlight-dom.test.js` | tableau et encadré rendus : extrait aux barres introuvable tel quel, retrouvé en entier sans raccourcir l'extrait ; barre qui est du texte retrouvée telle quelle ; surlignage case par case ; un `<br>` sépare deux lignes du texte affiché ; journée scindée avant un trait affichée en entier | 10 → 13 |
+| `core/highlight.test.js` | `stripTableMarks` (barres, lignes de séparation, même recopiées bout à bout ; barre échappée gardée) ; `locateRendered` : barre de texte cherchée telle quelle, barre de tableau retirée en dernier | 21 → 23 |
+| `core/portfolio-md.test.js` | traits gardés tels quels dans une journée ; passages sans date en tête, après `***`, leurs traits espacés et leurs dates neutralisées ; réexport identique ; dialogue d'un export d'avant D-55 jamais doublé | 9 → 10, 3 réécrits |
+| moteur : `portfolio/segment.test.js` | après un titre daté, un trait reste dans sa journée (couverture contiguë du texte) ; avant, il coupe encore | 31 → 32 |
+| moteur : UC-APP-01-U21 | séparateur : journée non datée avant le premier titre daté, trait dans sa journée après (RG5 bis) | réécrit |
+| démonstration (scripts temporaires, non versionnés, sur la VM du Mac) | les 2 392 traces par le chemin du lecteur, avant et après, une à une ; tableaux, encadrés, listes et marques visibles dans le texte affiché des 67 journées ; le journal reconstitué découpé par l'ancien et le nouveau découpage | voir D-54, D-55 |
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -2289,7 +2437,7 @@ Question posée après la démonstration avec portfolio (D-48) :
     web. » Suite : fait — avec les sauts de ligne, les carrés « VT » et les
     images — et déployé (D-49).
 
-Questions ouvertes après D-49 :
+Questions posées après D-49 :
 
 32. Les **tableaux** (`| … | … |`, puis `| --- | --- |`) ne sont pas rendus :
     leurs lignes s'affichent bout à bout, barres verticales comprises, dans
@@ -2297,14 +2445,25 @@ Questions ouvertes après D-49 :
     rendre en vrais tableaux (règle du GFM) ? Google Docs fait aussi d'un
     encadré un tableau d'une seule case (le 4 mars, un texte entier) : il
     deviendrait un encadré. Le surlignage suivrait : 29 extraits du jury
-    recopient des lignes de tableau avec leurs `|`.
+    recopient des lignes de tableau avec leurs `|`. → **Décidé** (2026-10-15,
+    0 h 59) : « Ok pour les rendre en vrais tableaux. Idem pour faire un
+    encadré autour des tableaux d'une seule case. […] s'il existe un
+    librairie javascript + CSS capable de faire un rendu plus élégant tout en
+    conservant le surlignage, alors je veux bien qu'elle soit utilisée. »
+    Suite : fait avec la bibliothèque marked et une feuille de style du site,
+    surlignage identique sur les 2 392 traces ; déployé (D-54).
 33. Un journal de Google Docs importé **tel quel** dans l'interface se découpe
     encore à chacun de ses traits (`---`), qui ouvrent une partie sans date :
     celui de la démonstration donnerait 188 parties, dont 120 sans date qui
     portent 98,5 % du texte (la démonstration y échappe : son archive est
     préparée à part, D-48). Proposition : dans un texte qui a des titres
     datés, un trait ne coupe plus — il reste un trait dans sa journée ; sans
-    aucun titre daté, il coupe comme aujourd'hui.
+    aucun titre daté, il coupe comme aujourd'hui. → **Décidé** (2026-10-15,
+    0 h 59) : « Les remplacer par des balises <hr> de sorte que dans un texte
+    qui a des titres datés, un trait ne coupe plus — il reste un trait dans sa
+    journée. » Suite : fait — le trait reste `---` dans le texte et s'affiche
+    en `<hr>` ; l'export du portfolio place ses passages sans date en tête ;
+    déployé (D-55).
 
 ---
 
@@ -2424,3 +2583,10 @@ Questions ouvertes après D-49 :
   cartographie en tuiles (D-53) : douze tuiles, au départ le soleil et le
   détail, disposition gardée dans le navigateur. Relu par un agent distinct
   (six corrections) ; déployé et vérifié en ligne.
+- **2026-10-15** — Questions 32 et 33 (D-54, D-55) : le Markdown rendu par la
+  bibliothèque marked — tableaux, encadrés, listes numérotées et imbriquées,
+  styles comme à l'impression — avec un surlignage identique sur les
+  2 392 traces de la démonstration ; un trait ne coupe plus une journée
+  datée (journal de la démonstration redécoupé en ses 67 journées), l'export
+  du portfolio place ses passages sans date en tête. Relu par un agent
+  distinct (13 points traités) ; déployé et vérifié en ligne.

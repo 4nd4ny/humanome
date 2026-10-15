@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-53, état des tests, les 33 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-55, état des tests, les 33 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -123,6 +123,16 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     disposition gardée dans le navigateur (`localStorage`). Relu par un agent distinct (six
     corrections). Suites : front **2 315 verts**, e2e Chromium **16 sur 16**. Déployé (front) et
     vérifié en ligne.
+  - **Questions 32 et 33** (D-54, D-55, accord de Christian du 2026-10-15) : le Markdown passe par
+    la bibliothèque **marked** 18.0.14 (CommonMark et tableaux GFM, version figée), réglée pour les
+    journaux (écarts documentés en tête de `lib/md.js`), avec une feuille de style du site
+    (`styles/markdown.css`) : tableaux, encadrés (tableau d'une seule case), listes numérotées et
+    imbriquées ; surlignage identique, trace par trace, sur les 2 392 traces de la démonstration.
+    Le découpage (`engine/src/portfolio/segment.js`) ne coupe plus à un trait après un titre
+    daté : le journal de la démonstration, importé tel quel, donne ses 67 journées ; l'export du
+    portfolio place ses passages sans date en tête. Relu par un agent distinct (13 points
+    traités). Suites : front **2 339 verts**, moteur **1 073** + 17 sautés, e2e Chromium
+    **16 sur 16**. Déployé (front) et vérifié en ligne.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

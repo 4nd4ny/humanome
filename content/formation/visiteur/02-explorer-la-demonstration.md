@@ -82,7 +82,9 @@ Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 Le portfolio de la démonstration est consultable : sous chaque trace,
 **« Ouvrir dans le portfolio »** ouvre le texte de la journée et surligne le
 passage que le jury a retenu — en jaune s'il est retrouvé tel quel, en orange
-si un seul bout l'est. Les flèches mènent à la journée précédente ou suivante.
+si un seul bout l'est. Le texte garde la mise en forme du journal : titres,
+listes, tableaux et encadrés. Les flèches mènent à la journée précédente ou
+suivante.
 
 Pour regarder un pôle de près, **double-cliquez** sur son arc dans l'anneau
 intérieur (au clavier : « o ») : il s'ouvre sur tout le cercle, à la place du

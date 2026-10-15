@@ -48,7 +48,10 @@ Les fichiers sont lus dans votre navigateur et rangés dans un **jeu de
 données**. Un **rapport d'import** classe ce qu'il a vu en quatre gravités :
 *bloquant* (fichier écarté), *à arbitrer*, *avertissement*, *information*.
 Importez votre portfolio avec vos analyses : sans lui, les passages ne peuvent
-pas être surlignés.
+pas être surlignés. Un journal tenu dans Google Docs s'importe tel quel, dans
+son export Markdown : chaque titre daté ouvre une journée, et les traits
+horizontaux restent des traits dans leur journée — seul un trait placé avant
+le premier titre daté sépare des passages sans date.
 
 ## Lire le soleil
 
@@ -92,7 +95,9 @@ vous déplacez la date t ; choisir une compétence d'un autre pôle le referme.
 ## Relire une trace, et y répondre
 
 Dans le panneau de détail, chaque trace a son bouton **« Ouvrir dans le
-portfolio »** : le lecteur s'ouvre sur la journée et marque le passage.
+portfolio »** : le lecteur s'ouvre sur la journée et marque le passage. Le
+texte y est mis en forme comme dans votre document : titres, listes,
+tableaux, encadrés (une case de tableau seule devient un encadré).
 
 - **Surligné en jaune** : le passage est retrouvé tel quel.
 - **Surligné en orange** : un seul bout est retrouvé (l'extrait a pu être
