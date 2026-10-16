@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-68, état des tests, les 41 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-70, état des tests, les 42 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -196,6 +196,11 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
   - **Remarque du 2026-10-16, 18 h 35** (D-69) : la date de la seconde lecture se dit comme celle
     de l'analyse (faite après le journal), une fois ; « Réflexions des membres du jury » : une ligne
     par membre, un niveau de moins à déplier. Suites : front 2 468 verts, cartographie 527.
+  - **Remarque du 2026-10-16, 19 h 21** (D-70, question 42) : la hauteur d'un secteur suit la
+    confiance sur une échelle régulière, comptée depuis le départ (0,25) — 0,5 au tiers de
+    l'anneau, 0,75 aux deux tiers — au lieu d'une aire proportionnelle, qui étirait le bas de
+    l'échelle ; la légende perd sa ligne « Surface ». Suites : front 2 469 verts, cartographie 527,
+    e2e Chromium du soleil verts.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

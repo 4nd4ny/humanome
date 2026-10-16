@@ -74,6 +74,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Démonstration enrichie | dès qu'on y met quelque chose à soi, elle se copie dans le navigateur ; l'ancien dossier de version peut se retirer du site (D-67) | ✅ | ✅ voir §3 + seconde relecture indépendante | ✅ | `6c50346` |
 | Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
 | Seconde lecture : date et jury | la date dite comme celle de l'analyse, une fois ; « Réflexions des membres du jury » : une ligne par membre, un niveau de moins (D-69) | ✅ | ✅ voir §3 | ✅ | `22a44a5` |
+| Hauteur proportionnelle | la hauteur dessinée d'un secteur suit la confiance sur une échelle régulière, du départ (0,25) au bord : 0,5 au tiers de l'anneau, 0,75 aux deux tiers ; cercles à intervalles égaux ; l'aire n'encode plus rien en soi (D-70) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `c922004` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2820,6 +2821,60 @@ les réflexions des membres du jury ? »
   Sociologue) ; un membre déplié : sa synthèse, puis sa délibération
   complète ; aucun défilement horizontal au téléphone.
 
+### D-70 — La hauteur d'un secteur suit la confiance sur une échelle régulière **[décidé]**
+
+Christian (2026-10-16, 19 h 21) : « Une ultime réflexion pour cette
+interface par rapport au carto-sun. Actuellement l'affichage de la surface
+d'un secteur est proportionnel au poid * confiance. Mais visuellement, ça
+accorde beaucoup d'importance au valeurs de confiance basses du secteur. Sans
+changer l'angle (le nombre d'occupantes), on pourrait donner plus de relief
+en attribuant un rayon proportionnel au niveau de confiance (la hauteur du
+secteur) plus qu'une surface proportionnelle. Ce faisant, on valorisera
+davantage les secteurs ayant un bon niveau de confiance. Donc 50% de
+confiance = 50% du rayon max, 75% =0,75 * rayon max. Est-ce que cela te
+semble acceptable? »
+
+- **Analyse, soumise à Christian** avec une planche de quatre soleils de la
+  démonstration, rendus par le code du site (toute la période ; le 7 janvier
+  2026, confiances de 0,30 à 0,82) : r_ext² = r_int² + k·h gardait l'aire
+  proportionnelle, mais déformait l'échelle que l'œil lit, celle des
+  hauteurs contre les cercles pointillés : de 0,25 à 0,5, 45 % de l'anneau ;
+  de 0,75 à 1, 24 %. Le bas étiré, le haut tassé : c'est le poids qu'il
+  voyait donné aux confiances basses. Ses chiffres (« 50 % de confiance =
+  50 % du rayon ») comptent la hauteur depuis 0 ; avec le départ de D-65,
+  cela aurait fait l'inverse de ce qu'il cherche : la compétence la plus
+  faible de la démonstration (0,35) passait de 22 % à 35 % de l'anneau, et
+  le rapport entre la plus haute (0,68) et la plus basse tombait de 3,1 à
+  1,9. Proposé : une hauteur proportionnelle comptée depuis le départ.
+  Montrée aussi, une variante au départ de 0,4 : relief net, mais tout
+  verdict à 0,4 ou moins réduit à l'épaisseur minimale (environ 15 % des
+  verdicts d'une journée).
+- **Décidé** (question 42) : « Proposé, départ 0,25 ».
+- **Formule** : h = (C − c₀) / (1 − c₀) ne change pas ;
+  r_ext = r_int + h·(R − r_int). Avec le départ par défaut, 0,5 est au tiers
+  de l'anneau, 0,75 aux deux tiers, 1 au bord ; les cercles pointillés sont
+  à intervalles égaux. Le départ reste un réglage : à 0, h = C et 50 % de
+  confiance est à mi-hauteur, comme dans son exemple.
+- **Effet sur la démonstration** : toute la période, la hauteur médiane
+  passe de 56 % à 44 % de l'anneau, la plus faible (0,35) de 22 % à 13 %, le
+  rapport entre la plus haute et la plus basse de 3,1 à 4,3 ; la moitié
+  centrale des compétences (0,53 à 0,61) bouge peu entre elles. Sur une
+  journée, l'écart se voit davantage : le rapport des hauteurs entre une
+  confiance de 0,8 et une de 0,4 passe de 2,7 à 3,7.
+- **L'aire n'encode plus rien en soi** : la ligne « Surface : points ×
+  hauteur » quitte la légende ; « Pourquoi cette surface ? » garde son nom
+  (il dit pourquoi le secteur a cette forme : son angle, sa hauteur) et
+  donne la formule du rayon ; l'épaisseur minimale y est dite « hauteur
+  dessinée ». La géométrie perd sa capacité k, le code ses fonctions d'aire.
+  Le critère d'acceptation « aire = θ·k·C/2 » (spec §14) devient : angle
+  dessiné = θ, hauteur dessinée proportionnelle à C.
+- **Ce qui le dit** : la légende (« Les cercles pointillés marquent 0,5,
+  0,75 et 1, à intervalles égaux ») ; les guides de l'apprenant (0,5 au tiers
+  de la hauteur, 0,75 aux deux tiers), du cartographe et du visiteur. La
+  version partagée et le rapport imprimé suivent l'encodage du site, comme
+  pour D-58 et D-65 : les données d'une version figée ne changent pas, sa
+  lecture suit le site.
+
 ---
 
 ## 3. État des tests
@@ -3359,6 +3414,18 @@ le site. Tous traités, chacun avec son test.
 Suites : site **2 468 verts** (243 fichiers), puis la cartographie rejouée
 avec le test ajouté : **527 verts** (42 fichiers).
 
+### La hauteur proportionnelle (D-70)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/formulas.test.js` | la hauteur dessinée suit la confiance : à mi-hauteur pour 0,5 sans départ, chaque quart de confiance la même hauteur ; avec le départ 0,25, 0,5 au tiers et 0,75 aux deux tiers ; le rapport des hauteurs de 0,68 et 0,35 (4,3) ; cercles guides à intervalles égaux ; plus de capacité k ni d'aire | adaptés |
+| `core/state.test.js` | chaque compétence dessinée : angle = θ, hauteur proportionnelle à C ; « Pourquoi cette surface ? » donne la formule du rayon, plus celle de l'aire | adaptés |
+| `ui/CartoApp.test.jsx` | la formule du rayon dite dans « Pourquoi cette surface ? » | adapté |
+| `ui/Tiles.test.jsx` | la légende : cercles à intervalles égaux, plus de ligne « Surface » | adapté |
+
+Suites : site **2 469 verts** (243 fichiers), dont la cartographie **527
+verts** (42 fichiers) ; e2e Chromium du soleil verts.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -3627,6 +3694,16 @@ Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
     développement et de démonstration ; la production viendra sur un autre
     serveur, le développement terminé.
 
+Question posée avec D-70 (2026-10-16) :
+
+42. Hauteur d'un secteur : « Proposé, départ 0,25 » (hauteur proportionnelle
+    comptée depuis le départ : 0,5 au tiers, 0,75 aux deux tiers), « Votre
+    exemple, départ 0 » (hauteur = confiance ; sur la démonstration, moins de
+    relief qu'avant), « Variante, départ 0,4 » (relief fort ; tout verdict à
+    0,4 ou moins réduit à l'épaisseur minimale) ou « Garder l'actuel », avec
+    la planche des quatre soleils. → **Décidé** (2026-10-16) : « Proposé,
+    départ 0,25 ». Suite : fait (D-70).
+
 ---
 
 ## 5. Chronologie
@@ -3827,3 +3904,8 @@ Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
   s'arrête fin mars ; elle se dit désormais comme celle de l'analyse, une
   fois. Les réflexions des membres du jury passent de quatre clics à trois :
   sous leur titre, une ligne par membre.
+- **2026-10-16** — Remarque de Christian de 19 h 21 (D-70) : la surface
+  proportionnelle donnait trop de poids aux confiances basses. Planche de
+  quatre soleils à l'appui, son exemple chiffré comptait depuis 0 et aurait
+  produit l'inverse ; il a choisi la hauteur proportionnelle comptée depuis
+  le départ (0,25) : 0,5 au tiers de l'anneau, 0,75 aux deux tiers.
