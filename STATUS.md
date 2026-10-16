@@ -200,7 +200,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     confiance sur une échelle régulière, comptée depuis le départ (0,25) — 0,5 au tiers de
     l'anneau, 0,75 aux deux tiers — au lieu d'une aire proportionnelle, qui étirait le bas de
     l'échelle ; la légende perd sa ligne « Surface ». Suites : front 2 469 verts, cartographie 527,
-    e2e Chromium du soleil verts.
+    e2e Chromium du soleil verts. Déployé et vérifié en ligne.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

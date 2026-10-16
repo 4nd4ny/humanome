@@ -2874,6 +2874,13 @@ semble acceptable? »
   version partagée et le rapport imprimé suivent l'encodage du site, comme
   pour D-58 et D-65 : les données d'une version figée ne changent pas, sa
   lecture suit le site.
+- **Déployé** (front : trois fichiers envoyés, l'ancien paquet retiré) et
+  vérifié en ligne (Chromium) : les cercles pointillés à 106,7, 148,3 et 190
+  (0,5, 0,75 et 1 ; le pied à 65), à intervalles égaux ; les 56 secteurs de
+  la démonstration à la hauteur attendue, à moins d'une unité près (la
+  confiance de leur étiquette est arrondie) — 4.03 (0,35) à 13 % de
+  l'anneau, 6.01 (0,68) à 57 % ; la légende sans ligne « Surface » ;
+  « Pourquoi cette surface ? » donne la formule du rayon.
 
 ---
 
