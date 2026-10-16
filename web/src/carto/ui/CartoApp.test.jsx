@@ -628,7 +628,9 @@ describe('« Pourquoi cette surface ? » (composant)', () => {
     expect(stats).toContain('Confiance0,70')
     expect(stats).toContain('Hauteur0,60')
     expect(screen.getByText(/hauteur h = \(C − 0,25\) \/ \(1 − 0,25\)/)).toBeTruthy()
-    expect(screen.getByText(/surface = θ · k · h \/ 2/)).toBeTruthy()
+    // La hauteur dessinée lui est proportionnelle (D-70).
+    expect(screen.getByText(/rayon r_ext = r_int \+ h · \(R − r_int\) : la hauteur dessinée est proportionnelle à h/)).toBeTruthy()
+    expect(screen.queryByText(/surface =/)).toBeNull()
     expect(screen.queryByText(/Épaisseur minimale/)).toBeNull()
     // Une confiance qui dépasse à peine le départ : invisible, et dite comme telle.
     cleanup()

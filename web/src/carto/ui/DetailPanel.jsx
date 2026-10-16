@@ -33,10 +33,8 @@ export function SunLegend({ poleRing = true, origin = DEFAULT_PARAMS.heightOrigi
       <dd>
         confiance moyenne du jury dans ses verdicts, de {from} au pied du secteur à 1 au bord extérieur
         {origin > 0 ? ` (à ${from} ou moins, le secteur garde une épaisseur minimale)` : ''}. Les cercles pointillés marquent{' '}
-        {frList(GUIDE_LEVELS.filter((c) => c > origin + 1e-9))}. Ce n’est ni un niveau de maîtrise ni une force.
+        {frList(GUIDE_LEVELS.filter((c) => c > origin + 1e-9))}, à intervalles égaux. Ce n’est ni un niveau de maîtrise ni une force.
       </dd>
-      <dt>Surface</dt>
-      <dd>{origin > 0 ? `points × hauteur (la confiance comptée à partir de ${from}).` : 'confiance × points.'}</dd>
       {poleRing ? (
         <>
           <dt>Anneau intérieur</dt>

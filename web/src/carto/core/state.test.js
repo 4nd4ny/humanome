@@ -1,10 +1,11 @@
 // État affiché état(S, t) et disposition du soleil — critères d'acceptation P0
 // (spec §14) : 1 compétence = 360° ; l'ajout d'une 2ᵉ la fait passer à 180° ;
-// aire = θ·k·C/2.
+// angle dessiné = θ et hauteur dessinée proportionnelle à C (journal D-70, à la
+// place de aire = θ·k·C/2).
 import { describe, expect, it } from 'vitest'
 import { computeDayState, computeState, explainSurface, layoutPole, layoutSun } from './state.js'
 import { normalizeReferential } from './referential.js'
-import { annularSectorArea, encodedArea, ringGeometry, toRadians } from './formulas.js'
+import { ringGeometry, toRadians } from './formulas.js'
 import { indexDataset, miniReferential } from '../test/fixtures.js'
 import { chooseVariant, setActive } from './ops.js'
 
@@ -31,7 +32,7 @@ describe('critères d’acceptation P0', () => {
     expect(after.competencies.get('2.01').theta).toBeCloseTo(180)
   })
 
-  it('aire de chaque compétence dessinée = θ·k·C/2 ; un pôle occupe toute la hauteur de son anneau (D-58)', () => {
+  it('chaque compétence dessinée : angle = θ, hauteur proportionnelle à C (D-70) ; un pôle occupe toute la hauteur de son anneau (D-58)', () => {
     const ds = indexDataset([
       { date: '2025-12-22', verdicts: [{ code: '1.01', confidence: 0.8, roles: ['preuve', 'indice'] }, { code: '1.02', confidence: 0.55, roles: ['indice'] }] },
       { date: '2025-12-23', verdicts: [{ code: '2.01', confidence: 0.9, roles: ['preuve'] }, { code: '1.01', confidence: 0.6, roles: ['indice'] }] },
@@ -39,9 +40,11 @@ describe('critères d’acceptation P0', () => {
     ])
     const s = computeState(ds, { ref })
     const layout = layoutSun(s, ref, geometry, { minThickness: 0 })
+    const { rIn, rOut } = geometry.competencies
     for (const sector of layout.competencies) {
-      const area = annularSectorArea(sector.a1 - sector.a0, sector.rIn, sector.rOut)
-      expect(area).toBeCloseTo(encodedArea(toRadians(sector.theta), geometry.k, sector.confidence), 6)
+      expect(sector.a1 - sector.a0).toBeCloseTo(toRadians(sector.theta), 6)
+      expect(sector.rIn).toBe(rIn)
+      expect(sector.rOut - sector.rIn).toBeCloseTo(sector.confidence * (rOut - rIn), 6)
     }
     for (const pole of layout.poles) {
       // Un élément d'interface, pas une mesure : quelle que soit sa confiance.
@@ -243,6 +246,9 @@ describe('journée seule et explication', () => {
     expect(e.traces[0]).toMatchObject({ date: '2025-12-22', role: 'preuve', weight: 1, confidence: 0.8 })
     expect(e.days).toEqual(['2025-12-22'])
     expect(e.formulas.intensity).toMatch(/points = Σ w/)
+    // Sans départ (géométrie seule) : la hauteur dessinée est proportionnelle à C (D-70) ; plus de formule d'aire.
+    expect(explainSurface(s, { type: 'competency', code: '1.01' }, { origin: 0 }).formulas).toMatchObject({ radius: expect.stringMatching(/r_ext = r_int \+ C · \(R − r_int\)/) })
+    expect(e.formulas.area).toBeUndefined()
     const p = explainSurface(s, { type: 'pole', num: 2 })
     expect(p.members).toEqual([{ code: '2.01', theta: expect.any(Number), confidence: 0.5, days: 1 }])
   })

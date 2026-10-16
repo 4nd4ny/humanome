@@ -168,10 +168,13 @@ describe('menu « Panneaux »', () => {
     fireEvent.click(panel('Légende'))
     await waitFor(() => expect(tile('legend')).toBeTruthy())
     expect(within(tile('legend')).getByText('Hachures')).toBeTruthy()
-    // La légende dit d'où part la hauteur.
+    // La légende dit d'où part la hauteur, et que ses cercles sont à intervalles égaux (D-70) : plus de ligne « Surface ».
     expect(
-      within(tile('legend')).getByText(/de 0,25 au pied du secteur à 1 au bord extérieur \(à 0,25 ou moins, le secteur garde une épaisseur minimale\)\. Les cercles pointillés marquent 0,5, 0,75 et 1\./),
+      within(tile('legend')).getByText(
+        /confiance moyenne du jury dans ses verdicts, de 0,25 au pied du secteur à 1 au bord extérieur \(à 0,25 ou moins, le secteur garde une épaisseur minimale\)\. Les cercles pointillés marquent 0,5, 0,75 et 1, à intervalles égaux\./,
+      ),
     ).toBeTruthy()
+    expect(within(tile('legend')).queryByText('Surface')).toBeNull()
     fireEvent.click(within(tile('legend')).getByRole('checkbox', { name: /distinctions renforcées/ }))
     await waitFor(async () => expect((await store.loadDataset('ds-lou')).preferences.reinforced).toBe(true))
   })

@@ -60,7 +60,8 @@ le premier titre daté sépare des passages sans date.
   compétence a de traces, plus son secteur est large.
 - **La hauteur** est la **confiance moyenne du jury** dans ses verdicts : le
   pied du secteur vaut 0,25, le bord extérieur 1 ; les cercles pointillés
-  marquent 0,5, 0,75 et 1. Ce n'est ni un niveau de maîtrise ni une note. Les
+  marquent 0,5, 0,75 et 1, à intervalles égaux (0,5 au tiers de la hauteur,
+  0,75 aux deux tiers). Ce n'est ni un niveau de maîtrise ni une note. Les
   confiances du jury se tiennent d'ordinaire entre 0,3 et 0,7 : compter la
   hauteur à partir de 0,25 rend leurs écarts visibles. Ce départ se règle dans
   « Réglages » (de 0 à 0,5) ; une confiance qui ne le dépasse pas garde un
