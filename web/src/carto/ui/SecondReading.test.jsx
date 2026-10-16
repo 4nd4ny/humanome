@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import CartoApp from './CartoApp.jsx'
-import { matchTraces, readingName } from './SecondReading.jsx'
+import { SecondReadings, analysisDate, matchTraces, readingName } from './SecondReading.jsx'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
@@ -101,9 +101,25 @@ describe('seconde lecture : les traces de ce jury, rapprochées de celles des jo
     expect(matchTraces([{ date: '2025-12-22', role: 'indice', extract: 'deux sources' }], main)[0].same).toBeNull()
     expect(matchTraces([{ date: '2025-12-22', role: 'indice', extract: '' }], main)[0].same).toBeNull()
   })
-  it('son nom dit le jury et la date de l’analyse', () => {
-    expect(readingName({ source: 'aurora-core', analysedAt: '2026-04-25' })).toBe('jury AuroraCore du 25 avril 2026')
+  it('son nom dit le jury ; sa date est celle de l’analyse, faite après le journal, et le dit (D-69)', () => {
+    expect(readingName({ source: 'aurora-core', analysedAt: '2026-04-25' })).toBe('jury AuroraCore')
     expect(readingName({ source: 'autre', analysedAt: null })).toBe('jury autre')
+    expect(analysisDate({ analysedAt: '2026-04-25' })).toBe('analyse faite le 25 avril 2026')
+    expect(analysisDate({ analysedAt: null })).toBeNull()
+  })
+})
+
+describe('plusieurs secondes lectures d’une compétence', () => {
+  it('chacune dit sa date d’analyse sur sa ligne ; la phrase de la section n’en dit aucune', () => {
+    const reading = (id, analysedAt, status) => ({ id, source: 'aurora-core', analysedAt, codes: { '1.01': { status, rawStatus: null, confidence: 0.7, proofs: 2, hints: 0 } }, poles: [] })
+    const dataset = { days: [], readings: [reading('LOU@2026-04-19', '2026-04-19', 'established'), reading('LOU@2026-05-02', '2026-05-02', 'needs_review')] }
+    render(<SecondReadings dataset={dataset} code="1.01" getDetail={() => undefined} getRunDetail={() => undefined} ensureRunDetail={() => {}} />)
+    const section = screen.getByRole('region', { name: 'Seconde lecture' })
+    expect([...section.querySelectorAll('details.carto-second-reading > summary')].map((x) => x.textContent)).toEqual([
+      'Jury AuroraCore (analyse faite le 19 avril 2026) : présence établie · confiance 0,7 · 2 preuves, 0 indice',
+      'Jury AuroraCore (analyse faite le 2 mai 2026) : renvoi au cartographe · confiance 0,7 · 2 preuves, 0 indice',
+    ])
+    expect(within(section).getByText(/^D’autres analyses des mêmes écrits, faites chacune sur tout le journal/)).toBeTruthy()
   })
 })
 
@@ -125,7 +141,9 @@ describe('seconde lecture dans le panneau de détail', () => {
     await select('1.01 ')
     const section = await within(detail()).findByRole('region', { name: 'Seconde lecture' }, { timeout: 3000 })
     const item = section.querySelector('details.carto-second-reading')
-    expect(item.querySelector('summary').textContent).toBe('Jury AuroraCore du 25 avril 2026 : présence établie · confiance 0,75 · 1 preuve, 1 indice')
+    // La date de l'analyse se dit une fois, comme telle ; la ligne dit le verdict.
+    expect(within(section).getByText('Une autre analyse des mêmes écrits, faite le 25 avril 2026 sur tout le journal d’un coup : elle se lit ici et ne change pas le soleil.')).toBeTruthy()
+    expect(item.querySelector('summary').textContent).toBe('Jury AuroraCore : présence établie · confiance 0,75 · 1 preuve, 1 indice')
     // Repliée : la délibération n'est pas lue.
     await new Promise((r) => setTimeout(r, 30))
     expect(runReads).not.toContain('LOU@2026-04-25|1.01')
@@ -148,11 +166,18 @@ describe('seconde lecture dans le panneau de détail', () => {
     expect(items[0].querySelector('blockquote')).toBeNull()
     expect(items[1].querySelector('blockquote').textContent).toBe("J'ai noté chaque modification dans un tableau.")
 
+    // Les réflexions des membres du jury : une ligne par membre, sans autre repli (D-69).
+    const members = within(section).getByRole('region', { name: 'Réflexions des membres du jury' })
+    expect(members.closest('details')).toBe(item)
+    expect([...members.querySelectorAll('details.carto-jury-voice > summary')].map((x) => x.textContent)).toEqual([
+      'Linguiste — présence établie · confiance 0,8',
+      'Sociologue — présence non établie · confiance 0,5',
+    ])
+    expect(within(members).getByText('Le vocabulaire du doute est précis.')).toBeTruthy()
     // Ce qui a conduit à la décision, en dessous, repliable.
-    const summaries = [...section.querySelectorAll('details.carto-jury-section > summary')].map((s) => s.textContent)
-    expect(summaries).toEqual(['Traces retenues par ce jury', 'Éclairages des voix', 'Raisonnement du président'])
+    const summaries = [...section.querySelectorAll('details.carto-jury-section > summary')].map((x) => x.textContent)
+    expect(summaries).toEqual(['Traces retenues par ce jury', 'Raisonnement du président'])
     expect(within(section).getByText('Le Sociologue doute du contexte.')).toBeTruthy()
-    expect(within(section).getByText('Le vocabulaire du doute est précis.')).toBeTruthy()
 
     // Une trace de ce jury s'ouvre dans le portfolio, surlignée dans sa journée.
     fireEvent.click(within(items[1]).getByRole('button', { name: 'Ouvrir dans le portfolio' }))
@@ -173,7 +198,7 @@ describe('seconde lecture dans le panneau de détail', () => {
     await mount(store)
     await select('Pôle TÊTE')
     const reports = await within(detail()).findByRole('region', { name: 'Rapports du pôle' }, { timeout: 3000 })
-    const summary = within(reports).getByText('Rapport de pôle — seconde lecture, jury AuroraCore du 25 avril 2026 (porte sur tout le journal)')
+    const summary = within(reports).getByText('Rapport de pôle — seconde lecture, jury AuroraCore (porte sur tout le journal ; analyse faite le 25 avril 2026)')
     await new Promise((r) => setTimeout(r, 30))
     expect(runReads).not.toContain('LOU@2026-04-25|pole:1')
     fireEvent.click(summary)
