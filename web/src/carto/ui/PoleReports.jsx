@@ -1,26 +1,39 @@
 // Interface ultime — panneau de détail d'un pôle, partie « rapports » (spec
 // §6.4) : rapport de pôle de chaque journée (portrait, territoires denses,
 // pistes) et passages saillants repliables, ouvrables dans le portfolio. Les
-// « territoires non visités » ne sont PAS affichés : une compétence non
-// observée n'est jamais listée comme manquante (§1.2).
+// « territoires non visités » et les « émergences » ne sont PAS affichés, ni
+// le rapport complet rédigé qui les contient : une compétence non observée
+// n'est jamais listée comme manquante (§1.2, D-16).
 
 import { contributingVariant } from '../core/model.js'
 import { formatLong, formatShort } from '../core/dates.js'
+import { plainText } from '../core/restatement.js'
 import { Markdown } from './Jury.jsx'
 
 const txt = (v) => (v === null || v === undefined ? '' : String(v))
-const squash = (v) => txt(v).replace(/\s+/g, ' ').trim()
+const MIN_CONTAINED = 30 // un passage plus court, contenu dans un extrait cité, peut l'être par hasard
 
 /**
- * Passages saillants qui ne sont pas déjà cités dans les territoires denses du
- * même rapport : un extrait ne se lit qu'une fois (journal D-66).
+ * Les passages saillants d'un rapport, rapprochés des territoires denses qui
+ * citent déjà leur extrait (le même, ou un extrait qui le contient) : un tel
+ * passage se lit sous son territoire, par son seul contexte — l'extrait ne se
+ * redit pas (journal D-66) ; les autres se lisent à part. Un passage plus
+ * long que l'extrait cité reste à part, entier : il en dit plus.
+ * @param {object[]} passages
+ * @param {object[] | null | undefined} denseTerritories
+ * @returns {{byTerritory: Map<number, object[]>, others: object[]}} byTerritory : par indice de territoire
  */
-export function otherPassages(passages, denseTerritories) {
-  const cited = (denseTerritories ?? []).map((d) => squash(d?.extraitVerbatim)).filter(Boolean)
-  return passages.filter((p) => {
-    const e = squash(p?.extract)
-    return !e || !cited.some((c) => c === e || c.includes(e) || e.includes(c))
-  })
+export function placePassages(passages, denseTerritories) {
+  const cited = (denseTerritories ?? []).map((d, i) => ({ i, text: ` ${plainText(d?.extraitVerbatim)} ` })).filter((c) => c.text.trim())
+  const byTerritory = new Map()
+  const others = []
+  for (const p of passages) {
+    const e = plainText(p?.extract)
+    const hit = e ? cited.find((c) => c.text === ` ${e} ` || (e.length >= MIN_CONTAINED && c.text.includes(` ${e} `))) : undefined
+    if (hit) byTerritory.set(hit.i, [...(byTerritory.get(hit.i) ?? []), p])
+    else others.push(p)
+  }
+  return { byTerritory, others }
 }
 
 function PassageItem({ extract, context, date, label, onOpenPassage }) {
@@ -53,7 +66,9 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
     if (vd?.runId && !runIds.includes(vd.runId)) runIds.push(vd.runId)
     return { date, vd }
   })
-  const withReports = blocks.filter((b) => b.vd === undefined || b.vd?.poleReports?.[num] || b.vd?.passages?.some((p) => Number(p.pole) === num))
+  // Une journée dont le rapport n'a rien d'affichable (un texte complet seul, D-16) n'ouvre pas de bloc vide.
+  const shown = (r) => Boolean(txt(r?.portrait).trim() || r?.denseTerritories?.length || r?.leads?.length)
+  const withReports = blocks.filter((b) => b.vd === undefined || shown(b.vd?.poleReports?.[num]) || b.vd?.passages?.some((p) => Number(p.pole) === num))
 
   return (
     <section className="carto-pole-reports" aria-label="Rapports du pôle">
@@ -70,11 +85,10 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
       {withReports.length > 0 ? <h3>Rapports de pôle par journée</h3> : null}
       {withReports.map(({ date, vd }, i) => {
         const report = vd?.poleReports?.[num] ?? null
-        const passages = otherPassages(
+        const { byTerritory, others: passages } = placePassages(
           (vd?.passages ?? []).filter((p) => Number(p.pole) === num),
           report?.denseTerritories,
         )
-        const cited = report?.denseTerritories?.some((d) => d?.extraitVerbatim)
         return (
           <details key={date} className="carto-pole-report" open={i === 0 || undefined}>
             <summary>{formatShort(date)}</summary>
@@ -84,13 +98,19 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
               <>
                 <h4>Territoires denses</h4>
                 <ul className="carto-plain-list">
-                  {report.denseTerritories.map((d) => (
+                  {report.denseTerritories.map((d, ti) => (
                     <li key={`${txt(d?.competence)}|${txt(d?.extraitVerbatim).slice(0, 40)}`}>
                       <p>
                         <strong>{txt(d?.competence)}</strong> — {txt(d?.description)}
                       </p>
                       {d?.extraitVerbatim ? <blockquote className="carto-trace-quote">{txt(d.extraitVerbatim)}</blockquote> : null}
                       {d?.ceQueCaDit ? <p className="carto-small">{txt(d.ceQueCaDit)}</p> : null}
+                      {/* Le même extrait, relevé aussi comme passage saillant : son contexte seul (D-66). */}
+                      {[...new Set((byTerritory.get(ti) ?? []).map((p) => txt(p.context).trim()).filter(Boolean))].map((context) => (
+                        <p key={context} className="carto-small carto-muted">
+                          Passage saillant : {context}
+                        </p>
+                      ))}
                       {d?.extraitVerbatim ? (
                         <button
                           type="button"
@@ -118,7 +138,7 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
             {passages.length > 0 ? (
               <details>
                 <summary>
-                  {cited ? 'Autres passages saillants' : 'Passages saillants'} ({passages.length})
+                  {byTerritory.size > 0 ? 'Autres passages saillants' : 'Passages saillants'} ({passages.length})
                 </summary>
                 <ul className="carto-plain-list">
                   {passages.map((p) => (

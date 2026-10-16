@@ -17,6 +17,7 @@
 import { canonicalJson, contentHash, normalizeConfidence, normalizeRole, normalizeStatus, stableId, toCount } from '../model.js'
 import { splitExtract } from '../highlight.js'
 import { isIsoDate } from '../dates.js'
+import { keepKairosMarkdown, keepPoleReportMarkdown } from '../restatement.js'
 
 const str = (v) => (typeof v === 'string' ? v : '')
 const nullableStr = (v) => (typeof v === 'string' && v.trim() !== '' ? v : null)
@@ -195,9 +196,10 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
           emergences: nullableStr(r.emergencesPole),
           leads: Array.isArray(r.pistes) ? r.pistes : [],
         }
-        // Le rapport complet rédigé reprend ses rubriques mot pour mot : gardé
-        // seulement quand il est seul (journal D-66).
-        poleReports[poleNum] = { ...report, markdown: hasPoleReportFields(report) ? null : (nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown)) }
+        // Le rapport complet rédigé redit souvent ses rubriques : gardé seulement
+        // s'il dit autre chose qu'elles (journal D-66).
+        const full = { ...report, markdown: nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown) }
+        poleReports[poleNum] = keepPoleReportMarkdown(full) ? full : { ...report, markdown: null }
       }
       if (doc.auditPole) audits[poleNum] = doc.auditPole
     }
@@ -225,9 +227,10 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
         betweenTheLines: nullableStr(ap.ceQuiEmergeEntreLesLignes),
         invitations: Array.isArray(ap.invitationsPourLaSuite) ? ap.invitationsPourLaSuite : [],
       }
-      // La synthèse complète reprend ces rubriques mot pour mot : gardée
-      // seulement quand elle est seule (journal D-66).
-      kairosDetail = { ...fields, markdown: hasKairosFields(fields) ? null : nullableStr(ap.syntheseCompleteMarkdown) }
+      // La synthèse complète redit ces rubriques mot pour mot : gardée seulement
+      // si elle dit autre chose qu'elles (journal D-66).
+      const full = { ...fields, markdown: nullableStr(ap.syntheseCompleteMarkdown) }
+      kairosDetail = keepKairosMarkdown(full) ? full : { ...fields, markdown: null }
     } else {
       add('arbitrate', 'kairos-alternatif', 'Kairos de schéma inconnu : conservé tel quel, non affiché')
     }
@@ -261,37 +264,6 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
     emergences,
   }
   return { summary, detail, report, codes: [...seenCodes] }
-}
-
-/** Un portrait kairos a-t-il ses rubriques (portrait, forme du profil…) ? */
-export function hasKairosFields(k) {
-  return Boolean(k?.portrait || k?.profileShape || k?.linksAcrossPoles || k?.betweenTheLines || k?.invitations?.length)
-}
-
-/** Un rapport de pôle a-t-il ses rubriques ? */
-export function hasPoleReportFields(r) {
-  return Boolean(r?.portrait || r?.denseTerritories?.length || r?.unvisited || r?.emergences || r?.leads?.length)
-}
-
-/**
- * Détail d'une variante sans les textes complets qui ne font que redire leurs
- * rubriques (journal D-66) : appliqué aussi aux archives et aux démonstrations
- * construites avant, pour que ce qui est gardé dans ce navigateur soit allégé.
- * @param {object} detail
- */
-export function withoutRestatements(detail) {
-  if (!detail || typeof detail !== 'object') return detail
-  const kairos = detail.kairos && detail.kairos.markdown && hasKairosFields(detail.kairos) ? { ...detail.kairos, markdown: null } : detail.kairos
-  let poleReports = detail.poleReports
-  if (poleReports && typeof poleReports === 'object') {
-    for (const [num, r] of Object.entries(poleReports)) {
-      if (r?.markdown && hasPoleReportFields(r)) {
-        if (poleReports === detail.poleReports) poleReports = { ...poleReports }
-        poleReports[num] = { ...r, markdown: null }
-      }
-    }
-  }
-  return kairos === detail.kairos && poleReports === detail.poleReports ? detail : { ...detail, kairos, poleReports }
 }
 
 /** Le document ressemble-t-il à un carto_Pn.json ? */

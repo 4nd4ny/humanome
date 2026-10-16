@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-65, état des tests, les 38 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-66, état des tests, les 40 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -161,6 +161,17 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     Relu par un agent distinct (aucun bloquant, six défauts traités). Suites : front **2 401
     verts**, e2e Chromium de la cartographie verts. Question 38 (la palette par défaut) posée.
     Déployé (front) et vérifié en ligne, au bureau et au téléphone.
+  - **Demande du 2026-10-16, 5 h 30** (D-66) : chaque information une fois. La « synthèse
+    complète » du portrait d'une journée ne s'affiche plus (59 sur 59 redisaient leurs
+    rubriques) ; seul ce qu'un texte complet ajoute se lit, et seul cela se garde à l'import et
+    à la relecture d'une archive (`core/restatement.js`, `docs/contrats.md` décision 10).
+    Panneau d'une compétence : plus de « Journées observées », ligne d'une journée sans les
+    chiffres du panneau quand elle est la seule, confiance finale du Pédagogue seulement si elle
+    diffère, sort de chaque pièce du Greffier ; délibération AuroraCore : la décision du
+    président d'abord ; pôle : un passage saillant déjà cité se lit sous son territoire. Suites :
+    front **2 420 verts**, e2e Chromium de la cartographie verts. Questions 39 (les
+    délibérations du jury : dans AuroraCore, sur le Mac — trois façons de les joindre) et 40
+    (lire les données à la demande : proposition en trois points) posées.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

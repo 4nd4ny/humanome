@@ -221,12 +221,23 @@ describe('P2 — panneau de détail, jury et droit de réponse', () => {
     expect(within(obs).getByText(/Conclusion adversariale/)).toBeTruthy()
     expect(within(obs).getByText('Pièce 1')).toBeTruthy()
     expect(within(obs).getByText(/exploratoire/)).toBeTruthy()
-    // Chaque information une fois (D-66) : la ligne de la journée dit statut, confiance et preuves ;
-    // la journée dépliée ne les redit pas, et les dates ne sont plus listées à part.
+    expect(within(obs).getByText('retenue comme preuve')).toBeTruthy() // le sort de la pièce dans le verdict
+    // Chaque information une fois (D-66) : 1.01 n'a que cette journée — sa ligne ne redit pas la
+    // confiance et les preuves des chiffres du panneau ; dépliée, elle ne redit pas sa ligne ; les
+    // dates ne sont plus listées à part.
     const day = obs.querySelector('details.carto-observation[open]')
-    expect(day.querySelector('summary').textContent).toMatch(/présence établie · confiance 0,8 · 1 preuve, 0 indice/)
+    expect(day.querySelector('summary').textContent).toBe('lun. 22 déc. 2025 · présence établie')
     expect([...day.querySelectorAll('.carto-verdict-facts dt')].map((dt) => dt.textContent)).toEqual(['Motif', 'Prescription'])
     expect(within(detail()).queryByText('Journées observées')).toBeNull()
+    expect(within(obs).queryByText(/confiance finale/)).toBeNull() // la même que celle du verdict
+    // Deux journées : chaque ligne dit sa confiance et ses preuves.
+    fireEvent.click(sector('3.02 '))
+    const obs2 = await within(detail()).findByRole('region', { name: 'Verdicts par journée' })
+    await waitFor(() => expect(obs2.querySelectorAll('details.carto-observation')).toHaveLength(2))
+    expect([...obs2.querySelectorAll('details.carto-observation > summary')].map((x) => x.textContent)).toEqual([
+      'mar. 23 déc. 2025 · renvoi au cartographe · confiance 0,5 · 0 preuve, 1 indice',
+      'mer. 24 déc. 2025 · présence établie · confiance 0,7 · 1 preuve, 1 indice',
+    ])
   })
 
   it('droit de réponse : Confirmer est enregistré dans ce navigateur, sans effet sur le soleil', async () => {
@@ -281,7 +292,7 @@ describe('P2 — panneau de détail, jury et droit de réponse', () => {
     expect(within(k).getByText('Deux massifs.')).toBeTruthy()
     // La synthèse complète ne faisait que redire ces rubriques : elle n'est plus là (D-66).
     expect(within(k).queryByText('Synthèse complète')).toBeNull()
-    expect(within(k).queryByText('Synthèse.')).toBeNull()
+    expect(within(k).getAllByText('Deux massifs.')).toHaveLength(1)
   })
 
   it('synthèse évolutive : visible pour son ensemble source, masquée avec un message sinon, rappelable', async () => {

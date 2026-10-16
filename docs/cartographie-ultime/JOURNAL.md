@@ -67,6 +67,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Palettes | « Réglages » (ex-« Réglages de l'encodage ») : cinq palettes des pôles, validées pour les daltoniens ; préférence du navigateur ; rapport et version partagée sur la palette par défaut (D-64) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 | Départ de la hauteur | la hauteur part d'une confiance réglable de 0 à 0,5, 0,25 par défaut ; épaisseur minimale de 1 à 6 px (D-65) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 | Déploiement | D-64 et D-65 : front déployé, vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-65 |
+| Chaque information une fois | portrait de la journée sans « Synthèse complète » ; compétence, pôle, modale du jour et rapport imprimé sans redites ; sort des pièces du Greffier ; décision du président d'abord ; textes complets qui ne font que redire non gardés (D-66) | ✅ | ✅ voir §3 + vérification Chromium sur la démonstration | ✅ | `073c632` et suivant |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2478,6 +2479,80 @@ paquet retiré ; l'archive de la démonstration, hors du manifeste, intacte.
 - seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
 - copies de travail effacées : paquets, dossiers de déploiement, fichier d'accès.
 
+### D-66 — Chaque information une fois **[décidé]**
+
+Christian (2026-10-16, 5 h 30) : « 1) Dans le panneau "Détail" de la
+cartographie, la "synthèse complète" reprends mot pour mot ce que l'on vient
+juste de lire au dessus. Élimine toutes les redondances d'informations dans
+les fichiers construits. 2) Par contre, lorsque j'ai voulu approfondir les
+réflexions du juré qui ont conduit à la décision du président pour la
+validité d'une trace de compétences, je ne l'ai pas trouvé. » Ses deux
+questions (3 et 4) : questions 39 et 40.
+
+- **Constat sur la démonstration** (59 journées, analyse Aurora v3) :
+  - la « synthèse complète » du portrait de chaque journée redit ses
+    rubriques, phrase à phrase : 59 sur 59 ; le rapport complet d'un pôle
+    (jamais affiché : il contient les territoires non visités, D-16) redit
+    les siennes 213 fois sur 405 ;
+  - panneau d'une compétence : la liste « Journées observées » redisait les
+    journées des verdicts ; la ligne d'une journée redisait les chiffres du
+    panneau quand la compétence n'en a qu'une ; la conclusion du Pédagogue
+    redisait la confiance du verdict (1 937 fois sur 1 937) ; un verdict
+    AuroraCore, réparti sur les journées de ses traces, redisait à chacune le
+    motif et la prescription du président ;
+  - panneau d'un pôle : 287 passages saillants sur 3 042 redisaient l'extrait
+    d'un territoire dense (278 le même, 9 une partie ; 282 autres le
+    contiennent et en disent plus) ;
+  - rapport imprimé : le niveau de preuve dit deux fois.
+- **La règle** (`core/restatement.js`, fonctions pures) : un texte complet ne
+  se garde et ne s'affiche que pour ce qu'il ajoute à ses rubriques. Une
+  phrase est « déjà dite » quand 85 % de ses mots s'y retrouvent, par suites
+  de quatre — à la typographie près (guillemets, apostrophes, ponctuation),
+  au balisage près (« **Titre.** texte » et « Titre — texte ») et à une
+  étiquette près (« Extrait : « … » »). Un texte sans rubriques reste tout le
+  contenu. Le master V3 n'a pas les invitations en rubrique : sa synthèse,
+  qui les contient, est gardée.
+- **À l'écran** :
+  - portrait de la journée : ses rubriques, puis « Suite du portrait » ; plus
+    de « Synthèse complète » ; ce qu'une synthèse dit de plus s'y lit, sous le
+    titre de sa section ;
+  - compétence : plus de « Journées observées » (les journées se lisent avec
+    leur verdict) ; la ligne d'une journée dit statut, confiance et preuves,
+    et le statut seul quand c'est la seule journée et qu'elle a les chiffres
+    du panneau ; dépliée, le motif et la prescription seulement ; l'analyse
+    dite une fois quand toutes les journées viennent de la même ; le statut
+    brut en info-bulle ; la confiance finale du Pédagogue seulement si elle
+    diffère de celle du verdict ;
+  - **réflexions du jury** (point 2) : chaque pièce du Greffier dit son sort
+    dans le verdict — « retenue comme preuve », « retenue comme indice »,
+    « non retenue » —, à côté du raisonnement du Pédagogue qui les cite par
+    numéro ; dans une délibération AuroraCore, la **décision du président**
+    (verdict argumenté, prescription) se lit d'abord, sans rien déplier, avec
+    les voix ; ce qui y a conduit se déplie au-dessous : « Éclairages des
+    voix », « Raisonnement du président » (convergences, tensions, analyse
+    réflexive, délibération complète), débat, pièces ;
+  - un verdict AuroraCore : son motif et sa prescription, ceux du président,
+    se lisent une fois — dans la délibération quand elle est là, à la
+    journée sinon ;
+  - pôle : un passage saillant dont l'extrait est déjà cité par un territoire
+    dense se lit sous ce territoire, par son seul contexte (« Passage
+    saillant : … ») ; les autres sous « Autres passages saillants » ; une
+    journée sans rien d'affichable n'ouvre plus de bloc vide ;
+  - modale du jour : les traces sans leur date (c'est le jour), le verdict
+    sans les chiffres de sa ligne ; une présence établie sans trace retenue
+    le dit sur sa ligne (son groupe dit « présence non établie ») ;
+  - rapport imprimé : niveau de preuve dit une fois (précautions de lecture),
+    chiffres d'une seule journée non redits, décision du président d'abord.
+- **Dans les fichiers construits** : à l'import (Aurora v3, master V3) et à la
+  relecture d'une archive, un texte complet qui ne fait que redire n'est pas
+  gardé (`docs/contrats.md`, décision 10 : une exception au « sans perte »,
+  aucun champ renommé). Détails de la démonstration : 17,3 → 15,8 Mo (les 59
+  synthèses, 0,34 Mo ; 213 rapports complets, 1,08 Mo).
+- **Pas fait, à décider** : un extrait est encore gardé jusqu'à trois fois par
+  journée (passages, pièces, traces : 1,6 Mo) ; ne le garder qu'une fois est
+  un changement de contrat (question 40).
+- Docs : `docs/contrats.md` (décision 10).
+
 ---
 
 ## 3. État des tests
@@ -2921,6 +2996,30 @@ version partagée et du stockage). Laissés : la marque d'un pôle et les puces
 de liste dans la couleur brute (décoratives), les codes du rapport imprimé
 entre 3,2 et 4,2:1 (antérieur, palette par défaut).
 
+### Chaque information une fois (D-66)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `ui/Redundancy.test.jsx` | ce qu'un texte complet ajoute : rien quand il redit (typographie, balisage, étiquette), ses phrases neuves sous leur titre ; portrait de la journée sans la synthèse qui le redit, ce qu'elle ajoute lu une fois dans la suite, une synthèse seule affichée ; verdict d'une journée (complet, sans la ligne, sans le statut, sans les textes du président) ; ligne d'une journée qui ne redit les chiffres du panneau que s'ils diffèrent ; motif AuroraCore tu seulement si la délibération est là et le dit ; décision du président d'abord, sans rien déplier, puis voix, éclairages et raisonnement ; décision non redite ; confiance finale du Pédagogue seulement si elle diffère ; sort des pièces ; passages saillants sous leur territoire (même extrait, une partie), à part s'ils en disent plus ou sont trop courts ; import : rubriques redites non gardées, un ajout gardé, un texte seul gardé, master V3 (invitations dans la seule synthèse) ; archive d'avant allégée à la lecture, l'original intact | 19 (nouveau) |
+| `ui/P2.test.jsx` | compétence d'une journée : sa ligne dit le statut seul, dépliée le motif et la prescription ; sort de la pièce ; pas de confiance finale redite ; compétence de deux journées : chaque ligne dit sa confiance et ses preuves ; portrait de la journée : la forme du profil une fois, plus de synthèse complète | renforcé |
+| `ui/CartoApp.test.jsx` | plus de « Journées observées » : les journées se lisent avec leur verdict | adapté |
+| `core/import.test.js` | le rapport complet d'un pôle qui redit ses rubriques n'est pas gardé | adapté |
+| `test/fixtures.js` | synthèse complète et rapport complet du jeu « Lou » : ils redisent leurs rubriques, comme d'ordinaire | adapté |
+| fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (identifiants de variante : leurs fichiers ont changé) | — |
+
+Suites complètes : site **2 420 verts** (240 fichiers) ; moteur inchangé ;
+e2e Chromium : soleil (souris et tactile), copie autonome, dialogue, partage
+(deux scénarios, contre l'API locale), verts. Vérifié aussi dans Chromium
+sur la démonstration : portrait sans phrase répétée, compétence d'une seule
+journée (6.01) sur sa ligne courte, sort des pièces, territoires et passages
+sans extrait répété (0 sur 14 dans le premier rapport de CŒUR). Relecture
+indépendante (un agent distinct, sur la première version) : cinq défauts,
+traités — la première règle (« des rubriques, donc pas de texte complet »)
+perdait les invitations du master V3 ; des passages plus longs que l'extrait
+cité étaient tus, et le contexte des autres perdu ; la décision du président
+enfouie à trois niveaux ; la confiance finale redite ; le niveau de preuve
+redit dans le rapport — et des tests manquants, ajoutés.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -3106,6 +3205,51 @@ Questions posées après D-55 :
     (relief : noms des pôles, tableau équivalent). Garder Contrastée par
     défaut, ou en choisir une autre ? *(en attente)*
 
+Questions posées avec D-66 (2026-10-16, 5 h 30) :
+
+39. « Est-ce que ces informations [les réflexions des jurés qui ont conduit à
+    la décision du président] sont disponibles dans les fichiers markdown ou
+    JSON produits par l'analyse de l'algorithme exécuté en amont, ou dois-je
+    les ajouter au projet en cours pour que tu puisses les publier ? »
+    → **Réponse** : la démonstration vient de l'analyse Aurora v3 par
+    journée, qui n'a qu'un juge, le Pédagogue : son examen en trois temps
+    (présomption d'absence, de complaisance, conclusion) est déjà affiché
+    (compétence → Verdicts par journée → une journée → Réflexions du jury),
+    et c'est tout ce que ces fichiers contiennent — ni six voix, ni
+    président. Le jury complet existe pour ce même journal : l'analyse
+    AuroraCore du 19 avril 2026 (`AuroraCore/portfolios/feuilles/300/`, sur
+    le Mac), 57 compétences (37 établies, 15 renvois, 5 non établies), par
+    compétence un verdict, la délibération des six voix et du président, un
+    briefing (3,0 Mo) et les pièces versées (3,1 Mo). Rien à ajouter :
+    l'interface lit déjà ce format.
+    Mais l'importer tel quel ajouterait une seconde analyse aux 42 journées
+    (sur 59) où ses 180 traces sont datées : elles passeraient « à arbitrer »
+    et ne compteraient plus. **Trois
+    façons de faire, à choisir** : (A, proposée) garder les verdicts par
+    journée pour le soleil et joindre la délibération AuroraCore à chaque
+    compétence, en seconde lecture, sans effet sur le soleil ; (B) laisser
+    AuroraCore faire le soleil de ces 57 compétences ; (C) garder les deux
+    analyses et les confronter dans « Comparaison ». Données personnelles :
+    sur le site seulement, comme le portfolio (D-48). *(en attente)*
+40. « Comment peux-tu faire pour ne pas tout charger en mémoire et lire les
+    fichiers de données uniquement au moment où l'utilisateur les
+    sollicite ? » → **Réponse** : c'est déjà le cas pour l'essentiel —
+    l'index (journées, verdicts résumés, ~0,7 Mo) est en mémoire ; le détail
+    d'une journée (extraits, jury, rapports), le portfolio et une
+    délibération AuroraCore restent dans la base du navigateur jusqu'à ce
+    qu'on les ouvre. Trois points faibles : la démonstration se télécharge
+    d'un bloc à la première ouverture (18,4 Mo, 3,3 Mo compressés) ; ce qui
+    est lu reste en mémoire jusqu'au rechargement (une compétence observée
+    40 jours charge 40 journées) ; un extrait est gardé jusqu'à trois fois
+    par journée. **Proposition** : (1) la démonstration découpée en fichiers
+    statiques — un index, une journée par fichier, une délibération par
+    compétence, le portfolio par journée —, chacun lu quand on l'ouvre
+    (compatible avec l'hébergement : rien que des fichiers) ; (2) une
+    mémoire bornée, qui oublie les journées les moins récemment lues ; (3)
+    un extrait gardé une fois, la trace renvoyant à sa pièce (version 5 du
+    master, avec sa conversion). Le (1) et le (2) ne changent rien au
+    format ; le (3) en est un changement. *(en attente)*
+
 ---
 
 ## 5. Chronologie
@@ -3266,3 +3410,15 @@ Questions posées après D-55 :
   Relu par un agent distinct (aucun bloquant ; six défauts et des points
   mineurs traités). Question 38 posée (la palette par défaut). Déployé
   (front) et vérifié en ligne, au bureau et au téléphone.
+- **2026-10-16** — Demande de Christian de 5 h 30 (D-66) : chaque
+  information une fois. Le portrait d'une journée perd sa « Synthèse
+  complète », qui redisait ses rubriques (59 sur 59) ; seul ce qu'un texte
+  complet ajoute se lit, et seul cela se garde à l'import et à la relecture
+  d'une archive (`core/restatement.js`). Panneaux d'une compétence et d'un
+  pôle, modale du jour, rapport imprimé : ce qu'une ligne dit déjà ne se
+  redit plus. Pour le point 2, chaque pièce du Greffier dit son sort dans le
+  verdict, et une délibération AuroraCore montre d'abord la décision du
+  président. Relu par un agent distinct (cinq défauts, traités). Questions
+  39 (les délibérations du jury sont dans AuroraCore, sur le Mac : trois
+  façons de les joindre) et 40 (lire les données à la demande : proposition
+  en trois points) posées.

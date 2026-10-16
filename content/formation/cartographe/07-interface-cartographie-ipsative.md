@@ -74,8 +74,11 @@ l'apprenant, dans le sien.
 Choisissez un secteur : le panneau de détail donne sa part du soleil, sa
 confiance moyenne, ses preuves et ses indices, puis, **journée par journée**,
 le verdict (statut, confiance, motif, prescription), l'examen adversarial du
-Pédagogue et les pièces du Greffier — pour une analyse AuroraCore, les six
-éclairages, le président de séance et la délibération complète. La touche
+Pédagogue et les pièces du Greffier, chacune avec son sort (retenue comme
+preuve, comme indice, ou non retenue) — pour une analyse AuroraCore, la
+décision du président d'abord, puis les éclairages des six voix, son
+raisonnement et la délibération complète. Chaque information s'y lit une
+fois : ce qu'une ligne dit déjà ne se redit pas au-dessous. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
 les formules. Le panneau **« Réglages »** (menu « Panneaux » de la
 cartographie) règle le poids d'un indice, le départ de la hauteur (0,25 par

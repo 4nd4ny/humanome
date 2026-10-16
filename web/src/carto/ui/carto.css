@@ -1783,6 +1783,19 @@ kbd {
 .carto-pieces {
   padding-left: 1.2rem;
 }
+/* Sort d'une pièce dans le verdict (D-66) : la pastille des traces, au trait du pôle si retenue. */
+.carto-piece-fate {
+  font-size: 0.76rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0 0.4rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.carto-piece-fate--kept {
+  border-color: var(--pole-color, var(--accent));
+  color: var(--ink-soft);
+}
 .carto-verbatim {
   margin: 0.25rem 0;
   padding-left: 0.6rem;
@@ -1823,7 +1836,8 @@ kbd {
 .carto-kairos h3 {
   margin-bottom: 0.2rem;
 }
-.carto-kairos h4 {
+.carto-kairos h4,
+.carto-president-decision h4 {
   font-size: 0.88rem;
   margin: 0.6rem 0 0.2rem;
 }

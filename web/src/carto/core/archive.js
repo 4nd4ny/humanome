@@ -11,7 +11,7 @@
 
 import { KIND, SCHEMA_VERSION } from './model.js'
 import { isIsoDate } from './dates.js'
-import { withoutRestatements } from './importers/aurora-day.js'
+import { withoutRestatements } from './restatement.js'
 
 /** Nom de fichier conseillé : cartographie-<type>-<date>.json */
 export function archiveFileName(type, now = new Date().toISOString(), ext = 'json') {

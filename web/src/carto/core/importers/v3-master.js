@@ -14,7 +14,7 @@
 import { canonicalJson, contentHash, normalizeRole, observationKey, stableId } from '../model.js'
 import { splitExtract } from '../highlight.js'
 import { isIsoDate } from '../dates.js'
-import { hasKairosFields } from './aurora-day.js'
+import { keepKairosMarkdown } from '../restatement.js'
 
 const STATUSES = new Set(['established', 'not_established', 'needs_review', 'unknown'])
 const REVIEWS = new Set(['unreviewed', 'confirmed', 'nuanced', 'contested'])
@@ -142,10 +142,10 @@ export function importV3Master(master, { fileName = 'master-v3.json', now = new 
       betweenTheLines: kairos.ceQuiEmergeEntreLesLignes ?? null,
       invitations: [],
     }
-    // La synthèse complète reprend les rubriques : gardée seulement seule (D-66).
-    const kairosDetail = Object.keys(kairos).length
-      ? { ...kairosFields, markdown: hasKairosFields(kairosFields) ? null : (kairos.syntheseCompleteMarkdown ?? null) }
-      : null
+    // La synthèse complète : gardée seulement si elle dit autre chose que les
+    // rubriques (ici, les invitations n'y sont que dans la synthèse ; D-66).
+    const fullKairos = { ...kairosFields, markdown: kairos.syntheseCompleteMarkdown ?? null }
+    const kairosDetail = Object.keys(kairos).length ? (keepKairosMarkdown(fullKairos) ? fullKairos : { ...kairosFields, markdown: null }) : null
 
     variants.push({
       date,

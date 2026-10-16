@@ -228,6 +228,35 @@ par `scripts/extract-referentiel.mjs`.
      main, puis importé) est laissé de côté et nommé, le reste de l'archive
      part (relecture du 2026-10-14, journal D-41).
 
+10. **Master v4 : une exception au « sans perte », les textes complets qui
+    redisent leurs rubriques (2026-10-16, journal de la cartographie D-66).**
+    Christian : « Élimine toutes les redondances d'informations dans les
+    fichiers construits. » Une analyse Aurora v3 livre, à côté des rubriques
+    du portrait kairos (`portrait`, `formeProfil`, `ceQuiRelieLesPoles`,
+    `ceQuiEmergeEntreLesLignes`, `invitationsPourLaSuite`) et du rapport de
+    pôle (`portraitPole`, `territoiresDenses`, `territoiresNonVisites`,
+    `emergencesPole`, `pistes`), un texte complet rédigé
+    (`syntheseCompleteMarkdown`, `rapportCompletMarkdown`) qui les redit. À
+    l'import (Aurora v3, master V3) et à la relecture d'une archive, ce texte
+    n'est gardé que s'il ajoute au moins une phrase à ses rubriques
+    (`web/src/carto/core/restatement.js` : une phrase est « déjà dite » quand
+    85 % de ses mots s'y retrouvent par suites de quatre, à la typographie,
+    au balisage et aux étiquettes près) ; sinon le champ `markdown` du détail
+    vaut `null`. Les champs gardent leurs noms et leurs types, aucun n'est
+    renommé : une archive 4.x reste lisible dans les deux sens. Une archive
+    réimportée perd donc ce texte-là, et seulement lui ; les fichiers
+    d'analyse d'origine, eux, ne sont pas touchés. Mesuré sur la
+    démonstration : les 59 synthèses complètes ne disent rien de plus que
+    leurs rubriques ; 213 rapports complets de pôle sur 405 non plus.
+    - **Pas fait, à décider** (question 40 du journal) : un extrait est encore
+      gardé jusqu'à trois fois par journée — dans les passages saillants,
+      dans les pièces du Greffier et dans chaque trace qui les cite (avec son
+      contexte et ses ancres, 1,6 Mo sur 15,8 Mo pour la démonstration). Ne
+      le garder qu'une fois, la trace renvoyant à sa pièce, retire
+      `extract` des traces : c'est un changement de contrat (un lecteur 4.x
+      lit `traces[id].extract`), donc une version 5 du master, avec sa
+      conversion.
+
 ## 5. Note d'outillage
 
 `engine/src/validation.js` importe les schémas en imports JSON « nus »

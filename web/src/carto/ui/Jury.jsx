@@ -1,11 +1,12 @@
 // Interface ultime — réflexions du jury (spec §8.2).
 //
 // Délibération en sections dépliables à DEUX niveaux :
-//   1. six éclairages et président (AuroraCore : voix par voix, délibération
-//      complète au second niveau) ;
+//   1. AuroraCore : la décision du président d'abord (verdict argumenté,
+//      prescription, voix), puis les éclairages des voix et le raisonnement du
+//      président qui y ont conduit (délibérations complètes au second niveau) ;
 //   2. examen adversarial du Pédagogue (présomption d'absence, présomption de
 //      sycophantie, conclusion adversariale) ;
-//   3. pièces du Greffier (verbatim).
+//   3. pièces du Greffier (verbatim), chacune avec son sort dans le verdict.
 // Le verdict (statut, confiance, preuves, indices, motif, prescription) se lit
 // au-dessus, une seule fois (journal D-66).
 // Sources : carto-phone d'AuroraCore, DayView, CompetenceDiff.JuryDetail.
@@ -85,11 +86,16 @@ export function VerdictFacts({ verdict, detail, summary = true, status = true, t
   )
 }
 
-/** Examen adversarial du Pédagogue (Aurora v3). */
-export function PedagogueReview({ pedagogue }) {
+/**
+ * Examen adversarial du Pédagogue (Aurora v3).
+ * @param {{pedagogue: object, confidence?: number | null}} props confidence : celle du
+ *   verdict, déjà lue au-dessus — la confiance finale ne se dit que si elle en diffère (D-66)
+ */
+export function PedagogueReview({ pedagogue, confidence = null }) {
   const absence = pedagogue?.presomptionAbsence ?? null
   const syco = pedagogue?.presomptionSycophantie ?? null
   const conclusion = pedagogue?.conclusionAdversariale ?? null
+  const final = typeof conclusion?.confianceFinale === 'number' && conclusion.confianceFinale !== confidence ? conclusion.confianceFinale : null
   const resist = Array.isArray(absence?.piecesQuiResistent) ? absence.piecesQuiResistent : []
   const exams = Array.isArray(syco?.examenPieces) ? syco.examenPieces : []
   return (
@@ -123,42 +129,80 @@ export function PedagogueReview({ pedagogue }) {
         ) : null}
       </details>
       <details>
-        <summary>Conclusion adversariale (confiance finale {fmt(conclusion?.confianceFinale)})</summary>
+        <summary>Conclusion adversariale{final === null ? '' : ` (confiance finale ${fmt(final)})`}</summary>
         <p>{txt(conclusion?.raisonnement) || '—'}</p>
       </details>
     </div>
   )
 }
 
-/** Pièces du Greffier d'une journée Aurora v3 (verbatim, ouvrables dans le portfolio). */
-export function DayPieces({ pieces, date, onOpenPassage }) {
+/**
+ * Sort de chaque pièce dans le verdict, d'après ses traces : retenue comme
+ * preuve, comme indice, ou absente (non retenue). Par numéro de pièce.
+ * @param {Record<string, {pieceId?: unknown, role?: string}> | null | undefined} traces
+ * @returns {Map<string, 'preuve' | 'indice'>}
+ */
+export function pieceFates(traces) {
+  const fates = new Map()
+  for (const t of Object.values(traces ?? {})) {
+    if (t?.pieceId === null || t?.pieceId === undefined) continue
+    const key = String(t.pieceId)
+    if (fates.get(key) !== 'preuve') fates.set(key, t.role === 'preuve' ? 'preuve' : 'indice')
+  }
+  return fates
+}
+
+/**
+ * Pièces du Greffier d'une journée Aurora v3 (verbatim, ouvrables dans le
+ * portfolio), chacune avec son sort : on lit ainsi, à côté du raisonnement du
+ * Pédagogue qui les cite par numéro, celles que le verdict a retenues.
+ */
+export function DayPieces({ pieces, traces, date, onOpenPassage }) {
   if (!Array.isArray(pieces) || pieces.length === 0) return <p className="carto-muted">Aucune pièce versée.</p>
+  const fates = pieceFates(traces)
   return (
     <ol className="carto-pieces">
-      {pieces.map((p, i) => (
-        <li key={`${txt(p.numero)}-${txt(p.pid)}-${i}`}>
-          <p>
-            <strong>Pièce {txt(p.numero)}</strong> — {txt(p.context)}
-          </p>
-          {p.extract ? <blockquote className="carto-verbatim">{txt(p.extract)}</blockquote> : null}
-          {p.extract && onOpenPassage ? (
-            <button type="button" className="carto-link-btn" onClick={() => onOpenPassage({ date, extract: p.extract, label: `Pièce ${txt(p.numero)} du Greffier` })}>
-              Ouvrir dans le portfolio
-            </button>
-          ) : null}
-        </li>
-      ))}
+      {pieces.map((p, i) => {
+        const fate = p.numero === null || p.numero === undefined ? undefined : fates.get(String(p.numero))
+        return (
+          <li key={`${txt(p.numero)}-${txt(p.pid)}-${i}`}>
+            <p>
+              <strong>Pièce {txt(p.numero)}</strong> <span className={`carto-piece-fate${fate ? ' carto-piece-fate--kept' : ''}`}>{fate ? `retenue comme ${fate}` : 'non retenue'}</span>
+              {p.context ? <> — {txt(p.context)}</> : null}
+            </p>
+            {p.extract ? <blockquote className="carto-verbatim">{txt(p.extract)}</blockquote> : null}
+            {p.extract && onOpenPassage ? (
+              <button type="button" className="carto-link-btn" onClick={() => onOpenPassage({ date, extract: p.extract, label: `Pièce ${txt(p.numero)} du Greffier` })}>
+                Ouvrir dans le portfolio
+              </button>
+            ) : null}
+          </li>
+        )
+      })}
     </ol>
   )
 }
 
 export const JUROR_ORDER = ['linguiste', 'historien', 'anthropologue', 'philosophe', 'pedagogue', 'sociologue', 'creatif']
 
+const DECISION = [
+  ['verdict_argumente', 'Verdict argumenté'],
+  ['prescription', 'Prescription'],
+]
+const REASONING = [
+  ['points_convergence', 'Points de convergence'],
+  ['points_tension', 'Points de tension'],
+  ['analyse_reflexive', 'Analyse réflexive'],
+]
+
 /**
- * Délibération d'un run AuroraCore (porte sur tout le journal).
+ * Délibération d'un run AuroraCore (porte sur tout le journal). La décision du
+ * président se lit d'abord — verdict argumenté, prescription, voix ; ce qui y
+ * a conduit se déplie au-dessous : les éclairages des voix, le raisonnement
+ * du président, le débat, les pièces.
  * @param {{run: object, shown?: Array<string | null | undefined>}} props
  *   shown : textes déjà lus au-dessus (le motif et la prescription d'une
- *   journée sont ceux du président) — le président ne les redit pas (D-66)
+ *   journée sont ceux du président) — la décision ne les redit pas (D-66)
  */
 export function RunJury({ run, shown = [] }) {
   const said = new Set(shown.filter(Boolean).map((t) => String(t).trim()))
@@ -168,60 +212,71 @@ export function RunJury({ run, shown = [] }) {
   const debate = run?.debate ?? {}
   const voices = JUROR_ORDER.filter((k) => jury[k] && typeof jury[k] === 'object')
   const pieces = Array.isArray(run?.pieces) ? run.pieces : []
+  const field = (key) => txt(president?.[key]).trim()
+  const decision = DECISION.filter(([key]) => field(key) && !said.has(field(key)))
+  const reasoning = REASONING.filter(([key]) => field(key))
+  const votes =
+    typeof jury.voix_presence === 'number'
+      ? `${jury.voix_presence} voix pour la présence, ${jury.voix_non_etablie ?? 0} non établie, ${jury.voix_sans_eclairage ?? 0} sans éclairage${
+          jury.consensus === true ? ' · consensus' : jury.consensus === false ? ' · sans consensus' : ''
+        }`
+      : null
   return (
     <>
-      <details className="carto-jury-section">
-        <summary>Six éclairages et président</summary>
-        {typeof jury.voix_presence === 'number' ? (
-          <p className="carto-small carto-muted">
-            {jury.voix_presence} voix pour la présence, {jury.voix_non_etablie ?? 0} non établie, {jury.voix_sans_eclairage ?? 0} sans éclairage
-            {jury.consensus === true ? ' · consensus' : jury.consensus === false ? ' · sans consensus' : ''}
-          </p>
-        ) : null}
-        {voices.map((k) => (
-          <details key={k} className="carto-jury-voice">
-            <summary>
-              {JUROR_LABELS[k] ?? k} — {txt(jury[k].position) || 'position non dite'} · confiance {fmt(jury[k].confiance)}
-            </summary>
-            <p>{txt(jury[k].synthese)}</p>
-            {delib[k]?.markdown ? (
-              <details>
-                <summary>Délibération complète</summary>
-                <Markdown text={delib[k].markdown} />
-              </details>
-            ) : null}
-          </details>
-        ))}
-        {president || delib.president?.markdown ? (
-          <details className="carto-jury-voice">
-            <summary>Président de séance</summary>
-            {president ? (
-              <dl className="carto-president">
-                {[
-                  ['points_convergence', 'Points de convergence'],
-                  ['points_tension', 'Points de tension'],
-                  ['analyse_reflexive', 'Analyse réflexive'],
-                  ['verdict_argumente', 'Verdict argumenté'],
-                  ['prescription', 'Prescription'],
-                ].map(([key, label]) =>
-                  president[key] && !said.has(String(president[key]).trim()) ? (
-                    <div key={key}>
-                      <dt>{label}</dt>
-                      <dd>{txt(president[key])}</dd>
-                    </div>
-                  ) : null,
-                )}
-              </dl>
-            ) : null}
-            {delib.president?.markdown ? (
-              <details>
-                <summary>Délibération complète</summary>
-                <Markdown text={delib.president.markdown} />
-              </details>
-            ) : null}
-          </details>
-        ) : null}
-      </details>
+      {decision.length > 0 ? (
+        <section className="carto-president-decision" aria-label="Décision du président">
+          <h4>Décision du président</h4>
+          <dl className="carto-president">
+            {decision.map(([key, label]) => (
+              <div key={key}>
+                <dt>{label}</dt>
+                <dd>{txt(president[key])}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+      {votes ? <p className="carto-small carto-muted">{votes}</p> : null}
+      {voices.length > 0 ? (
+        <details className="carto-jury-section">
+          <summary>Éclairages des voix</summary>
+          {voices.map((k) => (
+            <details key={k} className="carto-jury-voice">
+              <summary>
+                {JUROR_LABELS[k] ?? k} — {txt(jury[k].position) || 'position non dite'} · confiance {fmt(jury[k].confiance)}
+              </summary>
+              <p>{txt(jury[k].synthese)}</p>
+              {delib[k]?.markdown ? (
+                <details>
+                  <summary>Délibération complète</summary>
+                  <Markdown text={delib[k].markdown} />
+                </details>
+              ) : null}
+            </details>
+          ))}
+        </details>
+      ) : null}
+      {reasoning.length > 0 || delib.president?.markdown ? (
+        <details className="carto-jury-section">
+          <summary>Raisonnement du président</summary>
+          {reasoning.length > 0 ? (
+            <dl className="carto-president">
+              {reasoning.map(([key, label]) => (
+                <div key={key}>
+                  <dt>{label}</dt>
+                  <dd>{txt(president[key])}</dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+          {delib.president?.markdown ? (
+            <details>
+              <summary>Délibération complète</summary>
+              <Markdown text={delib.president.markdown} />
+            </details>
+          ) : null}
+        </details>
+      ) : null}
       {debate.accusation || debate.defense || debate.replique ? (
         <details className="carto-jury-section">
           <summary>Débat contradictoire</summary>
@@ -259,10 +314,11 @@ export function RunJury({ run, shown = [] }) {
 /**
  * Réflexions du jury pour UNE observation (journée × compétence). Le verdict
  * se lit au-dessus, une fois (D-66).
- * @param {{detail: object | null, run?: object | null, date: string,
+ * @param {{detail: object | null, run?: object | null, date: string, confidence?: number | null,
  *   onOpenPassage?: (p: {date: string, extract: string, label?: string}) => void}} props
+ *   confidence : celle du verdict, lue au-dessus
  */
-export function JuryReflections({ detail, run = null, date, onOpenPassage }) {
+export function JuryReflections({ detail, run = null, date, confidence = null, onOpenPassage }) {
   const pedagogue = detail?.pedagogue ?? null
   const pieces = detail?.pieces ?? []
   return (
@@ -271,13 +327,13 @@ export function JuryReflections({ detail, run = null, date, onOpenPassage }) {
       {pedagogue ? (
         <details className="carto-jury-section">
           <summary>Examen adversarial du Pédagogue</summary>
-          <PedagogueReview pedagogue={pedagogue} />
+          <PedagogueReview pedagogue={pedagogue} confidence={confidence} />
         </details>
       ) : null}
       {!run && pieces.length > 0 ? (
         <details className="carto-jury-section">
           <summary>Pièces du Greffier ({pieces.length}, verbatim)</summary>
-          <DayPieces pieces={pieces} date={date} onOpenPassage={onOpenPassage} />
+          <DayPieces pieces={pieces} traces={detail?.traces} date={date} onOpenPassage={onOpenPassage} />
         </details>
       ) : null}
     </div>
