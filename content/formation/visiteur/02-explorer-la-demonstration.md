@@ -78,7 +78,10 @@ trace ne dit pas l'absence de la compétence.
 
 Cliquez sur un secteur : le **détail**, sous le soleil, montre ses chiffres,
 ses traces journée par journée, les verdicts et la réflexion du jury. Échap
-désélectionne. Le panneau **« Légende »** rappelle ce que disent l'angle, la
+désélectionne. Sous les verdicts, **« Seconde lecture »** : un autre jury —
+six voix et un président — a lu tout le journal d'un coup ; dépliez sa ligne
+pour lire la décision du président, puis ce qui y a conduit. Elle ne change
+pas le soleil. Le panneau **« Légende »** rappelle ce que disent l'angle, la
 hauteur et les hachures.
 Au clavier, chaque secteur s'atteint par Tabulation et s'ouvre avec Entrée.
 

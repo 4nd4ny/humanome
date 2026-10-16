@@ -249,14 +249,63 @@ par `scripts/extract-referentiel.mjs`.
     d'analyse d'origine, eux, ne sont pas touchés. Mesuré sur la
     démonstration : les 59 synthèses complètes ne disent rien de plus que
     leurs rubriques ; 174 rapports complets de pôle sur 405 non plus.
-    - **Pas fait, à décider** (question 40 du journal) : un extrait est encore
-      gardé jusqu'à trois fois par journée — dans les passages saillants,
-      dans les pièces du Greffier et dans chaque trace qui les cite (avec son
-      contexte et ses ancres, 1,6 Mo sur 15,8 Mo pour la démonstration). Ne
-      le garder qu'une fois, la trace renvoyant à sa pièce, retire
-      `extract` des traces : c'est un changement de contrat (un lecteur 4.x
-      lit `traces[id].extract`), donc une version 5 du master, avec sa
-      conversion.
+    - **Pas fait** (question 40 du journal, non retenu le 2026-10-16) : un
+      extrait est encore gardé jusqu'à trois fois par journée — dans les
+      passages saillants, dans les pièces du Greffier et dans chaque trace
+      qui les cite (avec son contexte et ses ancres, 1,6 Mo sur 15,8 Mo pour
+      la démonstration). Ne le garder qu'une fois, la trace renvoyant à sa
+      pièce, retire `extract` des traces : c'est un changement de contrat
+      (un lecteur 4.x lit `traces[id].extract`), donc une version 5 du
+      master, avec sa conversion.
+
+11. **Master v4 lu à la demande : un index et ses fichiers (2026-10-16,
+    journal de la cartographie D-67).** Une archive (`buildArchive`) se
+    découpe (`web/src/carto/core/split.js`, script
+    `web/scripts/carto-demo-split.mjs`) en un **index** — l'archive elle-même,
+    `details` et `runDetails` vides — et des fichiers statiques rangés par ce
+    que l'interface ouvre, sous un dossier de version (`v-` + douze
+    caractères hexadécimaux de l'empreinte du contenu) :
+    `jours/<date>.json` (`{date, variants: {<id>: ce qui ne tient qu'à la
+    journée}}`, avec `passageOrder` — le pôle de chaque passage, dans l'ordre
+    d'origine — quand cet ordre n'est pas celui des pôles), `portfolio/<date>.json` (`{date, portfolio}`),
+    `competences/<code>.json` (`{code, days: {<date>: {<id>: verdict}}}`),
+    `poles/<n>.json` (`{pole, days: {<date>: {<id>: {report?, audit?,
+    passages?}}}}`), `lectures/<clé>.json` (`{key, value}`). L'index dit où
+    est chaque fichier dans une propriété facultative, `remote` (`{version,
+    base, days, portfolio, codes, poles, runs}` : clé → chemin relatif à
+    `base`), typée dans le schéma (ajout 4.x). Chaque information est dans un
+    fichier, un seul ; remontée à partir des fichiers, chaque journée est
+    celle de l'archive (`assembleDay`). Aucun champ renommé ni déplacé dans
+    le détail d'une journée : un lecteur 4.x qui ne connaît pas `remote` voit
+    une archive sans détails.
+    - **Un index n'est pas une archive à fusionner** : il ne s'ouvre que par
+      le chargeur de la démonstration du site (importé d'un fichier : refusé,
+      compte rendu bloquant `index-a-la-demande`), et seulement dans un jeu
+      neuf — un jeu qui a déjà une journée, un passage sans date, une
+      synthèse ou une seconde lecture n'en prend rien. `base` est un dossier
+      relatif, sur le même site (ni adresse, ni chemin absolu, ni « .. ») :
+      un autre renvoi n'est pas suivi. Exporté, un jeu lu à la demande rend
+      l'archive complète, sans `remote`.
+    - **Un dossier de version ne se retire jamais du site** : une
+      démonstration qu'un visiteur a enrichie n'est plus remplacée (D-57) et
+      continue d'y lire ses fichiers.
+    - **Ce que la personne ajoute** à un tel jeu (un passage, une analyse)
+      est rangé dans son navigateur et lu par-dessus les fichiers ; un texte
+      de journée qu'elle n'a pas changé reste celui du site.
+
+12. **Secondes lectures, `readings` (2026-10-16, journal de la cartographie
+    D-68).** Ajout 4.x facultatif : `readings[]`, une entrée par analyse
+    jointe aux compétences sans faire le soleil — `{id, source, journal,
+    analysedAt, importedAt, codes: {<code>: {status, rawStatus, confidence,
+    proofs, hints}}, poles: [n]}`. Aujourd'hui, un run AuroraCore importé
+    dans un jeu qui a ses analyses par journée (ou qui en reçoit dans le même
+    lot) : ses délibérations restent dans `runDetails` sous « <id>|<code> »
+    et « <id>|pole:<n> », ses verdicts n'entrent dans aucune journée, ses
+    feuilles n'ajoutent aucune journée. Un run déjà réparti sur les journées
+    (importé seul, avant) n'est pas joint une seconde fois. Les calculs
+    (soleil, heatmap, comparaison) ne lisent pas `readings`. Une archive
+    réimportée joint ses lectures par identifiant, sans doublon ; celles qui
+    sont déjà là gagnent.
 
 ## 5. Note d'outillage
 

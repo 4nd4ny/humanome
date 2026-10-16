@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-66, état des tests, les 40 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-68, état des tests, les 40 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -177,6 +177,15 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     de les joindre) et 40 (lire les données à la demande : proposition en trois points) posées.
     Déployé (front, et l'archive de la démonstration allégée : 18,4 → 17,2 Mo) et vérifié en
     ligne, au bureau et au téléphone.
+  - **Réponse du 2026-10-16, 8 h 44** (« Ok pour choix A et choix 1. », D-67, D-68). La
+    démonstration se lit à la demande : un index (38 Ko compressés) puis le seul fichier de ce
+    qu'on ouvre, rangé par compétence, pôle, journée, texte ou délibération (`core/split.js`,
+    `web/scripts/carto-demo-split.mjs` ; schéma : `remote`, `docs/contrats.md` décision 11) ;
+    un dossier de version ne se retire jamais du site. La seconde lecture : un run AuroraCore
+    joint à un jeu qui a ses analyses par journée ne touche plus aux journées ; sa délibération
+    se lit avec chaque compétence, la décision du président d'abord (`ui/SecondReading.jsx` ;
+    schéma : `readings`, décision 12). Relu par un agent distinct (quatorze points, traités).
+    Suites : front **2 463 verts**, moteur 1 073, e2e Chromium de la cartographie verts.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
