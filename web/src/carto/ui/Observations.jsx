@@ -5,7 +5,9 @@
 // dépliée : motif, prescription), réflexions du jury, droit de réponse de
 // l'apprenant. Chaque information une fois (journal D-66).
 
+import { useEffect } from 'react'
 import { REVIEW_LABELS, REVIEW_STATES, observationKey, verdictStatusLabel } from '../core/model.js'
+import { needCode } from '../core/split.js'
 import { setReview } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
 import { JuryReflections, PresidentDecision, RunJury, VerdictFacts } from './Jury.jsx'
@@ -43,9 +45,12 @@ function provenanceLabel(variant) {
   return `${SOURCE_LABELS[p?.source] ?? p?.source ?? 'source inconnue'}${p?.run ? ` — ${p.run}` : ''}`
 }
 
-/** Détail (verdict) d'une observation, ou undefined tant que la journée n'est pas chargée. */
+/**
+ * Détail (verdict) d'une observation, ou undefined tant qu'il n'est pas lu
+ * (d'un jeu lu à la demande : le fichier de la compétence, D-67).
+ */
 export function verdictDetailOf(getDetail, date, variantId, code) {
-  const d = getDetail(date)
+  const d = getDetail(date, needCode(code))
   if (d === undefined) return undefined
   return d?.variants?.[variantId]?.verdicts?.[code] ?? null
 }
@@ -255,16 +260,22 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
 }
 
 /**
- * Contenu dépliable d'une compétence dans la modale du jour : traces du jour,
+ * Contenu dépliable d'une compétence dans la modale du jour (rendu à
+ * l'ouverture) : traces du jour,
  * verdict, droit de réponse, réflexions du jury (non établies et
  * court-circuits compris : c'est le seul endroit où leur raisonnement se lit,
  * point ouvert 4).
- * @param {{v: object, variant: object, date: string, dataset: object, getDetail: Function, getRunDetail: Function,
+ * @param {{v: object, variant: object, date: string, dataset: object, getDetail: Function,
+ *   ensureDetails?: (dates: string[], need?: string | string[]) => void, getRunDetail: Function,
  *   ensureRunDetail: (key: string) => void, update: Function,
  *   onOpenTrace: (code: string, list: object[], index: number) => void,
  *   onOpenPassage: (p: {date: string, extract: string, label?: string}) => void}} props
  */
-export function DayVerdictDetail({ v, variant, date, dataset, getDetail, getRunDetail, ensureRunDetail, update, onOpenTrace, onOpenPassage }) {
+export function DayVerdictDetail({ v, variant, date, dataset, getDetail, ensureDetails, getRunDetail, ensureRunDetail, update, onOpenTrace, onOpenPassage }) {
+  // Lu quand la compétence s'ouvre dans la modale, et seulement elle (D-67).
+  useEffect(() => {
+    ensureDetails?.([date], needCode(v.code))
+  }, [ensureDetails, date, v.code])
   const vd = verdictDetailOf(getDetail, date, variant.id, v.code)
   if (vd === undefined) return <p className="carto-muted">Chargement…</p>
   const list = (v.traces ?? []).map((t) => ({ id: t.id, date, variantId: variant.id, role: t.role }))

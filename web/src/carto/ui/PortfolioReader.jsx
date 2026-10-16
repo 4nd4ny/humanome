@@ -19,6 +19,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { formatLong, weekdayName } from '../core/dates.js'
 import { hasPortfolio } from '../core/model.js'
+import { NEED_PORTFOLIO, needCode } from '../core/split.js'
 import { splitExtract } from '../core/highlight.js'
 import { findPassage } from '../core/passages.js'
 import { approximateInPortfolio, highlightHtml, locateInPortfolio, renderPortfolio } from './highlight-dom.js'
@@ -76,7 +77,7 @@ function resolveTarget(target, getDetail) {
     return { loading: false, anchors: extract ? splitExtract(extract) : null, extract, primary: target.date, secondary: null, role: null, synthetic: false, ref: null }
   }
   const ref = target.list[target.index]
-  const detail = getDetail(ref.date)
+  const detail = getDetail(ref.date, needCode(target.code))
   if (detail === undefined) return { loading: true, anchors: null, extract: '', primary: ref.date, secondary: null, role: ref.role ?? null, synthetic: false, ref }
   const td = detail?.variants?.[ref.variantId]?.verdicts?.[target.code]?.traces?.[ref.id] ?? null
   const extract = td?.extract ?? ''
@@ -154,23 +155,29 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
   const want = useMemo(() => resolveTarget(target, getDetail), [target, getDetail])
   const own = useMemo(() => [...new Set([want.primary, want.secondary].filter(Boolean))], [want])
 
-  // Chargement paresseux : la journée de la trace d'abord, les autres
-  // journées seulement si le passage n'y est pas retrouvé en entier.
+  // Chargement paresseux : la trace (sa compétence) et le texte de sa journée
+  // d'abord, le texte des autres journées seulement si le passage n'y est pas
+  // retrouvé en entier. D'un jeu lu à la demande, rien d'autre (D-67).
+  const text = (d) => getDetail(d, NEED_PORTFOLIO)
   useEffect(() => {
-    const first = target.kind === 'trace' ? target.list[target.index]?.date : target.date
-    ensureDetails([first, ...own].filter(Boolean))
+    if (target.kind === 'trace') {
+      const first = target.list[target.index]?.date
+      if (first) ensureDetails([first], needCode(target.code))
+    }
+    const dates = [target.kind === 'trace' ? null : target.date, ...own].filter(Boolean)
+    if (dates.length > 0) ensureDetails(dates, NEED_PORTFOLIO)
   }, [target, own, ensureDetails])
 
-  const ownLoaded = !want.loading && own.every((d) => getDetail(d) !== undefined)
+  const ownLoaded = !want.loading && own.every((d) => text(d) !== undefined)
   const ownFound = useMemo(
-    () => ownLoaded && want.anchors !== null && own.some((d) => (locateInPortfolio(getDetail(d)?.portfolio, want.anchors) ?? []).some((r) => r.complete)),
+    () => ownLoaded && want.anchors !== null && own.some((d) => (locateInPortfolio(text(d)?.portfolio, want.anchors) ?? []).some((r) => r.complete)),
     [ownLoaded, want, own, getDetail],
   )
   const needAll = ownLoaded && want.anchors !== null && !ownFound
-  const allLoaded = !needAll || portfolioDates.every((d) => getDetail(d) !== undefined)
+  const allLoaded = !needAll || portfolioDates.every((d) => text(d) !== undefined)
 
   useEffect(() => {
-    if (needAll) ensureDetails(portfolioDates)
+    if (needAll) ensureDetails(portfolioDates, NEED_PORTFOLIO)
   }, [needAll, portfolioDates, ensureDetails])
 
   // getDetail change à chaque détail chargé : le résultat s'affine au fil du chargement.
@@ -180,8 +187,8 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
       primary: want.primary,
       secondary: want.secondary,
       dates: needAll ? portfolioDates : own,
-      locate: (d) => (getDetail(d) === undefined ? null : locateInPortfolio(getDetail(d)?.portfolio, want.anchors)),
-      approximate: (d) => (getDetail(d) === undefined ? null : approximateInPortfolio(getDetail(d)?.portfolio, want.extract)),
+      locate: (d) => (text(d) === undefined ? null : locateInPortfolio(text(d)?.portfolio, want.anchors)),
+      approximate: (d) => (text(d) === undefined ? null : approximateInPortfolio(text(d)?.portfolio, want.extract)),
     })
   }, [ownLoaded, want, needAll, portfolioDates, own, getDetail])
 
@@ -189,7 +196,7 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
   // Le résultat n'est montré qu'une fois définitif : toutes les journées utiles lues.
   const settled = want.anchors === null ? ownLoaded : result !== null && !searching
   const shownDate = (settled && result?.date) || want.primary
-  const shownDetail = getDetail(shownDate)
+  const shownDetail = text(shownDate)
   const ranges = useMemo(() => (settled && result ? result.ranges : []), [settled, result])
   const current = ranges.length > 0 ? Math.min(occurrence, ranges.length - 1) : null
   const body = useMemo(() => {
@@ -220,7 +227,7 @@ export function PortfolioReader({ target, dataset, refl, getDetail, ensureDetail
     settled && want.extract
       ? quoteCaption(result, {
           portfolioCount: portfolioDates.length,
-          primaryHasText: Boolean(getDetail(want.primary)?.portfolio),
+          primaryHasText: Boolean(text(want.primary)?.portfolio),
           primary: want.primary,
           demo: dataset.origin === 'demo',
         })

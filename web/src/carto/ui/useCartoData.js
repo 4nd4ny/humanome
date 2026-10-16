@@ -8,6 +8,7 @@ import { importFiles } from '../core/import.js'
 import { createDataset, demoBaseline, isPristineDemo, upgradeDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
 import { looksLikeArchive } from '../core/archive.js'
+import { NEED_ALL, expandNeed, isLocalBase, isSplitIndex, partPath } from '../core/split.js'
 import { dropDatasetDrafts } from './shareDrafts.js'
 
 const CURRENT_KEY = 'humanome-carto-current'
@@ -20,13 +21,19 @@ const DEMO_SOURCE_KEY = 'humanome-carto-demo-source'
 /** Dernière version de la démo qui n'a pas pu être chargée : {version, at}. */
 const DEMO_TRIED_KEY = 'humanome-carto-demo-tried'
 const DEMO_CHECK_TIMEOUT = 4000
-/** L'archive pèse plusieurs mégaoctets : au-delà de deux minutes, on renonce. */
+/** Une archive entière pèse plusieurs mégaoctets : au-delà de deux minutes, on renonce. */
 const DEMO_FETCH_TIMEOUT = 120000
 /** Une version qui n'a pas pu être chargée n'est retentée qu'un jour plus tard. */
 const DEMO_RETRY_DELAY = 24 * 3600 * 1000
 const SAVE_DELAY = 250
-/** Démo anonymisée déposée sur le serveur (facultative). */
-export const DEMO_ARCHIVE = 'data/demo/carto/archive.json'
+/**
+ * Démonstration déposée sur le serveur (facultative), de préférence découpée
+ * (D-67) : son index, lu d'abord, et un dossier de fichiers lus à la demande ;
+ * sinon une archive entière, lue d'un bloc.
+ */
+export const DEMO_DIR = 'data/demo/carto/'
+export const DEMO_INDEX = `${DEMO_DIR}index.json`
+export const DEMO_ARCHIVE = `${DEMO_DIR}archive.json`
 
 /** Un signal qui s'arrête au bout de `ms`, ou quand `outer` s'arrête. */
 function timedSignal(ms, outer = null) {
@@ -46,52 +53,67 @@ function timedSignal(ms, outer = null) {
 }
 
 /**
- * Démo anonymisée déposée sur le serveur.
- * @returns {Promise<{status: 'ok', text: string, version: string | null} | {status: 'absent'} | {status: 'failed', error: Error}>}
+ * Démonstration déposée sur le serveur : son index découpé (D-67), sinon une
+ * archive entière.
+ * @returns {Promise<{status: 'ok', path: string, text: string, version: string | null} | {status: 'absent'} | {status: 'failed', error: Error}>}
  *   absent : pas déposée (404, page d'accueil d'un serveur de développement,
  *   pas une archive) ; failed : déposée, mais le téléchargement a échoué
- *   (réseau, délai, réponse tronquée).
+ *   (réseau, délai, réponse tronquée). L'index rend ses fichiers relatifs au
+ *   site (`remote.base`).
  */
 async function fetchDemoArchive(fetchFn, { signal = null } = {}) {
-  const timed = timedSignal(DEMO_FETCH_TIMEOUT, signal)
-  try {
-    // Revalidée auprès du serveur : une copie en cache peut dater d'avant le dernier dépôt.
-    const res = await fetchFn(DEMO_ARCHIVE, { cache: 'no-cache', signal: timed.signal })
-    if (!res?.ok) return { status: 'absent' }
-    const type = res.headers?.get?.('content-type') ?? ''
-    if (/html/i.test(type)) return { status: 'absent' }
-    const text = await res.text()
-    let doc
+  let failed = null
+  for (const path of [DEMO_INDEX, DEMO_ARCHIVE]) {
+    const timed = timedSignal(DEMO_FETCH_TIMEOUT, signal)
     try {
-      doc = JSON.parse(text)
+      // Revalidée auprès du serveur : une copie en cache peut dater d'avant le dernier dépôt.
+      const res = await fetchFn(path, { cache: 'no-cache', signal: timed.signal })
+      if (!res?.ok) continue
+      const type = res.headers?.get?.('content-type') ?? ''
+      if (/html/i.test(type)) continue
+      const text = await res.text()
+      let doc
+      try {
+        doc = JSON.parse(text)
+      } catch (error) {
+        if (/json/i.test(type)) failed ??= error
+        continue
+      }
+      if (!looksLikeArchive(doc)) continue
+      const version = res.headers?.get?.('last-modified') ?? null
+      if (!isSplitIndex(doc)) return { status: 'ok', path, text, version }
+      // Ses fichiers sont à côté de lui, sur ce site : un renvoi ailleurs n'est pas suivi.
+      if (!isLocalBase(doc.remote.base)) continue
+      return { status: 'ok', path, text: JSON.stringify({ ...doc, remote: { ...doc.remote, base: `${DEMO_DIR}${doc.remote.base}` } }), version }
     } catch (error) {
-      return /json/i.test(type) ? { status: 'failed', error } : { status: 'absent' }
+      failed ??= error
+    } finally {
+      timed.done()
     }
-    return looksLikeArchive(doc) ? { status: 'ok', text, version: res.headers?.get?.('last-modified') ?? null } : { status: 'absent' }
-  } catch (error) {
-    return { status: 'failed', error }
-  } finally {
-    timed.done()
   }
+  return failed ? { status: 'failed', error: failed } : { status: 'absent' }
 }
 
 /**
- * Version de la démo déposée (Last-Modified d'une requête HEAD, sans la
- * télécharger), ou null : absente, injoignable dans le délai, sans date, ou
- * page d'accueil d'un serveur de développement.
+ * Version de la démo déposée (Last-Modified d'une requête HEAD sur son index,
+ * sinon sur l'archive entière, sans la télécharger), ou null : absente,
+ * injoignable dans le délai, sans date, ou page d'accueil d'un serveur de
+ * développement.
  */
 async function fetchDemoVersion(fetchFn, signal = null) {
-  const timed = timedSignal(DEMO_CHECK_TIMEOUT, signal)
-  try {
-    const res = await fetchFn(DEMO_ARCHIVE, { method: 'HEAD', cache: 'no-store', signal: timed.signal })
-    if (!res?.ok) return null
-    if (/html/i.test(res.headers?.get?.('content-type') ?? '')) return null
-    return res.headers?.get?.('last-modified') ?? null
-  } catch {
-    return null
-  } finally {
-    timed.done()
+  for (const path of [DEMO_INDEX, DEMO_ARCHIVE]) {
+    const timed = timedSignal(DEMO_CHECK_TIMEOUT, signal)
+    try {
+      const res = await fetchFn(path, { method: 'HEAD', cache: 'no-store', signal: timed.signal })
+      if (!res?.ok || /html/i.test(res.headers?.get?.('content-type') ?? '')) continue
+      return res.headers?.get?.('last-modified') ?? null
+    } catch {
+      return null
+    } finally {
+      timed.done()
+    }
   }
+  return null
 }
 
 function readJsonPref(key) {
@@ -139,10 +161,11 @@ export function useCartoData(deps = {}) {
   if (storeRef.current === null) {
     let s = deps.store ?? null
     if (!s) {
+      // Les fichiers d'un jeu lu à la demande se lisent avec le même fetch que la démonstration (D-67).
       try {
-        s = createCartoStore()
+        s = createCartoStore({ fetchFn: deps.fetchFn })
       } catch {
-        s = createCartoStore({ adapter: createMemoryAdapter() })
+        s = createCartoStore({ adapter: createMemoryAdapter(), fetchFn: deps.fetchFn })
       }
     }
     storeRef.current = s
@@ -160,10 +183,16 @@ export function useCartoData(deps = {}) {
   const [busy, setBusy] = useState(null) // libellé d'une opération longue en cours
   const [lastReport, setLastReport] = useState(null)
   // Caches immuables (une nouvelle Map à chaque chargement) : les composants
-  // qui lisent un détail se réaffichent quand il arrive.
-  const [detailCache, setDetailCache] = useState(() => new Map()) // `${datasetId}|${date}` → détail
+  // qui lisent un détail se réaffichent quand il arrive. Une journée d'un jeu
+  // lu à la demande se complète au fil de ce qu'on ouvre : `parts` dit ce
+  // qu'elle contient déjà (D-67).
+  const [detailCache, setDetailCache] = useState(() => new Map()) // `${datasetId}|${date}` → {detail, parts: Set}
   const [runCache, setRunCache] = useState(() => new Map())
   const pending = useRef(new Set())
+  // Génération des données : chaque écriture qui invalide des détails
+  // l'avance ; une lecture commencée avant n'est pas rangée (elle portait
+  // l'ancien index), et ne retient pas celles qui la suivent.
+  const generation = useRef(0)
   const saveTimer = useRef(null)
   const latest = useRef(null)
 
@@ -228,38 +257,134 @@ export function useCartoData(deps = {}) {
 
   useEffect(() => () => clearTimeout(saveTimer.current), [])
 
+  // Une démonstration lue à la demande où la personne a mis quelque chose à
+  // elle (une réponse, un repère, un import…) devient un jeu d'ici : ses
+  // fichiers sont copiés dans ce navigateur, en arrière-plan, et elle ne
+  // dépend plus du dossier de sa version sur le site, qui peut alors s'en
+  // retirer (D-67). Un échec (hors ligne) se retente à la prochaine ouverture.
+  const materializing = useRef(new Set())
+  const [online, setOnline] = useState(0)
+  useEffect(() => {
+    const again = () => setOnline((n) => n + 1)
+    window.addEventListener?.('online', again)
+    return () => window.removeEventListener?.('online', again)
+  }, [])
+  useEffect(() => {
+    if (!dataset?.remote || materializing.current.has(dataset.datasetId)) return
+    if (isPristineDemo(dataset, readDemoSources()[dataset.datasetId]?.baseline ?? null)) return
+    const id = dataset.datasetId
+    materializing.current.add(id)
+    store
+      .materialize(id)
+      .then((stored) => {
+        if (!stored) return
+        // L'index en mémoire ne renvoie plus au site, sans perdre ce qui n'est pas encore enregistré.
+        setDataset((prev) => {
+          if (prev?.datasetId !== id || !prev.remote) return prev
+          const next = { ...prev }
+          delete next.remote
+          latest.current = next
+          return next
+        })
+      })
+      // Retentée au prochain changement, ou dès le retour du réseau.
+      .catch(() => materializing.current.delete(id))
+  }, [dataset, store, online])
+
   // ---- Détails par journée (chargement paresseux) -----------------------------
   const datasetId = dataset?.datasetId ?? null
 
-  const getDetail = useCallback((date) => (datasetId ? detailCache.get(`${datasetId}|${date}`) : undefined), [datasetId, detailCache])
+  /**
+   * La journée contient-elle ce que le besoin demande ? Un jeu d'ici : tout,
+   * une fois lue ; un jeu lu à la demande : chaque fichier demandé, lu — une
+   * clé sans fichier (une journée sans texte) n'a rien à attendre.
+   */
+  const covers = useCallback((entry, date, need) => {
+    if (!entry) return false
+    if (entry.parts.has(NEED_ALL)) return true
+    const ds = latest.current
+    // Un jeu d'ici (une démonstration devenue d'ici, avec ce qu'elle avait lu) se relit en entier.
+    if (!ds?.remote) return false
+    return expandNeed(ds, date, need).every((k) => entry.parts.has(k) || partPath(ds.remote, date, k) === null)
+  }, [])
+
+  /**
+   * Détail d'une journée, ou undefined tant qu'il n'est pas lu. `need` dit ce
+   * dont le lecteur a besoin (une compétence, un pôle, le texte, la journée :
+   * core/split.js) : un jeu lu à la demande ne lit que cela (D-67) ; un jeu
+   * d'ici est lu en entier.
+   * @param {string} date
+   * @param {string | string[]} [need]
+   */
+  const getDetail = useCallback(
+    (date, need = NEED_ALL) => {
+      if (!datasetId) return undefined
+      const entry = detailCache.get(`${datasetId}|${date}`)
+      return covers(entry, date, need) ? entry.detail : undefined
+    },
+    [datasetId, detailCache, covers],
+  )
 
   const ensureDetails = useCallback(
-    async (dates) => {
+    async (dates, need = NEED_ALL) => {
       if (!datasetId) return
-      const missing = [...new Set(dates)].filter((d) => !detailCache.has(`${datasetId}|${d}`) && !pending.current.has(`${datasetId}|${d}`))
+      const ds = latest.current
+      // Un jeu d'ici se lit en entier, journée par journée : un seul chargement, quel que soit le besoin.
+      const want = ds?.remote ? need : NEED_ALL
+      const gen = generation.current
+      const tag = `${gen}|${[want].flat().join(',')}`
+      const missing = [...new Set(dates)].filter((d) => !covers(detailCache.get(`${datasetId}|${d}`), d, want) && !pending.current.has(`${datasetId}|${d}|${tag}`))
       if (missing.length === 0) return
-      for (const d of missing) pending.current.add(`${datasetId}|${d}`)
-      try {
-        const loaded = await store.loadDayDetails(datasetId, missing)
+      for (const d of missing) pending.current.add(`${datasetId}|${d}|${tag}`)
+      // Ce qui est lu se range, sauf si les données ont changé entre-temps ;
+      // une journée qui n'a rien de neuf (un fichier qui ne se lit toujours
+      // pas) ne réveille personne : pas de relecture en boucle.
+      const keep = (loaded) => {
+        if (generation.current !== gen) return
         setDetailCache((prev) => {
+          let changed = false
           const next = new Map(prev)
-          for (const d of missing) next.set(`${datasetId}|${d}`, loaded.get(d) ?? null)
-          return next
+          for (const d of missing) {
+            const got = loaded.get(d)
+            if (!got) continue
+            const key = `${datasetId}|${d}`
+            const before = prev.get(key)
+            const parts = new Set([...(before?.parts ?? []), ...got.parts])
+            if (before && parts.size === before.parts.size) continue
+            next.set(key, { detail: got.detail, parts })
+            changed = true
+          }
+          return changed ? next : prev
         })
+      }
+      try {
+        keep(await store.loadDays(datasetId, missing, { dataset: ds, need: want }))
+      } catch (err) {
+        if (err?.partial) keep(err.partial)
+        if (generation.current === gen) setError(`Une partie des données n’a pas pu être lue (${err.message}). Elle sera redemandée à la prochaine ouverture.`)
       } finally {
-        for (const d of missing) pending.current.delete(`${datasetId}|${d}`)
+        for (const d of missing) pending.current.delete(`${datasetId}|${d}|${tag}`)
       }
     },
-    [datasetId, detailCache, store],
+    [datasetId, detailCache, covers, store],
   )
 
   const getRunDetail = useCallback((key) => (datasetId ? runCache.get(`${datasetId}|${key}`) : undefined), [datasetId, runCache])
 
   const ensureRunDetail = useCallback(
     async (key) => {
-      if (!datasetId || runCache.has(`${datasetId}|${key}`)) return
-      const value = await store.loadRunDetail(datasetId, key)
-      setRunCache((prev) => new Map(prev).set(`${datasetId}|${key}`, value))
+      const gen = generation.current
+      const tag = `${datasetId}|run|${gen}|${key}`
+      if (!datasetId || runCache.has(`${datasetId}|${key}`) || pending.current.has(tag)) return
+      pending.current.add(tag)
+      try {
+        const value = await store.loadRunDetail(datasetId, key, { dataset: latest.current })
+        if (generation.current === gen) setRunCache((prev) => new Map(prev).set(`${datasetId}|${key}`, value))
+      } catch (err) {
+        if (generation.current === gen) setError(`Une délibération n’a pas pu être lue (${err.message}). Elle sera redemandée à la prochaine ouverture.`)
+      } finally {
+        pending.current.delete(tag)
+      }
     },
     [datasetId, runCache, store],
   )
@@ -271,7 +396,7 @@ export function useCartoData(deps = {}) {
    * @returns {Promise<{report: object, dataset: object}>}
    */
   const runImport = useCallback(
-    async (files, { title, newDataset = false, origin = null } = {}) => {
+    async (files, { title, newDataset = false, origin = null, demoVersion } = {}) => {
       await flush()
       let base = newDataset || !latest.current ? null : latest.current
       if (!base) {
@@ -281,10 +406,14 @@ export function useCartoData(deps = {}) {
         // l'archive de compte (elle se recharge depuis le site).
         if (origin) base = { ...base, origin }
       }
-      const res = await importFiles(files, base)
+      const res = await importFiles(files, base, { allowRemote: origin === 'demo' })
       await store.commit(res)
+      // La démonstration retient sa version et ce qu'elle apporte d'elle-même
+      // AVANT de s'afficher : intacte, elle n'est jamais copiée ici (D-67).
+      if (origin === 'demo' && demoVersion !== undefined) writeDemoSource(res.dataset.datasetId, { version: demoVersion, baseline: demoBaseline(res.dataset) })
       // Les détails touchés sont relus depuis la base au prochain besoin.
       const id = res.dataset.datasetId
+      generation.current++
       setDetailCache((prev) => {
         const next = new Map(prev)
         for (const date of res.detailPatches.keys()) next.delete(`${id}|${date}`)
@@ -317,7 +446,7 @@ export function useCartoData(deps = {}) {
       const { doc } = await loadReferential()
       let base = createDataset({ title, referential: doc })
       if (origin) base = { ...base, origin }
-      const res = await importFiles(files, base)
+      const res = await importFiles(files, base, { allowRemote: origin === 'demo' })
       await store.commit(res)
       return res.dataset
     },
@@ -352,6 +481,7 @@ export function useCartoData(deps = {}) {
       saveTimer.current = null
       await store.commit({ dataset: result.dataset, detailPatches: result.detailPatches, runDetails: [] })
       const id = result.dataset.datasetId
+      generation.current++
       setDetailCache((prev) => {
         const next = new Map(prev)
         for (const date of result.detailPatches.keys()) next.delete(`${id}|${date}`)
@@ -374,8 +504,7 @@ export function useCartoData(deps = {}) {
     try {
       const archive = await fetchDemoArchive(fetchFn)
       if (archive.status === 'ok') {
-        const { report, dataset: demo } = await runImport([{ path: DEMO_ARCHIVE, text: archive.text }], { title: 'Démonstration', newDataset: true, origin: 'demo' })
-        writeDemoSource(demo.datasetId, { version: archive.version, baseline: demoBaseline(demo) })
+        const { report } = await runImport([{ path: archive.path, text: archive.text }], { title: 'Démonstration', newDataset: true, origin: 'demo', demoVersion: archive.version })
         return report
       }
       const res = await fetchFn('data/demo/jours/index.json')
@@ -409,6 +538,7 @@ export function useCartoData(deps = {}) {
       // Les brouillons de ses versions partagées (extraits, noms remplacés) partent avec lui.
       dropDatasetDrafts(id)
       writeDemoSource(id, null)
+      generation.current++
       setDetailCache((prev) => new Map([...prev].filter(([k]) => !k.startsWith(`${id}|`))))
     },
     [store],
@@ -447,7 +577,7 @@ export function useCartoData(deps = {}) {
         writePref(DEMO_TRIED_KEY, JSON.stringify({ version, at: Date.now() }))
         const archive = await fetchDemoArchive(fetchFn, { signal })
         if (signal.aborted || archive.status !== 'ok') return
-        const fresh = await importDetached([{ path: DEMO_ARCHIVE, text: archive.text }], { title: 'Démonstration', origin: 'demo' })
+        const fresh = await importDetached([{ path: archive.path, text: archive.text }], { title: 'Démonstration', origin: 'demo' })
         if ((fresh.days?.length ?? 0) === 0) {
           // Archive déposée mais illisible : la démonstration en place reste.
           await purgeDataset(fresh.datasetId)

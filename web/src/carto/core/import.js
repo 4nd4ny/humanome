@@ -15,7 +15,7 @@
 // - les dates restent des chaînes AAAA-MM-JJ.
 
 import { listZipEntries, readZipEntry } from '../../v3/core/zip.js'
-import { REVIEW_STATES, createDay, hasPortfolio, sortedDates, toCount } from './model.js'
+import { REVIEW_STATES, createDay, hasPortfolio, runsInDays, sortedDates, toCount } from './model.js'
 import { isIsoDate } from './dates.js'
 import { normalizeReferential, referentialErrors, toEmbeddedReferential } from './referential.js'
 import { adaptAuroraDay, dateFromPassages, looksLikeCartoPole, looksLikeKairos, looksLikeSiteDay } from './importers/aurora-day.js'
@@ -24,6 +24,7 @@ import { importCartoMerge, importSiteMerge, looksLikeCartoMerge, looksLikeSiteMe
 import { importPortfolioText, portfolioSummary } from './importers/portfolio.js'
 import { importMetrics, looksLikeMetrics } from './importers/metrics.js'
 import { importArchive, looksLikeArchive } from './archive.js'
+import { isSplitIndex } from './split.js'
 import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { canonicalJson } from './model.js'
 import { cleanReflectionEntries } from './ops.js'
@@ -112,15 +113,16 @@ function dateAndRunFromDir(dir) {
  *   unsupported: Array<{path: string, kind: string}>, report: Array<object>,
  * }}
  */
-export function recognize(files, { now = new Date().toISOString() } = {}) {
+export function recognize(files, { now = new Date().toISOString(), allowRemote = false } = {}) {
   const report = []
-  const result = { variants: [], portfolio: [], undated: [], narratives: [], metrics: null, runDetails: [], referential: null, unsupported: [], extras: [], report }
+  const result = { variants: [], portfolio: [], undated: [], narratives: [], metrics: null, runDetails: [], readings: [], referential: null, unsupported: [], extras: [], report }
 
   // AuroraCore d'abord : il « consomme » verdicts, délibérations, pièces et feuilles.
   const core = importAuroraCoreTrees(files, { now })
   result.variants.push(...core.variants)
   result.runDetails.push(...core.runDetails)
-  result.portfolio.push(...core.portfolio)
+  result.readings.push(...core.readings)
+  result.portfolio.push(...core.portfolio.map((seg) => ({ ...seg, fromCore: true })))
   report.push(...core.report)
 
   const auroraGroups = new Map() // dossier → {poles: [], kairos, files: []}
@@ -136,7 +138,18 @@ export function recognize(files, { now = new Date().toISOString() } = {}) {
         continue
       }
       if (doc?.kind === 'competency-map-master') {
-        if (looksLikeArchive(doc)) {
+        if (looksLikeArchive(doc) && isSplitIndex(doc)) {
+          // Index d'un jeu lu à la demande (D-67) : il ne s'ouvre que depuis le
+          // site, par la démonstration — importé d'un fichier, ses renvois ne
+          // mènent nulle part, ou ailleurs. Mis à part : il n'ouvre qu'un jeu neuf.
+          if (!allowRemote) {
+            report.push({ severity: 'blocking', code: 'index-a-la-demande', message: `${f.path} : index d’un jeu lu à la demande — il ne s’ouvre que depuis le site (« Explorer la démonstration ») ; ignoré`, file: f.path })
+            continue
+          }
+          const r = importArchive(doc, { fileName: name })
+          result.remoteIndex = r
+          report.push(...r.report.map((x) => ({ ...x, file: f.path })))
+        } else if (looksLikeArchive(doc)) {
           const r = importArchive(doc, { fileName: name })
           result.variants.push(...r.variants)
           // Portfolio d'une archive : sur un jeu qui a déjà le sien, ce qui est là gagne.
@@ -253,6 +266,26 @@ export function recognize(files, { now = new Date().toISOString() } = {}) {
 export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOString(), fileNames = [] } = {}) {
   const report = [...recognized.report]
   const wasEmpty = dataset.days.length === 0
+  // Un index lu à la demande (D-67) n'ouvre qu'un jeu neuf : ses détails sont
+  // sur le site ; dans un jeu qui a déjà quelque chose (une journée, un
+  // passage sans date, une synthèse, une seconde lecture), rien n'en est pris.
+  if (recognized.remoteIndex) {
+    const blank = wasEmpty && !dataset.portfolio?.undated?.length && !dataset.narratives?.length && !dataset.readings?.length
+    const idx = recognized.remoteIndex
+    if (blank) {
+      recognized = {
+        ...recognized,
+        variants: [...recognized.variants, ...idx.variants],
+        narratives: [...recognized.narratives, ...idx.narratives],
+        runDetails: [...recognized.runDetails, ...idx.runDetails],
+        metrics: recognized.metrics ?? idx.metrics,
+        referential: recognized.referential ?? idx.referential,
+        extras: [...(recognized.extras ?? []), idx.extras],
+      }
+    } else {
+      report.push({ severity: 'blocking', code: 'index-a-la-demande', message: 'Index d’un jeu lu à la demande : il s’ouvre comme un jeu à part, il ne se fusionne pas — ignoré' })
+    }
+  }
   const ds = { ...dataset, days: dataset.days.map((d) => ({ ...d, variants: [...d.variants], tags: [...d.tags] })) }
   const byDate = new Map(ds.days.map((d) => [d.date, d]))
   const created = new Set()
@@ -287,8 +320,45 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     }
   }
 
+  // L'index accepté (plus haut) : ses journées n'ont pas de détail ici.
+  const remote = (recognized.extras ?? []).find((ex) => ex.remote)?.remote ?? null
+  const remoteOk = Boolean(remote)
+
+  // Seconde lecture (D-68) : un run AuroraCore joint à un jeu qui a déjà ses
+  // analyses par journée (ou en reçoit dans ce même lot) n'en ajoute pas une
+  // seconde à chaque journée — elles passeraient « à arbitrer » et ne
+  // compteraient plus : il se joint à chaque compétence, sans changer le
+  // soleil. Seul, il fait le soleil, comme avant.
+  const isCoreVariant = (summary) => summary?.provenance?.source === 'aurora-core'
+  const ownAnalyses = dataset.days.some((d) => d.variants.some((v) => !isCoreVariant(v))) || recognized.variants.some((v) => !isCoreVariant(v.summary))
+  const asReading = (recognized.readings ?? []).length > 0 && ownAnalyses
+  if (asReading) {
+    // Ses verdicts ne sont pas répartis sur les journées : le compte rendu ne
+    // le dit pas, ni qu'une trace sans date n'y est pas placée.
+    for (let i = report.length - 1; i >= 0; i--) if (report[i].code === 'aurora-core' || report[i].code === 'traces-non-datees') report.splice(i, 1)
+    const byId = new Map((ds.readings ?? []).map((r) => [r.id, r]))
+    // Un run déjà réparti sur les journées (importé seul, avant) n'est pas joint une seconde fois.
+    const inDays = runsInDays(dataset)
+    for (const r of recognized.readings) {
+      if (byId.has(r.id) || inDays.has(r.id)) {
+        counts.duplicates++
+        report.push({ severity: 'info', code: 'doublon', message: byId.has(r.id) ? `Seconde lecture ${r.id} déjà jointe — doublon ignoré` : `Analyse AuroraCore ${r.id} déjà répartie sur les journées — doublon ignoré` })
+        continue
+      }
+      byId.set(r.id, structuredClone(r))
+      report.push({
+        severity: 'info',
+        code: 'seconde-lecture',
+        message: `Analyse AuroraCore ${r.id} jointe en seconde lecture (${Object.keys(r.codes).length} compétence(s)) : elle se lit avec chaque compétence et ne change pas le soleil`,
+      })
+    }
+    ds.readings = [...byId.values()].sort((a, b) => (a.id < b.id ? -1 : 1))
+  }
+
   // Variantes d'analyse.
   for (const { date, summary, detail } of recognized.variants) {
+    if (detail === null && !remoteOk) continue
+    if (asReading && isCoreVariant(summary)) continue
     const day = dayFor(date)
     if (day.variants.some((v) => v.id === summary.id)) {
       counts.duplicates++
@@ -297,7 +367,7 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     }
     const hadVariants = day.variants.length > 0
     day.variants.push(summary)
-    patch(date).variants[summary.id] = detail
+    if (detail !== null) patch(date).variants[summary.id] = detail
     counts.variantsAdded++
     if (!hadVariants) {
       day.activeVariantId = summary.id
@@ -316,11 +386,23 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
   // (rattachés ou écartés depuis) : ce qui est là gagne.
   const hadPortfolio = Boolean(dataset.portfolio)
   let kept = 0
-  for (const seg of recognized.portfolio) {
+  let outside = 0
+  // Les feuilles d'une seconde lecture passent après les autres textes du lot
+  // (archive, portfolio) : elles ne donnent que le texte d'une journée du jeu
+  // qui n'en a pas, et n'ajoutent aucune journée.
+  const segments = asReading ? [...recognized.portfolio.filter((x) => !x.fromCore), ...recognized.portfolio.filter((x) => x.fromCore)] : recognized.portfolio
+  const used = []
+  for (const seg of segments) {
+    if (asReading && seg.fromCore && !byDate.has(seg.date)) {
+      outside++
+      continue
+    }
     const day = dayFor(seg.date)
     const summary = portfolioSummary(seg.text)
-    if (seg.fromArchive && hasPortfolio(day)) {
+    // Les feuilles d'une seconde lecture ne remplacent pas le texte d'une journée qui a le sien.
+    if ((seg.fromArchive || (asReading && seg.fromCore)) && hasPortfolio(day)) {
       if (day.portfolio.chars !== summary.chars) kept++
+      if (!seg.fromCore) used.push(seg)
       continue
     }
     if (day.portfolio && day.portfolio.chars !== summary.chars) {
@@ -329,9 +411,13 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
     day.portfolio = summary
     patch(seg.date).portfolio = { title: seg.title, text: seg.text, source: seg.source }
     counts.portfolioDays++
+    used.push(seg)
   }
   if (kept > 0) {
-    report.push({ severity: 'info', code: 'portfolio-conserve', message: `${kept} journée(s) dont le texte diffère de celui de l'archive : votre texte est conservé` })
+    report.push({ severity: 'info', code: 'portfolio-conserve', message: `${kept} journée(s) dont le texte diffère de celui importé (archive, feuilles d’une seconde lecture) : votre texte est conservé` })
+  }
+  if (outside > 0) {
+    report.push({ severity: 'info', code: 'feuilles-hors-jeu', message: `${outside} feuille(s) de la seconde lecture pour des journées absentes du jeu : non importées` })
   }
   // Un passage sans date déjà en attente (même texte) n'est pas ajouté deux fois.
   const pending = new Set((ds.portfolio?.undated ?? []).map((u) => u.text))
@@ -347,8 +433,8 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
   if (undatedKept > 0) {
     report.push({ severity: 'info', code: 'sans-date-conserves', message: `${undatedKept} passage(s) sans date de l'archive ignoré(s) : les passages de ce jeu sont conservés` })
   }
-  if (recognized.portfolio.length > 0 || undated.length > 0) {
-    const sources = [...new Set(recognized.portfolio.map((s) => s.source).concat(undated.map((s) => s.source)))]
+  if (used.length > 0 || undated.length > 0) {
+    const sources = [...new Set(used.map((s) => s.source).concat(undated.map((s) => s.source)))]
     ds.portfolio = {
       title: ds.portfolio?.title ?? (sources[0] ?? 'Portfolio'),
       sources: [...new Set([...(ds.portfolio?.sources ?? []), ...sources])],
@@ -381,7 +467,20 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
   // variantes, ensembles, revues, repères, comparaisons). Sur un jeu existant,
   // ce qui y est déjà gagne ; sur un jeu vide, l'archive est restaurée telle quelle.
   for (const ex of recognized.extras ?? []) {
+    if (ex.remote && !remoteOk) continue
     if (wasEmpty) {
+      if (ex.remote) {
+        ds.remote = ex.remote
+        // Le texte est sur le site : le portfolio est là, avec ses passages sans date.
+        if (ex.portfolioMeta) {
+          ds.portfolio = {
+            title: ex.portfolioMeta.title ?? 'Portfolio',
+            sources: ex.portfolioMeta.sources ?? [],
+            importedAt: now,
+            undated: structuredClone(ex.remoteUndated ?? []),
+          }
+        }
+      }
       if (ex.title) ds.title = ex.title
       if (ex.preferences) ds.preferences = { ...ds.preferences, ...structuredClone(ex.preferences) }
       if (ex.portfolioMeta && ds.portfolio) ds.portfolio = { ...ds.portfolio, title: ex.portfolioMeta.title ?? ds.portfolio.title, sources: [...new Set([...(ex.portfolioMeta.sources ?? []), ...(ds.portfolio.sources ?? [])])] }
@@ -397,6 +496,10 @@ export function mergeIntoDataset(dataset, recognized, { now = new Date().toISOSt
         day.variantChoice = d.variantChoice ?? day.variantChoice
       }
     }
+    // Secondes lectures d'une archive (D-68) : par identifiant, ce qui est là gagne.
+    const readingIds = new Set((ds.readings ?? []).map((r) => r.id))
+    const newReadings = (Array.isArray(ex.readings) ? ex.readings : []).filter((r) => r && typeof r.id === 'string' && r.codes && typeof r.codes === 'object' && !readingIds.has(r.id))
+    if (newReadings.length) ds.readings = [...(ds.readings ?? []), ...structuredClone(newReadings)].sort((a, b) => (a.id < b.id ? -1 : 1))
     // Un élément illisible (édité à la main, autre version) est écarté et compté,
     // jamais recopié : il casserait la lecture, et l'archive de compte qui
     // embarque ce jeu (schéma competency-map-master).
@@ -489,11 +592,12 @@ export function severityCounts(report) {
  * Chaîne complète : fichiers → nouveau jeu de données + retouches + rapport.
  * @param {Array<{path: string, bytes?: Uint8Array, text?: string}>} files
  * @param {object} dataset
- * @param {{now?: string}} [opts]
+ * @param {{now?: string, allowRemote?: boolean}} [opts] allowRemote : l'index
+ *   d'un jeu lu à la demande est accepté (la démonstration du site seulement, D-67)
  */
-export async function importFiles(files, dataset, { now = new Date().toISOString() } = {}) {
+export async function importFiles(files, dataset, { now = new Date().toISOString(), allowRemote = false } = {}) {
   const expanded = await expandFiles(files)
-  const recognized = recognize(expanded.files, { now })
+  const recognized = recognize(expanded.files, { now, allowRemote })
   recognized.report.unshift(...expanded.report)
   const merged = mergeIntoDataset(dataset, recognized, { now, fileNames: files.map((f) => f.path ?? f.name) })
   return { ...merged, dates: sortedDates(merged.dataset) }

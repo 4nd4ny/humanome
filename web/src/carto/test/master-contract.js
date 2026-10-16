@@ -7,9 +7,10 @@
 // (validation) et de l'archive de compte (archive-export 1.1.0).
 //
 // Un jeu synthétique (Lou) qui touche chaque partie du conteneur : deux
-// analyses d'une même journée (arbitrées), portfolio et passage sans date,
-// case décochée, étiquette, ensemble figé, réponse au jury, repère et phase,
-// note de comparaison, préférences, carnet du dialogue (un dialogue versé au
+// analyses d'une même journée (arbitrées), seconde lecture (un run AuroraCore
+// et ses délibérations, D-68), portfolio et passage sans date, case décochée,
+// étiquette, ensemble figé, réponse au jury, repère et phase, note de
+// comparaison, préférences, carnet du dialogue (un dialogue versé au
 // portfolio, un autre non).
 
 import { importFiles } from '../core/import.js'
@@ -28,7 +29,7 @@ import {
   setReflectionVersed,
   setReview,
 } from '../core/ops.js'
-import { LOU_PORTFOLIO, cartoPole, kairosDoc, louDays, miniReferential } from './fixtures.js'
+import { LOU_PORTFOLIO, cartoPole, kairosDoc, louCoreRun, louDays, miniReferential } from './fixtures.js'
 
 export const MASTER_NOW = '2026-10-14T10:00:00.000Z'
 
@@ -53,6 +54,9 @@ export async function masterContractArchive() {
   // Une seconde analyse du 23 décembre : variante concurrente, puis arbitrée.
   const other = cartoPole(2, [{ code: '2.02', statut: 'présence établie', confiance: 0.6, traces: [{ role: 'indice corroboratif', extrait: 'puis j’ai reformulé ce que j’avais compris' }] }], { date: '2025-12-23' })
   res = await importFiles([{ path: 'run2/2025-12-23/carto_P2.json', text: JSON.stringify(other) }], res.dataset, { now })
+  await store.commit(res)
+  // Un run AuroraCore sur tout le journal : seconde lecture, sans effet sur le soleil (D-68).
+  res = await importFiles(louCoreRun(), res.dataset, { now })
   await store.commit(res)
 
   let ds = res.dataset

@@ -12,7 +12,8 @@ import { useCartoData } from './useCartoData.js'
 import { computeState, layoutPole, layoutSun } from '../core/state.js'
 import { buildHeatmap, datesObserving, dayCodes } from '../core/heatmap.js'
 import { DEFAULT_PARAMS, HEIGHT_ORIGIN_MAX, MIN_THICKNESS_RANGE, POLE_RING_MAX, resolveParams, ringShown, sunGeometry } from '../core/formulas.js'
-import { calendarModeOf, contributingVariant, todoCount } from '../core/model.js'
+import { calendarModeOf, contributingVariant, runIdOf, todoCount } from '../core/model.js'
+import { NEED_DAY, needCode, needPole } from '../core/split.js'
 import { renameDataset, selectExactly, setPreferences } from '../core/ops.js'
 import { dateRange, formatShort, schoolYearOf } from '../core/dates.js'
 import { Sun, SunTable } from './Sun.jsx'
@@ -28,6 +29,7 @@ import { ImportPanel, ImportReport } from './ImportPanel.jsx'
 import { PortfolioReader } from './PortfolioReader.jsx'
 import { DayVerdictDetail, ObservationDays, TraceList, verdictDetailOf } from './Observations.jsx'
 import { PoleReports } from './PoleReports.jsx'
+import { SecondReadings } from './SecondReading.jsx'
 import { DayKairos, EvolutiveNarratives } from './Narratives.jsx'
 import { usePrintExpand } from './print.js'
 import { ComparePanel } from './ComparePanel.jsx'
@@ -262,12 +264,12 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     }
     return state.dates.slice(-1)
   }, [state, ui.selection])
+  // Ce dont le panneau a besoin, et rien d'autre (un jeu lu à la demande ne lit que cela, D-67) :
+  // une compétence, ses verdicts ; un pôle, ses rapports ; sans sélection, le portrait du dernier jour.
+  const selectionNeed = ui.selection?.type === 'competency' ? needCode(ui.selection.code) : ui.selection?.type === 'pole' ? needPole(ui.selection.num) : NEED_DAY
   useEffect(() => {
-    if (selectionDates.length > 0) ensureDetails(selectionDates)
-  }, [selectionDates, ensureDetails])
-  useEffect(() => {
-    if (modalDate) ensureDetails([modalDate])
-  }, [modalDate, ensureDetails])
+    if (selectionDates.length > 0) ensureDetails(selectionDates, selectionNeed)
+  }, [selectionDates, selectionNeed, ensureDetails])
 
   // Délibérations de run (AuroraCore) de la sélection et de la compétence en focus de la modale.
   const runKeys = useMemo(() => {
@@ -282,8 +284,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
     }
     if (ui.selection?.type === 'pole') {
       for (const d of selectionDates) {
-        const variant = contributingVariant(byDate.get(d))
-        const runId = getDetail(d)?.variants?.[variant?.id]?.runId
+        const runId = runIdOf(contributingVariant(byDate.get(d)))
         if (runId) keys.add(`${runId}|pole:${ui.selection.num}`)
       }
     }
@@ -662,6 +663,7 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
                 date={modalDate}
                 dataset={dataset}
                 getDetail={getDetail}
+                ensureDetails={ensureDetails}
                 getRunDetail={getRunDetail}
                 ensureRunDetail={ensureRunDetail}
                 update={data.update}
@@ -731,6 +733,16 @@ function SelectionDetails({ dataset, state, selection, t, data, selectionDates, 
             />
           </>
         ) : null}
+        {/* Une autre analyse de tout le journal, jointe à la compétence : elle ne change pas le soleil (D-68). */}
+        <SecondReadings
+          dataset={dataset}
+          code={selection.code}
+          traces={comp?.traces ?? []}
+          getDetail={data.getDetail}
+          getRunDetail={data.getRunDetail}
+          ensureRunDetail={data.ensureRunDetail}
+          onOpenPassage={onOpenPassage}
+        />
         <EvolutiveNarratives
           dataset={dataset}
           kind="competence-evolutive"
@@ -746,14 +758,22 @@ function SelectionDetails({ dataset, state, selection, t, data, selectionDates, 
     return (
       <>
         <EvolutiveNarratives dataset={dataset} kind="pole-evolutif" scope={{ pole: selection.num }} shownDates={state.dates} title="Synthèse évolutive du pôle" onShowSourceSet={onShowSourceSet} />
-        <PoleReports num={selection.num} dates={selectionDates} dataset={dataset} getDetail={data.getDetail} getRunDetail={data.getRunDetail} onOpenPassage={onOpenPassage} />
+        <PoleReports
+          num={selection.num}
+          dates={selectionDates}
+          dataset={dataset}
+          getDetail={data.getDetail}
+          getRunDetail={data.getRunDetail}
+          ensureRunDetail={data.ensureRunDetail}
+          onOpenPassage={onOpenPassage}
+        />
       </>
     )
   }
   const last = state.dates.at(-1) ?? null
   const day = last ? dataset.days.find((d) => d.date === last) : null
   const variant = day ? contributingVariant(day) : null
-  const kairos = last && variant ? data.getDetail(last)?.variants?.[variant.id]?.kairos ?? null : null
+  const kairos = last && variant ? data.getDetail(last, NEED_DAY)?.variants?.[variant.id]?.kairos ?? null : null
   return (
     <>
       <EvolutiveNarratives dataset={dataset} kind="kairos-evolutif" scope={{}} shownDates={state.dates} title="Synthèse évolutive (kairos)" onShowSourceSet={onShowSourceSet} />

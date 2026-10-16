@@ -11,6 +11,15 @@
 // L'import est écrit en UNE transaction (tout ou rien) : V3 ne le garantissait
 // pas (défaut relevé dans RunWizard). Rien ne quitte le navigateur ;
 // `localStorage` n'est jamais utilisé pour des données.
+//
+// Un jeu LU À LA DEMANDE (la démonstration du site, journal D-67) n'a ici que
+// son index : ses détails sont des fichiers statiques du site (`remote`,
+// core/split.js), lus quand on ouvre ce qu'ils contiennent et gardés le temps
+// de la session. Ce que la personne y ajoute (un passage rattaché, une
+// analyse importée) est rangé ici, par-dessus ; dès qu'elle y a mis quelque
+// chose à elle, le jeu devient d'ici, complet (`materialize`).
+
+import { NEED_ALL, assembleDay, expandNeed, isLocalBase, partPath, withOverlay } from './split.js'
 
 const DB_NAME = 'humanome-carto-v4'
 const DB_VERSION = 1
@@ -130,11 +139,106 @@ export function applyDetailPatch(existing, date, patchValue) {
   }
 }
 
+/** Variantes d'une journée d'après l'index. */
+const variantIdsOf = (dataset, date) => (dataset.days.find((d) => d.date === date)?.variants ?? []).map((v) => v.id)
+
 /**
- * @param {{adapter?: ReturnType<typeof createMemoryAdapter>}} [opts]
+ * Un jeu devenu d'ici (`materialize`) ne redevient jamais lu à la demande :
+ * un enregistrement qui porte encore l'ancien `remote` (préparé avant) le perd.
  */
-export function createCartoStore({ adapter } = {}) {
+function keepLocal(stored, incoming) {
+  if (!incoming?.remote || !stored || stored.remote) return incoming
+  const next = { ...incoming }
+  delete next.remote
+  return next
+}
+
+/**
+ * @param {{adapter?: ReturnType<typeof createMemoryAdapter>, fetchFn?: typeof fetch}} [opts]
+ *   fetchFn : lecture des fichiers d'un jeu lu à la demande (défaut : fetch)
+ */
+export function createCartoStore({ adapter, fetchFn } = {}) {
   const a = adapter ?? defaultAdapter()
+  const fetchUrl = fetchFn ?? ((...args) => globalThis.fetch(...args))
+
+  // ---- Jeux lus à la demande : fichiers lus, par dossier de version ----------
+  // Un fichier n'est demandé qu'une fois par session ; un échec se retente.
+  const requests = new Map() // url → Promise<object>
+  const loaded = new Map() // base → {days, portfolio, codes, poles: Map}
+
+  const shelf = (base) => {
+    if (!loaded.has(base)) loaded.set(base, { days: new Map(), portfolio: new Map(), codes: new Map(), poles: new Map() })
+    return loaded.get(base)
+  }
+
+  /** Lit un fichier d'un jeu lu à la demande et le range. */
+  function remoteFile(dataset, path) {
+    // Seulement des fichiers de ce site, à côté de l'index (D-67).
+    if (!isLocalBase(dataset.remote.base) || !/^[A-Za-z0-9._/-]+$/.test(path) || path.split('/').includes('..')) {
+      return Promise.reject(new Error(`${path} : renvoi hors du site, non suivi`))
+    }
+    const url = `${dataset.remote.base}${path}`
+    if (!requests.has(url)) {
+      const request = (async () => {
+        let res
+        try {
+          res = await fetchUrl(url)
+        } catch {
+          throw new Error(`${path} : site injoignable`)
+        }
+        if (!res?.ok) throw new Error(res?.status === 404 ? `${path} introuvable sur le site` : `${path} illisible (HTTP ${res?.status ?? '?'})`)
+        let value
+        try {
+          value = await res.json()
+        } catch {
+          throw new Error(`${path} illisible (JSON invalide)`)
+        }
+        const s = shelf(dataset.remote.base)
+        const r = dataset.remote
+        for (const [date, p] of Object.entries(r.days ?? {})) if (p === path) s.days.set(date, value)
+        for (const [date, p] of Object.entries(r.portfolio ?? {})) if (p === path) s.portfolio.set(date, value)
+        for (const [code, p] of Object.entries(r.codes ?? {})) if (p === path) s.codes.set(code, value)
+        for (const [n, p] of Object.entries(r.poles ?? {})) if (p === path) s.poles.set(Number(n), value)
+        return value
+      })()
+      requests.set(url, request)
+      request.catch(() => requests.delete(url))
+    }
+    return requests.get(url)
+  }
+
+  /** Clés satisfaites pour une journée : leur fichier est lu, ou il n'y en a pas. */
+  function satisfied(dataset, date, keys) {
+    const s = shelf(dataset.remote.base)
+    const r = dataset.remote
+    const done = (k) => {
+      const path = partPath(r, date, k)
+      if (!path) return true
+      if (k === 'day') return s.days.has(date)
+      if (k === 'portfolio') return s.portfolio.has(date)
+      if (k.startsWith('code:')) return s.codes.has(k.slice(5))
+      if (k.startsWith('pole:')) return s.poles.has(Number(k.slice(5)))
+      return false
+    }
+    const out = keys.filter(done)
+    if (expandNeed(dataset, date, NEED_ALL).every(done)) out.push(NEED_ALL)
+    return out
+  }
+
+  /** Détails rangés ici (un jeu lu à la demande : ce que la personne y a ajouté). */
+  async function loadDayDetails(datasetId, dates) {
+    const wanted = new Set(dates)
+    const recs = await a.transaction(['details'], 'readonly', (t) => t.range('details', rangeOf(datasetId)))
+    return new Map(recs.filter((r) => wanted.has(r.date)).map((r) => [r.date, r.detail]))
+  }
+
+  /** Une journée remontée avec tout ce qui est lu de ce jeu, et ce que la personne y a mis. */
+  function assembled(dataset, date, overlay) {
+    const s = shelf(dataset.remote.base)
+    const record = assembleDay(date, variantIdsOf(dataset, date), { day: s.days.get(date), portfolio: s.portfolio.get(date), codes: s.codes, poles: s.poles })
+    return withOverlay(record, overlay)
+  }
+
   return {
     adapterKind: a.kind,
 
@@ -170,8 +274,9 @@ export function createCartoStore({ adapter } = {}) {
      */
     async saveExistingDataset(dataset) {
       return a.transaction(['datasets'], 'readwrite', async (t) => {
-        if (!(await t.get('datasets', dataset.datasetId))) return false
-        await t.put('datasets', { key: dataset.datasetId, dataset })
+        const rec = await t.get('datasets', dataset.datasetId)
+        if (!rec) return false
+        await t.put('datasets', { key: dataset.datasetId, dataset: keepLocal(rec.dataset, dataset) })
         return true
       })
     },
@@ -181,15 +286,47 @@ export function createCartoStore({ adapter } = {}) {
       return rec?.detail ?? null
     },
 
-    async loadDayDetails(datasetId, dates) {
-      const wanted = new Set(dates)
-      const recs = await a.transaction(['details'], 'readonly', (t) => t.range('details', rangeOf(datasetId)))
-      return new Map(recs.filter((r) => wanted.has(r.date)).map((r) => [r.date, r.detail]))
+    loadDayDetails,
+
+    /**
+     * Journées d'un jeu, avec ce qu'elles satisfont : un jeu d'ici est lu en
+     * entier (`all`) ; un jeu lu à la demande, seulement les fichiers que le
+     * besoin demande (une compétence, un pôle, le texte, la journée), lus ou
+     * déjà lus, plus ce que la personne y a ajouté ici. Un fichier qui ne se
+     * lit pas fait échouer l'appel (réessayable) ; l'erreur porte ce qui a pu
+     * être lu (`partial`), que l'on garde : un fichier absent ne prive pas les
+     * autres journées des leurs.
+     * @param {string} datasetId
+     * @param {string[]} dates
+     * @param {{dataset?: object | null, need?: string | string[]}} [opts] dataset : l'index (jeu lu à la demande)
+     * @returns {Promise<Map<string, {detail: object | null, parts: string[]}>>}
+     */
+    async loadDays(datasetId, dates, { dataset = null, need = NEED_ALL } = {}) {
+      const local = await loadDayDetails(datasetId, dates)
+      if (!dataset?.remote) return new Map(dates.map((d) => [d, { detail: local.get(d) ?? null, parts: [NEED_ALL] }]))
+      const wanted = new Map(dates.map((d) => [d, expandNeed(dataset, d, need)]))
+      const paths = new Set()
+      for (const [d, keys] of wanted) for (const k of keys) {
+        const p = partPath(dataset.remote, d, k)
+        if (p) paths.add(p)
+      }
+      const results = await Promise.allSettled([...paths].map((p) => remoteFile(dataset, p)))
+      const out = new Map(dates.map((d) => [d, { detail: assembled(dataset, d, local.get(d)), parts: satisfied(dataset, d, wanted.get(d)) }]))
+      const failed = results.filter((r) => r.status === 'rejected').map((r) => r.reason?.message ?? String(r.reason))
+      if (failed.length > 0) {
+        const err = new Error(failed.length === 1 ? failed[0] : `${failed[0]}, et ${failed.length - 1} autre(s) fichier(s)`)
+        err.partial = out
+        throw err
+      }
+      return out
     },
 
-    async loadRunDetail(datasetId, key) {
+    /** Délibération d'un run ; d'un jeu lu à la demande, lue sur le site si elle n'est pas ici. */
+    async loadRunDetail(datasetId, key, { dataset = null } = {}) {
       const rec = await a.transaction(['runs'], 'readonly', (t) => t.get('runs', runKey(datasetId, key)))
-      return rec?.value ?? null
+      if (rec) return rec.value ?? null
+      const path = dataset?.remote?.runs?.[key]
+      return path ? ((await remoteFile(dataset, path))?.value ?? null) : null
     },
 
     /**
@@ -199,13 +336,69 @@ export function createCartoStore({ adapter } = {}) {
      */
     async commit({ dataset, detailPatches = new Map(), runDetails = [] }) {
       const id = dataset.datasetId
+      // Jeu lu à la demande : ce qui s'ajoute ici se range par-dessus les
+      // fichiers du site (sans texte propre, `portfolio` reste indéfini) ; un
+      // ajout au texte d'une journée part du texte du site, lu d'abord.
+      const remote = dataset.remote ?? null
+      const siteText = new Map()
+      if (remote) {
+        for (const [date, p] of detailPatches) {
+          if (p.portfolioAppend && remote.portfolio?.[date]) siteText.set(date, (await remoteFile(dataset, remote.portfolio[date]))?.portfolio ?? null)
+        }
+      }
       await a.transaction(STORES, 'readwrite', async (t) => {
         for (const [date, p] of detailPatches) {
           const existing = await t.get('details', detailKey(id, date))
-          await t.put('details', { key: detailKey(id, date), datasetId: id, date, detail: applyDetailPatch(existing?.detail ?? null, date, p) })
+          let base = existing?.detail ?? null
+          if (remote) {
+            base ??= { date, portfolio: undefined, variants: {} }
+            if (base.portfolio === undefined && p.portfolioAppend) base = { ...base, portfolio: siteText.get(date) ?? null }
+          }
+          await t.put('details', { key: detailKey(id, date), datasetId: id, date, detail: applyDetailPatch(base, date, p) })
         }
         for (const rd of runDetails) await t.put('runs', { key: runKey(id, rd.key), datasetId: id, value: rd.value })
-        await t.put('datasets', { key: id, dataset })
+        const stored = await t.get('datasets', id)
+        await t.put('datasets', { key: id, dataset: keepLocal(stored?.dataset, dataset) })
+      })
+    },
+
+    /**
+     * Un jeu lu à la demande devient un jeu d'ici : tous ses fichiers lus sur
+     * le site et rangés ici avec ce que la personne y a mis — elle ne dépend
+     * plus du dossier de sa version, qui peut se retirer du site (D-67). Sans
+     * effet sur un jeu qui n'est plus lu à la demande, ou qui l'est depuis un
+     * autre dossier (remplacé entre-temps).
+     * @returns {Promise<object | null>} l'index rangé, sans `remote` (déjà d'ici :
+     *   tel qu'il est, par exemple copié dans un autre onglet), ou null (absent,
+     *   remplacé entre-temps)
+     */
+    async materialize(datasetId) {
+      const first = await a.transaction(['datasets'], 'readonly', (t) => t.get('datasets', datasetId))
+      const remote = first?.dataset?.remote
+      if (!remote) return first?.dataset ?? null
+      const paths = new Set([remote.days, remote.portfolio, remote.codes, remote.poles, remote.runs].flatMap((m) => Object.values(m ?? {})))
+      await Promise.all([...paths].map((p) => remoteFile(first.dataset, p)))
+      const runs = new Map()
+      for (const [key, path] of Object.entries(remote.runs ?? {})) runs.set(key, (await remoteFile(first.dataset, path))?.value ?? null)
+      return a.transaction(STORES, 'readwrite', async (t) => {
+        const rec = await t.get('datasets', datasetId)
+        const ds = rec?.dataset
+        if (!ds) return null
+        if (!ds.remote) return ds
+        if (ds.remote.base !== remote.base) return null
+        const mine = new Map((await t.range('details', rangeOf(datasetId))).map((r) => [r.date, r.detail]))
+        const dates = new Set([...ds.days.map((d) => d.date), ...Object.keys(remote.days ?? {}), ...Object.keys(remote.portfolio ?? {}), ...mine.keys()])
+        for (const date of [...dates].sort()) {
+          const record = assembled(ds, date, mine.get(date))
+          if (record.portfolio || Object.keys(record.variants).length > 0) await t.put('details', { key: detailKey(datasetId, date), datasetId, date, detail: record })
+        }
+        for (const [key, value] of runs) {
+          if (!(await t.get('runs', runKey(datasetId, key)))) await t.put('runs', { key: runKey(datasetId, key), datasetId, value })
+        }
+        const next = { ...ds }
+        delete next.remote
+        await t.put('datasets', { key: datasetId, dataset: next })
+        return next
       })
     },
 
@@ -219,9 +412,13 @@ export function createCartoStore({ adapter } = {}) {
       })
     },
 
-    /** Tout le contenu d'un jeu (archive JSON, §11). */
+    /**
+     * Tout le contenu d'un jeu (archive JSON, §11). Un jeu lu à la demande
+     * est lu en entier sur le site d'abord : l'archive est complète, sans
+     * renvoi au site.
+     */
     async exportAll(datasetId) {
-      return a.transaction(STORES, 'readonly', async (t) => {
+      const out = await a.transaction(STORES, 'readonly', async (t) => {
         const rec = await t.get('datasets', datasetId)
         if (!rec) return null
         const details = await t.range('details', rangeOf(datasetId))
@@ -232,6 +429,22 @@ export function createCartoStore({ adapter } = {}) {
           runDetails: Object.fromEntries(runs.map((r) => [r.key.slice(datasetId.length + 1), r.value])),
         }
       })
+      const remote = out?.dataset?.remote
+      if (!remote) return out
+      const ds = out.dataset
+      const paths = new Set([remote.days, remote.portfolio, remote.codes, remote.poles, remote.runs].flatMap((m) => Object.values(m ?? {})))
+      await Promise.all([...paths].map((p) => remoteFile(ds, p)))
+      const dates = [...new Set([...ds.days.map((d) => d.date), ...Object.keys(remote.days ?? {}), ...Object.keys(remote.portfolio ?? {}), ...Object.keys(out.details)])].sort()
+      const details = {}
+      for (const date of dates) {
+        const record = assembled(ds, date, out.details[date])
+        if (record.portfolio || Object.keys(record.variants).length > 0) details[date] = record
+      }
+      const runDetails = {}
+      for (const [key, path] of Object.entries(remote.runs ?? {})) runDetails[key] = (await remoteFile(ds, path))?.value ?? null
+      const dataset = { ...ds }
+      delete dataset.remote
+      return { dataset, details, runDetails: { ...runDetails, ...out.runDetails } }
     },
   }
 }

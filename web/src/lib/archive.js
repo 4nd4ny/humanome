@@ -158,7 +158,19 @@ async function interfaceDatasets(store, exportedAt) {
   const list = []
   const excluded = []
   for (const { datasetId } of await store.listDatasets()) {
-    const exported = await store.exportAll(datasetId)
+    // An untouched demo reloads from the site: it does not leave, and nothing
+    // is read for it (read on demand, its files would be downloaded — D-67).
+    const dataset = (await store.loadDataset?.(datasetId)) ?? null
+    if (dataset && isPristineDemo(dataset)) continue
+    let exported
+    try {
+      exported = await store.exportAll(datasetId)
+    } catch {
+      // A dataset read on demand whose files cannot be fetched (offline):
+      // left out and named, the rest of the archive leaves.
+      excluded.push({ title: String(dataset?.title ?? datasetId), errors: 0 })
+      continue
+    }
     if (!exported || isPristineDemo(exported.dataset)) continue
     const master = buildMasterArchive(exported, { includePortfolio: true, now: exportedAt })
     const { valid, errors } = validateDocument('competency-map-master', master)

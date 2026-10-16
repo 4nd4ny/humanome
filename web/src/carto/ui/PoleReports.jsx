@@ -5,10 +5,12 @@
 // le rapport complet rédigé qui les contient : une compétence non observée
 // n'est jamais listée comme manquante (§1.2, D-16).
 
-import { contributingVariant } from '../core/model.js'
+import { contributingVariant, runIdOf, runsInDays } from '../core/model.js'
+import { needPole } from '../core/split.js'
 import { formatLong, formatShort } from '../core/dates.js'
 import { plainText } from '../core/restatement.js'
 import { Markdown } from './Jury.jsx'
+import { PoleReading } from './SecondReading.jsx'
 
 const txt = (v) => (v === null || v === undefined ? '' : String(v))
 
@@ -53,23 +55,28 @@ function PassageItem({ extract, context, date, label, onOpenPassage }) {
 
 /**
  * @param {{num: number, dates: string[], dataset: object, getDetail: Function, getRunDetail: Function,
+ *   ensureRunDetail?: (key: string) => void,
  *   onOpenPassage: (p: {date: string, extract: string, label?: string}) => void}} props
  *   dates : journées de l'état affiché où le pôle est observé
  */
-export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOpenPassage }) {
+export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, ensureRunDetail, onOpenPassage }) {
   const byDate = new Map(dataset.days.map((d) => [d.date, d]))
   const ordered = [...dates].sort().reverse() // la plus récente d'abord
   const runIds = []
   const blocks = ordered.map((date) => {
     const variant = contributingVariant(byDate.get(date))
-    const detail = getDetail(date)
+    const detail = getDetail(date, needPole(num))
     const vd = detail === undefined ? undefined : detail?.variants?.[variant?.id] ?? null
-    if (vd?.runId && !runIds.includes(vd.runId)) runIds.push(vd.runId)
+    const runId = runIdOf(variant)
+    if (runId && !runIds.includes(runId)) runIds.push(runId)
     return { date, vd }
   })
   // Une journée dont le rapport n'a rien d'affichable (un texte complet seul, D-16) n'ouvre pas de bloc vide.
   const shown = (r) => Boolean(txt(r?.portrait).trim() || r?.denseTerritories?.length || r?.leads?.length)
   const withReports = blocks.filter((b) => b.vd === undefined || shown(b.vd?.poleReports?.[num]) || b.vd?.passages?.some((p) => Number(p.pole) === num))
+  // Secondes lectures (D-68) : le rapport du pôle de chacune, lu à l'ouverture.
+  const inDays = runsInDays(dataset)
+  const readings = ensureRunDetail ? (dataset.readings ?? []).filter((r) => !inDays.has(r.id) && (r.poles ?? []).includes(num)) : []
 
   return (
     <section className="carto-pole-reports" aria-label="Rapports du pôle">
@@ -83,6 +90,9 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
           </details>
         )
       })}
+      {readings.map((r) => (
+        <PoleReading key={r.id} reading={r} num={num} getRunDetail={getRunDetail} ensureRunDetail={ensureRunDetail} render={(run) => <Markdown text={run.report ?? run.reading ?? ''} />} />
+      ))}
       {withReports.length > 0 ? <h3>Rapports de pôle par journée</h3> : null}
       {withReports.map(({ date, vd }, i) => {
         const report = vd?.poleReports?.[num] ?? null

@@ -17,6 +17,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { formatShort } from '../core/dates.js'
 import { hasPortfolio } from '../core/model.js'
+import { NEED_PORTFOLIO, needCode } from '../core/split.js'
 import { addReflection, removeReflection, setReflectionVersed } from '../core/ops.js'
 import {
   CLOSING,
@@ -214,16 +215,15 @@ export function DialoguePanel({ dataset, refl, state, data, params, readOnly = f
   const uid = useId()
   const { ensureDetails, getDetail } = data
 
-  // Détails utiles : journées des citations candidates et textes du journal (rupture).
-  const needed = useMemo(() => {
-    const quotes = quoteCandidates(state).slice(0, 12).map((c) => c.date)
-    const written = dataset.days.filter(hasPortfolio).map((d) => d.date)
-    return [...new Set([...quotes, ...written])].sort()
-  }, [state, dataset])
+  // Détails utiles : les citations candidates (leur compétence) et les textes
+  // du journal (rupture de vocabulaire) — rien d'autre (D-67).
+  const quotes = useMemo(() => quoteCandidates(state).slice(0, 12), [state])
+  const written = useMemo(() => dataset.days.filter(hasPortfolio).map((d) => d.date), [dataset])
   useEffect(() => {
-    if (needed.length) ensureDetails(needed)
-  }, [needed, ensureDetails])
-  const ready = needed.every((d) => getDetail(d) !== undefined)
+    for (const q of quotes) ensureDetails([q.date], needCode(q.code))
+    if (written.length) ensureDetails(written, NEED_PORTFOLIO)
+  }, [quotes, written, ensureDetails])
+  const ready = quotes.every((q) => getDetail(q.date, needCode(q.code)) !== undefined) && written.every((d) => getDetail(d, NEED_PORTFOLIO) !== undefined)
 
   // Le script est figé au début d'un dialogue (il ne change pas sous les doigts).
   const [script, setScript] = useState(null)

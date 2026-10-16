@@ -12,6 +12,7 @@
 import { KIND, SCHEMA_VERSION } from './model.js'
 import { isIsoDate } from './dates.js'
 import { withoutRestatements } from './restatement.js'
+import { isSplitIndex } from './split.js'
 
 /** Nom de fichier conseillé : cartographie-<type>-<date>.json */
 export function archiveFileName(type, now = new Date().toISOString(), ext = 'json') {
@@ -72,6 +73,9 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
   const variants = []
   const portfolio = []
   const details = doc.details ?? {}
+  // Index d'un jeu lu à la demande (D-67) : ses détails restent sur le site,
+  // lus quand on les ouvre — aucun n'est rangé ici (`detail` nul).
+  const remote = isSplitIndex(doc) ? doc.remote : null
   for (const day of doc.days ?? []) {
     if (!isIsoDate(day?.date)) {
       report.push({ severity: 'blocking', code: 'date-absente', message: `${fileName} : journée sans date valide — ignorée` })
@@ -83,7 +87,7 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
         date: day.date,
         summary,
         // Une archive construite avant D-66 garde les textes complets qui redisent leurs rubriques : allégée ici.
-        detail: withoutRestatements(detail?.variants?.[summary.id] ?? { verdicts: {}, passages: [], poleReports: {}, audits: {}, kairos: null, kairosRaw: null, emergences: null }),
+        detail: remote ? null : withoutRestatements(detail?.variants?.[summary.id] ?? { verdicts: {}, passages: [], poleReports: {}, audits: {}, kairos: null, kairosRaw: null, emergences: null }),
       })
     }
     if (detail?.portfolio && typeof detail.portfolio.text === 'string') {
@@ -95,12 +99,15 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
   return {
     variants,
     portfolio,
-    undated: doc.portfolio?.undated ?? [],
+    undated: remote ? [] : (doc.portfolio?.undated ?? []),
     narratives: doc.narratives ?? [],
     metrics: doc.metrics ?? null,
     runDetails: Object.entries(doc.runDetails ?? {}).map(([key, value]) => ({ key, value })),
     referential: doc.referential ?? null,
     extras: {
+      remote,
+      // Passages sans date d'un index lu à la demande : repris seulement s'il ouvre un jeu neuf.
+      remoteUndated: remote ? (doc.portfolio?.undated ?? []) : [],
       title: doc.title ?? null,
       preferences: doc.preferences ?? null,
       portfolioMeta: doc.portfolio ? { title: doc.portfolio.title ?? null, sources: doc.portfolio.sources ?? [] } : null,
@@ -117,6 +124,7 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
       markers: doc.markers ?? [],
       comparisons: doc.comparisons ?? [],
       reflections: doc.reflections ?? [],
+      readings: doc.readings ?? [],
     },
     report,
   }

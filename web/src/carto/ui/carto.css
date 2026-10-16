@@ -1630,6 +1630,7 @@ kbd {
 }
 .carto-traces,
 .carto-observations,
+.carto-second-readings,
 .carto-pole-reports {
   margin-top: 1rem;
 }
@@ -1678,11 +1679,18 @@ kbd {
   content: close-quote;
 }
 .carto-observation,
+.carto-second-reading,
 .carto-pole-report,
 .carto-run-jury,
 .carto-run-decision {
   border-top: 1px solid var(--line);
   padding: 0.4rem 0;
+}
+/* Seconde lecture (D-68) : sous les verdicts par journée, à leur manière. */
+.carto-second-reading > summary {
+  cursor: pointer;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 .carto-run-decision .carto-run-jury {
   border-top: 0;

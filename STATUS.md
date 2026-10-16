@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-66, état des tests, les 40 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-68, état des tests, les 41 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -177,6 +177,21 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     de les joindre) et 40 (lire les données à la demande : proposition en trois points) posées.
     Déployé (front, et l'archive de la démonstration allégée : 18,4 → 17,2 Mo) et vérifié en
     ligne, au bureau et au téléphone.
+  - **Réponse du 2026-10-16, 8 h 44** (« Ok pour choix A et choix 1. », D-67, D-68). La
+    démonstration se lit à la demande : un index (38 Ko compressés) puis le seul fichier de ce
+    qu'on ouvre, rangé par compétence, pôle, journée, texte ou délibération (`core/split.js`,
+    `web/scripts/carto-demo-split.mjs` ; schéma : `remote`, `docs/contrats.md` décision 11) ;
+    une démonstration où la personne met quelque chose à elle se copie dans son navigateur, et
+    l'ancien dossier de version peut se retirer du site (hébergement gratuit : 100 Mo). La
+    seconde lecture : un run AuroraCore joint à un jeu qui a ses analyses par journée ne touche
+    plus aux journées ; sa délibération se lit avec chaque compétence, la décision du président
+    d'abord (`ui/SecondReading.jsx` ; schéma : `readings`, décision 12). Relu deux fois par un
+    agent distinct (quatorze, puis quatre points, traités). Suites : front **2 468 verts**,
+    moteur 1 073, e2e Chromium de la cartographie verts. Déployé et vérifié en ligne (bureau,
+    téléphone). L'hébergement gratuit (100 Mo) était plein : avec l'accord de Christian,
+    l'ancienne `archive.json` (17,2 Mo) et la release API `v1.1.0-4` (3,7 Mo) sont sauvegardées
+    sur le Mac (`backup-manuel/2026-10-16/`) puis effacées ; 56,1 Mo visibles ensuite. Question 41
+    (que retirer d'autre : release précédente, base pays, journées publiques) en attente.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

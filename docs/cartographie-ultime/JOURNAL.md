@@ -69,6 +69,10 @@ autorisation, puis fusionné dans `main` (D-46).
 | Déploiement | D-64 et D-65 : front déployé, vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-65 |
 | Chaque information une fois | portrait de la journée sans « Synthèse complète » ; compétence, pôle, modale du jour et rapport imprimé sans redites ; sort des pièces du Greffier ; décision du président d'abord, sans rien déplier ; textes complets qui ne font que redire non gardés (D-66) | ✅ | ✅ voir §3 + vérification Chromium sur la démonstration + deux relectures indépendantes | ✅ | `073c632`, `b72858d`, `3c8160f` |
 | Déploiement | D-66 : front et archive de la démonstration allégée (18,4 → 17,2 Mo) déployés, vérifiés en ligne au bureau et au téléphone ; une démonstration d'avant mise à jour d'elle-même en 3,3 s | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-66 |
+| Démonstration lue à la demande | un index (38 Ko compressés), puis le seul fichier de ce qu'on ouvre : une compétence, un pôle, la journée, son texte, une délibération (D-67) | ✅ | ✅ voir §3 + relecture indépendante + démonstration refaite à l'identique | ✅ | `b640358` |
+| Seconde lecture | le jury AuroraCore joint à chaque compétence, la décision du président d'abord, sans effet sur le soleil ; rapport de pôle (D-68) | ✅ | ✅ voir §3 | ✅ | `b640358` |
+| Démonstration enrichie | dès qu'on y met quelque chose à soi, elle se copie dans le navigateur ; l'ancien dossier de version peut se retirer du site (D-67) | ✅ | ✅ voir §3 + seconde relecture indépendante | ✅ | `6c50346` |
+| Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2596,6 +2600,190 @@ vérifié — : 18,4 → 17,2 Mo, redéposée sous un nom provisoire puis renomm
 - seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
 - copies de travail effacées : paquet, dossier de déploiement, archives, fichier d'accès.
 
+### D-67 — La démonstration lue à la demande **[décidé]**
+
+Christian (2026-10-16, 8 h 44) : « Ok pour choix A et choix 1. » Le choix 1
+de la question 40 : la démonstration découpée en fichiers statiques, chacun
+lu au moment où l'on ouvre ce qu'il contient (le choix A, de la question 39 :
+D-68).
+
+- **Un écart avec la proposition, voulu** : elle disait « une journée par
+  fichier ». Mesuré sur la démonstration, c'est le mauvais grain : ouvrir une
+  compétence lirait toutes ses journées — 19 en moyenne, 45 pour 7.03 —, soit
+  6,5 Mo en moyenne (1,3 Mo compressés) et 13,6 Mo au pire ; ouvrir un pôle,
+  les 59 journées (16 Mo). Les fichiers sont donc rangés **par ce que l'on
+  ouvre** :
+
+  | Fichier | Ce qu'il porte | Nombre | Taille (compressée) |
+  |---|---|---|---|
+  | `jours/<date>.json` | ce qui ne tient qu'à la journée : portrait kairos, émergences, run | 59 | 10 Ko (4 Ko) |
+  | `portfolio/<date>.json` | le texte de la journée | 67 | 6 Ko (3 Ko), 40 Ko au plus |
+  | `competences/<code>.json` | les verdicts détaillés d'une compétence, toutes journées : extraits, jury, pièces | 61 | 183 Ko (41 Ko), 359 Ko au plus |
+  | `poles/<n>.json` | rapports et passages saillants d'un pôle, toutes journées | 7 | 579 Ko (134 Ko), 737 Ko au plus |
+  | `lectures/<clé>.json` | une délibération de run (la seconde lecture, D-68) | 64 | 49 Ko (15 Ko) |
+
+  Chaque information est dans un fichier, un seul : refaite à partir de tous
+  les fichiers, chaque journée est celle de l'archive (testé).
+- **L'index** (`index.json`, 0,7 Mo, 38 Ko compressés) : le jeu sans ses
+  détails — journées, verdicts résumés, référentiel, état, secondes
+  lectures — et, sous `remote`, où lire chaque fichier, dans un **dossier de
+  version** (`v-` suivi de l'empreinte du contenu). Une nouvelle
+  démonstration se dépose, l'index en dernier ; l'ancien dossier peut alors
+  se retirer (voir plus bas).
+- **Ce que la personne y met à elle** (une réponse au jury, un repère, un
+  passage rattaché, une analyse importée) : la démonstration devient alors
+  un jeu d'ici — ses fichiers sont copiés dans son navigateur, en
+  arrière-plan (comme avant D-67, mais pour elle seule), et elle ne dépend
+  plus du site ; un échec (hors ligne, onglet fermé trop tôt) se retente au
+  retour du réseau, puis à chaque ouverture. Intacte, elle se met à jour
+  d'elle-même (D-57). D'où la règle de dépôt : **l'ancien dossier de
+  version se garde tant que la place le permet, puis se retire** —
+  l'hébergement gratuit plafonne à 100 Mo, une version en prend 20 (voir le
+  déploiement). S'il doit partir avant le dépôt du nouveau, qui ouvre la
+  démonstration pendant ce temps la voit sans détails jusqu'à sa mise à
+  jour.
+- **À l'ouverture**, la démonstration télécharge l'index seul (au lieu de
+  l'archive entière : 17,2 Mo, 3,3 Mo compressés). Ensuite, sans sélection,
+  le portrait du dernier jour (un fichier) ; une compétence, son fichier ;
+  un pôle, le sien ; le lecteur, le texte de la journée (ceux des autres
+  journées seulement si le passage n'y est pas) ; une délibération, à
+  l'ouverture de son repli ; dans la modale du jour, la compétence qu'on y
+  déplie. Chaque fichier est lu une fois par visite ; rien n'est rangé dans
+  le navigateur que l'index, tant qu'elle reste intacte (testé). Un fichier qui ne se lit pas ne prive
+  pas les autres de ce qu'ils portent : l'erreur le nomme (« introuvable
+  sur le site », « site injoignable »), le reste s'affiche, et il est
+  redemandé à la prochaine ouverture. Une lecture commencée avant une
+  écriture (un import, un passage rattaché) n'est pas rangée : elle portait
+  l'ancien index ; la journée se relit avec ce que l'écriture a apporté.
+- **Exporter** la démonstration rend une archive complète, sans renvoi au
+  site (testé : celle d'origine).
+- **Compatibilité** : une archive entière déposée (`archive.json`) se lit
+  encore, d'un bloc, si l'index manque ; une démonstration intacte d'avant se
+  met à jour d'elle-même, sur la date de l'index (D-57).
+- **Sûreté** : un index ne s'ouvre que depuis le site, par « Explorer la
+  démonstration » — importé d'un fichier, il est refusé (ses renvois ne
+  mèneraient nulle part, ou ailleurs) ; ses fichiers sont lus à côté de lui,
+  sur ce site, jamais à une autre adresse ; il n'ouvre qu'un jeu neuf : dans
+  un jeu qui a déjà quelque chose (une journée, un passage sans date, une
+  synthèse), rien n'en est pris. Une démonstration intacte ne part pas dans
+  l'archive de compte, et rien n'est lu pour elle ; enrichie mais le site
+  injoignable, elle y est nommée et le reste part.
+- **Code** : `core/split.js` (découpage et remontage, fonctions pures) ;
+  `core/store.js` (lecture des fichiers) ; `ui/useCartoData.js` et ses
+  lecteurs, qui disent chacun ce dont ils ont besoin (une compétence, un
+  pôle, la journée, son texte) ; `web/scripts/carto-demo-split.mjs`, qui
+  découpe une archive. Schéma : `remote`, ajout 4.x (`docs/contrats.md`,
+  décision 11).
+- **Non retenus** : (2) la mémoire bornée — une visite ne lit plus que ce
+  qu'elle ouvre ; (3) l'extrait gardé une fois, changement de contrat
+  (version 5 du master).
+
+### D-68 — La seconde lecture : le jury AuroraCore joint à chaque compétence **[décidé]**
+
+Christian (2026-10-16, 8 h 44) : « Ok pour choix A et choix 1. » Le choix A
+de la question 39 : garder les verdicts par journée pour le soleil et
+joindre la délibération AuroraCore à chaque compétence, en seconde lecture,
+sans effet sur le soleil.
+
+- **À l'import** (`core/import.js`) : un run AuroraCore joint à un jeu qui a
+  déjà ses analyses par journée (ou qui en reçoit dans le même lot) devient
+  une **seconde lecture**. Il n'ajoute aucune variante aux journées (elles ne
+  passent pas « à arbitrer ») ; ses feuilles passent après les autres textes
+  du lot, ne donnent que le texte d'une journée du jeu qui n'en a pas et
+  n'ajoutent aucune journée ; le compte rendu le dit (« jointe en seconde
+  lecture […] ne change pas le soleil »). Seul, il fait le soleil comme
+  avant, réparti sur les journées de ses traces. Le même run joint deux
+  fois, ou déjà réparti sur les journées : un doublon.
+- **Le format** (`readings`, ajout 4.x facultatif — `docs/contrats.md`,
+  décision 12) : par lecture, son run, son journal, sa date d'analyse et, par
+  compétence, statut, confiance, preuves et indices ; ses délibérations
+  restent au niveau du run (`runDetails`, « <run>|<code> » et
+  « <run>|pole:<n> »). L'archive l'emporte ; réimportée, rien n'est doublé.
+- **À l'écran** — panneau d'une compétence, sous « Verdicts par journée » :
+  « Seconde lecture », une ligne par lecture (pour 1.01 : « Jury AuroraCore
+  du 19 avril 2026 : présence établie · confiance 0,85 · 3 preuves, 4
+  indices »).
+  Dépliée :
+  - la **décision du président** (verdict argumenté, prescription) et les
+    voix, sans rien déplier de plus ;
+  - « Traces retenues par ce jury » : une trace qui cite, le même jour, un
+    passage déjà listé plus haut ne le redit pas (« Le même passage qu'une
+    trace listée plus haut ») ; chacune s'ouvre dans le portfolio ;
+  - ce qui a conduit à la décision, replié : éclairages des voix,
+    raisonnement du président, débat contradictoire, pièces du Greffier.
+
+  Panneau d'un pôle : le rapport du pôle par ce jury. Une délibération n'est
+  lue qu'à l'ouverture de sa ligne (D-67).
+- **Sur la démonstration** (journal 300, analyse AuroraCore du 19 avril
+  2026) : 57 compétences jugées, 64 délibérations (3,2 Mo, lues à la
+  demande) ; journées et variantes identiques, soleil inchangé (vérifié).
+  Les deux lectures s'accordent sur 37 présences établies ; pour 15
+  compétences établies par les journées, ce jury renvoie au cartographe ;
+  pour 4 (2 établies, 2 en renvoi par les journées), il ne les établit pas ;
+  la 57ᵉ (3.07) est non établie des deux côtés, hors du soleil. Sur les 180
+  traces de ce jury, 50 citent un passage déjà listé plus haut ; dans le
+  texte de leur journée, 120 se retrouvent entières, 33 en partie, 4
+  approchées ; 12 sont dans la feuille d'un autre jour, 11 introuvables
+  telles quelles (l'extrait est alors cité).
+- **Limite** : une compétence que seule la seconde lecture établirait
+  n'entre ni dans le soleil ni dans la liste (c'est le choix A) : on ne
+  l'ouvre pas. Aucune sur la démonstration ; s'il le faut, le panneau du
+  pôle pourra la nommer.
+- **Pas de seconde lecture** dans la version partagée (elle ne porte que ce
+  que la personne choisit) ni dans la modale du jour (elle porte sur une
+  journée).
+- **Code** : `ui/SecondReading.jsx` ; `core/importers/aurora-core.js` (le
+  run rendu aussi en `readings`) ; `core/import.js` ; `core/archive.js` ;
+  `ui/PoleReports.jsx`. Docs : formation du cartographe (chapitre 7) et
+  guide du visiteur.
+
+**Déploiement de D-67 et D-68** (depuis la VM du Mac, les copies de
+production du référentiel gardées) :
+
+- **La démonstration** : l'analyse AuroraCore du journal 300 copiée du Mac,
+  sans les feuilles et les copies que l'interface n'emploie pas (421
+  fichiers sur 954), jointe à l'archive du site par l'import même de
+  l'interface — journées et variantes identiques, archive conforme au
+  schéma —, puis découpée (258 fichiers, 19,8 Mo ; l'index, 0,7 Mo) ;
+  ouverte comme sur le site puis exportée, c'est l'archive d'origine. Le
+  site seulement ; copies de travail effacées.
+- **Place sur le serveur** : l'hébergement est l'offre gratuite de 100 Mo ;
+  le dépôt s'est arrêté à 191 fichiers sur 258 (« Disk quota exceeded »), à
+  75,8 Mo visibles par FTP. Christian (10 h 32) : « Nous manquons de place
+  sur le serveur. Que contient le répertoire app ? Peut-on le supprimer ?
+  Que pourrais-tu enlever d'autre qui n'est pas utile ? », puis (10 h 34) :
+  « Je te propose de faire une sauvegarde locale sur le MacBook de tout ce
+  que tu supprimes avant de l'effacer sur le serveur. » `app/` est l'API,
+  gardée (question 41). **Sauvegardés sur le Mac**
+  (`humanome.xyz/backup-manuel/2026-10-16/`, tailles et empreinte
+  vérifiées), **puis effacés** : l'ancienne démonstration d'un bloc
+  `archive.json` (17,2 Mo) et la plus ancienne version de l'API, v1.1.0-4
+  (3,7 Mo, 667 fichiers, sauvegardée en archive). Après le dépôt : 56,1 Mo
+  visibles.
+- **Dépôt** : le dossier de version, l'index (sous un nom provisoire, puis
+  renommé), le front (trois fichiers, l'ancien paquet retiré) ; puis le
+  front une seconde fois, avec la copie d'une démonstration enrichie.
+- **Vérifié en ligne** (Chromium) :
+  - au bureau, navigateur neuf : la démonstration s'ouvre en 3,0 s sur
+    l'index et le portrait du dernier jour ; 1.01 lit son seul fichier ;
+    « Seconde lecture » : « Jury AuroraCore du 19 avril 2026 : présence
+    établie · confiance 0,85 · 3 preuves, 4 indices » ; dépliée, la
+    délibération (un fichier) : la décision du président d'abord, sept
+    traces dont trois déjà listées plus haut, puis les replis ; une trace
+    ouverte dans le portfolio, surlignée (pas entière dans sa journée : les
+    textes des autres journées sont lus) ; le pôle TETE : son fichier, et le
+    rapport de la seconde lecture à l'ouverture ;
+  - une démonstration chargée avant le dépôt (l'archive entière) s'est mise
+    à jour d'elle-même en 3,1 s : lue à la demande, seconde lecture
+    visible, plus aucun détail rangé dans le navigateur ;
+  - une réponse au jury : la démonstration se copie dans le navigateur en
+    3,0 s (259 fichiers, chacun une fois) ; ensuite, plus rien n'est
+    demandé au site ;
+  - au téléphone (Pixel 7) : aucun défilement horizontal, seconde lecture
+    dépliée ;
+  - seules erreurs : le favicon absent (404) et `/api/auth/me` sans compte
+    (401) ; `api/health` → `v1.1.0-106-gc6a0231`.
+
 ---
 
 ## 3. État des tests
@@ -3076,6 +3264,55 @@ pour des phrases — et des points mineurs (passages d'une autre feuille ou
 partiels, confiance en pourcentage, rapport imprimé, commentaires). Tous
 traités.
 
+### Démonstration lue à la demande, seconde lecture (D-67, D-68)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/split.test.js` | découpage : un index sans détails, des fichiers par journée, texte, compétence, pôle et délibération, sous un dossier de version (même contenu, même version) ; chaque information une fois (journées refaites = archive, taille totale ≈ celle des détails) ; besoins (« tout », journée, texte, compétence, pôle) ; ouvert depuis l'index : rien rangé ici, la seconde lecture dans l'index ; une compétence : son seul fichier, une fois ; un fichier qui ne se lit pas : erreur en français, le reste gardé, relu ensuite ; délibération lue sur le site ; ajouts rangés par-dessus (un passage rattaché part du texte du site) ; export = archive d'origine, seconde lecture comprise ; passages dans un autre ordre que les pôles : archive refaite identique ; un index importé d'un fichier refusé ; un jeu qui a déjà quelque chose (passage sans date) n'en prend rien, ni synthèses ni métriques ; devenu d'ici : tout rangé (un passage rattaché, une journée et une délibération à la personne gardés), plus rien demandé au site, et un enregistrement d'avant ne le rend pas au site ; un fichier qui manque pendant la copie : rien n'est écrit | 16 (nouveau) |
+| `ui/useCartoData.test.jsx` | une lecture commencée avant un import n'est pas rangée, la journée se relit avec la nouvelle analyse ; une journée sans texte n'en attend pas ; intacte, la démonstration reste lue à la demande, enrichie elle devient d'ici en arrière-plan (chaque fichier lu une fois) ; une démonstration qui apporte ses passages sans date n'est pas copiée à l'ouverture (sa version et ce qu'elle apporte retenus avant qu'elle s'affiche) ; devenue d'ici, ce qu'elle avait lu par morceaux se relit en entier ; un index qui renvoie hors du site n'est pas suivi ; un jeu d'ici : une journée lue une fois, quels que soient les besoins | 7 (nouveau) |
+| `ui/CartoApp.test.jsx` | démonstration lue à la demande : l'index d'abord, puis le portrait du dernier jour, une compétence, un pôle — un fichier chacun, rien rangé ici ; une archive entière (`archive.json`) se lit encore, d'un bloc ; D-57 sur la date de l'index (repli sur l'archive) ; modale du jour : une compétence dépliée un jour est refermée le jour suivant, et se déplie avec son contenu | +3, adaptés |
+| `core/import.test.js` | seconde lecture : jointe sans changer le soleil (journées, variantes et état identiques, rien à arbitrer), résumé par compétence, délibérations et rapport de pôle gardés, compte rendu sans « répartis », texte du journal conservé ; même lot que des analyses par journée ; lot avec le portfolio (son texte, pas la feuille, sans « texte remplacé ») ; pas de journée ajoutée, traces sans date non dites « non placées » ; doublon ; run déjà réparti sur les journées ; un jeu qui n'a que des runs AuroraCore : le nouveau se répartit, comme avant ; seul, un run fait le soleil | +7, renforcé |
+| `core/archive.test.js` | aller-retour d'une archive avec seconde lecture et délibérations ; réimportée, rien n'est doublé | renforcé |
+| `core/master-schema.test.js` | `readings` et `remote` dans le schéma : l'index découpé conforme, renvois mal formés refusés ; statut ou identifiant d'une lecture invalides refusés | +1, renforcé |
+| `ui/SecondReading.test.jsx` | traces rapprochées (même jour, l'un contient l'autre, à la typographie près ; jamais un extrait trop court) ; nom de la lecture ; soleil inchangé ; ligne repliée, délibération non lue ; dépliée : décision du président d'abord, voix, traces (le passage déjà listé non redit), éclairages et raisonnement repliés ; trace ouverte et surlignée dans sa journée ; compétence non jugée : pas de section ; pôle : rapport de la lecture, lu à l'ouverture | 7 (nouveau) |
+| `lib/archive.test.js` | archive de compte : une démonstration lue à la demande intacte n'est pas exportée et rien n'en est lu ; enrichie mais le site injoignable, elle est nommée, le reste part | +1 |
+| fixtures | `louCoreRun()` (run AuroraCore synthétique de Lou) ; `competency-map-master-exemple.json` régénérée (seconde lecture et délibérations) | — |
+
+Vérifié aussi sur la démonstration elle-même (hors du dépôt) : ouverte comme
+sur le site puis exportée, l'archive est celle d'origine (journées, détails,
+délibérations, seconde lecture), en 258 requêtes, une par fichier.
+Suites complètes : site **2 468 verts** (243 fichiers) ; moteur **1 073
+verts** (17 sautés) ; API : validation du master (PHPUnit, Docker php:8.2),
+verte ; e2e Chromium : soleil (souris et tactile), copie autonome, dialogue,
+partage (deux scénarios, contre l'API locale), verts. Relecture indépendante
+(un agent distinct) : quatorze points, tous traités, chacun avec son test.
+Deux bloquants : l'archive de compte lisait une démonstration lue à la
+demande en entier avant de la laisser de côté, et un seul fichier
+injoignable y faisait perdre tous les jeux ; le script disait de retirer
+l'ancien dossier de version, dont une démonstration enrichie dépend. Six à
+corriger : un index refusé laissait passer ses synthèses et ses métriques,
+et un jeu qui n'avait que des passages sans date l'acceptait ; dans un lot
+mêlé, la feuille d'une seconde lecture prenait la place du texte du
+portfolio ; un run déjà réparti sur les journées pouvait être joint aussi en
+seconde lecture ; la modale du jour gardait ouverte, vide, une compétence
+d'une journée à l'autre ; une lecture commencée avant un import rangeait un
+détail périmé ; un jeu d'ici était relu par chacun de ses lecteurs. Six
+mineurs : un index importé d'un fichier, ou un renvoi vers un autre site,
+était suivi ; la date redite dans « Le même passage » ; une journée sans
+texte attendait son texte ; « non placées » dit des traces d'une seconde
+lecture, et des journées ajoutées par ses feuilles ; un fichier absent
+privait les autres journées des leurs, et l'erreur était en anglais ;
+l'ordre d'origine des passages perdu au découpage. Seconde relecture (un
+agent distinct), sur la copie d'une démonstration enrichie, ajoutée quand
+l'hébergement a montré qu'il ne peut pas garder toutes les versions : deux
+bloquants — la copie pouvait partir à l'ouverture d'une démonstration qui
+apporte ses passages sans date (ce qu'elle apporte n'était retenu qu'après
+son affichage) ; un échec de copie ne se retentait pas, si bien que la
+règle de retrait des dossiers n'était pas tenue — ; un à corriger : après
+la copie, une journée lue par morceaux passait pour complète (un pôle ouvert
+ensuite restait « Chargement… ») ; un mineur : un second onglet restait sur
+le site. Tous traités, chacun avec son test.
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -3286,7 +3523,11 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
     compétence, en seconde lecture, sans effet sur le soleil ; (B) laisser
     AuroraCore faire le soleil de ces 57 compétences ; (C) garder les deux
     analyses et les confronter dans « Comparaison ». Données personnelles :
-    sur le site seulement, comme le portfolio (D-48). *(en attente)*
+    sur le site seulement, comme le portfolio (D-48).
+    → **Décidé** (2026-10-16, 8 h 44) : « Ok pour choix A et choix 1. »
+    Suite : fait (D-68) — la seconde lecture, sous les verdicts par journée
+    de chaque compétence, la décision du président d'abord ; soleil
+    inchangé. Déposée sur le site avec la démonstration.
 40. « Comment peux-tu faire pour ne pas tout charger en mémoire et lire les
     fichiers de données uniquement au moment où l'utilisateur les
     sollicite ? » → **Réponse** : c'est déjà le cas pour l'essentiel —
@@ -3304,7 +3545,34 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
     mémoire bornée, qui oublie les journées les moins récemment lues ; (3)
     un extrait gardé une fois, la trace renvoyant à sa pièce (version 5 du
     master, avec sa conversion). Le (1) et le (2) ne changent rien au
-    format ; le (3) en est un changement. *(en attente)*
+    format ; le (3) en est un changement.
+    → **Décidé** (2026-10-16, 8 h 44) : « Ok pour choix A et choix 1. »
+    Suite : fait (D-67), en rangeant les fichiers par ce que l'on ouvre (une
+    compétence, un pôle, la journée, son texte, une délibération) plutôt
+    qu'une journée par fichier, qui aurait fait lire 6,5 Mo en moyenne pour
+    une compétence ; la démonstration s'ouvre sur un index de 38 Ko
+    compressés. Le (2) et le (3) ne sont pas faits.
+
+Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
+
+41. « Nous manquons de place sur le serveur. Que contient le répertoire
+    app ? Peut-on le supprimer ? Que pourrais-tu enlever d'autre qui n'est
+    pas utile ? » (10 h 32) → **Réponse** : `app/` est l'API du site (comptes,
+    copies serveur, partages, proxy LLM) ; il ne se supprime pas. Il pèse
+    19,5 Mo : trois versions de l'API (3,7 à 3,9 Mo ; seule celle du 14
+    octobre tourne, celle du 17 juillet sert de retour arrière), la base
+    pays db-ip (8,2 Mo, le pays des connexions au monitoring) et le `.env`.
+    Fait, avec une sauvegarde sur le Mac d'abord (sa proposition de 10 h 34) :
+    l'ancienne démonstration d'un bloc (17,2 Mo) et la plus ancienne version
+    de l'API (3,7 Mo) effacées (voir le déploiement de D-68). **À décider** :
+    la version d'API précédente (3,8 Mo ; sans elle, plus de retour arrière en
+    une commande), la base pays (8,2 Mo ; sans elle, plus de pays au
+    monitoring), les 59 journées publiques (14,6 Mo ; la vue « journée » de
+    l'ancien site les lit encore et la démonstration s'en sert en secours :
+    les retirer demande de modifier le site). **Proposition**, pour les
+    mises à jour de la démonstration : garder ses fichiers compressés sur le
+    serveur (environ 5 Mo par version au lieu de 20), ce qui permettrait d'en
+    garder deux. *(en attente)*
 
 ---
 
@@ -3482,3 +3750,19 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
   les joindre) et 40 (lire les données à la demande : proposition en trois
   points) posées. Déployé (front, et l'archive de la démonstration allégée
   de 1,2 Mo) et vérifié en ligne, au bureau et au téléphone.
+- **2026-10-16** — Réponse de Christian de 8 h 44 (« Ok pour choix A et
+  choix 1. », D-67, D-68). La démonstration se lit à la demande : un index
+  de 38 Ko compressés, puis le seul fichier de ce qu'on ouvre — rangés par
+  compétence, pôle, journée, texte et délibération plutôt qu'une journée par
+  fichier, qui aurait fait lire 6,5 Mo en moyenne pour une compétence. La
+  seconde lecture : l'analyse AuroraCore du 19 avril 2026 (57 compétences,
+  six voix et un président) jointe à chaque compétence, la décision du
+  président d'abord, sans effet sur le soleil. Relu par un agent distinct
+  (quatorze points, dont deux bloquants, traités). Au dépôt, l'hébergement
+  gratuit (100 Mo) est plein : à la demande de Christian (10 h 32, 10 h 34),
+  l'ancienne démonstration d'un bloc et la plus ancienne version de l'API
+  sont sauvegardées sur le Mac puis effacées (question 41) ; une
+  démonstration enrichie se copie désormais dans le navigateur, pour que
+  l'ancien dossier de version puisse se retirer (relu par un agent distinct :
+  quatre points, traités). Déployé et vérifié en ligne, au bureau et au
+  téléphone.

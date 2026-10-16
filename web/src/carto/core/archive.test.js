@@ -10,7 +10,7 @@ import { importV3Master, looksLikeV3Master } from './importers/v3-master.js'
 import { importJourDocuments } from '../../v3/core/import.js'
 import { reviewEvidenceLink } from '../../v3/core/master.js'
 import { normalizeReferential as normalizeV3Referential } from '../../v3/core/referentiel.js'
-import { LOU_PORTFOLIO, cartoPole, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { LOU_PORTFOLIO, cartoPole, kairosDoc, louCoreRun, louDays, miniReferential } from '../test/fixtures.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
 const LATER = '2026-10-14T09:00:00.000Z'
@@ -25,10 +25,13 @@ function louFiles() {
 }
 const empty = (id = 'ds-new') => createDataset({ datasetId: id, title: 'Nouveau', referential: miniReferential(), now: NOW })
 
-/** Un jeu riche : portfolio, deux variantes arbitrées, cases, étiquettes, ensemble, réponse, repère, note, préférences. */
+/** Un jeu riche : portfolio, deux variantes arbitrées, seconde lecture, cases, étiquettes, ensemble, réponse, repère, note, préférences. */
 async function richStore() {
   const store = createCartoStore({ adapter: createMemoryAdapter() })
   let res = await importFiles(louFiles(), createDataset({ datasetId: 'ds-lou', title: 'Lou', referential: miniReferential(), now: NOW }), { now: NOW })
+  await store.commit(res)
+  // Un run AuroraCore sur tout le journal : seconde lecture (D-68).
+  res = await importFiles(louCoreRun(), res.dataset, { now: NOW })
   await store.commit(res)
   // Une seconde analyse du 23 décembre : variante concurrente, puis arbitrée.
   const other = cartoPole(2, [{ code: '2.02', statut: 'présence établie', confiance: 0.6, traces: [{ role: 'indice corroboratif', extrait: 'puis j’ai reformulé ce que j’avais compris' }] }], { date: '2025-12-23' })
@@ -61,6 +64,7 @@ const stable = (ds) => ({
   markers: ds.markers,
   comparisons: ds.comparisons,
   reflections: ds.reflections,
+  readings: ds.readings,
   narratives: ds.narratives,
   metrics: ds.metrics,
   preferences: ds.preferences,
@@ -85,6 +89,9 @@ describe('archive : sans perte', () => {
     const back = await target.exportAll('ds-new')
     expect(back.details).toEqual(exported.details)
     expect(back.runDetails).toEqual(exported.runDetails)
+    // La seconde lecture et ses délibérations font l'aller-retour (D-68).
+    expect(res.dataset.readings.map((r) => r.id)).toEqual(['LOU@2026-04-25'])
+    expect(Object.keys(back.runDetails)).toEqual(expect.arrayContaining(['LOU@2026-04-25|1.01', 'LOU@2026-04-25|pole:1']))
   })
 
   it('réimporter la même archive : tout est doublon, rien ne change', async () => {

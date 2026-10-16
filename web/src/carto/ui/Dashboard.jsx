@@ -31,6 +31,7 @@ import { STYLE_LEXICONS } from '../core/stylometry.js'
 import { radarScale } from '../core/compare.js'
 import { traceSignal } from '../core/formulas.js'
 import { hasPortfolio } from '../core/model.js'
+import { NEED_DAY, NEED_PORTFOLIO, needCode } from '../core/split.js'
 import { addMarker, deleteMarker, setPreferences } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
 import { poleShortName } from '../core/referential.js'
@@ -289,7 +290,7 @@ function MomentsCard({ candidates, loading, sensitivity, onSensitivity, refl, da
   const firstImpression = (date) => {
     if (firstImpressions?.[date]) return { source: 'Première impression du miroir', text: firstImpressions[date] }
     const day = dataset.days.find((d) => d.date === date)
-    const det = getDetail(date)
+    const det = getDetail(date, [NEED_DAY, NEED_PORTFOLIO])
     const variantId = day?.activeVariantId
     const k = det?.variants?.[variantId]?.kairos?.portrait
     if (k) return { source: 'Portrait du jour (kairos)', text: k }
@@ -578,18 +579,23 @@ export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, upda
   const [resetKey, setResetKey] = useState(0)
   const panelsRef = useRef(null)
 
-  // Textes du portfolio et extraits : chargés pour les cartes qui en ont besoin.
+  // Textes du portfolio, portraits et extraits : lus pour les cartes qui en
+  // ont besoin (le style et le vocabulaire, tous les textes ; les moments,
+  // les extraits de toutes les traces).
   const portfolioDates = useMemo(() => dataset.days.filter(hasPortfolio).map((d) => d.date), [dataset])
-  const neededDates = useMemo(() => [...new Set([...portfolioDates, ...state.dates])], [portfolioDates, state.dates])
+  const traceNeed = useMemo(() => [NEED_DAY, ...[...state.competencies.keys()].map(needCode)], [state])
   useEffect(() => {
-    if (neededDates.length > 0) ensureDetails(neededDates)
-  }, [neededDates, ensureDetails])
-  const textsReady = portfolioDates.every((d) => getDetail(d) !== undefined)
-  const detailsReady = state.dates.every((d) => getDetail(d) !== undefined)
+    if (portfolioDates.length > 0) ensureDetails(portfolioDates, NEED_PORTFOLIO)
+  }, [portfolioDates, ensureDetails])
+  useEffect(() => {
+    if (state.dates.length > 0) ensureDetails(state.dates, traceNeed)
+  }, [state.dates, traceNeed, ensureDetails])
+  const textsReady = portfolioDates.every((d) => getDetail(d, NEED_PORTFOLIO) !== undefined)
+  const detailsReady = state.dates.every((d) => getDetail(d, traceNeed) !== undefined)
   const texts = useMemo(() => {
     const m = new Map()
     for (const d of portfolioDates) {
-      const t = getDetail(d)?.portfolio?.text
+      const t = getDetail(d, NEED_PORTFOLIO)?.portfolio?.text
       if (typeof t === 'string' && t.trim()) m.set(d, t)
     }
     return m
@@ -607,7 +613,7 @@ export function Dashboard({ dataset, refl, state, getDetail, ensureDetails, upda
     const out = []
     for (const c of state.competencies.values()) {
       for (const t of c.traces) {
-        const td = getDetail(t.date)?.variants?.[t.variantId]?.verdicts?.[c.code]?.traces?.[t.id]
+        const td = getDetail(t.date, needCode(c.code))?.variants?.[t.variantId]?.verdicts?.[c.code]?.traces?.[t.id]
         // Force du signal (rôle × confiance), propre aux moments : l'angle, lui, ne compte que les points.
         out.push({ id: t.id, date: t.date, variantId: t.variantId, code: c.code, role: t.role, confidence: t.confidence, weight: traceSignal(t.role, t.confidence, state.params), extract: td?.extract ?? '' })
       }

@@ -43,7 +43,9 @@ Sur `#/cartographie`, déposez les fichiers que l'apprenant vous a remis (ou
 « Choisir des fichiers », « Choisir un dossier ») : son archive exportée
 (JSON), ses analyses Aurora ou AuroraCore, ses cartographies fusionnées, son
 portfolio (`.md`). Ils sont lus dans votre navigateur et rangés dans un jeu de
-données à part ; rien n'est envoyé. Son archive complète contient aussi ses
+données à part ; rien n'est envoyé. Une analyse AuroraCore déposée dans un jeu
+qui a déjà ses analyses par journée s'y joint en **seconde lecture** : elle
+ne touche pas aux journées (rien à arbitrer) ; seule, elle fait le soleil. Son archive complète contient aussi ses
 réponses, ses notes privées et son carnet de dialogue : c'est à lui de choisir
 ce qu'il vous remet.
 
@@ -78,7 +80,13 @@ Pédagogue et les pièces du Greffier, chacune avec son sort (retenue comme
 preuve, comme indice, ou non retenue) — pour une analyse AuroraCore, la
 décision du président d'abord, puis les éclairages des six voix, son
 raisonnement et la délibération complète. Chaque information s'y lit une
-fois : ce qu'une ligne dit déjà ne se redit pas au-dessous. La touche
+fois : ce qu'une ligne dit déjà ne se redit pas au-dessous. Sous les
+verdicts par journée, **« Seconde lecture »** donne le verdict d'un jury
+AuroraCore sur tout le journal, quand il est joint au jeu ; dépliée, la
+décision du président d'abord, les traces que ce jury a retenues (un passage
+déjà listé plus haut n'y est pas redit), puis ce qui a conduit à la
+décision ; dans le panneau d'un pôle, son rapport. Elle ne change pas le
+soleil. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
 les formules. Le panneau **« Réglages »** (menu « Panneaux » de la
 cartographie) règle le poids d'un indice, le départ de la hauteur (0,25 par

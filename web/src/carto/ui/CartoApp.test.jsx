@@ -16,7 +16,8 @@ import { ringGeometry, sunGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
 import { buildArchive } from '../core/archive.js'
-import { DEMO_ARCHIVE } from './useCartoData.js'
+import { DEMO_ARCHIVE, DEMO_DIR, DEMO_INDEX } from './useCartoData.js'
+import { splitArchive } from '../core/split.js'
 import { LOU_PORTFOLIO, indexDataset, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 import { showCartoTiles } from '../test/tiles.js'
 
@@ -113,28 +114,40 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     return store
   }
 
-  /** L'archive de démonstration déposée sur le site, portfolio compris. */
-  async function siteArchive() {
+  /**
+   * La démonstration déposée sur le site, portfolio compris : découpée (D-67),
+   * son index et ses fichiers ; `whole` : l'archive entière (archive.json).
+   */
+  async function siteArchive({ whole = false } = {}) {
     const store = await louStore()
-    return JSON.stringify(buildArchive(await store.exportAll('ds-lou'), { now: NOW }))
+    const archive = buildArchive(await store.exportAll('ds-lou'), { now: NOW })
+    if (whole) return { [DEMO_ARCHIVE]: JSON.stringify(archive) }
+    const { index, files } = splitArchive(archive)
+    return { [DEMO_INDEX]: JSON.stringify(index), ...Object.fromEntries(files.map((f) => [`${DEMO_DIR}${f.path}`, JSON.stringify(f.value)])) }
   }
 
   /**
-   * Le site : l'archive (HEAD ou GET) avec sa date de dépôt ; chaque requête est
-   * notée. `fail` : réseau coupé (toutes) ; `failGet` : seul le téléchargement
-   * échoue ; `onGet` : appelé pendant le téléchargement (un autre onglet agit).
+   * Le site : les fichiers de la démonstration (HEAD ou GET) avec leur date de
+   * dépôt ; chaque requête est notée. `fail` : réseau coupé (toutes) ;
+   * `failGet` : le téléchargement de l'index (ou de l'archive) échoue ;
+   * `onGet` : appelé pendant ce téléchargement (un autre onglet agit).
    */
   function siteFetch({ text = null, version = V1, calls = [], fail = false, failGet = false, onGet = null }) {
     return async (url, init = {}) => {
       const method = init.method ?? 'GET'
       calls.push(`${method} ${url}`)
-      if (fail || (failGet && method === 'GET' && url === DEMO_ARCHIVE)) throw new TypeError('Failed to fetch')
-      if (url !== DEMO_ARCHIVE || text === null) return { ok: false, status: 404, headers: { get: () => null }, text: async () => '' }
-      if (method === 'GET' && onGet) await onGet()
+      const entry = url === DEMO_INDEX || url === DEMO_ARCHIVE
+      if (fail || (failGet && method === 'GET' && entry)) throw new TypeError('Failed to fetch')
+      const body = text?.[url] ?? null
+      if (body === null) return { ok: false, status: 404, headers: { get: () => null }, text: async () => '', json: async () => null }
+      if (method === 'GET' && entry && onGet) await onGet()
       const headers = { get: (k) => ({ 'content-type': 'application/json', 'last-modified': version })[k.toLowerCase()] ?? null }
-      return { ok: true, status: 200, headers, text: async () => (method === 'HEAD' ? '' : text) }
+      return { ok: true, status: 200, headers, text: async () => (method === 'HEAD' ? '' : body), json: async () => JSON.parse(body) }
     }
   }
+
+  /** Les requêtes de l'index et de l'archive entière, sans celles des fichiers lus ensuite à la demande. */
+  const entryCalls = (calls) => calls.filter((c) => c.endsWith(DEMO_INDEX) || c.endsWith(DEMO_ARCHIVE))
 
   function SiteHarness({ store, fetchFn }) {
     const [route, setRoute] = useState(() => parseHash(window.location.hash))
@@ -149,7 +162,9 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     const store = await staleDemoStore()
     expect(isPristineDemo(await store.loadDataset('ds-demo-old'))).toBe(true)
     const calls = []
-    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls })} />)
+    // Le téléchargement prend un peu de temps : l'ancienne démonstration se voit d'abord.
+    const onGet = () => new Promise((r) => setTimeout(r, 150))
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls, onGet })} />)
     // La démonstration en place s'affiche sans attendre le réseau…
     await screen.findByRole('heading', { name: 'Démonstration' })
     // … puis la nouvelle version (l'archive porte son propre titre, ici « Lou ») la remplace.
@@ -161,7 +176,7 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     expect(fresh.portfolio).not.toBeNull()
     expect(sources()).toEqual({ [freshId]: { version: V1, baseline: expect.objectContaining({ importLog: 1, sets: 0 }) } })
     expect(localStorage.getItem('humanome-carto-current')).toBe(freshId)
-    expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    expect(entryCalls(calls)).toEqual([`HEAD ${DEMO_INDEX}`, `GET ${DEMO_INDEX}`])
     // Aucun rapport d'import ne s'ouvre pour une mise à jour silencieuse.
     expect(screen.queryByText(/Rapport d.import/)).toBeNull()
   })
@@ -173,14 +188,14 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     const calls = []
     const { unmount } = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
     await screen.findByRole('heading', { name: 'Démonstration' })
-    await waitFor(() => expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    await waitFor(() => expect(calls).toEqual([`HEAD ${DEMO_INDEX}`]))
     await new Promise((r) => setTimeout(r, 30))
     expect(await ids(store)).toEqual(['ds-demo-old'])
     unmount()
     const later = []
     render(<SiteHarness store={store} fetchFn={siteFetch({ text, version: V2, calls: later })} />)
     await waitFor(async () => expect(await ids(store)).not.toContain('ds-demo-old'))
-    expect(later).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`])
+    expect(entryCalls(later)).toEqual([`HEAD ${DEMO_INDEX}`, `GET ${DEMO_INDEX}`])
     expect(Object.values(sources()).map((s) => s.version)).toEqual([V2])
   })
 
@@ -203,7 +218,7 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     const calls = []
     render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive(), calls, onGet })} />)
     await screen.findByRole('heading', { name: 'Démonstration' })
-    await waitFor(() => expect(calls).toContain(`GET ${DEMO_ARCHIVE}`))
+    await waitFor(() => expect(calls).toContain(`GET ${DEMO_INDEX}`))
     await waitFor(async () => expect(await ids(store)).toEqual(['ds-demo-old']))
     await new Promise((r) => setTimeout(r, 50))
     expect(await ids(store)).toEqual(['ds-demo-old'])
@@ -228,14 +243,15 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     const first = []
     const a = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls: first, failGet: true })} />)
     await screen.findByRole('heading', { name: 'Démonstration' })
-    await waitFor(() => expect(first).toEqual([`HEAD ${DEMO_ARCHIVE}`, `GET ${DEMO_ARCHIVE}`]))
+    // L'index ne se télécharge pas : l'archive entière est essayée, absente.
+    await waitFor(() => expect(first).toEqual([`HEAD ${DEMO_INDEX}`, `GET ${DEMO_INDEX}`, `GET ${DEMO_ARCHIVE}`]))
     a.unmount()
     const second = []
     const b = render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls: second })} />)
     await screen.findByRole('heading', { name: 'Démonstration' })
-    await waitFor(() => expect(second).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    await waitFor(() => expect(second).toEqual([`HEAD ${DEMO_INDEX}`]))
     await new Promise((r) => setTimeout(r, 30))
-    expect(second).toEqual([`HEAD ${DEMO_ARCHIVE}`])
+    expect(second).toEqual([`HEAD ${DEMO_INDEX}`])
     b.unmount()
     // Un jour plus tard, la même version est retentée.
     const tried = JSON.parse(localStorage.getItem('humanome-carto-demo-tried'))
@@ -258,7 +274,7 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     const calls = []
     render(<SiteHarness store={store} fetchFn={siteFetch({ text, calls })} />)
     await screen.findByRole('heading', { name: 'Lou' })
-    await waitFor(() => expect(calls).toEqual([`HEAD ${DEMO_ARCHIVE}`]))
+    await waitFor(() => expect(entryCalls(calls)).toEqual([`HEAD ${DEMO_INDEX}`]))
     expect(await ids(store)).toEqual([summary.datasetId])
   })
 
@@ -276,6 +292,46 @@ describe('démonstration intacte : mise à jour d’elle-même (D-57)', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
     await screen.findByRole('heading', { name: 'Démonstration' })
     expect((await screen.findByRole('alert')).textContent).toMatch(/Le portfolio de la démonstration n’a pas pu être téléchargé/)
+  })
+
+  it('lue à la demande (D-67) : l’index d’abord, puis seulement ce qu’on ouvre — le portrait du dernier jour, une compétence, un pôle', async () => {
+    const calls = []
+    const fetchFn = siteFetch({ text: await siteArchive(), calls })
+    const store = createCartoStore({ adapter: createMemoryAdapter(), fetchFn })
+    render(<SiteHarness store={store} fetchFn={fetchFn} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Lou' })
+    const files = () => calls.filter((c) => !c.endsWith(DEMO_INDEX)).map((c) => c.replace(/^GET data\/demo\/carto\/v-[0-9a-f]+\//, ''))
+    // Sans sélection : le portrait (kairos) du dernier jour coché, rien d'autre.
+    await screen.findByRole('region', { name: 'Portrait kairos' })
+    expect(calls[0]).toBe(`GET ${DEMO_INDEX}`)
+    expect(files()).toEqual(['jours/2025-12-24.json'])
+    // Une compétence : le fichier de ses verdicts, une fois, pour toutes ses journées.
+    fireEvent.click(document.querySelector('[data-tile="sun"] .carto-sun [role="button"][aria-label^="3.02 "]'))
+    const obs = await screen.findByRole('region', { name: 'Verdicts par journée' })
+    await waitFor(() => expect(document.querySelectorAll('[data-tile="detail"] .carto-trace-quote').length).toBeGreaterThan(0))
+    expect(obs).toBeTruthy()
+    expect(files()).toEqual(['jours/2025-12-24.json', 'competences/3.02.json'])
+    // Un pôle : le fichier de ses rapports.
+    fireEvent.click(document.querySelector('[data-tile="sun"] .carto-sun [role="button"][aria-label^="Pôle MAIN"]'))
+    await screen.findByRole('region', { name: 'Rapports du pôle' })
+    await waitFor(() => expect(files()).toEqual(['jours/2025-12-24.json', 'competences/3.02.json', 'poles/3.json']))
+    // Rien n'est rangé dans ce navigateur que l'index.
+    const [summary] = await store.listDatasets()
+    expect(await store.loadDayDetails(summary.datasetId, ['2025-12-22', '2025-12-23', '2025-12-24'])).toEqual(new Map())
+  })
+
+  it('une archive entière déposée (archive.json) se lit encore, d’un bloc', async () => {
+    const store = createCartoStore({ adapter: createMemoryAdapter() })
+    const calls = []
+    render(<SiteHarness store={store} fetchFn={siteFetch({ text: await siteArchive({ whole: true }), calls })} />)
+    fireEvent.click(await screen.findByRole('button', { name: 'Explorer la démonstration' }))
+    await screen.findByRole('heading', { name: 'Lou' })
+    expect(calls.slice(0, 2)).toEqual([`GET ${DEMO_INDEX}`, `GET ${DEMO_ARCHIVE}`])
+    const [summary] = await store.listDatasets()
+    const ds = await store.loadDataset(summary.datasetId)
+    expect(ds.remote).toBeUndefined()
+    expect((await store.loadDayDetails(summary.datasetId, ['2025-12-22'])).get('2025-12-22').portfolio.text).toMatch(/deux sources/)
   })
 })
 
@@ -384,6 +440,23 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Retour' }))
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
     expect(window.location.hash).toBe('#/cartographie')
+  })
+
+  it('modale du jour : une compétence dépliée un jour est refermée le jour suivant, et se déplie avec son contenu', async () => {
+    render(<Harness store={await louStore()} />)
+    await screen.findByRole('heading', { name: 'Cartographie' })
+    fireEvent.doubleClick(cell('2025-12-23'))
+    let dialog = await screen.findByRole('dialog', { name: /23 décembre 2025/ })
+    const row = () => [...screen.getByRole('dialog').querySelectorAll('details.carto-day-verdict')].find((d) => d.querySelector('summary').textContent.includes('3.02'))
+    fireEvent.click(row().querySelector('summary'))
+    await within(row()).findByText('Réflexions du jury')
+    fireEvent.click(within(dialog).getByRole('button', { name: /mer\. 24 déc\. 2025/ }))
+    dialog = await screen.findByRole('dialog', { name: /24 décembre 2025/ })
+    // Une autre journée repart de lignes fermées, sans rien lire.
+    expect(row().open).toBe(false)
+    expect(within(row()).queryByText('Réflexions du jury')).toBeNull()
+    fireEvent.click(row().querySelector('summary'))
+    await within(row()).findByText('Réflexions du jury')
   })
 
   it('la tête de lecture et l’inspection sont distinctes : ouvrir un jour ne déplace pas t', async () => {

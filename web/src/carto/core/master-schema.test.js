@@ -12,6 +12,7 @@ import { importFiles } from './import.js'
 import { createDataset } from './model.js'
 import { createCartoStore, createMemoryAdapter } from './store.js'
 import { masterContractArchive } from '../test/master-contract.js'
+import { splitArchive } from './split.js'
 
 const fixturePath = fileURLToPath(new URL('../../../../schemas/fixtures/carto/competency-map-master-exemple.json', import.meta.url))
 const fixture = () => JSON.parse(readFileSync(fixturePath, 'utf8'))
@@ -32,6 +33,17 @@ describe('schéma du master v4 (archive de l’interface de cartographie)', () =
     expect(check(doc).valid).toBe(true)
   })
 
+  it('l’index d’un jeu lu à la demande (D-67) est conforme ; un renvoi mal formé, non', async () => {
+    const { index } = splitArchive(fixture())
+    expect(check(index)).toEqual({ valid: true, errors: [] })
+    const bad = structuredClone(index)
+    bad.remote.version = 'v1'
+    bad.remote.codes['1.01'] = ''
+    const r = check(bad)
+    expect(r.valid).toBe(false)
+    expect(r.errors.map((e) => e.path)).toEqual(expect.arrayContaining(['/remote/version', '/remote/codes/1.01']))
+  })
+
   it('un champ inconnu (version 4.x ultérieure) est accepté ; un master V3 ne relève pas de ce schéma', () => {
     expect(check({ ...fixture(), nouveauChamp: { x: 1 } }).valid).toBe(true)
     expect(check({ ...fixture(), schemaVersion: '4.2.0' }).valid).toBe(true)
@@ -50,6 +62,8 @@ describe('schéma du master v4 (archive de l’interface de cartographie)', () =
       ['/details', (d) => (d.details.demain = d.details['2025-12-22'])],
       ['/reviews', (d) => (Object.values(d.reviews)[0].state = 'peut-être')],
       ['/reflections/0/entries/0', (d) => delete d.reflections[0].entries[0].answer],
+      ['/readings/0/codes/1.01/status', (d) => (d.readings[0].codes['1.01'].status = 'présence établie')],
+      ['/readings/0', (d) => delete d.readings[0].id],
       ['/referential', (d) => (d.referential.competences = [])],
       ['/', (d) => delete d.days],
     ]

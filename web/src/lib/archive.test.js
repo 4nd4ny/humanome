@@ -13,6 +13,7 @@ import masterFixture from '../../../schemas/fixtures/carto/competency-map-master
 import { createCartoStore as createInterfaceStore, createMemoryAdapter as createInterfaceMemoryAdapter } from '../carto/core/store.js'
 import { importFiles as importIntoInterface } from '../carto/core/import.js'
 import { createDataset as createInterfaceDataset } from '../carto/core/model.js'
+import { splitArchive } from '../carto/core/split.js'
 
 function makeStores() {
   let tick = 0
@@ -390,6 +391,35 @@ describe('archive 1.1.0 : les jeux de l’interface de cartographie', () => {
     expect(archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-demo'])
     expect(counts).toMatchObject({ portfolios: 1, jeux: 1, jeuxExclus: ['Lou'] })
     expect(validateDocument('archive-export', archive).valid).toBe(true)
+  })
+
+  it('démonstration lue à la demande (D-67) : intacte, rien n’en est lu ; enrichie mais le site injoignable, elle est nommée et le reste part', async () => {
+    const calls = []
+    const fetchFn = async (url) => {
+      calls.push(url)
+      throw new TypeError('Failed to fetch')
+    }
+    const store = createInterfaceStore({ adapter: createInterfaceMemoryAdapter(), fetchFn })
+    const lou = createInterfaceDataset({ datasetId: masterFixture.datasetId, title: masterFixture.title, referential: masterFixture.referential, now: masterFixture.createdAt })
+    await store.commit(await importIntoInterface([{ path: 'lou.json', text: JSON.stringify(masterFixture) }], lou, { now: masterFixture.createdAt }))
+    // La démonstration du site : un index découpé, sans rien de la personne.
+    const plain = { ...masterFixture, title: 'Démonstration', sets: [], reviews: {}, markers: [], comparisons: [], reflections: [], portfolio: { ...masterFixture.portfolio, undated: [] } }
+    const { index } = splitArchive(plain)
+    const doc = { ...index, remote: { ...index.remote, base: `data/demo/carto/${index.remote.base}` } }
+    const demo = { ...createInterfaceDataset({ datasetId: 'ds-demo', title: 'Démonstration', referential: masterFixture.referential }), origin: 'demo' }
+    await store.commit(await importIntoInterface([{ path: 'data/demo/carto/index.json', text: JSON.stringify(doc) }], demo, { allowRemote: true }))
+    expect(isPristineDemo(await store.loadDataset('ds-demo'))).toBe(true)
+
+    let out = await exportArchive({ ...makeStores(), interfaceStore: store, ...offlineDeps(), download: () => {} })
+    expect(out.archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-lou'])
+    expect(calls).toEqual([])
+
+    const ds = await store.loadDataset('ds-demo')
+    await store.saveDataset({ ...ds, markers: [{ id: 'mk-1', date: '2025-12-22', label: 'Mon repère' }] })
+    out = await exportArchive({ ...makeStores(), interfaceStore: store, ...offlineDeps(), download: () => {} })
+    expect(out.archive.jeuxCartographie.map((j) => j.datasetId)).toEqual(['ds-lou'])
+    expect(out.counts).toMatchObject({ jeux: 1, jeuxError: null, jeuxExclus: ['Démonstration'] })
+    expect(calls.length).toBeGreaterThan(0)
   })
 
   it('démonstration intacte : sans base, rien de la personne ; avec la base de son chargement, ce que l’archive apportait est permis (D-57)', () => {
