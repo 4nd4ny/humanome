@@ -6,7 +6,7 @@ import { createDataset, contributingVariant, pendingAnomalyCount } from './model
 import { computeState } from './state.js'
 import { normalizeReferential } from './referential.js'
 import { parseInvocations } from './importers/aurora-core.js'
-import { LOU_PORTFOLIO, cartoPole, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
+import { LOU_PORTFOLIO, cartoPole, kairosDoc, louCoreRun, louDays, miniReferential } from '../test/fixtures.js'
 import { storedZip } from '../test/zip.js'
 
 const NOW = '2026-10-13T12:00:00.000Z'
@@ -226,6 +226,9 @@ describe('arborescence AuroraCore (verdict.json / deliberation.md / briefing.md)
     expect(run.debate.accusation.markdown).toMatch(/Thèse/)
     expect(run.pieces).toEqual([{ date: '2025-12-22', name: 'LOU-1.01-2025-12-22-001.md', text: '# Pièce 001\n\nExtrait du Greffier.' }])
     expect(res.detailPatches.get('2025-12-22').variants[d22.id].verdicts['1.01'].runRef).toBe('LOU@2026-04-25|1.01')
+    // Seul (le jeu n'a pas d'analyses par journée) : il fait le soleil, ce n'est pas une seconde lecture (D-68).
+    expect(res.dataset.readings).toEqual([])
+    expect(res.report.find((r) => r.code === 'aurora-core').message).toMatch(/répartis sur 2 journée/)
   })
 
   it('les copies de feuilles par pôle et par compétence ne remplacent jamais la feuille du journal', async () => {
@@ -243,6 +246,108 @@ describe('arborescence AuroraCore (verdict.json / deliberation.md / briefing.md)
     expect(res.report.filter((r) => r.code === 'portfolio-remplace' || r.code === 'segment-sans-date' || r.code === 'portfolio-sans-date')).toEqual([])
     expect(res.detailPatches.get('2025-12-22').portfolio.text).toMatch(/Texte du journal/)
     expect(res.runDetails.find((r) => r.key.endsWith('|pole:1')).value).toMatchObject({ pole: 1, report: '# Rapport du pôle 1', reading: '# Lecture du pôle 1' })
+  })
+})
+
+describe('seconde lecture (D-68) : un run AuroraCore joint à un jeu qui a ses analyses par journée', () => {
+  const louFiles = ({ portfolio = true } = {}) => [...(portfolio ? [{ path: 'lou.md', text: LOU_PORTFOLIO }] : []), ...Object.entries(louDays()).flatMap(([d, p]) => dayFiles(d, p))]
+  const stateOf = (ds) => {
+    const s = computeState(ds, { ref: normalizeReferential(ds.referential) })
+    return [...s.competencies].map(([code, c]) => [code, c.theta, c.confidence, c.proofs, c.hints])
+  }
+
+  it('se joint à chaque compétence sans changer le soleil ; ses délibérations sont gardées, le texte du journal aussi', async () => {
+    const first = await importFiles(louFiles(), empty(), { now: NOW })
+    const before = stateOf(first.dataset)
+    const res = await importFiles(louCoreRun(), first.dataset, { now: NOW })
+    // Les journées et leurs variantes ne bougent pas : aucune variante concurrente, rien à arbitrer.
+    expect(res.dataset.days.map((d) => [d.date, d.variants.map((v) => v.provenance.source)])).toEqual(first.dataset.days.map((d) => [d.date, ['aurora-v3']]))
+    expect(res.counts.variantsAdded).toBe(0)
+    expect(stateOf(res.dataset)).toEqual(before)
+    expect(res.report.filter((r) => r.severity === 'arbitrate' || r.severity === 'blocking')).toEqual([])
+    expect(res.dataset.readings).toEqual([
+      {
+        id: 'LOU@2026-04-25',
+        source: 'aurora-core',
+        journal: 'LOU',
+        analysedAt: '2026-04-25',
+        importedAt: NOW,
+        codes: {
+          '1.01': { status: 'established', rawStatus: 'présence établie', confidence: 0.75, proofs: 1, hints: 1 },
+          '2.02': { status: 'established', rawStatus: 'présence établie', confidence: 0.6, proofs: 1, hints: 0 },
+        },
+        poles: [1],
+      },
+    ])
+    expect(res.runDetails.map((r) => r.key).sort()).toEqual(['LOU@2026-04-25|1.01', 'LOU@2026-04-25|2.02', 'LOU@2026-04-25|pole:1'])
+    expect(res.runDetails.find((r) => r.key === 'LOU@2026-04-25|1.01').value.president.verdict_argumente).toMatch(/vérification méthodique/)
+    // Le compte rendu dit la seconde lecture, pas une répartition sur les journées.
+    expect(res.report.find((r) => r.code === 'seconde-lecture').message).toMatch(/jointe en seconde lecture \(2 compétence\(s\)\)/)
+    expect(res.report.some((r) => r.code === 'aurora-core')).toBe(false)
+    // La feuille du 22 diffère du portfolio : le texte de Lou est conservé.
+    expect(res.detailPatches.get('2025-12-22')?.portfolio).toBeUndefined()
+    expect(res.report.find((r) => r.code === 'portfolio-conserve').message).toMatch(/^1 journée/)
+  })
+
+  it('dans le même lot que des analyses par journée : seconde lecture aussi', async () => {
+    const res = await importFiles([...louFiles({ portfolio: false }), ...louCoreRun()], empty(), { now: NOW })
+    expect(res.dataset.days.flatMap((d) => d.variants.map((v) => v.provenance.source))).toEqual(['aurora-v3', 'aurora-v3', 'aurora-v3'])
+    expect(res.dataset.readings.map((r) => r.id)).toEqual(['LOU@2026-04-25'])
+    // Sans portfolio dans le jeu, la feuille du journal donne le texte de sa journée.
+    expect(res.detailPatches.get('2025-12-22').portfolio.text).toMatch(/autrement découpée/)
+  })
+
+  it('le même run joint deux fois : doublon ignoré', async () => {
+    const first = await importFiles(louFiles(), empty(), { now: NOW })
+    const once = await importFiles(louCoreRun(), first.dataset, { now: NOW })
+    const twice = await importFiles(louCoreRun(), once.dataset, { now: NOW })
+    expect(twice.dataset.readings).toHaveLength(1)
+    expect(twice.counts.duplicates).toBe(1)
+    expect(twice.report.find((r) => r.code === 'doublon').message).toMatch(/Seconde lecture LOU@2026-04-25 déjà jointe/)
+  })
+
+  it('dans un lot qui apporte aussi le portfolio : le texte du portfolio, pas la feuille — sans « texte remplacé »', async () => {
+    const res = await importFiles([...louCoreRun(), ...louFiles()], empty(), { now: NOW })
+    expect(res.dataset.readings.map((r) => r.id)).toEqual(['LOU@2026-04-25'])
+    expect(res.detailPatches.get('2025-12-22').portfolio.text).toMatch(/J'ai vérifié deux sources contradictoires/)
+    expect(res.report.some((r) => r.code === 'portfolio-remplace')).toBe(false)
+    expect(res.report.find((r) => r.code === 'portfolio-conserve').message).toMatch(/^1 journée/)
+    // Les sources du portfolio sont celles des textes gardés.
+    expect(res.dataset.portfolio.sources).toEqual(['lou.md'])
+  })
+
+  it('une seconde lecture n’ajoute pas de journée ; ses traces sans date ne sont pas « non placées »', async () => {
+    const first = await importFiles(louFiles(), empty(), { now: NOW })
+    const run = louCoreRun().map((f) => {
+      if (f.path !== 'LOU/1/1.01/verdict.json') return f
+      const v = JSON.parse(f.text)
+      v.traces_retenues.push({ piece_id: 3, type: 'trace concrète', role: 'indice corroboratif', extrait: 'sans date', date: 'inconnue' })
+      return { ...f, text: JSON.stringify(v) }
+    })
+    run.push({ path: 'LOU/feuilles/2026-01-05.md', text: '### 05.01.2026\n\nUne journée que le jeu n’a pas.' })
+    const res = await importFiles(run, first.dataset, { now: NOW })
+    expect(res.dataset.days.map((d) => d.date)).toEqual(['2025-12-22', '2025-12-23', '2025-12-24'])
+    expect(res.detailPatches.has('2026-01-05')).toBe(false)
+    expect(res.report.find((r) => r.code === 'feuilles-hors-jeu').message).toMatch(/^1 feuille\(s\) de la seconde lecture/)
+    expect(res.report.some((r) => r.code === 'traces-non-datees')).toBe(false)
+    expect(res.dataset.readings[0].codes['1.01']).toMatchObject({ proofs: 1, hints: 2 })
+  })
+
+  it('un run déjà réparti sur les journées (importé seul, avant) n’est pas joint une seconde fois', async () => {
+    const spread = await importFiles(louCoreRun(), empty(), { now: NOW })
+    const withOwn = await importFiles(louFiles({ portfolio: false }), spread.dataset, { now: NOW })
+    const again = await importFiles(louCoreRun(), withOwn.dataset, { now: NOW })
+    expect(again.dataset.readings).toEqual([])
+    expect(again.counts.duplicates).toBe(1)
+    expect(again.report.find((r) => r.code === 'doublon').message).toMatch(/LOU@2026-04-25 déjà répartie sur les journées/)
+  })
+
+  it('un jeu qui n’a que des runs AuroraCore : le nouveau se répartit sur les journées, comme avant', async () => {
+    const first = await importFiles(louCoreRun(), empty(), { now: NOW })
+    const other = louCoreRun().map((f) => (f.path === 'LOU/manifest.json' ? { ...f, text: JSON.stringify({ id_portfolio: 'LOU', date_derniere_preparation: '2026-05-02T02:00:00' }) } : f.path.endsWith('deliberation.md') ? { ...f, text: f.text.replace('2026-04-25', '2026-05-02') } : f))
+    const res = await importFiles(other, first.dataset, { now: NOW })
+    expect(res.dataset.readings).toEqual([])
+    expect(res.dataset.days.find((d) => d.date === '2025-12-22').variants.map((v) => v.provenance.run)).toEqual(['LOU@2026-04-25', 'LOU@2026-05-02'])
   })
 })
 

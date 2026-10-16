@@ -22,6 +22,7 @@ import { hasAnalysis, hasPortfolio } from './model.js'
 import { stripMarkdownMarks } from './highlight.js'
 import { median, lexicalData } from './dashboard.js'
 import { changeNarrative, compareSets } from './compare.js'
+import { NEED_PORTFOLIO, needCode } from './split.js'
 
 export const THREAD_KINDS = Object.freeze(['citation', 'silence', 'apparition', 'constance', 'renvoi', 'rupture', 'ecart'])
 
@@ -99,7 +100,7 @@ export function dialogueThreads(dataset, state, ref, { getDetail = () => undefin
 
   // 1. Citation datée : la preuve la plus sûre, la plus récente à confiance égale.
   for (const cand of quoteCandidates(state)) {
-    const vd = getDetail(cand.date)?.variants?.[cand.variantId]?.verdicts?.[cand.code]
+    const vd = getDetail(cand.date, needCode(cand.code))?.variants?.[cand.variantId]?.verdicts?.[cand.code]
     const raw = String(vd?.traces?.[cand.traceId]?.extract ?? '')
     const text = quoteText(raw)
     if (!text) continue
@@ -167,7 +168,7 @@ export function dialogueThreads(dataset, state, ref, { getDetail = () => undefin
   //    consécutives, relatif à la personne (aucun seuil fixe).
   const texts = new Map()
   for (const d of dataset.days.filter(hasPortfolio)) {
-    const t = getDetail(d.date)?.portfolio?.text
+    const t = getDetail(d.date, NEED_PORTFOLIO)?.portfolio?.text
     if (typeof t === 'string' && t.trim()) texts.set(d.date, t)
   }
   const lexical = texts.size >= 4 ? lexicalData(texts) : null

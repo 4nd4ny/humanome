@@ -24,6 +24,7 @@ import { Sun } from './Sun.jsx'
 import { SunLegend } from './DetailPanel.jsx'
 import { JUROR_ORDER, PedagogueReview, VerdictFacts } from './Jury.jsx'
 import { sameAsCompetency, saidByRun, verdictDetailOf } from './Observations.jsx'
+import { needCode } from '../core/split.js'
 import { ComparePrecautions } from './ComparePanel.jsx'
 import { useFocusTrap } from './DayModal.jsx'
 import { DEFAULT_PALETTE, themeColor } from './colors.js'
@@ -487,10 +488,12 @@ export function ReportPreview({ data, onClose, ...doc }) {
 
   const { ensureDetails, ensureRunDetail, getDetail, getRunDetail } = data
   const dates = useMemo(() => reportDates(dataset, state, options.codes, { scope: options.scope, extracts: options.extracts }), [dataset, state, options])
+  // Les verdicts des compétences choisies, et rien d'autre (D-67).
+  const need = useMemo(() => options.codes.map(needCode), [options.codes])
   useEffect(() => {
-    if (dates.length > 0) ensureDetails(dates)
-  }, [dates, ensureDetails])
-  const detailsReady = dates.every((d) => getDetail(d) !== undefined)
+    if (dates.length > 0) ensureDetails(dates, need)
+  }, [dates, need, ensureDetails])
+  const detailsReady = dates.every((d) => getDetail(d, need) !== undefined)
   const runKeys = useMemo(() => {
     if (!detailsReady) return []
     const keys = new Set()

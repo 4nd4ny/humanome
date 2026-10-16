@@ -3,7 +3,7 @@
 // suivant parmi les journées actives ; retour. Dialogue modal accessible :
 // piège de focus, Échap pour fermer, focus rendu à l'élément d'origine.
 
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { computeDayState, layoutSun } from '../core/state.js'
 import { contributingVariant, hasPortfolio } from '../core/model.js'
 import { formatLong, formatShort, weekdayName } from '../core/dates.js'
@@ -13,6 +13,7 @@ import { poleVars } from './colors.js'
 import { usePalette } from './palette.js'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
+const NONE = new Set()
 
 /**
  * Piège de focus d'un dialogue (Tab / Maj+Tab restent à l'intérieur).
@@ -99,6 +100,11 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
   const prev = i > 0 ? nav[i - 1] : null
   const next = i >= 0 && i < nav.length - 1 ? nav[i + 1] : null
 
+  // Compétences ouvertes une fois dans cette journée : leur contenu reste rendu
+  // (une autre journée repart de lignes fermées, sans rien lire).
+  const [opened, setOpened] = useState(() => ({ date, codes: new Set() }))
+  const openedCodes = opened.date === date ? opened.codes : NONE
+
   const groups = useMemo(() => {
     const out = { observed: [], not_established: [], court: [], unknown: [] }
     for (const v of variant?.verdicts ?? []) {
@@ -184,11 +190,22 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                         </>
                       )
                       return (
-                        <li key={v.code} className={`carto-pole${v.code === focusCode ? ' is-focus' : ''}`} style={poleVars(refl.poleByNum.get(meta?.pole)?.color ?? '#78716c', palette)}>
+                        <li key={`${date}|${v.code}`} className={`carto-pole${v.code === focusCode ? ' is-focus' : ''}`} style={poleVars(refl.poleByNum.get(meta?.pole)?.color ?? '#78716c', palette)}>
                           {renderVerdict && variant ? (
-                            <details className="carto-day-verdict" open={v.code === focusCode || undefined}>
+                            <details
+                              className="carto-day-verdict"
+                              open={v.code === focusCode || undefined}
+                              onToggle={(e) => {
+                                if (!e.currentTarget.open) return
+                                setOpened((prev) => {
+                                  const codes = prev.date === date ? prev.codes : NONE
+                                  return codes.has(v.code) ? prev : { date, codes: new Set(codes).add(v.code) }
+                                })
+                              }}
+                            >
                               <summary title={v.rawStatus ?? undefined}>{line}</summary>
-                              {renderVerdict(v, variant)}
+                              {/* Rendu, donc lu, à l'ouverture seulement (D-67). */}
+                              {openedCodes.has(v.code) || v.code === focusCode ? renderVerdict(v, variant) : null}
                             </details>
                           ) : (
                             line

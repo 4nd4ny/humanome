@@ -12,6 +12,12 @@
 // et référencés depuis chaque journée. Les feuilles du jour du journal sont
 // importées comme portfolio (elles portent le texte intégral : c'est ce qui
 // rend le surlignage possible).
+//
+// Le run est aussi rendu comme SECONDE LECTURE (`readings`, journal D-68) :
+// un résumé par compétence (statut, confiance, preuves, indices), ses
+// délibérations restant au niveau du run. Joint à un jeu qui a déjà ses
+// analyses par journée, c'est ainsi qu'il entre : il ne change pas le soleil
+// (core/import.js décide).
 
 import { canonicalJson, contentHash, normalizeConfidence, normalizeRole, normalizeStatus, stableId, toCount } from '../model.js'
 import { splitExtract } from '../highlight.js'
@@ -100,6 +106,8 @@ export function parseInvocations(md) {
  *   variants: Array<{date: string, summary: object, detail: object}>,
  *   runDetails: Array<{key: string, value: object}>,
  *   portfolio: Array<{date: string, title: string | null, text: string, source: string}>,
+ *   readings: Array<{id: string, source: string, journal: string, analysedAt: string | null, importedAt: string,
+ *     codes: Record<string, {status: string, rawStatus: string | null, confidence: number | null, proofs: number, hints: number}>, poles: number[]}>,
  *   report: Array<object>,
  *   consumed: Set<string>,
  * }}
@@ -111,6 +119,7 @@ export function importAuroraCoreTrees(files, { now = new Date().toISOString() } 
   const variants = []
   const runDetails = []
   const portfolio = []
+  const readings = []
 
   // Racines de journaux : préfixe commun des verdict.json.
   const roots = new Map()
@@ -238,6 +247,19 @@ export function importAuroraCoreTrees(files, { now = new Date().toISOString() } 
     const runId = `${journalId}@${analysisDate ?? 'date-inconnue'}`
     for (const rd of rootRunDetails) runDetails.push({ key: `${runId}|${rd.value.code}`, value: rd.value })
     for (const [pole, texts] of poleTexts) runDetails.push({ key: `${runId}|pole:${pole}`, value: { pole: Number(pole), ...texts } })
+    readings.push({
+      id: runId,
+      source: 'aurora-core',
+      journal: journalId,
+      analysedAt: analysisDate,
+      importedAt: now,
+      codes: Object.fromEntries(
+        [...rootRunDetails]
+          .sort((a, b) => (a.value.code < b.value.code ? -1 : 1))
+          .map(({ value: v }) => [v.code, { status: v.status, rawStatus: v.rawStatus, confidence: v.confidence, proofs: v.traces.filter((t) => t.role === 'preuve').length, hints: v.traces.filter((t) => t.role !== 'preuve').length }]),
+      ),
+      poles: [...poleTexts.keys()].map(Number).sort((a, b) => a - b),
+    })
 
     for (const [date, codes] of [...perDate.entries()].sort()) {
       const digest = contentHash(canonicalJson([...codes.entries()].map(([c, e]) => [c, e.status, e.confidence, e.traces])))
@@ -291,7 +313,7 @@ export function importAuroraCoreTrees(files, { now = new Date().toISOString() } 
     report.push({ severity: 'info', code: 'aurora-core', message: `Journal ${journalId} : ${verdictFiles.length} verdict(s) répartis sur ${perDate.size} journée(s)` })
   }
 
-  return { variants, runDetails, portfolio, report, consumed }
+  return { variants, runDetails, portfolio, readings, report, consumed }
 }
 
 /** Le lot contient-il une arborescence AuroraCore ? */

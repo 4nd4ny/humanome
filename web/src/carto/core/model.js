@@ -215,6 +215,7 @@ export function createDataset({ datasetId, title = 'Ma cartographie', referentia
     comparisons: [],
     markers: [],
     reflections: [], // carnet du dialogue d'accompagnement (P7) : réponses de l'apprenant, locales
+    readings: [], // secondes lectures (D-68) : runs AuroraCore joints aux compétences, sans effet sur le soleil
     narratives: [],
     metrics: null,
     preferences: structuredClone(DEFAULT_PREFERENCES),
@@ -254,6 +255,24 @@ export function contributingVariant(day) {
   if (!day || !day.activeVariantId) return null
   if (day.variantChoice === 'pending' || day.variantChoice === 'examine') return null
   return day.variants.find((v) => v.id === day.activeVariantId) ?? null
+}
+
+/**
+ * Run AuroraCore d'une variante (ses délibérations sont rangées une fois, au
+ * niveau du run), lu dans l'index : ou null.
+ */
+export function runIdOf(variant) {
+  return variant?.provenance?.source === 'aurora-core' ? (variant.provenance.run ?? null) : null
+}
+
+/** Runs AuroraCore répartis sur les journées du jeu (toutes variantes). */
+export function runsInDays(dataset) {
+  const out = new Set()
+  for (const d of dataset?.days ?? []) for (const v of d.variants ?? []) {
+    const run = runIdOf(v)
+    if (run) out.add(run)
+  }
+  return out
 }
 
 /** La journée a-t-elle au moins une analyse importée ? */
@@ -405,6 +424,7 @@ export function upgradeDataset(doc) {
   ds.comparisons ??= []
   ds.markers ??= []
   ds.reflections ??= []
+  ds.readings ??= []
   ds.narratives ??= []
   ds.metrics ??= null
   ds.importLog ??= []

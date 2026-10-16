@@ -156,6 +156,72 @@ export function louDays() {
 }
 
 /**
+ * Arborescence AuroraCore SYNTHÉTIQUE de Lou : un run, six voix et un
+ * président sur tout le journal. 1.01 établie (une trace cite, plus court, le
+ * passage que la journée du 22 retient déjà ; l'autre, du 24, non) ; 2.02
+ * établie (absente des journées) ; rapport du pôle 1 ; feuille du 22 dont le
+ * texte diffère de celui du portfolio de Lou.
+ * @returns {Array<{path: string, text: string}>}
+ */
+export function louCoreRun() {
+  const json = (path, value) => ({ path, text: JSON.stringify(value) })
+  const delib = [
+    '# Tribunal — Délibération du jury — 1.01',
+    'Journal : LOU | Date : 2026-04-25 | Agent : 5-tribunal-jury',
+    '',
+    '```',
+    '====',
+    'INVOCATION — LINGUISTE',
+    '====',
+    'J’incarne le Linguiste.',
+    '```',
+    '',
+    'Le vocabulaire du doute est précis.',
+  ].join('\n')
+  return [
+    json('LOU/manifest.json', { id_portfolio: 'LOU', date_derniere_preparation: '2026-04-25T02:00:00' }),
+    json('LOU/1/1.01/verdict.json', {
+      code: '1.01',
+      nom: 'Pensée critique',
+      statut: 'présence établie',
+      score_preuves: 1,
+      score_indices: 1,
+      confiance: 0.75,
+      jury: {
+        linguiste: { position: 'présence établie', confiance: 0.8, synthese: 'Vocabulaire du doute, précis.' },
+        sociologue: { position: 'présence non établie', confiance: 0.5, synthese: 'Le contexte manque.' },
+        voix_presence: 5,
+        voix_non_etablie: 1,
+        voix_sans_eclairage: 0,
+        consensus: false,
+      },
+      president: {
+        verdict_argumente: 'Le jury retient une vérification méthodique, sur tout le journal.',
+        prescription: 'Raconter une erreur corrigée.',
+        points_tension: 'Le Sociologue doute du contexte.',
+      },
+      traces_retenues: [
+        { piece_id: 1, type: 'trace concrète', role: 'preuve décisive', extrait: 'vérifié deux sources contradictoires avant de conclure', date: '2025-12-22' },
+        { piece_id: 2, type: 'déclaration étayée', role: 'indice corroboratif', extrait: "J'ai noté chaque modification dans un tableau.", date: '2025-12-24' },
+      ],
+    }),
+    { path: 'LOU/1/1.01/deliberation.md', text: delib },
+    json('LOU/2/2.02/verdict.json', {
+      code: '2.02',
+      nom: 'Coopération',
+      statut: 'présence établie',
+      score_preuves: 1,
+      score_indices: 0,
+      confiance: 0.6,
+      president: { verdict_argumente: 'La coopération est attestée.', prescription: 'Dire la part de chacun.' },
+      traces_retenues: [{ piece_id: 1, type: 'trace concrète', role: 'preuve décisive', extrait: 'nous avons construit la maquette du pont en carton, avec Sam et Noé', date: '2025-12-22' }],
+    }),
+    { path: 'LOU/1/rapport.md', text: '# Rapport du pôle 1\n\nLe doute méthodique traverse tout le journal.' },
+    { path: 'LOU/feuilles/2025-12-22.md', text: '### 22.12.2025\n\nLa feuille du journal, autrement découpée.' },
+  ]
+}
+
+/**
  * Jeu de données construit DIRECTEMENT au niveau de l'index (sans import),
  * pour tester les formules : chaque journée a une variante active.
  * @param {Array<{date: string, active?: boolean, verdicts: Array<{code: string, status?: string,

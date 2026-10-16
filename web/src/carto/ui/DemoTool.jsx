@@ -548,8 +548,10 @@ export function DemoTool({ dataset, data, fetchFn, onClose, onOpened }) {
                 </button>
               </div>
               <p className="carto-small carto-muted">
-                Pour la démonstration du site, le fichier .json se dépose sous le nom <code>data/demo/carto/archive.json</code> : le bouton « Explorer la démonstration »
-                l’ouvre alors à la place des journées publiques.
+                Pour la démonstration du site, le fichier .json se découpe en fichiers lus à la demande (<code>node web/scripts/carto-demo-split.mjs</code>), déposés sous{' '}
+                <code>data/demo/carto/</code> — le dossier de version d’abord, l’index ensuite ; un ancien dossier de version reste, car une démonstration enrichie
+                par un visiteur continue d’y lire : le bouton « Explorer la démonstration » l’ouvre alors à la place des journées publiques, et ne lit que ce qu’on
+                ouvre. Déposé tel quel sous le nom <code>archive.json</code>, il se lit aussi, mais d’un bloc.
               </p>
             </li>
           ) : null}

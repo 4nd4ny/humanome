@@ -53,6 +53,7 @@ import { LINK_STATUS_LABELS, linkStatus } from './shareApi.js'
 import { draftVersionIds, dropDatasetDrafts, dropDraft, loadDraft, saveDraft } from './shareDrafts.js'
 import { poleVars } from './colors.js'
 import { usePalette } from './palette.js'
+import { needCode } from '../core/split.js'
 
 /** Hébergement et durées affichés (§12.1) — à garder alignés sur docs/rgpd-registre.md. */
 export const HOSTING_TEXT = 'Hébergement : OVHcloud, dans l’Union européenne.'
@@ -198,8 +199,8 @@ function ExtractPicker({ code, refl, state, data, chosen, onToggle, textOf }) {
   const dates = useMemo(() => [...new Set(candidates.map((c) => c.date))], [candidates])
   const { ensureDetails } = data
   useEffect(() => {
-    if (dates.length) ensureDetails(dates)
-  }, [dates, ensureDetails])
+    if (dates.length) ensureDetails(dates, needCode(code))
+  }, [dates, code, ensureDetails])
   const meta = refl.compByCode.get(code)
   return (
     <section className="carto-share-picker" aria-label={`Extraits proposés pour ${code} ${meta?.name ?? ''}`}>

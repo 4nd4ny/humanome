@@ -81,6 +81,53 @@
       "description": "Délibérations de run (AuroraCore : six éclairages, président, débat, pièces), par clé de run. Contenu produit par l'analyse : structure ouverte.",
       "additionalProperties": { "type": "object" }
     },
+    "remote": {
+      "type": "object",
+      "description": "Index d'un jeu lu à la demande (journal de la cartographie, D-67) : l'archive sans ses détails (details et runDetails vides), qui dit où lire chacun — des fichiers statiques sous base (dossier de version : empreinte du contenu), rangés par ce que l'on ouvre : jours/<date>.json (portrait, émergences, run de la journée), portfolio/<date>.json (texte), competences/<code>.json (verdicts détaillés d'une compétence, toutes journées), poles/<n>.json (rapports et passages saillants d'un pôle), lectures/<clé>.json (délibérations de run). Chemins relatifs à base. Produit par web/scripts/carto-demo-split.mjs ; jamais dans une archive exportée. Ajout 4.x, facultatif.",
+      "additionalProperties": true,
+      "required": ["version", "base", "days"],
+      "properties": {
+        "version": { "type": "string", "pattern": "^v-[0-9a-f]{12}$" },
+        "base": { "type": "string", "minLength": 1, "description": "Dossier des fichiers, relatif à l'index (ou résolu par l'interface au chargement)." },
+        "days": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "portfolio": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "codes": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "poles": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "runs": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "readings": {
+      "type": "array",
+      "description": "Secondes lectures (journal de la cartographie, D-68) : une autre analyse des mêmes écrits — un run AuroraCore et son jury complet — jointe à chaque compétence sans changer le soleil (les verdicts par journée le font). Par lecture, un résumé par compétence ; ses délibérations sont dans runDetails, sous « <id>|<code> » et « <id>|pole:<n> ». Ajout 4.x, facultatif.",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "codes"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "description": "Identifiant du run (« <journal>@<date d'analyse> »)." },
+          "source": { "type": "string", "description": "Chaîne d'analyse (« aurora-core »)." },
+          "journal": { "type": ["string", "null"] },
+          "analysedAt": { "type": ["string", "null"], "description": "Date de l'analyse (AAAA-MM-JJ)." },
+          "importedAt": { "type": ["string", "null"] },
+          "codes": {
+            "type": "object",
+            "description": "Code de compétence → verdict de cette lecture sur tout le journal.",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "status": { "enum": ["established", "not_established", "needs_review", "unknown"] },
+                "rawStatus": { "type": ["string", "null"] },
+                "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+                "proofs": { "type": "integer", "minimum": 0 },
+                "hints": { "type": "integer", "minimum": 0 }
+              }
+            }
+          },
+          "poles": { "type": "array", "items": { "type": "integer" }, "description": "Pôles dont la lecture a un rapport (runDetails « <id>|pole:<n> »)." }
+        }
+      }
+    },
     "sets": {
       "type": "array",
       "description": "Ensembles nommés de journées (comparaison, préréglages), éventuellement figés.",

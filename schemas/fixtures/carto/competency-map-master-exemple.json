@@ -438,6 +438,34 @@
       ]
     }
   ],
+  "readings": [
+    {
+      "id": "LOU@2026-04-25",
+      "source": "aurora-core",
+      "journal": "LOU",
+      "analysedAt": "2026-04-25",
+      "importedAt": "2026-10-14T10:00:00.000Z",
+      "codes": {
+        "1.01": {
+          "status": "established",
+          "rawStatus": "présence établie",
+          "confidence": 0.75,
+          "proofs": 1,
+          "hints": 1
+        },
+        "2.02": {
+          "status": "established",
+          "rawStatus": "présence établie",
+          "confidence": 0.6,
+          "proofs": 1,
+          "hints": 0
+        }
+      },
+      "poles": [
+        1
+      ]
+    }
+  ],
   "narratives": [],
   "metrics": null,
   "preferences": {
@@ -545,6 +573,33 @@
           "date": "2025-12-23"
         }
       ],
+      "acknowledged": false
+    },
+    {
+      "at": "2026-10-14T10:00:00.000Z",
+      "files": [
+        "LOU/manifest.json",
+        "LOU/1/1.01/verdict.json",
+        "LOU/1/1.01/deliberation.md",
+        "LOU/2/2.02/verdict.json",
+        "LOU/1/rapport.md",
+        "LOU/feuilles/2025-12-22.md"
+      ],
+      "counts": {
+        "daysAdded": 0,
+        "variantsAdded": 0,
+        "duplicates": 0,
+        "portfolioDays": 0,
+        "narratives": 0,
+        "pendingDays": 1
+      },
+      "severities": {
+        "blocking": 0,
+        "arbitrate": 0,
+        "warning": 0,
+        "info": 2
+      },
+      "entries": [],
       "acknowledged": false
     }
   ],
@@ -1135,5 +1190,98 @@
       }
     }
   },
-  "runDetails": {}
+  "runDetails": {
+    "LOU@2026-04-25|1.01": {
+      "code": "1.01",
+      "name": "Pensée critique",
+      "pole": 1,
+      "status": "established",
+      "rawStatus": "présence établie",
+      "confidence": 0.75,
+      "scores": {
+        "proofs": 1,
+        "hints": 1,
+        "score": null
+      },
+      "jury": {
+        "linguiste": {
+          "position": "présence établie",
+          "confiance": 0.8,
+          "synthese": "Vocabulaire du doute, précis."
+        },
+        "sociologue": {
+          "position": "présence non établie",
+          "confiance": 0.5,
+          "synthese": "Le contexte manque."
+        },
+        "voix_presence": 5,
+        "voix_non_etablie": 1,
+        "voix_sans_eclairage": 0,
+        "consensus": false
+      },
+      "president": {
+        "verdict_argumente": "Le jury retient une vérification méthodique, sur tout le journal.",
+        "prescription": "Raconter une erreur corrigée.",
+        "points_tension": "Le Sociologue doute du contexte."
+      },
+      "deliberation": {
+        "linguiste": {
+          "markdown": "Le vocabulaire du doute est précis.",
+          "preamble": "J’incarne le Linguiste."
+        }
+      },
+      "debate": null,
+      "pieces": [],
+      "traces": [
+        {
+          "pieceId": 1,
+          "role": "preuve",
+          "pieceType": "trace concrète",
+          "extract": "vérifié deux sources contradictoires avant de conclure",
+          "date": "2025-12-22"
+        },
+        {
+          "pieceId": 2,
+          "role": "indice",
+          "pieceType": "déclaration étayée",
+          "extract": "J'ai noté chaque modification dans un tableau.",
+          "date": "2025-12-24"
+        }
+      ]
+    },
+    "LOU@2026-04-25|2.02": {
+      "code": "2.02",
+      "name": "Coopération",
+      "pole": 2,
+      "status": "established",
+      "rawStatus": "présence établie",
+      "confidence": 0.6,
+      "scores": {
+        "proofs": 1,
+        "hints": 0,
+        "score": null
+      },
+      "jury": null,
+      "president": {
+        "verdict_argumente": "La coopération est attestée.",
+        "prescription": "Dire la part de chacun."
+      },
+      "deliberation": null,
+      "debate": null,
+      "pieces": [],
+      "traces": [
+        {
+          "pieceId": 1,
+          "role": "preuve",
+          "pieceType": "trace concrète",
+          "extract": "nous avons construit la maquette du pont en carton, avec Sam et Noé",
+          "date": "2025-12-22"
+        }
+      ]
+    },
+    "LOU@2026-04-25|pole:1": {
+      "pole": 1,
+      "report": "# Rapport du pôle 1\n\nLe doute méthodique traverse tout le journal."
+    }
+  }
 }
