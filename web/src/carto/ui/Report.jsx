@@ -98,14 +98,15 @@ function Cover({ dataset, refl, state, layout, geometry, t, summary, pseudonym, 
         geometry={geometry}
         compact
         label={`Soleil : ${plural(summary.competencies.length, 'compétence observée', 'compétences observées')} dans ${plural(summary.analysedDays, 'journée', 'journées')}`}
-        caption={t ? `État cumulé jusqu’au ${formatShort(t)}` : 'État complet des journées cochées'}
       />
+      {/* La légende des couleurs, sans les parts : elles sont dans le tableau du profil ; l'état et
+          l'ensemble sont dits au-dessus, le soleil n'a pas de légende qui les redise (D-66). */}
       {summary.poles.length > 0 ? (
         <ul className="carto-print-poles" aria-label="Pôles du soleil">
           {summary.poles.map((p) => (
             <li key={p.num}>
               <span className="carto-print-swatch" style={{ background: themeColor(p.color) }} aria-hidden="true" />
-              {p.symbol} {p.name} <span className="carto-print-faint">{pct(p.share)}</span>
+              {p.symbol} {p.name}
             </li>
           ))}
         </ul>
@@ -193,9 +194,10 @@ function Profile({ refl, summary }) {
 }
 
 /**
- * Délibération d'un run AuroraCore, sans les délibérations complètes : la
+ * Délibération d'un run AuroraCore, comme à l'écran mais sans ce qui s'y
+ * déplie au second niveau (délibérations complètes, analyse réflexive) : la
  * décision du président d'abord (verdict argumenté, prescription, voix), puis
- * les synthèses des voix et le raisonnement du président (comme à l'écran).
+ * les synthèses des voix et ses points de convergence et de tension.
  */
 function RunVoices({ run }) {
   if (run === undefined) return <p className="carto-muted">Chargement de la délibération…</p>
@@ -291,9 +293,9 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
       <h3 id={`carto-print-c-${code}`}>
         <span className="carto-code">{code}</span> {meta.name}
       </h3>
+      {/* Sa part, sa confiance moyenne, ses preuves et ses journées sont dans le tableau du profil (D-66). */}
       <p className="carto-print-faint">
-        {pole?.symbol} {pole?.name} · part {pct(s.theta / 360)} · confiance moyenne {nf(s.confidence)} · {plural(s.days.length, 'journée', 'journées')} ·{' '}
-        {plural(s.proofs, 'preuve', 'preuves')}, {plural(s.hints, 'indice', 'indices')}
+        {pole?.symbol} {pole?.name}
       </p>
       {options.extracts && traces.length > 0 ? <Extracts traces={traces} code={code} getDetail={getDetail} /> : null}
       {runRefs.map((key) => (
@@ -312,8 +314,8 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
             ) : (
               <>
                 {/* Le statut est dans le titre ; la confiance et les preuves de la seule journée
-                    d'une compétence sont dans sa ligne ; le motif d'un verdict AuroraCore est celui
-                    du président, imprimé une fois avec la délibération quand elle est là (D-66). */}
+                    d'une compétence sont dans le tableau du profil ; le motif d'un verdict AuroraCore
+                    est celui du président, imprimé une fois avec la délibération quand elle est là (D-66). */}
                 <VerdictFacts
                   verdict={o.verdict}
                   detail={vd}

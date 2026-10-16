@@ -2493,25 +2493,35 @@ questions (3 et 4) : questions 39 et 40.
   - la « synthèse complète » du portrait de chaque journée redit ses
     rubriques, phrase à phrase : 59 sur 59 ; le rapport complet d'un pôle
     (jamais affiché : il contient les territoires non visités, D-16) redit
-    les siennes 213 fois sur 405 ;
+    les siennes 174 fois sur 405 ;
   - panneau d'une compétence : la liste « Journées observées » redisait les
     journées des verdicts ; la ligne d'une journée redisait les chiffres du
     panneau quand la compétence n'en a qu'une ; la conclusion du Pédagogue
-    redisait la confiance du verdict (1 937 fois sur 1 937) ; un verdict
-    AuroraCore, réparti sur les journées de ses traces, redisait à chacune le
-    motif et la prescription du président ;
-  - panneau d'un pôle : 287 passages saillants sur 3 042 redisaient l'extrait
-    d'un territoire dense (278 le même, 9 une partie ; 282 autres le
-    contiennent et en disent plus) ;
-  - rapport imprimé : le niveau de preuve dit deux fois.
+    redisait la confiance du verdict (1 937 fois sur 1 937) ; les pièces
+    retenues du Greffier redisaient l'extrait de leur trace (environ 2 400) ;
+    un verdict AuroraCore, réparti sur les journées de ses traces, redisait à
+    chacune le motif et la prescription du président ;
+  - panneau d'un pôle : 264 passages saillants sur 3 038 redisaient, le même
+    jour, l'extrait d'un territoire dense ;
+  - rapport imprimé : le niveau de preuve dit deux fois ; la part de chaque
+    pôle et l'état de l'ensemble redits en couverture ; les chiffres d'une
+    compétence redits sur sa fiche.
 - **La règle** (`core/restatement.js`, fonctions pures) : un texte complet ne
-  se garde et ne s'affiche que pour ce qu'il ajoute à ses rubriques. Une
-  phrase est « déjà dite » quand 85 % de ses mots s'y retrouvent, par suites
-  de quatre — à la typographie près (guillemets, apostrophes, ponctuation),
-  au balisage près (« **Titre.** texte » et « Titre — texte ») et à une
-  étiquette près (« Extrait : « … » »). Un texte sans rubriques reste tout le
-  contenu. Le master V3 n'a pas les invitations en rubrique : sa synthèse,
-  qui les contient, est gardée.
+  se garde que pour ce qu'il ajoute à ses rubriques, et ce reste seul
+  s'affiche là où le texte s'afficherait (le portrait d'une journée ; le
+  rapport complet d'un pôle ne s'affiche jamais, D-16). Une phrase est
+  « déjà dite » quand **chacun** de ses mots se retrouve dans les rubriques,
+  dans une suite de quatre mots, à la typographie près (guillemets,
+  apostrophes, ponctuation, « **Titre.** texte » ou « Titre — texte ») ; ne
+  sont pardonnées que les étiquettes d'un extrait cité (« Extrait : »,
+  « L'extrait — ») et une coquille (un mot de cinq lettres ou plus, même
+  début, deux lettres d'écart au plus, ni nombre ni mot de sens comme
+  « jamais » ou « sans » : « errors » pour « erreurs », le 29 janvier). Une
+  négation, un nombre, un mot changé, une précision ajoutée font une phrase
+  neuve. Les titres en gras et les étiquettes (« Invitations : ») sont des
+  titres ; une liste reste une liste ; une phrase ne se coupe pas dans des
+  guillemets. Le master V3 n'a pas les invitations en rubrique : sa synthèse,
+  qui les contient, est gardée et ses invitations se lisent en puces.
 - **À l'écran** :
   - portrait de la journée : ses rubriques, puis « Suite du portrait » ; plus
     de « Synthèse complète » ; ce qu'une synthèse dit de plus s'y lit, sous le
@@ -2522,36 +2532,48 @@ questions (3 et 4) : questions 39 et 40.
     du panneau ; dépliée, le motif et la prescription seulement ; l'analyse
     dite une fois quand toutes les journées viennent de la même ; le statut
     brut en info-bulle ; la confiance finale du Pédagogue seulement si elle
-    diffère de celle du verdict ;
-  - **réflexions du jury** (point 2) : chaque pièce du Greffier dit son sort
-    dans le verdict — « retenue comme preuve », « retenue comme indice »,
-    « non retenue » —, à côté du raisonnement du Pédagogue qui les cite par
-    numéro ; dans une délibération AuroraCore, la **décision du président**
-    (verdict argumenté, prescription) se lit d'abord, sans rien déplier, avec
-    les voix ; ce qui y a conduit se déplie au-dessous : « Éclairages des
-    voix », « Raisonnement du président » (convergences, tensions, analyse
-    réflexive, délibération complète), débat, pièces ;
-  - un verdict AuroraCore : son motif et sa prescription, ceux du président,
-    se lisent une fois — dans la délibération quand elle est là, à la
-    journée sinon ;
-  - pôle : un passage saillant dont l'extrait est déjà cité par un territoire
-    dense se lit sous ce territoire, par son seul contexte (« Passage
-    saillant : … ») ; les autres sous « Autres passages saillants » ; une
-    journée sans rien d'affichable n'ouvre plus de bloc vide ;
+    diffère de celle du verdict (80 se lit 0,8) ;
+  - **réflexions du jury** (point 2) : l'examen du Pédagogue a un niveau de
+    moins à déplier (ses trois temps sous leur titre) ; chaque pièce du
+    Greffier dit son sort dans le verdict — « retenue comme preuve »,
+    « retenue comme indice », « non retenue » —, à côté du raisonnement qui
+    les cite par numéro ; l'extrait d'une pièce retenue, lu plus haut dans
+    les traces, ne se redit pas (« Son extrait se lit plus haut, parmi les
+    traces ») ; une trace sans numéro de pièce (reconstituée depuis des
+    compteurs) laisse le sort des autres pièces non dit, plutôt que « non
+    retenue » ;
+  - AuroraCore : la **décision du président** (verdict argumenté,
+    prescription) et les voix se lisent sans rien déplier, en tête des
+    verdicts de la compétence ; ce qui y a conduit se déplie au-dessous :
+    « Éclairages des voix », « Raisonnement du président » (convergences,
+    tensions, analyse réflexive, délibération complète), débat, pièces. Le
+    motif et la prescription d'une journée sont ceux du président : dits une
+    fois — dans la décision quand la délibération est là, à la journée
+    sinon ; dans la modale du jour, au verdict, les voix dans les
+    réflexions ;
+  - pôle : un passage saillant dont l'extrait est celui d'un territoire dense
+    du même jour se lit sous ce territoire, par son seul contexte (« Passage
+    saillant : … ») ; un passage qui n'est qu'une partie de l'extrait, qui le
+    dépasse ou qui vient d'une autre feuille reste à part, entier, avec son
+    lien ; une journée sans rien d'affichable n'ouvre plus de bloc vide ;
   - modale du jour : les traces sans leur date (c'est le jour), le verdict
     sans les chiffres de sa ligne ; une présence établie sans trace retenue
     le dit sur sa ligne (son groupe dit « présence non établie ») ;
-  - rapport imprimé : niveau de preuve dit une fois (précautions de lecture),
-    chiffres d'une seule journée non redits, décision du président d'abord.
+  - rapport imprimé : niveau de preuve dit une fois (précautions de lecture) ;
+    en couverture, la légende des pôles sans leurs parts et le soleil sans
+    légende d'état (le tableau du profil et les faits les disent) ; la fiche
+    d'une compétence sans ses chiffres (dans le tableau du profil), ceux de
+    sa seule journée non redits ; la décision du président d'abord.
 - **Dans les fichiers construits** : à l'import (Aurora v3, master V3) et à la
   relecture d'une archive, un texte complet qui ne fait que redire n'est pas
   gardé (`docs/contrats.md`, décision 10 : une exception au « sans perte »,
-  aucun champ renommé). Détails de la démonstration : 17,3 → 15,8 Mo (les 59
-  synthèses, 0,34 Mo ; 213 rapports complets, 1,08 Mo).
+  aucun champ renommé). Détails de la démonstration : 17,3 → 16,0 Mo (les 59
+  synthèses, 0,34 Mo ; 174 rapports complets, 0,87 Mo).
 - **Pas fait, à décider** : un extrait est encore gardé jusqu'à trois fois par
   journée (passages, pièces, traces : 1,6 Mo) ; ne le garder qu'une fois est
   un changement de contrat (question 40).
-- Docs : `docs/contrats.md` (décision 10).
+- Docs : `docs/contrats.md` (décision 10) ; formation du cartographe
+  (chapitre 7 : sort des pièces, décision du président d'abord).
 
 ---
 
@@ -3000,25 +3022,38 @@ entre 3,2 et 4,2:1 (antérieur, palette par défaut).
 
 | Fichier de test | Contenu | Tests |
 |---|---|---|
-| `ui/Redundancy.test.jsx` | ce qu'un texte complet ajoute : rien quand il redit (typographie, balisage, étiquette), ses phrases neuves sous leur titre ; portrait de la journée sans la synthèse qui le redit, ce qu'elle ajoute lu une fois dans la suite, une synthèse seule affichée ; verdict d'une journée (complet, sans la ligne, sans le statut, sans les textes du président) ; ligne d'une journée qui ne redit les chiffres du panneau que s'ils diffèrent ; motif AuroraCore tu seulement si la délibération est là et le dit ; décision du président d'abord, sans rien déplier, puis voix, éclairages et raisonnement ; décision non redite ; confiance finale du Pédagogue seulement si elle diffère ; sort des pièces ; passages saillants sous leur territoire (même extrait, une partie), à part s'ils en disent plus ou sont trop courts ; import : rubriques redites non gardées, un ajout gardé, un texte seul gardé, master V3 (invitations dans la seule synthèse) ; archive d'avant allégée à la lecture, l'original intact | 19 (nouveau) |
-| `ui/P2.test.jsx` | compétence d'une journée : sa ligne dit le statut seul, dépliée le motif et la prescription ; sort de la pièce ; pas de confiance finale redite ; compétence de deux journées : chaque ligne dit sa confiance et ses preuves ; portrait de la journée : la forme du profil une fois, plus de synthèse complète | renforcé |
+| `ui/Redundancy.test.jsx` | ce qu'un texte complet ajoute : rien quand il redit (typographie, balisage, étiquette), ses phrases neuves sous leur titre ; une négation, un nombre, un mot changé, une précision, un « mais » entre deux rubriques font une phrase neuve ; une coquille non, un préfixe de sens (« impossible ») si ; titres en gras, étiquettes, listes et guillemets ; portrait de la journée sans la synthèse qui le redit, ce qu'elle ajoute lu une fois dans la suite, une synthèse seule affichée ; verdict d'une journée (complet, sans la ligne, sans le statut, sans les textes du président) ; ligne d'une journée qui ne redit les chiffres du panneau que s'ils diffèrent ; motif AuroraCore tu seulement si la délibération est là et le dit ; décision du président d'abord, sans rien déplier, puis voix, éclairages et raisonnement ; décision non redite ; confiance finale seulement si elle diffère (80 = 0,8) ; sort des pièces, extrait d'une pièce retenue non redit, sort non dit quand une trace n'a pas de numéro de pièce ; passages saillants sous leur territoire (même extrait, même jour), à part sinon (une partie, plus long, autre feuille) ; import : rubriques redites non gardées, un ajout gardé, un texte seul gardé, master V3 (invitations dans la seule synthèse) ; archive d'avant allégée à la lecture, l'original intact | 24 (nouveau) |
+| `ui/P2.test.jsx` | compétence d'une journée : sa ligne dit le statut seul, dépliée le motif et la prescription ; sort de la pièce ; pas de confiance finale redite ; compétence de deux journées : chaque ligne dit sa confiance et ses preuves ; portrait de la journée : la forme du profil une fois ; **AuroraCore** : la décision du président et les voix hors de tout repli, le raisonnement sous « Raisonnement du président » ; modale du jour : le motif du président une fois, au verdict, les voix dans les réflexions, pas de seconde décision | renforcé, +1 |
+| `ui/P5.test.jsx` | rapport imprimé : niveau de preuve une fois ; fiche d'une compétence d'une seule journée sans ses chiffres ni ceux de sa journée | renforcé |
 | `ui/CartoApp.test.jsx` | plus de « Journées observées » : les journées se lisent avec leur verdict | adapté |
 | `core/import.test.js` | le rapport complet d'un pôle qui redit ses rubriques n'est pas gardé | adapté |
 | `test/fixtures.js` | synthèse complète et rapport complet du jeu « Lou » : ils redisent leurs rubriques, comme d'ordinaire | adapté |
 | fixture `schemas/fixtures/carto/competency-map-master-exemple.json` | régénérée (identifiants de variante : leurs fichiers ont changé) | — |
 
-Suites complètes : site **2 420 verts** (240 fichiers) ; moteur inchangé ;
+Suites complètes : site **2 426 verts** (240 fichiers) ; moteur inchangé ;
 e2e Chromium : soleil (souris et tactile), copie autonome, dialogue, partage
 (deux scénarios, contre l'API locale), verts. Vérifié aussi dans Chromium
-sur la démonstration : portrait sans phrase répétée, compétence d'une seule
-journée (6.01) sur sa ligne courte, sort des pièces, territoires et passages
-sans extrait répété (0 sur 14 dans le premier rapport de CŒUR). Relecture
-indépendante (un agent distinct, sur la première version) : cinq défauts,
-traités — la première règle (« des rubriques, donc pas de texte complet »)
-perdait les invitations du master V3 ; des passages plus longs que l'extrait
-cité étaient tus, et le contexte des autres perdu ; la décision du président
-enfouie à trois niveaux ; la confiance finale redite ; le niveau de preuve
-redit dans le rapport — et des tests manquants, ajoutés.
+sur la démonstration : portrait sans phrase répétée ; compétence d'une seule
+journée (6.01) sur sa ligne courte ; examen du Pédagogue à un niveau ; sort
+des pièces, extraits des pièces retenues non redits ; territoires et passages
+sans extrait répété (0 sur 14 dans le premier rapport de CŒUR) ; rapport
+imprimé de trois compétences sans phrase ni chiffre redits (restent les
+noms des pôles et les intitulés des temps de l'examen). Deux relectures
+indépendantes (un agent distinct chaque fois). La première : cinq défauts —
+la première règle (« des rubriques, donc pas de texte complet ») perdait les
+invitations du master V3 ; des passages plus longs que l'extrait cité étaient
+tus, et le contexte des autres perdu ; la décision du président enfouie à
+trois niveaux ; la confiance finale redite ; le niveau de preuve redit dans
+le rapport. La seconde : six défauts — la règle tolérait 15 % de mots
+nouveaux, si bien qu'une négation, un nombre ou une précision ajoutée
+passaient pour « déjà dits » (perte silencieuse) ; les pièces retenues
+redisaient l'extrait de leur trace ; la décision du président, rendue à la
+journée, était repliée dans la délibération ; les listes aplaties et les
+guillemets coupés dans ce qu'une synthèse ajoute ; « non retenue » dit d'une
+pièce quand une trace n'a pas de numéro ; titres en gras et étiquettes pris
+pour des phrases — et des points mineurs (passages d'une autre feuille ou
+partiels, confiance en pourcentage, rapport imprimé, commentaires). Tous
+traités.
 
 ---
 
@@ -3417,8 +3452,11 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
   d'une archive (`core/restatement.js`). Panneaux d'une compétence et d'un
   pôle, modale du jour, rapport imprimé : ce qu'une ligne dit déjà ne se
   redit plus. Pour le point 2, chaque pièce du Greffier dit son sort dans le
-  verdict, et une délibération AuroraCore montre d'abord la décision du
-  président. Relu par un agent distinct (cinq défauts, traités). Questions
-  39 (les délibérations du jury sont dans AuroraCore, sur le Mac : trois
-  façons de les joindre) et 40 (lire les données à la demande : proposition
-  en trois points) posées.
+  verdict, l'examen du Pédagogue a un niveau de moins à déplier, et une
+  délibération AuroraCore montre d'abord la décision du président, sans
+  rien déplier. Relu deux fois par un agent distinct (cinq, puis six
+  défauts, traités ; la seconde relecture a rendu stricte la règle du « déjà
+  dit », qui laissait passer une négation ou un nombre). Questions 39 (les
+  délibérations du jury sont dans AuroraCore, sur le Mac : trois façons de
+  les joindre) et 40 (lire les données à la demande : proposition en trois
+  points) posées.

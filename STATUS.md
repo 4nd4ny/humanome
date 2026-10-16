@@ -164,14 +164,17 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
   - **Demande du 2026-10-16, 5 h 30** (D-66) : chaque information une fois. La « synthèse
     complète » du portrait d'une journée ne s'affiche plus (59 sur 59 redisaient leurs
     rubriques) ; seul ce qu'un texte complet ajoute se lit, et seul cela se garde à l'import et
-    à la relecture d'une archive (`core/restatement.js`, `docs/contrats.md` décision 10).
+    à la relecture d'une archive (`core/restatement.js` : chaque mot doit être déjà dit — une
+    négation, un nombre, un mot changé font une phrase neuve ; `docs/contrats.md` décision 10).
     Panneau d'une compétence : plus de « Journées observées », ligne d'une journée sans les
     chiffres du panneau quand elle est la seule, confiance finale du Pédagogue seulement si elle
-    diffère, sort de chaque pièce du Greffier ; délibération AuroraCore : la décision du
-    président d'abord ; pôle : un passage saillant déjà cité se lit sous son territoire. Suites :
-    front **2 420 verts**, e2e Chromium de la cartographie verts. Questions 39 (les
-    délibérations du jury : dans AuroraCore, sur le Mac — trois façons de les joindre) et 40
-    (lire les données à la demande : proposition en trois points) posées.
+    diffère, examen du Pédagogue à un niveau, sort de chaque pièce du Greffier (l'extrait d'une
+    pièce retenue n'est plus redit) ; délibération AuroraCore : la décision du président
+    d'abord, sans rien déplier ; pôle : un passage saillant déjà cité le même jour se lit sous
+    son territoire ; rapport imprimé sans redites. Relu deux fois par un agent distinct (cinq
+    puis six défauts, traités). Suites : front **2 426 verts**, e2e Chromium de la cartographie
+    verts. Questions 39 (les délibérations du jury : dans AuroraCore, sur le Mac — trois façons
+    de les joindre) et 40 (lire les données à la demande : proposition en trois points) posées.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

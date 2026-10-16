@@ -376,15 +376,37 @@ describe('P2 — AuroraCore : délibération du jury et surlignage dans la feuil
     const obs = await within(detail()).findByRole('region', { name: 'Verdicts par journée' })
     await within(obs).findByText(/Délibération du jury — LOU@2026-04-25/)
     await within(obs).findByText(/Linguiste — présence établie · confiance 0,8/)
-    // Verdict argumenté et prescription du président : une seule fois, dans sa section ;
-    // la journée, qui porte le même verdict, ne les redit pas (D-66).
+    // Verdict argumenté et prescription du président : une seule fois, à lire sans rien
+    // déplier ; la journée, qui porte le même verdict, ne les redit pas (D-66).
     expect(within(obs).getAllByText('Le jury converge.')).toHaveLength(1)
     expect(within(obs).getAllByText('Raconter une erreur.')).toHaveLength(1)
-    expect(within(obs).getByText('Tous voient la vérification.')).toBeTruthy()
+    const decision = within(obs).getByRole('region', { name: 'Décision du président' })
+    expect(decision.closest('details')).toBeNull()
+    expect(within(obs).getByText('2 voix pour la présence, 0 non établie, 0 sans éclairage · consensus').closest('details')).toBeNull()
+    expect(within(obs).getByText('Tous voient la vérification.').closest('details').querySelector('summary').textContent).toBe('Raisonnement du président')
     expect(within(obs).getByText('Le vocabulaire est juste.')).toBeTruthy()
     expect(within(obs).getByText('Extrait versé par le Greffier.')).toBeTruthy()
     fireEvent.click((await openTraceButtons())[0])
     const r = await screen.findByRole('region', { name: 'lundi 22 décembre 2025' })
     await waitFor(() => expect(markedText(r)).toBe("J'ai vérifié deux sources contradictoires"))
+  })
+
+  it('modale du jour : le motif du président se lit une fois, avec la ligne de la compétence ; les voix dans les réflexions', async () => {
+    const files = [
+      { path: 'LOU/manifest.json', text: JSON.stringify({ id_portfolio: 'LOU' }) },
+      { path: 'LOU/1/1.01/verdict.json', text: JSON.stringify(verdict) },
+      { path: 'LOU/1/1.01/deliberation.md', text: delib },
+    ]
+    window.location.hash = '#/cartographie/jour/2025-12-22?focus=1.01'
+    await mount(await storeWith(files))
+    const dialog = await screen.findByRole('dialog')
+    await within(dialog).findByText('Le jury converge.')
+    expect([...dialog.querySelectorAll('.carto-day-verdict[open] .carto-verdict-facts dt')].map((dt) => dt.textContent)).toEqual(['Motif', 'Prescription'])
+    const wrap = dialog.querySelector('.carto-day-verdict[open] details.carto-jury-wrap')
+    fireEvent.click(wrap.querySelector('summary'))
+    await within(wrap).findByText(/2 voix pour la présence/)
+    expect(within(wrap).queryByRole('region', { name: 'Décision du président' })).toBeNull()
+    expect(within(dialog).getAllByText('Le jury converge.')).toHaveLength(1)
+    expect(within(wrap).getByText('Tous voient la vérification.')).toBeTruthy()
   })
 })

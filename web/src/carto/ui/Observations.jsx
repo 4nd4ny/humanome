@@ -8,7 +8,7 @@
 import { REVIEW_LABELS, REVIEW_STATES, observationKey, verdictStatusLabel } from '../core/model.js'
 import { setReview } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
-import { JuryReflections, RunJury, VerdictFacts } from './Jury.jsx'
+import { JuryReflections, PresidentDecision, RunJury, VerdictFacts } from './Jury.jsx'
 import { SOURCE_LABELS } from './Manager.jsx'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
@@ -59,8 +59,8 @@ function traceExtract(getDetail, t, code) {
 
 /**
  * Liste des traces d'une compétence (ordre : journées, puis ordre du jury).
- * Le nombre de traces se lit dans les preuves et indices, plus haut ; dans la
- * modale d'un jour, la date de chaque trace est celle du jour (`dated` faux).
+ * Dans la modale d'un jour, la date de chaque trace est celle du jour
+ * (`dated` faux) ; la liste se compte d'elle-même, sans total dans son titre.
  * @param {{traces: Array<{id: string, date: string, variantId: string, role: string}>, code: string,
  *   getDetail: Function, onOpenTrace: (index: number) => void, onOpenDay?: (d: string, code?: string) => void,
  *   dated?: boolean}} props
@@ -190,11 +190,23 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
       </p>
       {runRefs.map((key) => {
         const run = getRunDetail(key)
+        // La décision du président se lit sans rien déplier ; ce qui y a conduit, en dessous (D-66).
         return (
-          <details key={key} className="carto-run-jury">
-            <summary>Délibération du jury — {key.split('|')[0]} (porte sur tout le journal)</summary>
-            {run === undefined ? <p className="carto-muted">Chargement…</p> : run ? <RunJury run={run} /> : <p className="carto-muted">Délibération absente de l’import.</p>}
-          </details>
+          <section key={key} className="carto-run-decision" aria-label={`Délibération du jury — ${key.split('|')[0]}`}>
+            {run === undefined ? (
+              <p className="carto-muted">Chargement de la délibération…</p>
+            ) : run ? (
+              <>
+                <PresidentDecision run={run} />
+                <details className="carto-run-jury">
+                  <summary>Délibération du jury — {key.split('|')[0]} (porte sur tout le journal)</summary>
+                  <RunJury run={run} decision={false} />
+                </details>
+              </>
+            ) : (
+              <p className="carto-muted">Délibération absente de l’import.</p>
+            )}
+          </section>
         )
       })}
       {verdicts.map((v) => {

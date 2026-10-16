@@ -240,14 +240,15 @@ par `scripts/extract-referentiel.mjs`.
     l'import (Aurora v3, master V3) et à la relecture d'une archive, ce texte
     n'est gardé que s'il ajoute au moins une phrase à ses rubriques
     (`web/src/carto/core/restatement.js` : une phrase est « déjà dite » quand
-    85 % de ses mots s'y retrouvent par suites de quatre, à la typographie,
-    au balisage et aux étiquettes près) ; sinon le champ `markdown` du détail
-    vaut `null`. Les champs gardent leurs noms et leurs types, aucun n'est
+    chacun de ses mots s'y retrouve, dans une suite de quatre, à la
+    typographie et au balisage près ; seules les étiquettes d'un extrait et
+    une coquille sont pardonnées, jamais une négation, un nombre ou un mot
+    changé) ; sinon le champ `markdown` du détail vaut `null`. Les champs gardent leurs noms et leurs types, aucun n'est
     renommé : une archive 4.x reste lisible dans les deux sens. Une archive
     réimportée perd donc ce texte-là, et seulement lui ; les fichiers
     d'analyse d'origine, eux, ne sont pas touchés. Mesuré sur la
     démonstration : les 59 synthèses complètes ne disent rien de plus que
-    leurs rubriques ; 213 rapports complets de pôle sur 405 non plus.
+    leurs rubriques ; 174 rapports complets de pôle sur 405 non plus.
     - **Pas fait, à décider** (question 40 du journal) : un extrait est encore
       gardé jusqu'à trois fois par journée — dans les passages saillants,
       dans les pièces du Greffier et dans chaque trace qui les cite (avec son

@@ -11,25 +11,26 @@ import { plainText } from '../core/restatement.js'
 import { Markdown } from './Jury.jsx'
 
 const txt = (v) => (v === null || v === undefined ? '' : String(v))
-const MIN_CONTAINED = 30 // un passage plus court, contenu dans un extrait cité, peut l'être par hasard
 
 /**
  * Les passages saillants d'un rapport, rapprochés des territoires denses qui
- * citent déjà leur extrait (le même, ou un extrait qui le contient) : un tel
- * passage se lit sous son territoire, par son seul contexte — l'extrait ne se
- * redit pas (journal D-66) ; les autres se lisent à part. Un passage plus
- * long que l'extrait cité reste à part, entier : il en dit plus.
+ * citent déjà leur extrait — le même, de la même journée : un tel passage se
+ * lit sous son territoire, par son seul contexte, l'extrait ne se redit pas
+ * (journal D-66) ; les autres se lisent à part, entiers, avec leur propre
+ * lien (un passage qui n'est qu'une partie de l'extrait cité dit laquelle ;
+ * un passage d'une autre feuille s'ouvre à sa date).
  * @param {object[]} passages
  * @param {object[] | null | undefined} denseTerritories
+ * @param {string} date journée du rapport
  * @returns {{byTerritory: Map<number, object[]>, others: object[]}} byTerritory : par indice de territoire
  */
-export function placePassages(passages, denseTerritories) {
-  const cited = (denseTerritories ?? []).map((d, i) => ({ i, text: ` ${plainText(d?.extraitVerbatim)} ` })).filter((c) => c.text.trim())
+export function placePassages(passages, denseTerritories, date) {
+  const cited = (denseTerritories ?? []).map((d, i) => ({ i, text: plainText(d?.extraitVerbatim) })).filter((c) => c.text)
   const byTerritory = new Map()
   const others = []
   for (const p of passages) {
     const e = plainText(p?.extract)
-    const hit = e ? cited.find((c) => c.text === ` ${e} ` || (e.length >= MIN_CONTAINED && c.text.includes(` ${e} `))) : undefined
+    const hit = e && (!p?.date || p.date === date) ? cited.find((c) => c.text === e) : undefined
     if (hit) byTerritory.set(hit.i, [...(byTerritory.get(hit.i) ?? []), p])
     else others.push(p)
   }
@@ -88,6 +89,7 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
         const { byTerritory, others: passages } = placePassages(
           (vd?.passages ?? []).filter((p) => Number(p.pole) === num),
           report?.denseTerritories,
+          date,
         )
         return (
           <details key={date} className="carto-pole-report" open={i === 0 || undefined}>

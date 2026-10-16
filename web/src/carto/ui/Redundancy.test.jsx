@@ -45,6 +45,34 @@ describe('ce qu’un texte complet ajoute à ses rubriques', () => {
     expect(addedSentences(md, parts).map((s) => s.text)).toEqual(['Une phrase que les rubriques ne disent pas.', 'Une autre encore.'])
     expect(addedMarkdown(md, parts)).toBe('#### Portrait\n\nUne phrase que les rubriques ne disent pas.\n\n#### Suite\n\nUne autre encore.')
   })
+  it('une négation, un nombre, un mot changé, une précision ajoutée font une phrase neuve', () => {
+    const field = 'Sur cette feuille, trois compétences du pôle Tête sont établies avec des preuves nombreuses et variées.'
+    const variants = [
+      'Sur cette feuille, trois compétences du pôle Tête ne sont pas établies avec des preuves nombreuses et variées.',
+      'Sur cette feuille, cinq compétences du pôle Tête sont établies avec des preuves nombreuses et variées.',
+      'Sur cette feuille, trois compétences du pôle Tête sont contestées avec des preuves nombreuses et variées.',
+      'Sur cette feuille, trois compétences du pôle Tête sont établies avec des preuves nombreuses et variées, sauf la 1.04.',
+      'Sur cette feuille, trois compétences du pôle Tête sont établies avec des preuves toujours nombreuses et variées.',
+    ]
+    for (const v of variants) expect(addedSentences(v, [field]).map((x) => x.text)).toEqual([v])
+    expect(addedSentences('La pensée critique tient lieu de fil rouge, mais la relation reste en pointillé.', ['La pensée critique tient lieu de fil rouge sur la feuille.', 'Ici, la relation reste en pointillé.'])).toHaveLength(1)
+  })
+  it('une coquille corrigée n’en fait pas une (« errors » / « erreurs »), un préfixe de sens si', () => {
+    const field = 'Trois ans d’usage nourrissent la décision actuelle, errors de méthode nourrissent la qualité d’après.'
+    expect(addedSentences('Trois ans d’usage nourrissent la décision actuelle, erreurs de méthode nourrissent la qualité d’après.', [field])).toEqual([])
+    expect(addedSentences('Ce chemin reste possible pour la suite du projet.', ['Ce chemin reste impossible pour la suite du projet.'])).toHaveLength(1)
+  })
+  it('titres en gras et étiquettes ne sont pas des phrases ; une liste reste une liste ; on ne coupe pas dans des guillemets', () => {
+    const md = ['**Portrait**', '', 'Le portrait tient en deux phrases.', '', 'Invitations :', '', '- Une invitation neuve. Avec sa suite.', '- Une autre invitation.', '', 'Il écrit « Je doute. Puis je vérifie. » ce matin-là.'].join('\n')
+    const added = addedSentences(md, parts)
+    expect(added.map((x) => [x.heading, x.text])).toEqual([
+      ['Invitations', 'Une invitation neuve.'],
+      ['Invitations', 'Avec sa suite.'],
+      ['Invitations', 'Une autre invitation.'],
+      ['Invitations', 'Il écrit « Je doute. Puis je vérifie. » ce matin-là.'],
+    ])
+    expect(addedMarkdown(md, parts)).toBe('#### Invitations\n\n- Une invitation neuve. Avec sa suite.\n- Une autre invitation.\n\nIl écrit « Je doute. Puis je vérifie. » ce matin-là.')
+  })
 })
 
 describe('portrait kairos d’une journée', () => {
@@ -132,37 +160,48 @@ describe('examen du Pédagogue et pièces du Greffier', () => {
     rerender(<PedagogueReview pedagogue={{ ...pedagogue, conclusionAdversariale: { raisonnement: 'Conclusion.' } }} confidence={0.6} />)
     expect(screen.getByText('Conclusion adversariale')).toBeTruthy()
   })
-  it('chaque pièce dit son sort dans le verdict : retenue comme preuve, comme indice, ou non', () => {
-    const traces = { a: { pieceId: 1, role: 'indice' }, b: { pieceId: 1, role: 'preuve' }, c: { pieceId: '3', role: 'indice' }, d: { pieceId: null, role: 'preuve' } }
+  it('chaque pièce dit son sort dans le verdict ; l’extrait d’une pièce retenue, lu dans les traces, ne se redit pas', () => {
+    const traces = { a: { pieceId: 1, role: 'indice' }, b: { pieceId: 1, role: 'preuve' }, c: { pieceId: '3', role: 'indice' } }
     expect([...pieceFates(traces)]).toEqual([
       ['1', 'preuve'],
       ['3', 'indice'],
     ])
     const pieces = [1, 2, 3].map((n) => ({ numero: n, pid: n, context: `Contexte ${n}.`, extract: `Extrait ${n}.` }))
-    render(<DayPieces pieces={pieces} traces={traces} date="2025-12-22" />)
+    render(<DayPieces pieces={pieces} traces={traces} date="2025-12-22" onOpenPassage={() => {}} />)
     expect([...document.querySelectorAll('.carto-piece-fate')].map((x) => x.textContent)).toEqual(['retenue comme preuve', 'non retenue', 'retenue comme indice'])
+    expect([...document.querySelectorAll('blockquote')].map((q) => q.textContent)).toEqual(['Extrait 2.'])
+    expect(screen.getAllByText('Son extrait se lit plus haut, parmi les traces.')).toHaveLength(2)
+    expect(screen.getAllByRole('button', { name: 'Ouvrir dans le portfolio' })).toHaveLength(3)
+  })
+  it('une trace sans numéro de pièce : le sort des autres pièces n’est pas dit', () => {
+    const traces = { a: { pieceId: 1, role: 'preuve' }, c: { pieceId: null, role: 'preuve' } }
+    const pieces = [1, 2].map((n) => ({ numero: n, pid: n, context: `Contexte ${n}.`, extract: `Extrait ${n}.` }))
+    render(<DayPieces pieces={pieces} traces={traces} date="2025-12-22" />)
+    expect([...document.querySelectorAll('.carto-piece-fate')].map((x) => x.textContent)).toEqual(['retenue comme preuve'])
+  })
+  it('la confiance finale se compare une fois ramenée à [0 ; 1] (80 se lit 0,8)', () => {
+    render(<PedagogueReview pedagogue={{ conclusionAdversariale: { raisonnement: 'C.', confianceFinale: 80 } }} confidence={0.8} />)
+    expect(screen.getByText('Conclusion adversariale')).toBeTruthy()
   })
 })
 
 describe('rapport de pôle', () => {
   const dense = [{ competence: 'Doute', extraitVerbatim: 'Un passage cité.' }, { competence: 'Soin', extraitVerbatim: 'Le début d’un long passage cité en entier plus haut, et sa suite.' }]
-  it('un passage saillant dont l’extrait est déjà cité se lit sous son territoire', () => {
-    const same = { extract: 'Un  passage cité !', context: 'Pourquoi.' } // à la typographie près
-    const inside = { extract: 'Le début d’un long passage cité en entier plus haut', context: 'Contexte.' }
+  it('un passage saillant dont l’extrait est déjà cité, le même jour, se lit sous son territoire', () => {
+    const same = { extract: 'Un  passage cité !', context: 'Pourquoi.', date: '2025-12-22' } // à la typographie près
     const other = { extract: 'Un autre passage.', context: 'Autre.' }
-    const { byTerritory, others } = placePassages([same, inside, other], dense)
+    const { byTerritory, others } = placePassages([same, other], dense, '2025-12-22')
     expect(byTerritory.get(0)).toEqual([same])
-    expect(byTerritory.get(1)).toEqual([inside])
     expect(others).toEqual([other])
   })
-  it('à part, entier : un passage plus long que l’extrait cité, ou trop court pour qu’on l’y reconnaisse', () => {
+  it('à part, entier : une partie de l’extrait cité, un passage plus long, celui d’une autre feuille', () => {
+    const part = { extract: 'Le début d’un long passage cité en entier plus haut' }
     const longer = { extract: 'Avant. Un passage cité. Après.' }
-    const short = { extract: 'long passage cité' } // contenu dans le second extrait, mais par hasard peut-être
+    const elsewhere = { extract: 'Un passage cité.', date: '2025-12-20' }
     const empty = { extract: '' }
-    const { byTerritory, others } = placePassages([longer, short, empty], dense)
+    const { byTerritory, others } = placePassages([part, longer, elsewhere, empty], dense, '2025-12-22')
     expect(byTerritory.size).toBe(0)
-    expect(others).toEqual([longer, short, empty])
-    expect(placePassages([longer], []).others).toEqual([longer])
+    expect(others).toEqual([part, longer, elsewhere, empty])
   })
 })
 

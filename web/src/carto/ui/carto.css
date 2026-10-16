@@ -1679,9 +1679,14 @@ kbd {
 }
 .carto-observation,
 .carto-pole-report,
-.carto-run-jury {
+.carto-run-jury,
+.carto-run-decision {
   border-top: 1px solid var(--line);
   padding: 0.4rem 0;
+}
+.carto-run-decision .carto-run-jury {
+  border-top: 0;
+  padding-bottom: 0;
 }
 .carto-observation > summary,
 .carto-pole-report > summary,
@@ -1837,7 +1842,8 @@ kbd {
   margin-bottom: 0.2rem;
 }
 .carto-kairos h4,
-.carto-president-decision h4 {
+.carto-president-decision h4,
+.carto-jury-section > h4 {
   font-size: 0.88rem;
   margin: 0.6rem 0 0.2rem;
 }
@@ -3274,6 +3280,10 @@ kbd {
   text-align: center;
   color: var(--ink-soft);
   font-size: 9pt;
+}
+/* En couverture, l'état et l'ensemble sont dits par les faits, au-dessus (D-66). */
+.carto-print-cover .carto-sun-caption {
+  display: none;
 }
 .carto-print-poles {
   list-style: none;

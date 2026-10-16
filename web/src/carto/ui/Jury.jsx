@@ -1,12 +1,14 @@
 // Interface ultime — réflexions du jury (spec §8.2).
 //
-// Délibération en sections dépliables à DEUX niveaux :
-//   1. AuroraCore : la décision du président d'abord (verdict argumenté,
-//      prescription, voix), puis les éclairages des voix et le raisonnement du
-//      président qui y ont conduit (délibérations complètes au second niveau) ;
-//   2. examen adversarial du Pédagogue (présomption d'absence, présomption de
-//      sycophantie, conclusion adversariale) ;
-//   3. pièces du Greffier (verbatim), chacune avec son sort dans le verdict.
+// Délibération en sections dépliables à DEUX niveaux au plus :
+//   1. AuroraCore : la décision du président d'abord, sans rien déplier
+//      (verdict argumenté, prescription, voix), puis les éclairages des voix
+//      et le raisonnement du président qui y ont conduit (délibérations
+//      complètes au second niveau) ;
+//   2. examen adversarial du Pédagogue, ses trois temps à déplier
+//      (présomption d'absence, présomption de sycophantie, conclusion) ;
+//   3. pièces du Greffier, chacune avec son sort dans le verdict ; l'extrait
+//      d'une pièce retenue est celui d'une trace, lu plus haut.
 // Le verdict (statut, confiance, preuves, indices, motif, prescription) se lit
 // au-dessus, une seule fois (journal D-66).
 // Sources : carto-phone d'AuroraCore, DayView, CompetenceDiff.JuryDetail.
@@ -16,7 +18,7 @@
 import { ATTAQUES } from '@engine/pipeline/attaques.js'
 import { renderMarkdown } from '../../lib/md.js'
 import { JUROR_LABELS } from '../core/importers/aurora-core.js'
-import { verdictStatusLabel } from '../core/model.js'
+import { normalizeConfidence, verdictStatusLabel } from '../core/model.js'
 import { formatShort } from '../core/dates.js'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
@@ -95,7 +97,8 @@ export function PedagogueReview({ pedagogue, confidence = null }) {
   const absence = pedagogue?.presomptionAbsence ?? null
   const syco = pedagogue?.presomptionSycophantie ?? null
   const conclusion = pedagogue?.conclusionAdversariale ?? null
-  const final = typeof conclusion?.confianceFinale === 'number' && conclusion.confianceFinale !== confidence ? conclusion.confianceFinale : null
+  const reported = normalizeConfidence(conclusion?.confianceFinale) // 80 se lit 0,8, comme la confiance du verdict
+  const final = reported !== null && reported !== confidence ? reported : null
   const resist = Array.isArray(absence?.piecesQuiResistent) ? absence.piecesQuiResistent : []
   const exams = Array.isArray(syco?.examenPieces) ? syco.examenPieces : []
   return (
@@ -138,7 +141,7 @@ export function PedagogueReview({ pedagogue, confidence = null }) {
 
 /**
  * Sort de chaque pièce dans le verdict, d'après ses traces : retenue comme
- * preuve, comme indice, ou absente (non retenue). Par numéro de pièce.
+ * preuve ou comme indice. Par numéro de pièce.
  * @param {Record<string, {pieceId?: unknown, role?: string}> | null | undefined} traces
  * @returns {Map<string, 'preuve' | 'indice'>}
  */
@@ -153,13 +156,18 @@ export function pieceFates(traces) {
 }
 
 /**
- * Pièces du Greffier d'une journée Aurora v3 (verbatim, ouvrables dans le
- * portfolio), chacune avec son sort : on lit ainsi, à côté du raisonnement du
- * Pédagogue qui les cite par numéro, celles que le verdict a retenues.
+ * Pièces du Greffier d'une journée Aurora v3, chacune avec son sort : on lit
+ * ainsi, à côté du raisonnement du Pédagogue qui les cite par numéro, celles
+ * que le verdict a retenues. L'extrait d'une pièce retenue est celui d'une
+ * trace, lu plus haut : il ne se redit pas (D-66) ; les autres se lisent ici,
+ * en entier. Une trace sans numéro de pièce (reconstituée depuis des
+ * compteurs) laisse le sort des autres pièces non dit, plutôt que « non
+ * retenue ».
  */
 export function DayPieces({ pieces, traces, date, onOpenPassage }) {
   if (!Array.isArray(pieces) || pieces.length === 0) return <p className="carto-muted">Aucune pièce versée.</p>
   const fates = pieceFates(traces)
+  const known = Object.values(traces ?? {}).every((t) => t?.pieceId !== null && t?.pieceId !== undefined)
   return (
     <ol className="carto-pieces">
       {pieces.map((p, i) => {
@@ -167,10 +175,17 @@ export function DayPieces({ pieces, traces, date, onOpenPassage }) {
         return (
           <li key={`${txt(p.numero)}-${txt(p.pid)}-${i}`}>
             <p>
-              <strong>Pièce {txt(p.numero)}</strong> <span className={`carto-piece-fate${fate ? ' carto-piece-fate--kept' : ''}`}>{fate ? `retenue comme ${fate}` : 'non retenue'}</span>
+              <strong>Pièce {txt(p.numero)}</strong>
+              {fate || known ? (
+                <>
+                  {' '}
+                  <span className={`carto-piece-fate${fate ? ' carto-piece-fate--kept' : ''}`}>{fate ? `retenue comme ${fate}` : 'non retenue'}</span>
+                </>
+              ) : null}
               {p.context ? <> — {txt(p.context)}</> : null}
             </p>
-            {p.extract ? <blockquote className="carto-verbatim">{txt(p.extract)}</blockquote> : null}
+            {p.extract && fate ? <p className="carto-small carto-muted">Son extrait se lit plus haut, parmi les traces.</p> : null}
+            {p.extract && !fate ? <blockquote className="carto-verbatim">{txt(p.extract)}</blockquote> : null}
             {p.extract && onOpenPassage ? (
               <button type="button" className="carto-link-btn" onClick={() => onOpenPassage({ date, extract: p.extract, label: `Pièce ${txt(p.numero)} du Greffier` })}>
                 Ouvrir dans le portfolio
@@ -195,32 +210,25 @@ const REASONING = [
   ['analyse_reflexive', 'Analyse réflexive'],
 ]
 
+const votesLine = (jury) =>
+  typeof jury?.voix_presence === 'number'
+    ? `${jury.voix_presence} voix pour la présence, ${jury.voix_non_etablie ?? 0} non établie, ${jury.voix_sans_eclairage ?? 0} sans éclairage${
+        jury.consensus === true ? ' · consensus' : jury.consensus === false ? ' · sans consensus' : ''
+      }`
+    : null
+
 /**
- * Délibération d'un run AuroraCore (porte sur tout le journal). La décision du
- * président se lit d'abord — verdict argumenté, prescription, voix ; ce qui y
- * a conduit se déplie au-dessous : les éclairages des voix, le raisonnement
- * du président, le débat, les pièces.
+ * Décision du président d'un run AuroraCore — verdict argumenté et
+ * prescription —, et les voix. Rien de ce qui est déjà lu au-dessus.
  * @param {{run: object, shown?: Array<string | null | undefined>}} props
- *   shown : textes déjà lus au-dessus (le motif et la prescription d'une
- *   journée sont ceux du président) — la décision ne les redit pas (D-66)
  */
-export function RunJury({ run, shown = [] }) {
+export function PresidentDecision({ run, shown = [] }) {
   const said = new Set(shown.filter(Boolean).map((t) => String(t).trim()))
-  const jury = run?.jury && typeof run.jury === 'object' ? run.jury : {}
   const president = run?.president && typeof run.president === 'object' ? run.president : null
-  const delib = run?.deliberation ?? {}
-  const debate = run?.debate ?? {}
-  const voices = JUROR_ORDER.filter((k) => jury[k] && typeof jury[k] === 'object')
-  const pieces = Array.isArray(run?.pieces) ? run.pieces : []
   const field = (key) => txt(president?.[key]).trim()
   const decision = DECISION.filter(([key]) => field(key) && !said.has(field(key)))
-  const reasoning = REASONING.filter(([key]) => field(key))
-  const votes =
-    typeof jury.voix_presence === 'number'
-      ? `${jury.voix_presence} voix pour la présence, ${jury.voix_non_etablie ?? 0} non établie, ${jury.voix_sans_eclairage ?? 0} sans éclairage${
-          jury.consensus === true ? ' · consensus' : jury.consensus === false ? ' · sans consensus' : ''
-        }`
-      : null
+  const votes = votesLine(run?.jury)
+  if (decision.length === 0 && !votes) return null
   return (
     <>
       {decision.length > 0 ? (
@@ -237,6 +245,31 @@ export function RunJury({ run, shown = [] }) {
         </section>
       ) : null}
       {votes ? <p className="carto-small carto-muted">{votes}</p> : null}
+    </>
+  )
+}
+
+/**
+ * Délibération d'un run AuroraCore (porte sur tout le journal). La décision du
+ * président se lit d'abord — verdict argumenté, prescription, voix ; ce qui y
+ * a conduit se déplie au-dessous : les éclairages des voix, le raisonnement
+ * du président, le débat, les pièces.
+ * @param {{run: object, shown?: Array<string | null | undefined>, decision?: boolean}} props
+ *   shown : textes déjà lus au-dessus (le motif et la prescription d'une
+ *   journée sont ceux du président) — la décision ne les redit pas (D-66) ;
+ *   decision faux : la décision est rendue ailleurs, hors de ce qui se déplie
+ */
+export function RunJury({ run, shown = [], decision = true }) {
+  const jury = run?.jury && typeof run.jury === 'object' ? run.jury : {}
+  const president = run?.president && typeof run.president === 'object' ? run.president : null
+  const delib = run?.deliberation ?? {}
+  const debate = run?.debate ?? {}
+  const voices = JUROR_ORDER.filter((k) => jury[k] && typeof jury[k] === 'object')
+  const pieces = Array.isArray(run?.pieces) ? run.pieces : []
+  const reasoning = REASONING.filter(([key]) => txt(president?.[key]).trim())
+  return (
+    <>
+      {decision ? <PresidentDecision run={run} shown={shown} /> : null}
       {voices.length > 0 ? (
         <details className="carto-jury-section">
           <summary>Éclairages des voix</summary>
@@ -325,14 +358,15 @@ export function JuryReflections({ detail, run = null, date, confidence = null, o
     <div className="carto-jury">
       {run ? <RunJury run={run} shown={[detail?.motif, detail?.prescription]} /> : null}
       {pedagogue ? (
-        <details className="carto-jury-section">
-          <summary>Examen adversarial du Pédagogue</summary>
+        // Un niveau de moins à déplier (D-66) : les trois temps de l'examen, sous leur titre.
+        <section className="carto-jury-section" aria-label="Examen adversarial du Pédagogue">
+          <h4>Examen adversarial du Pédagogue</h4>
           <PedagogueReview pedagogue={pedagogue} confidence={confidence} />
-        </details>
+        </section>
       ) : null}
       {!run && pieces.length > 0 ? (
         <details className="carto-jury-section">
-          <summary>Pièces du Greffier ({pieces.length}, verbatim)</summary>
+          <summary>Pièces du Greffier ({pieces.length})</summary>
           <DayPieces pieces={pieces} traces={detail?.traces} date={date} onOpenPassage={onOpenPassage} />
         </details>
       ) : null}
