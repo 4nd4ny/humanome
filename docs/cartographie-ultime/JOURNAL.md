@@ -67,7 +67,8 @@ autorisation, puis fusionné dans `main` (D-46).
 | Palettes | « Réglages » (ex-« Réglages de l'encodage ») : cinq palettes des pôles, validées pour les daltoniens ; préférence du navigateur ; rapport et version partagée sur la palette par défaut (D-64) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 | Départ de la hauteur | la hauteur part d'une confiance réglable de 0 à 0,5, 0,25 par défaut ; épaisseur minimale de 1 à 6 px (D-65) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `6203560`, `90134c2` |
 | Déploiement | D-64 et D-65 : front déployé, vérifié en ligne au bureau et au téléphone | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-65 |
-| Chaque information une fois | portrait de la journée sans « Synthèse complète » ; compétence, pôle, modale du jour et rapport imprimé sans redites ; sort des pièces du Greffier ; décision du président d'abord ; textes complets qui ne font que redire non gardés (D-66) | ✅ | ✅ voir §3 + vérification Chromium sur la démonstration | ✅ | `073c632` et suivant |
+| Chaque information une fois | portrait de la journée sans « Synthèse complète » ; compétence, pôle, modale du jour et rapport imprimé sans redites ; sort des pièces du Greffier ; décision du président d'abord, sans rien déplier ; textes complets qui ne font que redire non gardés (D-66) | ✅ | ✅ voir §3 + vérification Chromium sur la démonstration + deux relectures indépendantes | ✅ | `073c632`, `b72858d`, `3c8160f` |
+| Déploiement | D-66 : front et archive de la démonstration allégée (18,4 → 17,2 Mo) déployés, vérifiés en ligne au bureau et au téléphone ; une démonstration d'avant mise à jour d'elle-même en 3,3 s | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-66 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2575,6 +2576,26 @@ questions (3 et 4) : questions 39 et 40.
 - Docs : `docs/contrats.md` (décision 10) ; formation du cartographe
   (chapitre 7 : sort des pièces, décision du président d'abord).
 
+**Déploiement de D-66** (depuis la VM du Mac, les copies de production du
+référentiel gardées) : front — trois fichiers envoyés, l'ancien paquet
+retiré ; **archive de la démonstration** (sur le site seulement, hors du
+manifeste) reconstruite sans les textes complets qui ne font que redire —
+les 59 synthèses et 174 rapports complets de pôle ; tout le reste identique,
+vérifié — : 18,4 → 17,2 Mo, redéposée sous un nom provisoire puis renommée.
+**Vérifié en ligne** (Chromium) :
+
+- **au bureau**, navigateur neuf :
+  - le nouveau paquet est servi ; la démonstration s'ouvre en 4,7 s ;
+  - portrait du 29 mars : ni « Synthèse complète », ni phrase répétée ;
+  - 6.01 (une seule journée) : sa ligne dit le statut seul ; 2.01 : 19 journées, chacune avec sa confiance et ses preuves ;
+  - réflexions du jury : l'examen du Pédagogue à un niveau ; le sort des cinq pièces ; un seul extrait cité parmi elles (la pièce non retenue), quatre renvois aux traces ;
+  - une trace ouverte dans le portfolio, surlignée ;
+  - CŒUR : 14 extraits dans le premier rapport, aucun répété, un passage saillant lu sous son territoire ;
+- **une démonstration intacte d'avant** (version du 14 octobre) s'est mise à jour d'elle-même, en 3,3 s (D-57) ;
+- **au téléphone** (Pixel 7) : aucun défilement horizontal, pièces du Greffier comprises ;
+- seules erreurs : le favicon absent (404, sans lien) et `/api/auth/me` sans compte (401) ;
+- copies de travail effacées : paquet, dossier de déploiement, archives, fichier d'accès.
+
 ---
 
 ## 3. État des tests
@@ -3459,4 +3480,5 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
   dit », qui laissait passer une négation ou un nombre). Questions 39 (les
   délibérations du jury sont dans AuroraCore, sur le Mac : trois façons de
   les joindre) et 40 (lire les données à la demande : proposition en trois
-  points) posées.
+  points) posées. Déployé (front, et l'archive de la démonstration allégée
+  de 1,2 Mo) et vérifié en ligne, au bureau et au téléphone.

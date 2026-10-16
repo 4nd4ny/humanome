@@ -175,6 +175,8 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     puis six défauts, traités). Suites : front **2 426 verts**, e2e Chromium de la cartographie
     verts. Questions 39 (les délibérations du jury : dans AuroraCore, sur le Mac — trois façons
     de les joindre) et 40 (lire les données à la demande : proposition en trois points) posées.
+    Déployé (front, et l'archive de la démonstration allégée : 18,4 → 17,2 Mo) et vérifié en
+    ligne, au bureau et au téléphone.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
