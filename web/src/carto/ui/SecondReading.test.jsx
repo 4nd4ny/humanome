@@ -142,7 +142,7 @@ describe('seconde lecture dans le panneau de détail', () => {
     const section = await within(detail()).findByRole('region', { name: 'Seconde lecture' }, { timeout: 3000 })
     const item = section.querySelector('details.carto-second-reading')
     // La date de l'analyse se dit une fois, comme telle ; la ligne dit le verdict.
-    expect(within(section).getByText(/sur tout le journal d’un coup \(analyse faite le 25 avril 2026\)/)).toBeTruthy()
+    expect(within(section).getByText('Une autre analyse des mêmes écrits, faite le 25 avril 2026 sur tout le journal d’un coup : elle se lit ici et ne change pas le soleil.')).toBeTruthy()
     expect(item.querySelector('summary').textContent).toBe('Jury AuroraCore : présence établie · confiance 0,75 · 1 preuve, 1 indice')
     // Repliée : la délibération n'est pas lue.
     await new Promise((r) => setTimeout(r, 30))

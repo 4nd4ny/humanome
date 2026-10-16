@@ -134,13 +134,13 @@ export function SecondReadings({ dataset, code, traces = [], getDetail, getRunDe
   if (readings.length === 0) return null
   const mainTraces = traces.map((t) => ({ date: t.date, extract: verdictDetailOf(getDetail, t.date, t.variantId, code)?.traces?.[t.id]?.extract ?? '' }))
   // Une lecture : sa date se dit une fois, ici ; plusieurs : chacune sur sa ligne.
-  const single = readings.length === 1 ? analysisDate(readings[0]) : null
+  const single = readings.length === 1 && readings[0].analysedAt ? formatLong(readings[0].analysedAt) : null
   return (
     <section className="carto-second-readings" aria-label="Seconde lecture">
       <h3>Seconde lecture</h3>
       <p className="carto-small carto-muted">
         {single
-          ? `Une autre analyse des mêmes écrits, faite sur tout le journal d’un coup (${single}) : elle se lit ici et ne change pas le soleil.`
+          ? `Une autre analyse des mêmes écrits, faite le ${single} sur tout le journal d’un coup : elle se lit ici et ne change pas le soleil.`
           : 'D’autres analyses des mêmes écrits, faites chacune sur tout le journal d’un coup : elles se lisent ici et ne changent pas le soleil.'}
       </p>
       {readings.map((r) => (

@@ -2796,8 +2796,8 @@ les réflexions des membres du jury ? »
   faite, sur tout le journal (22 décembre – 29 mars) ; « Jury AuroraCore du
   19 avril 2026 » se lisait comme une journée du journal. Elle se dit
   désormais une fois, comme telle, dans la phrase de la section : « Une autre
-  analyse des mêmes écrits, faite sur tout le journal d'un coup (analyse
-  faite le 19 avril 2026) : elle se lit ici et ne change pas le soleil. » La
+  analyse des mêmes écrits, faite le 19 avril 2026 sur tout le journal d'un
+  coup : elle se lit ici et ne change pas le soleil. » La
   ligne dit le jury et son verdict : « Jury AuroraCore : présence établie ·
   confiance 0,85 · 3 preuves, 4 indices ». Plusieurs lectures sur une
   compétence : chacune sa date, sur sa ligne. Le rapport de pôle et le
@@ -2814,6 +2814,11 @@ les réflexions des membres du jury ? »
   privée, ou supprimer cette démonstration (après l'avoir exportée) puis
   « Explorer la démonstration ».
 - Docs : formation du cartographe (chapitre 7) et guide du visiteur.
+- **Déployé** (front) et vérifié en ligne, au bureau et au téléphone (Pixel
+  7) : la phrase et la ligne de 1.01 ; les six membres du jury sous leur
+  titre (Linguiste, Historien, Anthropologue, Philosophe, Pédagogue,
+  Sociologue) ; un membre déplié : sa synthèse, puis sa délibération
+  complète ; aucun défilement horizontal au téléphone.
 
 ---
 
