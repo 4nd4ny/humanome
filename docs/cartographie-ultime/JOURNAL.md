@@ -3572,7 +3572,14 @@ Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
     les retirer demande de modifier le site). **Proposition**, pour les
     mises à jour de la démonstration : garder ses fichiers compressés sur le
     serveur (environ 5 Mo par version au lieu de 20), ce qui permettrait d'en
-    garder deux. *(en attente)*
+    garder deux.
+    → **Décidé** (2026-10-16, 11 h 27) : « Puisque tu as réussi à uploader
+    la mise à jour pour le moment, sur ce site de développement et de
+    démonstration, on laisse en l'état. Je basculerai le code sur le serveur
+    de production ultérieurement, lorsque le développement sera terminé. »
+    Suite : rien d'autre n'est retiré. humanome.xyz est le site de
+    développement et de démonstration ; la production viendra sur un autre
+    serveur, le développement terminé.
 
 ---
 
@@ -3766,3 +3773,6 @@ Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
   l'ancien dossier de version puisse se retirer (relu par un agent distinct :
   quatre points, traités). Déployé et vérifié en ligne, au bureau et au
   téléphone.
+- **2026-10-16** — Réponse de Christian de 11 h 27 (question 41) : on
+  laisse le serveur en l'état ; humanome.xyz est le site de développement et
+  de démonstration, la production viendra plus tard sur un autre serveur.

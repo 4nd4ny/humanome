@@ -191,7 +191,8 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     téléphone). L'hébergement gratuit (100 Mo) était plein : avec l'accord de Christian,
     l'ancienne `archive.json` (17,2 Mo) et la release API `v1.1.0-4` (3,7 Mo) sont sauvegardées
     sur le Mac (`backup-manuel/2026-10-16/`) puis effacées ; 56,1 Mo visibles ensuite. Question 41
-    (que retirer d'autre : release précédente, base pays, journées publiques) en attente.
+    décidée (11 h 27) : on laisse en l'état — humanome.xyz est le site de développement et de
+    démonstration ; la production viendra plus tard sur un autre serveur.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
