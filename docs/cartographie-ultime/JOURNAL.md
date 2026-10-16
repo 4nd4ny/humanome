@@ -2899,6 +2899,11 @@ d'indiquer l'année sur les boutons jour suivant et jour précédant. »
 - **Au passage**, le libellé compact écrit le premier du mois « 1er », comme
   la date longue : « jeu. 1er janv. 2026 », non plus « jeu. 1 janv. 2026 »
   (dans toutes les listes de l'interface).
+- **Déployé** (front) et vérifié en ligne (Chromium), au bureau et au
+  téléphone (412 px, sans défilement horizontal) : le 13 mars 2026, « ← dim.
+  8 mars » et « sam. 14 mars → » ; le 1er janvier 2026, « ← mar. 30 déc.
+  2025 » et « ven. 2 janv. → » ; le 30 décembre 2025, « ← lun. 29 déc. » et
+  « jeu. 1er janv. 2026 → ».
 
 ---
 

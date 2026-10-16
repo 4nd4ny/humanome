@@ -203,7 +203,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     e2e Chromium du soleil verts. Déployé et vérifié en ligne.
   - **Remarque du 2026-10-16, 20 h 53** (D-71) : dans la modale du jour, les boutons de la journée
     voisine ne disent plus l'année, sauf quand elle change ; « 1er » dans les dates compactes.
-    Suites : front 2 475 verts, cartographie 533.
+    Suites : front 2 475 verts, cartographie 533. Déployé et vérifié en ligne (bureau, téléphone).
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`
