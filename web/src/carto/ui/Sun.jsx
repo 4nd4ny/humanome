@@ -3,13 +3,14 @@
 // Deux anneaux FIXES : pôles à l'intérieur, compétences à l'extérieur. Angle =
 // part des points (Σ des poids des traces) ; hauteur d'une compétence =
 // confiance moyenne du jury, comptée à partir d'un départ réglable (D-65 :
-// r_ext² = r_int² + k·h, h = (C − c₀)/(1 − c₀)) ; sa surface est donc
-// proportionnelle à hauteur × points (confiance × points quand c₀ = 0). L'anneau des pôles est un élément
+// h = (C − c₀)/(1 − c₀)) et dessinée en proportion (D-70 : r_ext = r_int +
+// h·(R − r_int)). L'anneau des pôles est un élément
 // d'interface (journal D-58) : chaque pôle en occupe toute la hauteur, son nom
 // écrit le long de l'arc quand il y tient ; son épaisseur est un réglage (0 :
 // pas d'anneau). Ordre angulaire du référentiel, départ à −90°. Cercles guides
 // pointillés = échelle de confiance des compétences (0,25 · 0,5 · 0,75 · 1
-// au-dessus du départ, qui est le bord intérieur), pas des niveaux. Secteurs de renvoi hachurés sans changer leur surface.
+// au-dessus du départ, qui est le bord intérieur ; à intervalles égaux), pas des
+// niveaux. Secteurs de renvoi hachurés sans changer leur forme.
 // Disque central = retour à la racine / désélection.
 //
 // Pôle ouvert sur 360° (journal D-45) : un double-clic sur un arc de pôle (ou

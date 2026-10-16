@@ -18,8 +18,7 @@
 //   confiance d'un pôle    C(p) = Σ θ(c)·C(c) / Σ θ(c)
 //   hauteur                h = (C − c₀) / (1 − c₀), bornée à [0 ; 1]
 //                          (c₀ : départ de la hauteur, 0,25 par défaut, D-65)
-//   rayon (anneaux fixes)  r_ext² = r_int² + k·h   (k : C = 1 atteint le bord)
-//   aire d'un secteur      A = θ·k·h / 2  (θ en radians)
+//   rayon (anneaux fixes)  r_ext = r_int + h·(R − r_int)   (C = 1 atteint le bord R)
 //
 // Depuis le journal D-58 (Christian, 2026-10-15), l'anneau des pôles est un
 // élément d'interface et plus une mesure : chaque pôle en occupe toute la
@@ -29,7 +28,13 @@
 // réglable (0 à 0,5) : les confiances du jury se tiennent entre 0,3 et 0,7 ;
 // compter la hauteur depuis 0 écrasait leurs écarts. Le bord intérieur de
 // l'anneau des compétences vaut c₀, le bord extérieur 1 ; avec c₀ = 0, on
-// retrouve h = C et l'aire θ·k·C/2.
+// retrouve h = C.
+//
+// Depuis D-70 (Christian, 2026-10-16), la hauteur DESSINÉE est proportionnelle
+// à h, et non plus l'aire (r_ext² = r_int² + k·h étirait le bas de l'échelle
+// et tassait le haut : de 0,25 à 0,5, 45 % de l'anneau ; de 0,75 à 1, 24 %).
+// Chaque quart de confiance occupe la même hauteur et les cercles guides sont
+// à intervalles égaux ; l'aire d'un secteur n'encode plus rien en soi.
 
 /** Paramètres par défaut (§5, §15 points ouverts 1 et 2). */
 export const DEFAULT_PARAMS = Object.freeze({
@@ -234,18 +239,17 @@ export function poleConfidence(items) {
  * L'anneau des pôles est un élément d'interface (journal D-58) : son
  * épaisseur est un réglage (`poleRing`, par défaut le rayon du centre) et
  * chaque pôle l'occupe en entier. L'anneau des compétences prend le reste,
- * après l'écart `gap` (seulement entre deux anneaux présents) ; sa capacité
- * k = R² − r_int² fait toucher le bord à une confiance de 1. Un anneau
- * d'épaisseur nulle n'est pas dessiné : `poleRing` = 0, pas d'anneau des
- * pôles ; `poleRing` = R − centre, plus de compétences. (Avant D-58, les deux
- * anneaux avaient la même capacité, pour que l'aire d'un pôle égale la somme
- * des aires de ses compétences.)
+ * après l'écart `gap` (seulement entre deux anneaux présents) ; une confiance
+ * de 1 en touche le bord. Un anneau d'épaisseur nulle n'est pas dessiné :
+ * `poleRing` = 0, pas d'anneau des pôles ; `poleRing` = R − centre, plus de
+ * compétences.
  *
  * La hauteur des compétences part de la confiance `origin` (D-65) : le bord
- * intérieur de leur anneau la vaut, le bord extérieur vaut 1.
+ * intérieur de leur anneau la vaut, le bord extérieur vaut 1, et la hauteur
+ * dessinée est proportionnelle entre les deux (D-70).
  *
  * @param {{outerRadius: number, centerRadius: number, poleRing?: number, gap?: number, origin?: number}} opts
- * @returns {{k: number, center: number, origin: number,
+ * @returns {{center: number, origin: number,
  *   poles: {rIn: number, rOut: number}, competencies: {rIn: number, rOut: number}}}
  */
 export function ringGeometry({ outerRadius, centerRadius, poleRing = centerRadius, gap = 0, origin = 0 }) {
@@ -259,7 +263,6 @@ export function ringGeometry({ outerRadius, centerRadius, poleRing = centerRadiu
   if (r1 > r0 && R - r1 <= gap) r1 = R
   const r2 = r1 > r0 ? Math.min(R, r1 + gap) : r0
   return {
-    k: R * R - r2 * r2,
     center: r0,
     origin: clampOrigin(origin),
     poles: { rIn: r0, rOut: r1 },
@@ -289,19 +292,17 @@ export function heightOf(confidence, origin = 0) {
   return Math.max(0, (c - o) / (1 - o))
 }
 
-/** Rayon extérieur d'un secteur : r_ext = √(r_int² + k·h), h la hauteur de la confiance au-dessus du départ. */
-export function outerRadiusFor(rIn, k, confidence, origin = 0) {
-  return Math.sqrt(rIn * rIn + k * heightOf(confidence, origin))
-}
-
-/** Aire exacte d'un secteur annulaire de r_int à r_ext sur θ radians. */
-export function annularSectorArea(thetaRad, rIn, rOut) {
-  return (thetaRad * (rOut * rOut - rIn * rIn)) / 2
-}
-
-/** Aire prévue par l'encodage : θ·k·h/2 (θ en radians ; h = C quand le départ est 0). */
-export function encodedArea(thetaRad, k, confidence, origin = 0) {
-  return (thetaRad * k * heightOf(confidence, origin)) / 2
+/**
+ * Rayon extérieur d'un secteur (D-70) : r_ext = r_int + h·(R − r_int), h la
+ * hauteur de la confiance au-dessus du départ — la hauteur dessinée lui est
+ * proportionnelle.
+ * @param {number} rIn bord intérieur de l'anneau (le départ)
+ * @param {number} rMax bord extérieur de l'anneau (une confiance de 1)
+ * @param {number | null | undefined} confidence
+ * @param {number} [origin] départ c₀
+ */
+export function outerRadiusFor(rIn, rMax, confidence, origin = 0) {
+  return rIn + (rMax - rIn) * heightOf(confidence, origin)
 }
 
 /**
@@ -310,21 +311,24 @@ export function encodedArea(thetaRad, k, confidence, origin = 0) {
  * confiance nulle, inconnue (null) ou sous le départ de la hauteur : il reçoit
  * l'épaisseur minimale. `floored` signale l'écart au strict proportionnel
  * (affiché dans « Pourquoi cette surface ? »).
+ * @param {number} rIn bord intérieur de l'anneau
+ * @param {number} rMax bord extérieur de l'anneau
  * @param {number | null} confidence
+ * @param {number} minThickness épaisseur minimale
  * @param {number} [origin] départ de la hauteur (D-65)
  * @returns {{rOut: number, rOutExact: number, floored: boolean}}
  */
-export function displayedOuterRadius(rIn, k, confidence, minThickness, origin = 0) {
-  const exact = outerRadiusFor(rIn, k, confidence ?? 0, origin)
+export function displayedOuterRadius(rIn, rMax, confidence, minThickness, origin = 0) {
+  const exact = outerRadiusFor(rIn, rMax, confidence ?? 0, origin)
   const floored = exact - rIn < minThickness
   return { rOut: floored ? rIn + minThickness : exact, rOutExact: exact, floored }
 }
 
 /**
  * Cercles guides de l'anneau des compétences : les confiances 0,25 · 0,5 ·
- * 0,75 · 1 situées au-dessus du départ, et la base (le départ lui-même, au
- * bord intérieur) — une échelle de confiance, pas des niveaux. Rien si
- * l'anneau n'est pas dessiné.
+ * 0,75 · 1 situées au-dessus du départ, à intervalles égaux (D-70), et la
+ * base (le départ lui-même, au bord intérieur) — une échelle de confiance,
+ * pas des niveaux. Rien si l'anneau n'est pas dessiné.
  * @param {ReturnType<typeof ringGeometry>} geometry
  * @returns {Array<{c: number, r: number, base: boolean}>}
  */
@@ -333,7 +337,7 @@ export function confidenceGuides(geometry) {
   if (!ringShown(ring)) return []
   const origin = geometry.origin ?? 0
   return [
-    ...GUIDE_LEVELS.filter((c) => c > origin + 1e-9).map((c) => ({ c, r: outerRadiusFor(ring.rIn, geometry.k, c, origin), base: false })),
+    ...GUIDE_LEVELS.filter((c) => c > origin + 1e-9).map((c) => ({ c, r: outerRadiusFor(ring.rIn, ring.rOut, c, origin), base: false })),
     { c: origin, r: ring.rIn, base: true },
   ]
 }

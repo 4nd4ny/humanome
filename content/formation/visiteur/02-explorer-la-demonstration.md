@@ -68,8 +68,8 @@ Deux dimensions portent le sens :
   perdent.
 - **La hauteur** (jusqu'où le secteur s'étire vers l'extérieur) est la
   **confiance moyenne du jury** dans ses verdicts : le pied du secteur vaut
-  0,25, le bord extérieur 1 ; les cercles pointillés marquent 0,5, 0,75 et 1.
-  Ce n'est ni un niveau de maîtrise ni une force.
+  0,25, le bord extérieur 1 ; les cercles pointillés marquent 0,5, 0,75 et 1,
+  à intervalles égaux. Ce n'est ni un niveau de maîtrise ni une force.
 
 Un secteur **hachuré** signale une compétence **en renvoi au cartographe** :
 l'analyse a vu un signal mais laisse un humain trancher. Une compétence sans

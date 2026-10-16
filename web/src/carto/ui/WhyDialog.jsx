@@ -98,7 +98,7 @@ export function WhyDialog({ refl, state, selection, layout, zoomLayout = null, o
                     : origin > 0
                       ? `sa confiance (${fmt(e.confidence, 3)}) dépasse à peine le départ de la hauteur (${fmt(origin)}), le secteur serait invisible.`
                       : 'sa confiance est si faible que le secteur serait invisible.'}{' '}
-                Sa surface dessinée dépasse ici le strict proportionnel.
+                Sa hauteur dessinée dépasse ici le strict proportionnel.
               </p>
             ) : null}
             {sector?.widened ? (

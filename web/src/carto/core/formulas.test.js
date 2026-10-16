@@ -4,13 +4,11 @@ import {
   DEFAULT_PARAMS,
   HEIGHT_ORIGIN_MAX,
   POLE_RING_MAX,
-  annularSectorArea,
   confidenceGuides,
   heightOf,
   anglesFromPoints,
   decayFactor,
   displayedOuterRadius,
-  encodedArea,
   meanConfidence,
   outerRadiusFor,
   poleConfidence,
@@ -20,7 +18,6 @@ import {
   sunGeometry,
   tracePoints,
   widenNarrowSectors,
-  toRadians,
   traceWeight,
 } from './formulas.js'
 
@@ -124,24 +121,23 @@ describe('confiance moyenne du jury (« cumulée » au §5.5)', () => {
   })
 })
 
-describe('anneaux fixes et surface (§5.6)', () => {
+describe('anneaux fixes et hauteur (§5.6, D-70)', () => {
   const g = ringGeometry({ outerRadius: 200, centerRadius: 24, gap: 4 })
 
   it('anneau des pôles : par défaut de l’épaisseur du centre ; les compétences prennent le reste après l’écart (D-58)', () => {
     expect(g.poles).toEqual({ rIn: 24, rOut: 48 })
     expect(g.competencies).toEqual({ rIn: 52, rOut: 200 })
-    expect(g.k).toBeCloseTo(200 ** 2 - 52 ** 2, 6)
   })
   it('C = 1 atteint le bord de l’anneau des compétences, C = 0 reste au rayon intérieur', () => {
-    expect(outerRadiusFor(g.competencies.rIn, g.k, 1)).toBeCloseTo(g.competencies.rOut)
-    expect(outerRadiusFor(g.competencies.rIn, g.k, 0)).toBeCloseTo(g.competencies.rIn)
+    expect(outerRadiusFor(g.competencies.rIn, g.competencies.rOut, 1)).toBeCloseTo(g.competencies.rOut)
+    expect(outerRadiusFor(g.competencies.rIn, g.competencies.rOut, 0)).toBeCloseTo(g.competencies.rIn)
   })
-  it('aire d’une compétence = θ·k·C/2', () => {
-    for (const [deg, c] of [[360, 1], [180, 0.5], [37.5, 0.83], [1, 0.05]]) {
-      const theta = toRadians(deg)
-      const area = annularSectorArea(theta, g.competencies.rIn, outerRadiusFor(g.competencies.rIn, g.k, c))
-      expect(area).toBeCloseTo(encodedArea(theta, g.k, c), 6)
-    }
+  it('hauteur dessinée proportionnelle à la confiance (D-70) : C = 0,5 à mi-hauteur, chaque quart de confiance la même hauteur', () => {
+    const { rIn, rOut } = g.competencies
+    const drawn = (c) => outerRadiusFor(rIn, rOut, c) - rIn
+    for (const c of [0, 0.05, 0.25, 0.5, 0.83, 1]) expect(drawn(c)).toBeCloseTo(c * (rOut - rIn), 6)
+    const steps = [0.25, 0.5, 0.75, 1].map((c) => drawn(c) - drawn(c - 0.25))
+    for (const step of steps) expect(step).toBeCloseTo((rOut - rIn) / 4, 6)
   })
   it('épaisseur réglable de l’anneau des pôles : 0 le masque (sans écart), le maximum masque les compétences', () => {
     const none = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 0, gap: 5 })
@@ -150,7 +146,6 @@ describe('anneaux fixes et surface (§5.6)', () => {
     const all = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 160, gap: 5 })
     expect(all.poles).toEqual({ rIn: 30, rOut: 190 })
     expect(ringShown(all.competencies)).toBe(false)
-    expect(all.k).toBe(0)
     // L'écart avalerait les compétences : l'anneau des pôles va jusqu'au bord, sans bande vide.
     const almost = ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 155, gap: 5 })
     expect(almost.poles.rOut).toBe(190)
@@ -170,15 +165,15 @@ describe('anneaux fixes et surface (§5.6)', () => {
     expect(resolveParams({ poleRingPx: 999 }).poleRingPx).toBe(160)
   })
   it('épaisseur minimale d’affichage : signalée, jamais silencieuse', () => {
-    const tiny = displayedOuterRadius(g.competencies.rIn, g.k, 0.0005, 2)
+    const tiny = displayedOuterRadius(g.competencies.rIn, g.competencies.rOut, 0.0005, 2)
     expect(tiny.floored).toBe(true)
     expect(tiny.rOut).toBeCloseTo(g.competencies.rIn + 2)
-    const normal = displayedOuterRadius(g.competencies.rIn, g.k, 0.5, 2)
+    const normal = displayedOuterRadius(g.competencies.rIn, g.competencies.rOut, 0.5, 2)
     expect(normal.floored).toBe(false)
     // Un secteur dessiné a des points : confiance nulle ou inconnue, il ne disparaît pas pour autant.
-    expect(displayedOuterRadius(g.competencies.rIn, g.k, 0, 2)).toEqual({ rOut: g.competencies.rIn + 2, rOutExact: g.competencies.rIn, floored: true })
-    expect(displayedOuterRadius(g.competencies.rIn, g.k, null, 2).floored).toBe(true)
-    expect(displayedOuterRadius(g.competencies.rIn, g.k, 0, 0)).toEqual({ rOut: g.competencies.rIn, rOutExact: g.competencies.rIn, floored: false })
+    expect(displayedOuterRadius(g.competencies.rIn, g.competencies.rOut, 0, 2)).toEqual({ rOut: g.competencies.rIn + 2, rOutExact: g.competencies.rIn, floored: true })
+    expect(displayedOuterRadius(g.competencies.rIn, g.competencies.rOut, null, 2).floored).toBe(true)
+    expect(displayedOuterRadius(g.competencies.rIn, g.competencies.rOut, 0, 0)).toEqual({ rOut: g.competencies.rIn, rOutExact: g.competencies.rIn, floored: false })
   })
   it('refuse une géométrie impossible', () => {
     expect(() => ringGeometry({ outerRadius: 10, centerRadius: 10 })).toThrow()
@@ -211,19 +206,22 @@ describe('départ de la hauteur (D-65) : la hauteur part d’une confiance régl
     expect(heightOf(0.1, 0.25)).toBe(0)
     expect(heightOf(1, 0.5)).toBe(1)
     expect(heightOf(0.58, 0)).toBe(0.58) // sans départ, h = C
-    expect(outerRadiusFor(rIn, g.k, 0.25, 0.25)).toBeCloseTo(rIn)
-    expect(outerRadiusFor(rIn, g.k, 1, 0.25)).toBeCloseTo(rOut)
+    expect(outerRadiusFor(rIn, rOut, 0.25, 0.25)).toBeCloseTo(rIn)
+    expect(outerRadiusFor(rIn, rOut, 1, 0.25)).toBeCloseTo(rOut)
   })
   it('les écarts de confiance du jury deviennent plus visibles : 0,35 et 0,68 passent d’un rapport de 1,9 à 4,3', () => {
     const ratio = (o) => heightOf(0.68, o) / heightOf(0.35, o)
     expect(ratio(0)).toBeCloseTo(1.94, 2)
     expect(ratio(0.25)).toBeCloseTo(4.3, 1)
+    // Dessinées (D-70), les hauteurs gardent ce rapport.
+    const drawn = (c) => outerRadiusFor(rIn, rOut, c, 0.25) - rIn
+    expect(drawn(0.68) / drawn(0.35)).toBeCloseTo(4.3, 1)
   })
-  it('aire = θ·k·h/2 : l’aire reste proportionnelle à la hauteur dessinée', () => {
-    for (const [deg, c] of [[360, 1], [180, 0.5], [37.5, 0.83], [12, 0.3]]) {
-      const theta = toRadians(deg)
-      expect(annularSectorArea(theta, rIn, outerRadiusFor(rIn, g.k, c, 0.25))).toBeCloseTo(encodedArea(theta, g.k, c, 0.25), 6)
-    }
+  it('hauteur dessinée proportionnelle à h (D-70) : 0,5 au tiers de l’anneau, 0,75 aux deux tiers', () => {
+    const share = (c) => (outerRadiusFor(rIn, rOut, c, 0.25) - rIn) / (rOut - rIn)
+    expect(share(0.5)).toBeCloseTo(1 / 3, 10)
+    expect(share(0.75)).toBeCloseTo(2 / 3, 10)
+    expect(share(0.7)).toBeCloseTo(heightOf(0.7, 0.25), 10)
   })
   it('l’épaisseur minimale va de 1 à 6 px : sous le départ, un secteur ne disparaît jamais', () => {
     expect(resolveParams({ minThicknessPx: 0 }).minThicknessPx).toBe(1)
@@ -232,10 +230,10 @@ describe('départ de la hauteur (D-65) : la hauteur part d’une confiance régl
     expect(resolveParams({}).minThicknessPx).toBe(2)
   })
   it('une confiance qui ne dépasse pas le départ reçoit l’épaisseur minimale, signalée', () => {
-    expect(displayedOuterRadius(rIn, g.k, 0.2, 2, 0.25)).toEqual({ rOut: rIn + 2, rOutExact: rIn, floored: true })
-    expect(displayedOuterRadius(rIn, g.k, 0.6, 2, 0.25).floored).toBe(false)
+    expect(displayedOuterRadius(rIn, rOut, 0.2, 2, 0.25)).toEqual({ rOut: rIn + 2, rOutExact: rIn, floored: true })
+    expect(displayedOuterRadius(rIn, rOut, 0.6, 2, 0.25).floored).toBe(false)
   })
-  it('cercles guides : les confiances au-dessus du départ, et la base au bord intérieur', () => {
+  it('cercles guides : les confiances au-dessus du départ, à intervalles égaux (D-70), et la base au bord intérieur', () => {
     const levels = (o) => confidenceGuides(ringGeometry({ outerRadius: 190, centerRadius: 30, gap: 5, origin: o })).map((x) => [x.c, x.base])
     expect(levels(0)).toEqual([[0.25, false], [0.5, false], [0.75, false], [1, false], [0, true]])
     expect(levels(0.25)).toEqual([[0.5, false], [0.75, false], [1, false], [0.25, true]])
@@ -243,6 +241,10 @@ describe('départ de la hauteur (D-65) : la hauteur part d’une confiance régl
     const guides = confidenceGuides(g)
     expect(guides.at(-1).r).toBe(rIn)
     expect(guides.find((x) => x.c === 1).r).toBeCloseTo(rOut)
+    const r = (c) => guides.find((x) => x.c === c).r
+    expect(r(0.5) - rIn).toBeCloseTo((rOut - rIn) / 3, 10)
+    expect(r(0.75) - r(0.5)).toBeCloseTo((rOut - rIn) / 3, 10)
+    expect(r(1) - r(0.75)).toBeCloseTo((rOut - rIn) / 3, 10)
     // Anneau des compétences masqué : aucun cercle.
     expect(confidenceGuides(ringGeometry({ outerRadius: 190, centerRadius: 30, poleRing: 160, gap: 5 }))).toEqual([])
   })

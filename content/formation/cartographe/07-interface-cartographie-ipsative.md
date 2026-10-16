@@ -92,8 +92,9 @@ change pas le soleil. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
 les formules. Le panneau **« Réglages »** (menu « Panneaux » de la
 cartographie) règle le poids d'un indice, le départ de la hauteur (0,25 par
-défaut : le pied d'un secteur vaut cette confiance, ce qui rend visibles les
-écarts entre des confiances qui se tiennent d'ordinaire entre 0,3 et 0,7),
+défaut : le pied d'un secteur vaut cette confiance, le bord extérieur 1, à
+intervalles égaux, ce qui rend visibles les écarts entre des confiances qui
+se tiennent d'ordinaire entre 0,3 et 0,7),
 l'épaisseur de l'anneau des pôles — un élément d'interface : il range les
 compétences, il ne mesure rien — et l'épaisseur minimale d'un secteur ; il
 choisit aussi la palette des couleurs des pôles, gardée dans ce navigateur.

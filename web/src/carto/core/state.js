@@ -175,14 +175,14 @@ export function computeDayState(dataset, date, { ref, params } = {}) {
 
 /**
  * Rayon dessiné d'une compétence : sa confiance fait sa hauteur, comptée à
- * partir du départ de la géométrie (D-65 ; épaisseur minimale comprise),
- * jamais au-delà du bord ; anneau masqué (réglage de l'anneau des pôles au
- * maximum), rien.
+ * partir du départ de la géométrie (D-65 ; épaisseur minimale comprise) et
+ * proportionnelle (D-70), jamais au-delà du bord ; anneau masqué (réglage de
+ * l'anneau des pôles au maximum), rien.
  */
 function leafRadius(geometry, confidence, minThickness) {
   const ring = geometry.competencies
   if (!ringShown(ring)) return { rOut: ring.rIn, rOutExact: ring.rIn, floored: false }
-  const d = displayedOuterRadius(ring.rIn, geometry.k, confidence, minThickness, geometry.origin ?? 0)
+  const d = displayedOuterRadius(ring.rIn, ring.rOut, confidence, minThickness, geometry.origin ?? 0)
   return d.rOut > ring.rOut ? { ...d, rOut: ring.rOut } : d
 }
 
@@ -381,13 +381,14 @@ export function explainSurface(state, target, { origin = state.params.heightOrig
         intensity: 'points = Σ w (chaque trace compte)',
         angle: 'θ = 360° × points / Σ points',
         confidence: 'C = moyenne des confiances des verdicts qui fournissent des traces',
-        // La hauteur part du départ réglable c₀ (D-65) ; avec c₀ = 0, h = C.
+        // La hauteur part du départ réglable c₀ (D-65) ; avec c₀ = 0, h = C. La
+        // hauteur dessinée lui est proportionnelle (D-70).
         ...(origin > 0
           ? {
               height: `hauteur h = (C − ${frNumber(origin)}) / (1 − ${frNumber(origin)}) : le pied du secteur vaut une confiance de ${frNumber(origin)}, le bord extérieur 1`,
-              area: 'surface = θ · k · h / 2 (anneaux fixes : r_ext² = r_int² + k·h)',
+              radius: 'rayon r_ext = r_int + h · (R − r_int) : la hauteur dessinée est proportionnelle à h',
             }
-          : { area: 'surface = θ · k · C / 2 (anneaux fixes : r_ext² = r_int² + k·C)' }),
+          : { radius: 'rayon r_ext = r_int + C · (R − r_int) : la hauteur dessinée est proportionnelle à C' }),
       },
     }
   }
