@@ -14,6 +14,7 @@
 import { canonicalJson, contentHash, normalizeRole, observationKey, stableId } from '../model.js'
 import { splitExtract } from '../highlight.js'
 import { isIsoDate } from '../dates.js'
+import { keepKairosMarkdown } from '../restatement.js'
 
 const STATUSES = new Set(['established', 'not_established', 'needs_review', 'unknown'])
 const REVIEWS = new Set(['unreviewed', 'confirmed', 'nuanced', 'contested'])
@@ -134,16 +135,17 @@ export function importV3Master(master, { fileName = 'master-v3.json', now = new 
       if (n.scope?.type === 'pole' && Number.isInteger(Number(n.scope.poleNum))) poleReports[Number(n.scope.poleNum)] = { portrait: null, denseTerritories: [], unvisited: null, emergences: null, leads: [], markdown: n.text ?? null }
       if (n.scope?.type === 'kairos') kairos[n.scope.field] = n.text
     }
-    const kairosDetail = Object.keys(kairos).length
-      ? {
-          portrait: kairos.portrait ?? null,
-          profileShape: kairos.formeProfil ?? null,
-          linksAcrossPoles: kairos.ceQuiRelieLesPoles ?? null,
-          betweenTheLines: kairos.ceQuiEmergeEntreLesLignes ?? null,
-          invitations: [],
-          markdown: kairos.syntheseCompleteMarkdown ?? null,
-        }
-      : null
+    const kairosFields = {
+      portrait: kairos.portrait ?? null,
+      profileShape: kairos.formeProfil ?? null,
+      linksAcrossPoles: kairos.ceQuiRelieLesPoles ?? null,
+      betweenTheLines: kairos.ceQuiEmergeEntreLesLignes ?? null,
+      invitations: [],
+    }
+    // La synthèse complète : gardée seulement si elle dit autre chose que les
+    // rubriques (ici, les invitations n'y sont que dans la synthèse ; D-66).
+    const fullKairos = { ...kairosFields, markdown: kairos.syntheseCompleteMarkdown ?? null }
+    const kairosDetail = Object.keys(kairos).length ? (keepKairosMarkdown(fullKairos) ? fullKairos : { ...kairosFields, markdown: null }) : null
 
     variants.push({
       date,

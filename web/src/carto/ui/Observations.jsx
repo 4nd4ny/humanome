@@ -1,16 +1,47 @@
 // Interface ultime — panneau de détail d'une compétence, partie « preuves »
 // (spec §6.4, §8) : traces avec date et extrait (« Ouvrir dans le
-// portfolio »), verdict de chaque journée (statut, confiance, motif,
-// prescription), réflexions du jury, droit de réponse de l'apprenant.
+// portfolio »), verdict de chaque journée (sa ligne : statut, confiance,
+// preuves — le statut seul quand la compétence n'a que cette journée ;
+// dépliée : motif, prescription), réflexions du jury, droit de réponse de
+// l'apprenant. Chaque information une fois (journal D-66).
 
 import { REVIEW_LABELS, REVIEW_STATES, observationKey, verdictStatusLabel } from '../core/model.js'
 import { setReview } from '../core/ops.js'
 import { formatLong, formatShort } from '../core/dates.js'
-import { JuryReflections, RunJury, VerdictFacts } from './Jury.jsx'
+import { JuryReflections, PresidentDecision, RunJury, VerdictFacts } from './Jury.jsx'
 import { SOURCE_LABELS } from './Manager.jsx'
 
 const fmt = (n) => (typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('fr-FR', { maximumFractionDigits: 2 }) : '—')
 const SNIPPET = 220
+const same = (a, b) => String(a ?? '').trim() === String(b ?? '').trim()
+
+/**
+ * Le motif et la prescription d'une journée sont-ils ceux que la délibération
+ * de son run dit déjà (verdict AuroraCore réparti sur les journées de ses
+ * traces) ? Seulement si la délibération est là et les dit vraiment (D-66).
+ */
+export function saidByRun(run, vd) {
+  const p = run?.president
+  if (!vd?.runRef || !p) return false
+  return (!vd.motif || same(vd.motif, p.verdict_argumente)) && (!vd.prescription || same(vd.prescription, p.prescription))
+}
+
+/**
+ * La ligne d'une journée redirait-elle le panneau ? Oui quand c'est la seule
+ * journée de la compétence et qu'elle en a la confiance et les preuves, déjà
+ * lues dans ses chiffres (D-66).
+ * @param {{confidence: number | null, proofs: number, hints: number}} v verdict de la journée
+ * @param {{days: string[], confidence: number | null, proofs: number, hints: number}} comp
+ */
+export function sameAsCompetency(v, comp) {
+  return comp?.days?.length === 1 && v.confidence === comp.confidence && v.proofs === comp.proofs && v.hints === comp.hints
+}
+
+/** Analyse qui a produit une variante : « journée du site », « AuroraCore — run »… */
+function provenanceLabel(variant) {
+  const p = variant?.provenance
+  return `${SOURCE_LABELS[p?.source] ?? p?.source ?? 'source inconnue'}${p?.run ? ` — ${p.run}` : ''}`
+}
 
 /** Détail (verdict) d'une observation, ou undefined tant que la journée n'est pas chargée. */
 export function verdictDetailOf(getDetail, date, variantId, code) {
@@ -28,14 +59,17 @@ function traceExtract(getDetail, t, code) {
 
 /**
  * Liste des traces d'une compétence (ordre : journées, puis ordre du jury).
+ * Dans la modale d'un jour, la date de chaque trace est celle du jour
+ * (`dated` faux) ; la liste se compte d'elle-même, sans total dans son titre.
  * @param {{traces: Array<{id: string, date: string, variantId: string, role: string}>, code: string,
- *   getDetail: Function, onOpenTrace: (index: number) => void, onOpenDay?: (d: string, code?: string) => void}} props
+ *   getDetail: Function, onOpenTrace: (index: number) => void, onOpenDay?: (d: string, code?: string) => void,
+ *   dated?: boolean}} props
  */
-export function TraceList({ traces, code, getDetail, onOpenTrace, onOpenDay }) {
+export function TraceList({ traces, code, getDetail, onOpenTrace, onOpenDay, dated = true }) {
   if (traces.length === 0) return null
   return (
     <section className="carto-traces" aria-label="Traces de la compétence">
-      <h3>Traces ({traces.length})</h3>
+      <h3>Traces</h3>
       <ol className="carto-trace-list">
         {traces.map((t, i) => {
           const extract = traceExtract(getDetail, t, code)
@@ -43,7 +77,7 @@ export function TraceList({ traces, code, getDetail, onOpenTrace, onOpenDay }) {
           return (
             <li key={t.id} className={`carto-trace carto-trace--${t.role}`}>
               <div className="carto-trace-meta">
-                {onOpenDay ? (
+                {!dated ? null : onOpenDay ? (
                   <button type="button" className="carto-link-btn" onClick={() => onOpenDay(t.date, code)} title={`Ouvrir la cartographie du ${formatLong(t.date)}`}>
                     {formatShort(t.date)}
                   </button>
@@ -143,43 +177,63 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
     const vd = verdictDetailOf(getDetail, v.date, v.variantId, code)
     if (vd?.runRef && !runRefs.includes(vd.runRef)) runRefs.push(vd.runRef)
   }
+  const variantOf = (v) => byDate.get(v.date)?.variants.find((x) => x.id === v.variantId)
+  // Une seule analyse pour toutes les journées : dite une fois, ici (D-66).
+  const sources = new Set(verdicts.map((v) => provenanceLabel(variantOf(v))))
+  const oneSource = sources.size === 1 ? [...sources][0] : null
   return (
     <section className="carto-observations" aria-label="Verdicts par journée">
-      <h3>Verdicts par journée ({verdicts.length})</h3>
+      <h3>Verdicts par journée</h3>
       <p className="carto-small carto-muted">
         Niveau de preuve : exploratoire — chaque verdict vient d’une analyse automatique (un seul codeur, un modèle de langage).
+        {oneSource ? ` Analyse : ${oneSource}.` : ''}
       </p>
       {runRefs.map((key) => {
         const run = getRunDetail(key)
+        // La décision du président se lit sans rien déplier ; ce qui y a conduit, en dessous (D-66).
         return (
-          <details key={key} className="carto-run-jury">
-            <summary>Délibération du jury — {key.split('|')[0]} (porte sur tout le journal)</summary>
-            {run === undefined ? <p className="carto-muted">Chargement…</p> : run ? <RunJury run={run} /> : <p className="carto-muted">Délibération absente de l’import.</p>}
-          </details>
+          <section key={key} className="carto-run-decision" aria-label={`Délibération du jury — ${key.split('|')[0]}`}>
+            {run === undefined ? (
+              <p className="carto-muted">Chargement de la délibération…</p>
+            ) : run ? (
+              <>
+                <PresidentDecision run={run} />
+                <details className="carto-run-jury">
+                  <summary>Délibération du jury — {key.split('|')[0]} (porte sur tout le journal)</summary>
+                  <RunJury run={run} decision={false} />
+                </details>
+              </>
+            ) : (
+              <p className="carto-muted">Délibération absente de l’import.</p>
+            )}
+          </section>
         )
       })}
       {verdicts.map((v) => {
-        const day = byDate.get(v.date)
-        const variant = day?.variants.find((x) => x.id === v.variantId)
+        const variant = variantOf(v)
         const summary = variant?.verdicts.find((x) => x.code === code) ?? { ...v, courtCircuit: false, rawStatus: null }
         const vd = verdictDetailOf(getDetail, v.date, v.variantId, code)
         const obsKey = observationKey(v.date, v.variantId, code)
         const rev = dataset.reviews?.[obsKey]
         return (
           <details key={obsKey} className="carto-observation" open={v.date === (t ?? lastDate) || undefined}>
-            <summary>
-              <span className="carto-observation-date">{formatShort(v.date)}</span> · {verdictStatusLabel(summary)} · confiance {fmt(v.confidence)} · {v.proofs} preuve
-              {v.proofs > 1 ? 's' : ''}, {v.hints} indice{v.hints > 1 ? 's' : ''}
+            <summary title={summary.rawStatus ?? undefined}>
+              <span className="carto-observation-date">{formatShort(v.date)}</span> · {verdictStatusLabel(summary)}
+              {sameAsCompetency(v, comp)
+                ? null
+                : ` · confiance ${fmt(v.confidence)} · ${v.proofs} preuve${v.proofs > 1 ? 's' : ''}, ${v.hints} indice${v.hints > 1 ? 's' : ''}`}
               {REVIEW_STATES.includes(rev?.state) && rev.state !== 'unreviewed' ? ` · ${REVIEW_LABELS[rev.state].toLowerCase()} par vous` : ''}
             </summary>
             {vd === undefined ? (
               <p className="carto-muted">Chargement…</p>
             ) : (
               <>
-                <VerdictFacts verdict={summary} detail={vd} />
+                {/* La ligne de la journée dit déjà statut, confiance et preuves ; un verdict
+                    AuroraCore porte le motif du président, dit une fois dans la délibération,
+                    plus haut, quand elle est là (D-66). */}
+                <VerdictFacts verdict={summary} detail={vd} summary={false} texts={!saidByRun(vd?.runRef ? getRunDetail(vd.runRef) : null, vd)} />
                 <p className="carto-small carto-muted">
-                  Analyse : {SOURCE_LABELS[variant?.provenance?.source] ?? variant?.provenance?.source ?? 'source inconnue'}
-                  {variant?.provenance?.run ? ` — ${variant.provenance.run}` : ''} ·{' '}
+                  {oneSource ? null : <>Analyse : {provenanceLabel(variant)} · </>}
                   <button type="button" className="carto-link-btn" onClick={() => onOpenDay(v.date, code)}>
                     ouvrir la journée
                   </button>
@@ -188,7 +242,7 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
                 {vd && !vd.runRef ? (
                   <details className="carto-jury-wrap">
                     <summary>Réflexions du jury</summary>
-                    <JuryReflections verdict={summary} detail={vd} date={v.date} onOpenPassage={onOpenPassage} showVerdict={false} />
+                    <JuryReflections detail={vd} date={v.date} confidence={v.confidence} onOpenPassage={onOpenPassage} />
                   </details>
                 ) : null}
               </>
@@ -217,8 +271,10 @@ export function DayVerdictDetail({ v, variant, date, dataset, getDetail, getRunD
   const run = vd?.runRef ? getRunDetail(vd.runRef) : null
   return (
     <div className="carto-day-verdict-body">
-      <TraceList traces={list} code={v.code} getDetail={getDetail} onOpenTrace={(i) => onOpenTrace(v.code, list, i)} />
-      <VerdictFacts verdict={v} detail={vd} />
+      {/* La journée est celle de la modale : ses traces ne redisent pas la date (D-66). */}
+      <TraceList traces={list} code={v.code} getDetail={getDetail} onOpenTrace={(i) => onOpenTrace(v.code, list, i)} dated={false} />
+      {/* La ligne de la compétence dit déjà confiance, preuves et statut (D-66). */}
+      <VerdictFacts verdict={v} detail={vd} summary={false} />
       <ReviewControls dataset={dataset} obsKey={observationKey(date, variant.id, v.code)} update={update} />
       <details
         className="carto-jury-wrap"
@@ -228,7 +284,7 @@ export function DayVerdictDetail({ v, variant, date, dataset, getDetail, getRunD
       >
         <summary>Réflexions du jury</summary>
         {vd?.runRef && run === undefined ? <p className="carto-muted">Chargement de la délibération…</p> : null}
-        <JuryReflections verdict={v} detail={vd} run={run ?? null} date={date} onOpenPassage={onOpenPassage} showVerdict={false} />
+        <JuryReflections detail={vd} run={run ?? null} date={date} confidence={v.confidence} onOpenPassage={onOpenPassage} />
       </details>
     </div>
   )

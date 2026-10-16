@@ -17,6 +17,7 @@
 import { canonicalJson, contentHash, normalizeConfidence, normalizeRole, normalizeStatus, stableId, toCount } from '../model.js'
 import { splitExtract } from '../highlight.js'
 import { isIsoDate } from '../dates.js'
+import { keepKairosMarkdown, keepPoleReportMarkdown } from '../restatement.js'
 
 const str = (v) => (typeof v === 'string' ? v : '')
 const nullableStr = (v) => (typeof v === 'string' && v.trim() !== '' ? v : null)
@@ -188,14 +189,17 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
     if (Number.isInteger(poleNum)) {
       if (doc.rapport && typeof doc.rapport === 'object') {
         const r = doc.rapport
-        poleReports[poleNum] = {
+        const report = {
           portrait: nullableStr(r.portraitPole) ?? nullableStr(r.portrait),
           denseTerritories: Array.isArray(r.territoiresDenses) ? r.territoiresDenses : [],
           unvisited: nullableStr(r.territoiresNonVisites),
           emergences: nullableStr(r.emergencesPole),
           leads: Array.isArray(r.pistes) ? r.pistes : [],
-          markdown: nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown),
         }
+        // Le rapport complet rédigé redit souvent ses rubriques : gardé seulement
+        // s'il dit autre chose qu'elles (journal D-66).
+        const full = { ...report, markdown: nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown) }
+        poleReports[poleNum] = keepPoleReportMarkdown(full) ? full : { ...report, markdown: null }
       }
       if (doc.auditPole) audits[poleNum] = doc.auditPole
     }
@@ -216,14 +220,17 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
   if (kairos && typeof kairos === 'object') {
     const ap = kairos?.kairos?.apprenant ?? kairos?.apprenant ?? null
     if (ap && typeof ap === 'object') {
-      kairosDetail = {
+      const fields = {
         portrait: nullableStr(ap.portrait),
         profileShape: nullableStr(ap.formeProfil),
         linksAcrossPoles: nullableStr(ap.ceQuiRelieLesPoles),
         betweenTheLines: nullableStr(ap.ceQuiEmergeEntreLesLignes),
         invitations: Array.isArray(ap.invitationsPourLaSuite) ? ap.invitationsPourLaSuite : [],
-        markdown: nullableStr(ap.syntheseCompleteMarkdown),
       }
+      // La synthèse complète redit ces rubriques mot pour mot : gardée seulement
+      // si elle dit autre chose qu'elles (journal D-66).
+      const full = { ...fields, markdown: nullableStr(ap.syntheseCompleteMarkdown) }
+      kairosDetail = keepKairosMarkdown(full) ? full : { ...fields, markdown: null }
     } else {
       add('arbitrate', 'kairos-alternatif', 'Kairos de schéma inconnu : conservé tel quel, non affiché')
     }

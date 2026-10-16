@@ -23,7 +23,7 @@ import { JUROR_LABELS } from '../core/importers/aurora-core.js'
 import { Sun } from './Sun.jsx'
 import { SunLegend } from './DetailPanel.jsx'
 import { JUROR_ORDER, PedagogueReview, VerdictFacts } from './Jury.jsx'
-import { verdictDetailOf } from './Observations.jsx'
+import { sameAsCompetency, saidByRun, verdictDetailOf } from './Observations.jsx'
 import { ComparePrecautions } from './ComparePanel.jsx'
 import { useFocusTrap } from './DayModal.jsx'
 import { DEFAULT_PALETTE, themeColor } from './colors.js'
@@ -98,14 +98,15 @@ function Cover({ dataset, refl, state, layout, geometry, t, summary, pseudonym, 
         geometry={geometry}
         compact
         label={`Soleil : ${plural(summary.competencies.length, 'compétence observée', 'compétences observées')} dans ${plural(summary.analysedDays, 'journée', 'journées')}`}
-        caption={t ? `État cumulé jusqu’au ${formatShort(t)}` : 'État complet des journées cochées'}
       />
+      {/* La légende des couleurs, sans les parts : elles sont dans le tableau du profil ; l'état et
+          l'ensemble sont dits au-dessus, le soleil n'a pas de légende qui les redise (D-66). */}
       {summary.poles.length > 0 ? (
         <ul className="carto-print-poles" aria-label="Pôles du soleil">
           {summary.poles.map((p) => (
             <li key={p.num}>
               <span className="carto-print-swatch" style={{ background: themeColor(p.color) }} aria-hidden="true" />
-              {p.symbol} {p.name} <span className="carto-print-faint">{pct(p.share)}</span>
+              {p.symbol} {p.name}
             </li>
           ))}
         </ul>
@@ -192,16 +193,42 @@ function Profile({ refl, summary }) {
   )
 }
 
-/** Délibération d'un run AuroraCore : voix (synthèses) et président, sans les délibérations complètes. */
+/**
+ * Délibération d'un run AuroraCore, comme à l'écran mais sans ce qui s'y
+ * déplie au second niveau (délibérations complètes, analyse réflexive) : la
+ * décision du président d'abord (verdict argumenté, prescription, voix), puis
+ * les synthèses des voix et ses points de convergence et de tension.
+ */
 function RunVoices({ run }) {
   if (run === undefined) return <p className="carto-muted">Chargement de la délibération…</p>
   if (!run) return null
   const jury = run.jury && typeof run.jury === 'object' ? run.jury : {}
   const president = run.president && typeof run.president === 'object' ? run.president : null
   const voices = JUROR_ORDER.filter((k) => jury[k] && typeof jury[k] === 'object')
+  const fields = (list) => (president ? list.filter(([key]) => txt(president[key]).trim()) : [])
+  const decision = fields([
+    ['verdict_argumente', 'Verdict argumenté'],
+    ['prescription', 'Prescription'],
+  ])
+  const reasoning = fields([
+    ['points_convergence', 'Points de convergence'],
+    ['points_tension', 'Points de tension'],
+  ])
+  const presidentList = (list) =>
+    list.length > 0 ? (
+      <dl className="carto-president">
+        {list.map(([key, label]) => (
+          <div key={key}>
+            <dt>{label}</dt>
+            <dd>{txt(president[key])}</dd>
+          </div>
+        ))}
+      </dl>
+    ) : null
   return (
     <div className="carto-print-run">
       <h4>Délibération du jury (sur tout le journal)</h4>
+      {presidentList(decision)}
       {typeof jury.voix_presence === 'number' ? (
         <p className="carto-print-faint">
           {jury.voix_presence} voix pour la présence, {jury.voix_non_etablie ?? 0} non établie, {jury.voix_sans_eclairage ?? 0} sans éclairage
@@ -220,23 +247,7 @@ function RunVoices({ run }) {
           ))}
         </dl>
       ) : null}
-      {president ? (
-        <dl className="carto-president">
-          {[
-            ['points_convergence', 'Points de convergence'],
-            ['points_tension', 'Points de tension'],
-            ['verdict_argumente', 'Verdict argumenté'],
-            ['prescription', 'Prescription'],
-          ].map(([key, label]) =>
-            president[key] ? (
-              <div key={key}>
-                <dt>{label}</dt>
-                <dd>{txt(president[key])}</dd>
-              </div>
-            ) : null,
-          )}
-        </dl>
-      ) : null}
+      {presidentList(reasoning)}
     </div>
   )
 }
@@ -282,9 +293,9 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
       <h3 id={`carto-print-c-${code}`}>
         <span className="carto-code">{code}</span> {meta.name}
       </h3>
+      {/* Sa part, sa confiance moyenne, ses preuves et ses journées sont dans le tableau du profil (D-66). */}
       <p className="carto-print-faint">
-        {pole?.symbol} {pole?.name} · part {pct(s.theta / 360)} · confiance moyenne {nf(s.confidence)} · {plural(s.days.length, 'journée', 'journées')} ·{' '}
-        {plural(s.proofs, 'preuve', 'preuves')}, {plural(s.hints, 'indice', 'indices')}
+        {pole?.symbol} {pole?.name}
       </p>
       {options.extracts && traces.length > 0 ? <Extracts traces={traces} code={code} getDetail={getDetail} /> : null}
       {runRefs.map((key) => (
@@ -302,8 +313,17 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
               <p className="carto-muted">Chargement…</p>
             ) : (
               <>
-                <VerdictFacts verdict={o.verdict} detail={vd} />
-                {vd?.pedagogue ? <PedagogueReview pedagogue={vd.pedagogue} /> : null}
+                {/* Le statut est dans le titre ; la confiance et les preuves de la seule journée
+                    d'une compétence sont dans le tableau du profil ; le motif d'un verdict AuroraCore
+                    est celui du président, imprimé une fois avec la délibération quand elle est là (D-66). */}
+                <VerdictFacts
+                  verdict={o.verdict}
+                  detail={vd}
+                  status={false}
+                  summary={!sameAsCompetency(o.verdict, s)}
+                  texts={!saidByRun(vd?.runRef ? getRunDetail(vd.runRef) : null, vd)}
+                />
+                {vd?.pedagogue ? <PedagogueReview pedagogue={vd.pedagogue} confidence={o.verdict.confidence} /> : null}
               </>
             )}
             {options.notes && review && review.state && review.state !== 'unreviewed' ? (
@@ -324,8 +344,8 @@ function Jury({ dataset, refl, state, options, getDetail, getRunDetail }) {
     <section className="carto-print-page" aria-labelledby="carto-print-jury">
       <h2 id="carto-print-jury">Réflexions du jury</h2>
       <p className="carto-print-faint">
-        {options.scope === 'all' ? 'Toutes les journées où chaque compétence est observée.' : 'La dernière journée où chaque compétence est observée.'} Niveau de preuve :
-        exploratoire — chaque verdict vient d’une analyse automatique (un seul codeur, un modèle de langage).
+        {/* Le niveau de preuve est dit une fois, dans les précautions de lecture (D-66). */}
+        {options.scope === 'all' ? 'Toutes les journées où chaque compétence est observée.' : 'La dernière journée où chaque compétence est observée.'}
       </p>
       {options.codes.map((code) => (
         <Competency key={code} code={code} dataset={dataset} refl={refl} state={state} options={options} getDetail={getDetail} getRunDetail={getRunDetail} />

@@ -402,7 +402,9 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
     expect(cell('2025-12-24').getAttribute('class')).toMatch(/is-observed/)
     expect(cell('2025-12-22').getAttribute('class')).toMatch(/is-unobserved/)
     const detail = screen.getByRole('article', { name: /3\.02 Itération/ })
-    expect(within(detail).getByText('Journées observées')).toBeTruthy()
+    // Les journées se lisent une fois, avec leur verdict (D-66) : plus de liste de dates à part.
+    expect(await within(detail).findByRole('region', { name: 'Verdicts par journée' })).toBeTruthy()
+    expect(within(detail).queryByText('Journées observées')).toBeNull()
     // Échap désélectionne.
     fireEvent.keyDown(document.body, { key: 'Escape' })
     await waitFor(() => expect(screen.getByRole('article', { name: 'Résumé du profil' })).toBeTruthy())

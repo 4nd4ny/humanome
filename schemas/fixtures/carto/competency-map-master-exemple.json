@@ -87,12 +87,12 @@
       "tags": [
         "projet pont"
       ],
-      "activeVariantId": "v-39b1603516f597fa9165",
+      "activeVariantId": "v-b7c498c352550862db67",
       "variantChoice": "auto",
       "variants": [
         {
-          "id": "v-39b1603516f597fa9165",
-          "digest": "b6ad342bb68418019b4543a947270c52",
+          "id": "v-b7c498c352550862db67",
+          "digest": "bf0f9f53a2433592dc5c8c8b90dddf0a",
           "provenance": {
             "source": "aurora-v3",
             "run": null,
@@ -117,7 +117,7 @@
               "hints": 0,
               "traces": [
                 {
-                  "id": "v-39b1603516f597fa9165:1.01:0",
+                  "id": "v-b7c498c352550862db67:1.01:0",
                   "role": "preuve"
                 }
               ]
@@ -142,7 +142,7 @@
               "hints": 1,
               "traces": [
                 {
-                  "id": "v-39b1603516f597fa9165:3.01:0",
+                  "id": "v-b7c498c352550862db67:3.01:0",
                   "role": "indice"
                 }
               ]
@@ -169,12 +169,12 @@
       "tags": [
         "projet pont"
       ],
-      "activeVariantId": "v-44b0dd6c98415bae1bbf",
+      "activeVariantId": "v-f15a769bfb9d53866fce",
       "variantChoice": "learner",
       "variants": [
         {
-          "id": "v-b307a618c75aea2e3255",
-          "digest": "42ddd46f9e58ad2b698f4b0f0657cbcf",
+          "id": "v-23d45c72770772d4425c",
+          "digest": "3dd830c5d13e9db79a8b8d846ac41977",
           "provenance": {
             "source": "aurora-v3",
             "run": null,
@@ -199,7 +199,7 @@
               "hints": 0,
               "traces": [
                 {
-                  "id": "v-b307a618c75aea2e3255:2.01:0",
+                  "id": "v-23d45c72770772d4425c:2.01:0",
                   "role": "preuve"
                 }
               ]
@@ -214,7 +214,7 @@
               "hints": 1,
               "traces": [
                 {
-                  "id": "v-b307a618c75aea2e3255:3.02:0",
+                  "id": "v-23d45c72770772d4425c:3.02:0",
                   "role": "indice"
                 }
               ]
@@ -239,8 +239,8 @@
           ]
         },
         {
-          "id": "v-44b0dd6c98415bae1bbf",
-          "digest": "e204597a5543b22ff445348563309179",
+          "id": "v-f15a769bfb9d53866fce",
+          "digest": "00bf489c3880d14d524cbffa0aad3d8b",
           "provenance": {
             "source": "aurora-v3",
             "run": "run2",
@@ -263,7 +263,7 @@
               "hints": 1,
               "traces": [
                 {
-                  "id": "v-44b0dd6c98415bae1bbf:2.02:0",
+                  "id": "v-f15a769bfb9d53866fce:2.02:0",
                   "role": "indice"
                 }
               ]
@@ -288,12 +288,12 @@
       "date": "2025-12-24",
       "active": false,
       "tags": [],
-      "activeVariantId": "v-90d9c22136e55f22938f",
+      "activeVariantId": "v-587e35ec9dccc1216ecd",
       "variantChoice": "auto",
       "variants": [
         {
-          "id": "v-90d9c22136e55f22938f",
-          "digest": "e64d3b804a41d796207b99721e5f3c9e",
+          "id": "v-587e35ec9dccc1216ecd",
+          "digest": "a541b882a31479b7e1d0071d6615500c",
           "provenance": {
             "source": "aurora-v3",
             "run": null,
@@ -317,11 +317,11 @@
               "hints": 1,
               "traces": [
                 {
-                  "id": "v-90d9c22136e55f22938f:3.02:0",
+                  "id": "v-587e35ec9dccc1216ecd:3.02:0",
                   "role": "preuve"
                 },
                 {
-                  "id": "v-90d9c22136e55f22938f:3.02:1",
+                  "id": "v-587e35ec9dccc1216ecd:3.02:1",
                   "role": "indice"
                 }
               ]
@@ -361,7 +361,7 @@
     }
   ],
   "reviews": {
-    "2025-12-22|v-39b1603516f597fa9165|1.01": {
+    "2025-12-22|v-b7c498c352550862db67|1.01": {
       "state": "nuanced",
       "note": "Pas seulement deux sources.",
       "updatedAt": "2026-10-14T10:00:00.000Z"
@@ -559,7 +559,7 @@
         "source": "lou.md"
       },
       "variants": {
-        "v-39b1603516f597fa9165": {
+        "v-b7c498c352550862db67": {
           "verdicts": {
             "1.01": {
               "motif": "Vérification explicite.",
@@ -589,7 +589,7 @@
                 }
               ],
               "traces": {
-                "v-39b1603516f597fa9165:1.01:0": {
+                "v-b7c498c352550862db67:1.01:0": {
                   "role": "preuve",
                   "rawRole": "preuve décisive",
                   "pieceType": "trace concrète",
@@ -655,7 +655,7 @@
                 }
               ],
               "traces": {
-                "v-39b1603516f597fa9165:3.01:0": {
+                "v-b7c498c352550862db67:3.01:0": {
                   "role": "indice",
                   "rawRole": "indice corroboratif",
                   "pieceType": "trace concrète",
@@ -699,7 +699,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 1\n\nTexte du rapport."
+              "markdown": null
             },
             "3": {
               "portrait": "Portrait du pôle 3 le 2025-12-22.",
@@ -709,7 +709,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+              "markdown": null
             }
           },
           "audits": {
@@ -728,7 +728,7 @@
             "invitations": [
               "Raconter une erreur."
             ],
-            "markdown": "## Portrait\n\nSynthèse."
+            "markdown": null
           },
           "kairosRaw": null,
           "emergences": {
@@ -747,7 +747,7 @@
         "source": "lou.md"
       },
       "variants": {
-        "v-b307a618c75aea2e3255": {
+        "v-23d45c72770772d4425c": {
           "verdicts": {
             "2.01": {
               "motif": null,
@@ -777,7 +777,7 @@
                 }
               ],
               "traces": {
-                "v-b307a618c75aea2e3255:2.01:0": {
+                "v-23d45c72770772d4425c:2.01:0": {
                   "role": "preuve",
                   "rawRole": "preuve décisive",
                   "pieceType": "trace concrète",
@@ -821,7 +821,7 @@
                 }
               ],
               "traces": {
-                "v-b307a618c75aea2e3255:3.02:0": {
+                "v-23d45c72770772d4425c:3.02:0": {
                   "role": "indice",
                   "rawRole": "indice corroboratif",
                   "pieceType": "trace concrète",
@@ -887,7 +887,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 2\n\nTexte du rapport."
+              "markdown": null
             },
             "3": {
               "portrait": "Portrait du pôle 3 le 2025-12-23.",
@@ -897,7 +897,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+              "markdown": null
             }
           },
           "audits": {
@@ -916,7 +916,7 @@
             "invitations": [
               "Raconter une erreur."
             ],
-            "markdown": "## Portrait\n\nSynthèse."
+            "markdown": null
           },
           "kairosRaw": null,
           "emergences": {
@@ -925,7 +925,7 @@
             "noeudsConceptuels": []
           }
         },
-        "v-44b0dd6c98415bae1bbf": {
+        "v-f15a769bfb9d53866fce": {
           "verdicts": {
             "2.02": {
               "motif": null,
@@ -955,7 +955,7 @@
                 }
               ],
               "traces": {
-                "v-44b0dd6c98415bae1bbf:2.02:0": {
+                "v-f15a769bfb9d53866fce:2.02:0": {
                   "role": "indice",
                   "rawRole": "indice corroboratif",
                   "pieceType": "trace concrète",
@@ -991,7 +991,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 2\n\nTexte du rapport."
+              "markdown": null
             }
           },
           "audits": {
@@ -1013,7 +1013,7 @@
         "source": "lou.md"
       },
       "variants": {
-        "v-90d9c22136e55f22938f": {
+        "v-587e35ec9dccc1216ecd": {
           "verdicts": {
             "3.02": {
               "motif": null,
@@ -1049,7 +1049,7 @@
                 }
               ],
               "traces": {
-                "v-90d9c22136e55f22938f:3.02:0": {
+                "v-587e35ec9dccc1216ecd:3.02:0": {
                   "role": "preuve",
                   "rawRole": "preuve décisive",
                   "pieceType": "trace concrète",
@@ -1063,7 +1063,7 @@
                   "sourceDate": "2025-12-24",
                   "resolved": true
                 },
-                "v-90d9c22136e55f22938f:3.02:1": {
+                "v-587e35ec9dccc1216ecd:3.02:1": {
                   "role": "indice",
                   "rawRole": "indice corroboratif",
                   "pieceType": "trace concrète",
@@ -1107,7 +1107,7 @@
               "leads": [
                 "Continuer."
               ],
-              "markdown": "## Portrait du pôle 3\n\nTexte du rapport."
+              "markdown": null
             }
           },
           "audits": {
@@ -1123,7 +1123,7 @@
             "invitations": [
               "Raconter une erreur."
             ],
-            "markdown": "## Portrait\n\nSynthèse."
+            "markdown": null
           },
           "kairosRaw": null,
           "emergences": {

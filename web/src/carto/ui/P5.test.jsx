@@ -224,6 +224,11 @@ describe('P5 — rapport imprimable', () => {
     const comp = within(dialog).getByRole('article', { name: '2.01 Écoute' })
     await within(comp).findByText(/J’ai écouté Sam expliquer son idée/)
     expect(within(comp).getByRole('heading', { name: /23 décembre 2025 — présence établie/ })).toBeTruthy()
+    // Chaque information une fois (D-66) : le niveau de preuve dans les précautions seulement ; les
+    // chiffres de 2.01 (une seule journée) dans le tableau du profil seulement.
+    expect(within(dialog).getAllByText(/Niveau de preuve/)).toHaveLength(1)
+    expect(comp.textContent).not.toMatch(/confiance moyenne|preuve,|% du soleil|part \d/)
+    expect(comp.querySelector('.carto-verdict-facts')).toBeNull()
     // Pas de réponse de la personne sans son accord.
     expect(within(dialog).queryByText(/Réponse de la personne/)).toBeNull()
     // Tout est déplié.

@@ -388,7 +388,6 @@ export default function CartoApp({ route = {}, deps = {}, slots = {}, mode = 'si
         t={ui.t}
         legend={false}
         onSelect={select}
-        onOpenDay={openDay}
         onWhy={() => dispatch({ type: 'why', open: true })}
         zoom={ui.zoom}
         onZoom={(num) => {

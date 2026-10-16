@@ -84,7 +84,8 @@ export function cartoPole(poleNum, comps, { date }) {
       territoiresNonVisites: 'Rien à signaler.',
       emergencesPole: 'Une ligne émerge.',
       pistes: ['Continuer.'],
-      rapportCompletMarkdown: `## Portrait du pôle ${poleNum}\n\nTexte du rapport.`,
+      // Le rapport complet redit ses rubriques, comme d'ordinaire : il n'est pas gardé (D-66).
+      rapportCompletMarkdown: `## Portrait du pôle ${poleNum}\n\nPortrait du pôle ${poleNum} le ${date}.\n\n## Pistes\n\n- Continuer.`,
     },
   }
 }
@@ -99,7 +100,8 @@ export function kairosDoc(date) {
         ceQuiRelieLesPoles: 'Le soin du détail.',
         ceQuiEmergeEntreLesLignes: 'Une curiosité.',
         invitationsPourLaSuite: ['Raconter une erreur.'],
-        syntheseCompleteMarkdown: '## Portrait\n\nSynthèse.',
+        // La synthèse complète redit ses rubriques, comme d'ordinaire : elle n'est pas gardée (D-66).
+        syntheseCompleteMarkdown: `## Portrait\n\nPortrait du ${date}.\n\n## Forme du profil\n\nDeux massifs.`,
       },
     },
     emergencesCrossPoles: { competencesOrphelines: [], connexionsTransversales: [], noeudsConceptuels: [] },

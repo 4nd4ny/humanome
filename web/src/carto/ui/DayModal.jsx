@@ -178,6 +178,8 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                             · confiance {fmt(v.confidence)} · {v.proofs} preuve{v.proofs > 1 ? 's' : ''}, {v.hints} indice{v.hints > 1 ? 's' : ''}
                             {s ? ` · ${((s.theta / 360) * 100).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % du jour` : ''}
                             {v.status === 'needs_review' ? ' · renvoi' : ''}
+                            {/* Le groupe dit le statut ; une présence établie sans trace retenue le dit ici (D-66). */}
+                            {key === 'not_established' && v.status === 'established' ? ' · présence établie' : ''}
                           </span>
                         </>
                       )
@@ -185,7 +187,7 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
                         <li key={v.code} className={`carto-pole${v.code === focusCode ? ' is-focus' : ''}`} style={poleVars(refl.poleByNum.get(meta?.pole)?.color ?? '#78716c', palette)}>
                           {renderVerdict && variant ? (
                             <details className="carto-day-verdict" open={v.code === focusCode || undefined}>
-                              <summary>{line}</summary>
+                              <summary title={v.rawStatus ?? undefined}>{line}</summary>
                               {renderVerdict(v, variant)}
                             </details>
                           ) : (
