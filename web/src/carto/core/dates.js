@@ -120,11 +120,15 @@ export function formatLong(iso) {
   return `${d === 1 ? '1er' : d} ${MONTHS_FR[m - 1]} ${y}`
 }
 
-/** « sam. 27 déc. 2025 » (libellé compact des listes). */
-export function formatShort(iso) {
+/**
+ * « sam. 27 déc. 2025 » (libellé compact des listes), « jeu. 1er janv. 2026 » ;
+ * « sam. 27 déc. » avec `{ year: false }`, quand l'année se lit déjà ailleurs.
+ */
+export function formatShort(iso, { year = true } = {}) {
   if (!isIsoDate(iso)) return '—'
   const [y, m, d] = iso.split('-').map(Number)
-  return `${WEEKDAYS_FR[weekdayIndex(iso)].slice(0, 3)}. ${d} ${MONTHS_FR_SHORT[m - 1]} ${y}`
+  const day = `${WEEKDAYS_FR[weekdayIndex(iso)].slice(0, 3)}. ${d === 1 ? '1er' : d} ${MONTHS_FR_SHORT[m - 1]}`
+  return year ? `${day} ${y}` : day
 }
 
 /** « 27.12.2025 » */

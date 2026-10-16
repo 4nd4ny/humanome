@@ -99,6 +99,8 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
   const i = nav.indexOf(date)
   const prev = i > 0 ? nav[i - 1] : null
   const next = i >= 0 && i < nav.length - 1 ? nav[i + 1] : null
+  // L'année de la journée est dans le titre : une voisine ne la redit que si elle change (D-71).
+  const neighbour = (d) => formatShort(d, { year: d.slice(0, 4) !== date.slice(0, 4) })
 
   // Compétences ouvertes une fois dans cette journée : leur contenu reste rendu
   // (une autre journée repart de lignes fermées, sans rien lire).
@@ -131,10 +133,10 @@ export function DayModal({ date, dataset, refl, params, geometry, activeDates, f
           </div>
           <nav className="carto-modal-nav" aria-label="Journées actives">
             <button type="button" className="carto-btn carto-btn--quiet" disabled={!prev} onClick={() => prev && onNavigate(prev)}>
-              ← {prev ? formatShort(prev) : 'précédente'}
+              ← {prev ? neighbour(prev) : 'précédente'}
             </button>
             <button type="button" className="carto-btn carto-btn--quiet" disabled={!next} onClick={() => next && onNavigate(next)}>
-              {next ? formatShort(next) : 'suivante'} →
+              {next ? neighbour(next) : 'suivante'} →
             </button>
             <button type="button" className="carto-btn" onClick={onClose}>
               Retour

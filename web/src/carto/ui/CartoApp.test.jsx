@@ -7,12 +7,13 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import CartoApp from './CartoApp.jsx'
 import { Sun, sectorPath } from './Sun.jsx'
 import { WhyDialog } from './WhyDialog.jsx'
+import { DayModal } from './DayModal.jsx'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
 import { normalizeReferential } from '../core/referential.js'
 import { computeState, layoutSun } from '../core/state.js'
-import { ringGeometry, sunGeometry } from '../core/formulas.js'
+import { resolveParams, ringGeometry, sunGeometry } from '../core/formulas.js'
 import { parseHash, subscribe } from '../../router.js'
 import { isPristineDemo } from '../../lib/archive.js'
 import { buildArchive } from '../core/archive.js'
@@ -435,7 +436,7 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
     const daySun = dialog.querySelectorAll('[role="button"][aria-label^="2.01"], [role="button"][aria-label^="3.02"], [role="button"][aria-label^="1.01"]')
     expect([...daySun].map((el) => el.getAttribute('aria-label').slice(0, 4))).toEqual(['2.01', '3.02'])
     // Navigation jour suivant, puis retour.
-    fireEvent.click(within(dialog).getByRole('button', { name: /mer\. 24 déc\. 2025/ }))
+    fireEvent.click(within(dialog).getByRole('button', { name: /^mer\. 24 déc\. →$/ }))
     await screen.findByRole('dialog', { name: /24 décembre 2025/ })
     fireEvent.click(screen.getByRole('button', { name: 'Retour' }))
     await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull())
@@ -450,13 +451,28 @@ describe('P1 — soleil, heatmap, gestionnaire', () => {
     const row = () => [...screen.getByRole('dialog').querySelectorAll('details.carto-day-verdict')].find((d) => d.querySelector('summary').textContent.includes('3.02'))
     fireEvent.click(row().querySelector('summary'))
     await within(row()).findByText('Réflexions du jury')
-    fireEvent.click(within(dialog).getByRole('button', { name: /mer\. 24 déc\. 2025/ }))
+    fireEvent.click(within(dialog).getByRole('button', { name: /^mer\. 24 déc\. →$/ }))
     dialog = await screen.findByRole('dialog', { name: /24 décembre 2025/ })
     // Une autre journée repart de lignes fermées, sans rien lire.
     expect(row().open).toBe(false)
     expect(within(row()).queryByText('Réflexions du jury')).toBeNull()
     fireEvent.click(row().querySelector('summary'))
     await within(row()).findByText('Réflexions du jury')
+  })
+
+  it('modale du jour : la date d’une voisine ne redit l’année que si elle change (D-71)', () => {
+    const ds = indexDataset([
+      { date: '2025-12-31', verdicts: [{ code: '1.01', confidence: 0.8, roles: ['preuve'] }] },
+      { date: '2026-01-01', verdicts: [{ code: '1.01', confidence: 0.7, roles: ['preuve'] }] },
+      { date: '2026-01-02', verdicts: [{ code: '2.01', confidence: 0.6, roles: ['preuve'] }] },
+    ])
+    const params = resolveParams({})
+    const props = { dataset: ds, refl: normalizeReferential(miniReferential()), params, geometry: sunGeometry(params), activeDates: ds.days.map((d) => d.date), onClose: () => {}, onNavigate: () => {} }
+    const labels = () => within(screen.getByRole('navigation', { name: 'Journées actives' })).getAllByRole('button').map((b) => b.textContent)
+    const { rerender } = render(<DayModal {...props} date="2026-01-01" />)
+    expect(labels()).toEqual(['← mer. 31 déc. 2025', 'ven. 2 janv. →', 'Retour'])
+    rerender(<DayModal {...props} date="2025-12-31" />)
+    expect(labels()).toEqual(['← précédente', 'jeu. 1er janv. 2026 →', 'Retour'])
   })
 
   it('la tête de lecture et l’inspection sont distinctes : ouvrir un jour ne déplace pas t', async () => {
