@@ -8,7 +8,7 @@ import { DEMO_DIR, DEMO_INDEX, useCartoData } from './useCartoData.js'
 import { buildArchive } from '../core/archive.js'
 import { importFiles } from '../core/import.js'
 import { createDataset } from '../core/model.js'
-import { NEED_DAY, NEED_PORTFOLIO, needCode, needPole, splitArchive } from '../core/split.js'
+import { NEED_DAY, NEED_PORTFOLIO, codesOfDay, needCode, needPole, splitArchive } from '../core/split.js'
 import { createCartoStore, createMemoryAdapter } from '../core/store.js'
 import { LOU_PORTFOLIO, cartoPole, kairosDoc, louDays, miniReferential } from '../test/fixtures.js'
 
@@ -45,6 +45,7 @@ async function openDemo(fetchFn) {
   await waitFor(() => expect(hook.result.current.status).not.toBe('loading'))
   await act(() => hook.result.current.loadDemo())
   expect(hook.result.current.dataset.remote).toBeTruthy()
+  hook.store = store
   return hook
 }
 
@@ -81,6 +82,67 @@ describe('useCartoData — un jeu lu à la demande', () => {
     const detail = result.current.getDetail('2025-12-24', [NEED_DAY, NEED_PORTFOLIO])
     expect(detail).toBeDefined()
     expect(detail.portfolio).toBeNull()
+  })
+
+  it('intacte, elle reste lue à la demande ; la personne y met quelque chose à elle : elle devient d’ici, en arrière-plan', async () => {
+    const calls = []
+    const served = await siteFiles()
+    const { result, store } = await openDemo(siteFetch(served, { calls }))
+    const id = result.current.dataset.datasetId
+    await new Promise((r) => setTimeout(r, 50))
+    expect(result.current.dataset.remote).toBeTruthy()
+    act(() => result.current.update((ds) => ({ ...ds, markers: [{ id: 'mk-1', date: '2025-12-22', label: 'Mon repère' }] })))
+    await waitFor(() => expect(result.current.dataset.remote).toBeUndefined())
+    expect(result.current.dataset.markers).toHaveLength(1)
+    // Enregistré sans renvoi au site, son repère compris ; chaque fichier lu une fois.
+    await waitFor(async () => expect((await store.loadDataset(id)).markers).toHaveLength(1))
+    expect((await store.loadDataset(id)).remote).toBeUndefined()
+    const files = calls.filter((u) => u !== DEMO_INDEX)
+    expect(new Set(files).size).toBe(files.length)
+    expect(files).toHaveLength(served.size - 1)
+  })
+
+  it('une démonstration qui apporte ses passages sans date n’est pas copiée à l’ouverture : sa version et ce qu’elle apporte sont retenus avant qu’elle s’affiche', async () => {
+    const served = await siteFiles()
+    served.get(DEMO_INDEX).portfolio = { ...served.get(DEMO_INDEX).portfolio, undated: [{ text: 'Un passage sans date.', source: 'lou.md' }] }
+    const fetchFn = siteFetch(served)
+    const store = createCartoStore({ adapter: createMemoryAdapter(), fetchFn })
+    const copies = []
+    const materialize = store.materialize
+    store.materialize = (id) => {
+      copies.push(id)
+      return materialize(id)
+    }
+    // La liste des jeux tarde (base du navigateur) : la démonstration s'affiche avant qu'elle revienne.
+    const listDatasets = store.listDatasets
+    let slow = false
+    store.listDatasets = async () => {
+      if (slow) await new Promise((r) => setTimeout(r, 100))
+      return listDatasets()
+    }
+    const { result } = renderHook(() => useCartoData({ store, fetchFn, loadReferential: async () => ({ doc: miniReferential() }) }))
+    await waitFor(() => expect(result.current.status).not.toBe('loading'))
+    slow = true
+    const loading = result.current.loadDemo()
+    await waitFor(() => expect(result.current.dataset?.remote).toBeTruthy())
+    await act(() => loading)
+    await new Promise((r) => setTimeout(r, 50))
+    expect(result.current.dataset.portfolio.undated).toHaveLength(1)
+    expect(copies).toEqual([])
+    expect(result.current.dataset.remote).toBeTruthy()
+  })
+
+  it('devenue d’ici, ce qu’elle avait lu par morceaux se relit en entier : un pôle ouvert ensuite s’affiche', async () => {
+    const { result } = await openDemo(siteFetch(await siteFiles()))
+    // Comme le tableau de bord : la journée, son texte et chacune de ses compétences — pas ses pôles.
+    const codes = codesOfDay(result.current.dataset, '2025-12-22')
+    await act(() => result.current.ensureDetails(['2025-12-22'], [NEED_DAY, NEED_PORTFOLIO, ...codes.map(needCode)]))
+    act(() => result.current.update((ds) => ({ ...ds, markers: [{ id: 'mk-1', date: '2025-12-22', label: 'Mon repère' }] })))
+    await waitFor(() => expect(result.current.dataset.remote).toBeUndefined())
+    expect(result.current.getDetail('2025-12-22', needPole(1))).toBeUndefined()
+    await act(() => result.current.ensureDetails(['2025-12-22'], needPole(1)))
+    expect(result.current.getDetail('2025-12-22', needPole(1)).variants).toBeDefined()
+    expect(Object.keys(Object.values(result.current.getDetail('2025-12-22', needPole(1)).variants)[0].poleReports)).toContain('1')
   })
 
   it('un index qui renvoie hors du site n’est pas suivi : la démonstration se rabat sur les journées publiques', async () => {

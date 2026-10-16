@@ -190,6 +190,50 @@ describe('un jeu lu à la demande', () => {
     expect(d23.detail.portfolio.text).toMatch(/Sam/)
   })
 
+  it('devenu d’ici (la personne y a mis quelque chose) : tout est rangé, rien n’est plus demandé au site, et il ne lui revient jamais', async () => {
+    const archive = await louArchive()
+    const { index, files } = splitArchive(archive)
+    const { fetchFn, calls } = site(index, files)
+    const { store, dataset } = await openSplit(index, fetchFn)
+    // Ce que la personne y a mis : un passage rattaché, une journée à elle, une délibération à elle.
+    await store.commit({
+      dataset,
+      detailPatches: new Map([
+        ['2025-12-22', { variants: {}, portfolioAppend: { text: 'Un passage rattaché.' } }],
+        ['2026-01-10', { variants: {}, portfolio: { title: null, text: 'Ma journée à moi.', source: 'moi.md' } }],
+      ]),
+      runDetails: [{ key: 'LOU@2026-04-25|1.01', value: { code: '1.01', mine: true } }],
+    })
+    const stored = await store.materialize(dataset.datasetId)
+    expect(stored.remote).toBeUndefined()
+    const asked = calls.length
+    const exported = await store.exportAll(dataset.datasetId)
+    expect(calls.length).toBe(asked)
+    expect(exported.details['2025-12-22'].portfolio.text).toMatch(/deux sources contradictoires[\s\S]*Un passage rattaché\.$/)
+    expect(canonicalJson(exported.details['2025-12-23'])).toBe(canonicalJson(archive.details['2025-12-23']))
+    expect(exported.details['2026-01-10'].portfolio.text).toBe('Ma journée à moi.')
+    expect(exported.runDetails).toEqual({ 'LOU@2026-04-25|1.01': { code: '1.01', mine: true } })
+    expect(exported.dataset.readings).toEqual([READING])
+    // Un enregistrement préparé avant (l'index portait encore son renvoi) ne le rend pas au site.
+    expect(await store.saveExistingDataset(dataset)).toBe(true)
+    expect((await store.loadDataset(dataset.datasetId)).remote).toBeUndefined()
+    await store.commit({ dataset, detailPatches: new Map() })
+    expect((await store.loadDataset(dataset.datasetId)).remote).toBeUndefined()
+    // Déjà d'ici (copié, par exemple, dans un autre onglet) : l'index tel qu'il est.
+    expect((await store.materialize(dataset.datasetId)).remote).toBeUndefined()
+    expect(calls.length).toBe(asked)
+  })
+
+  it('un fichier qui manque pendant la copie : rien n’est écrit, le jeu reste lu à la demande', async () => {
+    const { index, files } = splitArchive(await louArchive())
+    const { fetchFn: serve } = site(index, files)
+    const fetchFn = async (url) => (url.endsWith('poles/3.json') ? { ok: false, status: 404, json: async () => null } : serve(url))
+    const { store, dataset } = await openSplit(index, fetchFn)
+    await expect(store.materialize(dataset.datasetId)).rejects.toThrow('poles/3.json introuvable sur le site')
+    expect((await store.loadDataset(dataset.datasetId)).remote).toBeTruthy()
+    expect(await store.loadDayDetails(dataset.datasetId, ['2025-12-22', '2025-12-23', '2025-12-24'])).toEqual(new Map())
+  })
+
   it('exporté : l’archive est complète, sans renvoi au site — celle d’origine', async () => {
     const archive = await louArchive()
     const { index, files } = splitArchive(archive)

@@ -5,11 +5,16 @@
 //
 // écrit <dossier>/index.json et <dossier>/<version>/… (jours, portfolio,
 // compétences, pôles, délibérations). À déposer sous data/demo/carto/ du site :
-// le dossier de version d'abord, l'index ensuite (il le désigne). Un ancien
-// dossier de version ne se retire JAMAIS : une démonstration qu'un visiteur a
-// enrichie (une réponse, un repère) n'est plus remplacée (D-57) et continue
-// d'y lire ses fichiers. Le site seulement : la démonstration contient un
-// journal réel, elle n'entre jamais dans le dépôt.
+// le dossier de version d'abord, l'index ensuite (il le désigne). L'ancien
+// dossier se garde tant que la place le permet, puis se retire : une
+// démonstration intacte se met à jour d'elle-même (D-57) ; une démonstration
+// qu'un visiteur a enrichie (une réponse, un repère) s'est copiée dans son
+// navigateur dès qu'il y a mis quelque chose (D-67 ; un échec se retente au
+// retour du réseau, puis à chaque ouverture). L'hébergement gratuit plafonne à
+// 100 Mo et une version en prend 20 : si l'ancien dossier doit partir avant le
+// dépôt du nouveau, qui ouvre la démonstration pendant ce temps la voit sans
+// détails jusqu'à sa mise à jour. Le site seulement : la démonstration contient
+// un journal réel, elle n'entre jamais dans le dépôt.
 
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'

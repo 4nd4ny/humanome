@@ -286,9 +286,13 @@ par `scripts/extract-referentiel.mjs`.
       relatif, sur le même site (ni adresse, ni chemin absolu, ni « .. ») :
       un autre renvoi n'est pas suivi. Exporté, un jeu lu à la demande rend
       l'archive complète, sans `remote`.
-    - **Un dossier de version ne se retire jamais du site** : une
-      démonstration qu'un visiteur a enrichie n'est plus remplacée (D-57) et
-      continue d'y lire ses fichiers.
+    - **Un jeu où la personne a mis quelque chose à elle devient d'ici** :
+      ses fichiers sont copiés dans son navigateur (`materialize`), `remote`
+      disparaît de son index et n'y revient jamais (un enregistrement qui le
+      porterait encore le perd) ; un échec se retente au retour du réseau,
+      puis à chaque ouverture. Un dossier de version peut donc se retirer du
+      site quand la place manque (100 Mo pour l'hébergement gratuit, 20 par
+      version) : une démonstration intacte se met à jour d'elle-même (D-57).
     - **Ce que la personne ajoute** à un tel jeu (un passage, une analyse)
       est rangé dans son navigateur et lu par-dessus les fichiers ; un texte
       de journée qu'elle n'a pas changé reste celui du site.

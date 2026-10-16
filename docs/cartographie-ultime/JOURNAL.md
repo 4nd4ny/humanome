@@ -2626,10 +2626,20 @@ D-68).
   détails — journées, verdicts résumés, référentiel, état, secondes
   lectures — et, sous `remote`, où lire chaque fichier, dans un **dossier de
   version** (`v-` suivi de l'empreinte du contenu). Une nouvelle
-  démonstration se dépose à côté de l'ancienne, l'index en dernier. **Un
-  ancien dossier de version ne se retire jamais** : une démonstration qu'un
-  visiteur a enrichie (une réponse, un repère) n'est plus remplacée (D-57)
-  et continue d'y lire ses fichiers.
+  démonstration se dépose, l'index en dernier ; l'ancien dossier peut alors
+  se retirer (voir plus bas).
+- **Ce que la personne y met à elle** (une réponse au jury, un repère, un
+  passage rattaché, une analyse importée) : la démonstration devient alors
+  un jeu d'ici — ses fichiers sont copiés dans son navigateur, en
+  arrière-plan (comme avant D-67, mais pour elle seule), et elle ne dépend
+  plus du site ; un échec (hors ligne, onglet fermé trop tôt) se retente au
+  retour du réseau, puis à chaque ouverture. Intacte, elle se met à jour
+  d'elle-même (D-57). D'où la règle de dépôt : **l'ancien dossier de
+  version se garde tant que la place le permet, puis se retire** —
+  l'hébergement gratuit plafonne à 100 Mo, une version en prend 20 (voir le
+  déploiement). S'il doit partir avant le dépôt du nouveau, qui ouvre la
+  démonstration pendant ce temps la voit sans détails jusqu'à sa mise à
+  jour.
 - **À l'ouverture**, la démonstration télécharge l'index seul (au lieu de
   l'archive entière : 17,2 Mo, 3,3 Mo compressés). Ensuite, sans sélection,
   le portrait du dernier jour (un fichier) ; une compétence, son fichier ;
@@ -2637,16 +2647,14 @@ D-68).
   journées seulement si le passage n'y est pas) ; une délibération, à
   l'ouverture de son repli ; dans la modale du jour, la compétence qu'on y
   déplie. Chaque fichier est lu une fois par visite ; rien n'est rangé dans
-  le navigateur que l'index (testé). Un fichier qui ne se lit pas ne prive
+  le navigateur que l'index, tant qu'elle reste intacte (testé). Un fichier qui ne se lit pas ne prive
   pas les autres de ce qu'ils portent : l'erreur le nomme (« introuvable
   sur le site », « site injoignable »), le reste s'affiche, et il est
   redemandé à la prochaine ouverture. Une lecture commencée avant une
   écriture (un import, un passage rattaché) n'est pas rangée : elle portait
   l'ancien index ; la journée se relit avec ce que l'écriture a apporté.
-- **Ce que la personne y ajoute** (un passage rattaché, une analyse
-  importée, ses réponses) est rangé dans son navigateur, par-dessus ;
-  exporter la démonstration rend une archive complète, sans renvoi au site
-  (testé : celle d'origine).
+- **Exporter** la démonstration rend une archive complète, sans renvoi au
+  site (testé : celle d'origine).
 - **Compatibilité** : une archive entière déposée (`archive.json`) se lit
   encore, d'un bloc, si l'index manque ; une démonstration intacte d'avant se
   met à jour d'elle-même, sur la date de l'index (D-57).
@@ -3211,8 +3219,8 @@ traités.
 
 | Fichier de test | Contenu | Tests |
 |---|---|---|
-| `core/split.test.js` | découpage : un index sans détails, des fichiers par journée, texte, compétence, pôle et délibération, sous un dossier de version (même contenu, même version) ; chaque information une fois (journées refaites = archive, taille totale ≈ celle des détails) ; besoins (« tout », journée, texte, compétence, pôle) ; ouvert depuis l'index : rien rangé ici, la seconde lecture dans l'index ; une compétence : son seul fichier, une fois ; un fichier qui ne se lit pas : erreur en français, le reste gardé, relu ensuite ; délibération lue sur le site ; ajouts rangés par-dessus (un passage rattaché part du texte du site) ; export = archive d'origine, seconde lecture comprise ; passages dans un autre ordre que les pôles : archive refaite identique ; un index importé d'un fichier refusé ; un jeu qui a déjà quelque chose (passage sans date) n'en prend rien, ni synthèses ni métriques | 14 (nouveau) |
-| `ui/useCartoData.test.jsx` | une lecture commencée avant un import n'est pas rangée, la journée se relit avec la nouvelle analyse ; une journée sans texte n'en attend pas ; un index qui renvoie hors du site n'est pas suivi ; un jeu d'ici : une journée lue une fois, quels que soient les besoins | 4 (nouveau) |
+| `core/split.test.js` | découpage : un index sans détails, des fichiers par journée, texte, compétence, pôle et délibération, sous un dossier de version (même contenu, même version) ; chaque information une fois (journées refaites = archive, taille totale ≈ celle des détails) ; besoins (« tout », journée, texte, compétence, pôle) ; ouvert depuis l'index : rien rangé ici, la seconde lecture dans l'index ; une compétence : son seul fichier, une fois ; un fichier qui ne se lit pas : erreur en français, le reste gardé, relu ensuite ; délibération lue sur le site ; ajouts rangés par-dessus (un passage rattaché part du texte du site) ; export = archive d'origine, seconde lecture comprise ; passages dans un autre ordre que les pôles : archive refaite identique ; un index importé d'un fichier refusé ; un jeu qui a déjà quelque chose (passage sans date) n'en prend rien, ni synthèses ni métriques ; devenu d'ici : tout rangé (un passage rattaché, une journée et une délibération à la personne gardés), plus rien demandé au site, et un enregistrement d'avant ne le rend pas au site ; un fichier qui manque pendant la copie : rien n'est écrit | 16 (nouveau) |
+| `ui/useCartoData.test.jsx` | une lecture commencée avant un import n'est pas rangée, la journée se relit avec la nouvelle analyse ; une journée sans texte n'en attend pas ; intacte, la démonstration reste lue à la demande, enrichie elle devient d'ici en arrière-plan (chaque fichier lu une fois) ; une démonstration qui apporte ses passages sans date n'est pas copiée à l'ouverture (sa version et ce qu'elle apporte retenus avant qu'elle s'affiche) ; devenue d'ici, ce qu'elle avait lu par morceaux se relit en entier ; un index qui renvoie hors du site n'est pas suivi ; un jeu d'ici : une journée lue une fois, quels que soient les besoins | 7 (nouveau) |
 | `ui/CartoApp.test.jsx` | démonstration lue à la demande : l'index d'abord, puis le portrait du dernier jour, une compétence, un pôle — un fichier chacun, rien rangé ici ; une archive entière (`archive.json`) se lit encore, d'un bloc ; D-57 sur la date de l'index (repli sur l'archive) ; modale du jour : une compétence dépliée un jour est refermée le jour suivant, et se déplie avec son contenu | +3, adaptés |
 | `core/import.test.js` | seconde lecture : jointe sans changer le soleil (journées, variantes et état identiques, rien à arbitrer), résumé par compétence, délibérations et rapport de pôle gardés, compte rendu sans « répartis », texte du journal conservé ; même lot que des analyses par journée ; lot avec le portfolio (son texte, pas la feuille, sans « texte remplacé ») ; pas de journée ajoutée, traces sans date non dites « non placées » ; doublon ; run déjà réparti sur les journées ; un jeu qui n'a que des runs AuroraCore : le nouveau se répartit, comme avant ; seul, un run fait le soleil | +7, renforcé |
 | `core/archive.test.js` | aller-retour d'une archive avec seconde lecture et délibérations ; réimportée, rien n'est doublé | renforcé |
@@ -3224,7 +3232,7 @@ traités.
 Vérifié aussi sur la démonstration elle-même (hors du dépôt) : ouverte comme
 sur le site puis exportée, l'archive est celle d'origine (journées, détails,
 délibérations, seconde lecture), en 258 requêtes, une par fichier.
-Suites complètes : site **2 463 verts** (243 fichiers) ; moteur **1 073
+Suites complètes : site **2 468 verts** (243 fichiers) ; moteur **1 073
 verts** (17 sautés) ; API : validation du master (PHPUnit, Docker php:8.2),
 verte ; e2e Chromium : soleil (souris et tactile), copie autonome, dialogue,
 partage (deux scénarios, contre l'API locale), verts. Relecture indépendante
@@ -3245,7 +3253,16 @@ mineurs : un index importé d'un fichier, ou un renvoi vers un autre site,
 texte attendait son texte ; « non placées » dit des traces d'une seconde
 lecture, et des journées ajoutées par ses feuilles ; un fichier absent
 privait les autres journées des leurs, et l'erreur était en anglais ;
-l'ordre d'origine des passages perdu au découpage.
+l'ordre d'origine des passages perdu au découpage. Seconde relecture (un
+agent distinct), sur la copie d'une démonstration enrichie, ajoutée quand
+l'hébergement a montré qu'il ne peut pas garder toutes les versions : deux
+bloquants — la copie pouvait partir à l'ouverture d'une démonstration qui
+apporte ses passages sans date (ce qu'elle apporte n'était retenu qu'après
+son affichage) ; un échec de copie ne se retentait pas, si bien que la
+règle de retrait des dossiers n'était pas tenue — ; un à corriger : après
+la copie, une journée lue par morceaux passait pour complète (un pôle ouvert
+ensuite restait « Chargement… ») ; un mineur : un second onglet restait sur
+le site. Tous traités, chacun avec son test.
 
 ---
 

@@ -181,11 +181,13 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     démonstration se lit à la demande : un index (38 Ko compressés) puis le seul fichier de ce
     qu'on ouvre, rangé par compétence, pôle, journée, texte ou délibération (`core/split.js`,
     `web/scripts/carto-demo-split.mjs` ; schéma : `remote`, `docs/contrats.md` décision 11) ;
-    un dossier de version ne se retire jamais du site. La seconde lecture : un run AuroraCore
-    joint à un jeu qui a ses analyses par journée ne touche plus aux journées ; sa délibération
-    se lit avec chaque compétence, la décision du président d'abord (`ui/SecondReading.jsx` ;
-    schéma : `readings`, décision 12). Relu par un agent distinct (quatorze points, traités).
-    Suites : front **2 463 verts**, moteur 1 073, e2e Chromium de la cartographie verts.
+    une démonstration où la personne met quelque chose à elle se copie dans son navigateur, et
+    l'ancien dossier de version peut se retirer du site (hébergement gratuit : 100 Mo). La
+    seconde lecture : un run AuroraCore joint à un jeu qui a ses analyses par journée ne touche
+    plus aux journées ; sa délibération se lit avec chaque compétence, la décision du président
+    d'abord (`ui/SecondReading.jsx` ; schéma : `readings`, décision 12). Relu deux fois par un
+    agent distinct (quatorze, puis quatre points, traités). Suites : front **2 468 verts**,
+    moteur 1 073, e2e Chromium de la cartographie verts.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

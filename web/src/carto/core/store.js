@@ -16,7 +16,8 @@
 // son index : ses détails sont des fichiers statiques du site (`remote`,
 // core/split.js), lus quand on ouvre ce qu'ils contiennent et gardés le temps
 // de la session. Ce que la personne y ajoute (un passage rattaché, une
-// analyse importée) est rangé ici, par-dessus.
+// analyse importée) est rangé ici, par-dessus ; dès qu'elle y a mis quelque
+// chose à elle, le jeu devient d'ici, complet (`materialize`).
 
 import { NEED_ALL, assembleDay, expandNeed, isLocalBase, partPath, withOverlay } from './split.js'
 
@@ -142,6 +143,17 @@ export function applyDetailPatch(existing, date, patchValue) {
 const variantIdsOf = (dataset, date) => (dataset.days.find((d) => d.date === date)?.variants ?? []).map((v) => v.id)
 
 /**
+ * Un jeu devenu d'ici (`materialize`) ne redevient jamais lu à la demande :
+ * un enregistrement qui porte encore l'ancien `remote` (préparé avant) le perd.
+ */
+function keepLocal(stored, incoming) {
+  if (!incoming?.remote || !stored || stored.remote) return incoming
+  const next = { ...incoming }
+  delete next.remote
+  return next
+}
+
+/**
  * @param {{adapter?: ReturnType<typeof createMemoryAdapter>, fetchFn?: typeof fetch}} [opts]
  *   fetchFn : lecture des fichiers d'un jeu lu à la demande (défaut : fetch)
  */
@@ -262,8 +274,9 @@ export function createCartoStore({ adapter, fetchFn } = {}) {
      */
     async saveExistingDataset(dataset) {
       return a.transaction(['datasets'], 'readwrite', async (t) => {
-        if (!(await t.get('datasets', dataset.datasetId))) return false
-        await t.put('datasets', { key: dataset.datasetId, dataset })
+        const rec = await t.get('datasets', dataset.datasetId)
+        if (!rec) return false
+        await t.put('datasets', { key: dataset.datasetId, dataset: keepLocal(rec.dataset, dataset) })
         return true
       })
     },
@@ -344,7 +357,48 @@ export function createCartoStore({ adapter, fetchFn } = {}) {
           await t.put('details', { key: detailKey(id, date), datasetId: id, date, detail: applyDetailPatch(base, date, p) })
         }
         for (const rd of runDetails) await t.put('runs', { key: runKey(id, rd.key), datasetId: id, value: rd.value })
-        await t.put('datasets', { key: id, dataset })
+        const stored = await t.get('datasets', id)
+        await t.put('datasets', { key: id, dataset: keepLocal(stored?.dataset, dataset) })
+      })
+    },
+
+    /**
+     * Un jeu lu à la demande devient un jeu d'ici : tous ses fichiers lus sur
+     * le site et rangés ici avec ce que la personne y a mis — elle ne dépend
+     * plus du dossier de sa version, qui peut se retirer du site (D-67). Sans
+     * effet sur un jeu qui n'est plus lu à la demande, ou qui l'est depuis un
+     * autre dossier (remplacé entre-temps).
+     * @returns {Promise<object | null>} l'index rangé, sans `remote` (déjà d'ici :
+     *   tel qu'il est, par exemple copié dans un autre onglet), ou null (absent,
+     *   remplacé entre-temps)
+     */
+    async materialize(datasetId) {
+      const first = await a.transaction(['datasets'], 'readonly', (t) => t.get('datasets', datasetId))
+      const remote = first?.dataset?.remote
+      if (!remote) return first?.dataset ?? null
+      const paths = new Set([remote.days, remote.portfolio, remote.codes, remote.poles, remote.runs].flatMap((m) => Object.values(m ?? {})))
+      await Promise.all([...paths].map((p) => remoteFile(first.dataset, p)))
+      const runs = new Map()
+      for (const [key, path] of Object.entries(remote.runs ?? {})) runs.set(key, (await remoteFile(first.dataset, path))?.value ?? null)
+      return a.transaction(STORES, 'readwrite', async (t) => {
+        const rec = await t.get('datasets', datasetId)
+        const ds = rec?.dataset
+        if (!ds) return null
+        if (!ds.remote) return ds
+        if (ds.remote.base !== remote.base) return null
+        const mine = new Map((await t.range('details', rangeOf(datasetId))).map((r) => [r.date, r.detail]))
+        const dates = new Set([...ds.days.map((d) => d.date), ...Object.keys(remote.days ?? {}), ...Object.keys(remote.portfolio ?? {}), ...mine.keys()])
+        for (const date of [...dates].sort()) {
+          const record = assembled(ds, date, mine.get(date))
+          if (record.portfolio || Object.keys(record.variants).length > 0) await t.put('details', { key: detailKey(datasetId, date), datasetId, date, detail: record })
+        }
+        for (const [key, value] of runs) {
+          if (!(await t.get('runs', runKey(datasetId, key)))) await t.put('runs', { key: runKey(datasetId, key), datasetId, value })
+        }
+        const next = { ...ds }
+        delete next.remote
+        await t.put('datasets', { key: datasetId, dataset: next })
+        return next
       })
     },
 

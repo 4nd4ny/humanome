@@ -257,6 +257,40 @@ export function useCartoData(deps = {}) {
 
   useEffect(() => () => clearTimeout(saveTimer.current), [])
 
+  // Une démonstration lue à la demande où la personne a mis quelque chose à
+  // elle (une réponse, un repère, un import…) devient un jeu d'ici : ses
+  // fichiers sont copiés dans ce navigateur, en arrière-plan, et elle ne
+  // dépend plus du dossier de sa version sur le site, qui peut alors s'en
+  // retirer (D-67). Un échec (hors ligne) se retente à la prochaine ouverture.
+  const materializing = useRef(new Set())
+  const [online, setOnline] = useState(0)
+  useEffect(() => {
+    const again = () => setOnline((n) => n + 1)
+    window.addEventListener?.('online', again)
+    return () => window.removeEventListener?.('online', again)
+  }, [])
+  useEffect(() => {
+    if (!dataset?.remote || materializing.current.has(dataset.datasetId)) return
+    if (isPristineDemo(dataset, readDemoSources()[dataset.datasetId]?.baseline ?? null)) return
+    const id = dataset.datasetId
+    materializing.current.add(id)
+    store
+      .materialize(id)
+      .then((stored) => {
+        if (!stored) return
+        // L'index en mémoire ne renvoie plus au site, sans perdre ce qui n'est pas encore enregistré.
+        setDataset((prev) => {
+          if (prev?.datasetId !== id || !prev.remote) return prev
+          const next = { ...prev }
+          delete next.remote
+          latest.current = next
+          return next
+        })
+      })
+      // Retentée au prochain changement, ou dès le retour du réseau.
+      .catch(() => materializing.current.delete(id))
+  }, [dataset, store, online])
+
   // ---- Détails par journée (chargement paresseux) -----------------------------
   const datasetId = dataset?.datasetId ?? null
 
@@ -269,7 +303,9 @@ export function useCartoData(deps = {}) {
     if (!entry) return false
     if (entry.parts.has(NEED_ALL)) return true
     const ds = latest.current
-    return expandNeed(ds, date, need).every((k) => entry.parts.has(k) || (ds?.remote && partPath(ds.remote, date, k) === null))
+    // Un jeu d'ici (une démonstration devenue d'ici, avec ce qu'elle avait lu) se relit en entier.
+    if (!ds?.remote) return false
+    return expandNeed(ds, date, need).every((k) => entry.parts.has(k) || partPath(ds.remote, date, k) === null)
   }, [])
 
   /**
@@ -360,7 +396,7 @@ export function useCartoData(deps = {}) {
    * @returns {Promise<{report: object, dataset: object}>}
    */
   const runImport = useCallback(
-    async (files, { title, newDataset = false, origin = null } = {}) => {
+    async (files, { title, newDataset = false, origin = null, demoVersion } = {}) => {
       await flush()
       let base = newDataset || !latest.current ? null : latest.current
       if (!base) {
@@ -372,6 +408,9 @@ export function useCartoData(deps = {}) {
       }
       const res = await importFiles(files, base, { allowRemote: origin === 'demo' })
       await store.commit(res)
+      // La démonstration retient sa version et ce qu'elle apporte d'elle-même
+      // AVANT de s'afficher : intacte, elle n'est jamais copiée ici (D-67).
+      if (origin === 'demo' && demoVersion !== undefined) writeDemoSource(res.dataset.datasetId, { version: demoVersion, baseline: demoBaseline(res.dataset) })
       // Les détails touchés sont relus depuis la base au prochain besoin.
       const id = res.dataset.datasetId
       generation.current++
@@ -465,8 +504,7 @@ export function useCartoData(deps = {}) {
     try {
       const archive = await fetchDemoArchive(fetchFn)
       if (archive.status === 'ok') {
-        const { report, dataset: demo } = await runImport([{ path: archive.path, text: archive.text }], { title: 'Démonstration', newDataset: true, origin: 'demo' })
-        writeDemoSource(demo.datasetId, { version: archive.version, baseline: demoBaseline(demo) })
+        const { report } = await runImport([{ path: archive.path, text: archive.text }], { title: 'Démonstration', newDataset: true, origin: 'demo', demoVersion: archive.version })
         return report
       }
       const res = await fetchFn('data/demo/jours/index.json')
