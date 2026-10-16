@@ -138,7 +138,10 @@ describe('délibération AuroraCore', () => {
     expect(decision.closest('details')).toBeNull()
     expect(screen.getByText('5 voix pour la présence, 1 non établie, 0 sans éclairage · sans consensus')).toBeTruthy()
     expect(screen.getByText('Ils convergent.').closest('details').querySelector('summary').textContent).toBe('Raisonnement du président')
-    expect(screen.getByText('La voix du linguiste.').closest('details.carto-jury-section').querySelector('summary').textContent).toBe('Éclairages des voix')
+    // Les membres du jury, chacun sur sa ligne, sans repli de plus (D-69).
+    const members = screen.getByRole('region', { name: 'Réflexions des membres du jury' })
+    expect(members.closest('details')).toBeNull()
+    expect(screen.getByText('La voix du linguiste.').closest('details').querySelector('summary').textContent).toBe('Linguiste — présence · confiance 0,7')
   })
   it('la décision ne redit pas le motif et la prescription déjà lus au-dessus', () => {
     render(<RunJury run={run} shown={[detail.motif, detail.prescription]} />)

@@ -193,6 +193,9 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     sur le Mac (`backup-manuel/2026-10-16/`) puis effacées ; 56,1 Mo visibles ensuite. Question 41
     décidée (11 h 27) : on laisse en l'état — humanome.xyz est le site de développement et de
     démonstration ; la production viendra plus tard sur un autre serveur.
+  - **Remarque du 2026-10-16, 18 h 35** (D-69) : la date de la seconde lecture se dit comme celle
+    de l'analyse (faite après le journal), une fois ; « Réflexions des membres du jury » : une ligne
+    par membre, un niveau de moins à déplier. Suites : front 2 468 verts, cartographie 527.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

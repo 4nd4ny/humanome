@@ -5,9 +5,10 @@
 // Repliée, sa ligne dit le verdict de ce jury. Dépliée : la décision du
 // président d'abord, sans rien déplier ; puis les traces que ce jury a
 // retenues (une trace déjà listée plus haut, même jour et même passage, ne
-// redit pas son extrait) ; puis ce qui a conduit à la décision (voix,
-// raisonnement du président, débat, pièces). La délibération n'est lue qu'à
-// l'ouverture (D-67).
+// redit pas son extrait) ; puis les réflexions des membres du jury, une ligne
+// par membre ; puis le raisonnement du président, le débat, les pièces. La
+// délibération n'est lue qu'à l'ouverture (D-67). Sa date est celle de
+// l'analyse, faite après le journal : dite une fois, comme telle (D-69).
 
 import { useEffect, useState } from 'react'
 import { runsInDays, verdictStatusLabel } from '../core/model.js'
@@ -32,9 +33,18 @@ export function readingsOf(dataset, code) {
 
 const capitalized = (text) => text.charAt(0).toUpperCase() + text.slice(1)
 
-/** Nom d'une seconde lecture : « jury AuroraCore du 19 avril 2026 ». */
+/** Nom d'une seconde lecture : « jury AuroraCore ». */
 export function readingName(reading) {
-  return `jury ${SOURCES[reading.source] ?? reading.source ?? 'externe'}${reading.analysedAt ? ` du ${formatLong(reading.analysedAt)}` : ''}`
+  return `jury ${SOURCES[reading.source] ?? reading.source ?? 'externe'}`
+}
+
+/**
+ * Quand l'analyse a été faite — après le journal, sur lui tout entier : « analyse
+ * faite le 19 avril 2026 » (et non « du 19 avril », qui se lirait comme une
+ * journée du journal), ou null.
+ */
+export function analysisDate(reading) {
+  return reading?.analysedAt ? `analyse faite le ${formatLong(reading.analysedAt)}` : null
 }
 
 /**
@@ -53,7 +63,7 @@ export function matchTraces(readingTraces, mainTraces) {
   })
 }
 
-function SecondReading({ reading, code, mainTraces, getRunDetail, ensureRunDetail, onOpenPassage }) {
+function SecondReading({ reading, code, mainTraces, dated, getRunDetail, ensureRunDetail, onOpenPassage }) {
   const key = `${reading.id}|${code}`
   const s = reading.codes[code]
   const [open, setOpen] = useState(false)
@@ -65,8 +75,9 @@ function SecondReading({ reading, code, mainTraces, getRunDetail, ensureRunDetai
   return (
     <details className="carto-second-reading" onToggle={(e) => setOpen(e.currentTarget.open)}>
       <summary title={s.rawStatus ?? undefined}>
-        {capitalized(readingName(reading))} : {verdictStatusLabel({ status: s.status })} · confiance {fmt(s.confidence)} · {s.proofs} preuve{s.proofs > 1 ? 's' : ''}, {s.hints} indice
-        {s.hints > 1 ? 's' : ''}
+        {capitalized(readingName(reading))}
+        {dated && analysisDate(reading) ? ` (${analysisDate(reading)})` : ''} : {verdictStatusLabel({ status: s.status })} · confiance {fmt(s.confidence)} · {s.proofs} preuve
+        {s.proofs > 1 ? 's' : ''}, {s.hints} indice{s.hints > 1 ? 's' : ''}
       </summary>
       {!open ? null : run === undefined ? (
         <p className="carto-muted">Chargement de la délibération…</p>
@@ -94,7 +105,7 @@ function SecondReading({ reading, code, mainTraces, getRunDetail, ensureRunDetai
                       <button
                         type="button"
                         className="carto-btn carto-btn--quiet carto-btn--small"
-                        onClick={() => onOpenPassage({ date: t.date, extract: t.extract, label: `Trace retenue par le ${readingName(reading)}` })}
+                        onClick={() => onOpenPassage({ date: t.date, extract: t.extract, label: `Trace retenue par le ${readingName(reading)} (seconde lecture)` })}
                       >
                         Ouvrir dans le portfolio
                       </button>
@@ -122,12 +133,27 @@ export function SecondReadings({ dataset, code, traces = [], getDetail, getRunDe
   const readings = readingsOf(dataset, code)
   if (readings.length === 0) return null
   const mainTraces = traces.map((t) => ({ date: t.date, extract: verdictDetailOf(getDetail, t.date, t.variantId, code)?.traces?.[t.id]?.extract ?? '' }))
+  // Une lecture : sa date se dit une fois, ici ; plusieurs : chacune sur sa ligne.
+  const single = readings.length === 1 ? analysisDate(readings[0]) : null
   return (
     <section className="carto-second-readings" aria-label="Seconde lecture">
       <h3>Seconde lecture</h3>
-      <p className="carto-small carto-muted">Une autre analyse des mêmes écrits, faite sur tout le journal d’un coup : elle se lit ici et ne change pas le soleil.</p>
+      <p className="carto-small carto-muted">
+        {single
+          ? `Une autre analyse des mêmes écrits, faite sur tout le journal d’un coup (${single}) : elle se lit ici et ne change pas le soleil.`
+          : 'D’autres analyses des mêmes écrits, faites chacune sur tout le journal d’un coup : elles se lisent ici et ne changent pas le soleil.'}
+      </p>
       {readings.map((r) => (
-        <SecondReading key={r.id} reading={r} code={code} mainTraces={mainTraces} getRunDetail={getRunDetail} ensureRunDetail={ensureRunDetail} onOpenPassage={onOpenPassage} />
+        <SecondReading
+          key={r.id}
+          reading={r}
+          code={code}
+          mainTraces={mainTraces}
+          dated={readings.length > 1}
+          getRunDetail={getRunDetail}
+          ensureRunDetail={ensureRunDetail}
+          onOpenPassage={onOpenPassage}
+        />
       ))}
     </section>
   )
@@ -146,7 +172,9 @@ export function PoleReading({ reading, num, getRunDetail, ensureRunDetail, rende
   const run = open ? getRunDetail(key) : undefined
   return (
     <details className="carto-run-jury" onToggle={(e) => setOpen(e.currentTarget.open)}>
-      <summary>Rapport de pôle — seconde lecture, {readingName(reading)} (porte sur tout le journal)</summary>
+      <summary>
+        Rapport de pôle — seconde lecture, {readingName(reading)} (porte sur tout le journal{analysisDate(reading) ? ` ; ${analysisDate(reading)}` : ''})
+      </summary>
       {!open ? null : run === undefined ? <p className="carto-muted">Chargement…</p> : run ? render(run) : <p className="carto-muted">Rapport absent de l’import.</p>}
     </details>
   )

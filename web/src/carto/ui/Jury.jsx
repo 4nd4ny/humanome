@@ -2,9 +2,9 @@
 //
 // Délibération en sections dépliables à DEUX niveaux au plus :
 //   1. AuroraCore : la décision du président d'abord, sans rien déplier
-//      (verdict argumenté, prescription, voix), puis les éclairages des voix
-//      et le raisonnement du président qui y ont conduit (délibérations
-//      complètes au second niveau) ;
+//      (verdict argumenté, prescription, voix), puis les réflexions des
+//      membres du jury, une ligne par membre (D-69), et le raisonnement du
+//      président qui y ont conduit (délibérations complètes au second niveau) ;
 //   2. examen adversarial du Pédagogue, ses trois temps à déplier
 //      (présomption d'absence, présomption de sycophantie, conclusion) ;
 //   3. pièces du Greffier, chacune avec son sort dans le verdict ; l'extrait
@@ -251,9 +251,10 @@ export function PresidentDecision({ run, shown = [] }) {
 
 /**
  * Délibération d'un run AuroraCore (porte sur tout le journal). La décision du
- * président se lit d'abord — verdict argumenté, prescription, voix ; ce qui y
- * a conduit se déplie au-dessous : les éclairages des voix, le raisonnement
- * du président, le débat, les pièces.
+ * président se lit d'abord — verdict argumenté, prescription, voix ; puis les
+ * réflexions des membres du jury, une ligne par membre à déplier (D-69) ; ce
+ * qui a conduit à la décision se déplie au-dessous : le raisonnement du
+ * président, le débat, les pièces.
  * @param {{run: object, shown?: Array<string | null | undefined>, decision?: boolean}} props
  *   shown : textes déjà lus au-dessus (le motif et la prescription d'une
  *   journée sont ceux du président) — la décision ne les redit pas (D-66) ;
@@ -271,8 +272,9 @@ export function RunJury({ run, shown = [], decision = true }) {
     <>
       {decision ? <PresidentDecision run={run} shown={shown} /> : null}
       {voices.length > 0 ? (
-        <details className="carto-jury-section">
-          <summary>Éclairages des voix</summary>
+        // Les membres du jury, chacun sur sa ligne, sans repli de plus (D-69).
+        <section className="carto-jury-section" aria-label="Réflexions des membres du jury">
+          <h4>Réflexions des membres du jury</h4>
           {voices.map((k) => (
             <details key={k} className="carto-jury-voice">
               <summary>
@@ -287,7 +289,7 @@ export function RunJury({ run, shown = [], decision = true }) {
               ) : null}
             </details>
           ))}
-        </details>
+        </section>
       ) : null}
       {reasoning.length > 0 || delib.president?.markdown ? (
         <details className="carto-jury-section">

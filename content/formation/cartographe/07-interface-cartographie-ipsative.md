@@ -78,15 +78,17 @@ confiance moyenne, ses preuves et ses indices, puis, **journée par journée**,
 le verdict (statut, confiance, motif, prescription), l'examen adversarial du
 Pédagogue et les pièces du Greffier, chacune avec son sort (retenue comme
 preuve, comme indice, ou non retenue) — pour une analyse AuroraCore, la
-décision du président d'abord, puis les éclairages des six voix, son
-raisonnement et la délibération complète. Chaque information s'y lit une
-fois : ce qu'une ligne dit déjà ne se redit pas au-dessous. Sous les
-verdicts par journée, **« Seconde lecture »** donne le verdict d'un jury
-AuroraCore sur tout le journal, quand il est joint au jeu ; dépliée, la
-décision du président d'abord, les traces que ce jury a retenues (un passage
-déjà listé plus haut n'y est pas redit), puis ce qui a conduit à la
-décision ; dans le panneau d'un pôle, son rapport. Elle ne change pas le
-soleil. La touche
+décision du président d'abord, puis les réflexions des membres du jury (une
+ligne par membre : sa position, sa synthèse, sa délibération complète), le
+raisonnement du président et sa délibération complète. Chaque information
+s'y lit une fois : ce qu'une ligne dit déjà ne se redit pas au-dessous. Sous
+les verdicts par journée, **« Seconde lecture »** donne le verdict d'un jury
+AuroraCore sur tout le journal, quand il est joint au jeu (sa date est celle
+de l'analyse, faite après le journal) ; dépliée, la décision du président
+d'abord, les traces que ce jury a retenues (un passage déjà listé plus haut
+n'y est pas redit), les réflexions des membres du jury, puis ce qui a
+conduit à la décision ; dans le panneau d'un pôle, son rapport. Elle ne
+change pas le soleil. La touche
 **w** (« Pourquoi cette surface ? ») détaille les points de chaque trace et
 les formules. Le panneau **« Réglages »** (menu « Panneaux » de la
 cartographie) règle le poids d'un indice, le départ de la hauteur (0,25 par

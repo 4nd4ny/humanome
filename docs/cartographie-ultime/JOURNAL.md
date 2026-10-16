@@ -73,6 +73,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Seconde lecture | le jury AuroraCore joint à chaque compétence, la décision du président d'abord, sans effet sur le soleil ; rapport de pôle (D-68) | ✅ | ✅ voir §3 | ✅ | `b640358` |
 | Démonstration enrichie | dès qu'on y met quelque chose à soi, elle se copie dans le navigateur ; l'ancien dossier de version peut se retirer du site (D-67) | ✅ | ✅ voir §3 + seconde relecture indépendante | ✅ | `6c50346` |
 | Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
+| Seconde lecture : date et jury | la date dite comme celle de l'analyse, une fois ; « Réflexions des membres du jury » : une ligne par membre, un niveau de moins (D-69) | ✅ | ✅ voir §3 | ✅ | COMMIT_D69 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2784,6 +2785,36 @@ production du référentiel gardées) :
   - seules erreurs : le favicon absent (404) et `/api/auth/me` sans compte
     (401) ; `api/health` → `v1.1.0-106-gc6a0231`.
 
+### D-69 — La seconde lecture : sa date dite comme celle de l'analyse ; les membres du jury à un niveau de moins **[décidé]**
+
+Christian (2026-10-16, 18 h 35) : « Tu as écrit "sous « Verdicts par
+journée » : « Seconde lecture ». Pour 1.01, la ligne dit « Jury AuroraCore du
+19 avril 2026 :..." or la cartographie s'arrête fin mars. Comment puis-je voir
+les réflexions des membres du jury ? »
+
+- **La date** : le 19 avril 2026 est le jour où l'analyse AuroraCore a été
+  faite, sur tout le journal (22 décembre – 29 mars) ; « Jury AuroraCore du
+  19 avril 2026 » se lisait comme une journée du journal. Elle se dit
+  désormais une fois, comme telle, dans la phrase de la section : « Une autre
+  analyse des mêmes écrits, faite sur tout le journal d'un coup (analyse
+  faite le 19 avril 2026) : elle se lit ici et ne change pas le soleil. » La
+  ligne dit le jury et son verdict : « Jury AuroraCore : présence établie ·
+  confiance 0,85 · 3 preuves, 4 indices ». Plusieurs lectures sur une
+  compétence : chacune sa date, sur sa ligne. Le rapport de pôle et le
+  lecteur de portfolio disent « seconde lecture » de même.
+- **Les réflexions des membres du jury** étaient à quatre clics (la ligne de
+  la seconde lecture, « Éclairages des voix », un membre, « Délibération
+  complète »). Le repli « Éclairages des voix » disparaît : sous le titre
+  « Réflexions des membres du jury » — les mots de Christian —, une ligne
+  par membre (sa position, sa confiance), qui se déplie sur sa synthèse et
+  sa délibération complète. De même pour la délibération d'un run réparti
+  sur les journées et dans la modale du jour (même composant).
+- **Une démonstration enrichie avant D-67 n'a pas de seconde lecture** :
+  elle ne se remplace pas d'elle-même (D-57). Pour la voir : une fenêtre
+  privée, ou supprimer cette démonstration (après l'avoir exportée) puis
+  « Explorer la démonstration ».
+- Docs : formation du cartographe (chapitre 7) et guide du visiteur.
+
 ---
 
 ## 3. État des tests
@@ -3313,6 +3344,16 @@ la copie, une journée lue par morceaux passait pour complète (un pôle ouvert
 ensuite restait « Chargement… ») ; un mineur : un second onglet restait sur
 le site. Tous traités, chacun avec son test.
 
+### La seconde lecture, sa date et les membres du jury (D-69)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `ui/SecondReading.test.jsx` | le nom de la lecture dit le jury ; sa date est celle de l'analyse (« analyse faite le … ») ; dite une fois, dans la phrase de la section ; la ligne : jury et verdict ; plusieurs lectures : chacune sa date, sur sa ligne ; les réflexions des membres du jury sous leur titre, une ligne par membre, dans la seconde lecture dépliée et sans autre repli ; rapport de pôle | +1, adaptés |
+| `ui/Redundancy.test.jsx` | délibération AuroraCore : les membres du jury sous leur titre, hors de tout repli, chacun sur sa ligne | adapté |
+
+Suites : site **2 468 verts** (243 fichiers), puis la cartographie rejouée
+avec le test ajouté : **527 verts** (42 fichiers).
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -3776,3 +3817,8 @@ Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
 - **2026-10-16** — Réponse de Christian de 11 h 27 (question 41) : on
   laisse le serveur en l'état ; humanome.xyz est le site de développement et
   de démonstration, la production viendra plus tard sur un autre serveur.
+- **2026-10-16** — Remarque de Christian de 18 h 35 (D-69) : la date de la
+  seconde lecture (19 avril) se lisait comme une journée du journal, qui
+  s'arrête fin mars ; elle se dit désormais comme celle de l'analyse, une
+  fois. Les réflexions des membres du jury passent de quatre clics à trois :
+  sous leur titre, une ligne par membre.
