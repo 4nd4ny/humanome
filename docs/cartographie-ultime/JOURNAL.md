@@ -73,7 +73,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Seconde lecture | le jury AuroraCore joint à chaque compétence, la décision du président d'abord, sans effet sur le soleil ; rapport de pôle (D-68) | ✅ | ✅ voir §3 | ✅ | `b640358` |
 | Démonstration enrichie | dès qu'on y met quelque chose à soi, elle se copie dans le navigateur ; l'ancien dossier de version peut se retirer du site (D-67) | ✅ | ✅ voir §3 + seconde relecture indépendante | ✅ | `6c50346` |
 | Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
-| Seconde lecture : date et jury | la date dite comme celle de l'analyse, une fois ; « Réflexions des membres du jury » : une ligne par membre, un niveau de moins (D-69) | ✅ | ✅ voir §3 | ✅ | COMMIT_D69 |
+| Seconde lecture : date et jury | la date dite comme celle de l'analyse, une fois ; « Réflexions des membres du jury » : une ligne par membre, un niveau de moins (D-69) | ✅ | ✅ voir §3 | ✅ | `22a44a5` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
