@@ -9,6 +9,19 @@ import { formatLong, formatShort } from '../core/dates.js'
 import { Markdown } from './Jury.jsx'
 
 const txt = (v) => (v === null || v === undefined ? '' : String(v))
+const squash = (v) => txt(v).replace(/\s+/g, ' ').trim()
+
+/**
+ * Passages saillants qui ne sont pas déjà cités dans les territoires denses du
+ * même rapport : un extrait ne se lit qu'une fois (journal D-66).
+ */
+export function otherPassages(passages, denseTerritories) {
+  const cited = (denseTerritories ?? []).map((d) => squash(d?.extraitVerbatim)).filter(Boolean)
+  return passages.filter((p) => {
+    const e = squash(p?.extract)
+    return !e || !cited.some((c) => c === e || c.includes(e) || e.includes(c))
+  })
+}
 
 function PassageItem({ extract, context, date, label, onOpenPassage }) {
   return (
@@ -57,7 +70,11 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
       {withReports.length > 0 ? <h3>Rapports de pôle par journée</h3> : null}
       {withReports.map(({ date, vd }, i) => {
         const report = vd?.poleReports?.[num] ?? null
-        const passages = (vd?.passages ?? []).filter((p) => Number(p.pole) === num)
+        const passages = otherPassages(
+          (vd?.passages ?? []).filter((p) => Number(p.pole) === num),
+          report?.denseTerritories,
+        )
+        const cited = report?.denseTerritories?.some((d) => d?.extraitVerbatim)
         return (
           <details key={date} className="carto-pole-report" open={i === 0 || undefined}>
             <summary>{formatShort(date)}</summary>
@@ -100,7 +117,9 @@ export function PoleReports({ num, dates, dataset, getDetail, getRunDetail, onOp
             ) : null}
             {passages.length > 0 ? (
               <details>
-                <summary>Passages saillants ({passages.length})</summary>
+                <summary>
+                  {cited ? 'Autres passages saillants' : 'Passages saillants'} ({passages.length})
+                </summary>
                 <ul className="carto-plain-list">
                   {passages.map((p) => (
                     <PassageItem

@@ -11,6 +11,7 @@
 
 import { KIND, SCHEMA_VERSION } from './model.js'
 import { isIsoDate } from './dates.js'
+import { withoutRestatements } from './importers/aurora-day.js'
 
 /** Nom de fichier conseillé : cartographie-<type>-<date>.json */
 export function archiveFileName(type, now = new Date().toISOString(), ext = 'json') {
@@ -81,7 +82,8 @@ export function importArchive(doc, { fileName = 'archive.json' } = {}) {
       variants.push({
         date: day.date,
         summary,
-        detail: detail?.variants?.[summary.id] ?? { verdicts: {}, passages: [], poleReports: {}, audits: {}, kairos: null, kairosRaw: null, emergences: null },
+        // Une archive construite avant D-66 garde les textes complets qui redisent leurs rubriques : allégée ici.
+        detail: withoutRestatements(detail?.variants?.[summary.id] ?? { verdicts: {}, passages: [], poleReports: {}, audits: {}, kairos: null, kairosRaw: null, emergences: null }),
       })
     }
     if (detail?.portfolio && typeof detail.portfolio.text === 'string') {

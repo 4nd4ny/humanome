@@ -54,13 +54,13 @@ export function SunLegend({ poleRing = true, origin = DEFAULT_PARAMS.heightOrigi
 /**
  * @param {{
  *   refl: object, dataset: object, state: object, selection: object | null, t: string | null,
- *   onSelect: (t: object | null) => void, onOpenDay: (d: string, code?: string) => void, onWhy: () => void,
+ *   onSelect: (t: object | null) => void, onWhy: () => void,
  *   zoom?: number | null, onZoom?: (num: number | null) => void, // pôle ouvert sur 360° (journal D-45)
  *   legend?: boolean, // légende de l'encodage sous le résumé (dans la cartographie, elle a sa tuile : D-53)
  *   children?: React.ReactNode,
  * }} props children : sections supplémentaires (traces, jury… en P2)
  */
-export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOpenDay, onWhy, zoom = null, onZoom, legend = true, children }) {
+export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onWhy, zoom = null, onZoom, legend = true, children }) {
   const palette = usePalette()
   if (selection?.type === 'competency') {
     const meta = refl.compByCode.get(selection.code)
@@ -107,18 +107,7 @@ export function DetailPanel({ refl, dataset, state, selection, t, onSelect, onOp
             <button type="button" className="carto-btn carto-btn--quiet" onClick={onWhy}>
               Pourquoi cette surface ? <kbd>w</kbd>
             </button>
-            <section className="carto-detail-days" aria-label="Journées où la compétence est observée">
-              <h3>Journées observées</h3>
-              <ul className="carto-chips">
-                {c.days.map((d) => (
-                  <li key={d}>
-                    <button type="button" className="carto-chip-btn" onClick={() => onOpenDay(d, meta.code)} title={formatLong(d)}>
-                      {formatShort(d)}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
+            {/* Les journées se lisent une fois, avec leur verdict, sous les traces (D-66). */}
           </>
         ) : (
           <p className="carto-muted">Pas de trace de cette compétence dans la sélection actuelle{t ? ` jusqu’au ${formatLong(t)}` : ''}.</p>

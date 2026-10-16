@@ -176,7 +176,9 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
               <p className="carto-muted">Chargement…</p>
             ) : (
               <>
-                <VerdictFacts verdict={summary} detail={vd} />
+                {/* La ligne de la journée dit déjà statut, confiance et preuves ; un verdict
+                    AuroraCore porte le motif du président, dit une fois plus haut (D-66). */}
+                <VerdictFacts verdict={summary} detail={vd} summary={false} texts={!vd?.runRef} />
                 <p className="carto-small carto-muted">
                   Analyse : {SOURCE_LABELS[variant?.provenance?.source] ?? variant?.provenance?.source ?? 'source inconnue'}
                   {variant?.provenance?.run ? ` — ${variant.provenance.run}` : ''} ·{' '}
@@ -188,7 +190,7 @@ export function ObservationDays({ code, comp, dataset, t, getDetail, getRunDetai
                 {vd && !vd.runRef ? (
                   <details className="carto-jury-wrap">
                     <summary>Réflexions du jury</summary>
-                    <JuryReflections verdict={summary} detail={vd} date={v.date} onOpenPassage={onOpenPassage} showVerdict={false} />
+                    <JuryReflections detail={vd} date={v.date} onOpenPassage={onOpenPassage} />
                   </details>
                 ) : null}
               </>
@@ -218,7 +220,8 @@ export function DayVerdictDetail({ v, variant, date, dataset, getDetail, getRunD
   return (
     <div className="carto-day-verdict-body">
       <TraceList traces={list} code={v.code} getDetail={getDetail} onOpenTrace={(i) => onOpenTrace(v.code, list, i)} />
-      <VerdictFacts verdict={v} detail={vd} />
+      {/* La ligne de la compétence dit déjà confiance, preuves et statut (D-66). */}
+      <VerdictFacts verdict={v} detail={vd} summary={false} />
       <ReviewControls dataset={dataset} obsKey={observationKey(date, variant.id, v.code)} update={update} />
       <details
         className="carto-jury-wrap"
@@ -228,7 +231,7 @@ export function DayVerdictDetail({ v, variant, date, dataset, getDetail, getRunD
       >
         <summary>Réflexions du jury</summary>
         {vd?.runRef && run === undefined ? <p className="carto-muted">Chargement de la délibération…</p> : null}
-        <JuryReflections verdict={v} detail={vd} run={run ?? null} date={date} onOpenPassage={onOpenPassage} showVerdict={false} />
+        <JuryReflections detail={vd} run={run ?? null} date={date} onOpenPassage={onOpenPassage} />
       </details>
     </div>
   )

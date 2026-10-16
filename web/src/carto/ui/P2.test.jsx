@@ -221,6 +221,12 @@ describe('P2 — panneau de détail, jury et droit de réponse', () => {
     expect(within(obs).getByText(/Conclusion adversariale/)).toBeTruthy()
     expect(within(obs).getByText('Pièce 1')).toBeTruthy()
     expect(within(obs).getByText(/exploratoire/)).toBeTruthy()
+    // Chaque information une fois (D-66) : la ligne de la journée dit statut, confiance et preuves ;
+    // la journée dépliée ne les redit pas, et les dates ne sont plus listées à part.
+    const day = obs.querySelector('details.carto-observation[open]')
+    expect(day.querySelector('summary').textContent).toMatch(/présence établie · confiance 0,8 · 1 preuve, 0 indice/)
+    expect([...day.querySelectorAll('.carto-verdict-facts dt')].map((dt) => dt.textContent)).toEqual(['Motif', 'Prescription'])
+    expect(within(detail()).queryByText('Journées observées')).toBeNull()
   })
 
   it('droit de réponse : Confirmer est enregistré dans ce navigateur, sans effet sur le soleil', async () => {
@@ -273,6 +279,9 @@ describe('P2 — panneau de détail, jury et droit de réponse', () => {
     expect(within(k).getByRole('heading', { name: 'Portrait du 24 décembre 2025' })).toBeTruthy()
     expect(within(k).getByText('Portrait du 2025-12-24.')).toBeTruthy()
     expect(within(k).getByText('Deux massifs.')).toBeTruthy()
+    // La synthèse complète ne faisait que redire ces rubriques : elle n'est plus là (D-66).
+    expect(within(k).queryByText('Synthèse complète')).toBeNull()
+    expect(within(k).queryByText('Synthèse.')).toBeNull()
   })
 
   it('synthèse évolutive : visible pour son ensemble source, masquée avec un message sinon, rappelable', async () => {
@@ -356,8 +365,10 @@ describe('P2 — AuroraCore : délibération du jury et surlignage dans la feuil
     const obs = await within(detail()).findByRole('region', { name: 'Verdicts par journée' })
     await within(obs).findByText(/Délibération du jury — LOU@2026-04-25/)
     await within(obs).findByText(/Linguiste — présence établie · confiance 0,8/)
-    // Verdict argumenté du président : motif de chaque journée ET section du président.
-    expect(within(obs).getAllByText('Le jury converge.').length).toBeGreaterThanOrEqual(2)
+    // Verdict argumenté et prescription du président : une seule fois, dans sa section ;
+    // la journée, qui porte le même verdict, ne les redit pas (D-66).
+    expect(within(obs).getAllByText('Le jury converge.')).toHaveLength(1)
+    expect(within(obs).getAllByText('Raconter une erreur.')).toHaveLength(1)
     expect(within(obs).getByText('Tous voient la vérification.')).toBeTruthy()
     expect(within(obs).getByText('Le vocabulaire est juste.')).toBeTruthy()
     expect(within(obs).getByText('Extrait versé par le Greffier.')).toBeTruthy()

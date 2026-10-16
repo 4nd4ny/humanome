@@ -188,14 +188,16 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
     if (Number.isInteger(poleNum)) {
       if (doc.rapport && typeof doc.rapport === 'object') {
         const r = doc.rapport
-        poleReports[poleNum] = {
+        const report = {
           portrait: nullableStr(r.portraitPole) ?? nullableStr(r.portrait),
           denseTerritories: Array.isArray(r.territoiresDenses) ? r.territoiresDenses : [],
           unvisited: nullableStr(r.territoiresNonVisites),
           emergences: nullableStr(r.emergencesPole),
           leads: Array.isArray(r.pistes) ? r.pistes : [],
-          markdown: nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown),
         }
+        // Le rapport complet rédigé reprend ses rubriques mot pour mot : gardé
+        // seulement quand il est seul (journal D-66).
+        poleReports[poleNum] = { ...report, markdown: hasPoleReportFields(report) ? null : (nullableStr(r.rapportCompletMarkdown) ?? nullableStr(r.rapport_complet_markdown)) }
       }
       if (doc.auditPole) audits[poleNum] = doc.auditPole
     }
@@ -216,14 +218,16 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
   if (kairos && typeof kairos === 'object') {
     const ap = kairos?.kairos?.apprenant ?? kairos?.apprenant ?? null
     if (ap && typeof ap === 'object') {
-      kairosDetail = {
+      const fields = {
         portrait: nullableStr(ap.portrait),
         profileShape: nullableStr(ap.formeProfil),
         linksAcrossPoles: nullableStr(ap.ceQuiRelieLesPoles),
         betweenTheLines: nullableStr(ap.ceQuiEmergeEntreLesLignes),
         invitations: Array.isArray(ap.invitationsPourLaSuite) ? ap.invitationsPourLaSuite : [],
-        markdown: nullableStr(ap.syntheseCompleteMarkdown),
       }
+      // La synthèse complète reprend ces rubriques mot pour mot : gardée
+      // seulement quand elle est seule (journal D-66).
+      kairosDetail = { ...fields, markdown: hasKairosFields(fields) ? null : nullableStr(ap.syntheseCompleteMarkdown) }
     } else {
       add('arbitrate', 'kairos-alternatif', 'Kairos de schéma inconnu : conservé tel quel, non affiché')
     }
@@ -257,6 +261,37 @@ export function adaptAuroraDay({ date, poles, kairos = null, provenance, now = n
     emergences,
   }
   return { summary, detail, report, codes: [...seenCodes] }
+}
+
+/** Un portrait kairos a-t-il ses rubriques (portrait, forme du profil…) ? */
+export function hasKairosFields(k) {
+  return Boolean(k?.portrait || k?.profileShape || k?.linksAcrossPoles || k?.betweenTheLines || k?.invitations?.length)
+}
+
+/** Un rapport de pôle a-t-il ses rubriques ? */
+export function hasPoleReportFields(r) {
+  return Boolean(r?.portrait || r?.denseTerritories?.length || r?.unvisited || r?.emergences || r?.leads?.length)
+}
+
+/**
+ * Détail d'une variante sans les textes complets qui ne font que redire leurs
+ * rubriques (journal D-66) : appliqué aussi aux archives et aux démonstrations
+ * construites avant, pour que ce qui est gardé dans ce navigateur soit allégé.
+ * @param {object} detail
+ */
+export function withoutRestatements(detail) {
+  if (!detail || typeof detail !== 'object') return detail
+  const kairos = detail.kairos && detail.kairos.markdown && hasKairosFields(detail.kairos) ? { ...detail.kairos, markdown: null } : detail.kairos
+  let poleReports = detail.poleReports
+  if (poleReports && typeof poleReports === 'object') {
+    for (const [num, r] of Object.entries(poleReports)) {
+      if (r?.markdown && hasPoleReportFields(r)) {
+        if (poleReports === detail.poleReports) poleReports = { ...poleReports }
+        poleReports[num] = { ...r, markdown: null }
+      }
+    }
+  }
+  return kairos === detail.kairos && poleReports === detail.poleReports ? detail : { ...detail, kairos, poleReports }
 }
 
 /** Le document ressemble-t-il à un carto_Pn.json ? */

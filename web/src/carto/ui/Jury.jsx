@@ -3,10 +3,11 @@
 // Délibération en sections dépliables à DEUX niveaux :
 //   1. six éclairages et président (AuroraCore : voix par voix, délibération
 //      complète au second niveau) ;
-//   2. verdict (statut, confiance, preuves, indices, motif, prescription) ;
-//   3. examen adversarial du Pédagogue (présomption d'absence, présomption de
+//   2. examen adversarial du Pédagogue (présomption d'absence, présomption de
 //      sycophantie, conclusion adversariale) ;
-//   4. pièces du Greffier (verbatim).
+//   3. pièces du Greffier (verbatim).
+// Le verdict (statut, confiance, preuves, indices, motif, prescription) se lit
+// au-dessus, une seule fois (journal D-66).
 // Sources : carto-phone d'AuroraCore, DayView, CompetenceDiff.JuryDetail.
 // Tout texte importé est rendu comme DONNÉE (texte React) ; le Markdown passe
 // par renderMarkdown (DOMPurify) — jamais de HTML brut.
@@ -33,34 +34,51 @@ export function attackLabel(letter) {
   return def ? `(${letter}) ${def.nom}` : `(${txt(letter)})`
 }
 
-/** Verdict d'une journée (niveau 1, section 2). */
-export function VerdictFacts({ verdict, detail }) {
+/**
+ * Verdict d'une journée. Chaque information une fois (journal D-66) : là où la
+ * ligne de la journée dit déjà le statut, la confiance et les preuves, seuls
+ * le motif et la prescription restent (`summary` faux) ; le statut seul peut
+ * aussi être dit au-dessus (`status` faux) ; un verdict AuroraCore, réparti
+ * sur les journées de ses traces, porte le motif et la prescription du
+ * président, dits une fois dans la délibération (`texts` faux).
+ * @param {{verdict: object, detail: object | null, summary?: boolean, status?: boolean, texts?: boolean}} props
+ */
+export function VerdictFacts({ verdict, detail, summary = true, status = true, texts = true }) {
+  const motif = texts ? detail?.motif : null
+  const prescription = texts ? detail?.prescription : null
+  if (!summary && !motif && !prescription) return null
   return (
     <dl className="carto-verdict-facts">
-      <div>
-        <dt>Statut</dt>
-        <dd title={verdict.rawStatus ?? undefined}>{verdictStatusLabel(verdict)}</dd>
-      </div>
-      <div>
-        <dt>Confiance</dt>
-        <dd>{fmt(verdict.confidence)}</dd>
-      </div>
-      <div>
-        <dt>Preuves · indices</dt>
-        <dd>
-          {verdict.proofs} · {verdict.hints}
-        </dd>
-      </div>
-      {detail?.motif ? (
-        <div className="carto-verdict-wide">
-          <dt>Motif</dt>
-          <dd>{txt(detail.motif)}</dd>
+      {summary && status ? (
+        <div>
+          <dt>Statut</dt>
+          <dd title={verdict.rawStatus ?? undefined}>{verdictStatusLabel(verdict)}</dd>
         </div>
       ) : null}
-      {detail?.prescription ? (
+      {summary ? (
+        <>
+          <div>
+            <dt>Confiance</dt>
+            <dd>{fmt(verdict.confidence)}</dd>
+          </div>
+          <div>
+            <dt>Preuves · indices</dt>
+            <dd>
+              {verdict.proofs} · {verdict.hints}
+            </dd>
+          </div>
+        </>
+      ) : null}
+      {motif ? (
+        <div className="carto-verdict-wide">
+          <dt>Motif</dt>
+          <dd>{txt(motif)}</dd>
+        </div>
+      ) : null}
+      {prescription ? (
         <div className="carto-verdict-wide">
           <dt>Prescription</dt>
-          <dd>{txt(detail.prescription)}</dd>
+          <dd>{txt(prescription)}</dd>
         </div>
       ) : null}
     </dl>
@@ -136,8 +154,14 @@ export function DayPieces({ pieces, date, onOpenPassage }) {
 
 export const JUROR_ORDER = ['linguiste', 'historien', 'anthropologue', 'philosophe', 'pedagogue', 'sociologue', 'creatif']
 
-/** Délibération d'un run AuroraCore (porte sur tout le journal). */
-export function RunJury({ run }) {
+/**
+ * Délibération d'un run AuroraCore (porte sur tout le journal).
+ * @param {{run: object, shown?: Array<string | null | undefined>}} props
+ *   shown : textes déjà lus au-dessus (le motif et la prescription d'une
+ *   journée sont ceux du président) — le président ne les redit pas (D-66)
+ */
+export function RunJury({ run, shown = [] }) {
+  const said = new Set(shown.filter(Boolean).map((t) => String(t).trim()))
   const jury = run?.jury && typeof run.jury === 'object' ? run.jury : {}
   const president = run?.president && typeof run.president === 'object' ? run.president : null
   const delib = run?.deliberation ?? {}
@@ -180,7 +204,7 @@ export function RunJury({ run }) {
                   ['verdict_argumente', 'Verdict argumenté'],
                   ['prescription', 'Prescription'],
                 ].map(([key, label]) =>
-                  president[key] ? (
+                  president[key] && !said.has(String(president[key]).trim()) ? (
                     <div key={key}>
                       <dt>{label}</dt>
                       <dd>{txt(president[key])}</dd>
@@ -233,23 +257,17 @@ export function RunJury({ run }) {
 }
 
 /**
- * Réflexions du jury pour UNE observation (journée × compétence).
- * @param {{verdict: object, detail: object | null, run?: object | null, date: string,
- *   onOpenPassage?: (p: {date: string, extract: string, label?: string}) => void, showVerdict?: boolean}} props
- *   showVerdict : false quand le verdict est déjà affiché juste au-dessus
+ * Réflexions du jury pour UNE observation (journée × compétence). Le verdict
+ * se lit au-dessus, une fois (D-66).
+ * @param {{detail: object | null, run?: object | null, date: string,
+ *   onOpenPassage?: (p: {date: string, extract: string, label?: string}) => void}} props
  */
-export function JuryReflections({ verdict, detail, run = null, date, onOpenPassage, showVerdict = true }) {
+export function JuryReflections({ detail, run = null, date, onOpenPassage }) {
   const pedagogue = detail?.pedagogue ?? null
   const pieces = detail?.pieces ?? []
   return (
     <div className="carto-jury">
-      {run ? <RunJury run={run} /> : null}
-      {showVerdict ? (
-        <details className="carto-jury-section">
-          <summary>Verdict</summary>
-          <VerdictFacts verdict={verdict} detail={detail} />
-        </details>
-      ) : null}
+      {run ? <RunJury run={run} shown={[detail?.motif, detail?.prescription]} /> : null}
       {pedagogue ? (
         <details className="carto-jury-section">
           <summary>Examen adversarial du Pédagogue</summary>

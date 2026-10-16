@@ -6,6 +6,7 @@ import { narrativesFor } from '../core/narratives.js'
 import { formatLong, formatShort } from '../core/dates.js'
 import { renderNarrativeHtml } from '../../lib/narrative.js'
 import { Markdown } from './Jury.jsx'
+import { hasKairosFields } from '../core/importers/aurora-day.js'
 
 /**
  * HTML narratif assaini (DOMPurify) ; les anciens liens de journée
@@ -60,9 +61,23 @@ export function EvolutiveNarratives({ dataset, kind, scope, shownDates, title, o
   )
 }
 
-/** Portrait kairos d'une journée (analyse de ce seul jour). */
+/**
+ * Portrait kairos d'une journée (analyse de ce seul jour). Chaque rubrique
+ * une fois (journal D-66) : la « synthèse complète » du kairos ne fait que
+ * reprendre mot pour mot ses rubriques ; elle ne s'affiche que seule, quand
+ * l'analyse n'a pas de rubriques.
+ */
 export function DayKairos({ kairos, date }) {
   if (!kairos) return null
+  if (!hasKairosFields(kairos)) {
+    return kairos.markdown ? (
+      <section className="carto-kairos" aria-label="Portrait kairos">
+        <h3>Portrait du {formatLong(date)}</h3>
+        <p className="carto-small carto-muted">Kairos de cette journée seule : il ne résume pas les autres journées.</p>
+        <Markdown text={kairos.markdown} />
+      </section>
+    ) : null
+  }
   return (
     <section className="carto-kairos" aria-label="Portrait kairos">
       <h3>Portrait du {formatLong(date)}</h3>
@@ -74,7 +89,7 @@ export function DayKairos({ kairos, date }) {
           <p>{String(kairos.profileShape)}</p>
         </>
       ) : null}
-      {kairos.linksAcrossPoles || kairos.betweenTheLines || kairos.invitations?.length || kairos.markdown ? (
+      {kairos.linksAcrossPoles || kairos.betweenTheLines || kairos.invitations?.length ? (
         <details>
           <summary>Suite du portrait</summary>
           {kairos.linksAcrossPoles ? (
@@ -98,12 +113,6 @@ export function DayKairos({ kairos, date }) {
                 ))}
               </ul>
             </>
-          ) : null}
-          {kairos.markdown ? (
-            <details>
-              <summary>Synthèse complète</summary>
-              <Markdown text={kairos.markdown} />
-            </details>
           ) : null}
         </details>
       ) : null}

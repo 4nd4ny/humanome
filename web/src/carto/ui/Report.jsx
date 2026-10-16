@@ -302,7 +302,9 @@ function Competency({ code, dataset, refl, state, options, getDetail, getRunDeta
               <p className="carto-muted">Chargement…</p>
             ) : (
               <>
-                <VerdictFacts verdict={o.verdict} detail={vd} />
+                {/* Le statut est dans le titre ; le motif d'un verdict AuroraCore est celui du
+                    président, imprimé une fois avec la délibération (D-66). */}
+                <VerdictFacts verdict={o.verdict} detail={vd} status={false} texts={!vd?.runRef} />
                 {vd?.pedagogue ? <PedagogueReview pedagogue={vd.pedagogue} /> : null}
               </>
             )}

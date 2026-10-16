@@ -44,7 +44,9 @@ describe('journées Aurora v3 (carto_P1..P7 + kairos)', () => {
     // motif/raison et prescription/prescriptionMinimale normalisés (§4.2)
     expect(detail.verdicts['1.01']).toMatchObject({ motif: 'Vérification explicite.', prescription: 'Raconter un doute.' })
     expect(detail.kairos.portrait).toBe('Portrait du 2025-12-22.')
-    expect(detail.poleReports[1].markdown).toMatch(/Portrait du pôle 1/)
+    // Le rapport complet rédigé reprend ses rubriques mot pour mot : il n'est pas gardé (D-66).
+    expect(detail.poleReports[1].portrait).toMatch(/Portrait du pôle 1/)
+    expect(detail.poleReports[1].markdown).toBeNull()
   })
 
   it('ZIP journaliers imbriqués dans un lot (run/AAAA-MM-JJ.zip)', async () => {
