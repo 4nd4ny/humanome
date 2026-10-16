@@ -16,7 +16,7 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
   - Exigences : `04_specifications.md` du dossier de travail « Cartographie » de Christian (hors
-    dépôt). Journal d'avancement, décisions D-1 → D-68, état des tests, les 40 questions et
+    dépôt). Journal d'avancement, décisions D-1 → D-68, état des tests, les 41 questions et
     les réponses de Christian : `docs/cartographie-ultime/JOURNAL.md`.
   - Module autonome `web/src/carto/` (cœur sans DOM + interface React) sur `#/cartographie` ;
     l'ancienne vue V3 est retirée, `#/merge` et `#/cartographie-v3` y renvoient (D-38). P0 noyau (master v4,
@@ -187,7 +187,11 @@ dans `main` (entrée du 2026-10-14 ci-dessous).
     plus aux journées ; sa délibération se lit avec chaque compétence, la décision du président
     d'abord (`ui/SecondReading.jsx` ; schéma : `readings`, décision 12). Relu deux fois par un
     agent distinct (quatorze, puis quatre points, traités). Suites : front **2 468 verts**,
-    moteur 1 073, e2e Chromium de la cartographie verts.
+    moteur 1 073, e2e Chromium de la cartographie verts. Déployé et vérifié en ligne (bureau,
+    téléphone). L'hébergement gratuit (100 Mo) était plein : avec l'accord de Christian,
+    l'ancienne `archive.json` (17,2 Mo) et la release API `v1.1.0-4` (3,7 Mo) sont sauvegardées
+    sur le Mac (`backup-manuel/2026-10-16/`) puis effacées ; 56,1 Mo visibles ensuite. Question 41
+    (que retirer d'autre : release précédente, base pays, journées publiques) en attente.
 
 - 2026-09-29 — **Correction des tests en échec (demande utilisateur, PR 4nd4ny/humanome#4).**
   - **CI « Tests moteur » verte** : le job `engine` de `.github/workflows/publiable.yml`

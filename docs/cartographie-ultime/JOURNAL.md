@@ -71,6 +71,8 @@ autorisation, puis fusionné dans `main` (D-46).
 | Déploiement | D-66 : front et archive de la démonstration allégée (18,4 → 17,2 Mo) déployés, vérifiés en ligne au bureau et au téléphone ; une démonstration d'avant mise à jour d'elle-même en 3,3 s | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-66 |
 | Démonstration lue à la demande | un index (38 Ko compressés), puis le seul fichier de ce qu'on ouvre : une compétence, un pôle, la journée, son texte, une délibération (D-67) | ✅ | ✅ voir §3 + relecture indépendante + démonstration refaite à l'identique | ✅ | `b640358` |
 | Seconde lecture | le jury AuroraCore joint à chaque compétence, la décision du président d'abord, sans effet sur le soleil ; rapport de pôle (D-68) | ✅ | ✅ voir §3 | ✅ | `b640358` |
+| Démonstration enrichie | dès qu'on y met quelque chose à soi, elle se copie dans le navigateur ; l'ancien dossier de version peut se retirer du site (D-67) | ✅ | ✅ voir §3 + seconde relecture indépendante | ✅ | `6c50346` |
+| Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2735,6 +2737,53 @@ sans effet sur le soleil.
   `ui/PoleReports.jsx`. Docs : formation du cartographe (chapitre 7) et
   guide du visiteur.
 
+**Déploiement de D-67 et D-68** (depuis la VM du Mac, les copies de
+production du référentiel gardées) :
+
+- **La démonstration** : l'analyse AuroraCore du journal 300 copiée du Mac,
+  sans les feuilles et les copies que l'interface n'emploie pas (421
+  fichiers sur 954), jointe à l'archive du site par l'import même de
+  l'interface — journées et variantes identiques, archive conforme au
+  schéma —, puis découpée (258 fichiers, 19,8 Mo ; l'index, 0,7 Mo) ;
+  ouverte comme sur le site puis exportée, c'est l'archive d'origine. Le
+  site seulement ; copies de travail effacées.
+- **Place sur le serveur** : l'hébergement est l'offre gratuite de 100 Mo ;
+  le dépôt s'est arrêté à 191 fichiers sur 258 (« Disk quota exceeded »), à
+  75,8 Mo visibles par FTP. Christian (10 h 32) : « Nous manquons de place
+  sur le serveur. Que contient le répertoire app ? Peut-on le supprimer ?
+  Que pourrais-tu enlever d'autre qui n'est pas utile ? », puis (10 h 34) :
+  « Je te propose de faire une sauvegarde locale sur le MacBook de tout ce
+  que tu supprimes avant de l'effacer sur le serveur. » `app/` est l'API,
+  gardée (question 41). **Sauvegardés sur le Mac**
+  (`humanome.xyz/backup-manuel/2026-10-16/`, tailles et empreinte
+  vérifiées), **puis effacés** : l'ancienne démonstration d'un bloc
+  `archive.json` (17,2 Mo) et la plus ancienne version de l'API, v1.1.0-4
+  (3,7 Mo, 667 fichiers, sauvegardée en archive). Après le dépôt : 56,1 Mo
+  visibles.
+- **Dépôt** : le dossier de version, l'index (sous un nom provisoire, puis
+  renommé), le front (trois fichiers, l'ancien paquet retiré) ; puis le
+  front une seconde fois, avec la copie d'une démonstration enrichie.
+- **Vérifié en ligne** (Chromium) :
+  - au bureau, navigateur neuf : la démonstration s'ouvre en 3,0 s sur
+    l'index et le portrait du dernier jour ; 1.01 lit son seul fichier ;
+    « Seconde lecture » : « Jury AuroraCore du 19 avril 2026 : présence
+    établie · confiance 0,85 · 3 preuves, 4 indices » ; dépliée, la
+    délibération (un fichier) : la décision du président d'abord, sept
+    traces dont trois déjà listées plus haut, puis les replis ; une trace
+    ouverte dans le portfolio, surlignée (pas entière dans sa journée : les
+    textes des autres journées sont lus) ; le pôle TETE : son fichier, et le
+    rapport de la seconde lecture à l'ouverture ;
+  - une démonstration chargée avant le dépôt (l'archive entière) s'est mise
+    à jour d'elle-même en 3,1 s : lue à la demande, seconde lecture
+    visible, plus aucun détail rangé dans le navigateur ;
+  - une réponse au jury : la démonstration se copie dans le navigateur en
+    3,0 s (259 fichiers, chacun une fois) ; ensuite, plus rien n'est
+    demandé au site ;
+  - au téléphone (Pixel 7) : aucun défilement horizontal, seconde lecture
+    dépliée ;
+  - seules erreurs : le favicon absent (404) et `/api/auth/me` sans compte
+    (401) ; `api/health` → `v1.1.0-106-gc6a0231`.
+
 ---
 
 ## 3. État des tests
@@ -3504,6 +3553,27 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
     une compétence ; la démonstration s'ouvre sur un index de 38 Ko
     compressés. Le (2) et le (3) ne sont pas faits.
 
+Question posée avec le déploiement de D-67 et D-68 (2026-10-16) :
+
+41. « Nous manquons de place sur le serveur. Que contient le répertoire
+    app ? Peut-on le supprimer ? Que pourrais-tu enlever d'autre qui n'est
+    pas utile ? » (10 h 32) → **Réponse** : `app/` est l'API du site (comptes,
+    copies serveur, partages, proxy LLM) ; il ne se supprime pas. Il pèse
+    19,5 Mo : trois versions de l'API (3,7 à 3,9 Mo ; seule celle du 14
+    octobre tourne, celle du 17 juillet sert de retour arrière), la base
+    pays db-ip (8,2 Mo, le pays des connexions au monitoring) et le `.env`.
+    Fait, avec une sauvegarde sur le Mac d'abord (sa proposition de 10 h 34) :
+    l'ancienne démonstration d'un bloc (17,2 Mo) et la plus ancienne version
+    de l'API (3,7 Mo) effacées (voir le déploiement de D-68). **À décider** :
+    la version d'API précédente (3,8 Mo ; sans elle, plus de retour arrière en
+    une commande), la base pays (8,2 Mo ; sans elle, plus de pays au
+    monitoring), les 59 journées publiques (14,6 Mo ; la vue « journée » de
+    l'ancien site les lit encore et la démonstration s'en sert en secours :
+    les retirer demande de modifier le site). **Proposition**, pour les
+    mises à jour de la démonstration : garder ses fichiers compressés sur le
+    serveur (environ 5 Mo par version au lieu de 20), ce qui permettrait d'en
+    garder deux. *(en attente)*
+
 ---
 
 ## 5. Chronologie
@@ -3688,4 +3758,11 @@ Questions posées avec D-66 (2026-10-16, 5 h 30) :
   seconde lecture : l'analyse AuroraCore du 19 avril 2026 (57 compétences,
   six voix et un président) jointe à chaque compétence, la décision du
   président d'abord, sans effet sur le soleil. Relu par un agent distinct
-  (quatorze points, dont deux bloquants, traités).
+  (quatorze points, dont deux bloquants, traités). Au dépôt, l'hébergement
+  gratuit (100 Mo) est plein : à la demande de Christian (10 h 32, 10 h 34),
+  l'ancienne démonstration d'un bloc et la plus ancienne version de l'API
+  sont sauvegardées sur le Mac puis effacées (question 41) ; une
+  démonstration enrichie se copie désormais dans le navigateur, pour que
+  l'ancien dossier de version puisse se retirer (relu par un agent distinct :
+  quatre points, traités). Déployé et vérifié en ligne, au bureau et au
+  téléphone.
