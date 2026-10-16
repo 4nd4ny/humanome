@@ -75,6 +75,7 @@ autorisation, puis fusionné dans `main` (D-46).
 | Déploiement | D-67 et D-68 : démonstration découpée avec sa seconde lecture, front ; vérifiés en ligne au bureau et au téléphone ; place sur le serveur : ancienne archive et plus ancienne version de l'API sauvegardées sur le Mac puis effacées (question 41) | ✅ | — | ✅ vérification en ligne (Chromium) | voir D-68 |
 | Seconde lecture : date et jury | la date dite comme celle de l'analyse, une fois ; « Réflexions des membres du jury » : une ligne par membre, un niveau de moins (D-69) | ✅ | ✅ voir §3 | ✅ | `22a44a5` |
 | Hauteur proportionnelle | la hauteur dessinée d'un secteur suit la confiance sur une échelle régulière, du départ (0,25) au bord : 0,5 au tiers de l'anneau, 0,75 aux deux tiers ; cercles à intervalles égaux ; l'aire n'encode plus rien en soi (D-70) | ✅ | ✅ voir §3 + e2e Chromium | ✅ | `c922004` |
+| Journée voisine | boutons de la modale du jour sans l'année, sauf quand elle change ; « 1er » dans les dates compactes (D-71) | ✅ | ✅ voir §3 | ✅ | `bd482de` |
 
 Légende : ✅ fait · ⏳ en cours · — pas commencé.
 
@@ -2882,6 +2883,23 @@ semble acceptable? »
   l'anneau, 6.01 (0,68) à 57 % ; la légende sans ligne « Surface » ;
   « Pourquoi cette surface ? » donne la formule du rayon.
 
+### D-71 — Les boutons de la journée voisine sans l'année **[décidé]**
+
+Christian (2026-10-16, 20 h 53) : « Sur cette vue
+https://humanome.xyz/#/cartographie/jour/2026-03-13?focus=2.06 inutile
+d'indiquer l'année sur les boutons jour suivant et jour précédant. »
+
+- **La modale du jour** dit déjà la date entière dans son titre (« vendredi
+  13 mars 2026 ») : les boutons de la journée précédente et de la suivante
+  disent désormais « ← dim. 8 mars » et « sam. 14 mars → ».
+- **[choix d'implémentation]** L'année reste quand elle change : de la
+  première journée de 2026, le bouton précédent dit « ← mar. 30 déc.
+  2025 », et du 30 décembre, le suivant « jeu. 1er janv. 2026 → ». Elle
+  apporte alors une information que le titre ne donne pas.
+- **Au passage**, le libellé compact écrit le premier du mois « 1er », comme
+  la date longue : « jeu. 1er janv. 2026 », non plus « jeu. 1 janv. 2026 »
+  (dans toutes les listes de l'interface).
+
 ---
 
 ## 3. État des tests
@@ -3433,6 +3451,16 @@ avec le test ajouté : **527 verts** (42 fichiers).
 Suites : site **2 469 verts** (243 fichiers), dont la cartographie **527
 verts** (42 fichiers) ; e2e Chromium du soleil verts.
 
+### Les boutons de la journée voisine (D-71)
+
+| Fichier de test | Contenu | Tests |
+|---|---|---|
+| `core/dates.test.js` (nouveau) | le libellé compact : avec l'année par défaut, sans avec `{ year: false }` ; « 1er » le premier du mois ; passé à `map`, l'index ne retire pas l'année ; une date illisible donne un tiret | 5 |
+| `ui/CartoApp.test.jsx` | modale du jour : la voisine de la même année sans l'année ; de part et d'autre du 1er janvier, avec | +1, 2 adaptés |
+
+Suites : site **2 475 verts** (244 fichiers), dont la cartographie **533
+verts** (43 fichiers).
+
 ---
 
 ## 4. Questions à Christian et ses réponses
@@ -3916,3 +3944,6 @@ Question posée avec D-70 (2026-10-16) :
   quatre soleils à l'appui, son exemple chiffré comptait depuis 0 et aurait
   produit l'inverse ; il a choisi la hauteur proportionnelle comptée depuis
   le départ (0,25) : 0,5 au tiers de l'anneau, 0,75 aux deux tiers.
+- **2026-10-16** — Remarque de Christian de 20 h 53 (D-71) : les boutons de
+  la journée voisine, dans la modale du jour, ne disent plus l'année — sauf
+  quand elle change, au passage du 1er janvier.
