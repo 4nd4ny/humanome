@@ -11,7 +11,19 @@ Interface ultime de cartographie (branche `feat/ultimate-cartography`) : validé
 **déployée le 2026-10-14** (`health` → `v1.1.0-106-gc6a0231`, migrations 022 et 023) puis fusionnée
 dans `main` (entrée du 2026-10-14 ci-dessous).
 
+Prochain chantier : le moteur Twin9 v9.8 en PHP, exécuté sur le serveur, planifié dans
+`docs/plan-twin9-php.md` (prompts T0 → T16, une conversation chacun ; entrée du 2026-10-17).
+
 ## Fait
+
+- 2026-10-17 — **Planning du moteur Twin9 v9.8 en PHP (`docs/plan-twin9-php.md`).** Six lots :
+  préparer (dépôt privé `4nd4ny/Twin_v9` avec la v9.8 à sa racine, oracle tiré de la v9.8, vrai
+  run de PLANT-01), le moteur PHP exécuté par tranches sur le serveur, le service (lancer,
+  suivre, lire, payer, purger), le retrait du moteur du navigateur, la configuration (profil,
+  jeux de gabarits, plusieurs référentiels, page et droits), la démonstration sur l'hébergement
+  gratuit d'OVH, sans Docker. Dix-sept prompts T0 → T16 à lancer chacun dans une conversation ;
+  deux questions restent ouvertes (publication du moteur PHP, visibilité des gabarits v9.8).
+  Rien de la v9.8 n'entre dans ce dépôt ; aucun code dans ce commit.
 
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
