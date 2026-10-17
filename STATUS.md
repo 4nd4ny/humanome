@@ -12,7 +12,7 @@ Interface ultime de cartographie (branche `feat/ultimate-cartography`) : validé
 dans `main` (entrée du 2026-10-14 ci-dessous).
 
 Prochain chantier : le moteur Twin9 v9.8 en PHP, exécuté sur le serveur, planifié dans
-`docs/plan-twin9-php.md` (prompts T0 → T16, une conversation chacun ; entrée du 2026-10-17).
+`docs/plan-twin9-php.md` (prompts T0 → T18, une conversation chacun ; entrée du 2026-10-17).
 
 ## Fait
 
@@ -21,9 +21,11 @@ Prochain chantier : le moteur Twin9 v9.8 en PHP, exécuté sur le serveur, plani
   run de PLANT-01), le moteur PHP exécuté par tranches sur le serveur, le service (lancer,
   suivre, lire, payer, purger), le retrait du moteur du navigateur, la configuration (profil,
   jeux de gabarits, plusieurs référentiels, page et droits), la démonstration sur l'hébergement
-  gratuit d'OVH, sans Docker. Dix-sept prompts T0 → T16 à lancer chacun dans une conversation ;
+  gratuit d'OVH, sans Docker. Dix-neuf prompts T0 → T18 à lancer chacun dans une conversation ;
   deux questions restent ouvertes (publication du moteur PHP, visibilité des gabarits v9.8).
-  Rien de la v9.8 n'entre dans ce dépôt ; aucun code dans ce commit.
+  Relu par un agent distinct (paramètres des modèles 5.5, tests sans MySQL ni v9.8, jeton du
+  déclencheur, voie par lots, parité PHP), corrections intégrées. Rien de la v9.8 n'entre dans
+  ce dépôt ; aucun code dans ce commit.
 
 - 2026-10-14 — **Interface ultime de cartographie (demande utilisateur, branche
   `feat/ultimate-cartography`) — validée, déployée et fusionnée dans `main` le même jour.**
